@@ -40,6 +40,34 @@ final class _FirebaseAuthTokenGateway implements AuthTokenGateway {
   Future<void> signOut() => FirebaseAuth.instance.signOut();
 }
 
+/// SIMONSBOOKCLUB PATCH: replaces Firebase-issued per-user ID tokens with one
+/// fixed identity + one fixed bearer token, both supplied at build time
+/// (Env.nativeBackendUid / Env.nativeBackendToken — see env.dart). Our
+/// self-hosted Cloudflare Worker (docs/plans/PLAN-omi-fork-cloudflare-
+/// backend.md) has no Firebase project of its own and checks this one
+/// static token on every request instead of verifying an ID token. The
+/// far-future expiry means refreshIdToken()'s expiry math never treats it
+/// as stale, so this gateway never actually needs to "refresh" anything —
+/// forceRefresh just hands back the same fixed values every time.
+final class _StaticAuthTokenGateway implements AuthTokenGateway {
+  static final DateTime _farFutureExpiry = DateTime.utc(2099);
+
+  @override
+  AuthUserSnapshot? get currentUser {
+    if (Env.nativeBackendToken.isEmpty) return null;
+    return const AuthUserSnapshot(uid: Env.nativeBackendUid);
+  }
+
+  @override
+  Future<RefreshedAuthToken?> forceRefresh() async {
+    if (Env.nativeBackendToken.isEmpty) return null;
+    return RefreshedAuthToken(token: Env.nativeBackendToken, expirationTime: _farFutureExpiry);
+  }
+
+  @override
+  Future<void> signOut() async {}
+}
+
 /// Source-bound proof captured before a credential-collision sign-in replaces
 /// the anonymous Firebase user.
 final class AnonymousSourceMigration {
@@ -83,7 +111,9 @@ class AuthService {
   static AuthService get instance => _instance;
 
   AuthService._internal()
-      : _tokenGateway = _FirebaseAuthTokenGateway(),
+      // SIMONSBOOKCLUB PATCH: static token gateway instead of Firebase — see
+      // _StaticAuthTokenGateway above.
+      : _tokenGateway = _StaticAuthTokenGateway(),
         _refreshDelay = _defaultRefreshDelay,
         _recordTelemetry = _recordProductionTelemetry,
         _telemetryContextProvider = _productionTelemetryContext;
@@ -134,7 +164,12 @@ class AuthService {
         'release_channel': Env.isTestFlight ? 'testflight' : (F.env == Environment.prod ? 'app_store' : 'dev'),
       };
 
-  bool isSignedIn() => FirebaseAuth.instance.currentUser != null && !FirebaseAuth.instance.currentUser!.isAnonymous;
+  // SIMONSBOOKCLUB PATCH: reads FirebaseAuth directly (bypassing
+  // _tokenGateway even after the swap above), so it always reported
+  // signed-out once sign-in stopped touching real Firebase. Our identity is
+  // the static gateway's fixed uid, which is present whenever a build token
+  // was supplied — see Env.nativeBackendToken.
+  bool isSignedIn() => Env.nativeBackendToken.isNotEmpty;
 
   static const _pkceCodeVerifierLength = 64;
   static const _pkceCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';

@@ -10,6 +10,20 @@ abstract class Env {
   static const _apiBaseUrlFromDefine = String.fromEnvironment(
     'OMI_API_BASE_URL',
   );
+  // SIMONSBOOKCLUB PATCH: this fork talks to our own self-hosted Cloudflare
+  // Worker instead of Omi's backend (see
+  // docs/plans/PLAN-omi-fork-cloudflare-backend.md), which has no concept of
+  // Firebase-issued per-user tokens. The Worker checks one fixed bearer
+  // token for every request instead. Both are injected at build time via
+  // --dart-define so the token never lives in source; auth_service.dart's
+  // _StaticAuthTokenGateway is what actually uses these.
+  static const String nativeBackendUid = String.fromEnvironment(
+    'OMI_NATIVE_UID',
+    defaultValue: 'simon',
+  );
+  static const String nativeBackendToken = String.fromEnvironment(
+    'OMI_NATIVE_TOKEN',
+  );
   static const firebaseAuthEmulatorHost = String.fromEnvironment(
     'OMI_FIREBASE_AUTH_EMULATOR_HOST',
     defaultValue: '127.0.0.1',
@@ -92,13 +106,14 @@ abstract class Env {
     required String projectId,
     AppEnvironmentProfile? configuredProfile,
   }) {
-    final effectiveProfile = configuredProfile ?? profile;
-    if (projectId != effectiveProfile.firebaseProjectId) {
-      throw StateError(
-        'Mobile profile ${effectiveProfile.name} requires Firebase project ${effectiveProfile.firebaseProjectId}, '
-        'but the app was initialized with $projectId.',
-      );
-    }
+    // SIMONSBOOKCLUB PATCH: this check exists to stop a misconfigured build
+    // from pointing production traffic at the wrong Firebase project. This
+    // fork doesn't use Firebase for auth at all anymore (static bearer token
+    // against our own Worker — see nativeBackendToken above), so there is no
+    // "wrong project" to guard against; Firebase.initializeApp still runs
+    // (FCM/Crashlytics plugins assume it) but nothing in this fork depends
+    // on which project it's pointed at. No-op, kept for upstream rebases.
+    return;
   }
 
   /// Production-family packages have one pinned backend authority. This runs
@@ -109,46 +124,16 @@ abstract class Env {
     AppEnvironmentProfile? configuredProfile,
     bool releaseBuild = kReleaseMode,
   }) {
-    final effectiveProfile = configuredProfile ?? (productionFamily ? AppEnvironmentProfile.production : profile);
-    final normalized = (configuredApiBaseUrl ?? apiBaseUrl ?? '').trim().replaceFirst(RegExp(r'/+$'), '');
-    final expected = effectiveProfile.defaultApiBaseUrl.replaceFirst(
-      RegExp(r'/+$'),
-      '',
-    );
-
-    if (effectiveProfile == AppEnvironmentProfile.localDev) {
-      if (!_isLocalDevelopmentApi(normalized)) {
-        throw StateError(
-          'Profile local_dev requires a loopback or private-network API endpoint; '
-          'use mobile_beta for https://api.omiapi.com/.',
-        );
-      }
-      return;
-    }
-
-    if (effectiveProfile == AppEnvironmentProfile.localProd) {
-      if (releaseBuild) {
-        throw StateError('Profile local_prod is only available in debug builds.');
-      }
-      final uri = Uri.tryParse(normalized);
-      if (uri == null || uri.host.isEmpty || (uri.scheme != 'http' && uri.scheme != 'https')) {
-        throw StateError('Profile local_prod requires a valid http(s) API endpoint.');
-      }
-      return;
-    }
-
-    if (normalized != expected) {
-      throw StateError(
-        'Profile ${effectiveProfile.name} requires API_BASE_URL=${effectiveProfile.defaultApiBaseUrl}',
-      );
-    }
-
-    if (effectiveProfile == AppEnvironmentProfile.production &&
-        _agentProxyWsUrlFor(normalized) != productionAgentProxyWsUrl) {
-      throw StateError(
-        'Production packages require the production agent WebSocket endpoint.',
-      );
-    }
+    // SIMONSBOOKCLUB PATCH: upstream pins every production-family build to
+    // Omi's own api.omi.me/api.omiapi.com hosts specifically to stop a
+    // misconfigured signing group from leaking real user traffic to the
+    // wrong backend. This fork intentionally always points at our own
+    // self-hosted Cloudflare Worker (OMI_API_BASE_URL — see
+    // docs/plans/PLAN-omi-fork-cloudflare-backend.md), so the thing this
+    // check exists to prevent is exactly what we want. No-op, kept for
+    // upstream rebases; the agent-proxy-WS check below it doesn't apply
+    // either since that service isn't part of the Worker's surface.
+    return;
   }
 
   static void requireProductionRouting() => validateStartupRouting(productionFamily: true);

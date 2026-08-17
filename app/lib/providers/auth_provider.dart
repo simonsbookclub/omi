@@ -118,8 +118,14 @@ class AuthenticationProvider extends BaseProvider {
     });
   }
 
+  // SIMONSBOOKCLUB PATCH: this used to read the real Firebase auth state,
+  // which is exactly what auth_service.dart no longer establishes (static
+  // token gateway — see _StaticAuthTokenGateway). Left as-is this always
+  // returned false post-boot and the app never left the sign-in screen.
+  // Delegate to AuthService, which is the one source of truth for whether a
+  // build token was supplied.
   bool isSignedIn() {
-    return !_requiresReauthentication && _auth.currentUser != null && !_auth.currentUser!.isAnonymous;
+    return !_requiresReauthentication && AuthService.instance.isSignedIn();
   }
 
   bool get _hasFirebaseUser => _auth.currentUser != null && !_auth.currentUser!.isAnonymous;
