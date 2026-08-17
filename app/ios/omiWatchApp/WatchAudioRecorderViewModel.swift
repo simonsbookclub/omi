@@ -345,7 +345,13 @@ class WatchAudioRecorderViewModel: NSObject, WatchRecorderControlling {
     }
 }
 
-extension WatchAudioRecorderViewModel: WCSessionDelegate {
+// SIMONSBOOKCLUB PATCH: @preconcurrency added — the newer Swift toolchain
+// (fresh Flutter/Xcode combination this fork builds with) enforces that a
+// main-actor-isolated class can't directly satisfy WCSessionDelegate's
+// nonisolated requirements; @preconcurrency is the compiler's own suggested
+// fix and matches how WCSession delivers callbacks (its own queue,
+// pre-Swift-concurrency API).
+extension WatchAudioRecorderViewModel: @preconcurrency WCSessionDelegate {
 #if os(iOS)
     public func sessionDidBecomeInactive(_ session: WCSession) { }
     public func sessionDidDeactivate(_ session: WCSession) { }
