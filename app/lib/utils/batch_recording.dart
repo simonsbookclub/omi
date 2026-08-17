@@ -41,7 +41,13 @@ bool canAutoUploadPhoneRecordings({
   required bool autoSyncOfflineRecordings,
   required bool isUploading,
 }) =>
-    !useCustomStt && autoSyncOfflineRecordings && !isUploading;
+    // SIMONSBOOKCLUB PATCH: same gate removal as sync_provider.dart — on a
+    // self-hosted backend, auto-upload under Custom STT goes to our own
+    // server, so upstream's reason for suppressing it does not apply.
+    // Parameter kept so the signature (and its unit tests' call sites)
+    // stay upstream-shaped for rebases.
+    // ignore: avoid_unused_parameters
+    autoSyncOfflineRecordings && !isUploading;
 
 /// The next offline-fallback recording to auto-upload from [fileNames], or null
 /// when none is eligible. Only auto-marker files qualify (explicit Transcribe
