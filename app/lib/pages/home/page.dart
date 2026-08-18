@@ -47,6 +47,7 @@ import 'package:omi/providers/capture_provider.dart';
 import 'package:omi/providers/connectivity_provider.dart';
 import 'package:omi/providers/conversation_provider.dart';
 import 'package:omi/providers/device_provider.dart';
+import 'package:omi/services/integrations/apple_health_service.dart';
 import 'package:omi/providers/local_recordings_provider.dart';
 import 'package:omi/providers/announcement_provider.dart';
 import 'package:omi/providers/home_provider.dart';
@@ -280,6 +281,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
         // Pick up any batch recordings the native layer wrote while backgrounded/closed.
         Provider.of<LocalRecordingsProvider>(context, listen: false).refresh();
       }
+
+      // SIMONSBOOKCLUB: push granular Apple Health samples for the
+      // speech×body correlation. Fire-and-forget, self-throttled to 1/hour.
+      AppleHealthService().syncGranularSamples();
 
       // Ensure agent VM is running and restart keepalive
       if (mounted && SharedPreferencesUtil().claudeAgentEnabled) {

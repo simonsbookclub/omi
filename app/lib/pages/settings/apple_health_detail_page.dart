@@ -50,6 +50,10 @@ class _AppleHealthDetailPageState extends State<AppleHealthDetailPage> {
       } else {
         Logger.debug('⚠ Failed to sync Apple Health data, but connection succeeded');
       }
+      // SIMONSBOOKCLUB: also push the granular sample history right away
+      // (30 days back on first run) instead of waiting for the next
+      // foreground tick.
+      service.syncGranularSamples(force: true);
       await integrationProvider.saveConnection(IntegrationApp.appleHealth.key, {});
       if (!mounted) return;
       scaffoldMessenger.showSnackBar(SnackBar(content: Text(result.message), duration: const Duration(seconds: 2)));

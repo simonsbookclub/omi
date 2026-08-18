@@ -27,6 +27,37 @@ class AppleHealthService {
         if let restingHeartRate = HKQuantityType.quantityType(forIdentifier: .restingHeartRate) {
             types.insert(restingHeartRate)
         }
+        if let hrv = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
+            types.insert(hrv)
+        }
+        if let walkingHR = HKQuantityType.quantityType(forIdentifier: .walkingHeartRateAverage) {
+            types.insert(walkingHR)
+        }
+        if let respiratoryRate = HKQuantityType.quantityType(forIdentifier: .respiratoryRate) {
+            types.insert(respiratoryRate)
+        }
+        if let oxygenSaturation = HKQuantityType.quantityType(forIdentifier: .oxygenSaturation) {
+            types.insert(oxygenSaturation)
+        }
+        if let vo2Max = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
+            types.insert(vo2Max)
+        }
+        if let cyclingDistance = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
+            types.insert(cyclingDistance)
+        }
+
+        // Running dynamics (watch records these during runs)
+        if #available(iOS 16.0, *) {
+            if let runningSpeed = HKQuantityType.quantityType(forIdentifier: .runningSpeed) {
+                types.insert(runningSpeed)
+            }
+            if let runningPower = HKQuantityType.quantityType(forIdentifier: .runningPower) {
+                types.insert(runningPower)
+            }
+            if let strideLength = HKQuantityType.quantityType(forIdentifier: .runningStrideLength) {
+                types.insert(strideLength)
+            }
+        }
 
         // Sleep
         if let sleep = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) {
@@ -64,6 +95,8 @@ class AppleHealthService {
             getActiveEnergy(call: call, result: result)
         case "getWorkouts":
             getWorkouts(call: call, result: result)
+        case "getSamples":
+            getSamples(call: call, result: result)
         default:
             result(FlutterMethodNotImplemented)
         }
@@ -706,6 +739,229 @@ class AppleHealthService {
         case .soccer: return "Soccer"
         case .golf: return "Golf"
         default: return "Other"
+        }
+    }
+
+    // MARK: - Granular sample export (simonsbookclub)
+
+    /// Everything HealthKit will give us as timestamped samples, for
+    /// correlating body state with speech. Raw samples for the sparse
+    /// series (heart rate, HRV, resting HR, respiratory rate, SpO2,
+    /// VO2max); hourly sums for the dense cumulative ones (steps, active
+    /// energy) where raw samples double-count across watch and phone;
+    /// sleep as one row per stage interval; workouts as one row each.
+    private func getSamples(call: FlutterMethodCall, result: @escaping FlutterResult) {
+        let args = call.arguments as? [String: Any]
+        let sinceMs = args?["sinceMs"] as? Double ?? Date().addingTimeInterval(-30 * 86400).timeIntervalSince1970 * 1000
+        let startDate = Date(timeIntervalSince1970: sinceMs / 1000)
+        let endDate = Date()
+        let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
+        let sortByDate = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        let perTypeLimit = 20000
+
+        var samples: [[String: Any]] = []
+        let lock = NSLock()
+        let group = DispatchGroup()
+
+        func appendRows(_ rows: [[String: Any]]) {
+            lock.lock()
+            samples.append(contentsOf: rows)
+            lock.unlock()
+        }
+
+        // Sparse quantity series: every sample, timestamped.
+        var quantitySeries: [(HKQuantityTypeIdentifier, String, HKUnit, String)] = [
+            (.heartRate, "heart_rate", HKUnit.count().unitDivided(by: .minute()), "bpm"),
+            (.restingHeartRate, "resting_heart_rate", HKUnit.count().unitDivided(by: .minute()), "bpm"),
+            (.walkingHeartRateAverage, "walking_heart_rate", HKUnit.count().unitDivided(by: .minute()), "bpm"),
+            (.heartRateVariabilitySDNN, "hrv_sdnn", HKUnit.secondUnit(with: .milli), "ms"),
+            (.respiratoryRate, "respiratory_rate", HKUnit.count().unitDivided(by: .minute()), "breaths/min"),
+            (.oxygenSaturation, "oxygen_saturation", HKUnit.percent(), "%"),
+            (.vo2Max, "vo2_max", HKUnit(from: "ml/kg*min"), "ml/kg/min"),
+        ]
+        if #available(iOS 16.0, *) {
+            quantitySeries.append((.runningSpeed, "running_speed", HKUnit.meter().unitDivided(by: .second()), "m/s"))
+            quantitySeries.append((.runningPower, "running_power", HKUnit.watt(), "W"))
+            quantitySeries.append((.runningStrideLength, "running_stride_length", HKUnit.meter(), "m"))
+        }
+        for (identifier, name, unit, unitLabel) in quantitySeries {
+            guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
+            group.enter()
+            let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
+                let rows: [[String: Any]] = (results as? [HKQuantitySample] ?? []).map { s in
+                    var value = s.quantity.doubleValue(for: unit)
+                    if identifier == .oxygenSaturation { value *= 100 }
+                    return [
+                        "type": name,
+                        "start_ms": s.startDate.timeIntervalSince1970 * 1000,
+                        "end_ms": s.endDate.timeIntervalSince1970 * 1000,
+                        "value": value,
+                        "unit": unitLabel,
+                    ]
+                }
+                appendRows(rows)
+                group.leave()
+            }
+            healthStore.execute(query)
+        }
+
+        // Dense cumulative series: hourly sums.
+        let hourlySeries: [(HKQuantityTypeIdentifier, String, HKUnit, String)] = [
+            (.stepCount, "steps_hourly", HKUnit.count(), "steps"),
+            (.activeEnergyBurned, "active_energy_hourly", HKUnit.kilocalorie(), "kcal"),
+            (.distanceWalkingRunning, "distance_hourly", HKUnit.meterUnit(with: .kilo), "km"),
+        ]
+        var hourly = DateComponents()
+        hourly.hour = 1
+        for (identifier, name, unit, unitLabel) in hourlySeries {
+            guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
+            group.enter()
+            let anchor = Calendar.current.startOfDay(for: startDate)
+            let query = HKStatisticsCollectionQuery(
+                quantityType: type,
+                quantitySamplePredicate: predicate,
+                options: .cumulativeSum,
+                anchorDate: anchor,
+                intervalComponents: hourly
+            )
+            query.initialResultsHandler = { _, collection, _ in
+                var rows: [[String: Any]] = []
+                collection?.enumerateStatistics(from: startDate, to: endDate) { stats, _ in
+                    guard let sum = stats.sumQuantity() else { return }
+                    rows.append([
+                        "type": name,
+                        "start_ms": stats.startDate.timeIntervalSince1970 * 1000,
+                        "end_ms": stats.endDate.timeIntervalSince1970 * 1000,
+                        "value": sum.doubleValue(for: unit),
+                        "unit": unitLabel,
+                    ])
+                }
+                appendRows(rows)
+                group.leave()
+            }
+            healthStore.execute(query)
+        }
+
+        // Sleep stages: one row per stage interval, value = minutes.
+        if let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) {
+            group.enter()
+            let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
+                let rows: [[String: Any]] = (results as? [HKCategorySample] ?? []).compactMap { s in
+                    let stage: String
+                    switch HKCategoryValueSleepAnalysis(rawValue: s.value) {
+                    case .inBed: stage = "in_bed"
+                    case .awake: stage = "awake"
+                    case .asleepCore: stage = "core"
+                    case .asleepDeep: stage = "deep"
+                    case .asleepREM: stage = "rem"
+                    case .asleepUnspecified: stage = "asleep"
+                    default: return nil
+                    }
+                    return [
+                        "type": "sleep_stage",
+                        "start_ms": s.startDate.timeIntervalSince1970 * 1000,
+                        "end_ms": s.endDate.timeIntervalSince1970 * 1000,
+                        "value": s.endDate.timeIntervalSince(s.startDate) / 60,
+                        "unit": "min",
+                        "meta": stage,
+                    ]
+                }
+                appendRows(rows)
+                group.leave()
+            }
+            healthStore.execute(query)
+        }
+
+        // Workouts: one row each, value = duration minutes, meta = JSON with
+        // activity, kcal, km, average pace — and for distance sports, per-km
+        // splits computed from the workout's own distance samples (this is
+        // the same data the Fitness app shows for a run).
+        group.enter()
+        let workoutQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
+            let workouts = results as? [HKWorkout] ?? []
+            let inner = DispatchGroup()
+            var rows: [[String: Any]] = []
+            let rowsLock = NSLock()
+
+            func finishRow(_ w: HKWorkout, _ metaDict: [String: Any]) {
+                let metaJson = (try? JSONSerialization.data(withJSONObject: metaDict)).flatMap { String(data: $0, encoding: .utf8) } ?? "{}"
+                let row: [String: Any] = [
+                    "type": "workout",
+                    "start_ms": w.startDate.timeIntervalSince1970 * 1000,
+                    "end_ms": w.endDate.timeIntervalSince1970 * 1000,
+                    "value": w.duration / 60,
+                    "unit": "min",
+                    "meta": metaJson,
+                ]
+                rowsLock.lock()
+                rows.append(row)
+                rowsLock.unlock()
+            }
+
+            for w in workouts {
+                var metaDict: [String: Any] = ["activity": self.workoutTypeString(w.workoutActivityType)]
+                if let energy = w.totalEnergyBurned?.doubleValue(for: .kilocalorie()) {
+                    metaDict["kcal"] = Int(energy.rounded())
+                }
+                let km = w.totalDistance?.doubleValue(for: .meterUnit(with: .kilo))
+                if let km = km, km > 0 {
+                    metaDict["km"] = (km * 100).rounded() / 100
+                    metaDict["avg_pace_s_per_km"] = Int((w.duration / km).rounded())
+                }
+
+                let distanceIdentifier: HKQuantityTypeIdentifier? = {
+                    switch w.workoutActivityType {
+                    case .running, .walking, .hiking: return .distanceWalkingRunning
+                    case .cycling: return .distanceCycling
+                    default: return nil
+                    }
+                }()
+
+                guard let identifier = distanceIdentifier, km ?? 0 >= 1,
+                      let distType = HKQuantityType.quantityType(forIdentifier: identifier) else {
+                    finishRow(w, metaDict)
+                    continue
+                }
+
+                // Walk the workout's distance samples, stamping elapsed time
+                // at each cumulative kilometer boundary.
+                inner.enter()
+                let splitQuery = HKSampleQuery(
+                    sampleType: distType,
+                    predicate: HKQuery.predicateForObjects(from: w),
+                    limit: HKObjectQueryNoLimit,
+                    sortDescriptors: [sortByDate]
+                ) { _, dResults, _ in
+                    var splits: [Int] = []
+                    var cumulativeMeters = 0.0
+                    var nextBoundary = 1000.0
+                    var lastBoundaryTime = w.startDate
+                    for s in (dResults as? [HKQuantitySample] ?? []) {
+                        cumulativeMeters += s.quantity.doubleValue(for: .meter())
+                        while cumulativeMeters >= nextBoundary {
+                            splits.append(Int(s.endDate.timeIntervalSince(lastBoundaryTime).rounded()))
+                            lastBoundaryTime = s.endDate
+                            nextBoundary += 1000
+                        }
+                    }
+                    if !splits.isEmpty {
+                        metaDict["splits_s_per_km"] = splits
+                    }
+                    finishRow(w, metaDict)
+                    inner.leave()
+                }
+                self.healthStore.execute(splitQuery)
+            }
+
+            inner.notify(queue: .global()) {
+                appendRows(rows)
+                group.leave()
+            }
+        }
+        healthStore.execute(workoutQuery)
+
+        group.notify(queue: .main) {
+            result(samples)
         }
     }
 }

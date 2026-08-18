@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 
 import 'package:omi/backend/http/api/integrations.dart';
+import 'package:omi/backend/preferences.dart';
 import 'package:omi/utils/logger.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 
@@ -167,6 +168,55 @@ class AppleHealthService {
       Logger.debug('Error fetching workouts: $e');
       return null;
     }
+  }
+
+  /// SIMONSBOOKCLUB: granular timestamped samples (heart rate, HRV, resting
+  /// HR, respiratory rate, SpO2, VO2max, hourly steps/energy, sleep stages,
+  /// workouts) since a given time. Feeds the speech×body correlation.
+  Future<List<Map<String, dynamic>>?> getSamples({required int sinceMs}) async {
+    if (!isAvailable) return null;
+    try {
+      final result = await _channel.invokeMethod('getSamples', {'sinceMs': sinceMs.toDouble()});
+      if (result is List) {
+        return result.map((e) => Map<String, dynamic>.from(e as Map)).toList();
+      }
+      return null;
+    } catch (e) {
+      Logger.debug('Error fetching granular health samples: $e');
+      return null;
+    }
+  }
+
+  /// Push granular samples to the backend, chunked. First run reaches 30
+  /// days back; after that, since the last successful sync (minus a day of
+  /// overlap — HealthKit backfills late, e.g. sleep arrives on morning
+  /// unlock, and the server dedupes). Throttled to once per hour.
+  Future<bool> syncGranularSamples({bool force = false}) async {
+    if (!isAvailable) return false;
+    final prefs = SharedPreferencesUtil();
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final lastRun = prefs.getInt('healthSamplesLastRunMs');
+    if (!force && now - lastRun < 60 * 60 * 1000) return false;
+
+    final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
+    final sinceMs = lastSynced > 0 ? lastSynced - 24 * 60 * 60 * 1000 : now - 30 * 24 * 60 * 60 * 1000;
+
+    final samples = await getSamples(sinceMs: sinceMs);
+    prefs.saveInt('healthSamplesLastRunMs', now);
+    if (samples == null || samples.isEmpty) return false;
+
+    const chunkSize = 2000;
+    for (var i = 0; i < samples.length; i += chunkSize) {
+      final chunk = samples.sublist(i, i + chunkSize > samples.length ? samples.length : i + chunkSize);
+      final ok = await syncAppleHealthSamples(chunk);
+      if (!ok) {
+        Logger.debug('Granular health sync failed at chunk ${i ~/ chunkSize}');
+        return false;
+      }
+    }
+    prefs.saveInt('healthSamplesSyncedToMs', now);
+    Logger.debug('Granular health sync: ${samples.length} samples pushed');
+    return true;
   }
 
   /// Connect to Apple Health with automatic permission handling

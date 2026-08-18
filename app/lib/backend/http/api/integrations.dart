@@ -106,6 +106,19 @@ Future<String?> getIntegrationOAuthUrl(String appKey) async {
   }
 }
 
+/// SIMONSBOOKCLUB: push granular timestamped health samples. Both sides of
+/// this endpoint are ours (no generated wire decoder), so the response is
+/// parsed leniently.
+Future<bool> syncAppleHealthSamples(List<Map<String, dynamic>> samples) async {
+  var response = await makeApiCall(
+    url: '${Env.apiBaseUrl}v1/integrations/apple-health/samples',
+    headers: {},
+    method: 'PUT',
+    body: jsonEncode({'samples': samples}),
+  );
+  return response != null && response.statusCode == 200;
+}
+
 /// Sync Apple Health data to backend
 /// This sends health data collected from HealthKit to the server
 Future<bool> syncAppleHealthData(Map<String, dynamic> healthData) async {
