@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:just_audio/just_audio.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:omi/backend/http/shared.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/env/env.dart';
+import 'package:omi/providers/people_provider.dart';
 import 'package:omi/utils/logger.dart';
 
 /// SIMONSBOOKCLUB PAGE: listen to recurring voices the backend has
@@ -151,6 +154,11 @@ class _VoicesPageState extends State<VoicesPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('$name enrolled — $relabeled past sighting(s) relabeled'), backgroundColor: Colors.green),
       );
+      // Refresh the app-wide people cache so the new name resolves in
+      // transcripts immediately (it's loaded once at boot otherwise).
+      try {
+        context.read<PeopleProvider>().setPeople();
+      } catch (_) {}
       _load();
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
