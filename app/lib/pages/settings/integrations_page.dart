@@ -539,12 +539,10 @@ class _IntegrationsPageState extends State<IntegrationsPage> with WidgetsBinding
               Expanded(
                 child: ListView(
                   children: [
-                    ...IntegrationApp.values.map((app) => _buildAppTile(app, isLoading)),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Divider(color: Colors.grey.shade800, thickness: 1),
-                    ),
-                    _buildCreateYourOwnAppTile(),
+                    // SIMONSBOOKCLUB: only Apple Health — the Gmail/Google
+                    // Calendar tiles OAuth through Omi's cloud, which this
+                    // fork no longer talks to. Same for "create your own app".
+                    _buildAppTile(IntegrationApp.appleHealth, isLoading),
                   ],
                 ),
               ),

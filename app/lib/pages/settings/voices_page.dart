@@ -1,13 +1,14 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
-
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/http/shared.dart';
-import 'package:omi/backend/preferences.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/providers/people_provider.dart';
 import 'package:omi/utils/logger.dart';
@@ -99,10 +100,20 @@ class _VoicesPageState extends State<VoicesPage> {
     }
     try {
       setState(() => _playingId = voice.id);
-      await _player.setUrl(
-        voice.listenUrl,
-        headers: {'Authorization': 'Bearer ${SharedPreferencesUtil().authToken}'},
-      );
+      // Download the WAV and play it from a local file. Streaming the
+      // header-authed URL straight into AVPlayer (setUrl + headers) fails
+      // silently on iOS — just_audio proxies headers through a local server
+      // AVPlayer doesn't always cooperate with. The clips are ~250 KB, so
+      // a full download first is instant and reliable.
+      final authHeader = await getAuthHeader();
+      final response = await http.get(Uri.parse(voice.listenUrl), headers: {'Authorization': authHeader});
+      if (response.statusCode != 200) {
+        throw Exception('clip HTTP ${response.statusCode}');
+      }
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/voice_clip_${voice.id}.wav');
+      await file.writeAsBytes(response.bodyBytes, flush: true);
+      await _player.setFilePath(file.path);
       await _player.play();
     } catch (e) {
       Logger.debug('Voice clip playback failed: $e');
