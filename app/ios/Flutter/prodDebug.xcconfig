@@ -7,5 +7,5 @@
 GOOGLE_REVERSE_CLIENT_ID=com.googleusercontent.apps.1031333818730-dusn243nct6i5rgfpfkj5mchuj1qnmde
 
 ASSET_PREFIX=prod
-BUNDLE_NAME=Omi
-BUNDLE_DISPLAY_NAME=Omi
+BUNDLE_NAME=Chronicle
+BUNDLE_DISPLAY_NAME=Chronicle

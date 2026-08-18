@@ -4,8 +4,8 @@
 #include "Custom.xcconfig"
 
 ASSET_PREFIX=dev
-BUNDLE_NAME=Omi Dev
-BUNDLE_DISPLAY_NAME=Omi Dev
+BUNDLE_NAME=Chronicle Dev
+BUNDLE_DISPLAY_NAME=Chronicle Dev
 APP_BUNDLE_IDENTIFIER=com.simonsbookclub.omi.development
 AUTH_CALLBACK_SCHEME=omi-dev
 INFOPLIST_FILE=Runner/Info-Dev.plist

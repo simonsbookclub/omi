@@ -4558,7 +4558,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get unlimitedConversations => 'Неограниченные разговоры';
 
   @override
-  String get askOmiAnything => 'Спросите Omi о чём угодно о своей жизни';
+  String get askOmiAnything => 'Спросите Chronicle о чём угодно о своей жизни';
 
   @override
   String get unlockOmiInfiniteMemory => 'Разблокируйте бесконечную память Omi';

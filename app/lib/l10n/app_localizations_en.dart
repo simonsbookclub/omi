@@ -4549,7 +4549,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unlimitedConversations => 'Unlimited conversations';
 
   @override
-  String get askOmiAnything => 'Ask Omi anything about your life';
+  String get askOmiAnything => 'Ask Chronicle anything about your life';
 
   @override
   String get unlockOmiInfiniteMemory => 'Unlock Omi\'s infinite memory';
