@@ -55,6 +55,7 @@ import 'package:omi/providers/sync_provider.dart';
 import 'package:omi/providers/task_integration_provider.dart';
 import 'package:omi/services/integrations/apple_reminders_sync_service.dart';
 import 'package:omi/services/quick_actions_service.dart';
+import 'package:omi/pages/settings/voices_page.dart';
 import 'package:omi/utils/device.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 import 'package:omi/services/announcement_service.dart';
@@ -176,7 +177,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
         _pages[pageIndex] = ActionItemsPage(key: _actionItemsPageKey, onAddGoal: _addGoal);
         break;
       case 3:
-        _pages[pageIndex] = AppsPage(key: _appsPageKey);
+        // SIMONSBOOKCLUB: the Apps marketplace is dead on the self-hosted
+        // backend — tab 3 is the Voices page (hear & name speakers) instead.
+        _pages[pageIndex] = const VoicesPage();
         break;
     }
   }

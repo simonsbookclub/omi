@@ -47,7 +47,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 _buildTab(context, selectedIndex, 0, FontAwesomeIcons.house, 'Home'),
                 _buildTab(context, selectedIndex, 1, FontAwesomeIcons.comments, 'Conversations'),
                 _buildTab(context, selectedIndex, 2, FontAwesomeIcons.listCheck, 'Tasks'),
-                _buildTab(context, selectedIndex, 3, FontAwesomeIcons.puzzlePiece, 'Apps'),
+                _buildTab(context, selectedIndex, 3, FontAwesomeIcons.userGroup, 'Voices'),
               ],
             ),
           ),
