@@ -11,6 +11,7 @@ import 'package:omi/pages/settings/developer.dart';
 import 'package:omi/pages/settings/notifications_settings_page.dart';
 import 'package:omi/pages/settings/permissions_page.dart';
 import 'package:omi/pages/settings/profile.dart';
+import 'package:omi/pages/settings/voices_page.dart';
 import 'package:omi/pages/memories/page.dart';
 import 'package:omi/pages/settings/integrations_page.dart';
 import 'package:omi/pages/settings/usage_page.dart';
@@ -554,6 +555,15 @@ class _SettingsDrawerState extends State<SettingsDrawer> {
                     final page =
                         SharedPreferencesUtil().deviceSupportsMultiFileSync ? const AutoSyncPage() : const SyncPage();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
+                  },
+                ),
+                const Divider(height: 1, color: Color(0xFF3C3C43)),
+                // SIMONSBOOKCLUB: listen to and name recurring voices (voices_page.dart).
+                _buildSettingsItem(
+                  title: 'Voices',
+                  icon: const FaIcon(FontAwesomeIcons.userGroup, color: Color(0xFF8E8E93), size: 20),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const VoicesPage()));
                   },
                 ),
                 Consumer<DeviceProvider>(
