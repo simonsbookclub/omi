@@ -280,8 +280,8 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
           _hasFullyChargedAlerted = true;
           final ctx = globalNavigatorKey.currentContext;
           NotificationService.instance.createNotification(
-            title: ctx?.l10n.batteryFullyChargedTitle ?? "Omi is fully charged",
-            body: ctx?.l10n.batteryFullyChargedBody ?? "Your Omi device is fully charged. Feel free to unplug!",
+            title: ctx?.l10n.batteryFullyChargedTitle ?? "Chronicle is fully charged",
+            body: ctx?.l10n.batteryFullyChargedBody ?? "Your Chronicle device is fully charged. Feel free to unplug!",
           );
         } else if (!isCharging || batteryLevel < 100) {
           _hasFullyChargedAlerted = false;
@@ -330,8 +330,8 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
             _hasFullyChargedAlerted = true;
             final ctx = globalNavigatorKey.currentContext;
             NotificationService.instance.createNotification(
-              title: ctx?.l10n.batteryFullyChargedTitle ?? "Omi is fully charged",
-              body: ctx?.l10n.batteryFullyChargedBody ?? "Your Omi device is fully charged. Feel free to unplug!",
+              title: ctx?.l10n.batteryFullyChargedTitle ?? "Chronicle is fully charged",
+              body: ctx?.l10n.batteryFullyChargedBody ?? "Your Chronicle device is fully charged. Feel free to unplug!",
             );
           }
           notifyListeners();
@@ -501,7 +501,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     ServiceManager.instance().wal.getSyncs().sdcard.setDevice(null);
     ServiceManager.instance().wal.getSyncs().flashPage.setDevice(null);
 
-    PlatformManager.instance.crashReporter.logInfo('Omi Device Disconnected');
+    PlatformManager.instance.crashReporter.logInfo('Chronicle Device Disconnected');
 
     PlatformManager.instance.analytics.deviceDisconnected();
     BatteryWidgetService().updateBatteryInfo(

@@ -229,7 +229,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
           getAppMarkdown(app.externalIntegration!.setupInstructionsFilePath ?? '').then((value) {
             value = value.replaceAll(
               '](assets/',
-              '](https://raw.githubusercontent.com/BasedHardware/Omi/main/plugins/instructions/${app.id}/assets/',
+              '](https://raw.githubusercontent.com/BasedHardware/Chronicle/main/plugins/instructions/${app.id}/assets/',
             );
             if (mounted) setState(() => instructionsMarkdown = value);
           });

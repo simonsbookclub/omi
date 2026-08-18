@@ -14,7 +14,7 @@ const String rayBanMetaAudioDataCharacteristicUuid = 'rayban-meta-audio-data';
 const String rayBanMetaCameraServiceUuid = 'rayban-meta-camera-service';
 const String rayBanMetaPhotoDataCharacteristicUuid = 'rayban-meta-photo-data';
 
-/// Ray-Ban Meta glasses as an Omi capture device.
+/// Ray-Ban Meta glasses as an Chronicle capture device.
 ///
 /// Adapter over [RayBanMetaTransport]: audio arrives as PCM16 mono frames from
 /// the glasses' Bluetooth HFP microphone, photos as JPEG bytes from the Meta

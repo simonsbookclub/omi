@@ -233,7 +233,7 @@ class _DeviceSettingsState extends State<DeviceSettings> {
   }
 
   Widget _buildDeviceInfoSection(BtDevice? device, DeviceProvider provider) {
-    final deviceName = device?.name ?? 'Omi DevKit';
+    final deviceName = device?.name ?? 'Chronicle DevKit';
     final deviceId = device?.id ?? '12AB34CD:56EF78GH';
     const firmwarePolicy = FirmwareUpdateBuildPolicy.current;
     final isOpenGlass = firmwarePolicy.isOpenGlassDevice(device);
@@ -302,8 +302,8 @@ class _DeviceSettingsState extends State<DeviceSettings> {
               }
             },
           ),
-          // Auto-sync toggle — Omi devices only. Lets users opt out of having
-          // offline recordings automatically synced to Omi on connect.
+          // Auto-sync toggle — Chronicle devices only. Lets users opt out of having
+          // offline recordings automatically synced to Chronicle on connect.
           if (device?.type == DeviceType.omi) ...[
             const Divider(height: 1, color: Color(0xFF3C3C43)),
             _buildProfileStyleItem(
@@ -335,7 +335,7 @@ class _DeviceSettingsState extends State<DeviceSettings> {
 
   Widget _buildHardwareInfoSection(BtDevice? device) {
     final hardwareRevision = device?.hardwareRevision ?? 'XIAO';
-    final modelNumber = device?.modelNumber ?? 'Omi DevKit';
+    final modelNumber = device?.modelNumber ?? 'Chronicle DevKit';
     final manufacturer = device?.manufacturerName ?? 'Based Hardware';
 
     return Container(

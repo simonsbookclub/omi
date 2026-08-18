@@ -1,7 +1,7 @@
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/services/audio_sources/audio_source.dart';
 
-/// Audio source for Omi/OpenGlass BLE devices.
+/// Audio source for Chronicle/OpenGlass BLE devices.
 ///
 /// BLE devices prepend a 3-byte firmware header to each audio packet:
 ///   [packet_id_low, packet_id_high, packet_index]

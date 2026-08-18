@@ -592,12 +592,12 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
       final syncProvider = Provider.of<SyncProvider>(context, listen: false);
       deviceProvider.onOfflineDataDetected = (device, fileCount, totalBytes) {
         // Custom STT users sync manually (with confirmation) — never auto-sync,
-        // since offline files are transcribed on Omi and count toward the limit.
+        // since offline files are transcribed on Chronicle and count toward the limit.
         if (SharedPreferencesUtil().useCustomStt) {
           Logger.debug('HomePage: Auto-sync skipped, custom STT provider enabled');
           return;
         }
-        // Omi users can disable auto-sync from device settings. Defaults to on.
+        // Chronicle users can disable auto-sync from device settings. Defaults to on.
         if (!SharedPreferencesUtil().autoSyncOfflineRecordings) {
           Logger.debug('HomePage: Auto-sync skipped, disabled by user');
           return;
@@ -880,7 +880,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
             const SizedBox(width: 18),
             const Expanded(
               child: Text(
-                'Ask Omi anything about your life...',
+                'Ask Chronicle anything about your life...',
                 style: TextStyle(color: Color(0xFF8E8E93), fontSize: 15),
                 overflow: TextOverflow.ellipsis,
               ),

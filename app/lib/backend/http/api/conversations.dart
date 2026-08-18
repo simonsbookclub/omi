@@ -458,7 +458,7 @@ class UploadFilesResult {
 /// Server-provided classification for a sync upload HTTP 429.
 ///
 /// Fair use is deliberately opt-in: an unknown, proxy-generated, or platform
-/// 429 is backend capacity unless the response carries Omi's explicit reason.
+/// 429 is backend capacity unless the response carries Chronicle's explicit reason.
 enum SyncRateLimitKind { fairUse, backendCapacity }
 
 @visibleForTesting
@@ -590,7 +590,7 @@ Future<UploadFilesResult> uploadLocalFilesV2(
   var response = await makeMultipartApiCall(
     url: url,
     files: files,
-    headers: {if (captureManifest != null) 'X-Omi-Sync-Capture-Manifest': captureManifest},
+    headers: {if (captureManifest != null) 'X-Chronicle-Sync-Capture-Manifest': captureManifest},
     onUploadProgress: onUploadProgress,
   );
 

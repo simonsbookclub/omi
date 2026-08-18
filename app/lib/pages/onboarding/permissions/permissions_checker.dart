@@ -51,7 +51,7 @@ class _PermissionsInterstitialPageState extends State<PermissionsInterstitialPag
         builder: (context, provider, child) {
           return Column(
             children: [
-              // Omi logo in the top area, biased toward bottom
+              // Chronicle logo in the top area, biased toward bottom
               Expanded(
                 child: Align(
                   alignment: const Alignment(0, 0.4),

@@ -6,9 +6,9 @@ import 'package:omi/utils/l10n_extensions.dart';
 /// Confirmation gate for manually syncing offline recordings.
 ///
 /// Users on a third-party (custom) STT provider transcribe live on their own
-/// provider, so their recordings normally never touch Omi's STT. Offline files,
-/// however, can only be processed on Omi's servers — which means they DO use
-/// Omi transcription and count toward the plan limit. Auto-sync is disabled for
+/// provider, so their recordings normally never touch Chronicle's STT. Offline files,
+/// however, can only be processed on Chronicle's servers — which means they DO use
+/// Chronicle transcription and count toward the plan limit. Auto-sync is disabled for
 /// these users (see capture/sync providers); when they manually press Sync we
 /// surface this trade-off and let them opt in per their choice.
 ///

@@ -334,10 +334,10 @@ class SpeechProfileProvider extends ChangeNotifier
       onAudioBytesReceived: (List<int> value) {
         if (value.isEmpty) return;
 
-        // Only remove 3-byte header for Omi/OpenGlass devices
+        // Only remove 3-byte header for Chronicle/OpenGlass devices
         final paddingLeft = (device?.type == DeviceType.omi || device?.type == DeviceType.openglass) ? 3 : 0;
 
-        // Store frame: use storeFramePacket for Omi/OpenGlass (expects header),
+        // Store frame: use storeFramePacket for Chronicle/OpenGlass (expects header),
         // or append frames directly for other devices (raw frames)
         if (paddingLeft > 0) {
           audioStorage.storeFramePacket(value);
@@ -354,7 +354,7 @@ class SpeechProfileProvider extends ChangeNotifier
   }
 
   _validateSingleSpeaker() {
-    // Filter out Omi question segments for speaker validation
+    // Filter out Chronicle question segments for speaker validation
     final userSegments = segments.where((e) => e.speakerId != omiSpeakerId).toList();
 
     int speakersCount = userSegments.map((e) => e.speaker).toSet().length;
@@ -390,7 +390,7 @@ class SpeechProfileProvider extends ChangeNotifier
   }
 
   void updateProgressMessage() {
-    // Only show user's speech, not Omi questions
+    // Only show user's speech, not Chronicle questions
     text = segments.where((e) => e.speakerId != omiSpeakerId).map((e) => e.text).join(' ').trim();
     int wordsCount = text.split(' ').length;
     progressState = SpeechProfileProgressState.keepSpeaking;
@@ -509,7 +509,7 @@ class SpeechProfileProvider extends ChangeNotifier
 
     Logger.debug('onSegmentReceived: ${newSegments.length} new segments, existing: ${segments.length}');
 
-    // Filter out Omi question segments for audio trimming calculation
+    // Filter out Chronicle question segments for audio trimming calculation
     final userSegments = newSegments.where((s) => s.speakerId != omiSpeakerId).toList();
 
     if (segments.isEmpty && userSegments.isNotEmpty) {
@@ -522,10 +522,10 @@ class SpeechProfileProvider extends ChangeNotifier
     final remainSegments = TranscriptSegment.updateSegments(segments, newSegments);
     segments.addAll(remainSegments);
 
-    // Validate single speaker (exclude Omi segments)
+    // Validate single speaker (exclude Chronicle segments)
     _validateSingleSpeaker();
 
-    // Display only user's speech, not Omi's questions
+    // Display only user's speech, not Chronicle's questions
     text = segments.where((e) => e.speakerId != omiSpeakerId).map((e) => e.text).join(' ').trim();
     percentageCompleted = questionProgress;
 

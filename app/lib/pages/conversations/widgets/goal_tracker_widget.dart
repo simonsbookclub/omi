@@ -208,7 +208,7 @@ class _GoalTrackerWidgetState extends State<GoalTrackerWidget> with WidgetsBindi
     if (_advice == null || _advice!.isEmpty) return;
     HapticFeedback.lightImpact();
 
-    // Navigate to chat and send the advice as a message from Omi AI
+    // Navigate to chat and send the advice as a message from Chronicle AI
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => ChatPage(isPivotBottom: false, autoMessage: _advice)),

@@ -12,7 +12,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get sessionExpiredSignInAgain => 'La sesión ha caducado — vuelve a iniciar sesión.';
 
   @override
-  String get appTitle => 'Omi';
+  String get appTitle => 'Chronicle';
 
   @override
   String get conversationTab => 'Conversación';
@@ -132,7 +132,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get editPerson => 'Editar persona';
 
   @override
-  String get createPersonHint => '¡Crea una nueva persona y entrena a Omi para reconocer su voz!';
+  String get createPersonHint => '¡Crea una nueva persona y entrena a Chronicle para reconocer su voz!';
 
   @override
   String get speechProfile => 'Perfil de Voz';
@@ -171,7 +171,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get couldNotAccessFile => 'No se pudo abrir el archivo seleccionado';
 
   @override
-  String get askOmi => 'Pregunta a Omi';
+  String get askOmi => 'Pregunta a Chronicle';
 
   @override
   String get done => 'Listo';
@@ -272,7 +272,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noMessagesYet => '¡No hay mensajes!\n¿Por qué no inicias una conversación?';
 
   @override
-  String get deletingMessages => 'Eliminando tus mensajes de la memoria de Omi...';
+  String get deletingMessages => 'Eliminando tus mensajes de la memoria de Chronicle...';
 
   @override
   String get messageCopied => '✨ Mensaje copiado al portapapeles';
@@ -302,7 +302,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get maxFilesLimit => 'Solo puedes subir 4 archivos a la vez';
 
   @override
-  String get chatWithOmi => 'Chatea con Omi';
+  String get chatWithOmi => 'Chatea con Chronicle';
 
   @override
   String get apps => 'Aplicaciones';
@@ -332,7 +332,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unableToFetchApps => 'No se pudieron cargar las apps :(\n\nRevisa tu conexión a internet.';
 
   @override
-  String get aboutOmi => 'Acerca de Omi';
+  String get aboutOmi => 'Acerca de Chronicle';
 
   @override
   String get privacyPolicy => 'Política de Privacidad';
@@ -454,7 +454,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get developerSettings => 'Configuración de desarrollador';
 
   @override
-  String get getOmiForMac => 'Obtener Omi para Mac';
+  String get getOmiForMac => 'Obtener Chronicle para Mac';
 
   @override
   String get referralProgram => 'Programa de referidos';
@@ -473,7 +473,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get privacyIntro =>
-      'En Omi, nos comprometemos a proteger tu privacidad. Esta página te permite controlar cómo se guardan y usan tus datos.';
+      'En Chronicle, nos comprometemos a proteger tu privacidad. Esta página te permite controlar cómo se guardan y usan tus datos.';
 
   @override
   String get learnMore => 'Saber más...';
@@ -543,7 +543,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unpairAndForget => 'Desvincular y olvidar dispositivo';
 
   @override
-  String get deviceDisconnectedMessage => 'Tu Omi se desconectó 😔';
+  String get deviceDisconnectedMessage => 'Tu Chronicle se desconectó 😔';
 
   @override
   String get deviceUnpairedMessage =>
@@ -560,7 +560,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceNotConnected => 'Dispositivo no conectado';
 
   @override
-  String get connectDeviceMessage => 'Conecta tu dispositivo Omi para acceder a los ajustes.';
+  String get connectDeviceMessage => 'Conecta tu dispositivo Chronicle para acceder a los ajustes.';
 
   @override
   String get deviceInfoSection => 'Información del dispositivo';
@@ -690,7 +690,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get docs => 'Documentación';
 
   @override
-  String get yourOmiInsights => 'Tus insights de Omi';
+  String get yourOmiInsights => 'Tus insights de Chronicle';
 
   @override
   String get today => 'Hoy';
@@ -708,13 +708,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noActivityYet => 'Sin actividad aún';
 
   @override
-  String get startConversationToSeeInsights => 'Inicia una conversación con Omi\npara ver tus insights aquí.';
+  String get startConversationToSeeInsights => 'Inicia una conversación con Chronicle\npara ver tus insights aquí.';
 
   @override
   String get listening => 'Escuchando';
 
   @override
-  String get listeningSubtitle => 'Tiempo total que Omi ha escuchado activamente.';
+  String get listeningSubtitle => 'Tiempo total que Chronicle ha escuchado activamente.';
 
   @override
   String get understanding => 'Entendiendo';
@@ -765,19 +765,19 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => '¡Compartiendo mis estadísticas de Omi! (omi.me - mi asistente IA siempre activo)';
+  String get shareStatsMessage => '¡Compartiendo mis estadísticas de Chronicle! (omi.me - mi asistente IA siempre activo)';
 
   @override
-  String get sharePeriodToday => 'Hoy Omi:';
+  String get sharePeriodToday => 'Hoy Chronicle:';
 
   @override
-  String get sharePeriodMonth => 'Este mes Omi:';
+  String get sharePeriodMonth => 'Este mes Chronicle:';
 
   @override
-  String get sharePeriodYear => 'Este año Omi:';
+  String get sharePeriodYear => 'Este año Chronicle:';
 
   @override
-  String get sharePeriodAllTime => 'Hasta ahora Omi:';
+  String get sharePeriodAllTime => 'Hasta ahora Chronicle:';
 
   @override
   String shareStatsListened(String minutes) {
@@ -812,7 +812,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noLogFilesFound => 'No se encontraron archivos de registro.';
 
   @override
-  String get omiDebugLog => 'Registro de depuración Omi';
+  String get omiDebugLog => 'Registro de depuración Chronicle';
 
   @override
   String get logShared => 'Registro compartido';
@@ -836,7 +836,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get exportDataDesc => 'Exportar conversaciones a un archivo JSON';
 
   @override
-  String get exportedConversations => 'Conversaciones exportadas de Omi';
+  String get exportedConversations => 'Conversaciones exportadas de Chronicle';
 
   @override
   String get exportShared => 'Exportación compartida';
@@ -1013,7 +1013,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get addWordsDesc => 'Nombres, términos o palabras inusuales';
 
   @override
-  String get vocabularyHint => 'Omi, Callie, OpenAI';
+  String get vocabularyHint => 'Chronicle, Callie, OpenAI';
 
   @override
   String get connect => 'Conectar';
@@ -1057,7 +1057,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String authAccessMessage(String appName) {
-    return 'Debes autorizar a Omi para acceder a tus datos de $appName.';
+    return 'Debes autorizar a Chronicle para acceder a tus datos de $appName.';
   }
 
   @override
@@ -1151,7 +1151,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get editName => 'Editar nombre';
 
   @override
-  String get howShouldOmiCallYou => '¿Cómo debería llamarte Omi?';
+  String get howShouldOmiCallYou => '¿Cómo debería llamarte Chronicle?';
 
   @override
   String get enterYourName => 'Introduce tu nombre';
@@ -1421,7 +1421,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String authorizeOmiForTasks(String appName) {
-    return 'Necesitas autorizar a Omi para crear tareas en tu cuenta de $appName. Esto abrirá tu navegador para autenticación.';
+    return 'Necesitas autorizar a Chronicle para crear tareas en tu cuenta de $appName. Esto abrirá tu navegador para autenticación.';
   }
 
   @override
@@ -1456,13 +1456,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get bringYourOwn => 'Trae el tuyo';
 
   @override
-  String get payYourSttProvider => 'Usa Omi gratis. Solo pagas a tu proveedor STT.';
+  String get payYourSttProvider => 'Usa Chronicle gratis. Solo pagas a tu proveedor STT.';
 
   @override
   String get freeMinutesMonth => '300 minutos gratis/mes incluidos.';
 
   @override
-  String get omiUnlimited => 'Omi Ilimitado';
+  String get omiUnlimited => 'Chronicle Ilimitado';
 
   @override
   String get hostRequired => 'Host es requerido';
@@ -1580,11 +1580,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String deviceUsesCodec(String device, String reason) {
-    return '$device usa $reason. Se usará Omi.';
+    return '$device usa $reason. Se usará Chronicle.';
   }
 
   @override
-  String get omiTranscription => 'Transcripción Omi';
+  String get omiTranscription => 'Transcripción Chronicle';
 
   @override
   String get bestInClassTranscription => 'Transcripción de primera clase';
@@ -1735,7 +1735,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enableBluetooth => 'Activar Bluetooth';
 
   @override
-  String get bluetoothNeeded => 'Omi necesita Bluetooth para conectar tu wearable.';
+  String get bluetoothNeeded => 'Chronicle necesita Bluetooth para conectar tu wearable.';
 
   @override
   String get contactSupport => '¿Contactar soporte?';
@@ -1750,7 +1750,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backgroundActivity => 'Actividad en segundo plano';
 
   @override
-  String get backgroundActivityDesc => 'Deja que Omi corra en segundo plano para mejor estabilidad';
+  String get backgroundActivityDesc => 'Deja que Chronicle corra en segundo plano para mejor estabilidad';
 
   @override
   String get locationAccess => 'Acceso a ubicación';
@@ -1777,13 +1777,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backgroundLocationDeniedDesc => 'Por favor permite \'Siempre\' en los ajustes de ubicación';
 
   @override
-  String get lovingOmi => '¿Te gusta Omi?';
+  String get lovingOmi => '¿Te gusta Chronicle?';
 
   @override
   String get maybeLater => 'Quizás más tarde';
 
   @override
-  String get speechProfileIntro => 'Omi necesita aprender tus objetivos y tu voz. Podrás modificarlo más tarde.';
+  String get speechProfileIntro => 'Chronicle necesita aprender tus objetivos y tu voz. Podrás modificarlo más tarde.';
 
   @override
   String get getStarted => 'Empezar';
@@ -1834,7 +1834,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tryAgain => 'Intentar de nuevo';
 
   @override
-  String get connectOmiOmiGlass => 'Conectar Omi / OmiGlass';
+  String get connectOmiOmiGlass => 'Conectar Chronicle / OmiGlass';
 
   @override
   String get continueWithoutDevice => 'Continuar sin dispositivo';
@@ -1870,7 +1870,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get termsOfUse => 'Términos de uso';
 
   @override
-  String get omiYourAiCompanion => 'Omi – Tu compañero IA';
+  String get omiYourAiCompanion => 'Chronicle – Tu compañero IA';
 
   @override
   String get captureEveryMoment => 'Captura cada momento. Obtén resúmenes IA.';
@@ -2047,10 +2047,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get addFirstMemory => 'Añade tu primer recuerdo';
 
   @override
-  String get clearMemoryTitle => '¿Borrar memoria de Omi?';
+  String get clearMemoryTitle => '¿Borrar memoria de Chronicle?';
 
   @override
-  String get clearMemoryMessage => '¿Seguro que quieres borrar la memoria de Omi? No se puede deshacer.';
+  String get clearMemoryMessage => '¿Seguro que quieres borrar la memoria de Chronicle? No se puede deshacer.';
 
   @override
   String get clearMemoryButton => 'Borrar memoria';
@@ -2216,7 +2216,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get translationNoticeMessage =>
-      'Omi traduce las conversaciones a tu idioma principal. Actualízalo en cualquier momento en Ajustes → Perfiles.';
+      'Chronicle traduce las conversaciones a tu idioma principal. Actualízalo en cualquier momento en Ajustes → Perfiles.';
 
   @override
   String get pleaseCheckInternetConnection => 'Por favor, verifica tu conexión a Internet e inténtalo de nuevo';
@@ -2400,7 +2400,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get privacyPolicyTitle => 'Política de privacidad';
 
   @override
-  String get omiSttProvider => 'Omi';
+  String get omiSttProvider => 'Chronicle';
 
   @override
   String labelCopied(String label) {
@@ -2546,7 +2546,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checksForAudioFiles => 'Comprueba archivos de audio en la tarjeta SD';
 
   @override
-  String get omiSyncsAudioFiles => 'Omi luego sincroniza los archivos de audio con el servidor';
+  String get omiSyncsAudioFiles => 'Chronicle luego sincroniza los archivos de audio con el servidor';
 
   @override
   String get serverProcessesAudio => 'El servidor procesa los archivos de audio y crea recuerdos';
@@ -2556,10 +2556,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get welcomeToOmiDescription =>
-      '¡Bienvenido a Omi! Tu compañero de IA está listo para ayudarte con conversaciones, tareas y más.';
+      '¡Bienvenido a Chronicle! Tu compañero de IA está listo para ayudarte con conversaciones, tareas y más.';
 
   @override
-  String get startUsingOmi => 'Comenzar a usar Omi';
+  String get startUsingOmi => 'Comenzar a usar Chronicle';
 
   @override
   String get back => 'Atrás';
@@ -2636,7 +2636,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get startCapturingConversations =>
-      'Comienza a capturar conversaciones con tu dispositivo Omi para verlas aquí.';
+      'Comienza a capturar conversaciones con tu dispositivo Chronicle para verlas aquí.';
 
   @override
   String get useMobileAppToCapture => 'Usa tu aplicación móvil para capturar audio';
@@ -2651,7 +2651,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get showAll => 'Mostrar todo →';
 
   @override
-  String get noTasksForToday => 'No hay tareas para hoy.\nPregúntale a Omi por más tareas o créalas manualmente.';
+  String get noTasksForToday => 'No hay tareas para hoy.\nPregúntale a Chronicle por más tareas o créalas manualmente.';
 
   @override
   String get dailyScore => 'PUNTUACIÓN DIARIA';
@@ -2801,7 +2801,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get createNewApp => 'Crear nueva aplicación';
 
   @override
-  String get buildSubmitCustomOmiApp => 'Construye y envía tu aplicación Omi personalizada';
+  String get buildSubmitCustomOmiApp => 'Construye y envía tu aplicación Chronicle personalizada';
 
   @override
   String get submittingYourApp => 'Enviando tu aplicación...';
@@ -2849,7 +2849,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get submitAppTermsAgreement =>
-      'Al enviar esta aplicación, acepto los Términos de Servicio y la Política de Privacidad de Omi AI';
+      'Al enviar esta aplicación, acepto los Términos de Servicio y la Política de Privacidad de Chronicle AI';
 
   @override
   String get submitApp => 'Enviar aplicación';
@@ -2894,7 +2894,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dataAccessWarning =>
-      'Esta aplicación accederá a sus datos. Omi AI no es responsable de cómo esta aplicación utiliza, modifica o elimina sus datos';
+      'Esta aplicación accederá a sus datos. Chronicle AI no es responsable de cómo esta aplicación utiliza, modifica o elimina sus datos';
 
   @override
   String get installApp => 'Instalar aplicación';
@@ -3243,7 +3243,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get upgradeToPro => 'Actualizar a Pro';
 
   @override
-  String get getOmiDevice => 'Obtener dispositivo Omi';
+  String get getOmiDevice => 'Obtener dispositivo Chronicle';
 
   @override
   String get wearableAiCompanion => 'Compañero de IA portátil';
@@ -3310,7 +3310,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get setAllMemoriesToPublic => 'Establecer todos los recuerdos como públicos';
 
   @override
-  String get permanentlyRemoveAllMemories => 'Eliminar permanentemente todos los recuerdos de Omi';
+  String get permanentlyRemoveAllMemories => 'Eliminar permanentemente todos los recuerdos de Chronicle';
 
   @override
   String get allMemoriesAreNowPrivate => 'Todos los recuerdos son ahora privados';
@@ -3319,18 +3319,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get allMemoriesAreNowPublic => 'Todos los recuerdos son ahora públicos';
 
   @override
-  String get clearOmisMemory => 'Borrar la memoria de Omi';
+  String get clearOmisMemory => 'Borrar la memoria de Chronicle';
 
   @override
   String clearMemoryConfirmation(int count) {
-    return '¿Estás seguro de que deseas borrar la memoria de Omi? Esta acción no se puede deshacer y eliminará permanentemente todos los $count recuerdos.';
+    return '¿Estás seguro de que deseas borrar la memoria de Chronicle? Esta acción no se puede deshacer y eliminará permanentemente todos los $count recuerdos.';
   }
 
   @override
-  String get omisMemoryCleared => 'La memoria de Omi sobre ti ha sido borrada';
+  String get omisMemoryCleared => 'La memoria de Chronicle sobre ti ha sido borrada';
 
   @override
-  String get welcomeToOmi => 'Bienvenido a Omi';
+  String get welcomeToOmi => 'Bienvenido a Chronicle';
 
   @override
   String get continueWithApple => 'Continuar con Apple';
@@ -3376,7 +3376,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get chooseYourLanguage => 'Elige tu idioma';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Seleccione su idioma preferido para la mejor experiencia Omi';
+  String get selectPreferredLanguageForBestExperience => 'Seleccione su idioma preferido para la mejor experiencia Chronicle';
 
   @override
   String get searchLanguages => 'Buscar idiomas...';
@@ -3395,7 +3395,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tellUsHowYouWouldLikeToBeAddressed =>
-      'Díganos cómo le gustaría que nos dirigiéramos a usted. Esto ayuda a personalizar su experiencia Omi.';
+      'Díganos cómo le gustaría que nos dirigiéramos a usted. Esto ayuda a personalizar su experiencia Chronicle.';
 
   @override
   String charactersCount(int count) {
@@ -3403,7 +3403,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Active funciones para la mejor experiencia Omi en su dispositivo.';
+  String get enableFeaturesForBestExperience => 'Active funciones para la mejor experiencia Chronicle en su dispositivo.';
 
   @override
   String get microphoneAccess => 'Acceso al micrófono';
@@ -3413,7 +3413,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get microphoneAccessDescription =>
-      'Omi necesita acceso al micrófono para grabar sus conversaciones y proporcionar transcripciones.';
+      'Chronicle necesita acceso al micrófono para grabar sus conversaciones y proporcionar transcripciones.';
 
   @override
   String get screenRecording => 'Grabación de pantalla';
@@ -3423,7 +3423,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get screenRecordingDescription =>
-      'Omi necesita permiso de grabación de pantalla para capturar el audio del sistema de sus reuniones basadas en navegador.';
+      'Chronicle necesita permiso de grabación de pantalla para capturar el audio del sistema de sus reuniones basadas en navegador.';
 
   @override
   String get accessibility => 'Accesibilidad';
@@ -3433,7 +3433,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accessibilityDescription =>
-      'Omi necesita permiso de accesibilidad para detectar cuándo se une a reuniones de Zoom, Meet o Teams en su navegador.';
+      'Chronicle necesita permiso de accesibilidad para detectar cuándo se une a reuniones de Zoom, Meet o Teams en su navegador.';
 
   @override
   String get pleaseWait => 'Por favor, espere...';
@@ -3466,10 +3466,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get voiceAndPeople => 'Voz y Personas';
 
   @override
-  String get teachOmiYourVoice => 'Enseña a Omi tu voz';
+  String get teachOmiYourVoice => 'Enseña a Chronicle tu voz';
 
   @override
-  String get tellOmiWhoSaidIt => 'Dile a Omi quién lo dijo 🗣️';
+  String get tellOmiWhoSaidIt => 'Dile a Chronicle quién lo dijo 🗣️';
 
   @override
   String get payment => 'Pago';
@@ -3481,7 +3481,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get preferences => 'Preferencias';
 
   @override
-  String get helpImproveOmiBySharing => 'Ayuda a mejorar Omi compartiendo datos de análisis anonimizados';
+  String get helpImproveOmiBySharing => 'Ayuda a mejorar Chronicle compartiendo datos de análisis anonimizados';
 
   @override
   String get deleteAccount => 'Eliminar Cuenta';
@@ -3507,7 +3507,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get mcpDescription =>
-      'Para conectar Omi con otras aplicaciones para leer, buscar y administrar sus recuerdos y conversaciones. Cree una clave para comenzar.';
+      'Para conectar Chronicle con otras aplicaciones para leer, buscar y administrar sus recuerdos y conversaciones. Cree una clave para comenzar.';
 
   @override
   String get apiKeys => 'Claves API';
@@ -3542,7 +3542,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Se activa cuando se genera el resumen del día.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Pruebe las últimas funciones experimentales del equipo de Omi.';
+  String get tryLatestExperimentalFeatures => 'Pruebe las últimas funciones experimentales del equipo de Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Estado de diagnóstico del servicio de transcripción';
@@ -3615,7 +3615,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get letOmiChooseAutomatically => 'Deja que Omi elija automáticamente la mejor aplicación';
+  String get letOmiChooseAutomatically => 'Deja que Chronicle elija automáticamente la mejor aplicación';
 
   @override
   String get deleteConversationConfirmation =>
@@ -3814,7 +3814,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get customVocabularyHeader => 'VOCABULARIO PERSONALIZADO';
 
   @override
-  String get addWordsDescription => 'Agrega palabras que Omi debería reconocer durante la transcripción.';
+  String get addWordsDescription => 'Agrega palabras que Chronicle debería reconocer durante la transcripción.';
 
   @override
   String get enterWordsHint => 'Introduce palabras (separadas por comas)';
@@ -3900,7 +3900,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'Esto eliminará todos los datos del gráfico de conocimiento derivados. Tus recuerdos originales permanecen seguros.';
 
   @override
-  String get connectOmiWithAI => 'Conecta Omi con asistentes de IA';
+  String get connectOmiWithAI => 'Conecta Chronicle con asistentes de IA';
 
   @override
   String get noAPIKeys => 'No hay claves API. Crea una para comenzar.';
@@ -4097,7 +4097,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dataAccessNoticeDescription =>
-      'Esta aplicación accederá a tus datos. Omi AI no es responsable de cómo esta aplicación utiliza, modifica o elimina tus datos';
+      'Esta aplicación accederá a tus datos. Chronicle AI no es responsable de cómo esta aplicación utiliza, modifica o elimina tus datos';
 
   @override
   String get copyUrl => 'Copiar URL';
@@ -4182,14 +4182,14 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get omiApiKeys => 'Claves API de Omi';
+  String get omiApiKeys => 'Claves API de Chronicle';
 
   @override
   String get apiKeysDescription =>
       'Las claves API se utilizan para la autenticación cuando tu aplicación se comunica con el servidor de OMI. Permiten que tu aplicación cree recuerdos y acceda a otros servicios de OMI de forma segura.';
 
   @override
-  String get aboutOmiApiKeys => 'Acerca de las claves API de Omi';
+  String get aboutOmiApiKeys => 'Acerca de las claves API de Chronicle';
 
   @override
   String get yourNewKey => 'Tu nueva clave:';
@@ -4320,7 +4320,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get e2eeDescription =>
-      'El cifrado de extremo a extremo es el estándar de oro para la privacidad. Cuando está habilitado, tus datos se cifran en tu dispositivo antes de enviarse a nuestros servidores. Esto significa que nadie, ni siquiera Omi, puede acceder a tu contenido.';
+      'El cifrado de extremo a extremo es el estándar de oro para la privacidad. Cuando está habilitado, tus datos se cifran en tu dispositivo antes de enviarse a nuestros servidores. Esto significa que nadie, ni siquiera Chronicle, puede acceder a tu contenido.';
 
   @override
   String get importantTradeoffs => 'Compensaciones importantes:';
@@ -4357,7 +4357,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get secureEncryptionDescription =>
-      'Tus datos se cifran con una clave única para ti en nuestros servidores, alojados en Google Cloud. Esto significa que tu contenido sin procesar es inaccesible para cualquier persona, incluido el personal de Omi o Google, directamente desde la base de datos.';
+      'Tus datos se cifran con una clave única para ti en nuestros servidores, alojados en Google Cloud. Esto significa que tu contenido sin procesar es inaccesible para cualquier persona, incluido el personal de Chronicle o Google, directamente desde la base de datos.';
 
   @override
   String get endToEndEncryption => 'Cifrado de extremo a extremo';
@@ -4427,13 +4427,13 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get omiTraining => 'Entrenamiento Omi';
+  String get omiTraining => 'Entrenamiento Chronicle';
 
   @override
   String get trainingDataProgram => 'Programa de datos de entrenamiento';
 
   @override
-  String get getOmiUnlimitedFree => 'Obtén Omi Ilimitado gratis contribuyendo tus datos para entrenar modelos de IA.';
+  String get getOmiUnlimitedFree => 'Obtén Chronicle Ilimitado gratis contribuyendo tus datos para entrenar modelos de IA.';
 
   @override
   String get trainingDataBullets =>
@@ -4519,7 +4519,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get youAreOnUnlimitedPlan => 'Estás en el plan Ilimitado.';
 
   @override
-  String get yourOmiUnleashed => 'Tu Omi, liberado. Hazte ilimitado para posibilidades infinitas.';
+  String get yourOmiUnleashed => 'Tu Chronicle, liberado. Hazte ilimitado para posibilidades infinitas.';
 
   @override
   String planEndedOn(String date) {
@@ -4543,10 +4543,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get unlimitedConversations => 'Conversaciones ilimitadas';
 
   @override
-  String get askOmiAnything => 'Pregunta a Omi cualquier cosa sobre tu vida';
+  String get askOmiAnything => 'Pregunta a Chronicle cualquier cosa sobre tu vida';
 
   @override
-  String get unlockOmiInfiniteMemory => 'Desbloquea la memoria infinita de Omi';
+  String get unlockOmiInfiniteMemory => 'Desbloquea la memoria infinita de Chronicle';
 
   @override
   String get youreOnAnnualPlan => 'Estás en el plan anual';
@@ -4600,7 +4600,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get privacyIntroText =>
-      'En Omi, nos tomamos tu privacidad muy en serio. Queremos ser transparentes sobre los datos que recopilamos y cómo los usamos para mejorar nuestro producto. Esto es lo que necesitas saber:';
+      'En Chronicle, nos tomamos tu privacidad muy en serio. Queremos ser transparentes sobre los datos que recopilamos y cómo los usamos para mejorar nuestro producto. Esto es lo que necesitas saber:';
 
   @override
   String get whatWeTrack => 'Qué rastreamos';
@@ -4616,11 +4616,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get commitmentText =>
-      'Nos comprometemos a usar los datos que recopilamos solo para hacer de Omi un mejor producto para ti. Tu privacidad y confianza son primordiales para nosotros.';
+      'Nos comprometemos a usar los datos que recopilamos solo para hacer de Chronicle un mejor producto para ti. Tu privacidad y confianza son primordiales para nosotros.';
 
   @override
   String get thankYouText =>
-      'Gracias por ser un usuario valioso de Omi. Si tienes alguna pregunta o inquietud, no dudes en contactarnos en team@basedhardware.com.';
+      'Gracias por ser un usuario valioso de Chronicle. Si tienes alguna pregunta o inquietud, no dudes en contactarnos en team@basedhardware.com.';
 
   @override
   String get password => 'Contraseña';
@@ -4704,7 +4704,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get minutes => 'minutos';
 
   @override
-  String get omiHas => 'Omi tiene:';
+  String get omiHas => 'Chronicle tiene:';
 
   @override
   String get premiumMinutesUsed => 'Minutos premium utilizados.';
@@ -4797,7 +4797,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get howPeopleWorks =>
-      'Una vez creada una persona, puedes ir a la transcripción de una conversación y asignarle sus segmentos correspondientes, ¡así Omi también podrá reconocer su voz!';
+      'Una vez creada una persona, puedes ir a la transcripción de una conversación y asignarle sus segmentos correspondientes, ¡así Chronicle también podrá reconocer su voz!';
 
   @override
   String get tapToDelete => 'Toca para eliminar';
@@ -5081,7 +5081,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get enableApps => 'Habilitar apps';
 
   @override
-  String get omiAppName => 'Omi';
+  String get omiAppName => 'Chronicle';
 
   @override
   String get showMore => 'mostrar más ↓';
@@ -5105,18 +5105,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get checkingAppleWatch => 'Comprobando Apple Watch...';
 
   @override
-  String get installOmiOnAppleWatch => 'Instala Omi en tu\nApple Watch';
+  String get installOmiOnAppleWatch => 'Instala Chronicle en tu\nApple Watch';
 
   @override
   String get installOmiOnAppleWatchDescription =>
-      'Para usar tu Apple Watch con Omi, primero debes instalar la aplicación Omi en tu reloj.';
+      'Para usar tu Apple Watch con Chronicle, primero debes instalar la aplicación Chronicle en tu reloj.';
 
   @override
-  String get openOmiOnAppleWatch => 'Abre Omi en tu\nApple Watch';
+  String get openOmiOnAppleWatch => 'Abre Chronicle en tu\nApple Watch';
 
   @override
   String get openOmiOnAppleWatchDescription =>
-      'La aplicación Omi está instalada en tu Apple Watch. Ábrela y toca Iniciar para comenzar.';
+      'La aplicación Chronicle está instalada en tu Apple Watch. Ábrela y toca Iniciar para comenzar.';
 
   @override
   String get openWatchApp => 'Abrir app Watch';
@@ -5126,14 +5126,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get unableToOpenWatchApp =>
-      'No se pudo abrir la app de Apple Watch. Abre manualmente la app Watch en tu Apple Watch e instala Omi desde la sección \"Apps disponibles\".';
+      'No se pudo abrir la app de Apple Watch. Abre manualmente la app Watch en tu Apple Watch e instala Chronicle desde la sección \"Apps disponibles\".';
 
   @override
   String get appleWatchConnectedSuccessfully => '¡Apple Watch conectado correctamente!';
 
   @override
   String get appleWatchNotReachable =>
-      'Apple Watch aún no está accesible. Asegúrate de que la app Omi esté abierta en tu reloj.';
+      'Apple Watch aún no está accesible. Asegúrate de que la app Chronicle esté abierta en tu reloj.';
 
   @override
   String errorCheckingConnection(String error) {
@@ -5221,7 +5221,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get welcomeBackSimple => 'Bienvenido de nuevo';
 
   @override
-  String get addVocabularyDescription => 'Añade palabras que Omi debe reconocer durante la transcripción.';
+  String get addVocabularyDescription => 'Añade palabras que Chronicle debe reconocer durante la transcripción.';
 
   @override
   String get enterWordsCommaSeparated => 'Ingresa palabras (separadas por comas)';
@@ -5382,13 +5382,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get wrappedNoDataAvailable => 'No hay datos disponibles';
 
   @override
-  String get wrappedOmiLifeRecap => 'Resumen de vida Omi';
+  String get wrappedOmiLifeRecap => 'Resumen de vida Chronicle';
 
   @override
   String get wrappedSwipeUpToBegin => 'Desliza hacia arriba para comenzar';
 
   @override
-  String get wrappedShareText => 'Mi 2025, recordado por Omi ✨ omi.me/wrapped';
+  String get wrappedShareText => 'Mi 2025, recordado por Chronicle ✨ omi.me/wrapped';
 
   @override
   String get wrappedFailedToShare => 'Error al compartir. Por favor, inténtalo de nuevo.';
@@ -5409,7 +5409,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get wrappedMy2025 => 'Mi 2025';
 
   @override
-  String get wrappedRememberedByOmi => 'recordado por Omi';
+  String get wrappedRememberedByOmi => 'recordado por Chronicle';
 
   @override
   String get wrappedMostFunDay => 'Más divertido';
@@ -5625,7 +5625,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notificationFrequency => 'Frecuencia de notificaciones';
 
   @override
-  String get controlNotificationFrequency => 'Controla con qué frecuencia Omi te envía notificaciones proactivas.';
+  String get controlNotificationFrequency => 'Controla con qué frecuencia Chronicle te envía notificaciones proactivas.';
 
   @override
   String get yourScore => 'Tu puntuación';
@@ -5651,7 +5651,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get notificationFrequencyDescription =>
-      'Controla con qué frecuencia Omi te envía notificaciones proactivas y recordatorios.';
+      'Controla con qué frecuencia Chronicle te envía notificaciones proactivas y recordatorios.';
 
   @override
   String get sliderOff => 'Apagado';
@@ -5851,7 +5851,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noRecordings => 'Sin grabaciones';
 
   @override
-  String get audioFromOmiWillAppearHere => 'El audio de tu dispositivo Omi aparecerá aquí';
+  String get audioFromOmiWillAppearHere => 'El audio de tu dispositivo Chronicle aparecerá aquí';
 
   @override
   String get deleteProcessed => 'Eliminar procesados';
@@ -5973,7 +5973,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get batteryUsageHigher => 'El uso de batería será mayor que la transcripción en la nube.';
 
   @override
-  String get considerOmiCloud => 'Considera usar Omi Cloud para un mejor rendimiento.';
+  String get considerOmiCloud => 'Considera usar Chronicle Cloud para un mejor rendimiento.';
 
   @override
   String get highResourceUsage => 'Alto uso de recursos';
@@ -6134,7 +6134,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get omiTranscriptionOptimized =>
-      'La transcripción en vivo integrada de Omi está optimizada para conversaciones en tiempo real con detección automática de hablantes y diarización.';
+      'La transcripción en vivo integrada de Chronicle está optimizada para conversaciones en tiempo real con detección automática de hablantes y diarización.';
 
   @override
   String get reset => 'Restablecer';
@@ -6222,13 +6222,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get writeReviewOptional => 'Escribe una reseña (opcional)';
 
   @override
-  String get setupQuestionsIntro => 'Ayúdanos a mejorar Omi respondiendo algunas preguntas. 🫶 💜';
+  String get setupQuestionsIntro => 'Ayúdanos a mejorar Chronicle respondiendo algunas preguntas. 🫶 💜';
 
   @override
   String get setupQuestionProfession => '1. ¿A qué te dedicas?';
 
   @override
-  String get setupQuestionUsage => '2. ¿Dónde planeas usar tu Omi?';
+  String get setupQuestionUsage => '2. ¿Dónde planeas usar tu Chronicle?';
 
   @override
   String get setupQuestionAge => '3. ¿Cuál es tu rango de edad?';
@@ -6744,23 +6744,23 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get batteryFullyChargedTitle => 'Omi está completamente cargado';
+  String get batteryFullyChargedTitle => 'Chronicle está completamente cargado';
 
   @override
-  String get batteryFullyChargedBody => 'Tu dispositivo Omi está completamente cargado. ¡Puedes desenchufarlo!';
+  String get batteryFullyChargedBody => 'Tu dispositivo Chronicle está completamente cargado. ¡Puedes desenchufarlo!';
 
   @override
-  String get deviceDisconnectedNotificationTitle => 'Tu dispositivo Omi se desconectó';
+  String get deviceDisconnectedNotificationTitle => 'Tu dispositivo Chronicle se desconectó';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Por favor, vuelve a conectar para seguir usando tu Omi.';
+  String get deviceDisconnectedNotificationBody => 'Por favor, vuelve a conectar para seguir usando tu Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Actualización de firmware disponible';
 
   @override
   String firmwareUpdateAvailableDescription(String version) {
-    return 'Hay una nueva actualización de firmware ($version) disponible para tu dispositivo Omi. ¿Deseas actualizar ahora?';
+    return 'Hay una nueva actualización de firmware ($version) disponible para tu dispositivo Chronicle. ¿Deseas actualizar ahora?';
   }
 
   @override
@@ -7040,7 +7040,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get nextButton => 'Siguiente';
 
   @override
-  String get connectOmiDevice => 'Conectar dispositivo Omi';
+  String get connectOmiDevice => 'Conectar dispositivo Chronicle';
 
   @override
   String planSwitchingDescriptionWithTitle(String title) {
@@ -7072,7 +7072,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get transcriptionJsonPlaceholder => 'Pega tu configuración JSON aquí...';
 
   @override
-  String get transcriptionSourceOmi => 'Omi';
+  String get transcriptionSourceOmi => 'Chronicle';
 
   @override
   String get pricePlaceholder => '0.00';
@@ -7096,7 +7096,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get actionItemReminderTitle => 'Recordatorio de Omi';
+  String get actionItemReminderTitle => 'Recordatorio de Chronicle';
 
   @override
   String deviceDisconnectedTitle(String deviceName) {
@@ -7124,7 +7124,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get onboardingComplete => 'Completo';
 
   @override
-  String get onboardingWelcomeToOmi => 'Bienvenido a Omi';
+  String get onboardingWelcomeToOmi => 'Bienvenido a Chronicle';
 
   @override
   String get onboardingTellUsAboutYourself => 'Cuéntanos sobre ti';
@@ -7865,20 +7865,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get reportAnIssue => 'Reportar un problema';
 
   @override
-  String get pairingTitleOmi => 'Enciende Omi';
+  String get pairingTitleOmi => 'Enciende Chronicle';
 
   @override
   String get pairingDescOmi => 'Mantén presionado el dispositivo hasta que vibre para encenderlo.';
 
   @override
-  String get pairingTitleOmiDevkit => 'Pon Omi DevKit en modo de emparejamiento';
+  String get pairingTitleOmiDevkit => 'Pon Chronicle DevKit en modo de emparejamiento';
 
   @override
   String get pairingDescOmiDevkit =>
       'Presiona el botón una vez para encender. El LED parpadeará en púrpura en modo de emparejamiento.';
 
   @override
-  String get pairingTitleOmiGlass => 'Enciende Omi Glass';
+  String get pairingTitleOmiGlass => 'Enciende Chronicle Glass';
 
   @override
   String get pairingDescOmiGlass => 'Mantén presionado el botón lateral durante 3 segundos para encender.';
@@ -7921,7 +7921,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pairingDescAppleWatch =>
-      'Instala y abre la aplicación Omi en tu Apple Watch, luego toca Conectar en la aplicación.';
+      'Instala y abre la aplicación Chronicle en tu Apple Watch, luego toca Conectar en la aplicación.';
 
   @override
   String get pairingTitleNeoOne => 'Pon Neo One en modo de emparejamiento';
@@ -8018,7 +8018,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onboardingWhatIKnowAboutYouDescription =>
-      'Este mapa se actualiza a medida que Omi aprende de tus conversaciones.';
+      'Este mapa se actualiza a medida que Chronicle aprende de tus conversaciones.';
 
   @override
   String get apiEnvironment => 'Entorno API';
@@ -8072,7 +8072,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tasksOverdue => 'Vencidas';
 
   @override
-  String get phoneCallsWithOmi => 'Llamadas con Omi';
+  String get phoneCallsWithOmi => 'Llamadas con Chronicle';
 
   @override
   String get phoneCallsSubtitle => 'Haz llamadas con transcripción en tiempo real';
@@ -8275,11 +8275,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get showTasksOnHomepage => 'Mostrar tareas en la página de inicio';
 
   @override
-  String get phoneCallsUnlimitedOnly => 'Llamadas telefónicas vía Omi';
+  String get phoneCallsUnlimitedOnly => 'Llamadas telefónicas vía Chronicle';
 
   @override
   String get phoneCallsUpsellSubtitle =>
-      'Realiza llamadas a través de Omi y obtén transcripción en tiempo real, resúmenes automáticos y más.';
+      'Realiza llamadas a través de Chronicle y obtén transcripción en tiempo real, resúmenes automáticos y más.';
 
   @override
   String get phoneCallsUpsellFeature1 => 'Transcripción en tiempo real de cada llamada';
@@ -8399,7 +8399,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fairUseAboutBody =>
-      'Omi está diseñado para conversaciones personales, reuniones e interacciones en vivo. El uso se mide por el tiempo real de habla detectado, no por el tiempo de conexión. Si el uso supera significativamente los patrones normales para contenido no personal, se pueden aplicar ajustes.';
+      'Chronicle está diseñado para conversaciones personales, reuniones e interacciones en vivo. El uso se mide por el tiempo real de habla detectado, no por el tiempo de conexión. Si el uso supera significativamente los patrones normales para contenido no personal, se pueden aplicar ajustes.';
 
   @override
   String fairUseCaseRefCopied(String caseRef) {
@@ -8438,7 +8438,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get improveConnectionContent =>
-      'Hemos mejorado cómo Omi se mantiene conectado a tu dispositivo. Para activarlo, ve a la página de Información del dispositivo, toca \"Desconectar dispositivo\" y vuelve a vincular tu dispositivo.';
+      'Hemos mejorado cómo Chronicle se mantiene conectado a tu dispositivo. Para activarlo, ve a la página de Información del dispositivo, toca \"Desconectar dispositivo\" y vuelve a vincular tu dispositivo.';
 
   @override
   String get improveConnectionAction => 'Entendido';
@@ -8449,7 +8449,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get omisStorage => 'Almacenamiento de Omi';
+  String get omisStorage => 'Almacenamiento de Chronicle';
 
   @override
   String get phoneStorage => 'Almacenamiento del teléfono';
@@ -8494,11 +8494,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get omisStorageDesc =>
-      'Cuando tu Omi no está conectado a tu teléfono, almacena el audio localmente en su memoria integrada. Nunca perderás una grabación.';
+      'Cuando tu Chronicle no está conectado a tu teléfono, almacena el audio localmente en su memoria integrada. Nunca perderás una grabación.';
 
   @override
   String get phoneStorageDesc =>
-      'Cuando Omi se reconecta, las grabaciones se transfieren automáticamente a tu teléfono antes de subirlas.';
+      'Cuando Chronicle se reconecta, las grabaciones se transfieren automáticamente a tu teléfono antes de subirlas.';
 
   @override
   String get cloudStorageDesc =>
@@ -8527,17 +8527,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get permissionsPageDescription =>
-      'Estos permisos son esenciales para el funcionamiento de Omi. Habilitan funciones clave como notificaciones, experiencias basadas en ubicación y captura de audio.';
+      'Estos permisos son esenciales para el funcionamiento de Chronicle. Habilitan funciones clave como notificaciones, experiencias basadas en ubicación y captura de audio.';
 
   @override
   String get permissionsRequiredDescription =>
-      'Omi necesita algunos permisos para funcionar correctamente. Por favor, concédelos para continuar.';
+      'Chronicle necesita algunos permisos para funcionar correctamente. Por favor, concédelos para continuar.';
 
   @override
   String get permissionsSetupTitle => 'Obtén la mejor experiencia';
 
   @override
-  String get permissionsSetupDescription => 'Activa algunos permisos para que Omi pueda hacer su magia.';
+  String get permissionsSetupDescription => 'Activa algunos permisos para que Chronicle pueda hacer su magia.';
 
   @override
   String get permissionsChangeAnytime => 'Puedes cambiar esto en cualquier momento en Ajustes > Permisos';
@@ -8633,7 +8633,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get feedbackTitleFoundAlternative => '¿A qué estás cambiando?';
 
   @override
-  String get feedbackTitleNotUsing => '¿Qué te haría usar Omi más?';
+  String get feedbackTitleNotUsing => '¿Qué te haría usar Chronicle más?';
 
   @override
   String get feedbackSubtitleTooExpensive => 'Tus comentarios nos ayudan a encontrar el equilibrio correcto.';
@@ -8651,7 +8651,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get feedbackSubtitleFoundAlternative => 'Nos encantaría saber qué te llamó la atención.';
 
   @override
-  String get feedbackSubtitleNotUsing => 'Queremos hacer Omi más útil para ti.';
+  String get feedbackSubtitleNotUsing => 'Queremos hacer Chronicle más útil para ti.';
 
   @override
   String get deviceDiagnostics => 'Diagnósticos del dispositivo';
@@ -8832,7 +8832,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get appleHealthManageNote =>
-      'Omi accede a Apple Health a través del framework HealthKit de Apple. Puedes revocar el acceso en cualquier momento desde los Ajustes de iOS.';
+      'Chronicle accede a Apple Health a través del framework HealthKit de Apple. Puedes revocar el acceso en cualquier momento desde los Ajustes de iOS.';
 
   @override
   String get appleHealthConnectCta => 'Conectar con Apple Health';
@@ -8848,33 +8848,33 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get appleHealthFeatureChatDesc =>
-      'Pregunta a Omi sobre tus pasos, sueño, frecuencia cardíaca y entrenamientos.';
+      'Pregunta a Chronicle sobre tus pasos, sueño, frecuencia cardíaca y entrenamientos.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Acceso solo de lectura';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Omi nunca escribe en Apple Health ni modifica tus datos.';
+  String get appleHealthFeatureReadOnlyDesc => 'Chronicle nunca escribe en Apple Health ni modifica tus datos.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Sincronización segura';
 
   @override
   String get appleHealthFeatureSecureDesc =>
-      'Tus datos de Apple Health se sincronizan de forma privada con tu cuenta de Omi.';
+      'Tus datos de Apple Health se sincronizan de forma privada con tu cuenta de Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Acceso a Apple Health denegado';
 
   @override
   String get appleHealthDeniedBody =>
-      'Omi no tiene permiso para leer tus datos de Apple Health. Actívalo en Ajustes de iOS → Privacidad y seguridad → Salud → Omi.';
+      'Chronicle no tiene permiso para leer tus datos de Apple Health. Actívalo en Ajustes de iOS → Privacidad y seguridad → Salud → Chronicle.';
 
   @override
   String get deleteFlowReasonTitle => '¿Por qué te vas?';
 
   @override
-  String get deleteFlowReasonSubtitle => 'Tus comentarios nos ayudan a mejorar Omi para todos.';
+  String get deleteFlowReasonSubtitle => 'Tus comentarios nos ayudan a mejorar Chronicle para todos.';
 
   @override
   String get deleteReasonPrivacy => 'Preocupaciones de privacidad';
@@ -8901,7 +8901,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deleteFlowFeedbackTitle => 'Cuéntanos más';
 
   @override
-  String get deleteFlowFeedbackSubtitle => '¿Qué habría hecho que Omi funcionara para ti?';
+  String get deleteFlowFeedbackSubtitle => '¿Qué habría hecho que Chronicle funcionara para ti?';
 
   @override
   String get deleteFlowFeedbackHint => 'Opcional: tus ideas nos ayudan a crear un mejor producto.';
@@ -9048,14 +9048,14 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get chatQuotaSubtitle => 'AI chat messages used with Omi this month.';
+  String get chatQuotaSubtitle => 'AI chat messages used with Chronicle this month.';
 
   @override
   String get chatQuotaExceededReply =>
-      'Has alcanzado tu límite mensual. Mejora tu plan para seguir chateando con Omi sin restricciones.';
+      'Has alcanzado tu límite mensual. Mejora tu plan para seguir chateando con Chronicle sin restricciones.';
 
   @override
-  String get voiceResponseAudio => 'Leer la respuesta de Omi en voz alta';
+  String get voiceResponseAudio => 'Leer la respuesta de Chronicle en voz alta';
 
   @override
   String get voiceResponseMode => 'Respuesta de voz';
@@ -9088,7 +9088,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get voiceMode => 'Modo de voz';
 
   @override
-  String get quickActionAskOmi => 'Pregúntale cualquier cosa a Omi';
+  String get quickActionAskOmi => 'Pregúntale cualquier cosa a Chronicle';
 
   @override
   String get record => 'Grabar';
@@ -9200,14 +9200,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get syncInProgress => 'Sincronización en curso';
 
   @override
-  String get syncStatusUploaded => 'Subido · procesándose en Omi';
+  String get syncStatusUploaded => 'Subido · procesándose en Chronicle';
 
   @override
   String get deleteWhileProcessingTitle => 'Aún procesándose';
 
   @override
   String get deleteWhileProcessingMessage =>
-      'Esta grabación se subió, pero Omi todavía está creando la conversación. Si la eliminas ahora y el procesamiento falla, no se podrá recuperar. ¿Eliminar de todos modos?';
+      'Esta grabación se subió, pero Chronicle todavía está creando la conversación. Si la eliminas ahora y el procesamiento falla, no se podrá recuperar. ¿Eliminar de todos modos?';
 
   @override
   String get syncCardAllBackedUp => 'Todas las grabaciones sincronizadas';
@@ -9224,7 +9224,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get syncCardProcessing => 'Procesando en Omi…';
+  String get syncCardProcessing => 'Procesando en Chronicle…';
 
   @override
   String get syncCardWaitingInternet => 'Esperando conexión';
@@ -9242,19 +9242,19 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get syncFlowIntro =>
-      'Las grabaciones se transfieren desde tu dispositivo a este teléfono y se almacenan localmente, y luego se suben al servidor de Omi, donde se transcriben y se convierten en conversaciones.';
+      'Las grabaciones se transfieren desde tu dispositivo a este teléfono y se almacenan localmente, y luego se suben al servidor de Chronicle, donde se transcriben y se convierten en conversaciones.';
 
   @override
   String get syncStepUpload => 'Sincronizar';
 
   @override
-  String get syncStepUploadDesc => 'Tu grabación se envía al servidor de Omi';
+  String get syncStepUploadDesc => 'Tu grabación se envía al servidor de Chronicle';
 
   @override
   String get syncStepProcess => 'Transcribir';
 
   @override
-  String get syncStepProcessDesc => 'Omi convierte el audio en una conversación';
+  String get syncStepProcessDesc => 'Chronicle convierte el audio en una conversación';
 
   @override
   String get syncStepBackedUp => 'Conversación lista';
@@ -9270,7 +9270,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get syncStatusConversationCreated => 'Conversación creada';
 
   @override
-  String get syncCardUploadingTitle => 'Subiendo a Omi';
+  String get syncCardUploadingTitle => 'Subiendo a Chronicle';
 
   @override
   String get syncCardDownloadingTitle => 'Descargando desde tu dispositivo';
@@ -9303,7 +9303,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get syncCardBackendBusy =>
-      'Los servidores de Omi están saturados — tus grabaciones se sincronizarán cuando haya capacidad disponible';
+      'Los servidores de Chronicle están saturados — tus grabaciones se sincronizarán cuando haya capacidad disponible';
 
   @override
   String get unableToDetermineFirmwareVersion => 'No se puede determinar la versión actual del firmware';
@@ -9321,14 +9321,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backgroundModeTitle => 'Modo en segundo plano';
 
   @override
-  String get backgroundModeDescription => 'Mantén tu Omi grabando incluso cuando la app está completamente cerrada.';
+  String get backgroundModeDescription => 'Mantén tu Chronicle grabando incluso cuando la app está completamente cerrada.';
 
   @override
-  String get backgroundModeNote => 'Por ahora solo funciona con dispositivos Omi y se mejora continuamente.';
+  String get backgroundModeNote => 'Por ahora solo funciona con dispositivos Chronicle y se mejora continuamente.';
 
   @override
   String get backgroundModeUnavailable =>
-      'El modo en segundo plano no está disponible porque no hay ningún dispositivo compatible conectado. Conecta un dispositivo Omi, OpenGlass o Friend Pendant para usar esta función.';
+      'El modo en segundo plano no está disponible porque no hay ningún dispositivo compatible conectado. Conecta un dispositivo Chronicle, OpenGlass o Friend Pendant para usar esta función.';
 
   @override
   String get regenerateRecap => 'Regenerar resumen';
@@ -9346,11 +9346,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get recapRegenerateNoConversations => 'No hay conversaciones para resumir en este día.';
 
   @override
-  String get syncCustomSttWarningTitle => 'La sincronización usa la transcripción de Omi';
+  String get syncCustomSttWarningTitle => 'La sincronización usa la transcripción de Chronicle';
 
   @override
   String get syncCustomSttWarningMessage =>
-      'Usas tu propio proveedor de transcripción. Sincronizar estas grabaciones las transcribe en los servidores de Omi y cuentan para el límite de transcripción de tu plan.';
+      'Usas tu propio proveedor de transcripción. Sincronizar estas grabaciones las transcribe en los servidores de Chronicle y cuentan para el límite de transcripción de tu plan.';
 
   @override
   String get transcribeLaterTitle => 'Transcribir después';
@@ -9361,7 +9361,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get transcribeLaterNote =>
-      'Funciona con el micrófono del teléfono y con dispositivos Omi y Limitless. El audio permanece en tu teléfono hasta que decidas subirlo.';
+      'Funciona con el micrófono del teléfono y con dispositivos Chronicle y Limitless. El audio permanece en tu teléfono hasta que decidas subirlo.';
 
   @override
   String get transcribeLaterStorageFull =>
@@ -9407,10 +9407,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get memoryProvenanceAndroid => 'Android';
 
   @override
-  String get deviceTutorial => 'Cómo usar tu Omi';
+  String get deviceTutorial => 'Cómo usar tu Chronicle';
 
   @override
-  String get deviceOnboardingTranscriptionTitle => 'Háblale a tu Omi';
+  String get deviceOnboardingTranscriptionTitle => 'Háblale a tu Chronicle';
 
   @override
   String get deviceOnboardingTranscriptionSubtitle => 'Di unas palabras y míralas aparecer en tiempo real';
@@ -9422,7 +9422,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceOnboardingStartSpeaking => 'Empieza a hablar...';
 
   @override
-  String get deviceOnboardingAskQuestionTitle => 'Hazle una pregunta a Omi';
+  String get deviceOnboardingAskQuestionTitle => 'Hazle una pregunta a Chronicle';
 
   @override
   String get deviceOnboardingAskQuestionSubtitle =>
@@ -9486,7 +9486,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceOnboardingSingleTapHint => 'Eso fue un solo toque, ¡intenta tocar dos veces rápido!';
 
   @override
-  String get deviceOnboardingTryDoubleTap => '¡Pruébalo ahora! Toca dos veces tu Omi';
+  String get deviceOnboardingTryDoubleTap => '¡Pruébalo ahora! Toca dos veces tu Chronicle';
 
   @override
   String get deviceOnboardingContinue => 'Continuar';
@@ -9495,10 +9495,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceOnboardingFinish => 'Finalizar';
 
   @override
-  String get deviceOnboardingIntroTitle => 'Conoce tu Omi';
+  String get deviceOnboardingIntroTitle => 'Conoce tu Chronicle';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Un recorrido rápido y práctico por todo lo que tu Omi puede hacer.';
+  String get deviceOnboardingIntroSubtitle => 'Un recorrido rápido y práctico por todo lo que tu Chronicle puede hacer.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Aproximadamente 1 minuto';
@@ -9536,7 +9536,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get raybanMetaSetupDescription =>
-      'Usa tus gafas Ray-Ban Meta como tu dispositivo de captura de Omi para conversaciones y contexto visual. Omi abrirá la app Meta AI para vincular tus gafas.';
+      'Usa tus gafas Ray-Ban Meta como tu dispositivo de captura de Chronicle para conversaciones y contexto visual. Chronicle abrirá la app Meta AI para vincular tus gafas.';
 
   @override
   String get raybanMetaOpenMetaAI => 'Conectar a través de Meta AI';
@@ -9552,7 +9552,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get raybanMetaCameraExplanation =>
-      'Omi usa la cámara de tus gafas para añadir fotos a tus conversaciones. Puedes omitir esto y usar solo audio.';
+      'Chronicle usa la cámara de tus gafas para añadir fotos a tus conversaciones. Puedes omitir esto y usar solo audio.';
 
   @override
   String get raybanMetaSkipForNow => 'Omitir por ahora';
@@ -9562,7 +9562,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get raybanMetaAudioOnlyExplanation =>
-      'Esta versión de Omi puede usar el micrófono de tus gafas por Bluetooth. La captura de fotos requiere la versión para desarrolladores de Meta de Omi.';
+      'Esta versión de Chronicle puede usar el micrófono de tus gafas por Bluetooth. La captura de fotos requiere la versión para desarrolladores de Meta de Chronicle.';
 
   @override
   String get raybanMetaMusicPauseNote => 'La música de tu teléfono se pausa mientras se usa el micrófono de las gafas.';
@@ -9777,7 +9777,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get rayBanMetaMicPickerDescription =>
-      'Selecciona el micrófono Bluetooth de tus gafas. La música se pausa mientras Omi lo usa.';
+      'Selecciona el micrófono Bluetooth de tus gafas. La música se pausa mientras Chronicle lo usa.';
 
   @override
   String get rayBanMetaMicPickerEmpty =>
@@ -9792,10 +9792,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'No se pudo conectar con ese micrófono. Asegúrate de que esté conectado en los ajustes del iPhone.';
 
   @override
-  String get syncStatusTooOld => 'Demasiado antigua para sincronizar — Omi no puede aceptarla';
+  String get syncStatusTooOld => 'Demasiado antigua para sincronizar — Chronicle no puede aceptarla';
 
   @override
-  String get planSheetChooseYourPlan => 'Elige tu plan para desbloquear Omi sin límites.';
+  String get planSheetChooseYourPlan => 'Elige tu plan para desbloquear Chronicle sin límites.';
 
   @override
   String get availableOnMacMobileWeb => 'Disponible en Mac, móvil y web';
@@ -9826,7 +9826,7 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Omi es gratis, pero la versión gratuita tiene límites que afectan tu experiencia:';
+  String get freemiumLimitsIntro => 'Chronicle es gratis, pero la versión gratuita tiene límites que afectan tu experiencia:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Retraso de 5-7 segundos (no en tiempo real)';
@@ -9848,7 +9848,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get accountCutoverUpdateRequiredMessage =>
-      'Instala la última app de Omi para continuar después de la migración de la cuenta.';
+      'Instala la última app de Chronicle para continuar después de la migración de la cuenta.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Migración en curso';
@@ -9865,9 +9865,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get accountCutoverOpenStore => 'Abrir tienda';
 
   @override
-  String get sendRawAudioToOmi => 'Enviar audio sin procesar a Omi';
+  String get sendRawAudioToOmi => 'Enviar audio sin procesar a Chronicle';
 
   @override
   String get sendRawAudioToOmiDescription =>
-      'Desactívalo para impedir que se envíe audio sin procesar a Omi. Las transcripciones y los datos necesarios para las funciones en la nube aún pueden enviarse a Omi.';
+      'Desactívalo para impedir que se envíe audio sin procesar a Chronicle. Las transcripciones y los datos necesarios para las funciones en la nube aún pueden enviarse a Chronicle.';
 }

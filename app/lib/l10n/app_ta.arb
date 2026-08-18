@@ -2,7 +2,7 @@
     "@@locale": "ta",
     "sessionExpiredSignInAgain": "அமர்வு காலாவதியானது — மீண்டும் உள்நுழையவும்.",
     "@@last_modified": "2024-12-26",
-    "appTitle": "Omi",
+    "appTitle": "Chronicle",
     "@appTitle": {
         "description": "The app title displayed in various places"
     },
@@ -158,7 +158,7 @@
     "@editPerson": {
         "description": "Title for edit person dialog"
     },
-    "createPersonHint": "ஒரு புதிய ஆளை உருவாக்கி Omi அவர்களின் பேச்சை அங்கீகரிக்க பயிற்சி!",
+    "createPersonHint": "ஒரு புதிய ஆளை உருவாக்கி Chronicle அவர்களின் பேச்சை அங்கீகரிக்க பயிற்சி!",
     "@createPersonHint": {
         "description": "Hint text for creating a person"
     },
@@ -212,9 +212,9 @@
     "@couldNotAccessFile": {
         "description": "Error when file access fails"
     },
-    "askOmi": "Omi-க்குக் கேளுங்கள்",
+    "askOmi": "Chronicle-க்குக் கேளுங்கள்",
     "@askOmi": {
-        "description": "Shortcut to ask Omi a question"
+        "description": "Shortcut to ask Chronicle a question"
     },
     "done": "முடிந்தது",
     "@done": {
@@ -350,7 +350,7 @@
     "@noMessagesYet": {
         "description": "Empty chat state message"
     },
-    "deletingMessages": "Omi இன் நினைவலிருந்து உங்கள் செய்திகளை நீக்குகிறது...",
+    "deletingMessages": "Chronicle இன் நினைவலிருந்து உங்கள் செய்திகளை நீக்குகிறது...",
     "@deletingMessages": {
         "description": "Loading text when clearing chat"
     },
@@ -390,7 +390,7 @@
     "@maxFilesLimit": {
         "description": "Max files upload warning"
     },
-    "chatWithOmi": "Omi உடன் சாட்",
+    "chatWithOmi": "Chronicle உடன் சாட்",
     "@chatWithOmi": {
         "description": "Chat share subject"
     },
@@ -430,7 +430,7 @@
     "@unableToFetchApps": {
         "description": "Error when apps fail to load"
     },
-    "aboutOmi": "Omi பற்றி",
+    "aboutOmi": "Chronicle பற்றி",
     "@aboutOmi": {
         "description": "About page title"
     },
@@ -580,7 +580,7 @@
     "@developerSettings": {
         "description": "Title for developer settings page"
     },
-    "getOmiForMac": "Mac க்கு Omi பெறுங்கள்",
+    "getOmiForMac": "Mac க்கு Chronicle பெறுங்கள்",
     "@getOmiForMac": {
         "description": "Mac app download link"
     },
@@ -604,7 +604,7 @@
     "@yourPrivacyYourControl": {
         "description": "Data privacy page heading"
     },
-    "privacyIntro": "Omi இல், நாங்கள் உங்கள் தனியுரிமையைக் காப்பாற்ற உறுதிபட்டுள்ளோம். இந்தப் பக்கம் உங்கள் தரவை எவ்வாறு சேமிக்கப்பட்டு பயன்படுத்தப்படுகிறது என்பதை கட்டுப்படுத்த அनुमति கொடுக்கிறது.",
+    "privacyIntro": "Chronicle இல், நாங்கள் உங்கள் தனியுரிமையைக் காப்பாற்ற உறுதிபட்டுள்ளோம். இந்தப் பக்கம் உங்கள் தரவை எவ்வாறு சேமிக்கப்பட்டு பயன்படுத்தப்படுகிறது என்பதை கட்டுப்படுத்த அनुमति கொடுக்கிறது.",
     "@privacyIntro": {
         "description": "Data privacy page introduction"
     },
@@ -696,7 +696,7 @@
     "@unpairAndForget": {
         "description": "Unpair and forget device button"
     },
-    "deviceDisconnectedMessage": "உங்கள் Omi இணைப்பு நீக்கப்பட்டுள்ளது 😔",
+    "deviceDisconnectedMessage": "உங்கள் Chronicle இணைப்பு நீக்கப்பட்டுள்ளது 😔",
     "@deviceDisconnectedMessage": {
         "description": "Message shown when device is disconnected"
     },
@@ -716,7 +716,7 @@
     "@deviceNotConnected": {
         "description": "Device not connected header"
     },
-    "connectDeviceMessage": "உங்கள் Omi சாதனத்தை இணைக்கவும் அணுகல் மற்றும் தனிப்பயனாக்கல் என்ற சாதன அமைப்புகள்",
+    "connectDeviceMessage": "உங்கள் Chronicle சாதனத்தை இணைக்கவும் அணுகல் மற்றும் தனிப்பயனாக்கல் என்ற சாதன அமைப்புகள்",
     "@connectDeviceMessage": {
         "description": "Message encouraging user to connect device"
     },
@@ -888,7 +888,7 @@
     "@docs": {
         "description": "Documentation button text"
     },
-    "yourOmiInsights": "உங்கள் Omi அंतर्दृष्टि",
+    "yourOmiInsights": "உங்கள் Chronicle அंतर्दृष्टि",
     "@yourOmiInsights": {
         "description": "Usage page title"
     },
@@ -912,7 +912,7 @@
     "@noActivityYet": {
         "description": "Empty state title"
     },
-    "startConversationToSeeInsights": "Omi உடன் ஒரு உரையாடல் தொடங்கவும் உங்கள் பயன்பாட்டு அंতর्दृष्टি இங்கே பார்க்கவும்.",
+    "startConversationToSeeInsights": "Chronicle உடன் ஒரு உரையாடல் தொடங்கவும் உங்கள் பயன்பாட்டு அंতর्दृष्टি இங்கே பார்க்கவும்.",
     "@startConversationToSeeInsights": {
         "description": "Empty state description"
     },
@@ -920,7 +920,7 @@
     "@listening": {
         "description": "Listening stat title"
     },
-    "listeningSubtitle": "Omi சுறுசுறுப்பாக கேட்ட மொத்த நேரம்.",
+    "listeningSubtitle": "Chronicle சுறுசுறுப்பாக கேட்ட மொத்த நேரம்.",
     "@listeningSubtitle": {
         "description": "Listening stat subtitle"
     },
@@ -1002,7 +1002,7 @@
             }
         }
     },
-    "shareStatsMessage": "என் Omi புள்ளிவிவரங்கள் பகிர்ந்து! (omi.me - உங்கள் எப்போதும் AI সहায়ক)",
+    "shareStatsMessage": "என் Chronicle புள்ளிவிவரங்கள் பகிர்ந்து! (omi.me - உங்கள் எப்போதும் AI সहায়ক)",
     "@shareStatsMessage": {
         "description": "Share stats base message"
     },
@@ -1066,7 +1066,7 @@
     "debugLogsAutoDelete": "3 நாட்களுக்குப் பிறகு தன்னாக நீக்கப்படுகிறது.",
     "debugLogsDesc": "சிக்கல்களைக் கண்டறிய உதவுங்கள்",
     "noLogFilesFound": "எந்த பதிவு கோப்புகளும் கண்டுபிடிக்கப்படவில்லை.",
-    "omiDebugLog": "Omi பிழைத்திருத்தம் பதிவு",
+    "omiDebugLog": "Chronicle பிழைத்திருத்தம் பதிவு",
     "logShared": "பதிவு பகிர்ந்து",
     "selectLogFile": "பதிவு கோப்பு தேர்ந்தெடுக்கவும்",
     "shareLogs": "பதிவுகள் பகிர்ந்து",
@@ -1074,7 +1074,7 @@
     "exportStarted": "ஏற்றுமதி தொடங்கியது. இது சில வினாடிகள் ஆனலாம்...",
     "exportAllData": "அனைத்து தரவு ஏற்றுமதி",
     "exportDataDesc": "உரையாடல்களை JSON கோப்பிற்கு ஏற்றுமதி",
-    "exportedConversations": "Omi இலிருந்து ஏற்றுமதி செய்யப்பட்ட உரையாடல்கள்",
+    "exportedConversations": "Chronicle இலிருந்து ஏற்றுமதி செய்யப்பட்ட உரையாடல்கள்",
     "exportShared": "ஏற்றுமதி பகிர்ந்து",
     "deleteKnowledgeGraphTitle": "அறிவு வரைபடத்தை நீக்கவா?",
     "deleteKnowledgeGraphMessage": "இது அனைத்து பெறப்பட்ட அறிவு வரைபட தரவையும் நீக்கும் (முனைப்புகள் மற்றும் இணைப்புகள்). உங்கள் அசல் நினைவுகள் பாதுகாப்பாக இருக்கும். வரைபடம் கால மற்றும் அல்லது அடுத்த கோரிக்கை மீது மீண்டும் உருவாக்கப்படும்.",
@@ -1174,7 +1174,7 @@
     "customVocabularyTitle": "தனிப்பயன் சொல்லடை",
     "addWords": "சொற்கள் சேர்க்கவும்",
     "addWordsDesc": "பெயர்கள், சொற்கள், அல்லது அசாதாரண சொற்கள்",
-    "vocabularyHint": "Omi, Callie, OpenAI",
+    "vocabularyHint": "Chronicle, Callie, OpenAI",
     "connect": "இணைக்கவும்",
     "comingSoon": "விரைவில் வருகிறது",
     "integrationsFooter": "சாட்டில் தரவு மற்றும் மெட்ரிக்ஸ் பார்க்க உங்கள் பயன்பாடுகளை இணைக்கவும்.",
@@ -1220,7 +1220,7 @@
             }
         }
     },
-    "authAccessMessage": "உங்கள் {appName} தரவை அணுக Omi க்கு அங்கீகாரம் தேவை. இது அங்கீகாரத்திற்கு உங்கள் உலாவியைத் திறக்கும்.",
+    "authAccessMessage": "உங்கள் {appName} தரவை அணுக Chronicle க்கு அங்கீகாரம் தேவை. இது அங்கீகாரத்திற்கு உங்கள் உலாவியைத் திறக்கும்.",
     "@authAccessMessage": {
         "placeholders": {
             "appName": {
@@ -1257,7 +1257,7 @@
     "permissionRevokedMessage": "உங்கள் பழைய பதிவுகளையும் நீக்க விரும்புகிறீர்களா?",
     "yes": "ஆம்",
     "editName": "பெயரைத் திருத்தவும்",
-    "howShouldOmiCallYou": "Omi உங்களை எப்படி அழைக்க வேண்டும்?",
+    "howShouldOmiCallYou": "Chronicle உங்களை எப்படி அழைக்க வேண்டும்?",
     "enterYourName": "உங்கள் பெயரை உள்ளிடவும்",
     "nameCannotBeEmpty": "பெயர் வெற்றிடமாக இருக்க முடியாது",
     "nameUpdatedSuccessfully": "பெயர் வெற்றிகரமாக புதுப்பிக்கப்பட்டது!",
@@ -1441,7 +1441,7 @@
             }
         }
     },
-    "authorizeOmiForTasks": "உங்கள் {appName} கணக்கில் பணிகளை உருவாக்க Omi ஐ அங்கீகரிக்க வேண்டும். இது அங்கீகாரத்திற்கான உங்கள் உலாவியைத் திறக்கும்.",
+    "authorizeOmiForTasks": "உங்கள் {appName} கணக்கில் பணிகளை உருவாக்க Chronicle ஐ அங்கீகரிக்க வேண்டும். இது அங்கீகாரத்திற்கான உங்கள் உலாவியைத் திறக்கும்.",
     "@authorizeOmiForTasks": {
         "placeholders": {
             "appName": {
@@ -1472,9 +1472,9 @@
     "importConfiguration": "உள்ளமைப்பைக் கொண்டு வாருங்கள்",
     "exportConfiguration": "உள்ளமைப்பை ஏற்றுமதி செய்யவும்",
     "bringYourOwn": "உங்களையே கொண்டு வாருங்கள்",
-    "payYourSttProvider": "Omi ஐ சுதந்திரமாகப் பயன்படுத்தவும். நீங்கள் உங்கள் STT வழங்குநரிடம் நேரடியாக பணம் செலுத்துங்கள்.",
+    "payYourSttProvider": "Chronicle ஐ சுதந்திரமாகப் பயன்படுத்தவும். நீங்கள் உங்கள் STT வழங்குநரிடம் நேரடியாக பணம் செலுத்துங்கள்.",
     "freeMinutesMonth": "மாதத்திற்கு 300 இலவச நிமிடங்கள் அடங்கியுள்ளது. ",
-    "omiUnlimited": "Omi Unlimited",
+    "omiUnlimited": "Chronicle Unlimited",
     "hostRequired": "ஹோஸ்ட் தேவை",
     "validPortRequired": "சரியான போர்ட் தேவை",
     "validWebsocketUrlRequired": "சரியான WebSocket URL தேவை (wss://)",
@@ -1532,7 +1532,7 @@
     "logs": "பதிவுகள்",
     "logsCopied": "பதிவுகள் நகல் செய்யப்பட்டுள்ளன",
     "noLogsYet": "இன்னும் பதிவுகள் இல்லை. தனிப்பட்ட STT செயல்பாட்டைக் காண பதிவை உருவாக்கத் தொடங்கவும்.",
-    "deviceUsesCodec": "{device} {reason} ஐப் பயன்படுத்துகிறது. Omi பயன்படுத்தப்படும்.",
+    "deviceUsesCodec": "{device} {reason} ஐப் பயன்படுத்துகிறது. Chronicle பயன்படுத்தப்படும்.",
     "@deviceUsesCodec": {
         "description": "Warning about device codec compatibility",
         "placeholders": {
@@ -1544,7 +1544,7 @@
             }
         }
     },
-    "omiTranscription": "Omi தட்டச்சு",
+    "omiTranscription": "Chronicle தட்டச்சு",
     "bestInClassTranscription": "பூஜ்ய அமைப்பின் சிறந்த தட்டச்சு",
     "instantSpeakerLabels": "உடனடி பேச்சாளர் பெயர்கள்",
     "languageTranslation": "100+ மொழி மொழிபெயர்ப்பு",
@@ -1626,7 +1626,7 @@
     "@enableBluetooth": {
         "description": "Title for dialog prompting user to enable Bluetooth"
     },
-    "bluetoothNeeded": "Omi உங்கள் உணர்வுமான சாதனத்துடன் இணைக்க Bluetooth தேவை. Bluetooth ஐ இயக்கவும் மற்றும் மீண்டும் முயற்சி செய்யவும்.",
+    "bluetoothNeeded": "Chronicle உங்கள் உணர்வுமான சாதனத்துடன் இணைக்க Bluetooth தேவை. Bluetooth ஐ இயக்கவும் மற்றும் மீண்டும் முயற்சி செய்யவும்.",
     "@bluetoothNeeded": {
         "description": "Explanation text for why Bluetooth is required"
     },
@@ -1646,7 +1646,7 @@
     "@backgroundActivity": {
         "description": "Title for background activity permission"
     },
-    "backgroundActivityDesc": "Omi ஐ பின்னணிയில் இயங்க விடுங்கள் சிறந்த நிலைத்தன்மைக்கு",
+    "backgroundActivityDesc": "Chronicle ஐ பின்னணிയில் இயங்க விடுங்கள் சிறந்த நிலைத்தன்மைக்கு",
     "@backgroundActivityDesc": {
         "description": "Description for background activity permission"
     },
@@ -1685,7 +1685,7 @@
     "@backgroundLocationDeniedDesc": {
         "description": "Instructions to grant background location permission"
     },
-    "lovingOmi": "Omi ஐ விரும்புகிறீர்களா?",
+    "lovingOmi": "Chronicle ஐ விரும்புகிறீர்களா?",
     "@lovingOmi": {
         "description": "Title for the app review prompt"
     },
@@ -1693,7 +1693,7 @@
     "@maybeLater": {
         "description": "Button text to defer action"
     },
-    "speechProfileIntro": "Omi உங்கள் இலக்குகள் மற்றும் உங்கள் குரலைக் கற்க வேண்டும். நீங்கள் இதை பிறகு மாற்ற முடிந்தது.",
+    "speechProfileIntro": "Chronicle உங்கள் இலக்குகள் மற்றும் உங்கள் குரலைக் கற்க வேண்டும். நீங்கள் இதை பிறகு மாற்ற முடிந்தது.",
     "@speechProfileIntro": {
         "description": "Introduction text for speech profile setup"
     },
@@ -1761,7 +1761,7 @@
     "@tryAgain": {
         "description": "Button text to retry an action"
     },
-    "connectOmiOmiGlass": "Omi / OmiGlass ஐ இணையுங்கள்",
+    "connectOmiOmiGlass": "Chronicle / OmiGlass ஐ இணையுங்கள்",
     "@connectOmiOmiGlass": {
         "description": "Button text to connect specific device models"
     },
@@ -1812,7 +1812,7 @@
     "@termsOfUse": {
         "description": "Link text for Terms of Use"
     },
-    "omiYourAiCompanion": "Omi – உங்கள் AI சாங்கี",
+    "omiYourAiCompanion": "Chronicle – உங்கள் AI சாங்கี",
     "@omiYourAiCompanion": {
         "description": "App title or branding on onboarding screen"
     },
@@ -1832,7 +1832,7 @@
     "@microphonePermission": {
         "description": "Title for microphone permission section"
     },
-    "permissionGrantedNow": "அனுமதி வழங்கப்பட்டுள்ளது! இப்போது:\n\nஉங்கள் கடிகாரத்தில் Omi பயன்பாட்டை திறந்து கீழே \"தொடரவும்\" ஐ தட்டவும்",
+    "permissionGrantedNow": "அனுமதி வழங்கப்பட்டுள்ளது! இப்போது:\n\nஉங்கள் கடிகாரத்தில் Chronicle பயன்பாட்டை திறந்து கீழே \"தொடரவும்\" ஐ தட்டவும்",
     "@permissionGrantedNow": {
         "description": "Instructions after permission is granted"
     },
@@ -1848,7 +1848,7 @@
     "@needHelp": {
         "description": "Link to help dialog"
     },
-    "troubleshootingSteps": "சிக்கலைத் தீர்க்க:\n\n1. Omi உங்கள் கடிகாரத்தில் நிறுவப்பட்டுள்ளதை உறுதிசெய்யவும்\n2. உங்கள் கடிகாரத்தில் Omi பயன்பாட்டை திறக்கவும்\n3. அனுமதி பாப்அப்பைத் தேடவும்\n4. பணிக்குறிப்பு செய்யப்பட்டு \"அனுமதி\" ஐ தட்டவும்\n5. உங்கள் கடிகாரத்தில் பயன்பாடு மூடும் - மீண்டும் திறக்கவும்\n6. உங்கள் iPhone இல் திரும்பி \"தொடரவும்\" ஐ தட்டவும்",
+    "troubleshootingSteps": "சிக்கலைத் தீர்க்க:\n\n1. Chronicle உங்கள் கடிகாரத்தில் நிறுவப்பட்டுள்ளதை உறுதிசெய்யவும்\n2. உங்கள் கடிகாரத்தில் Chronicle பயன்பாட்டை திறக்கவும்\n3. அனுமதி பாப்அப்பைத் தேடவும்\n4. பணிக்குறிப்பு செய்யப்பட்டு \"அனுமதி\" ஐ தட்டவும்\n5. உங்கள் கடிகாரத்தில் பயன்பாடு மூடும் - மீண்டும் திறக்கவும்\n6. உங்கள் iPhone இல் திரும்பி \"தொடரவும்\" ஐ தட்டவும்",
     "@troubleshootingSteps": {
         "description": "Troubleshooting instructions for watch setup"
     },
@@ -1905,7 +1905,7 @@
     },
     "personalGrowthJourney": "உங்கள் ஒவ்வொரு வார்த்தைக்கும் கேட்கும் AI உடன் உங்கள் தனிப்பட்ட வளர்ச்சி பயணம்.",
     "@personalGrowthJourney": {
-        "description": "Subtitle describing Omi on auth screen"
+        "description": "Subtitle describing Chronicle on auth screen"
     },
     "actionItemsTitle": "செய்ய வேண்டிய பணிகள்",
     "@actionItemsTitle": {
@@ -2078,11 +2078,11 @@
     "@addFirstMemory": {
         "description": "Button to add first memory"
     },
-    "clearMemoryTitle": "Omi இன் பதிவை அழிக்கவும்",
+    "clearMemoryTitle": "Chronicle இன் பதிவை அழிக்கவும்",
     "@clearMemoryTitle": {
         "description": "Dialog title for clearing memory"
     },
-    "clearMemoryMessage": "Omi இன் உங்கள் பற்றிய பதிவை அழிக்க விரும்புகிறீர்களா? இந்தச் செயல் மாற்றமுடியாது.",
+    "clearMemoryMessage": "Chronicle இன் உங்கள் பற்றிய பதிவை அழிக்க விரும்புகிறீர்களா? இந்தச் செயல் மாற்றமுடியாது.",
     "@clearMemoryMessage": {
         "description": "Dialog content for clearing memory"
     },
@@ -2090,7 +2090,7 @@
     "@clearMemoryButton": {
         "description": "Button text to confirm clearing all memories"
     },
-    "memoryClearedSuccess": "Omi இன் உங்கள் பற்றிய பதிவு அழிக்கப்பட்டுள்ளது",
+    "memoryClearedSuccess": "Chronicle இன் உங்கள் பற்றிய பதிவு அழிக்கப்பட்டுள்ளது",
     "@memoryClearedSuccess": {
         "description": "Snackbar success message"
     },
@@ -2287,7 +2287,7 @@
     "@translationNotice": {
         "description": "Title for dialog explaining that conversations are translated"
     },
-    "translationNoticeMessage": "Omi உங்கள் முதன்மை மொழிতে உரையாடல்களை மொழிபெயர்க்கிறது. அমைப்புகளில் -> சுயவிவரங்களில் ஏதேனும் நேரம் அதைப் புதுப்பிக்கவும்.",
+    "translationNoticeMessage": "Chronicle உங்கள் முதன்மை மொழிতে உரையாடல்களை மொழிபெயர்க்கிறது. அমைப்புகளில் -> சுயவிவரங்களில் ஏதேனும் நேரம் அதைப் புதுப்பிக்கவும்.",
     "@translationNoticeMessage": {
         "description": "Message explaining how translation works and where to change language settings"
     },
@@ -2536,9 +2536,9 @@
     "@privacyPolicyTitle": {
         "description": "Title for privacy policy page"
     },
-    "omiSttProvider": "Omi",
+    "omiSttProvider": "Chronicle",
     "@omiSttProvider": {
-        "description": "Label for default Omi STT provider"
+        "description": "Label for default Chronicle STT provider"
     },
     "labelCopied": "{label} நகலெடுக்கப்பட்டது",
     "@labelCopied": {
@@ -2830,7 +2830,7 @@
     "@checksForAudioFiles": {
         "description": "Step 1: Checking for audio files"
     },
-    "omiSyncsAudioFiles": "Omi பின்னர் ஆடியோ கோப்புகளை சার்வரின் সাথে ஒத்திசைக்கிறது",
+    "omiSyncsAudioFiles": "Chronicle பின்னர் ஆடியோ கோப்புகளை சার்வரின் সাথে ஒத்திசைக்கிறது",
     "@omiSyncsAudioFiles": {
         "description": "Step 2: Syncing audio files"
     },
@@ -2842,11 +2842,11 @@
     "@youreAllSet": {
         "description": "Completion message when onboarding is finished"
     },
-    "welcomeToOmiDescription": "Omi க்கு வரவேற்கிறோம்! உங்கள் AI தோழி உரையாடல், பணிகள் மற்றும் பலவற்றை உங்களுக்கு உதவ தயாரிக்கப்பட்டுள்ளார்.",
+    "welcomeToOmiDescription": "Chronicle க்கு வரவேற்கிறோம்! உங்கள் AI தோழி உரையாடல், பணிகள் மற்றும் பலவற்றை உங்களுக்கு உதவ தயாரிக்கப்பட்டுள்ளார்.",
     "@welcomeToOmiDescription": {
         "description": "Welcome message on completion screen"
     },
-    "startUsingOmi": "Omi ஐ பயன்படுத்த தொடங்கவும்",
+    "startUsingOmi": "Chronicle ஐ பயன்படுத்த தொடங்கவும்",
     "@startUsingOmi": {
         "description": "Button to complete onboarding and start using the app"
     },
@@ -2955,7 +2955,7 @@
     "@reviewAndManageConversations": {
         "description": "Subtitle explaining what users can do on conversations page"
     },
-    "startCapturingConversations": "உங்கள் Omi சாதனம் உடன் உரையாடல்களை கைப்பற்ற தொடங்கவும் அவற்றை இங்கே காண.",
+    "startCapturingConversations": "உங்கள் Chronicle சாதனம் உடன் உரையாடல்களை கைப்பற்ற தொடங்கவும் அவற்றை இங்கே காண.",
     "@startCapturingConversations": {
         "description": "Message explaining how to get started with conversations"
     },
@@ -2975,7 +2975,7 @@
     "@showAll": {
         "description": "Button text to show all items"
     },
-    "noTasksForToday": "இன்றைக்கு பணிகள் இல்லை.\nவேலைகள் அல்லது கையால் உருவாக்க Omi ஐ கேட்கவும்.",
+    "noTasksForToday": "இன்றைக்கு பணிகள் இல்லை.\nவேலைகள் அல்லது கையால் உருவாக்க Chronicle ஐ கேட்கவும்.",
     "@noTasksForToday": {
         "description": "Message shown when there are no tasks due today"
     },
@@ -3174,7 +3174,7 @@
     "@createNewApp": {
         "description": "Title for the create new app page"
     },
-    "buildSubmitCustomOmiApp": "உங்கள் தனிப்பயன் Omi பயன்பாட்டை உருவாக்கி சமர்ப்பிக்கவும்",
+    "buildSubmitCustomOmiApp": "உங்கள் தனிப்பயன் Chronicle பயன்பாட்டை உருவாக்கி சமர்ப்பிக்கவும்",
     "@buildSubmitCustomOmiApp": {
         "description": "Subtitle describing the purpose of the create app page"
     },
@@ -3234,7 +3234,7 @@
     "@makeMyAppPublic": {
         "description": "Checkbox label for making app publicly available"
     },
-    "submitAppTermsAgreement": "இந்த பயன்பாட்டைச் சமர்ப்பிப்பதன் மூலம், நான் Omi AI சேவை விதிமுறைகள் மற்றும் தனியுரிமை கொள்கைக்கு ஒப்புக்கொள்ளுகிறேன்",
+    "submitAppTermsAgreement": "இந்த பயன்பாட்டைச் சமர்ப்பிப்பதன் மூலம், நான் Chronicle AI சேவை விதிமுறைகள் மற்றும் தனியுரிமை கொள்கைக்கு ஒப்புக்கொள்ளுகிறேன்",
     "@submitAppTermsAgreement": {
         "description": "Terms and conditions agreement checkbox text"
     },
@@ -3290,7 +3290,7 @@
     "@dataAccessNotice": {
         "description": "Dialog title warning about app data access"
     },
-    "dataAccessWarning": "இந்த பயன்பாடு உங்கள் தரவை அணுகும். Omi AI இந்த பயன்பாட்டால் உங்கள் தரவு எப்படி பயன்படுத்தப்படுகிறது, மாற்றப்படுகிறது அல்லது நீக்கப்படுகிறது என்பதற்கு பொறுப்பல்ல",
+    "dataAccessWarning": "இந்த பயன்பாடு உங்கள் தரவை அணுகும். Chronicle AI இந்த பயன்பாட்டால் உங்கள் தரவு எப்படி பயன்படுத்தப்படுகிறது, மாற்றப்படுகிறது அல்லது நீக்கப்படுகிறது என்பதற்கு பொறுப்பல்ல",
     "@dataAccessWarning": {
         "description": "Warning message about app data access in confirmation dialog"
     },
@@ -3762,7 +3762,7 @@
     "@upgradeToPro": {
         "description": "Subscription banner button text"
     },
-    "getOmiDevice": "Omi சாதனத்தைப் பெறுக",
+    "getOmiDevice": "Chronicle சாதனத்தைப் பெறுக",
     "@getOmiDevice": {
         "description": "Widget title for device promotion"
     },
@@ -3865,7 +3865,7 @@
     "@setAllMemoriesToPublic": {
         "description": "Description for making all memories public"
     },
-    "permanentlyRemoveAllMemories": "Omi இலிருந்து அனைத்து நினைவுகளை நிரந்தரமாக நீக்கவும்",
+    "permanentlyRemoveAllMemories": "Chronicle இலிருந்து அனைத்து நினைவுகளை நிரந்தரமாக நீக்கவும்",
     "@permanentlyRemoveAllMemories": {
         "description": "Description for deleting all memories"
     },
@@ -3877,11 +3877,11 @@
     "@allMemoriesAreNowPublic": {
         "description": "Success message after making all memories public"
     },
-    "clearOmisMemory": "Omi ன் நினைவகம் தெளிவு செய்",
+    "clearOmisMemory": "Chronicle ன் நினைவகம் தெளிவு செய்",
     "@clearOmisMemory": {
         "description": "Confirmation dialog title for clearing all memories"
     },
-    "clearMemoryConfirmation": "Omi ன் நினைவகம் தெளிவு செய்ய விரும்புகிறீர்களா? இந்த செயல் செயல்நீக்கம் செய்ய முடியாது மற்றும் அனைத்து {count} நினைவுகளை நிரந்தரமாக நீக்கும்.",
+    "clearMemoryConfirmation": "Chronicle ன் நினைவகம் தெளிவு செய்ய விரும்புகிறீர்களா? இந்த செயல் செயல்நீக்கம் செய்ய முடியாது மற்றும் அனைத்து {count} நினைவுகளை நிரந்தரமாக நீக்கும்.",
     "@clearMemoryConfirmation": {
         "description": "Confirmation message for clearing all memories",
         "placeholders": {
@@ -3890,11 +3890,11 @@
             }
         }
     },
-    "omisMemoryCleared": "உங்களைப் பற்றிய Omi ன் நினைவகம் தெளிவு செய்யப்பட்டது",
+    "omisMemoryCleared": "உங்களைப் பற்றிய Chronicle ன் நினைவகம் தெளிவு செய்யப்பட்டது",
     "@omisMemoryCleared": {
         "description": "Success message after clearing all memories"
     },
-    "welcomeToOmi": "Omi க்கு வரவேற்கிறோம்",
+    "welcomeToOmi": "Chronicle க்கு வரவேற்கிறோம்",
     "@welcomeToOmi": {
         "description": "Welcome message on auth screen"
     },
@@ -3948,13 +3948,13 @@
     },
     "pleaseSelectYourPrimaryLanguage": "உங்கள் முதன்மை மொழியைத் தேர்ந்தெடுக்கவும்",
     "chooseYourLanguage": "உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்",
-    "selectPreferredLanguageForBestExperience": "சிறந்த Omi அভிজ্ঞதைக்கான உங்கள் விரும்பிய மொழியைத் தேர்ந்தெடுக்கவும்",
+    "selectPreferredLanguageForBestExperience": "சிறந்த Chronicle அভிজ্ঞதைக்கான உங்கள் விரும்பிய மொழியைத் தேர்ந்தெடுக்கவும்",
     "searchLanguages": "மொழிகளைத் தேடவும்...",
     "selectALanguage": "ஒரு மொழியைத் தேர்ந்தெடுக்கவும்",
     "tryDifferentSearchTerm": "வேறு தேடல் சொல்லை முயற்சி செய்யவும்",
     "pleaseEnterYourName": "உங்கள் பெயரை உள்ளிடவும்",
     "nameMustBeAtLeast2Characters": "பெயர் குறைந்தது 2 எழுத்துக்கள் இருக்க வேண்டும்",
-    "tellUsHowYouWouldLikeToBeAddressed": "உங்களை எப்படி சম்போதிக்க வேண்டுமென்று சொல்லவும். இது உங்கள் Omi அভிজ்ஞதையை நபர்மயமாக்க உதவுகிறது.",
+    "tellUsHowYouWouldLikeToBeAddressed": "உங்களை எப்படி சম்போதிக்க வேண்டுமென்று சொல்லவும். இது உங்கள் Chronicle அভிজ்ஞதையை நபர்மயமாக்க உதவுகிறது.",
     "charactersCount": "{count} எழுத்துக்கள்",
     "@charactersCount": {
         "placeholders": {
@@ -3963,16 +3963,16 @@
             }
         }
     },
-    "enableFeaturesForBestExperience": "உங்கள் சாதனத்தில் சிறந்த Omi அভிজ்ஞதைக்கான அம்சங்களை செயல்படுத்தவும்.",
+    "enableFeaturesForBestExperience": "உங்கள் சாதனத்தில் சிறந்த Chronicle அভிজ்ஞதைக்கான அம்சங்களை செயல்படுத்தவும்.",
     "microphoneAccess": "மைக்ரோஃபோன் அணுக்கம்",
     "recordAudioConversations": "ஆடியோ உரையாடல்களைப் பதிவு செய்யவும்",
-    "microphoneAccessDescription": "உங்கள் உரையாடல்களைப் பதிவு செய்து எழுத்தாக்க வழங்க Omi மைக்ரோஃபோன் அணுக்கம் தேவை.",
+    "microphoneAccessDescription": "உங்கள் உரையாடல்களைப் பதிவு செய்து எழுத்தாக்க வழங்க Chronicle மைக்ரோஃபோன் அணுக்கம் தேவை.",
     "screenRecording": "திரை பதிவு",
     "captureSystemAudioFromMeetings": "சந்திப்புகளிலிருந்து கணினி ஆடியோவைப் பிடிக்கவும்",
-    "screenRecordingDescription": "உங்கள் உலாவி-அடிப்படையிலான சந்திப்புகளிலிருந்து கணினி ஆடியோவைப் பிடிக்க Omi திரை பதிவு அনுமதி தேவை.",
+    "screenRecordingDescription": "உங்கள் உலாவி-அடிப்படையிலான சந்திப்புகளிலிருந்து கணினி ஆடியோவைப் பிடிக்க Chronicle திரை பதிவு அনுமதி தேவை.",
     "accessibility": "அணுகல்தன்மை",
     "detectBrowserBasedMeetings": "உலாவி-அடிப்படையிலான சந்திப்புகளைக் கண்டறியவும்",
-    "accessibilityDescription": "நீங்கள் உங்கள் உலாவியில் Zoom, Meet அல்லது Teams சந்திப்புகளில் சேரும்போது கண்டறிய Omi அணுகல்தன்மை அனுமதி தேவை.",
+    "accessibilityDescription": "நீங்கள் உங்கள் உலாவியில் Zoom, Meet அல்லது Teams சந்திப்புகளில் சேரும்போது கண்டறிய Chronicle அணுகல்தன்மை அனுமதி தேவை.",
     "pleaseWait": "தயவு செய்து காத்திருங்கள்...",
     "joinTheCommunity": "சமூகத்தில் சேரவும்!",
     "loadingProfile": "சுயவிவரம் ஏற்றப்படுகிறது...",
@@ -3983,12 +3983,12 @@
     "setYourName": "உங்கள் பெயரை அமைக்கவும்",
     "changeYourName": "உங்கள் பெயரை மாற்றவும்",
     "voiceAndPeople": "குரல் மற்றும் மக்கள்",
-    "teachOmiYourVoice": "Omi-க்கு உங்கள் குரலைக் கற்பிக்கவும்",
-    "tellOmiWhoSaidIt": "Omi-க்கு யார் சொன்னது என்று சொல்லவும் 🗣️",
+    "teachOmiYourVoice": "Chronicle-க்கு உங்கள் குரலைக் கற்பிக்கவும்",
+    "tellOmiWhoSaidIt": "Chronicle-க்கு யார் சொன்னது என்று சொல்லவும் 🗣️",
     "payment": "பணம் செலுத்துதல்",
     "addOrChangeYourPaymentMethod": "உங்கள் பணம் செலுத்தும் முறையைச் சேர்க்கவும் அல்லது மாற்றவும்",
     "preferences": "விருப்பங்கள்",
-    "helpImproveOmiBySharing": "அனாமத மூல பகுப்பாய்வு தரவுகளைப் பகிர்ந்து Omi மேம்படுத்த உதவுங்கள்",
+    "helpImproveOmiBySharing": "அனாமத மூல பகுப்பாய்வு தரவுகளைப் பகிர்ந்து Chronicle மேம்படுத்த உதவுங்கள்",
     "deleteAccount": "கணக்கை நீக்கவும்",
     "deleteYourAccountAndAllData": "உங்கள் கணக்கு மற்றும் அனைத்து தரவையும் நீக்கவும்",
     "clearLogs": "பதிவுகளைத் துடைக்கவும்",
@@ -3996,7 +3996,7 @@
     "exportConversations": "உரையாடல்களை ஏற்றுமதி செய்யவும்",
     "exportAllConversationsToJson": "உங்கள் அனைத்து உரையாடல்களை JSON ফাইலுக்கு ஏற்றுமதி செய்யவும்.",
     "conversationsExportStarted": "உரையாடல்கள் ஏற்றுமதி தொடங்கியுள்ளது. இது சில வினாடிகள் எடுக்கலாம், தயவு செய்து காத்திருங்கள்.",
-    "mcpDescription": "Omi ஐ மற்ற பயன்பாடுகளுடன் இணைக்க உங்கள் நினைவுகள் மற்றும் உரையாடல்களைப் படிக்க, தேட மற்றும் நிர்வகிக்க. ஒரு முக்கியத்தை உருவாக்கவும் தொடங்க.",
+    "mcpDescription": "Chronicle ஐ மற்ற பயன்பாடுகளுடன் இணைக்க உங்கள் நினைவுகள் மற்றும் உரையாடல்களைப் படிக்க, தேட மற்றும் நிர்வகிக்க. ஒரு முக்கியத்தை உருவாக்கவும் தொடங்க.",
     "apiKeys": "API விசைகள்",
     "errorLabel": "பிழை: {error}",
     "@errorLabel": {
@@ -4014,7 +4014,7 @@
     "triggersWhenAudioBytesReceived": "ஆடியோ பைட்குகள் பெறப்பட்டபோது தூண்டப்படுகிறது.",
     "everyXSeconds": "ஒவ்வொரு x வினாடிக்கும்",
     "triggersWhenDaySummaryGenerated": "நாள் சுருக்கம் உருவாக்கப்பட்டபோது தூண்டப்படுகிறது.",
-    "tryLatestExperimentalFeatures": "Omi குழுவின் சமீபத்திய சோதனামূலக அம்சங்களை முயற்சி செய்யவும்.",
+    "tryLatestExperimentalFeatures": "Chronicle குழுவின் சமீபத்திய சோதனামূலக அம்சங்களை முயற்சி செய்யவும்.",
     "transcriptionServiceDiagnosticStatus": "எழுத்தாக்க சேவை நோயறிதல் நிலை",
     "enableDetailedDiagnosticMessages": "எழுத்தாக்க சேவையிலிருந்து விস்தரிக்கப்பட்ட நோயறிதல் செய்திகளை செயல்படுத்தவும்",
     "autoCreateAndTagNewSpeakers": "புதிய பேச்சாளர்களை தானாக உருவாக்கவும் மற்றும் குறியிடவும்",
@@ -4050,7 +4050,7 @@
             }
         }
     },
-    "letOmiChooseAutomatically": "Omi சிறந்த பயன்பாட்டைத் தானாக தேர்ந்தெடுக்க அனுமதிக்கவும்",
+    "letOmiChooseAutomatically": "Chronicle சிறந்த பயன்பாட்டைத் தானாக தேர்ந்தெடுக்க அனுமதிக்கவும்",
     "deleteConversationConfirmation": "இந்த உரையாடலை நீக்க விரும்புகிறீர்களா? இந்த செயலை செயல்தவிர்க்க முடியாது.",
     "conversationDeleted": "உரையாடல் நீக்கப்பட்டது",
     "generatingLink": "இணைப்பை உருவாக்கிறது...",
@@ -4317,7 +4317,7 @@
     "@customVocabularyHeader": {
         "description": "Custom vocabulary section header"
     },
-    "addWordsDescription": "Omi எழுத்தாக்கத்தின் போது கண்டுபிடிக்க வேண்டிய சொற்களைச் சேர்க்கவும்.",
+    "addWordsDescription": "Chronicle எழுத்தாக்கத்தின் போது கண்டுபிடிக்க வேண்டிய சொற்களைச் சேர்க்கவும்.",
     "@addWordsDescription": {
         "description": "Custom vocabulary description"
     },
@@ -4378,7 +4378,7 @@
     "clearNodesDescription": "அனைத்து முனைகள் மற்றும் இணைப்புகளைத் துடைக்கவும்",
     "deleteKnowledgeGraphQuestion": "அறிவு வரைபடத்தை நீக்கவா?",
     "deleteKnowledgeGraphWarning": "இது அனைத்து பெறப்பட்ட அறிவு வரைபட தரவையும் நீக்கும். உங்கள் அசல் நினைவுகள் பாதுகாப்பாக இருக்கும்.",
-    "connectOmiWithAI": "Omi ஐ AI உதவியாளர்களுடன் இணைக்கவும்",
+    "connectOmiWithAI": "Chronicle ஐ AI உதவியாளர்களுடன் இணைக்கவும்",
     "noAPIKeys": "API விசைகள் இல்லை. தொடங்க ஒன்றை உருவாக்கவும்.",
     "autoCreateWhenDetected": "பெயர் கண்டறியப்பட்டபோது தானாக உருவாக்கவும்",
     "trackPersonalGoals": "முகப்பில் ব்যக்তிगத இலக்குகளைக் கண்காணிக்கவும்",
@@ -4398,7 +4398,7 @@
     "@holdOnPreparingForm": {
         "description": "Loading message while preparing form"
     },
-    "bySubmittingYouAgreeToOmi": "சமர்ப்பிப்பதன் மூலம், நீங்கள் Omi ",
+    "bySubmittingYouAgreeToOmi": "சமர்ப்பிப்பதன் மூலம், நீங்கள் Chronicle ",
     "@bySubmittingYouAgreeToOmi": {
         "description": "Text before Terms & Privacy Policy link"
     },
@@ -4610,7 +4610,7 @@
     "@issueActivatingApp": {
         "description": "Dialog description for activation error"
     },
-    "dataAccessNoticeDescription": "இந்த பயன்பாடு உங்கள் தரவை அணுகும். Omi AI இந்த பயன்பாடு உங்கள் தரவை எவ்வாறு பயன்படுத்துகிறது, மாற்றுகிறது அல்லது நீக்குகிறது என்பதற்கு பொறுப்பாகாது",
+    "dataAccessNoticeDescription": "இந்த பயன்பாடு உங்கள் தரவை அணுகும். Chronicle AI இந்த பயன்பாடு உங்கள் தரவை எவ்வாறு பயன்படுத்துகிறது, மாற்றுகிறது அல்லது நீக்குகிறது என்பதற்கு பொறுப்பாகாது",
     "@dataAccessNoticeDescription": {
         "description": "Description for data access notice dialog"
     },
@@ -4742,7 +4742,7 @@
             }
         }
     },
-    "omiApiKeys": "Omi API விசைகள்",
+    "omiApiKeys": "Chronicle API விசைகள்",
     "@omiApiKeys": {
         "description": "Dialog title for API keys info"
     },
@@ -4750,7 +4750,7 @@
     "@apiKeysDescription": {
         "description": "Description of what API keys are used for"
     },
-    "aboutOmiApiKeys": "Omi API விசைகளைப் பற்றி",
+    "aboutOmiApiKeys": "Chronicle API விசைகளைப் பற்றி",
     "@aboutOmiApiKeys": {
         "description": "Tooltip for API keys info button"
     },
@@ -4944,7 +4944,7 @@
     "@maximumSecurityE2ee": {
         "description": "Title for End-to-End Encryption dialog"
     },
-    "e2eeDescription": "End-to-end encryption இரகசியதைக்கான தங்கம் தரமாகும். செயல்படுத்தப்பட்டபோது, உங்கள் தரவு நம் சர்வரிற்கு அனுப்பப்படுவதற்கு முன் உங்கள் சாதனத்தில் குறியாக்கம் செய்யப்படுகிறது. இதன் பொருள் யாரும், Omi கூட, உங்கள் உள்ளடக்கத்தை அணுக முடியாது.",
+    "e2eeDescription": "End-to-end encryption இரகசியதைக்கான தங்கம் தரமாகும். செயல்படுத்தப்பட்டபோது, உங்கள் தரவு நம் சர்வரிற்கு அனுப்பப்படுவதற்கு முன் உங்கள் சாதனத்தில் குறியாக்கம் செய்யப்படுகிறது. இதன் பொருள் யாரும், Chronicle கூட, உங்கள் உள்ளடக்கத்தை அணுக முடியாது.",
     "@e2eeDescription": {
         "description": "Description of E2EE encryption explaining its benefits"
     },
@@ -5000,7 +5000,7 @@
     "@secureEncryption": {
         "description": "Title for secure encryption card"
     },
-    "secureEncryptionDescription": "உங்கள் தரவு Google Cloud இல் புலனாய்வு செய்யப்பட்ட சர்வரில் உங்களுக்கு தனிப்பட்ட விசையுடன் குறியாக்கம் செய்யப்படுகிறது. இதன் பொருள் உங்கள் மூல உள்ளடக்கம் Omi ஊழியர்கள் அல்லது Google உட்பட, தரவுதளத்திலிருந்து நேரடியாக அணுக முடியாது.",
+    "secureEncryptionDescription": "உங்கள் தரவு Google Cloud இல் புலனாய்வு செய்யப்பட்ட சர்வரில் உங்களுக்கு தனிப்பட்ட விசையுடன் குறியாக்கம் செய்யப்படுகிறது. இதன் பொருள் உங்கள் மூல உள்ளடக்கம் Chronicle ஊழியர்கள் அல்லது Google உட்பட, தரவுதளத்திலிருந்து நேரடியாக அணுக முடியாது.",
     "@secureEncryptionDescription": {
         "description": "Description of secure encryption explaining how data is protected"
     },
@@ -5097,17 +5097,17 @@
             }
         }
     },
-    "omiTraining": "Omi பயிற்சி",
+    "omiTraining": "Chronicle பயிற்சி",
     "@omiTraining": {
-        "description": "Title for the Omi Training page/section"
+        "description": "Title for the Chronicle Training page/section"
     },
     "trainingDataProgram": "பயிற்சி தரவு திட்டம்",
     "@trainingDataProgram": {
         "description": "Label for training data program"
     },
-    "getOmiUnlimitedFree": "AI மாதிரികளை பயிற்சி செய்ய உங்கள் தரவு பங்களிப்பதன் மூலம் Omi Unlimited ஐ இலவசமாகப் பெறவும்.",
+    "getOmiUnlimitedFree": "AI மாதிரികளை பயிற்சி செய்ய உங்கள் தரவு பங்களிப்பதன் மூலம் Chronicle Unlimited ஐ இலவசமாகப் பெறவும்.",
     "@getOmiUnlimitedFree": {
-        "description": "Description for getting Omi Unlimited free by contributing data"
+        "description": "Description for getting Chronicle Unlimited free by contributing data"
     },
     "trainingDataBullets": "• உங்கள் தரவு AI மாதிரிகளை மேம்படுத்த உதவுகிறது\n• இரகசியமற்ற தரவு மட்டுமே பகிரப்படுகிறது\n• முழுமையாக வெளிப்படையான செயல்முறை",
     "@trainingDataBullets": {
@@ -5219,7 +5219,7 @@
     "@youAreOnUnlimitedPlan": {
         "description": "Message showing user is on unlimited plan"
     },
-    "yourOmiUnleashed": "உங்கள் Omi, வெளியிடப்பட்டது. வரம்பிலா வாய்ப்புகளுக்கு வரம்பற்றதாக செல்லவும்.",
+    "yourOmiUnleashed": "உங்கள் Chronicle, வெளியிடப்பட்டது. வரம்பிலா வாய்ப்புகளுக்கு வரம்பற்றதாக செல்லவும்.",
     "@yourOmiUnleashed": {
         "description": "Marketing text for unlimited plan"
     },
@@ -5261,11 +5261,11 @@
     "@unlimitedConversations": {
         "description": "Feature: unlimited conversations"
     },
-    "askOmiAnything": "உங்கள் வாழ்க்கையைப் பற்றி Omi-ஐ எதையும் கேளுங்கள்",
+    "askOmiAnything": "உங்கள் வாழ்க்கையைப் பற்றி Chronicle-ஐ எதையும் கேளுங்கள்",
     "@askOmiAnything": {
-        "description": "Feature: ask Omi anything"
+        "description": "Feature: ask Chronicle anything"
     },
-    "unlockOmiInfiniteMemory": "Omi இன் எல்லையற்ற நினைவை திறக்கவும்",
+    "unlockOmiInfiniteMemory": "Chronicle இன் எல்லையற்ற நினைவை திறக்கவும்",
     "@unlockOmiInfiniteMemory": {
         "description": "Feature: unlock infinite memory"
     },
@@ -5339,7 +5339,7 @@
     "@yourPrivacyMattersToUs": {
         "description": "Privacy page - yourPrivacyMattersToUs"
     },
-    "privacyIntroText": "Omi இல், நாங்கள் உங்கள் தனியுரிமையை மிகவும் தீவிரமாக எடுத்துக்கொள்கிறோம். நாம் சேகரிக்கும் தரவு மற்றும் அதை உங்களுக்கான எங்கள் தயாரிப்பை மேம்படுத்த எவ்வாறு பயன்படுத்துகிறோம் என்பது பற்றி நாங்கள் வெளிப்படையாக இருக்க விரும்புகிறோம். நீங்கள் தெரிந்து கொள்ள வேண்டிய விஷயங்கள் இங்கே உள்ளன:",
+    "privacyIntroText": "Chronicle இல், நாங்கள் உங்கள் தனியுரிமையை மிகவும் தீவிரமாக எடுத்துக்கொள்கிறோம். நாம் சேகரிக்கும் தரவு மற்றும் அதை உங்களுக்கான எங்கள் தயாரிப்பை மேம்படுத்த எவ்வாறு பயன்படுத்துகிறோம் என்பது பற்றி நாங்கள் வெளிப்படையாக இருக்க விரும்புகிறோம். நீங்கள் தெரிந்து கொள்ள வேண்டிய விஷயங்கள் இங்கே உள்ளன:",
     "@privacyIntroText": {
         "description": "Privacy page - privacyIntroText"
     },
@@ -5359,11 +5359,11 @@
     "@ourCommitment": {
         "description": "Privacy page - ourCommitment"
     },
-    "commitmentText": "நாங்கள் சேகரிக்கும் தரவை Omi ஐ உங்களுக்கு சிறந்த தயாரிப்பாக செய்ய பயன்படுத்த பிரতிசெரிக்கப் பட்டுள்ளோம். உங்கள் தனியுரிமை மற்றும் நம்பிக்கை எங்களுக்கு மிக முக்கியம்.",
+    "commitmentText": "நாங்கள் சேகரிக்கும் தரவை Chronicle ஐ உங்களுக்கு சிறந்த தயாரிப்பாக செய்ய பயன்படுத்த பிரতிசெரிக்கப் பட்டுள்ளோம். உங்கள் தனியுரிமை மற்றும் நம்பிக்கை எங்களுக்கு மிக முக்கியம்.",
     "@commitmentText": {
         "description": "Privacy page - commitmentText"
     },
-    "thankYouText": "Omi இன் மதிப்புள்ள ব்যবহারকாரராக இருந்தமைக்கு நன்றி. உங்களுக்கு ஏதேனும் கேள்விகள் அல்லது கவலைகள் இருந்தால், team@basedhardware.com ஐக்கு தொடர்பு கொள்ளவும்.",
+    "thankYouText": "Chronicle இன் மதிப்புள்ள ব்যবহারকாரராக இருந்தமைக்கு நன்றி. உங்களுக்கு ஏதேனும் கேள்விகள் அல்லது கவலைகள் இருந்தால், team@basedhardware.com ஐக்கு தொடர்பு கொள்ளவும்.",
     "@thankYouText": {
         "description": "Privacy page - thankYouText"
     },
@@ -5488,7 +5488,7 @@
     "@minutes": {
         "description": "Unit label for minutes"
     },
-    "omiHas": "Omi உள்ளது:",
+    "omiHas": "Chronicle உள்ளது:",
     "@omiHas": {
         "description": "Fallback text for share stats when period is unknown"
     },
@@ -5621,7 +5621,7 @@
     "@howItWorksTitle": {
         "description": "Help dialog title"
     },
-    "howPeopleWorks": "ஒரு ব்যக்தி உருவாக்கப்பட்டவுடன், நீங்கள் ஒரு உரையாடல் பதிவுக்குச் சென்று அவர்களை அவர்களின் தொடர்புடைய பிரிவுகளுக்கு நியமித்து, Omi அவர்களின் பேச்சை உணர்ந்து கொள்ள முடியும்!",
+    "howPeopleWorks": "ஒரு ব்যக்தி உருவாக்கப்பட்டவுடன், நீங்கள் ஒரு உரையாடல் பதிவுக்குச் சென்று அவர்களை அவர்களின் தொடர்புடைய பிரிவுகளுக்கு நியமித்து, Chronicle அவர்களின் பேச்சை உணர்ந்து கொள்ள முடியும்!",
     "@howPeopleWorks": {
         "description": "Explanation of how people/speech recognition works"
     },
@@ -5982,9 +5982,9 @@
     "@enableApps": {
         "description": "Menu item text to navigate to apps page and enable more chat apps"
     },
-    "omiAppName": "Omi",
+    "omiAppName": "Chronicle",
     "@omiAppName": {
-        "description": "The Omi app/assistant name shown in chat app selection"
+        "description": "The Chronicle app/assistant name shown in chat app selection"
     },
     "showMore": "மேலும் காட்டவும் ↓",
     "@showMore": {
@@ -6014,21 +6014,21 @@
     "@checkingAppleWatch": {
         "description": "Loading text while checking Apple Watch status"
     },
-    "installOmiOnAppleWatch": "உங்கள் Apple Watch இல் Omi ஐ நிறுவவும்",
+    "installOmiOnAppleWatch": "உங்கள் Apple Watch இல் Chronicle ஐ நிறுவவும்",
     "@installOmiOnAppleWatch": {
-        "description": "Title prompting user to install Omi on Apple Watch"
+        "description": "Title prompting user to install Chronicle on Apple Watch"
     },
-    "installOmiOnAppleWatchDescription": "Omi உடன் உங்கள் Apple Watch ஐப் பயன்படுத்த, நீங்கள் முதலில் Omi பயன்பாட்டை உங்கள் கடிகாரத்தில் நிறுவ வேண்டும்.",
+    "installOmiOnAppleWatchDescription": "Chronicle உடன் உங்கள் Apple Watch ஐப் பயன்படுத்த, நீங்கள் முதலில் Chronicle பயன்பாட்டை உங்கள் கடிகாரத்தில் நிறுவ வேண்டும்.",
     "@installOmiOnAppleWatchDescription": {
-        "description": "Description explaining need to install Omi app on watch"
+        "description": "Description explaining need to install Chronicle app on watch"
     },
-    "openOmiOnAppleWatch": "உங்கள் Apple Watch இல் Omi ஐத் திறக்கவும்",
+    "openOmiOnAppleWatch": "உங்கள் Apple Watch இல் Chronicle ஐத் திறக்கவும்",
     "@openOmiOnAppleWatch": {
-        "description": "Title prompting user to open Omi on Apple Watch"
+        "description": "Title prompting user to open Chronicle on Apple Watch"
     },
-    "openOmiOnAppleWatchDescription": "Omi பயன்பாடு உங்கள் Apple Watch இல் நிறுவப்பட்டுள்ளது. அதைத் திறந்து தொடங்க தட்டவும்.",
+    "openOmiOnAppleWatchDescription": "Chronicle பயன்பாடு உங்கள் Apple Watch இல் நிறுவப்பட்டுள்ளது. அதைத் திறந்து தொடங்க தட்டவும்.",
     "@openOmiOnAppleWatchDescription": {
-        "description": "Description explaining Omi is installed and user should open it"
+        "description": "Description explaining Chronicle is installed and user should open it"
     },
     "openWatchApp": "Watch பயன்பாட்டைத் திறக்கவும்",
     "@openWatchApp": {
@@ -6038,7 +6038,7 @@
     "@iveInstalledAndOpenedTheApp": {
         "description": "Button text confirming user has installed and opened the app"
     },
-    "unableToOpenWatchApp": "Apple Watch பயன்பாட்டைத் திறக்க முடியவில்லை. உங்கள் Apple Watch இல் Watch பயன்பாட்டை கைமுறையாக திறந்து \"Available Apps\" பிரிவிலிருந்து Omi ஐ நிறுவவும்.",
+    "unableToOpenWatchApp": "Apple Watch பயன்பாட்டைத் திறக்க முடியவில்லை. உங்கள் Apple Watch இல் Watch பயன்பாட்டை கைமுறையாக திறந்து \"Available Apps\" பிரிவிலிருந்து Chronicle ஐ நிறுவவும்.",
     "@unableToOpenWatchApp": {
         "description": "Error message when Watch app cannot be opened automatically"
     },
@@ -6046,7 +6046,7 @@
     "@appleWatchConnectedSuccessfully": {
         "description": "Success message when Apple Watch connects"
     },
-    "appleWatchNotReachable": "Apple Watch இன்னும் அடையாளவாக இல்லை. Omi பயன்பாடு உங்கள் கடிகாரத்தில் திறந்திருக்கிறதா என்பதை உறுதிப்படுத்தவும்।",
+    "appleWatchNotReachable": "Apple Watch இன்னும் அடையாளவாக இல்லை. Chronicle பயன்பாடு உங்கள் கடிகாரத்தில் திறந்திருக்கிறதா என்பதை உறுதிப்படுத்தவும்।",
     "@appleWatchNotReachable": {
         "description": "Error message when Apple Watch is not reachable"
     },
@@ -6166,7 +6166,7 @@
     },
     "updateOmiFirmware": "omi ஃபார்மூவேர் புதுப்பிக்கவும்",
     "@updateOmiFirmware": {
-        "description": "Button text to update Omi device firmware"
+        "description": "Button text to update Chronicle device firmware"
     },
     "anErrorOccurredTryAgain": "ஒரு பிழை ஏற்பட்டது. மீண்டும் முயற்சி செய்யவும்.",
     "@anErrorOccurredTryAgain": {
@@ -6176,7 +6176,7 @@
     "@welcomeBackSimple": {
         "description": "Simple welcome message without user name"
     },
-    "addVocabularyDescription": "Omi பேச்சு மாற்றத்தின் போது அங்கீகரிக்க வேண்டிய சொற்களைச் சேர்க்கவும்.",
+    "addVocabularyDescription": "Chronicle பேச்சு மாற்றத்தின் போது அங்கீகரிக்க வேண்டிய சொற்களைச் சேர்க்கவும்.",
     "@addVocabularyDescription": {
         "description": "Description for custom vocabulary section"
     },
@@ -6409,7 +6409,7 @@
     "@wrappedNoDataAvailable": {
         "description": "Shown when wrapped result is null"
     },
-    "wrappedOmiLifeRecap": "Omi வாழ்க்கை Recap",
+    "wrappedOmiLifeRecap": "Chronicle வாழ்க்கை Recap",
     "@wrappedOmiLifeRecap": {
         "description": "Subtitle on the intro card"
     },
@@ -6417,7 +6417,7 @@
     "@wrappedSwipeUpToBegin": {
         "description": "Instruction text on intro card"
     },
-    "wrappedShareText": "என் 2025, Omi ✨ omi.me/wrapped இல் நினைவு வைக்கப்பட்டது",
+    "wrappedShareText": "என் 2025, Chronicle ✨ omi.me/wrapped இல் நினைவு வைக்கப்பட்டது",
     "@wrappedShareText": {
         "description": "Text shared when sharing wrapped images"
     },
@@ -6445,7 +6445,7 @@
     "@wrappedMy2025": {
         "description": "Title text for shareable image"
     },
-    "wrappedRememberedByOmi": "Omi இல் நினைவு வைக்கப்பட்டது",
+    "wrappedRememberedByOmi": "Chronicle இல் நினைவு வைக்கப்பட்டது",
     "@wrappedRememberedByOmi": {
         "description": "Subtitle text for shareable image"
     },
@@ -6729,7 +6729,7 @@
     "@notificationFrequency": {
         "description": "Section header for notification frequency settings"
     },
-    "controlNotificationFrequency": "Omi உங்களுக்கு தீவிர அறிவிப்புகளை எவ்வளவு அடிக்கடி அனுப்புகிறது என்பதை নিয়ந்திரணம் செய்யுங்கள்.",
+    "controlNotificationFrequency": "Chronicle உங்களுக்கு தீவிர அறிவிப்புகளை எவ்வளவு அடிக்கடி அனுப்புகிறது என்பதை নিয়ந்திரணம் செய்யுங்கள்.",
     "@controlNotificationFrequency": {
         "description": "Description for notification frequency control"
     },
@@ -6761,7 +6761,7 @@
     "@dailyScoreExplanation": {
         "description": "Explanation of how daily score is calculated"
     },
-    "notificationFrequencyDescription": "Omi உங்களுக்கு தீவிர அறிவிப்புகள் மற்றும் நினைவூட்டல்களை எவ்வளவு அடிக்கடி அனுப்புகிறது என்பதை நிய்ந்திரணம் செய்யுங்கள்.",
+    "notificationFrequencyDescription": "Chronicle உங்களுக்கு தீவிர அறிவிப்புகள் மற்றும் நினைவூட்டல்களை எவ்வளவு அடிக்கடி அனுப்புகிறது என்பதை நிய்ந்திரணம் செய்யுங்கள்.",
     "@notificationFrequencyDescription": {
         "description": "Description text for notification frequency section"
     },
@@ -7047,7 +7047,7 @@
     "@noRecordings": {
         "description": "Empty state title when there are no recordings"
     },
-    "audioFromOmiWillAppearHere": "உங்கள் Omi சாதனத்திலிருந்து ஆடியோ இங்கே தோன்றும்",
+    "audioFromOmiWillAppearHere": "உங்கள் Chronicle சாதனத்திலிருந்து ஆடியோ இங்கே தோன்றும்",
     "@audioFromOmiWillAppearHere": {
         "description": "Empty state description for recordings"
     },
@@ -7227,7 +7227,7 @@
     "@batteryUsageHigher": {
         "description": "Warning about battery usage"
     },
-    "considerOmiCloud": "சிறந்த செயல்திறனுக்கு Omi மேக்லெவ பயன்படுத்த கருத்தில் கொள்ளவும்.",
+    "considerOmiCloud": "சிறந்த செயல்திறனுக்கு Chronicle மேக்லெவ பயன்படுத்த கருத்தில் கொள்ளவும்.",
     "@considerOmiCloud": {
         "description": "Suggestion to use cloud transcription"
     },
@@ -7454,9 +7454,9 @@
             }
         }
     },
-    "omiTranscriptionOptimized": "Omi இன் உள்ளமைந்த நேரடி உபாய கேட்டுபேரல் உரையாடல் பற்றிய ஒத்திசைப்பு மற்றும் தற்போதைய பேச்சாளர் கண்டறிதலுக்கு தெளிவு செய்யப்பட்டுள்ளது।",
+    "omiTranscriptionOptimized": "Chronicle இன் உள்ளமைந்த நேரடி உபாய கேட்டுபேரல் உரையாடல் பற்றிய ஒத்திசைப்பு மற்றும் தற்போதைய பேச்சாளர் கண்டறிதலுக்கு தெளிவு செய்யப்பட்டுள்ளது।",
     "@omiTranscriptionOptimized": {
-        "description": "Description of Omi transcription features"
+        "description": "Description of Chronicle transcription features"
     },
     "reset": "மீட்டமைக்கவும்",
     "@reset": {
@@ -7576,7 +7576,7 @@
     "@writeReviewOptional": {
         "description": "Hint text for review input field"
     },
-    "setupQuestionsIntro": "சில கேள்விகளுக்கு பதிலளித்து Omi ஐ மேம்படுத்த உதவுங்கள். 🫶 💜",
+    "setupQuestionsIntro": "சில கேள்விகளுக்கு பதிலளித்து Chronicle ஐ மேம்படுத்த உதவுங்கள். 🫶 💜",
     "@setupQuestionsIntro": {
         "description": "Intro text for setup questions page"
     },
@@ -7584,9 +7584,9 @@
     "@setupQuestionProfession": {
         "description": "Question about profession"
     },
-    "setupQuestionUsage": "2. உங்கள் Omi ஐ எங்கு பயன்படுத்த திட்டமிடுகிறீர்கள்?",
+    "setupQuestionUsage": "2. உங்கள் Chronicle ஐ எங்கு பயன்படுத்த திட்டமிடுகிறீர்கள்?",
     "@setupQuestionUsage": {
-        "description": "Question about Omi usage location"
+        "description": "Question about Chronicle usage location"
     },
     "setupQuestionAge": "3. உங்கள் வயது வரம்பு என்ன?",
     "@setupQuestionAge": {
@@ -8053,7 +8053,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8063,7 +8063,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8230,8 +8230,8 @@
         "description": "Title for low battery notification"
     },
     "lowBatteryAlertBody": "உங்கள் பேட்டரி {level}% இல் உள்ளது. மீண்டும் சார்ஜ் செய்ய வேண்டிய நேரம்! 🔋",
-    "batteryFullyChargedTitle": "Omi முழுமையாக சார்ஜ் ஆகியது",
-    "batteryFullyChargedBody": "உங்கள் Omi சாதனம் முழுமையாக சார்ஜ் ஆகியது. அனப்ளக் செய்யலாம்!",
+    "batteryFullyChargedTitle": "Chronicle முழுமையாக சார்ஜ் ஆகியது",
+    "batteryFullyChargedBody": "உங்கள் Chronicle சாதனம் முழுமையாக சார்ஜ் ஆகியது. அனப்ளக் செய்யலாம்!",
     "@lowBatteryAlertBody": {
         "description": "Body text for low battery notification",
         "placeholders": {
@@ -8240,11 +8240,11 @@
             }
         }
     },
-    "deviceDisconnectedNotificationTitle": "உங்கள் Omi சாதனம் துண்டிக்கப்பட்டது",
+    "deviceDisconnectedNotificationTitle": "உங்கள் Chronicle சாதனம் துண்டிக்கப்பட்டது",
     "@deviceDisconnectedNotificationTitle": {
         "description": "Title for device disconnected notification"
     },
-    "deviceDisconnectedNotificationBody": "உங்கள் Omi ஐ பயன்படுத்த மீண்டும் இணைக்கவும்.",
+    "deviceDisconnectedNotificationBody": "உங்கள் Chronicle ஐ பயன்படுத்த மீண்டும் இணைக்கவும்.",
     "@deviceDisconnectedNotificationBody": {
         "description": "Body text for device disconnected notification"
     },
@@ -8252,7 +8252,7 @@
     "@firmwareUpdateAvailable": {
         "description": "Title for firmware update available dialog"
     },
-    "firmwareUpdateAvailableDescription": "உங்கள் Omi சாதனத்திற்கு ஒரு புதிய ஃபர்ம்வேர் புதுப்பிப்பு ({version}) கிடைக்கிறது. இப்போது புதுப்பிக்க விரும்புகிறீர்களா?",
+    "firmwareUpdateAvailableDescription": "உங்கள் Chronicle சாதனத்திற்கு ஒரு புதிய ஃபர்ம்வேர் புதுப்பிப்பு ({version}) கிடைக்கிறது. இப்போது புதுப்பிக்க விரும்புகிறீர்களா?",
     "@firmwareUpdateAvailableDescription": {
         "description": "Description for firmware update dialog with version parameter",
         "placeholders": {
@@ -8646,9 +8646,9 @@
     "@nextButton": {
         "description": "Button text to proceed to next step"
     },
-    "connectOmiDevice": "Omi சாதனத்தை இணைக்கவும்",
+    "connectOmiDevice": "Chronicle சாதனத்தை இணைக்கவும்",
     "@connectOmiDevice": {
-        "description": "Button text to connect Omi device"
+        "description": "Button text to connect Chronicle device"
     },
     "planSwitchingDescriptionWithTitle": "நீங்கள் உங்கள் எல்லையற்ற திட்டத்தை {title} ஆக மாற்றுகிறீர்கள். நீங்கள் தொடர்ந்து செல்ல விரும்புகிறீர்களா?",
     "@planSwitchingDescriptionWithTitle": {
@@ -8687,9 +8687,9 @@
     "@transcriptionJsonPlaceholder": {
         "description": "JSON configuration placeholder hint text in transcription settings"
     },
-    "transcriptionSourceOmi": "Omi",
+    "transcriptionSourceOmi": "Chronicle",
     "@transcriptionSourceOmi": {
-        "description": "Tab title for Omi transcription source option"
+        "description": "Tab title for Chronicle transcription source option"
     },
     "pricePlaceholder": "0.00",
     "@pricePlaceholder": {
@@ -8729,7 +8729,7 @@
             }
         }
     },
-    "actionItemReminderTitle": "Omi நினைவூட்டல்",
+    "actionItemReminderTitle": "Chronicle நினைவூட்டல்",
     "@actionItemReminderTitle": {
         "description": "Title for action item reminder notifications"
     },
@@ -8739,7 +8739,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8749,7 +8749,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8773,7 +8773,7 @@
     "@onboardingComplete": {
         "description": "Onboarding step title for completion"
     },
-    "onboardingWelcomeToOmi": "Omi க்கு வரவேற்கிறோம்",
+    "onboardingWelcomeToOmi": "Chronicle க்கு வரவேற்கிறோம்",
     "@onboardingWelcomeToOmi": {
         "description": "Onboarding step description for sign in"
     },
@@ -9554,29 +9554,29 @@
     "pairNewDevice": "புதிய சாதனத்தை இணைக்க",
     "dontSeeYourDevice": "உங்கள் சாதனம் தெரியவில்லையா?",
     "reportAnIssue": "ஒரு சிக்கலைப் பிரதிবेदन செய்யுங்கள்",
-    "pairingTitleOmi": "Omi ஐ இயக்கவும்",
+    "pairingTitleOmi": "Chronicle ஐ இயக்கவும்",
     "@pairingTitleOmi": {
-        "description": "Pairing title for Omi device"
+        "description": "Pairing title for Chronicle device"
     },
     "pairingDescOmi": "சாதனம் நடுங்கும் வரை பொத்தானை அழுத்திப் பிடித்திருக்கவும்.",
     "@pairingDescOmi": {
-        "description": "Pairing description for Omi device"
+        "description": "Pairing description for Chronicle device"
     },
-    "pairingTitleOmiDevkit": "Omi DevKit ஐ ஜோடி மோடில் வைக்கவும்",
+    "pairingTitleOmiDevkit": "Chronicle DevKit ஐ ஜோடி மோடில் வைக்கவும்",
     "@pairingTitleOmiDevkit": {
-        "description": "Pairing title for Omi DevKit"
+        "description": "Pairing title for Chronicle DevKit"
     },
     "pairingDescOmiDevkit": "இயக்கப் பொத்தானை ஒரு முறை அழுத்தவும். LED ஜோடி மோடில் இருக்கும்போது இளஞ்சிவப்பு நிறத்தில் மின்னும்.",
     "@pairingDescOmiDevkit": {
-        "description": "Pairing description for Omi DevKit"
+        "description": "Pairing description for Chronicle DevKit"
     },
-    "pairingTitleOmiGlass": "Omi Glass ஐ இயக்கவும்",
+    "pairingTitleOmiGlass": "Chronicle Glass ஐ இயக்கவும்",
     "@pairingTitleOmiGlass": {
-        "description": "Pairing title for Omi Glass"
+        "description": "Pairing title for Chronicle Glass"
     },
     "pairingDescOmiGlass": "பக்க பொத்தானை 3 வினாடிகளுக்கு அழுத்தி இயக்கவும்.",
     "@pairingDescOmiGlass": {
-        "description": "Pairing description for Omi Glass"
+        "description": "Pairing description for Chronicle Glass"
     },
     "pairingTitlePlaudNote": "Plaud Note ஐ ஜோடி மோடில் வைக்கவும்",
     "@pairingTitlePlaudNote": {
@@ -9622,7 +9622,7 @@
     "@pairingTitleAppleWatch": {
         "description": "Pairing title for Apple Watch"
     },
-    "pairingDescAppleWatch": "உங்கள் Apple Watch ல் Omi பயன்பாட்டை நிறுவி திறக்கவும், பின்னர் பயன்பாட்டில் இணைக்கவும்.",
+    "pairingDescAppleWatch": "உங்கள் Apple Watch ல் Chronicle பயன்பாட்டை நிறுவி திறக்கவும், பின்னர் பயன்பாட்டில் இணைக்கவும்.",
     "@pairingDescAppleWatch": {
         "description": "Pairing description for Apple Watch"
     },
@@ -9716,7 +9716,7 @@
     "@onboardingWhatIKnowAboutYouTitle": {
         "description": "Title for onboarding step that previews the memory graph"
     },
-    "onboardingWhatIKnowAboutYouDescription": "Omi உங்கள் உரையாடல்களிலிருந்து கற்கும்போது இந்தக் கட்டம் புதுப்பிக்கப்படுகிறது.",
+    "onboardingWhatIKnowAboutYouDescription": "Chronicle உங்கள் உரையாடல்களிலிருந்து கற்கும்போது இந்தக் கட்டம் புதுப்பிக்கப்படுகிறது.",
     "@onboardingWhatIKnowAboutYouDescription": {
         "description": "Description for onboarding memory graph preview step"
     },
@@ -9774,7 +9774,7 @@
         "description": "Confirmation dialog message for cleaning today task deadlines"
     },
     "tasksOverdue": "தவணை தாண்டிய",
-    "phoneCallsWithOmi": "Omi உடன் தொலைபேசி அழைப்புகள்",
+    "phoneCallsWithOmi": "Chronicle உடன் தொலைபேசி அழைப்புகள்",
     "phoneCallsSubtitle": "நேரலை மொழிபெயர்ப்பு மூலம் அழைப்புகளை செய்யவும்",
     "phoneSetupStep1Title": "உங்கள் தொலைபேசி எண்ணை சரிபார்க்கவும்",
     "phoneSetupStep1Subtitle": "இது உங்கள் என்பதை உறுதிசெய்ய நாங்கள் உங்களைக் கூப்பிடுவோம்",
@@ -9879,11 +9879,11 @@
     "@showTasksOnHomepage": {
         "description": "Description for show tasks toggle in developer settings"
     },
-    "phoneCallsUnlimitedOnly": "Omi மூலம் தொலைபேசி அழைப்புகள்",
+    "phoneCallsUnlimitedOnly": "Chronicle மூலம் தொலைபேசி அழைப்புகள்",
     "@phoneCallsUnlimitedOnly": {
         "description": "Title for the phone calls upsell sheet shown to non-unlimited users"
     },
-    "phoneCallsUpsellSubtitle": "Omi மூலம் அழைப்புகளை செய்து நேரலை மொழிபெயர்ப்பு, தானாக மொழிபெயர்ப்பு, மற்றும் மேலும் பெறவும். Unlimited திட்ட வாடிக்கையாளர்களுக்கு மாத்திரமே கிடைக்கும்.",
+    "phoneCallsUpsellSubtitle": "Chronicle மூலம் அழைப்புகளை செய்து நேரலை மொழிபெயர்ப்பு, தானாக மொழிபெயர்ப்பு, மற்றும் மேலும் பெறவும். Unlimited திட்ட வாடிக்கையாளர்களுக்கு மாத்திரமே கிடைக்கும்.",
     "@phoneCallsUpsellSubtitle": {
         "description": "Subtitle explaining phone calls feature on upsell sheet"
     },
@@ -10004,7 +10004,7 @@
     "fairUse3Day": "3-நாள் Rolling",
     "fairUseWeekly": "வாரம் Rolling",
     "fairUseAboutTitle": "நியாய பயன்பாட்டு பற்றி",
-    "fairUseAboutBody": "Omi தனிப்பட்ட உரையாடல்கள், கூட்டங்கள், மற்றும் நேரடி தொடர்பினை நோக்கமாகக் கொண்டுள்ளது. பயன்பாடு கண்டறியப்பட்ட உண்மையான ஆவாஸ் நேரத்தால் அளவிடப்படுகிறது, இணைப்பு நேரம் அல்ல. பயன்பாடு தனிப்பட்ட உள்ளடக்கம் அல்ல வழக்கமான வடிவங்கலை கணிசமாக கடக்க நிலைமாறினால், சரிசெய்தல் பயன்படுத்தப்படலாம்.",
+    "fairUseAboutBody": "Chronicle தனிப்பட்ட உரையாடல்கள், கூட்டங்கள், மற்றும் நேரடி தொடர்பினை நோக்கமாகக் கொண்டுள்ளது. பயன்பாடு கண்டறியப்பட்ட உண்மையான ஆவாஸ் நேரத்தால் அளவிடப்படுகிறது, இணைப்பு நேரம் அல்ல. பயன்பாடு தனிப்பட்ட உள்ளடக்கம் அல்ல வழக்கமான வடிவங்கலை கணிசமாக கடக்க நிலைமாறினால், சரிசெய்தல் பயன்படுத்தப்படலாம்.",
     "fairUseCaseRefCopied": "{caseRef} நகლாக்கப்பட்டது",
     "@fairUseCaseRefCopied": {
         "description": "Snackbar message when case reference is copied to clipboard",
@@ -10046,7 +10046,7 @@
         }
     },
     "improveConnectionTitle": "இணைப்பை மேம்படுத்து",
-    "improveConnectionContent": "Omi உங்கள் சாதனத்துடன் இணைக்கப்பட்டுள்ளதாக இருப்பதற்கான முறையை நாங்கள் மேம்படுத்தியுள்ளோம். இதைத் தூண்டப் சாதனம் தகவல் பக்கத்திற்குச் செல்லவும், \"சாதனத்தை விலக்கவும்\" வெற்றியடையவும், பின்னர் உங்கள் சாதனத்தை மீண்டு ஜோடியாக்கவும்.",
+    "improveConnectionContent": "Chronicle உங்கள் சாதனத்துடன் இணைக்கப்பட்டுள்ளதாக இருப்பதற்கான முறையை நாங்கள் மேம்படுத்தியுள்ளோம். இதைத் தூண்டப் சாதனம் தகவல் பக்கத்திற்குச் செல்லவும், \"சாதனத்தை விலக்கவும்\" வெற்றியடையவும், பின்னர் உங்கள் சாதனத்தை மீண்டு ஜோடியாக்கவும்.",
     "improveConnectionAction": "புரிந்து கொண்டேன்",
     "clockSkewWarning": "உங்கள் சாதனம் கடிகாரம் தவறாகப் பதிவு உள்ளது ~{minutes} நிமிஷம். உங்கள் தேதி & நேர அமைப்பாடுகளை சரிசெய்யவும்.",
     "@clockSkewWarning": {
@@ -10056,7 +10056,7 @@
             }
         }
     },
-    "omisStorage": "Omi இன் சேமிப்பகம்",
+    "omisStorage": "Chronicle இன் சேமிப்பகம்",
     "@omisStorage": {
         "description": "Label for device storage tier in sync pipeline"
     },
@@ -10109,11 +10109,11 @@
     "@cancelSyncQuestion": {
         "description": "Title for cancel sync confirmation dialog"
     },
-    "omisStorageDesc": "உங்கள் Omi உங்கள் தொலைபேசிக்குத் தொடர்புபடாமல் இருக்கும்போது, அது ஆடியோவை அதன் உள்ளமைக்கப்பட்ட நினைவகத்தில் உள்ளூரில் சேமிக்கிறது। நீங்கள் ஒருபோதும் ஒரு பதிவை இழக்கமாட்டீர்கள்.",
+    "omisStorageDesc": "உங்கள் Chronicle உங்கள் தொலைபேசிக்குத் தொடர்புபடாமல் இருக்கும்போது, அது ஆடியோவை அதன் உள்ளமைக்கப்பட்ட நினைவகத்தில் உள்ளூரில் சேமிக்கிறது। நீங்கள் ஒருபோதும் ஒரு பதிவை இழக்கமாட்டீர்கள்.",
     "@omisStorageDesc": {
         "description": "Description of device storage in sync info sheet"
     },
-    "phoneStorageDesc": "Omi மீண்டு இணையப்படும்போது, பதிவுகள் தானாகவே உங்கள் தொலைபேசிக்கு அப்ளோட் செய்ய முன் தற்காலிக நிலையீடாக மாற்றப்படுகிறது.",
+    "phoneStorageDesc": "Chronicle மீண்டு இணையப்படும்போது, பதிவுகள் தானாகவே உங்கள் தொலைபேசிக்கு அப்ளோட் செய்ய முன் தற்காலிக நிலையீடாக மாற்றப்படுகிறது.",
     "@phoneStorageDesc": {
         "description": "Description of phone storage in sync info sheet"
     },
@@ -10149,11 +10149,11 @@
     "@permissionEnable": {
         "description": "Action text to enable a permission"
     },
-    "permissionsPageDescription": "இந்த அனுமதிகள் Omi எவ்வாறு செயல்படுகிறது என்பதற்கு மூலமுள்ளவை. அவை அறிவிப்புகள், தொடர்பிலான அভিজ্ঞதங்கள், மற்றும் ஆடியோ பிடிப்பு போன்ற முக்கிய வசதিகளை இயக்குகிறது.",
+    "permissionsPageDescription": "இந்த அனுமதிகள் Chronicle எவ்வாறு செயல்படுகிறது என்பதற்கு மூலமுள்ளவை. அவை அறிவிப்புகள், தொடர்பிலான அভিজ্ঞதங்கள், மற்றும் ஆடியோ பிடிப்பு போன்ற முக்கிய வசதিகளை இயக்குகிறது.",
     "@permissionsPageDescription": {
         "description": "Description text shown at the bottom of the permissions page"
     },
-    "permissionsRequiredDescription": "Omi சரிந்து செயல்பாட்ட சில அனுமதிகள் தேவைப்படுகிறது. தொடர செய்ய தயவுசெய்து அவற்றை வழங்கவும்.",
+    "permissionsRequiredDescription": "Chronicle சரிந்து செயல்பாட்ட சில அனுமதிகள் தேவைப்படுகிறது. தொடர செய்ய தயவுசெய்து அவற்றை வழங்கவும்.",
     "@permissionsRequiredDescription": {
         "description": "Description for the permissions interstitial screen"
     },
@@ -10161,7 +10161,7 @@
     "@permissionsSetupTitle": {
         "description": "Title for the permissions interstitial screen"
     },
-    "permissionsSetupDescription": "Omi தன் மாயாவிற்கு பணிய சில அனுமதிகளை இயக்கவும்.",
+    "permissionsSetupDescription": "Chronicle தன் மாயாவிற்கு பணிய சில அனுமதிகளை இயக்கவும்.",
     "@permissionsSetupDescription": {
         "description": "Subtitle for the permissions interstitial screen"
     },
@@ -10290,7 +10290,7 @@
     "@feedbackTitleFoundAlternative": {
         "description": "Feedback title when cancel reason is found alternative"
     },
-    "feedbackTitleNotUsing": "Omi ஐ நீங்கள் அधिक பயன்படுத்த விரும்பினால் என்ன?",
+    "feedbackTitleNotUsing": "Chronicle ஐ நீங்கள் அधिक பயன்படுத்த விரும்பினால் என்ன?",
     "@feedbackTitleNotUsing": {
         "description": "Feedback title when cancel reason is not using enough"
     },
@@ -10314,7 +10314,7 @@
     "@feedbackSubtitleFoundAlternative": {
         "description": "Feedback subtitle for found alternative"
     },
-    "feedbackSubtitleNotUsing": "Omi ஐ நீங்கள் மேலும் பயனுள்ளதாக்க நாங்கள் விரும்புகிறோம்.",
+    "feedbackSubtitleNotUsing": "Chronicle ஐ நீங்கள் மேலும் பயனுள்ளதாக்க நாங்கள் விரும்புகிறோம்.",
     "@feedbackSubtitleNotUsing": {
         "description": "Feedback subtitle for not using enough"
     },
@@ -10431,20 +10431,20 @@
     "tasksSelectAll": "அனைத்தையும் தேர்ந்தெடு",
     "tasksDeleteSelected": "{count} பணி(களை) நீக்கு",
     "tasksMarkComplete": "முடிந்தது என குறிக்கப்பட்டது",
-    "appleHealthManageNote": "Omi, Apple இன் HealthKit கட்டமைப்பின் மூலம் Apple Health-ஐ அணுகுகிறது. iOS அமைப்புகளில் எந்த நேரத்திலும் அணுகலை ரத்து செய்யலாம்.",
+    "appleHealthManageNote": "Chronicle, Apple இன் HealthKit கட்டமைப்பின் மூலம் Apple Health-ஐ அணுகுகிறது. iOS அமைப்புகளில் எந்த நேரத்திலும் அணுகலை ரத்து செய்யலாம்.",
     "appleHealthConnectCta": "Apple Health-உடன் இணை",
     "appleHealthDisconnectCta": "Apple Health-ஐ துண்டி",
     "appleHealthConnectedBadge": "இணைக்கப்பட்டது",
     "appleHealthFeatureChatTitle": "உங்கள் ஆரோக்கியம் பற்றி அரட்டை",
-    "appleHealthFeatureChatDesc": "Omi இடம் உங்கள் படிகள், தூக்கம், இதயத் துடிப்பு, உடற்பயிற்சிகள் பற்றி கேளுங்கள்.",
+    "appleHealthFeatureChatDesc": "Chronicle இடம் உங்கள் படிகள், தூக்கம், இதயத் துடிப்பு, உடற்பயிற்சிகள் பற்றி கேளுங்கள்.",
     "appleHealthFeatureReadOnlyTitle": "படிக்க மட்டுமே அணுகல்",
-    "appleHealthFeatureReadOnlyDesc": "Omi ஒருபோதும் Apple Health-இல் எழுதாது அல்லது உங்கள் தரவை மாற்றாது.",
+    "appleHealthFeatureReadOnlyDesc": "Chronicle ஒருபோதும் Apple Health-இல் எழுதாது அல்லது உங்கள் தரவை மாற்றாது.",
     "appleHealthFeatureSecureTitle": "பாதுகாப்பான ஒத்திசைவு",
-    "appleHealthFeatureSecureDesc": "உங்கள் Apple Health தரவு உங்கள் Omi கணக்குடன் தனிப்பட்ட முறையில் ஒத்திசைக்கப்படுகிறது.",
+    "appleHealthFeatureSecureDesc": "உங்கள் Apple Health தரவு உங்கள் Chronicle கணக்குடன் தனிப்பட்ட முறையில் ஒத்திசைக்கப்படுகிறது.",
     "appleHealthDeniedTitle": "Apple Health அணுகல் மறுக்கப்பட்டது",
-    "appleHealthDeniedBody": "உங்கள் Apple Health தரவைப் படிக்க Omi க்கு அனுமதி இல்லை. iOS அமைப்புகள் → தனியுரிமை & பாதுகாப்பு → Health → Omi இல் இதை இயக்கவும்.",
+    "appleHealthDeniedBody": "உங்கள் Apple Health தரவைப் படிக்க Chronicle க்கு அனுமதி இல்லை. iOS அமைப்புகள் → தனியுரிமை & பாதுகாப்பு → Health → Chronicle இல் இதை இயக்கவும்.",
     "deleteFlowReasonTitle": "நீங்கள் ஏன் வெளியேறுகிறீர்கள்?",
-    "deleteFlowReasonSubtitle": "உங்கள் கருத்து அனைவருக்கும் Omi-ஐ சிறப்பாக்க எங்களுக்கு உதவுகிறது.",
+    "deleteFlowReasonSubtitle": "உங்கள் கருத்து அனைவருக்கும் Chronicle-ஐ சிறப்பாக்க எங்களுக்கு உதவுகிறது.",
     "deleteReasonPrivacy": "தனியுரிமை கவலைகள்",
     "deleteReasonNotUsing": "போதுமான அளவு பயன்படுத்தவில்லை",
     "deleteReasonMissingFeatures": "எனக்குத் தேவையான அம்சங்கள் இல்லை",
@@ -10453,7 +10453,7 @@
     "deleteReasonTakingBreak": "சற்று இடைவேளை எடுக்கிறேன்",
     "deleteReasonOther": "மற்றவை",
     "deleteFlowFeedbackTitle": "மேலும் சொல்லுங்கள்",
-    "deleteFlowFeedbackSubtitle": "Omi உங்களுக்கு எவ்வாறு பயனுள்ளதாக இருந்திருக்கும்?",
+    "deleteFlowFeedbackSubtitle": "Chronicle உங்களுக்கு எவ்வாறு பயனுள்ளதாக இருந்திருக்கும்?",
     "deleteFlowFeedbackHint": "விருப்பத்தேர்வு — உங்கள் எண்ணங்கள் சிறந்த தயாரிப்பை உருவாக்க எங்களுக்கு உதவுகின்றன.",
     "deleteFlowConfirmTitle": "இது நிரந்தரமானது",
     "deleteFlowConfirmSubtitle": "கணக்கை நீக்கியதும், அதை மீட்க வழி இல்லை.",
@@ -10505,13 +10505,13 @@
     "chatUsageCostNoLimit": "அரட்டை: ${used} இந்த மாதம் பயன்படுத்தப்பட்டது",
     "chatUsageMessages": "அரட்டை: {used} / {limit} செய்திகள் இந்த மாதம்",
     "chatUsageMessagesNoLimit": "அரட்டை: {used} செய்திகள் இந்த மாதம்",
-    "chatQuotaSubtitle": "AI chat messages used with Omi this month.",
-    "chatQuotaExceededReply": "நீங்கள் உங்கள் மாதாந்திர வரம்பை அடைந்துவிட்டீர்கள். கட்டுப்பாடுகள் இல்லாமல் Omi உடன் அரட்டையைத் தொடர மேம்படுத்தவும்.",
+    "chatQuotaSubtitle": "AI chat messages used with Chronicle this month.",
+    "chatQuotaExceededReply": "நீங்கள் உங்கள் மாதாந்திர வரம்பை அடைந்துவிட்டீர்கள். கட்டுப்பாடுகள் இல்லாமல் Chronicle உடன் அரட்டையைத் தொடர மேம்படுத்தவும்.",
     "batteryHistory": "பேட்டரி",
     "day": "நாள்",
     "noBatteryDataYet": "இன்னும் பேட்டரி தரவு இல்லை",
     "week": "வாரம்",
-    "voiceResponseAudio": "Omi பதிலை சத்தமாக படிக்கவும்",
+    "voiceResponseAudio": "Chronicle பதிலை சத்தமாக படிக்கவும்",
     "voiceResponseMode": "குரல் பதில்",
     "voiceResponseModeTitle": "பதில்களை எப்போது பேசுவது",
     "voiceResponseOff": "முடக்கம்",
@@ -10523,7 +10523,7 @@
         "description": "Section header for memory knowledge graph on home page"
     },
     "voiceMode": "குரல் பயன்முறை",
-    "quickActionAskOmi": "Omi ஐ எதையும் கேளுங்கள்",
+    "quickActionAskOmi": "Chronicle ஐ எதையும் கேளுங்கள்",
     "record": "பதிவு",
     "stop": "நிறுத்து",
     "recordWithPhoneMic": "போன் மைக்கில் பதிவு செய்யவும்",
@@ -10557,28 +10557,28 @@
     "syncStatusWaiting": "ஒத்திசைவுக்காக காத்திருக்கிறது",
     "syncStatusRetrying": "செயலாக்க முடியவில்லை — மீண்டும் முயற்சிக்கிறது",
     "syncStatusFailed": "தோல்வி — Retry-ஐ அழுத்தவும்",
-    "syncStatusTooOld": "ஒத்திசைக்க மிகவும் பழையது — Omi இதை ஏற்க முடியாது",
+    "syncStatusTooOld": "ஒத்திசைக்க மிகவும் பழையது — Chronicle இதை ஏற்க முடியாது",
     "syncStatusFileUnavailable": "கோப்பு கிடைக்கவில்லை",
-    "syncStatusUploaded": "பதிவேற்றப்பட்டது · Omi-இல் செயலாக்கப்படுகிறது",
+    "syncStatusUploaded": "பதிவேற்றப்பட்டது · Chronicle-இல் செயலாக்கப்படுகிறது",
     "noRecordingsYet": "இன்னும் பதிவுகள் இல்லை",
     "syncInProgress": "ஒத்திசைவு நடைபெறுகிறது",
     "deleteWhileProcessingTitle": "இன்னும் செயலாக்கப்படுகிறது",
-    "deleteWhileProcessingMessage": "இந்தப் பதிவு பதிவேற்றப்பட்டது, ஆனால் Omi இன்னும் உரையாடலை உருவாக்குகிறது. இப்போது நீக்கி செயலாக்கம் தோல்வியடைந்தால், மீட்டெடுக்க முடியாது. அப்படியும் நீக்கவா?",
+    "deleteWhileProcessingMessage": "இந்தப் பதிவு பதிவேற்றப்பட்டது, ஆனால் Chronicle இன்னும் உரையாடலை உருவாக்குகிறது. இப்போது நீக்கி செயலாக்கம் தோல்வியடைந்தால், மீட்டெடுக்க முடியாது. அப்படியும் நீக்கவா?",
     "syncCardAllBackedUp": "எல்லா பதிவுகளும் ஒத்திசைக்கப்பட்டன",
     "syncCardReadyCount": "{count, plural, one{1 பதிவு ஒத்திசைக்கத் தயார்} other{{count} பதிவுகள் ஒத்திசைக்கத் தயார்}}",
-    "syncCardProcessing": "Omi-யில் செயலாக்கப்படுகிறது…",
+    "syncCardProcessing": "Chronicle-யில் செயலாக்கப்படுகிறது…",
     "syncCardWaitingInternet": "இணையத்திற்காகக் காத்திருக்கிறது",
     "syncCardNeedsAttention": "{count, plural, one{1 பதிவுக்குக் கவனம் தேவை} other{{count} பதிவுகளுக்குக் கவனம் தேவை}}",
-    "syncFlowIntro": "பதிவுகள் உங்கள் சாதனத்திலிருந்து இந்த தொலைபேசிக்கு மாற்றப்பட்டு உள்ளூரில் சேமிக்கப்படுகின்றன, பின்னர் Omi இன் சேவையகத்திற்கு பதிவேற்றப்பட்டு, அங்கு அவை எழுத்துப்பெயர்க்கப்பட்டு உரையாடல்களாக மாற்றப்படுகின்றன.",
+    "syncFlowIntro": "பதிவுகள் உங்கள் சாதனத்திலிருந்து இந்த தொலைபேசிக்கு மாற்றப்பட்டு உள்ளூரில் சேமிக்கப்படுகின்றன, பின்னர் Chronicle இன் சேவையகத்திற்கு பதிவேற்றப்பட்டு, அங்கு அவை எழுத்துப்பெயர்க்கப்பட்டு உரையாடல்களாக மாற்றப்படுகின்றன.",
     "syncStepUpload": "ஒத்திசை",
-    "syncStepUploadDesc": "உங்கள் பதிவு Omi இன் சேவையகத்திற்கு அனுப்பப்படுகிறது",
+    "syncStepUploadDesc": "உங்கள் பதிவு Chronicle இன் சேவையகத்திற்கு அனுப்பப்படுகிறது",
     "syncStepProcess": "எழுத்துப் பெயர்ப்பு",
-    "syncStepProcessDesc": "Omi ஒலியை உரையாடலாக மாற்றுகிறது",
+    "syncStepProcessDesc": "Chronicle ஒலியை உரையாடலாக மாற்றுகிறது",
     "syncStepBackedUp": "உரையாடல் தயார்",
     "syncStepBackedUpDesc": "அதை உரையாடல்கள் பகுதியில் காணலாம்",
     "syncFailureFootnote": "செயலாக்கம் தோல்வியடைந்தால், அடுத்த ஒத்திசைவில் பதிவு தானாகவே மீண்டும் முயற்சிக்கப்படும்.",
     "syncStatusConversationCreated": "உரையாடல் உருவாக்கப்பட்டது",
-    "syncCardUploadingTitle": "Omi-க்கு பதிவேற்றப்படுகிறது",
+    "syncCardUploadingTitle": "Chronicle-க்கு பதிவேற்றப்படுகிறது",
     "syncCardDownloadingTitle": "உங்கள் சாதனத்திலிருந்து பதிவிறக்கப்படுகிறது",
     "syncCardProgressOf": "{total}-இல் {current}",
     "syncStatusOnDevice": "உங்கள் சாதனத்தில்",
@@ -10591,24 +10591,24 @@
     },
     "syncProcessingBackgroundHint": "இது பின்னணியில் தொடர்கிறது — இந்தத் திரையிலிருந்து நீங்கள் வெளியேறலாம்.",
     "syncCardRateLimited": "நியாயமான பயன்பாட்டு வரம்பை அடைந்தது — ஒத்திசைவு தானாகவே மீண்டும் தொடரும்",
-    "syncCardBackendBusy": "Omi சேவையகங்கள் பணிமிகுதியில் உள்ளன — திறன் கிடைத்தவுடன் உங்கள் பதிவுகள் ஒத்திசைக்கப்படும்",
+    "syncCardBackendBusy": "Chronicle சேவையகங்கள் பணிமிகுதியில் உள்ளன — திறன் கிடைத்தவுடன் உங்கள் பதிவுகள் ஒத்திசைக்கப்படும்",
     "unableToDetermineFirmwareVersion": "தற்போதைய ஃபார்ம்வேர் பதிப்பை தீர்மானிக்க முடியவில்லை",
     "promoCode": "விளம்பர குறியீடு",
     "enterPromoCode": "விளம்பர குறியீட்டை உள்ளிடவும்",
     "invalidPromotionCode": "தவறான விளம்பர குறியீடு.",
     "backgroundModeTitle": "பின்னணி பயன்முறை",
-    "backgroundModeDescription": "ஆப்ஸ் முழுவதுமாக மூடப்பட்டிருந்தாலும் உங்கள் Omi பதிவைத் தொடரவும்.",
-    "backgroundModeNote": "தற்போது Omi சாதனங்களுடன் மட்டுமே செயல்படுகிறது, தொடர்ந்து மேம்படுத்தப்படுகிறது.",
+    "backgroundModeDescription": "ஆப்ஸ் முழுவதுமாக மூடப்பட்டிருந்தாலும் உங்கள் Chronicle பதிவைத் தொடரவும்.",
+    "backgroundModeNote": "தற்போது Chronicle சாதனங்களுடன் மட்டுமே செயல்படுகிறது, தொடர்ந்து மேம்படுத்தப்படுகிறது.",
     "regenerateRecap": "சுருக்கத்தை மீண்டும் உருவாக்கு",
     "recapRegeneratedSnackbar": "சுருக்கம் மீண்டும் உருவாக்கப்பட்டது",
     "recapRegenerateFailed": "சுருக்கத்தை மீண்டும் உருவாக்க முடியவில்லை. பிறகு மீண்டும் முயற்சிக்கவும்.",
     "recapRegenerateCooldown": "மீண்டும் உருவாக்குவதற்கு முன் சில வினாடிகள் காத்திருக்கவும்.",
     "recapRegenerateNoConversations": "இந்த நாளுக்கு சுருக்கமாக மாற்ற உரையாடல்கள் இல்லை.",
-    "syncCustomSttWarningTitle": "ஒத்திசைவு Omi படியெடுப்பைப் பயன்படுத்துகிறது",
-    "syncCustomSttWarningMessage": "நீங்கள் உங்கள் சொந்த படியெடுப்பு வழங்குநரைப் பயன்படுத்துகிறீர்கள். இந்தப் பதிவுகளை ஒத்திசைத்தால் அவை Omi சேவையகங்களில் படியெடுக்கப்படும், மேலும் உங்கள் திட்டத்தின் படியெடுப்பு வரம்பில் கணக்கிடப்படும்.",
+    "syncCustomSttWarningTitle": "ஒத்திசைவு Chronicle படியெடுப்பைப் பயன்படுத்துகிறது",
+    "syncCustomSttWarningMessage": "நீங்கள் உங்கள் சொந்த படியெடுப்பு வழங்குநரைப் பயன்படுத்துகிறீர்கள். இந்தப் பதிவுகளை ஒத்திசைத்தால் அவை Chronicle சேவையகங்களில் படியெடுக்கப்படும், மேலும் உங்கள் திட்டத்தின் படியெடுப்பு வரம்பில் கணக்கிடப்படும்.",
     "transcribeLaterTitle": "பின்னர் எழுத்தாக்கு",
     "transcribeLaterDescription": "இப்போது ஆடியோவைப் பதிவுசெய்து, நேரலையாக அல்லாமல் தேவைப்படும்போது எழுத்தாக்கம் செய்யுங்கள். பதிவுகள் உங்கள் தொலைபேசியில் சேமிக்கப்படும்; பிறகு அவற்றைப் பதிவேற்றி உரையாடல்களை உருவாக்கலாம்.",
-    "transcribeLaterNote": "தொலைபேசி மைக்ரோஃபோன், Omi மற்றும் Limitless சாதனங்களுடன் இயங்கும். நீங்கள் பதிவேற்ற விரும்பும் வரை ஆடியோ உங்கள் தொலைபேசியிலேயே இருக்கும்.",
+    "transcribeLaterNote": "தொலைபேசி மைக்ரோஃபோன், Chronicle மற்றும் Limitless சாதனங்களுடன் இயங்கும். நீங்கள் பதிவேற்ற விரும்பும் வரை ஆடியோ உங்கள் தொலைபேசியிலேயே இருக்கும்.",
     "transcribeLaterStorageFull": "உங்கள் தொலைபேசியில் இடவசதி குறைவாக உள்ளதால் பதிவு இடைநிறுத்தப்பட்டுள்ளது. இடத்தைக் காலியாக்குங்கள் அல்லது உங்கள் பதிவுகளைப் பதிவேற்றுங்கள்; பிறகு தானாகவே தொடரும்.",
     "unmute": "ஒலியை இயக்கு",
     "newRecording": "புதிய பதிவு",
@@ -10617,19 +10617,19 @@
     "captureModeLater": "பின்னர்",
     "captureModeLiveDescription": "நீங்கள் பேசும்போது நிகழ்நேரத்தில் எழுத்தாக்கம் செய்யுங்கள்.",
     "captureModeLaterDescription": "இப்போது ஆடியோவை சேமித்து, நீங்கள் விரும்பும்போது எழுத்தாக்கம் செய்யுங்கள்.",
-    "backgroundModeUnavailable": "இணக்கமான சாதனம் எதுவும் இணைக்கப்படாததால் பின்னணி முறை கிடைக்கவில்லை. இந்த அம்சத்தைப் பயன்படுத்த Omi, OpenGlass அல்லது Friend Pendant சாதனத்தை இணைக்கவும்.",
+    "backgroundModeUnavailable": "இணக்கமான சாதனம் எதுவும் இணைக்கப்படாததால் பின்னணி முறை கிடைக்கவில்லை. இந்த அம்சத்தைப் பயன்படுத்த Chronicle, OpenGlass அல்லது Friend Pendant சாதனத்தை இணைக்கவும்.",
     "memoryThisDevice": "இந்த சாதனம்",
     "memoryThisIphone": "இந்த iPhone",
     "memoryThisPhone": "இந்த தொலைபேசி",
     "memoryProvenanceMac": "Mac",
     "memoryProvenanceIphone": "iPhone",
     "memoryProvenanceAndroid": "Android",
-    "deviceTutorial": "Omi ஐ எவ்வாறு பயன்படுத்துவது",
-    "deviceOnboardingTranscriptionTitle": "உங்கள் Omi-யிடம் பேசுங்கள்",
+    "deviceTutorial": "Chronicle ஐ எவ்வாறு பயன்படுத்துவது",
+    "deviceOnboardingTranscriptionTitle": "உங்கள் Chronicle-யிடம் பேசுங்கள்",
     "deviceOnboardingTranscriptionSubtitle": "சில வார்த்தைகள் சொல்லி, அவை உடனடியாகத் தோன்றுவதைப் பாருங்கள்",
     "deviceOnboardingGoodJob": "அருமை!",
     "deviceOnboardingStartSpeaking": "பேசத் தொடங்குங்கள்...",
-    "deviceOnboardingAskQuestionTitle": "Omi-யிடம் ஒரு கேள்வி கேளுங்கள்",
+    "deviceOnboardingAskQuestionTitle": "Chronicle-யிடம் ஒரு கேள்வி கேளுங்கள்",
     "deviceOnboardingAskQuestionSubtitle": "பொத்தானை ஒருமுறை அழுத்தி, உங்கள் கேள்வியைச் சொல்லி, முடிந்ததும் மீண்டும் அழுத்துங்கள்",
     "deviceOnboardingProcessingQuestion": "உங்கள் கேள்வி செயலாக்கப்படுகிறது...",
     "deviceOnboardingListening": "கேட்கிறது...",
@@ -10650,11 +10650,11 @@
     "deviceOnboardingStarConversation": "நடப்பு உரையாடலை நட்சத்திரமிடுங்கள்",
     "deviceOnboardingStarConversationDesc": "உரையாடலை முக்கியமானதாகக் குறியிடுங்கள்",
     "deviceOnboardingSingleTapHint": "அது ஒற்றைத் தட்டல் — விரைவாக இருமுறை தட்டிப் பாருங்கள்!",
-    "deviceOnboardingTryDoubleTap": "இப்போதே முயற்சியுங்கள்! உங்கள் Omi-யை இரட்டை தட்டுங்கள்",
+    "deviceOnboardingTryDoubleTap": "இப்போதே முயற்சியுங்கள்! உங்கள் Chronicle-யை இரட்டை தட்டுங்கள்",
     "deviceOnboardingContinue": "தொடரவும்",
     "deviceOnboardingFinish": "முடிக்கவும்",
-    "deviceOnboardingIntroTitle": "உங்கள் Omi-ஐ அறிந்துகொள்ளுங்கள்",
-    "deviceOnboardingIntroSubtitle": "உங்கள் Omi செய்யக்கூடிய அனைத்தையும் விரைவாக நேரடியாகப் பார்க்கும் சுற்றுலா.",
+    "deviceOnboardingIntroTitle": "உங்கள் Chronicle-ஐ அறிந்துகொள்ளுங்கள்",
+    "deviceOnboardingIntroSubtitle": "உங்கள் Chronicle செய்யக்கூடிய அனைத்தையும் விரைவாக நேரடியாகப் பார்க்கும் சுற்றுலா.",
     "deviceOnboardingIntroDuration": "சுமார் 1 நிமிடம்",
     "jumpToLatestMessage": "சமீபத்திய செய்திக்குச் செல்",
     "latest": "சமீபத்தியது",
@@ -10672,15 +10672,15 @@
     },
     "pendantStorageAlmostFull": "பெண்டன்ட்டின் சேமிப்பகம் கிட்டத்தட்ட நிரம்பிவிட்டது — ஒத்திசைக்க ஆப்ஸைத் திறந்து வைத்திருங்கள்.",
     "connectRayBanMeta": "Ray-Ban Meta ஐ இணைக்கவும்",
-    "raybanMetaSetupDescription": "உரையாடல்கள் மற்றும் காட்சி சூழலுக்கான உங்கள் Omi பதிவு சாதனமாக உங்கள் Ray-Ban Meta கண்ணாடியைப் பயன்படுத்தவும். உங்கள் கண்ணாடியை இணைக்க Omi, Meta AI செயலியைத் திறக்கும்.",
+    "raybanMetaSetupDescription": "உரையாடல்கள் மற்றும் காட்சி சூழலுக்கான உங்கள் Chronicle பதிவு சாதனமாக உங்கள் Ray-Ban Meta கண்ணாடியைப் பயன்படுத்தவும். உங்கள் கண்ணாடியை இணைக்க Chronicle, Meta AI செயலியைத் திறக்கும்.",
     "raybanMetaOpenMetaAI": "Meta AI மூலம் இணைக்கவும்",
     "raybanMetaWaitingForMetaAI": "Meta AI செயலியில் இணைப்பை முடித்து, பிறகு இங்கே திரும்பி வாருங்கள்.",
     "raybanMetaCheckAgain": "மீண்டும் சரிபார்க்கவும்",
     "raybanMetaAllowCamera": "கண்ணாடியில் கேமராவை அனுமதிக்கவும்",
-    "raybanMetaCameraExplanation": "உங்கள் உரையாடல்களில் புகைப்படங்களைச் சேர்க்க Omi உங்கள் கண்ணாடியின் கேமராவைப் பயன்படுத்துகிறது. இதைத் தவிர்த்து, ஆடியோவை மட்டும் பயன்படுத்தலாம்.",
+    "raybanMetaCameraExplanation": "உங்கள் உரையாடல்களில் புகைப்படங்களைச் சேர்க்க Chronicle உங்கள் கண்ணாடியின் கேமராவைப் பயன்படுத்துகிறது. இதைத் தவிர்த்து, ஆடியோவை மட்டும் பயன்படுத்தலாம்.",
     "raybanMetaSkipForNow": "இப்போதைக்கு தவிர்க்கவும்",
     "raybanMetaAudioOnlyTitle": "Ray-Ban Meta ஆடியோ-மட்டும் பயன்முறை",
-    "raybanMetaAudioOnlyExplanation": "Omi இன் இந்தப் பதிப்பு Bluetooth வழியாக உங்கள் கண்ணாடியின் மைக்ரோபோனைப் பயன்படுத்த முடியும். புகைப்படம் எடுக்க Omi இன் Meta டெவலப்பர் பதிப்பு தேவை.",
+    "raybanMetaAudioOnlyExplanation": "Chronicle இன் இந்தப் பதிப்பு Bluetooth வழியாக உங்கள் கண்ணாடியின் மைக்ரோபோனைப் பயன்படுத்த முடியும். புகைப்படம் எடுக்க Chronicle இன் Meta டெவலப்பர் பதிப்பு தேவை.",
     "raybanMetaMusicPauseNote": "கண்ணாடியின் மைக்ரோபோன் பயன்பாட்டில் இருக்கும்போது உங்கள் தொலைபேசியில் இசை இடைநிறுத்தப்படும்.",
     "raybanMetaContinue": "தொடரவும்",
     "raybanMetaCapturePhoto": "புகைப்படம் எடுக்கவும்",
@@ -10705,7 +10705,7 @@
     "phoneMicOfflineFallbackMessage": "இணைப்பு இல்லை — உள்ளூரில் பதிவு செய்யப்படுகிறது. நீங்கள் மீண்டும் ஆன்லைனுக்கு வரும்போது படியெடுக்கப்படும்.",
     "dataEncryptedBanner": "உங்கள் தரவு இயல்பாகவே வலுவான குறியாக்கத்துடன் பாதுகாக்கப்படுகிறது, மேலும் அது எவ்வாறு சேமிக்கப்படுகிறது மற்றும் பயன்படுத்தப்படுகிறது என்பதை நீங்கள் கட்டுப்படுத்துகிறீர்கள்.",
     "rayBanMetaMicPickerTitle": "உங்கள் Ray-Ban Meta மைக்ரோஃபோனைத் தேர்வுசெய்யவும்",
-    "rayBanMetaMicPickerDescription": "உங்கள் கண்ணாடியின் Bluetooth மைக்ரோஃபோனைத் தேர்வுசெய்யவும். Omi அதைப் பயன்படுத்தும்போது இசை இடைநிறுத்தப்படும்.",
+    "rayBanMetaMicPickerDescription": "உங்கள் கண்ணாடியின் Bluetooth மைக்ரோஃபோனைத் தேர்வுசெய்யவும். Chronicle அதைப் பயன்படுத்தும்போது இசை இடைநிறுத்தப்படும்.",
     "rayBanMetaMicPickerEmpty": "Bluetooth மைக்ரோஃபோன்கள் எதுவும் கிடைக்கவில்லை. iPhone அமைப்புகளில் கண்ணாடியை இணைத்து மீண்டும் முயலவும்.",
     "rayBanMetaMicPickerLoadError": "Bluetooth மைக்ரோஃபோன்களை ஏற்ற முடியவில்லை. Bluetooth இயக்கத்தில் உள்ளதா எனச் சரிபார்த்து மீண்டும் முயலவும்.",
     "rayBanMetaMicPickerConnectError": "அந்த மைக்ரோஃபோனுடன் இணைக்க முடியவில்லை. அது iPhone அமைப்புகளில் இணைக்கப்பட்டுள்ளதா என உறுதிசெய்யவும்.",
@@ -10758,14 +10758,14 @@
     "whisperModelSizeMedium": "நடுத்தரம்",
     "whisperModelSizeSmall": "சிறியது",
     "whisperModelSizeTiny": "மிகச் சிறியது",
-    "planSheetChooseYourPlan": "வரம்பற்ற Omi-ஐ திறக்க உங்கள் திட்டத்தைத் தேர்ந்தெடுக்கவும்.",
+    "planSheetChooseYourPlan": "வரம்பற்ற Chronicle-ஐ திறக்க உங்கள் திட்டத்தைத் தேர்ந்தெடுக்கவும்.",
     "availableOnMacMobileWeb": "Mac, மொபைல் மற்றும் வலையில் கிடைக்கிறது",
     "popularBadge": "பிரபலம்",
     "worksOnDesktop": "டெஸ்க்டாப்பில் இயங்கும்",
     "noDesktopAccess": "டெஸ்க்டாப்பில் இயங்காது",
     "annualBillingSummary": "{months} மாதங்கள் / {price}",
     "monthsFreeBadge": "{count, plural, =1{1 மாதம் இலவசம்} other{{count} மாதங்கள் இலவசம்}}",
-    "freemiumLimitsIntro": "Omi இலவசம், ஆனால் இலவச பதிப்பில் உங்கள் அனுபவத்தைப் பாதிக்கும் வரம்புகள் உள்ளன:",
+    "freemiumLimitsIntro": "Chronicle இலவசம், ஆனால் இலவச பதிப்பில் உங்கள் அனுபவத்தைப் பாதிக்கும் வரம்புகள் உள்ளன:",
     "downgradeLimitDelayNotRealTime": "5-7 வினாடி தாமதம் (நிகழ்நேரம் அல்ல)",
     "downgradeToFreemiumAction": "இலவச பதிப்புக்கு மாறவும்",
     "getFreeUnlimitedAccess": "இலவச வரம்பற்ற அணுகலைப் பெறுங்கள்",
@@ -10776,11 +10776,11 @@
     "baselineMemory": "அடிப்படை நினைவு",
     "alwaysInContext": "எப்போதும் சூழலில்",
     "accountCutoverUpdateRequiredTitle": "अपडेट आवश्यक",
-    "accountCutoverUpdateRequiredMessage": "खाता माइग्रेशन के बाद जारी रखने के लिए नवीनतम Omi ऐप इंस्टॉल करें।",
+    "accountCutoverUpdateRequiredMessage": "खाता माइग्रेशन के बाद जारी रखने के लिए नवीनतम Chronicle ऐप इंस्टॉल करें।",
     "accountCutoverMigrationInProgressTitle": "माइग्रेशन जारी है",
     "accountCutoverMigrationInProgressMessage": "आपका खाता माइग्रेट हो रहा है। माइग्रेशन पूरा होने तक उत्पाद सुविधाएँ रुकी रहेंगी।",
     "accountCutoverMigrationRollbackMessage": "माइग्रेशन रोलबैक के बाद आपका खाता रखरखाव में है। कुछ नए डेटा अलग रह सकते हैं।",
     "accountCutoverOpenStore": "स्टोर खोलें",
-    "sendRawAudioToOmi": "மூல ஆடியோவை Omi-க்கு அனுப்பவும்",
-    "sendRawAudioToOmiDescription": "மூல ஆடியோ Omi-க்கு அனுப்பப்படுவதைத் தடுக்க இதை அணைக்கவும். உரைமாற்றங்களும் கிளவுட் அம்சங்களுக்குத் தேவையான தரவும் இன்னும் Omi-க்கு அனுப்பப்படலாம்."
+    "sendRawAudioToOmi": "மூல ஆடியோவை Chronicle-க்கு அனுப்பவும்",
+    "sendRawAudioToOmiDescription": "மூல ஆடியோ Chronicle-க்கு அனுப்பப்படுவதைத் தடுக்க இதை அணைக்கவும். உரைமாற்றங்களும் கிளவுட் அம்சங்களுக்குத் தேவையான தரவும் இன்னும் Chronicle-க்கு அனுப்பப்படலாம்."
 }

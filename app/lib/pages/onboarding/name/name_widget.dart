@@ -78,7 +78,7 @@ class _NameWidgetState extends State<NameWidget> {
 
                 // // Subtitle
                 // Text(
-                //   'Tell us how you\'d like to be addressed.\nThis helps personalize your Omi experience.',
+                //   'Tell us how you\'d like to be addressed.\nThis helps personalize your Chronicle experience.',
                 //   style: TextStyle(
                 //     color: Colors.white.withValues(alpha: 0.6),
                 //     fontSize: 16,

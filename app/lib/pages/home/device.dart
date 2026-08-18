@@ -258,7 +258,7 @@ class _ConnectedDeviceState extends State<ConnectedDevice> {
       decoration: BoxDecoration(color: const Color(0xFF1C1C1E), borderRadius: BorderRadius.circular(20)),
       child: Column(
         children: [
-          // How to Use Your Omi (interactive tutorial) — consumer CV1 pendant only.
+          // How to Use Your Chronicle (interactive tutorial) — consumer CV1 pendant only.
           // Other omi-enumerated variants (DevKit, Glass, Neo) share DeviceType.omi
           // but the tutorial teaches CV1 button behaviour, so gate on the GATT model.
           if (provider.connectedDevice?.type == DeviceType.omi &&
@@ -384,9 +384,9 @@ class _ConnectedDeviceState extends State<ConnectedDevice> {
               } else {
                 final deviceName = provider.pairedDevice?.name ?? 'DevKit1';
                 String url;
-                if (deviceName == 'Omi DevKit 2') {
+                if (deviceName == 'Chronicle DevKit 2') {
                   url = 'https://www.omi.me/pages/charging-devkit2';
-                } else if (deviceName == 'Omi') {
+                } else if (deviceName == 'Chronicle') {
                   url = 'https://www.omi.me/pages/charging-omi';
                 } else {
                   url = 'https://www.omi.me/pages/charging';

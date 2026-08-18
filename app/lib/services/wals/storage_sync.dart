@@ -178,7 +178,7 @@ class StorageSyncImpl implements StorageSync {
 
       BleAudioCodec codec = await connection.getAudioCodec();
       var pd = await _device!.getDeviceInfo(connection);
-      String deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : "Omi";
+      String deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : "Chronicle";
 
       List<Wal> wals = [];
       for (final file in files) {

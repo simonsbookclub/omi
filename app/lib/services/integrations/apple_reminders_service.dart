@@ -226,7 +226,7 @@ class AppleRemindersService {
       }
     }
 
-    final calendarItemId = await addReminder(title: actionItemDescription, notes: 'From Omi');
+    final calendarItemId = await addReminder(title: actionItemDescription, notes: 'From Chronicle');
     return calendarItemId != null ? AppleRemindersResult.success : AppleRemindersResult.failed;
   }
 }

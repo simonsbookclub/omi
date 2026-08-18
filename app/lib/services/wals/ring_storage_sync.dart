@@ -170,7 +170,7 @@ class RingStorageSyncImpl implements RingStorageSync {
 
       final codec = await connection.getAudioCodec();
       final pd = await _device!.getDeviceInfo(connection);
-      final deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : 'Omi';
+      final deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : 'Chronicle';
 
       final fps = codec.getFramesPerSecond();
       final frameLen = codec.getFramesLengthInBytes();

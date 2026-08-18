@@ -138,7 +138,7 @@ class AppReviewService {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
-                  'Loving Omi?',
+                  'Loving Chronicle?',
                   style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold, height: 1.2),
                   textAlign: TextAlign.center,
                 ),

@@ -735,7 +735,7 @@ class CaptureController extends ChangeNotifier
     if (effectiveConfig != null && !TranscriptSocketServiceFactory.isCodecSupportedForCustomStt(codec)) {
       if (TranscriptSocketServiceFactory.shouldBlockUnsupportedCodecFallback(codec, effectiveConfig)) {
         Logger.warning(
-          '[CustomSTT] Codec $codec is unsupported; refusing Omi fallback because raw audio forwarding is disabled',
+          '[CustomSTT] Codec $codec is unsupported; refusing Chronicle fallback because raw audio forwarding is disabled',
         );
         final previousSocket = _socket;
         _socket = null;
@@ -743,14 +743,14 @@ class CaptureController extends ChangeNotifier
         try {
           await previousSocket?.stop(reason: 'unsupported custom STT codec with raw audio forwarding disabled');
         } catch (e, stack) {
-          Logger.error('[CustomSTT] Failed to stop the previous socket after blocking Omi fallback: $e\n$stack');
+          Logger.error('[CustomSTT] Failed to stop the previous socket after blocking Chronicle fallback: $e\n$stack');
         }
         await _reconcileNativeBackgroundStreamingPolicy();
         notifyListeners();
         _startKeepAliveServices();
         return;
       }
-      Logger.debug('[CustomSTT] Codec $codec not supported, falling back to Omi');
+      Logger.debug('[CustomSTT] Codec $codec not supported, falling back to Chronicle');
       effectiveConfig = null;
     }
 
@@ -1124,7 +1124,7 @@ class CaptureController extends ChangeNotifier
 
     // Create audio source for BLE device
     final pd = await device.getDeviceInfo(connection);
-    final deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : "Omi";
+    final deviceModel = pd.modelNumber.isNotEmpty ? pd.modelNumber : "Chronicle";
     if (device.type == DeviceType.omi || device.type == DeviceType.openglass) {
       _activeSource = BleDeviceSource(codec: codec, deviceId: deviceId, deviceModel: deviceModel);
     }

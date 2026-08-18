@@ -2,7 +2,7 @@
     "@@locale": "hr",
     "sessionExpiredSignInAgain": "Sesija je istekla — prijavite se ponovno.",
     "@@last_modified": "2024-12-26",
-    "appTitle": "Omi",
+    "appTitle": "Chronicle",
     "@appTitle": {
         "description": "The app title displayed in various places"
     },
@@ -158,7 +158,7 @@
     "@editPerson": {
         "description": "Title for edit person dialog"
     },
-    "createPersonHint": "Kreiraj novu osobu i nauči Omi da prepoznaje i njihov govor!",
+    "createPersonHint": "Kreiraj novu osobu i nauči Chronicle da prepoznaje i njihov govor!",
     "@createPersonHint": {
         "description": "Hint text for creating a person"
     },
@@ -212,9 +212,9 @@
     "@couldNotAccessFile": {
         "description": "Error when file access fails"
     },
-    "askOmi": "Pitaj Omi",
+    "askOmi": "Pitaj Chronicle",
     "@askOmi": {
-        "description": "Shortcut to ask Omi a question"
+        "description": "Shortcut to ask Chronicle a question"
     },
     "done": "Gotovo",
     "@done": {
@@ -350,7 +350,7 @@
     "@noMessagesYet": {
         "description": "Empty chat state message"
     },
-    "deletingMessages": "Brisanje tvojih poruka iz Omi memorije...",
+    "deletingMessages": "Brisanje tvojih poruka iz Chronicle memorije...",
     "@deletingMessages": {
         "description": "Loading text when clearing chat"
     },
@@ -390,7 +390,7 @@
     "@maxFilesLimit": {
         "description": "Max files upload warning"
     },
-    "chatWithOmi": "Razgovaraj s Omi",
+    "chatWithOmi": "Razgovaraj s Chronicle",
     "@chatWithOmi": {
         "description": "Chat share subject"
     },
@@ -430,7 +430,7 @@
     "@unableToFetchApps": {
         "description": "Error when apps fail to load"
     },
-    "aboutOmi": "O Omi",
+    "aboutOmi": "O Chronicle",
     "@aboutOmi": {
         "description": "About page title"
     },
@@ -580,7 +580,7 @@
     "@developerSettings": {
         "description": "Title for developer settings page"
     },
-    "getOmiForMac": "Preuzmi Omi za Mac",
+    "getOmiForMac": "Preuzmi Chronicle za Mac",
     "@getOmiForMac": {
         "description": "Mac app download link"
     },
@@ -604,7 +604,7 @@
     "@yourPrivacyYourControl": {
         "description": "Data privacy page heading"
     },
-    "privacyIntro": "U Omi smo posvećeni zaštiti tvoje privatnosti. Ova stranica ti omogućava kontrolu kako se tvoji podaci spremi i koriste.",
+    "privacyIntro": "U Chronicle smo posvećeni zaštiti tvoje privatnosti. Ova stranica ti omogućava kontrolu kako se tvoji podaci spremi i koriste.",
     "@privacyIntro": {
         "description": "Data privacy page introduction"
     },
@@ -696,7 +696,7 @@
     "@unpairAndForget": {
         "description": "Unpair and forget device button"
     },
-    "deviceDisconnectedMessage": "Tvoj Omi je odspojen 😔",
+    "deviceDisconnectedMessage": "Tvoj Chronicle je odspojen 😔",
     "@deviceDisconnectedMessage": {
         "description": "Message shown when device is disconnected"
     },
@@ -716,7 +716,7 @@
     "@deviceNotConnected": {
         "description": "Device not connected header"
     },
-    "connectDeviceMessage": "Spoji svoj Omi uređaj za pristup\npostavkama uređaja i prilagodbi",
+    "connectDeviceMessage": "Spoji svoj Chronicle uređaj za pristup\npostavkama uređaja i prilagodbi",
     "@connectDeviceMessage": {
         "description": "Message encouraging user to connect device"
     },
@@ -888,7 +888,7 @@
     "@docs": {
         "description": "Documentation button text"
     },
-    "yourOmiInsights": "Tvoji Omi uvidi",
+    "yourOmiInsights": "Tvoji Chronicle uvidi",
     "@yourOmiInsights": {
         "description": "Usage page title"
     },
@@ -912,7 +912,7 @@
     "@noActivityYet": {
         "description": "Empty state title"
     },
-    "startConversationToSeeInsights": "Započni razgovor s Omi\nda vidiš svoje uvide o korištenju ovdje.",
+    "startConversationToSeeInsights": "Započni razgovor s Chronicle\nda vidiš svoje uvide o korištenju ovdje.",
     "@startConversationToSeeInsights": {
         "description": "Empty state description"
     },
@@ -920,7 +920,7 @@
     "@listening": {
         "description": "Listening stat title"
     },
-    "listeningSubtitle": "Ukupno vrijeme koje je Omi aktivno slušao.",
+    "listeningSubtitle": "Ukupno vrijeme koje je Chronicle aktivno slušao.",
     "@listeningSubtitle": {
         "description": "Listening stat subtitle"
     },
@@ -1002,7 +1002,7 @@
             }
         }
     },
-    "shareStatsMessage": "Dijeljenje mojih Omi statistike! (omi.me - tvoj AI asistent koji je uvijek dostupan)",
+    "shareStatsMessage": "Dijeljenje mojih Chronicle statistike! (omi.me - tvoj AI asistent koji je uvijek dostupan)",
     "@shareStatsMessage": {
         "description": "Share stats base message"
     },
@@ -1066,7 +1066,7 @@
     "debugLogsAutoDelete": "Automatski se briše nakon 3 dana.",
     "debugLogsDesc": "Pomaže u dijagnozi problema",
     "noLogFilesFound": "Nema pronađenih datoteka zapisnika.",
-    "omiDebugLog": "Omi zapisnik otklanjanja grešaka",
+    "omiDebugLog": "Chronicle zapisnik otklanjanja grešaka",
     "logShared": "Zapisnik je dijeljen",
     "selectLogFile": "Odaberi datoteku zapisnika",
     "shareLogs": "Dijeli zapisnike",
@@ -1074,7 +1074,7 @@
     "exportStarted": "Izvoz je započeo. Ovo može potrajati nekoliko sekundi...",
     "exportAllData": "Izvezi sve podatke",
     "exportDataDesc": "Izvezi razgovore u JSON datoteku",
-    "exportedConversations": "Izvezeni razgovori iz Omi",
+    "exportedConversations": "Izvezeni razgovori iz Chronicle",
     "exportShared": "Izvoz je dijeljen",
     "deleteKnowledgeGraphTitle": "Obrisati graf znanja?",
     "deleteKnowledgeGraphMessage": "Ovo će obrisati sve izvedene podatke grafa znanja (čvorove i veze). Tvoje izvorne uspomene će ostati sigurne. Graf će biti ponovno izgrađen s vremenom ili na sljedeći zahtjev.",
@@ -1174,7 +1174,7 @@
     "customVocabularyTitle": "Prilagođeni rječnik",
     "addWords": "Dodaj riječi",
     "addWordsDesc": "Imena, izrazi ili neobične riječi",
-    "vocabularyHint": "Omi, Callie, OpenAI",
+    "vocabularyHint": "Chronicle, Callie, OpenAI",
     "connect": "Spoji",
     "comingSoon": "Dolazak uskoro",
     "integrationsFooter": "Spoji tvoje aplikacije kako bi vidio podatke i metrike u razgovoru.",
@@ -1220,7 +1220,7 @@
             }
         }
     },
-    "authAccessMessage": "Trebat će ti autorizirati Omi da pristupi tvojim {appName} podacima. Ovo će otvoriti tvoj preglednik za autentifikaciju.",
+    "authAccessMessage": "Trebat će ti autorizirati Chronicle da pristupi tvojim {appName} podacima. Ovo će otvoriti tvoj preglednik za autentifikaciju.",
     "@authAccessMessage": {
         "placeholders": {
             "appName": {
@@ -1257,7 +1257,7 @@
     "permissionRevokedMessage": "Želite li da obriš sve vaše postojeće snimke?",
     "yes": "Da",
     "editName": "Uredi Ime",
-    "howShouldOmiCallYou": "Kako vas Omi trebao/trebala zvati?",
+    "howShouldOmiCallYou": "Kako vas Chronicle trebao/trebala zvati?",
     "enterYourName": "Unesite svoje ime",
     "nameCannotBeEmpty": "Ime ne može biti prazno",
     "nameUpdatedSuccessfully": "Ime uspješno ažurirano!",
@@ -1441,7 +1441,7 @@
             }
         }
     },
-    "authorizeOmiForTasks": "Trebat ćete autorizirati Omi da stvara zadatke u vašem {appName} računu. Ovo će otvoriti vaš preglednik za autentifikaciju.",
+    "authorizeOmiForTasks": "Trebat ćete autorizirati Chronicle da stvara zadatke u vašem {appName} računu. Ovo će otvoriti vaš preglednik za autentifikaciju.",
     "@authorizeOmiForTasks": {
         "placeholders": {
             "appName": {
@@ -1474,7 +1474,7 @@
     "bringYourOwn": "Donesi svoje",
     "payYourSttProvider": "Slobodno koristi omi. Direktno plaćaš samo svojem STT pružatelju.",
     "freeMinutesMonth": "300 besplatnih minuta/mjesec uključeno. Neograničeno sa ",
-    "omiUnlimited": "Omi Unlimited",
+    "omiUnlimited": "Chronicle Unlimited",
     "hostRequired": "Domaćin je obavezan",
     "validPortRequired": "Validan port je obavezan",
     "validWebsocketUrlRequired": "Validan WebSocket URL je obavezan (wss://)",
@@ -1532,7 +1532,7 @@
     "logs": "Zapisnici",
     "logsCopied": "Zapisnici kopirani",
     "noLogsYet": "Nema zapisnika još. Počnite sa snimanjem da vidite prilagođenu STT aktivnost.",
-    "deviceUsesCodec": "{device} koristi {reason}. Koristi se Omi.",
+    "deviceUsesCodec": "{device} koristi {reason}. Koristi se Chronicle.",
     "@deviceUsesCodec": {
         "description": "Warning about device codec compatibility",
         "placeholders": {
@@ -1544,7 +1544,7 @@
             }
         }
     },
-    "omiTranscription": "Omi Transkripcija",
+    "omiTranscription": "Chronicle Transkripcija",
     "bestInClassTranscription": "Najbolja transkripcija sa nultom postavkom",
     "instantSpeakerLabels": "Instant oznake govornika",
     "languageTranslation": "Prijevod za 100+ jezika",
@@ -1626,7 +1626,7 @@
     "@enableBluetooth": {
         "description": "Title for dialog prompting user to enable Bluetooth"
     },
-    "bluetoothNeeded": "Omi trebaju Bluetooth da bi se spojio na tvoj prijenosni uređaj. Molimo omogući Bluetooth i pokušaj ponovno.",
+    "bluetoothNeeded": "Chronicle trebaju Bluetooth da bi se spojio na tvoj prijenosni uređaj. Molimo omogući Bluetooth i pokušaj ponovno.",
     "@bluetoothNeeded": {
         "description": "Explanation text for why Bluetooth is required"
     },
@@ -1685,7 +1685,7 @@
     "@backgroundLocationDeniedDesc": {
         "description": "Instructions to grant background location permission"
     },
-    "lovingOmi": "Sviđa ti se Omi?",
+    "lovingOmi": "Sviđa ti se Chronicle?",
     "@lovingOmi": {
         "description": "Title for the app review prompt"
     },
@@ -1693,7 +1693,7 @@
     "@maybeLater": {
         "description": "Button text to defer action"
     },
-    "speechProfileIntro": "Omi trebalo nauči tvoje ciljeve i tvoj glas. Moći ćeš ga later promijeniti.",
+    "speechProfileIntro": "Chronicle trebalo nauči tvoje ciljeve i tvoj glas. Moći ćeš ga later promijeniti.",
     "@speechProfileIntro": {
         "description": "Introduction text for speech profile setup"
     },
@@ -1761,7 +1761,7 @@
     "@tryAgain": {
         "description": "Button text to retry an action"
     },
-    "connectOmiOmiGlass": "Poveži Omi / OmiGlass",
+    "connectOmiOmiGlass": "Poveži Chronicle / OmiGlass",
     "@connectOmiOmiGlass": {
         "description": "Button text to connect specific device models"
     },
@@ -1812,7 +1812,7 @@
     "@termsOfUse": {
         "description": "Link text for Terms of Use"
     },
-    "omiYourAiCompanion": "Omi – Tvoj AI Pratilac",
+    "omiYourAiCompanion": "Chronicle – Tvoj AI Pratilac",
     "@omiYourAiCompanion": {
         "description": "App title or branding on onboarding screen"
     },
@@ -1832,7 +1832,7 @@
     "@microphonePermission": {
         "description": "Title for microphone permission section"
     },
-    "permissionGrantedNow": "Dozvola dana! Sada:\n\nOtvori Omi aplikaciju na svojem satu i dodirni \"Nastavi\" ispod",
+    "permissionGrantedNow": "Dozvola dana! Sada:\n\nOtvori Chronicle aplikaciju na svojem satu i dodirni \"Nastavi\" ispod",
     "@permissionGrantedNow": {
         "description": "Instructions after permission is granted"
     },
@@ -1848,7 +1848,7 @@
     "@needHelp": {
         "description": "Link to help dialog"
     },
-    "troubleshootingSteps": "Otklanjanje Problema:\n\n1. Osiguraj da je Omi instaliran na svojem satu\n2. Otvori Omi aplikaciju na svojem satu\n3. Traži popup dozvole\n4. Dodirni \"Dozvoli\" kada se pojavi\n5. Aplikacija na твом satu će se zatvoriti - ponovno je otvori\n6. Vrati se i dodirni \"Nastavi\" na svom iPhoneu",
+    "troubleshootingSteps": "Otklanjanje Problema:\n\n1. Osiguraj da je Chronicle instaliran na svojem satu\n2. Otvori Chronicle aplikaciju na svojem satu\n3. Traži popup dozvole\n4. Dodirni \"Dozvoli\" kada se pojavi\n5. Aplikacija na твом satu će se zatvoriti - ponovno je otvori\n6. Vrati se i dodirni \"Nastavi\" na svom iPhoneu",
     "@troubleshootingSteps": {
         "description": "Troubleshooting instructions for watch setup"
     },
@@ -1905,7 +1905,7 @@
     },
     "personalGrowthJourney": "Vaš put osobnog rasta sa AI koji sluša svaku vašu riječ.",
     "@personalGrowthJourney": {
-        "description": "Subtitle describing Omi on auth screen"
+        "description": "Subtitle describing Chronicle on auth screen"
     },
     "actionItemsTitle": "Za Napraviti",
     "@actionItemsTitle": {
@@ -2287,7 +2287,7 @@
     "@translationNotice": {
         "description": "Title for dialog explaining that conversations are translated"
     },
-    "translationNoticeMessage": "Omi prevodi razgovore u tvoj primarni jezik. Ažuriraj ga bilo kada u Postavkama → Profili.",
+    "translationNoticeMessage": "Chronicle prevodi razgovore u tvoj primarni jezik. Ažuriraj ga bilo kada u Postavkama → Profili.",
     "@translationNoticeMessage": {
         "description": "Message explaining how translation works and where to change language settings"
     },
@@ -2536,9 +2536,9 @@
     "@privacyPolicyTitle": {
         "description": "Title for privacy policy page"
     },
-    "omiSttProvider": "Omi",
+    "omiSttProvider": "Chronicle",
     "@omiSttProvider": {
-        "description": "Label for default Omi STT provider"
+        "description": "Label for default Chronicle STT provider"
     },
     "labelCopied": "{label} kopiran",
     "@labelCopied": {
@@ -2830,7 +2830,7 @@
     "@checksForAudioFiles": {
         "description": "Step 1: Checking for audio files"
     },
-    "omiSyncsAudioFiles": "Omi zatim sinkronizira audio datoteke sa serverom",
+    "omiSyncsAudioFiles": "Chronicle zatim sinkronizira audio datoteke sa serverom",
     "@omiSyncsAudioFiles": {
         "description": "Step 2: Syncing audio files"
     },
@@ -2842,11 +2842,11 @@
     "@youreAllSet": {
         "description": "Completion message when onboarding is finished"
     },
-    "welcomeToOmiDescription": "Dobrodošao u Omi! Tvoj AI suputnik je spreman da te pomogne sa razgovorima, zadacima i još mnogo toga.",
+    "welcomeToOmiDescription": "Dobrodošao u Chronicle! Tvoj AI suputnik je spreman da te pomogne sa razgovorima, zadacima i još mnogo toga.",
     "@welcomeToOmiDescription": {
         "description": "Welcome message on completion screen"
     },
-    "startUsingOmi": "Počni koristiti Omi",
+    "startUsingOmi": "Počni koristiti Chronicle",
     "@startUsingOmi": {
         "description": "Button to complete onboarding and start using the app"
     },
@@ -2955,7 +2955,7 @@
     "@reviewAndManageConversations": {
         "description": "Subtitle explaining what users can do on conversations page"
     },
-    "startCapturingConversations": "Počni bilježiti razgovore sa Omi uređajem kako bi ih vidio ovdje.",
+    "startCapturingConversations": "Počni bilježiti razgovore sa Chronicle uređajem kako bi ih vidio ovdje.",
     "@startCapturingConversations": {
         "description": "Message explaining how to get started with conversations"
     },
@@ -2975,7 +2975,7 @@
     "@showAll": {
         "description": "Button text to show all items"
     },
-    "noTasksForToday": "Nema zadataka za danas.\nZatraži od Omi više zadataka ili kreiraj ručno.",
+    "noTasksForToday": "Nema zadataka za danas.\nZatraži od Chronicle više zadataka ili kreiraj ručno.",
     "@noTasksForToday": {
         "description": "Message shown when there are no tasks due today"
     },
@@ -3174,7 +3174,7 @@
     "@createNewApp": {
         "description": "Title for the create new app page"
     },
-    "buildSubmitCustomOmiApp": "Kreiraj i podnesi svoju prilagođenu Omi aplikaciju",
+    "buildSubmitCustomOmiApp": "Kreiraj i podnesi svoju prilagođenu Chronicle aplikaciju",
     "@buildSubmitCustomOmiApp": {
         "description": "Subtitle describing the purpose of the create app page"
     },
@@ -3234,7 +3234,7 @@
     "@makeMyAppPublic": {
         "description": "Checkbox label for making app publicly available"
     },
-    "submitAppTermsAgreement": "Podnošenjem ove aplikacije, slažem se sa Omi AI Uvjetima korištenja i Politikom privatnosti",
+    "submitAppTermsAgreement": "Podnošenjem ove aplikacije, slažem se sa Chronicle AI Uvjetima korištenja i Politikom privatnosti",
     "@submitAppTermsAgreement": {
         "description": "Terms and conditions agreement checkbox text"
     },
@@ -3290,7 +3290,7 @@
     "@dataAccessNotice": {
         "description": "Dialog title warning about app data access"
     },
-    "dataAccessWarning": "Ova aplikacija će pristupiti tvojim podacima. Omi AI nije odgovorna za način na koji se tvoji podaci koriste, mijenjaju ili brišu od strane ove aplikacije",
+    "dataAccessWarning": "Ova aplikacija će pristupiti tvojim podacima. Chronicle AI nije odgovorna za način na koji se tvoji podaci koriste, mijenjaju ili brišu od strane ove aplikacije",
     "@dataAccessWarning": {
         "description": "Warning message about app data access in confirmation dialog"
     },
@@ -3762,7 +3762,7 @@
     "@upgradeToPro": {
         "description": "Subscription banner button text"
     },
-    "getOmiDevice": "Pribili Omi uređaj",
+    "getOmiDevice": "Pribili Chronicle uređaj",
     "@getOmiDevice": {
         "description": "Widget title for device promotion"
     },
@@ -3865,7 +3865,7 @@
     "@setAllMemoriesToPublic": {
         "description": "Description for making all memories public"
     },
-    "permanentlyRemoveAllMemories": "Trajno ukloni sve uspomene iz Omi-ja",
+    "permanentlyRemoveAllMemories": "Trajno ukloni sve uspomene iz Chronicle-ja",
     "@permanentlyRemoveAllMemories": {
         "description": "Description for deleting all memories"
     },
@@ -3877,11 +3877,11 @@
     "@allMemoriesAreNowPublic": {
         "description": "Success message after making all memories public"
     },
-    "clearOmisMemory": "Obriši Omi-jevu memoriju",
+    "clearOmisMemory": "Obriši Chronicle-jevu memoriju",
     "@clearOmisMemory": {
         "description": "Confirmation dialog title for clearing all memories"
     },
-    "clearMemoryConfirmation": "Jeste li sigurni da želite obrisati Omi-jevu memoriju? Ova radnja se ne može poništiti i trajno će obrisati sve {count} uspomena.",
+    "clearMemoryConfirmation": "Jeste li sigurni da želite obrisati Chronicle-jevu memoriju? Ova radnja se ne može poništiti i trajno će obrisati sve {count} uspomena.",
     "@clearMemoryConfirmation": {
         "description": "Confirmation message for clearing all memories",
         "placeholders": {
@@ -3890,11 +3890,11 @@
             }
         }
     },
-    "omisMemoryCleared": "Omi-jeva memorija o tebi je obrisana",
+    "omisMemoryCleared": "Chronicle-jeva memorija o tebi je obrisana",
     "@omisMemoryCleared": {
         "description": "Success message after clearing all memories"
     },
-    "welcomeToOmi": "Dobrodošao u Omi",
+    "welcomeToOmi": "Dobrodošao u Chronicle",
     "@welcomeToOmi": {
         "description": "Welcome message on auth screen"
     },
@@ -3948,13 +3948,13 @@
     },
     "pleaseSelectYourPrimaryLanguage": "Molimo odaberite svoj primarni jezik",
     "chooseYourLanguage": "Odaberite jezik",
-    "selectPreferredLanguageForBestExperience": "Odaberite željeni jezik za najbolje Omi iskustvo",
+    "selectPreferredLanguageForBestExperience": "Odaberite željeni jezik za najbolje Chronicle iskustvo",
     "searchLanguages": "Pretraži jezike...",
     "selectALanguage": "Odaberite jezik",
     "tryDifferentSearchTerm": "Pokušajte s drugom traženjem",
     "pleaseEnterYourName": "Molimo unesite svoje ime",
     "nameMustBeAtLeast2Characters": "Ime mora biti najmanje 2 znaka",
-    "tellUsHowYouWouldLikeToBeAddressed": "Recite nam kako biste voljeli biti obraćeni. To pomaže personalizirati vaše Omi iskustvo.",
+    "tellUsHowYouWouldLikeToBeAddressed": "Recite nam kako biste voljeli biti obraćeni. To pomaže personalizirati vaše Chronicle iskustvo.",
     "charactersCount": "{count} znakova",
     "@charactersCount": {
         "placeholders": {
@@ -3963,16 +3963,16 @@
             }
         }
     },
-    "enableFeaturesForBestExperience": "Omogućite značajke za najbolje Omi iskustvo na vašem uređaju.",
+    "enableFeaturesForBestExperience": "Omogućite značajke za najbolje Chronicle iskustvo na vašem uređaju.",
     "microphoneAccess": "Pristup mikrofonu",
     "recordAudioConversations": "Snimanje audio razgovora",
-    "microphoneAccessDescription": "Omi trebam pristup mikrofonu kako bi snimio vaše razgovore i dao transkripcije.",
+    "microphoneAccessDescription": "Chronicle trebam pristup mikrofonu kako bi snimio vaše razgovore i dao transkripcije.",
     "screenRecording": "Snimanje zaslona",
     "captureSystemAudioFromMeetings": "Hvatanje sistemskog zvuka s sastanaka",
-    "screenRecordingDescription": "Omi trebam dozvolu za snimanje zaslona kako bi hvatao sistemski zvuk s vaših mrežnih sastanaka.",
+    "screenRecordingDescription": "Chronicle trebam dozvolu za snimanje zaslona kako bi hvatao sistemski zvuk s vaših mrežnih sastanaka.",
     "accessibility": "Pristupačnost",
     "detectBrowserBasedMeetings": "Otkrivanje mrežnih sastanaka",
-    "accessibilityDescription": "Omi trebam dozvolu za pristupačnost kako bi otkrio kada se pridružite Zoom, Meet ili Teams sastancima u vašem pregledniku.",
+    "accessibilityDescription": "Chronicle trebam dozvolu za pristupačnost kako bi otkrio kada se pridružite Zoom, Meet ili Teams sastancima u vašem pregledniku.",
     "pleaseWait": "Molimo pričekajte...",
     "joinTheCommunity": "Pridružite se zajednici!",
     "loadingProfile": "Učitavanje profila...",
@@ -3983,12 +3983,12 @@
     "setYourName": "Postavite svoje ime",
     "changeYourName": "Promijenite svoje ime",
     "voiceAndPeople": "Glas i osobe",
-    "teachOmiYourVoice": "Učite Omi vaš glas",
-    "tellOmiWhoSaidIt": "Recite Omi tko je to rekao 🗣️",
+    "teachOmiYourVoice": "Učite Chronicle vaš glas",
+    "tellOmiWhoSaidIt": "Recite Chronicle tko je to rekao 🗣️",
     "payment": "Plaćanje",
     "addOrChangeYourPaymentMethod": "Dodajte ili promijenite svoju metodu plaćanja",
     "preferences": "Preferences",
-    "helpImproveOmiBySharing": "Pomozite poboljšati Omi dijeljenjem anonimizirane analitike",
+    "helpImproveOmiBySharing": "Pomozite poboljšati Chronicle dijeljenjem anonimizirane analitike",
     "deleteAccount": "Izbriši račun",
     "deleteYourAccountAndAllData": "Izbrišite svoj račun i sve podatke",
     "clearLogs": "Obriši zapisnike",
@@ -3996,7 +3996,7 @@
     "exportConversations": "Izvezi razgovore",
     "exportAllConversationsToJson": "Izvezite sve svoje razgovore u JSON datoteku.",
     "conversationsExportStarted": "Izvoz razgovora započet. To može potrajati nekoliko sekundi, molimo pričekajte.",
-    "mcpDescription": "Za povezivanje Omi-ja s drugim aplikacijama kako bi čitao, pretraživao i upravljao vašim uspomenama i razgovorima. Kreirajte ključ kako bi započeli.",
+    "mcpDescription": "Za povezivanje Chronicle-ja s drugim aplikacijama kako bi čitao, pretraživao i upravljao vašim uspomenama i razgovorima. Kreirajte ključ kako bi započeli.",
     "apiKeys": "API ključevi",
     "errorLabel": "Greška: {error}",
     "@errorLabel": {
@@ -4014,7 +4014,7 @@
     "triggersWhenAudioBytesReceived": "Aktivira se kada se primaju zvučni bajti.",
     "everyXSeconds": "Svakih x sekundi",
     "triggersWhenDaySummaryGenerated": "Aktivira se kada se generiše dnevni sažetak.",
-    "tryLatestExperimentalFeatures": "Pokušajte najnovije eksperimentalne značajke iz Omi tima.",
+    "tryLatestExperimentalFeatures": "Pokušajte najnovije eksperimentalne značajke iz Chronicle tima.",
     "transcriptionServiceDiagnosticStatus": "Status dijagnostike usluge transkripcije",
     "enableDetailedDiagnosticMessages": "Omogućite detaljne poruke dijagnostike iz usluge transkripcije",
     "autoCreateAndTagNewSpeakers": "Automatski kreiraj i označi nove govornike",
@@ -4050,7 +4050,7 @@
             }
         }
     },
-    "letOmiChooseAutomatically": "Neka Omi automatski odabere najbolju aplikaciju",
+    "letOmiChooseAutomatically": "Neka Chronicle automatski odabere najbolju aplikaciju",
     "deleteConversationConfirmation": "Ste li sigurni da želite izbrisati ovaj razgovor? Ova radnja se ne može poništiti.",
     "conversationDeleted": "Razgovor izbrisan",
     "generatingLink": "Generiranje linka...",
@@ -4317,7 +4317,7 @@
     "@customVocabularyHeader": {
         "description": "Custom vocabulary section header"
     },
-    "addWordsDescription": "Dodajte riječi koje bi Omi trebao prepoznati tijekom transkripcije.",
+    "addWordsDescription": "Dodajte riječi koje bi Chronicle trebao prepoznati tijekom transkripcije.",
     "@addWordsDescription": {
         "description": "Custom vocabulary description"
     },
@@ -4378,7 +4378,7 @@
     "clearNodesDescription": "Obriši sve čvorove i veze",
     "deleteKnowledgeGraphQuestion": "Obriši graf znanja?",
     "deleteKnowledgeGraphWarning": "Ovo će obrisati sve izvedene podatke grafa znanja. Vaše izvorne uspomene ostaju sigurne.",
-    "connectOmiWithAI": "Povežite Omi-ja s AI asistentima",
+    "connectOmiWithAI": "Povežite Chronicle-ja s AI asistentima",
     "noAPIKeys": "Nema API ključeva. Kreirajte jedan da biste započeli.",
     "autoCreateWhenDetected": "Automatski kreiraj kada se detektuje ime",
     "trackPersonalGoals": "Pratite osobne ciljeve na početnoj stranici",
@@ -4398,7 +4398,7 @@
     "@holdOnPreparingForm": {
         "description": "Loading message while preparing form"
     },
-    "bySubmittingYouAgreeToOmi": "Slanjem se slažete s Omi ",
+    "bySubmittingYouAgreeToOmi": "Slanjem se slažete s Chronicle ",
     "@bySubmittingYouAgreeToOmi": {
         "description": "Text before Terms & Privacy Policy link"
     },
@@ -4610,7 +4610,7 @@
     "@issueActivatingApp": {
         "description": "Dialog description for activation error"
     },
-    "dataAccessNoticeDescription": "Ova aplikacija će pristupiti vašim podacima. Omi AI nije odgovorna za kako se vaši podaci koriste, mijenjaju ili brišu od strane ove aplikacije",
+    "dataAccessNoticeDescription": "Ova aplikacija će pristupiti vašim podacima. Chronicle AI nije odgovorna za kako se vaši podaci koriste, mijenjaju ili brišu od strane ove aplikacije",
     "@dataAccessNoticeDescription": {
         "description": "Description for data access notice dialog"
     },
@@ -4742,7 +4742,7 @@
             }
         }
     },
-    "omiApiKeys": "Omi API ključevi",
+    "omiApiKeys": "Chronicle API ključevi",
     "@omiApiKeys": {
         "description": "Dialog title for API keys info"
     },
@@ -4750,7 +4750,7 @@
     "@apiKeysDescription": {
         "description": "Description of what API keys are used for"
     },
-    "aboutOmiApiKeys": "O Omi API ključevima",
+    "aboutOmiApiKeys": "O Chronicle API ključevima",
     "@aboutOmiApiKeys": {
         "description": "Tooltip for API keys info button"
     },
@@ -4944,7 +4944,7 @@
     "@maximumSecurityE2ee": {
         "description": "Title for End-to-End Encryption dialog"
     },
-    "e2eeDescription": "Šifriranje od kraja do kraja je zlatni standard za privatnost. Kada je omogućeno, vaši podaci se šifriraju na vašem uređaju prije nego što se pošalju našim poslužiteljima. To znači da nitko, čak ni Omi, ne može pristupiti vašem sadržaju.",
+    "e2eeDescription": "Šifriranje od kraja do kraja je zlatni standard za privatnost. Kada je omogućeno, vaši podaci se šifriraju na vašem uređaju prije nego što se pošalju našim poslužiteljima. To znači da nitko, čak ni Chronicle, ne može pristupiti vašem sadržaju.",
     "@e2eeDescription": {
         "description": "Description of E2EE encryption explaining its benefits"
     },
@@ -5000,7 +5000,7 @@
     "@secureEncryption": {
         "description": "Title for secure encryption card"
     },
-    "secureEncryptionDescription": "Vaši podaci se šifriraju s ključem jedinstvenim za vas na našim poslužiteljima, hostiranim na Google Cloud-u. To znači da je vaš sadržaj u neobrađenom obliku nedostupan svima, uključujući Omi osoblje ili Google, izravno iz baze podataka.",
+    "secureEncryptionDescription": "Vaši podaci se šifriraju s ključem jedinstvenim za vas na našim poslužiteljima, hostiranim na Google Cloud-u. To znači da je vaš sadržaj u neobrađenom obliku nedostupan svima, uključujući Chronicle osoblje ili Google, izravno iz baze podataka.",
     "@secureEncryptionDescription": {
         "description": "Description of secure encryption explaining how data is protected"
     },
@@ -5097,17 +5097,17 @@
             }
         }
     },
-    "omiTraining": "Omi obuka",
+    "omiTraining": "Chronicle obuka",
     "@omiTraining": {
-        "description": "Title for the Omi Training page/section"
+        "description": "Title for the Chronicle Training page/section"
     },
     "trainingDataProgram": "Program za podatke o obukama",
     "@trainingDataProgram": {
         "description": "Label for training data program"
     },
-    "getOmiUnlimitedFree": "Dobijte Omi Unlimited besplatno doprinoseći svoje podatke za obuku AI modela.",
+    "getOmiUnlimitedFree": "Dobijte Chronicle Unlimited besplatno doprinoseći svoje podatke za obuku AI modela.",
     "@getOmiUnlimitedFree": {
-        "description": "Description for getting Omi Unlimited free by contributing data"
+        "description": "Description for getting Chronicle Unlimited free by contributing data"
     },
     "trainingDataBullets": "• Vaši podaci pomažu poboljšati AI modele\n• Samo neosjetan podaci se dijele\n• Potpuno transparentan proces",
     "@trainingDataBullets": {
@@ -5219,7 +5219,7 @@
     "@youAreOnUnlimitedPlan": {
         "description": "Message showing user is on unlimited plan"
     },
-    "yourOmiUnleashed": "Vaš Omi, oslobođen. Idite na unlimited za beskonačne mogućnosti.",
+    "yourOmiUnleashed": "Vaš Chronicle, oslobođen. Idite na unlimited za beskonačne mogućnosti.",
     "@yourOmiUnleashed": {
         "description": "Marketing text for unlimited plan"
     },
@@ -5263,7 +5263,7 @@
     },
     "askOmiAnything": "Pitajte Omija bilo što o svojoj životu",
     "@askOmiAnything": {
-        "description": "Feature: ask Omi anything"
+        "description": "Feature: ask Chronicle anything"
     },
     "unlockOmiInfiniteMemory": "Otključajte Omijevu beskonačnu memoriju",
     "@unlockOmiInfiniteMemory": {
@@ -5359,7 +5359,7 @@
     "@ourCommitment": {
         "description": "Privacy page - ourCommitment"
     },
-    "commitmentText": "Posvećeni smo korištenju podataka koje prikupljamo samo da bi Omi bio bolji proizvod za vas. Vaša privatnost i povjerenje su nam najvažniji.",
+    "commitmentText": "Posvećeni smo korištenju podataka koje prikupljamo samo da bi Chronicle bio bolji proizvod za vas. Vaša privatnost i povjerenje su nam najvažniji.",
     "@commitmentText": {
         "description": "Privacy page - commitmentText"
     },
@@ -5488,7 +5488,7 @@
     "@minutes": {
         "description": "Unit label for minutes"
     },
-    "omiHas": "Omi ima:",
+    "omiHas": "Chronicle ima:",
     "@omiHas": {
         "description": "Fallback text for share stats when period is unknown"
     },
@@ -5621,7 +5621,7 @@
     "@howItWorksTitle": {
         "description": "Help dialog title"
     },
-    "howPeopleWorks": "Kada se osoba kreira, možete otići na transkripciju razgovora i dodijeliti joj odgovarajuće segmente, na taj način će Omi moći prepoznati i njezin govor!",
+    "howPeopleWorks": "Kada se osoba kreira, možete otići na transkripciju razgovora i dodijeliti joj odgovarajuće segmente, na taj način će Chronicle moći prepoznati i njezin govor!",
     "@howPeopleWorks": {
         "description": "Explanation of how people/speech recognition works"
     },
@@ -5982,9 +5982,9 @@
     "@enableApps": {
         "description": "Menu item text to navigate to apps page and enable more chat apps"
     },
-    "omiAppName": "Omi",
+    "omiAppName": "Chronicle",
     "@omiAppName": {
-        "description": "The Omi app/assistant name shown in chat app selection"
+        "description": "The Chronicle app/assistant name shown in chat app selection"
     },
     "showMore": "prikaži više ↓",
     "@showMore": {
@@ -6014,21 +6014,21 @@
     "@checkingAppleWatch": {
         "description": "Loading text while checking Apple Watch status"
     },
-    "installOmiOnAppleWatch": "Instalirajte Omi na vaš\nApple Watch",
+    "installOmiOnAppleWatch": "Instalirajte Chronicle na vaš\nApple Watch",
     "@installOmiOnAppleWatch": {
-        "description": "Title prompting user to install Omi on Apple Watch"
+        "description": "Title prompting user to install Chronicle on Apple Watch"
     },
-    "installOmiOnAppleWatchDescription": "Kako biste koristili Apple Watch sa Omijem, morate prvo instalirati Omi aplikaciju na vaš sat.",
+    "installOmiOnAppleWatchDescription": "Kako biste koristili Apple Watch sa Omijem, morate prvo instalirati Chronicle aplikaciju na vaš sat.",
     "@installOmiOnAppleWatchDescription": {
-        "description": "Description explaining need to install Omi app on watch"
+        "description": "Description explaining need to install Chronicle app on watch"
     },
-    "openOmiOnAppleWatch": "Otvorite Omi na vaš\nApple Watch",
+    "openOmiOnAppleWatch": "Otvorite Chronicle na vaš\nApple Watch",
     "@openOmiOnAppleWatch": {
-        "description": "Title prompting user to open Omi on Apple Watch"
+        "description": "Title prompting user to open Chronicle on Apple Watch"
     },
-    "openOmiOnAppleWatchDescription": "Omi aplikacija je instalirana na vaš Apple Watch. Otvorite je i dodirnite Start kako biste počeli.",
+    "openOmiOnAppleWatchDescription": "Chronicle aplikacija je instalirana na vaš Apple Watch. Otvorite je i dodirnite Start kako biste počeli.",
     "@openOmiOnAppleWatchDescription": {
-        "description": "Description explaining Omi is installed and user should open it"
+        "description": "Description explaining Chronicle is installed and user should open it"
     },
     "openWatchApp": "Otvori Watch aplikaciju",
     "@openWatchApp": {
@@ -6038,7 +6038,7 @@
     "@iveInstalledAndOpenedTheApp": {
         "description": "Button text confirming user has installed and opened the app"
     },
-    "unableToOpenWatchApp": "Nije moguće otvoriti Apple Watch aplikaciju. Molimo ručno otvorite Watch aplikaciju na vašem Apple Watchu i instalirajte Omi iz \"Available Apps\" sekcije.",
+    "unableToOpenWatchApp": "Nije moguće otvoriti Apple Watch aplikaciju. Molimo ručno otvorite Watch aplikaciju na vašem Apple Watchu i instalirajte Chronicle iz \"Available Apps\" sekcije.",
     "@unableToOpenWatchApp": {
         "description": "Error message when Watch app cannot be opened automatically"
     },
@@ -6046,7 +6046,7 @@
     "@appleWatchConnectedSuccessfully": {
         "description": "Success message when Apple Watch connects"
     },
-    "appleWatchNotReachable": "Apple Watch još nije dostižan. Provjerite da li je Omi aplikacija otvorena na vašem satnom.",
+    "appleWatchNotReachable": "Apple Watch još nije dostižan. Provjerite da li je Chronicle aplikacija otvorena na vašem satnom.",
     "@appleWatchNotReachable": {
         "description": "Error message when Apple Watch is not reachable"
     },
@@ -6164,9 +6164,9 @@
     "@noSummary": {
         "description": "Message when no summary is available"
     },
-    "updateOmiFirmware": "Ažuriraj Omi firmver",
+    "updateOmiFirmware": "Ažuriraj Chronicle firmver",
     "@updateOmiFirmware": {
-        "description": "Button text to update Omi device firmware"
+        "description": "Button text to update Chronicle device firmware"
     },
     "anErrorOccurredTryAgain": "Došlo je do greške. Pokušajte ponovno.",
     "@anErrorOccurredTryAgain": {
@@ -6176,7 +6176,7 @@
     "@welcomeBackSimple": {
         "description": "Simple welcome message without user name"
     },
-    "addVocabularyDescription": "Dodajte riječi koje Omi treba prepoznati tijekom transkripcije.",
+    "addVocabularyDescription": "Dodajte riječi koje Chronicle treba prepoznati tijekom transkripcije.",
     "@addVocabularyDescription": {
         "description": "Description for custom vocabulary section"
     },
@@ -6409,7 +6409,7 @@
     "@wrappedNoDataAvailable": {
         "description": "Shown when wrapped result is null"
     },
-    "wrappedOmiLifeRecap": "Omi životni pregled",
+    "wrappedOmiLifeRecap": "Chronicle životni pregled",
     "@wrappedOmiLifeRecap": {
         "description": "Subtitle on the intro card"
     },
@@ -6729,7 +6729,7 @@
     "@notificationFrequency": {
         "description": "Section header for notification frequency settings"
     },
-    "controlNotificationFrequency": "Kontrolirajte kako često vam Omi šalje proaktivne obavijesti.",
+    "controlNotificationFrequency": "Kontrolirajte kako često vam Chronicle šalje proaktivne obavijesti.",
     "@controlNotificationFrequency": {
         "description": "Description for notification frequency control"
     },
@@ -6761,7 +6761,7 @@
     "@dailyScoreExplanation": {
         "description": "Explanation of how daily score is calculated"
     },
-    "notificationFrequencyDescription": "Kontrolirajte kako često vam Omi šalje proaktivne obavijesti i podsjetnika.",
+    "notificationFrequencyDescription": "Kontrolirajte kako često vam Chronicle šalje proaktivne obavijesti i podsjetnika.",
     "@notificationFrequencyDescription": {
         "description": "Description text for notification frequency section"
     },
@@ -7047,7 +7047,7 @@
     "@noRecordings": {
         "description": "Empty state title when there are no recordings"
     },
-    "audioFromOmiWillAppearHere": "Zvuk sa vašeg Omi uređaja će se pojaviti ovdje",
+    "audioFromOmiWillAppearHere": "Zvuk sa vašeg Chronicle uređaja će se pojaviti ovdje",
     "@audioFromOmiWillAppearHere": {
         "description": "Empty state description for recordings"
     },
@@ -7227,7 +7227,7 @@
     "@batteryUsageHigher": {
         "description": "Warning about battery usage"
     },
-    "considerOmiCloud": "Razmotriti korištenje Omi Cloud-a za bolje performanse.",
+    "considerOmiCloud": "Razmotriti korištenje Chronicle Cloud-a za bolje performanse.",
     "@considerOmiCloud": {
         "description": "Suggestion to use cloud transcription"
     },
@@ -7454,9 +7454,9 @@
             }
         }
     },
-    "omiTranscriptionOptimized": "Omi-jeva ugrađena transkripcija u realnom vremenu optimizirana je za razgovore u realnom vremenu sa automatskim prepoznavanjem govornika i dijalizacijom.",
+    "omiTranscriptionOptimized": "Chronicle-jeva ugrađena transkripcija u realnom vremenu optimizirana je za razgovore u realnom vremenu sa automatskim prepoznavanjem govornika i dijalizacijom.",
     "@omiTranscriptionOptimized": {
-        "description": "Description of Omi transcription features"
+        "description": "Description of Chronicle transcription features"
     },
     "reset": "Resetiraj",
     "@reset": {
@@ -7576,7 +7576,7 @@
     "@writeReviewOptional": {
         "description": "Hint text for review input field"
     },
-    "setupQuestionsIntro": "Pomoći nam poboljšati Omi odgovarajući na nekoliko pitanja. 🫶 💜",
+    "setupQuestionsIntro": "Pomoći nam poboljšati Chronicle odgovarajući na nekoliko pitanja. 🫶 💜",
     "@setupQuestionsIntro": {
         "description": "Intro text for setup questions page"
     },
@@ -7584,9 +7584,9 @@
     "@setupQuestionProfession": {
         "description": "Question about profession"
     },
-    "setupQuestionUsage": "2. Gdje planirate koristiti svoj Omi?",
+    "setupQuestionUsage": "2. Gdje planirate koristiti svoj Chronicle?",
     "@setupQuestionUsage": {
-        "description": "Question about Omi usage location"
+        "description": "Question about Chronicle usage location"
     },
     "setupQuestionAge": "3. Koji je vaš raspon godina?",
     "@setupQuestionAge": {
@@ -8053,7 +8053,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8063,7 +8063,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8230,8 +8230,8 @@
         "description": "Title for low battery notification"
     },
     "lowBatteryAlertBody": "Vaša baterija je na {level}%. Vrijeme je za punjenje! 🔋",
-    "batteryFullyChargedTitle": "Omi je potpuno napunjen",
-    "batteryFullyChargedBody": "Vaš Omi uređaj je potpuno napunjen. Možete ga iskopčati!",
+    "batteryFullyChargedTitle": "Chronicle je potpuno napunjen",
+    "batteryFullyChargedBody": "Vaš Chronicle uređaj je potpuno napunjen. Možete ga iskopčati!",
     "@lowBatteryAlertBody": {
         "description": "Body text for low battery notification",
         "placeholders": {
@@ -8240,11 +8240,11 @@
             }
         }
     },
-    "deviceDisconnectedNotificationTitle": "Vaš Omi Uređaj Je Odspoj",
+    "deviceDisconnectedNotificationTitle": "Vaš Chronicle Uređaj Je Odspoj",
     "@deviceDisconnectedNotificationTitle": {
         "description": "Title for device disconnected notification"
     },
-    "deviceDisconnectedNotificationBody": "Molim vas da se ponovno povežete da biste nastavili koristiti vaš Omi.",
+    "deviceDisconnectedNotificationBody": "Molim vas da se ponovno povežete da biste nastavili koristiti vaš Chronicle.",
     "@deviceDisconnectedNotificationBody": {
         "description": "Body text for device disconnected notification"
     },
@@ -8252,7 +8252,7 @@
     "@firmwareUpdateAvailable": {
         "description": "Title for firmware update available dialog"
     },
-    "firmwareUpdateAvailableDescription": "Novo ažuriranje firmwarea ({version}) je dostupno za vaš Omi uređaj. Želite li ažurirati sada?",
+    "firmwareUpdateAvailableDescription": "Novo ažuriranje firmwarea ({version}) je dostupno za vaš Chronicle uređaj. Želite li ažurirati sada?",
     "@firmwareUpdateAvailableDescription": {
         "description": "Description for firmware update dialog with version parameter",
         "placeholders": {
@@ -8646,9 +8646,9 @@
     "@nextButton": {
         "description": "Button text to proceed to next step"
     },
-    "connectOmiDevice": "Povežite Omi Uređaj",
+    "connectOmiDevice": "Povežite Chronicle Uređaj",
     "@connectOmiDevice": {
-        "description": "Button text to connect Omi device"
+        "description": "Button text to connect Chronicle device"
     },
     "planSwitchingDescriptionWithTitle": "Prebacujete svoj Unlimited Plan na {title}. Jeste li sigurni da želite nastaviti?",
     "@planSwitchingDescriptionWithTitle": {
@@ -8687,9 +8687,9 @@
     "@transcriptionJsonPlaceholder": {
         "description": "JSON configuration placeholder hint text in transcription settings"
     },
-    "transcriptionSourceOmi": "Omi",
+    "transcriptionSourceOmi": "Chronicle",
     "@transcriptionSourceOmi": {
-        "description": "Tab title for Omi transcription source option"
+        "description": "Tab title for Chronicle transcription source option"
     },
     "pricePlaceholder": "0.00",
     "@pricePlaceholder": {
@@ -8729,7 +8729,7 @@
             }
         }
     },
-    "actionItemReminderTitle": "Omi Podsjetnik",
+    "actionItemReminderTitle": "Chronicle Podsjetnik",
     "@actionItemReminderTitle": {
         "description": "Title for action item reminder notifications"
     },
@@ -8739,7 +8739,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8749,7 +8749,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8773,7 +8773,7 @@
     "@onboardingComplete": {
         "description": "Onboarding step title for completion"
     },
-    "onboardingWelcomeToOmi": "Dobrodošli na Omi",
+    "onboardingWelcomeToOmi": "Dobrodošli na Chronicle",
     "@onboardingWelcomeToOmi": {
         "description": "Onboarding step description for sign in"
     },
@@ -9554,29 +9554,29 @@
     "pairNewDevice": "Upari novi uređaj",
     "dontSeeYourDevice": "Vidite li svoj uređaj?",
     "reportAnIssue": "Prijavite problem",
-    "pairingTitleOmi": "Uključite Omi",
+    "pairingTitleOmi": "Uključite Chronicle",
     "@pairingTitleOmi": {
-        "description": "Pairing title for Omi device"
+        "description": "Pairing title for Chronicle device"
     },
     "pairingDescOmi": "Dugo pritisnite uređaj dok ne vibrira da ga uključite.",
     "@pairingDescOmi": {
-        "description": "Pairing description for Omi device"
+        "description": "Pairing description for Chronicle device"
     },
-    "pairingTitleOmiDevkit": "Stavite Omi DevKit u modus uparivanja",
+    "pairingTitleOmiDevkit": "Stavite Chronicle DevKit u modus uparivanja",
     "@pairingTitleOmiDevkit": {
-        "description": "Pairing title for Omi DevKit"
+        "description": "Pairing title for Chronicle DevKit"
     },
     "pairingDescOmiDevkit": "Pritisnite gumb jednom da uključite. LED će bljeskati ljubičasto kada je u modu uparivanja.",
     "@pairingDescOmiDevkit": {
-        "description": "Pairing description for Omi DevKit"
+        "description": "Pairing description for Chronicle DevKit"
     },
-    "pairingTitleOmiGlass": "Uključite Omi Glass",
+    "pairingTitleOmiGlass": "Uključite Chronicle Glass",
     "@pairingTitleOmiGlass": {
-        "description": "Pairing title for Omi Glass"
+        "description": "Pairing title for Chronicle Glass"
     },
     "pairingDescOmiGlass": "Uključite pritiskanjem bočne tipke 3 sekunde.",
     "@pairingDescOmiGlass": {
-        "description": "Pairing description for Omi Glass"
+        "description": "Pairing description for Chronicle Glass"
     },
     "pairingTitlePlaudNote": "Stavite Plaud Note u modus uparivanja",
     "@pairingTitlePlaudNote": {
@@ -9622,7 +9622,7 @@
     "@pairingTitleAppleWatch": {
         "description": "Pairing title for Apple Watch"
     },
-    "pairingDescAppleWatch": "Instalirajte i otvorite Omi aplikaciju na vašem Apple Watchu, zatim dodirnite Poveži u aplikaciji.",
+    "pairingDescAppleWatch": "Instalirajte i otvorite Chronicle aplikaciju na vašem Apple Watchu, zatim dodirnite Poveži u aplikaciji.",
     "@pairingDescAppleWatch": {
         "description": "Pairing description for Apple Watch"
     },
@@ -9716,7 +9716,7 @@
     "@onboardingWhatIKnowAboutYouTitle": {
         "description": "Title for onboarding step that previews the memory graph"
     },
-    "onboardingWhatIKnowAboutYouDescription": "Ova mapa se ažurira dok Omi uči iz vaših razgovora.",
+    "onboardingWhatIKnowAboutYouDescription": "Ova mapa se ažurira dok Chronicle uči iz vaših razgovora.",
     "@onboardingWhatIKnowAboutYouDescription": {
         "description": "Description for onboarding memory graph preview step"
     },
@@ -9774,7 +9774,7 @@
         "description": "Confirmation dialog message for cleaning today task deadlines"
     },
     "tasksOverdue": "Isteklo",
-    "phoneCallsWithOmi": "Telefonski razgovori s Omi",
+    "phoneCallsWithOmi": "Telefonski razgovori s Chronicle",
     "phoneCallsSubtitle": "Pravite pozive s prijenosom u stvarnom vremenu",
     "phoneSetupStep1Title": "Provjerite svoj telefonski broj",
     "phoneSetupStep1Subtitle": "Pozivat ćemo vas da potvrdimo da je vaš",
@@ -9879,11 +9879,11 @@
     "@showTasksOnHomepage": {
         "description": "Description for show tasks toggle in developer settings"
     },
-    "phoneCallsUnlimitedOnly": "Telefonski razgovori putem Omi",
+    "phoneCallsUnlimitedOnly": "Telefonski razgovori putem Chronicle",
     "@phoneCallsUnlimitedOnly": {
         "description": "Title for the phone calls upsell sheet shown to non-unlimited users"
     },
-    "phoneCallsUpsellSubtitle": "Pravite pozive kroz Omi i dobijte prenos u stvarnom vremenu, automatske sažetke i još mnogo toga. Dostupno isključivo za pretplatnike Unlimited plana.",
+    "phoneCallsUpsellSubtitle": "Pravite pozive kroz Chronicle i dobijte prenos u stvarnom vremenu, automatske sažetke i još mnogo toga. Dostupno isključivo za pretplatnike Unlimited plana.",
     "@phoneCallsUpsellSubtitle": {
         "description": "Subtitle explaining phone calls feature on upsell sheet"
     },
@@ -10004,7 +10004,7 @@
     "fairUse3Day": "3-dnevno klizno",
     "fairUseWeekly": "Tjedno klizno",
     "fairUseAboutTitle": "O poštenoj upotrebi",
-    "fairUseAboutBody": "Omi je dizajniran za osobne razgovore, sastanke i žive interakcije. Upotreba se mjeri prema stvarnom vremenu detektiranog govora, ne vremenu povezivanja. Ako upotreba značajno premašuje normale obrasce za sadržaj koji nije osoban, može doći do prilagodbi.",
+    "fairUseAboutBody": "Chronicle je dizajniran za osobne razgovore, sastanke i žive interakcije. Upotreba se mjeri prema stvarnom vremenu detektiranog govora, ne vremenu povezivanja. Ako upotreba značajno premašuje normale obrasce za sadržaj koji nije osoban, može doći do prilagodbi.",
     "fairUseCaseRefCopied": "{caseRef} kopiran",
     "@fairUseCaseRefCopied": {
         "description": "Snackbar message when case reference is copied to clipboard",
@@ -10046,7 +10046,7 @@
         }
     },
     "improveConnectionTitle": "Poboljšajte povezivanje",
-    "improveConnectionContent": "Poboljšali smo kako Omi ostaje povezan s vašim uređajem. Da biste ovo aktivirali, molimo idite na stranicu Informacije o uređaju, dodirnite \"Odvoji uređaj\", a zatim ponovno upari uređaj.",
+    "improveConnectionContent": "Poboljšali smo kako Chronicle ostaje povezan s vašim uređajem. Da biste ovo aktivirali, molimo idite na stranicu Informacije o uređaju, dodirnite \"Odvoji uređaj\", a zatim ponovno upari uređaj.",
     "improveConnectionAction": "Razumijem",
     "clockSkewWarning": "Sat na vašem uređaju je pomaknut za ~{minutes} min. Provjerite postavke datuma i vremena.",
     "@clockSkewWarning": {
@@ -10056,7 +10056,7 @@
             }
         }
     },
-    "omisStorage": "Pohrana Omi-ja",
+    "omisStorage": "Pohrana Chronicle-ja",
     "@omisStorage": {
         "description": "Label for device storage tier in sync pipeline"
     },
@@ -10109,11 +10109,11 @@
     "@cancelSyncQuestion": {
         "description": "Title for cancel sync confirmation dialog"
     },
-    "omisStorageDesc": "Kada vaš Omi nije povezan s vašim telefonom, on pohranjuje audio lokalno na svojoj ugrađenoj memoriji. Nikad ne gubite snimku.",
+    "omisStorageDesc": "Kada vaš Chronicle nije povezan s vašim telefonom, on pohranjuje audio lokalno na svojoj ugrađenoj memoriji. Nikad ne gubite snimku.",
     "@omisStorageDesc": {
         "description": "Description of device storage in sync info sheet"
     },
-    "phoneStorageDesc": "Kada se Omi ponovno poveže, snimke se automatski prebacuju na vaš telefon kao privremeno skladište prije učitavanja.",
+    "phoneStorageDesc": "Kada se Chronicle ponovno poveže, snimke se automatski prebacuju na vaš telefon kao privremeno skladište prije učitavanja.",
     "@phoneStorageDesc": {
         "description": "Description of phone storage in sync info sheet"
     },
@@ -10149,11 +10149,11 @@
     "@permissionEnable": {
         "description": "Action text to enable a permission"
     },
-    "permissionsPageDescription": "Ove dozvole su temeljne za funkcionalnost Omi-ja. One omogućavaju ključne funkcije kao obavijesti, iskustva na temelju lokacije i snimanje audio-a.",
+    "permissionsPageDescription": "Ove dozvole su temeljne za funkcionalnost Chronicle-ja. One omogućavaju ključne funkcije kao obavijesti, iskustva na temelju lokacije i snimanje audio-a.",
     "@permissionsPageDescription": {
         "description": "Description text shown at the bottom of the permissions page"
     },
-    "permissionsRequiredDescription": "Omi trebaju nekoliko dozvola da bi radio pravilno. Molimo dodijelite ih kako biste nastavili.",
+    "permissionsRequiredDescription": "Chronicle trebaju nekoliko dozvola da bi radio pravilno. Molimo dodijelite ih kako biste nastavili.",
     "@permissionsRequiredDescription": {
         "description": "Description for the permissions interstitial screen"
     },
@@ -10161,7 +10161,7 @@
     "@permissionsSetupTitle": {
         "description": "Title for the permissions interstitial screen"
     },
-    "permissionsSetupDescription": "Omogućite nekoliko dozvola kako bi Omi mogao raditi svoju magiju.",
+    "permissionsSetupDescription": "Omogućite nekoliko dozvola kako bi Chronicle mogao raditi svoju magiju.",
     "@permissionsSetupDescription": {
         "description": "Subtitle for the permissions interstitial screen"
     },
@@ -10290,7 +10290,7 @@
     "@feedbackTitleFoundAlternative": {
         "description": "Feedback title when cancel reason is found alternative"
     },
-    "feedbackTitleNotUsing": "Što bi vas učinilo da više koristite Omi?",
+    "feedbackTitleNotUsing": "Što bi vas učinilo da više koristite Chronicle?",
     "@feedbackTitleNotUsing": {
         "description": "Feedback title when cancel reason is not using enough"
     },
@@ -10314,7 +10314,7 @@
     "@feedbackSubtitleFoundAlternative": {
         "description": "Feedback subtitle for found alternative"
     },
-    "feedbackSubtitleNotUsing": "Želimo učiniti Omi korisnijim za vas.",
+    "feedbackSubtitleNotUsing": "Želimo učiniti Chronicle korisnijim za vas.",
     "@feedbackSubtitleNotUsing": {
         "description": "Feedback subtitle for not using enough"
     },
@@ -10431,20 +10431,20 @@
     "tasksSelectAll": "Odaberi sve",
     "tasksDeleteSelected": "Obriši {count} zadatak(e)",
     "tasksMarkComplete": "Označeno kao završeno",
-    "appleHealthManageNote": "Omi pristupa Apple Health-u putem Appleovog HealthKit okvira. Pristup možete opozvati u bilo kojem trenutku u iOS postavkama.",
+    "appleHealthManageNote": "Chronicle pristupa Apple Health-u putem Appleovog HealthKit okvira. Pristup možete opozvati u bilo kojem trenutku u iOS postavkama.",
     "appleHealthConnectCta": "Poveži s Apple Health",
     "appleHealthDisconnectCta": "Prekini vezu s Apple Health",
     "appleHealthConnectedBadge": "Povezano",
     "appleHealthFeatureChatTitle": "Razgovarajte o svom zdravlju",
-    "appleHealthFeatureChatDesc": "Pitajte Omi o svojim koracima, snu, otkucajima srca i treninzima.",
+    "appleHealthFeatureChatDesc": "Pitajte Chronicle o svojim koracima, snu, otkucajima srca i treninzima.",
     "appleHealthFeatureReadOnlyTitle": "Pristup samo za čitanje",
-    "appleHealthFeatureReadOnlyDesc": "Omi nikada ne piše u Apple Health niti mijenja vaše podatke.",
+    "appleHealthFeatureReadOnlyDesc": "Chronicle nikada ne piše u Apple Health niti mijenja vaše podatke.",
     "appleHealthFeatureSecureTitle": "Sigurna sinkronizacija",
-    "appleHealthFeatureSecureDesc": "Vaši Apple Health podaci sinkroniziraju se privatno s Omi računom.",
+    "appleHealthFeatureSecureDesc": "Vaši Apple Health podaci sinkroniziraju se privatno s Chronicle računom.",
     "appleHealthDeniedTitle": "Pristup Apple Health-u odbijen",
-    "appleHealthDeniedBody": "Omi nema dozvolu za čitanje vaših Apple Health podataka. Omogućite ga u iOS Postavke → Privatnost i sigurnost → Health → Omi.",
+    "appleHealthDeniedBody": "Chronicle nema dozvolu za čitanje vaših Apple Health podataka. Omogućite ga u iOS Postavke → Privatnost i sigurnost → Health → Chronicle.",
     "deleteFlowReasonTitle": "Zašto odlazite?",
-    "deleteFlowReasonSubtitle": "Vaše povratne informacije pomažu nam poboljšati Omi za sve.",
+    "deleteFlowReasonSubtitle": "Vaše povratne informacije pomažu nam poboljšati Chronicle za sve.",
     "deleteReasonPrivacy": "Brige o privatnosti",
     "deleteReasonNotUsing": "Ne koristim dovoljno često",
     "deleteReasonMissingFeatures": "Nedostaju značajke koje trebam",
@@ -10453,7 +10453,7 @@
     "deleteReasonTakingBreak": "Samo uzimam pauzu",
     "deleteReasonOther": "Ostalo",
     "deleteFlowFeedbackTitle": "Recite nam više",
-    "deleteFlowFeedbackSubtitle": "Što bi Omi učinilo prikladnim za vas?",
+    "deleteFlowFeedbackSubtitle": "Što bi Chronicle učinilo prikladnim za vas?",
     "deleteFlowFeedbackHint": "Neobavezno — vaše misli pomažu nam izgraditi bolji proizvod.",
     "deleteFlowConfirmTitle": "Ovo je trajno",
     "deleteFlowConfirmSubtitle": "Nakon brisanja računa nije ga moguće vratiti.",
@@ -10505,8 +10505,8 @@
     "chatUsageCostNoLimit": "Chat: ${used} iskorišteno ovog mjeseca",
     "chatUsageMessages": "Chat: {used} / {limit} poruka ovog mjeseca",
     "chatUsageMessagesNoLimit": "Chat: {used} poruka ovog mjeseca",
-    "chatQuotaSubtitle": "AI chat messages used with Omi this month.",
-    "chatQuotaExceededReply": "Dosegli ste svoj mjesečni limit. Nadogradite da nastavite razgovarati s Omi bez ograničenja.",
+    "chatQuotaSubtitle": "AI chat messages used with Chronicle this month.",
+    "chatQuotaExceededReply": "Dosegli ste svoj mjesečni limit. Nadogradite da nastavite razgovarati s Chronicle bez ograničenja.",
     "batteryHistory": "Baterija",
     "day": "Dan",
     "noBatteryDataYet": "Još nema podataka o bateriji",
@@ -10523,7 +10523,7 @@
         "description": "Section header for memory knowledge graph on home page"
     },
     "voiceMode": "Glasovni način",
-    "quickActionAskOmi": "Pitajte Omi bilo što",
+    "quickActionAskOmi": "Pitajte Chronicle bilo što",
     "record": "Snimi",
     "stop": "Zaustavi",
     "recordWithPhoneMic": "Snimaj telefonskim mikrofonom",
@@ -10557,28 +10557,28 @@
     "syncStatusWaiting": "Čeka sinkronizaciju",
     "syncStatusRetrying": "Obrada nije uspjela — ponovni pokušaj",
     "syncStatusFailed": "Neuspjelo — dodirnite Pokušaj ponovno",
-    "syncStatusTooOld": "Prestaro za sinkronizaciju — Omi ga ne može prihvatiti",
+    "syncStatusTooOld": "Prestaro za sinkronizaciju — Chronicle ga ne može prihvatiti",
     "syncStatusFileUnavailable": "Datoteka nije dostupna",
-    "syncStatusUploaded": "Učitano · obrađuje se na Omi",
+    "syncStatusUploaded": "Učitano · obrađuje se na Chronicle",
     "noRecordingsYet": "Još nema snimaka",
     "syncInProgress": "Sinkronizacija u tijeku",
     "deleteWhileProcessingTitle": "Još se obrađuje",
-    "deleteWhileProcessingMessage": "Ova je snimka učitana, ali Omi još stvara razgovor. Ako je sada izbrišete i obrada ne uspije, neće se moći vratiti. Svejedno izbrisati?",
+    "deleteWhileProcessingMessage": "Ova je snimka učitana, ali Chronicle još stvara razgovor. Ako je sada izbrišete i obrada ne uspije, neće se moći vratiti. Svejedno izbrisati?",
     "syncCardAllBackedUp": "Sve snimke sinkronizirane",
     "syncCardReadyCount": "{count, plural, one{1 snimka spremna za sinkronizaciju} few{{count} snimke spremne za sinkronizaciju} other{{count} snimaka spremno za sinkronizaciju}}",
-    "syncCardProcessing": "Obrada u Omi…",
+    "syncCardProcessing": "Obrada u Chronicle…",
     "syncCardWaitingInternet": "Čekanje interneta",
     "syncCardNeedsAttention": "{count, plural, one{{count} snimka zahtijeva pažnju} few{{count} snimke zahtijevaju pažnju} other{{count} snimaka zahtijeva pažnju}}",
     "syncFlowIntro": "Snimke se prenose s vašeg uređaja na ovaj telefon i pohranjuju lokalno, a zatim učitavaju na Omijev poslužitelj gdje se transkribiraju i pretvaraju u razgovore.",
     "syncStepUpload": "Sinkronizacija",
     "syncStepUploadDesc": "Vaša snimka šalje se na Omijev poslužitelj",
     "syncStepProcess": "Transkripcija",
-    "syncStepProcessDesc": "Omi pretvara zvuk u razgovor",
+    "syncStepProcessDesc": "Chronicle pretvara zvuk u razgovor",
     "syncStepBackedUp": "Razgovor je spreman",
     "syncStepBackedUpDesc": "Pronađi ga u Razgovori",
     "syncFailureFootnote": "Ako obrada ne uspije, snimka se automatski ponavlja pri sljedećoj sinkronizaciji.",
     "syncStatusConversationCreated": "Razgovor stvoren",
-    "syncCardUploadingTitle": "Slanje u Omi",
+    "syncCardUploadingTitle": "Slanje u Chronicle",
     "syncCardDownloadingTitle": "Preuzimanje s vašeg uređaja",
     "syncCardProgressOf": "{current} od {total}",
     "syncStatusOnDevice": "Na vašem uređaju",
@@ -10591,24 +10591,24 @@
     },
     "syncProcessingBackgroundHint": "Ovo se nastavlja u pozadini — možete napustiti ovaj zaslon.",
     "syncCardRateLimited": "Dostignuto je ograničenje poštene upotrebe — sinkronizacija će se automatski nastaviti",
-    "syncCardBackendBusy": "Omi poslužitelji su zauzeti — vaše snimke će se sinkronizirati čim se oslobodi kapacitet",
+    "syncCardBackendBusy": "Chronicle poslužitelji su zauzeti — vaše snimke će se sinkronizirati čim se oslobodi kapacitet",
     "unableToDetermineFirmwareVersion": "Nije moguće utvrditi trenutnu verziju firmvera",
     "promoCode": "Promo kod",
     "enterPromoCode": "Unesite promo kod",
     "invalidPromotionCode": "Nevažeći promo kod.",
     "backgroundModeTitle": "Pozadinski način rada",
-    "backgroundModeDescription": "Zadržite Omi snimanje čak i kada je aplikacija potpuno zatvorena.",
-    "backgroundModeNote": "Zasad radi samo s Omi uređajima i neprestano se poboljšava.",
+    "backgroundModeDescription": "Zadržite Chronicle snimanje čak i kada je aplikacija potpuno zatvorena.",
+    "backgroundModeNote": "Zasad radi samo s Chronicle uređajima i neprestano se poboljšava.",
     "regenerateRecap": "Ponovno generiraj sažetak",
     "recapRegeneratedSnackbar": "Sažetak je ponovno generiran",
     "recapRegenerateFailed": "Nije bilo moguće ponovno generirati sažetak. Pokušajte kasnije.",
     "recapRegenerateCooldown": "Pričekajte nekoliko sekundi prije ponovnog generiranja.",
     "recapRegenerateNoConversations": "Nema razgovora za sažimanje za ovaj dan.",
-    "syncCustomSttWarningTitle": "Sinkronizacija koristi Omi transkripciju",
+    "syncCustomSttWarningTitle": "Sinkronizacija koristi Chronicle transkripciju",
     "syncCustomSttWarningMessage": "Koristite vlastiti pružatelj transkripcije. Sinkronizacija ovih snimaka transkribira ih na Omijevim poslužiteljima i broje se u ograničenje transkripcije vašeg plana.",
     "transcribeLaterTitle": "Transkribiraj poslije",
     "transcribeLaterDescription": "Snimaj zvuk odmah, a transkripciju pokreni naknadno umjesto uživo. Snimke se spremaju na tvoj telefon, a zatim ih prenosiš kako bi se stvorili razgovori.",
-    "transcribeLaterNote": "Radi s mikrofonom telefona te Omi i Limitless uređajima. Zvuk ostaje na tvom telefonu dok ga ne odlučiš prenijeti.",
+    "transcribeLaterNote": "Radi s mikrofonom telefona te Chronicle i Limitless uređajima. Zvuk ostaje na tvom telefonu dok ga ne odlučiš prenijeti.",
     "transcribeLaterStorageFull": "Telefonu ponestaje prostora pa je snimanje pauzirano. Oslobodi prostor ili prenesi snimke i snimanje će se automatski nastaviti.",
     "unmute": "Uključi zvuk",
     "newRecording": "Novo snimanje",
@@ -10617,15 +10617,15 @@
     "captureModeLater": "Kasnije",
     "captureModeLiveDescription": "Transkribiraj u stvarnom vremenu dok govoriš.",
     "captureModeLaterDescription": "Spremi zvuk sada i transkribiraj kad god želiš.",
-    "backgroundModeUnavailable": "Pozadinski način nije dostupan jer nije povezan kompatibilan uređaj. Povežite Omi, OpenGlass ili Friend Pendant uređaj da biste koristili ovu značajku.",
+    "backgroundModeUnavailable": "Pozadinski način nije dostupan jer nije povezan kompatibilan uređaj. Povežite Chronicle, OpenGlass ili Friend Pendant uređaj da biste koristili ovu značajku.",
     "memoryThisDevice": "Ovaj uređaj",
     "memoryThisIphone": "Ovaj iPhone",
     "memoryThisPhone": "Ovaj telefon",
     "memoryProvenanceMac": "Mac",
     "memoryProvenanceIphone": "iPhone",
     "memoryProvenanceAndroid": "Android",
-    "deviceTutorial": "Kako koristiti Omi",
-    "deviceOnboardingTranscriptionTitle": "Govorite u svoj Omi",
+    "deviceTutorial": "Kako koristiti Chronicle",
+    "deviceOnboardingTranscriptionTitle": "Govorite u svoj Chronicle",
     "deviceOnboardingTranscriptionSubtitle": "Recite nekoliko riječi i gledajte kako se pojavljuju u stvarnom vremenu",
     "deviceOnboardingGoodJob": "Odlično!",
     "deviceOnboardingStartSpeaking": "Počnite govoriti...",
@@ -10650,11 +10650,11 @@
     "deviceOnboardingStarConversation": "Označi tekući razgovor zvjezdicom",
     "deviceOnboardingStarConversationDesc": "Označi razgovor kao važan",
     "deviceOnboardingSingleTapHint": "To je bio jedan dodir – pokušajte brzo dodirnuti dvaput!",
-    "deviceOnboardingTryDoubleTap": "Pokušajte sada! Dvaput dodirnite svoj Omi",
+    "deviceOnboardingTryDoubleTap": "Pokušajte sada! Dvaput dodirnite svoj Chronicle",
     "deviceOnboardingContinue": "Nastavi",
     "deviceOnboardingFinish": "Završi",
-    "deviceOnboardingIntroTitle": "Upoznajte svoj Omi",
-    "deviceOnboardingIntroSubtitle": "Brz i praktičan obilazak svega što vaš Omi može.",
+    "deviceOnboardingIntroTitle": "Upoznajte svoj Chronicle",
+    "deviceOnboardingIntroSubtitle": "Brz i praktičan obilazak svega što vaš Chronicle može.",
     "deviceOnboardingIntroDuration": "Otprilike 1 minuta",
     "jumpToLatestMessage": "Idi na najnoviju poruku",
     "latest": "Najnovije",
@@ -10672,12 +10672,12 @@
     },
     "pendantStorageAlmostFull": "Pohrana privjeska gotovo je puna — drži aplikaciju otvorenom radi sinkronizacije.",
     "connectRayBanMeta": "Poveži Ray-Ban Meta",
-    "raybanMetaSetupDescription": "Koristite svoje Ray-Ban Meta naočale kao Omi uređaj za snimanje razgovora i vizualnog konteksta. Omi će otvoriti aplikaciju Meta AI za povezivanje vaših naočala.",
+    "raybanMetaSetupDescription": "Koristite svoje Ray-Ban Meta naočale kao Chronicle uređaj za snimanje razgovora i vizualnog konteksta. Chronicle će otvoriti aplikaciju Meta AI za povezivanje vaših naočala.",
     "raybanMetaOpenMetaAI": "Poveži putem Meta AI",
     "raybanMetaWaitingForMetaAI": "Dovršite povezivanje u aplikaciji Meta AI, a zatim se vratite ovamo.",
     "raybanMetaCheckAgain": "Provjeri ponovno",
     "raybanMetaAllowCamera": "Dopusti kameru na naočalama",
-    "raybanMetaCameraExplanation": "Omi koristi kameru vaših naočala za dodavanje fotografija u vaše razgovore. Ovaj korak možete preskočiti i koristiti samo zvuk.",
+    "raybanMetaCameraExplanation": "Chronicle koristi kameru vaših naočala za dodavanje fotografija u vaše razgovore. Ovaj korak možete preskočiti i koristiti samo zvuk.",
     "raybanMetaSkipForNow": "Preskoči za sada",
     "raybanMetaAudioOnlyTitle": "Ray-Ban Meta način rada samo sa zvukom",
     "raybanMetaAudioOnlyExplanation": "Ova verzija Omija može koristiti mikrofon vaših naočala putem Bluetooth veze. Za snimanje fotografija potrebna je Meta razvojna verzija Omija.",
@@ -10705,7 +10705,7 @@
     "phoneMicOfflineFallbackMessage": "Nema veze — snima se lokalno. Bit će transkribirano kad ponovno budeš na mreži.",
     "dataEncryptedBanner": "Vaši su podaci prema zadanim postavkama zaštićeni snažnom enkripcijom, a vi kontrolirate kako se pohranjuju i koriste.",
     "rayBanMetaMicPickerTitle": "Odaberite mikrofon Ray-Ban Meta",
-    "rayBanMetaMicPickerDescription": "Odaberite Bluetooth mikrofon naočala. Glazba se pauzira dok ga Omi koristi.",
+    "rayBanMetaMicPickerDescription": "Odaberite Bluetooth mikrofon naočala. Glazba se pauzira dok ga Chronicle koristi.",
     "rayBanMetaMicPickerEmpty": "Nije pronađen nijedan Bluetooth mikrofon. Povežite naočale u postavkama iPhonea pa pokušajte ponovno.",
     "rayBanMetaMicPickerLoadError": "Bluetooth mikrofoni nisu se mogli učitati. Provjerite je li Bluetooth uključen pa pokušajte ponovno.",
     "rayBanMetaMicPickerConnectError": "Povezivanje s tim mikrofonom nije uspjelo. Provjerite je li povezan u postavkama iPhonea.",
@@ -10758,14 +10758,14 @@
     "whisperModelSizeMedium": "Srednji",
     "whisperModelSizeSmall": "Mali",
     "whisperModelSizeTiny": "Sićušni",
-    "planSheetChooseYourPlan": "Odaberite svoj plan i otključajte neograničeni Omi.",
+    "planSheetChooseYourPlan": "Odaberite svoj plan i otključajte neograničeni Chronicle.",
     "availableOnMacMobileWeb": "Dostupno na Macu, mobitelu i webu",
     "popularBadge": "POPULARNO",
     "worksOnDesktop": "Radi na računalu",
     "noDesktopAccess": "Ne radi na računalu",
     "annualBillingSummary": "{months} mjeseci / {price}",
     "monthsFreeBadge": "{count, plural, one{{count} mjesec besplatno} few{{count} mjeseca besplatno} other{{count} mjeseci besplatno}}",
-    "freemiumLimitsIntro": "Omi je besplatan, ali besplatna inačica ima ograničenja koja utječu na vaše iskustvo:",
+    "freemiumLimitsIntro": "Chronicle je besplatan, ali besplatna inačica ima ograničenja koja utječu na vaše iskustvo:",
     "downgradeLimitDelayNotRealTime": "Kašnjenje od 5-7 sekundi (nije u stvarnom vremenu)",
     "downgradeToFreemiumAction": "Prijeđite na besplatnu inačicu",
     "getFreeUnlimitedAccess": "Ostvarite besplatan neograničen pristup",
@@ -10776,11 +10776,11 @@
     "baselineMemory": "Osnovna memorija",
     "alwaysInContext": "Uvijek u kontekstu",
     "accountCutoverUpdateRequiredTitle": "Je vyžadována aktualizace",
-    "accountCutoverUpdateRequiredMessage": "Nainstalujte nejnovější aplikaci Omi, abyste mohli pokračovat po migraci účtu.",
+    "accountCutoverUpdateRequiredMessage": "Nainstalujte nejnovější aplikaci Chronicle, abyste mohli pokračovat po migraci účtu.",
     "accountCutoverMigrationInProgressTitle": "Probíhá migrace",
     "accountCutoverMigrationInProgressMessage": "Váš účet se migrací. Produktové funkce jsou pozastaveny až do dokončení migrace.",
     "accountCutoverMigrationRollbackMessage": "Váš účet je po vrácení migrace v režimu údržby. Novější data mohou být izolována.",
     "accountCutoverOpenStore": "Otevřít obchod",
-    "sendRawAudioToOmi": "Šalji neobrađeni zvuk u Omi",
-    "sendRawAudioToOmiDescription": "Isključite kako biste spriječili slanje neobrađenog zvuka u Omi. Transkripti i podaci potrebni za funkcije u oblaku i dalje se mogu slati u Omi."
+    "sendRawAudioToOmi": "Šalji neobrađeni zvuk u Chronicle",
+    "sendRawAudioToOmiDescription": "Isključite kako biste spriječili slanje neobrađenog zvuka u Chronicle. Transkripti i podaci potrebni za funkcije u oblaku i dalje se mogu slati u Chronicle."
 }

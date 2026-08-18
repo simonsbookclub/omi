@@ -567,7 +567,7 @@ class ActionItemsProvider extends ChangeNotifier {
 
         final calendarItemId = await service.addReminder(
           title: item.description,
-          notes: 'From Omi',
+          notes: 'From Chronicle',
           dueDate: item.dueAt,
         );
 

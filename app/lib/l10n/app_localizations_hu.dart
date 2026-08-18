@@ -12,7 +12,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get sessionExpiredSignInAgain => 'A munkamenet lejárt — jelentkezz be újra.';
 
   @override
-  String get appTitle => 'Omi';
+  String get appTitle => 'Chronicle';
 
   @override
   String get conversationTab => 'Beszélgetés';
@@ -133,7 +133,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get editPerson => 'Személy szerkesztése';
 
   @override
-  String get createPersonHint => 'Hozz létre egy új személyt, és tanítsd meg az Omi-t, hogy felismerje a beszédét is!';
+  String get createPersonHint => 'Hozz létre egy új személyt, és tanítsd meg az Chronicle-t, hogy felismerje a beszédét is!';
 
   @override
   String get speechProfile => 'Beszédprofil';
@@ -273,7 +273,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noMessagesYet => 'Még nincsenek üzenetek!\nMiért nem kezdesz egy beszélgetést?';
 
   @override
-  String get deletingMessages => 'Üzenetek törlése az Omi memóriájából...';
+  String get deletingMessages => 'Üzenetek törlése az Chronicle memóriájából...';
 
   @override
   String get messageCopied => '✨ Üzenet vágólapra másolva';
@@ -303,7 +303,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get maxFilesLimit => 'Egyszerre csak 4 fájlt tölthetsz fel';
 
   @override
-  String get chatWithOmi => 'Csevegés Omi-val';
+  String get chatWithOmi => 'Csevegés Chronicle-val';
 
   @override
   String get apps => 'Alkalmazások';
@@ -334,7 +334,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Nem sikerült betölteni az alkalmazásokat :(\n\nKérlek, ellenőrizd az internetkapcsolatot, és próbáld újra.';
 
   @override
-  String get aboutOmi => 'Az Omi-ról';
+  String get aboutOmi => 'Az Chronicle-ról';
 
   @override
   String get privacyPolicy => 'Adatvédelmi szabályzatot';
@@ -455,7 +455,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get developerSettings => 'Fejlesztői beállítások';
 
   @override
-  String get getOmiForMac => 'Szerezd be az Omi-t Mac-re';
+  String get getOmiForMac => 'Szerezd be az Chronicle-t Mac-re';
 
   @override
   String get referralProgram => 'Ajánlói program';
@@ -474,7 +474,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get privacyIntro =>
-      'Az Omi-nál elkötelezettek vagyunk az adatvédelem iránt. Ez az oldal lehetővé teszi az adataid tárolásának és felhasználásának szabályozását.';
+      'Az Chronicle-nál elkötelezettek vagyunk az adatvédelem iránt. Ez az oldal lehetővé teszi az adataid tárolásának és felhasználásának szabályozását.';
 
   @override
   String get learnMore => 'További információ...';
@@ -545,7 +545,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get unpairAndForget => 'Párosítás megszüntetése és elfelejtés';
 
   @override
-  String get deviceDisconnectedMessage => 'Az Omi leválasztásra került 😔';
+  String get deviceDisconnectedMessage => 'Az Chronicle leválasztásra került 😔';
 
   @override
   String get deviceUnpairedMessage =>
@@ -563,7 +563,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get connectDeviceMessage =>
-      'Csatlakoztasd az Omi eszközödet az eszköz\nbeállítások és testreszabás eléréséhez';
+      'Csatlakoztasd az Chronicle eszközödet az eszköz\nbeállítások és testreszabás eléréséhez';
 
   @override
   String get deviceInfoSection => 'Eszköz információk';
@@ -693,7 +693,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get docs => 'Dokumentáció';
 
   @override
-  String get yourOmiInsights => 'Omi statisztikáid';
+  String get yourOmiInsights => 'Chronicle statisztikáid';
 
   @override
   String get today => 'Ma';
@@ -712,13 +712,13 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get startConversationToSeeInsights =>
-      'Kezdj egy beszélgetést Omi-val,\nhogy itt lásd a használati statisztikáidat.';
+      'Kezdj egy beszélgetést Chronicle-val,\nhogy itt lásd a használati statisztikáidat.';
 
   @override
   String get listening => 'Figyelés';
 
   @override
-  String get listeningSubtitle => 'Az összes idő, amit az Omi aktívan figyelt.';
+  String get listeningSubtitle => 'Az összes idő, amit az Chronicle aktívan figyelt.';
 
   @override
   String get understanding => 'Megértés';
@@ -770,7 +770,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get shareStatsMessage =>
-      'Megosztom az Omi statisztikáimat! (omi.me - mindig rendelkezésre álló AI asszisztensed)';
+      'Megosztom az Chronicle statisztikáimat! (omi.me - mindig rendelkezésre álló AI asszisztensed)';
 
   @override
   String get sharePeriodToday => 'Ma az omi:';
@@ -817,7 +817,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noLogFilesFound => 'Nem találhatók naplófájlok.';
 
   @override
-  String get omiDebugLog => 'Omi hibakeresési napló';
+  String get omiDebugLog => 'Chronicle hibakeresési napló';
 
   @override
   String get logShared => 'Napló megosztva';
@@ -841,7 +841,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get exportDataDesc => 'Beszélgetések exportálása JSON fájlba';
 
   @override
-  String get exportedConversations => 'Exportált beszélgetések az Omi-ból';
+  String get exportedConversations => 'Exportált beszélgetések az Chronicle-ból';
 
   @override
   String get exportShared => 'Exportálás megosztva';
@@ -1018,7 +1018,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get addWordsDesc => 'Nevek, kifejezések vagy ritka szavak';
 
   @override
-  String get vocabularyHint => 'Omi, Callie, OpenAI';
+  String get vocabularyHint => 'Chronicle, Callie, OpenAI';
 
   @override
   String get connect => 'Csatlakozás';
@@ -1064,7 +1064,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String authAccessMessage(String appName) {
-    return 'Engedélyezned kell az Omi-nak, hogy hozzáférjen a(z) $appName adataidhoz. Ez megnyitja a böngésződ a hitelesítéshez.';
+    return 'Engedélyezned kell az Chronicle-nak, hogy hozzáférjen a(z) $appName adataidhoz. Ez megnyitja a böngésződ a hitelesítéshez.';
   }
 
   @override
@@ -1161,7 +1161,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get editName => 'Név szerkesztése';
 
   @override
-  String get howShouldOmiCallYou => 'Hogyan szólítson az Omi?';
+  String get howShouldOmiCallYou => 'Hogyan szólítson az Chronicle?';
 
   @override
   String get enterYourName => 'Adja meg a nevét';
@@ -1435,7 +1435,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String authorizeOmiForTasks(String appName) {
-    return 'Engedélyezned kell az Omi-nak, hogy feladatokat hozzon létre a(z) $appName fiókodban. Ez megnyitja a böngésződ a hitelesítéshez.';
+    return 'Engedélyezned kell az Chronicle-nak, hogy feladatokat hozzon létre a(z) $appName fiókodban. Ez megnyitja a böngésződ a hitelesítéshez.';
   }
 
   @override
@@ -1476,7 +1476,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get freeMinutesMonth => '300 ingyenes perc/hónap tartalmazza. Korlátlan a következővel: ';
 
   @override
-  String get omiUnlimited => 'Omi Unlimited';
+  String get omiUnlimited => 'Chronicle Unlimited';
 
   @override
   String get hostRequired => 'Host szükséges';
@@ -1594,11 +1594,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String deviceUsesCodec(String device, String reason) {
-    return '$device $reason-t használ. Omi lesz használva.';
+    return '$device $reason-t használ. Chronicle lesz használva.';
   }
 
   @override
-  String get omiTranscription => 'Omi átírás';
+  String get omiTranscription => 'Chronicle átírás';
 
   @override
   String get bestInClassTranscription => 'Legjobb átírás a kategóriában, zéró beállítással';
@@ -1750,7 +1750,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get bluetoothNeeded =>
-      'Az Omi-nak Bluetoothra van szüksége a viselhető eszközhöz való csatlakozáshoz. Kérlek, engedélyezd a Bluetooth-t, és próbáld újra.';
+      'Az Chronicle-nak Bluetoothra van szüksége a viselhető eszközhöz való csatlakozáshoz. Kérlek, engedélyezd a Bluetooth-t, és próbáld újra.';
 
   @override
   String get contactSupport => 'Ügyfélszolgálat elérése?';
@@ -1765,7 +1765,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get backgroundActivity => 'Háttérműködés';
 
   @override
-  String get backgroundActivityDesc => 'Engedd, hogy az Omi a háttérben fusson a jobb stabilitás érdekében';
+  String get backgroundActivityDesc => 'Engedd, hogy az Chronicle a háttérben fusson a jobb stabilitás érdekében';
 
   @override
   String get locationAccess => 'Helymeghatározás';
@@ -1794,7 +1794,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Kérlek, menj az eszköz beállításaihoz, és állítsd a helymeghatározási engedélyt \"Mindig engedélyezés\"-re';
 
   @override
-  String get lovingOmi => 'Tetszik az Omi?';
+  String get lovingOmi => 'Tetszik az Chronicle?';
 
   @override
   String get maybeLater => 'Talán később';
@@ -1856,7 +1856,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get tryAgain => 'Próbáld újra';
 
   @override
-  String get connectOmiOmiGlass => 'Omi / OmiGlass csatlakoztatása';
+  String get connectOmiOmiGlass => 'Chronicle / OmiGlass csatlakoztatása';
 
   @override
   String get continueWithoutDevice => 'Folytatás eszköz nélkül';
@@ -1893,7 +1893,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get termsOfUse => 'Felhasználási feltételeket';
 
   @override
-  String get omiYourAiCompanion => 'Omi – AI társad';
+  String get omiYourAiCompanion => 'Chronicle – AI társad';
 
   @override
   String get captureEveryMoment =>
@@ -1910,7 +1910,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get permissionGrantedNow =>
-      'Engedély megadva! Most:\n\nNyisd meg az Omi alkalmazást az órádon, és érintsd meg a \"Folytatás\" gombot alább';
+      'Engedély megadva! Most:\n\nNyisd meg az Chronicle alkalmazást az órádon, és érintsd meg a \"Folytatás\" gombot alább';
 
   @override
   String get needMicrophonePermission =>
@@ -1924,7 +1924,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get troubleshootingSteps =>
-      'Hibaelhárítás:\n\n1. Győződj meg róla, hogy az Omi telepítve van az órádon\n2. Nyisd meg az Omi alkalmazást az órádon\n3. Keresd az engedély felugró ablakot\n4. Érintsd meg az \"Engedélyezés\" gombot, amikor megjelenik\n5. Az óra alkalmazás bezárul - nyisd meg újra\n6. Térj vissza, és érintsd meg a \"Folytatás\" gombot az iPhone-odon';
+      'Hibaelhárítás:\n\n1. Győződj meg róla, hogy az Chronicle telepítve van az órádon\n2. Nyisd meg az Chronicle alkalmazást az órádon\n3. Keresd az engedély felugró ablakot\n4. Érintsd meg az \"Engedélyezés\" gombot, amikor megjelenik\n5. Az óra alkalmazás bezárul - nyisd meg újra\n6. Térj vissza, és érintsd meg a \"Folytatás\" gombot az iPhone-odon';
 
   @override
   String get recordingStartedSuccessfully => 'Felvétel sikeresen elindult!';
@@ -2077,16 +2077,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String get addFirstMemory => 'Add hozzá az első emlékedet';
 
   @override
-  String get clearMemoryTitle => 'Omi emlékének törlése';
+  String get clearMemoryTitle => 'Chronicle emlékének törlése';
 
   @override
-  String get clearMemoryMessage => 'Biztosan törölni szeretnéd az Omi emlékét? Ez a művelet nem vonható vissza.';
+  String get clearMemoryMessage => 'Biztosan törölni szeretnéd az Chronicle emlékét? Ez a művelet nem vonható vissza.';
 
   @override
   String get clearMemoryButton => 'Memória törlése';
 
   @override
-  String get memoryClearedSuccess => 'Az Omi rólad szóló emléke törölve lett';
+  String get memoryClearedSuccess => 'Az Chronicle rólad szóló emléke törölve lett';
 
   @override
   String get noMemoriesToDelete => 'Nincs törlendő emlékezet';
@@ -2246,7 +2246,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get translationNoticeMessage =>
-      'Az Omi az elsődleges nyelvedre fordítja a beszélgetéseket. Bármikor frissítheted a Beállítások → Profilok menüpontban.';
+      'Az Chronicle az elsődleges nyelvedre fordítja a beszélgetéseket. Bármikor frissítheted a Beállítások → Profilok menüpontban.';
 
   @override
   String get pleaseCheckInternetConnection => 'Kérjük, ellenőrizd az internetkapcsolatot, és próbáld újra';
@@ -2429,7 +2429,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get privacyPolicyTitle => 'Adatvédelmi irányelvek';
 
   @override
-  String get omiSttProvider => 'Omi';
+  String get omiSttProvider => 'Chronicle';
 
   @override
   String labelCopied(String label) {
@@ -2575,7 +2575,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get checksForAudioFiles => 'Ellenőrzi a hangfájlokat az SD kártyán';
 
   @override
-  String get omiSyncsAudioFiles => 'Az Omi ezután szinkronizálja a hangfájlokat a szerverrel';
+  String get omiSyncsAudioFiles => 'Az Chronicle ezután szinkronizálja a hangfájlokat a szerverrel';
 
   @override
   String get serverProcessesAudio => 'A szerver feldolgozza a hangfájlokat és emlékeket hoz létre';
@@ -2585,10 +2585,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get welcomeToOmiDescription =>
-      'Üdvözöljük az Omi-ban! Az AI társad készen áll, hogy segítsen a beszélgetésekben, feladatokban és még sok másban.';
+      'Üdvözöljük az Chronicle-ban! Az AI társad készen áll, hogy segítsen a beszélgetésekben, feladatokban és még sok másban.';
 
   @override
-  String get startUsingOmi => 'Omi használatának megkezdése';
+  String get startUsingOmi => 'Chronicle használatának megkezdése';
 
   @override
   String get back => 'Vissza';
@@ -2665,7 +2665,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get startCapturingConversations =>
-      'Kezdje el rögzíteni a beszélgetéseket Omi eszközével, hogy itt láthassa őket.';
+      'Kezdje el rögzíteni a beszélgetéseket Chronicle eszközével, hogy itt láthassa őket.';
 
   @override
   String get useMobileAppToCapture => 'Használja mobilalkalmazását hang rögzítéséhez';
@@ -2829,7 +2829,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get createNewApp => 'Új alkalmazás létrehozása';
 
   @override
-  String get buildSubmitCustomOmiApp => 'Készítsd el és nyújtsd be egyedi Omi alkalmazásodat';
+  String get buildSubmitCustomOmiApp => 'Készítsd el és nyújtsd be egyedi Chronicle alkalmazásodat';
 
   @override
   String get submittingYourApp => 'Alkalmazásod beküldése...';
@@ -2877,7 +2877,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get submitAppTermsAgreement =>
-      'Az alkalmazás beküldésével elfogadom az Omi AI Szolgáltatási Feltételeit és Adatvédelmi Irányelveit';
+      'Az alkalmazás beküldésével elfogadom az Chronicle AI Szolgáltatási Feltételeit és Adatvédelmi Irányelveit';
 
   @override
   String get submitApp => 'Alkalmazás beküldése';
@@ -2923,7 +2923,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get dataAccessWarning =>
-      'Ez az alkalmazás hozzáfér az adataihoz. Az Omi AI nem felelős azért, hogy ez az alkalmazás hogyan használja, módosítja vagy törli az adatait';
+      'Ez az alkalmazás hozzáfér az adataihoz. Az Chronicle AI nem felelős azért, hogy ez az alkalmazás hogyan használja, módosítja vagy törli az adatait';
 
   @override
   String get installApp => 'Alkalmazás telepítése';
@@ -3272,7 +3272,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get upgradeToPro => 'Frissítés Pro-ra';
 
   @override
-  String get getOmiDevice => 'Omi eszköz beszerzése';
+  String get getOmiDevice => 'Chronicle eszköz beszerzése';
 
   @override
   String get wearableAiCompanion => 'Hordható AI társ';
@@ -3348,15 +3348,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get allMemoriesAreNowPublic => 'Minden emlékezet most nyilvános';
 
   @override
-  String get clearOmisMemory => 'Omi memóriájának törlése';
+  String get clearOmisMemory => 'Chronicle memóriájának törlése';
 
   @override
   String clearMemoryConfirmation(int count) {
-    return 'Biztosan törölni szeretnéd az Omi memóriáját? Ez a művelet nem vonható vissza és véglegesen törli mind a(z) $count emlékezetet.';
+    return 'Biztosan törölni szeretnéd az Chronicle memóriáját? Ez a művelet nem vonható vissza és véglegesen törli mind a(z) $count emlékezetet.';
   }
 
   @override
-  String get omisMemoryCleared => 'Az Omi rólad szóló memóriája törölve lett';
+  String get omisMemoryCleared => 'Az Chronicle rólad szóló memóriája törölve lett';
 
   @override
   String get welcomeToOmi => 'Üdvözöljük az Omiban';
@@ -3405,7 +3405,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chooseYourLanguage => 'Válassza ki a nyelvét';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Válassza ki a preferált nyelvét a legjobb Omi élményért';
+  String get selectPreferredLanguageForBestExperience => 'Válassza ki a preferált nyelvét a legjobb Chronicle élményért';
 
   @override
   String get searchLanguages => 'Nyelvek keresése...';
@@ -3424,7 +3424,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get tellUsHowYouWouldLikeToBeAddressed =>
-      'Mondja el nekünk, hogyan szeretné, ha megszólítanánk. Ez segít személyre szabni az Omi élményt.';
+      'Mondja el nekünk, hogyan szeretné, ha megszólítanánk. Ez segít személyre szabni az Chronicle élményt.';
 
   @override
   String charactersCount(int count) {
@@ -3432,7 +3432,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Engedélyezze a funkciókat a legjobb Omi élményért az eszközén.';
+  String get enableFeaturesForBestExperience => 'Engedélyezze a funkciókat a legjobb Chronicle élményért az eszközén.';
 
   @override
   String get microphoneAccess => 'Mikrofon hozzáférés';
@@ -3442,7 +3442,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get microphoneAccessDescription =>
-      'Az Omi-nak mikrofon hozzáférésre van szüksége a beszélgetések rögzítéséhez és átirat készítéséhez.';
+      'Az Chronicle-nak mikrofon hozzáférésre van szüksége a beszélgetések rögzítéséhez és átirat készítéséhez.';
 
   @override
   String get screenRecording => 'Képernyőrögzítés';
@@ -3452,7 +3452,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get screenRecordingDescription =>
-      'Az Omi-nak képernyőrögzítési engedélyre van szüksége a rendszerhang rögzítéséhez a böngésző alapú találkozókból.';
+      'Az Chronicle-nak képernyőrögzítési engedélyre van szüksége a rendszerhang rögzítéséhez a böngésző alapú találkozókból.';
 
   @override
   String get accessibility => 'Akadálymentesség';
@@ -3462,7 +3462,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get accessibilityDescription =>
-      'Az Omi-nak akadálymentesítési engedélyre van szüksége annak észleléséhez, amikor csatlakozik Zoom, Meet vagy Teams találkozókhoz a böngészőjében.';
+      'Az Chronicle-nak akadálymentesítési engedélyre van szüksége annak észleléséhez, amikor csatlakozik Zoom, Meet vagy Teams találkozókhoz a böngészőjében.';
 
   @override
   String get pleaseWait => 'Kérem várjon...';
@@ -3495,10 +3495,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get voiceAndPeople => 'Hang és Emberek';
 
   @override
-  String get teachOmiYourVoice => 'Tanítsa meg az Omi-nak a hangját';
+  String get teachOmiYourVoice => 'Tanítsa meg az Chronicle-nak a hangját';
 
   @override
-  String get tellOmiWhoSaidIt => 'Mondja meg az Omi-nak, ki mondta 🗣️';
+  String get tellOmiWhoSaidIt => 'Mondja meg az Chronicle-nak, ki mondta 🗣️';
 
   @override
   String get payment => 'Fizetés';
@@ -3510,7 +3510,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get preferences => 'Beállítások';
 
   @override
-  String get helpImproveOmiBySharing => 'Segítsen az Omi fejlesztésében anonim elemzési adatok megosztásával';
+  String get helpImproveOmiBySharing => 'Segítsen az Chronicle fejlesztésében anonim elemzési adatok megosztásával';
 
   @override
   String get deleteAccount => 'Fiók Törlése';
@@ -3536,7 +3536,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get mcpDescription =>
-      'Az Omi más alkalmazásokhoz való csatlakoztatásához, hogy olvassa, keresse és kezelje az emlékeit és beszélgetéseit. Hozzon létre egy kulcsot az induláshoz.';
+      'Az Chronicle más alkalmazásokhoz való csatlakoztatásához, hogy olvassa, keresse és kezelje az emlékeit és beszélgetéseit. Hozzon létre egy kulcsot az induláshoz.';
 
   @override
   String get apiKeys => 'API kulcsok';
@@ -3571,7 +3571,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Aktiválódik, amikor a napi összefoglaló generálódik.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Próbálja ki az Omi csapat legújabb kísérleti funkcióit.';
+  String get tryLatestExperimentalFeatures => 'Próbálja ki az Chronicle csapat legújabb kísérleti funkcióit.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Átírási szolgáltatás diagnosztikai állapota';
@@ -3643,7 +3643,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get letOmiChooseAutomatically => 'Hagyja, hogy az Omi automatikusan válassza ki a legjobb alkalmazást';
+  String get letOmiChooseAutomatically => 'Hagyja, hogy az Chronicle automatikusan válassza ki a legjobb alkalmazást';
 
   @override
   String get deleteConversationConfirmation => 'Biztosan törli ezt a beszélgetést? Ez a művelet nem vonható vissza.';
@@ -3927,7 +3927,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ez törli az összes származtatott tudásgráf adatot. Az eredeti emlékei biztonságban maradnak.';
 
   @override
-  String get connectOmiWithAI => 'Csatlakoztassa az Omi-t AI asszisztensekhez';
+  String get connectOmiWithAI => 'Csatlakoztassa az Chronicle-t AI asszisztensekhez';
 
   @override
   String get noAPIKeys => 'Nincsenek API kulcsok. Hozzon létre egyet a kezdéshez.';
@@ -3960,7 +3960,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get holdOnPreparingForm => 'Várjon, előkészítjük az űrlapot';
 
   @override
-  String get bySubmittingYouAgreeToOmi => 'Beküldéssel elfogadja az Omi ';
+  String get bySubmittingYouAgreeToOmi => 'Beküldéssel elfogadja az Chronicle ';
 
   @override
   String get termsAndPrivacyPolicy => 'Feltételek és Adatvédelmi Irányelvek';
@@ -4123,7 +4123,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get dataAccessNoticeDescription =>
-      'Ez az alkalmazás hozzá fog férni az adataidhoz. Az Omi AI nem felelős azért, hogy ez az alkalmazás hogyan használja, módosítja vagy törli az adataidat';
+      'Ez az alkalmazás hozzá fog férni az adataidhoz. Az Chronicle AI nem felelős azért, hogy ez az alkalmazás hogyan használja, módosítja vagy törli az adataidat';
 
   @override
   String get copyUrl => 'URL másolása';
@@ -4208,14 +4208,14 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get omiApiKeys => 'Omi API-kulcsok';
+  String get omiApiKeys => 'Chronicle API-kulcsok';
 
   @override
   String get apiKeysDescription =>
       'Az API-kulcsokat hitelesítésre használják, amikor az alkalmazásod kommunikál az OMI szerverrel. Lehetővé teszik az alkalmazásod számára, hogy emlékeket hozzon létre és biztonságosan hozzáférjen más OMI szolgáltatásokhoz.';
 
   @override
-  String get aboutOmiApiKeys => 'Az Omi API-kulcsokról';
+  String get aboutOmiApiKeys => 'Az Chronicle API-kulcsokról';
 
   @override
   String get yourNewKey => 'Az új kulcsod:';
@@ -4346,7 +4346,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get e2eeDescription =>
-      'A végpontok közötti titkosítás a magánélet aranystandardja. Ha engedélyezve van, az adatait az eszközén titkosítjuk, mielőtt elküldenénk a szervereinkre. Ez azt jelenti, hogy senki, még az Omi sem férhet hozzá a tartalmához.';
+      'A végpontok közötti titkosítás a magánélet aranystandardja. Ha engedélyezve van, az adatait az eszközén titkosítjuk, mielőtt elküldenénk a szervereinkre. Ez azt jelenti, hogy senki, még az Chronicle sem férhet hozzá a tartalmához.';
 
   @override
   String get importantTradeoffs => 'Fontos kompromisszumok:';
@@ -4382,7 +4382,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get secureEncryptionDescription =>
-      'Az adatait egy Önnek egyedi kulccsal titkosítjuk a szervereink, amelyek a Google Cloudon vannak. Ez azt jelenti, hogy a nyers tartalma senkinek sem hozzáférhető, beleértve az Omi személyzetét vagy a Google-t, közvetlenül az adatbázisból.';
+      'Az adatait egy Önnek egyedi kulccsal titkosítjuk a szervereink, amelyek a Google Cloudon vannak. Ez azt jelenti, hogy a nyers tartalma senkinek sem hozzáférhető, beleértve az Chronicle személyzetét vagy a Google-t, közvetlenül az adatbázisból.';
 
   @override
   String get endToEndEncryption => 'Végpontok közötti titkosítás';
@@ -4453,14 +4453,14 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get omiTraining => 'Omi Képzés';
+  String get omiTraining => 'Chronicle Képzés';
 
   @override
   String get trainingDataProgram => 'Képzési adatprogram';
 
   @override
   String get getOmiUnlimitedFree =>
-      'Szerezze meg az Omi Unlimited-et ingyen, ha hozzájárul adataival az AI modellek képzéséhez.';
+      'Szerezze meg az Chronicle Unlimited-et ingyen, ha hozzájárul adataival az AI modellek képzéséhez.';
 
   @override
   String get trainingDataBullets =>
@@ -4545,7 +4545,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get youAreOnUnlimitedPlan => 'Ön a Korlátlan csomagban van.';
 
   @override
-  String get yourOmiUnleashed => 'Az Omi-ja, szabadjára engedve. Váljon korlátlanná a végtelen lehetőségekért.';
+  String get yourOmiUnleashed => 'Az Chronicle-ja, szabadjára engedve. Váljon korlátlanná a végtelen lehetőségekért.';
 
   @override
   String planEndedOn(String date) {
@@ -4569,10 +4569,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get unlimitedConversations => 'Korlátlan beszélgetések';
 
   @override
-  String get askOmiAnything => 'Kérdezzen Omi-tól bármit az életéről';
+  String get askOmiAnything => 'Kérdezzen Chronicle-tól bármit az életéről';
 
   @override
-  String get unlockOmiInfiniteMemory => 'Oldja fel Omi végtelen memóriáját';
+  String get unlockOmiInfiniteMemory => 'Oldja fel Chronicle végtelen memóriáját';
 
   @override
   String get youreOnAnnualPlan => 'Ön az éves csomagon van';
@@ -4642,11 +4642,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get commitmentText =>
-      'Elkötelezettek vagyunk amellett, hogy az általunk gyűjtött adatokat csak arra használjuk, hogy az Omi jobb termék legyen az Ön számára. Adatainak védelme és bizalma kiemelten fontos számunkra.';
+      'Elkötelezettek vagyunk amellett, hogy az általunk gyűjtött adatokat csak arra használjuk, hogy az Chronicle jobb termék legyen az Ön számára. Adatainak védelme és bizalma kiemelten fontos számunkra.';
 
   @override
   String get thankYouText =>
-      'Köszönjük, hogy az Omi értékes felhasználója. Ha kérdése vagy aggálya van, forduljon hozzánk a team@basedhardware.com címen.';
+      'Köszönjük, hogy az Chronicle értékes felhasználója. Ha kérdése vagy aggálya van, forduljon hozzánk a team@basedhardware.com címen.';
 
   @override
   String get password => 'Jelszó';
@@ -4730,7 +4730,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get minutes => 'perc';
 
   @override
-  String get omiHas => 'Omi:';
+  String get omiHas => 'Chronicle:';
 
   @override
   String get premiumMinutesUsed => 'Prémium percek elhasználva.';
@@ -4823,7 +4823,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get howPeopleWorks =>
-      'Ha létrehoz egy személyt, elmehet egy beszélgetés átiratához, és hozzárendelheti a megfelelő szegmenseket, így az Omi képes lesz felismerni az ő beszédét is!';
+      'Ha létrehoz egy személyt, elmehet egy beszélgetés átiratához, és hozzárendelheti a megfelelő szegmenseket, így az Chronicle képes lesz felismerni az ő beszédét is!';
 
   @override
   String get tapToDelete => 'Koppintson a törléshez';
@@ -5106,7 +5106,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get enableApps => 'Alkalmazások engedélyezése';
 
   @override
-  String get omiAppName => 'Omi';
+  String get omiAppName => 'Chronicle';
 
   @override
   String get showMore => 'mutass többet ↓';
@@ -5134,14 +5134,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get installOmiOnAppleWatchDescription =>
-      'Az Apple Watch Omival való használatához először telepítenie kell az Omi alkalmazást az órájára.';
+      'Az Apple Watch Omival való használatához először telepítenie kell az Chronicle alkalmazást az órájára.';
 
   @override
   String get openOmiOnAppleWatch => 'Nyissa meg az Omit az\nApple Watch-on';
 
   @override
   String get openOmiOnAppleWatchDescription =>
-      'Az Omi alkalmazás telepítve van az Apple Watch-ra. Nyissa meg és érintse meg a Start gombot.';
+      'Az Chronicle alkalmazás telepítve van az Apple Watch-ra. Nyissa meg és érintse meg a Start gombot.';
 
   @override
   String get openWatchApp => 'Watch alkalmazás megnyitása';
@@ -5158,7 +5158,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get appleWatchNotReachable =>
-      'Az Apple Watch még nem érhető el. Győződjön meg róla, hogy az Omi alkalmazás nyitva van az óráján.';
+      'Az Apple Watch még nem érhető el. Győződjön meg róla, hogy az Chronicle alkalmazás nyitva van az óráján.';
 
   @override
   String errorCheckingConnection(String error) {
@@ -5237,7 +5237,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noSummary => 'Nincs összefoglaló';
 
   @override
-  String get updateOmiFirmware => 'Omi firmware frissítése';
+  String get updateOmiFirmware => 'Chronicle firmware frissítése';
 
   @override
   String get anErrorOccurredTryAgain => 'Hiba történt. Kérjük, próbálja újra.';
@@ -5247,7 +5247,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get addVocabularyDescription =>
-      'Adjon hozzá szavakat, amelyeket az Omi-nak fel kell ismernie az átírás során.';
+      'Adjon hozzá szavakat, amelyeket az Chronicle-nak fel kell ismernie az átírás során.';
 
   @override
   String get enterWordsCommaSeparated => 'Adja meg a szavakat (vesszővel elválasztva)';
@@ -5408,13 +5408,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get wrappedNoDataAvailable => 'Nincs elérhető adat';
 
   @override
-  String get wrappedOmiLifeRecap => 'Omi élet összefoglaló';
+  String get wrappedOmiLifeRecap => 'Chronicle élet összefoglaló';
 
   @override
   String get wrappedSwipeUpToBegin => 'Húzd felfelé a kezdéshez';
 
   @override
-  String get wrappedShareText => '2025-öm, az Omi által megőrizve ✨ omi.me/wrapped';
+  String get wrappedShareText => '2025-öm, az Chronicle által megőrizve ✨ omi.me/wrapped';
 
   @override
   String get wrappedFailedToShare => 'Megosztás sikertelen. Kérjük, próbáld újra.';
@@ -5435,7 +5435,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get wrappedMy2025 => '2025-öm';
 
   @override
-  String get wrappedRememberedByOmi => 'az Omi által megőrizve';
+  String get wrappedRememberedByOmi => 'az Chronicle által megőrizve';
 
   @override
   String get wrappedMostFunDay => 'Legszórakoztatóbb';
@@ -5652,7 +5652,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get notificationFrequency => 'Értesítések gyakorisága';
 
   @override
-  String get controlNotificationFrequency => 'Szabályozza, milyen gyakran küld Önnek proaktív értesítéseket az Omi.';
+  String get controlNotificationFrequency => 'Szabályozza, milyen gyakran küld Önnek proaktív értesítéseket az Chronicle.';
 
   @override
   String get yourScore => 'Az Ön pontszáma';
@@ -5678,7 +5678,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get notificationFrequencyDescription =>
-      'Szabályozd, milyen gyakran küld az Omi proaktív értesítéseket és emlékeztetőket.';
+      'Szabályozd, milyen gyakran küld az Chronicle proaktív értesítéseket és emlékeztetőket.';
 
   @override
   String get sliderOff => 'Ki';
@@ -5880,7 +5880,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get noRecordings => 'Nincsenek felvételek';
 
   @override
-  String get audioFromOmiWillAppearHere => 'Az Omi eszközödről származó hanganyag itt fog megjelenni';
+  String get audioFromOmiWillAppearHere => 'Az Chronicle eszközödről származó hanganyag itt fog megjelenni';
 
   @override
   String get deleteProcessed => 'Feldolgozottak törlése';
@@ -6001,7 +6001,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get batteryUsageHigher => 'Az akkumulátorhasználat magasabb lesz, mint a felhő átírás esetén.';
 
   @override
-  String get considerOmiCloud => 'Fontold meg az Omi Cloud használatát a jobb teljesítmény érdekében.';
+  String get considerOmiCloud => 'Fontold meg az Chronicle Cloud használatát a jobb teljesítmény érdekében.';
 
   @override
   String get highResourceUsage => 'Magas erőforrás-használat';
@@ -6158,7 +6158,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get omiTranscriptionOptimized =>
-      'Az Omi beépített élő átírása valós idejű beszélgetésekre van optimalizálva automatikus beszélő-felismeréssel és diarizációval.';
+      'Az Chronicle beépített élő átírása valós idejű beszélgetésekre van optimalizálva automatikus beszélő-felismeréssel és diarizációval.';
 
   @override
   String get reset => 'Visszaállítás';
@@ -6252,7 +6252,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get setupQuestionProfession => '1. Mi a foglalkozásod?';
 
   @override
-  String get setupQuestionUsage => '2. Hol tervezed használni az Omi-t?';
+  String get setupQuestionUsage => '2. Hol tervezed használni az Chronicle-t?';
 
   @override
   String get setupQuestionAge => '3. Hány éves vagy?';
@@ -6768,23 +6768,23 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get batteryFullyChargedTitle => 'Az Omi teljesen feltöltődött';
+  String get batteryFullyChargedTitle => 'Az Chronicle teljesen feltöltődött';
 
   @override
-  String get batteryFullyChargedBody => 'Az Omi eszköz teljesen feltöltődött. Leválaszthatod!';
+  String get batteryFullyChargedBody => 'Az Chronicle eszköz teljesen feltöltődött. Leválaszthatod!';
 
   @override
-  String get deviceDisconnectedNotificationTitle => 'Az Omi eszköz lecsatlakozott';
+  String get deviceDisconnectedNotificationTitle => 'Az Chronicle eszköz lecsatlakozott';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Kérjük, csatlakozzon újra az Omi használatának folytatásához.';
+  String get deviceDisconnectedNotificationBody => 'Kérjük, csatlakozzon újra az Chronicle használatának folytatásához.';
 
   @override
   String get firmwareUpdateAvailable => 'Firmware frissítés elérhető';
 
   @override
   String firmwareUpdateAvailableDescription(String version) {
-    return 'Új firmware frissítés ($version) érhető el az Omi eszközéhez. Szeretné most frissíteni?';
+    return 'Új firmware frissítés ($version) érhető el az Chronicle eszközéhez. Szeretné most frissíteni?';
   }
 
   @override
@@ -7063,7 +7063,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get nextButton => 'Következő';
 
   @override
-  String get connectOmiDevice => 'Omi eszköz csatlakoztatása';
+  String get connectOmiDevice => 'Chronicle eszköz csatlakoztatása';
 
   @override
   String planSwitchingDescriptionWithTitle(String title) {
@@ -7094,7 +7094,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get transcriptionJsonPlaceholder => 'Illeszd be a JSON konfigurációdat ide...';
 
   @override
-  String get transcriptionSourceOmi => 'Omi';
+  String get transcriptionSourceOmi => 'Chronicle';
 
   @override
   String get pricePlaceholder => '0.00';
@@ -7118,7 +7118,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get actionItemReminderTitle => 'Omi emlékeztető';
+  String get actionItemReminderTitle => 'Chronicle emlékeztető';
 
   @override
   String deviceDisconnectedTitle(String deviceName) {
@@ -7146,7 +7146,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get onboardingComplete => 'Kész';
 
   @override
-  String get onboardingWelcomeToOmi => 'Üdvözöl az Omi';
+  String get onboardingWelcomeToOmi => 'Üdvözöl az Chronicle';
 
   @override
   String get onboardingTellUsAboutYourself => 'Mesélj magadról';
@@ -7885,20 +7885,20 @@ class AppLocalizationsHu extends AppLocalizations {
   String get reportAnIssue => 'Probléma jelentése';
 
   @override
-  String get pairingTitleOmi => 'Kapcsolja be az Omi-t';
+  String get pairingTitleOmi => 'Kapcsolja be az Chronicle-t';
 
   @override
   String get pairingDescOmi => 'Tartsa nyomva az eszközt, amíg rezeg, a bekapcsoláshoz.';
 
   @override
-  String get pairingTitleOmiDevkit => 'Állítsa Omi DevKit-et párosítási módba';
+  String get pairingTitleOmiDevkit => 'Állítsa Chronicle DevKit-et párosítási módba';
 
   @override
   String get pairingDescOmiDevkit =>
       'Nyomja meg a gombot egyszer a bekapcsoláshoz. A LED lilán villog párosítási módban.';
 
   @override
-  String get pairingTitleOmiGlass => 'Kapcsolja be az Omi Glass-t';
+  String get pairingTitleOmiGlass => 'Kapcsolja be az Chronicle Glass-t';
 
   @override
   String get pairingDescOmiGlass => 'Tartsa nyomva az oldalgombot 3 másodpercig a bekapcsoláshoz.';
@@ -7941,7 +7941,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get pairingDescAppleWatch =>
-      'Telepítse és nyissa meg az Omi alkalmazást Apple Watch-ján, majd koppintson a Csatlakozás gombra az alkalmazásban.';
+      'Telepítse és nyissa meg az Chronicle alkalmazást Apple Watch-ján, majd koppintson a Csatlakozás gombra az alkalmazásban.';
 
   @override
   String get pairingTitleNeoOne => 'Állítsa Neo One-t párosítási módba';
@@ -8036,7 +8036,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Ezt tudom rólad';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Ez a térkép frissül, ahogy az Omi tanul a beszélgetéseidből.';
+  String get onboardingWhatIKnowAboutYouDescription => 'Ez a térkép frissül, ahogy az Chronicle tanul a beszélgetéseidből.';
 
   @override
   String get apiEnvironment => 'API környezet';
@@ -8292,11 +8292,11 @@ class AppLocalizationsHu extends AppLocalizations {
   String get showTasksOnHomepage => 'Feladatok megjelenítése a főoldalon';
 
   @override
-  String get phoneCallsUnlimitedOnly => 'Telefonhívások az Omi-n keresztül';
+  String get phoneCallsUnlimitedOnly => 'Telefonhívások az Chronicle-n keresztül';
 
   @override
   String get phoneCallsUpsellSubtitle =>
-      'Hívjon az Omi-n keresztül, és kapjon valós idejű átírást, automatikus összefoglalókat és még többet.';
+      'Hívjon az Chronicle-n keresztül, és kapjon valós idejű átírást, automatikus összefoglalókat és még többet.';
 
   @override
   String get phoneCallsUpsellFeature1 => 'Minden hívás valós idejű átírása';
@@ -8416,7 +8416,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get fairUseAboutBody =>
-      'Az Omi személyes beszélgetésekhez, megbeszélésekhez és élő interakciókhoz készült. A használatot a ténylegesen észlelt beszédidő alapján mérik, nem a csatlakozási idő alapján. Ha a használat jelentősen meghaladja a nem személyes tartalom normális mintáit, módosítások alkalmazhatók.';
+      'Az Chronicle személyes beszélgetésekhez, megbeszélésekhez és élő interakciókhoz készült. A használatot a ténylegesen észlelt beszédidő alapján mérik, nem a csatlakozási idő alapján. Ha a használat jelentősen meghaladja a nem személyes tartalom normális mintáit, módosítások alkalmazhatók.';
 
   @override
   String fairUseCaseRefCopied(String caseRef) {
@@ -8455,7 +8455,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get improveConnectionContent =>
-      'Javítottuk, hogyan marad az Omi csatlakozva az eszközödhöz. Az aktiváláshoz menj az Eszközinfo oldalra, koppints az \"Eszköz leválasztása\" gombra, majd párosítsd újra az eszközödet.';
+      'Javítottuk, hogyan marad az Chronicle csatlakozva az eszközödhöz. Az aktiváláshoz menj az Eszközinfo oldalra, koppints az \"Eszköz leválasztása\" gombra, majd párosítsd újra az eszközödet.';
 
   @override
   String get improveConnectionAction => 'Értem';
@@ -8466,7 +8466,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get omisStorage => 'Omi tárhelye';
+  String get omisStorage => 'Chronicle tárhelye';
 
   @override
   String get phoneStorage => 'Telefon tárhelye';
@@ -8511,11 +8511,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get omisStorageDesc =>
-      'Amikor az Omi nincs csatlakoztatva a telefonjához, a hangot helyileg tárolja a beépített memóriájában. Soha nem veszít el egy felvételt sem.';
+      'Amikor az Chronicle nincs csatlakoztatva a telefonjához, a hangot helyileg tárolja a beépített memóriájában. Soha nem veszít el egy felvételt sem.';
 
   @override
   String get phoneStorageDesc =>
-      'Amikor az Omi újra csatlakozik, a felvételek automatikusan átkerülnek a telefonjára feltöltés előtt.';
+      'Amikor az Chronicle újra csatlakozik, a felvételek automatikusan átkerülnek a telefonjára feltöltés előtt.';
 
   @override
   String get cloudStorageDesc =>
@@ -8544,17 +8544,17 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get permissionsPageDescription =>
-      'Ezek az engedélyek alapvetőek az Omi működéséhez. Kulcsfontosságú funkciókat tesznek lehetővé, mint az értesítések, helymeghatározáson alapuló élmények és hangfelvétel.';
+      'Ezek az engedélyek alapvetőek az Chronicle működéséhez. Kulcsfontosságú funkciókat tesznek lehetővé, mint az értesítések, helymeghatározáson alapuló élmények és hangfelvétel.';
 
   @override
   String get permissionsRequiredDescription =>
-      'Az Omi néhány engedélyre van szüksége a megfelelő működéshez. Kérjük, add meg őket a folytatáshoz.';
+      'Az Chronicle néhány engedélyre van szüksége a megfelelő működéshez. Kérjük, add meg őket a folytatáshoz.';
 
   @override
   String get permissionsSetupTitle => 'Szerezd meg a legjobb élményt';
 
   @override
-  String get permissionsSetupDescription => 'Engedélyezz néhány jogosultságot, hogy az Omi varázsolhasson.';
+  String get permissionsSetupDescription => 'Engedélyezz néhány jogosultságot, hogy az Chronicle varázsolhasson.';
 
   @override
   String get permissionsChangeAnytime => 'Ezeket bármikor módosíthatod a Beállítások > Engedélyek menüben';
@@ -8849,7 +8849,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get appleHealthManageNote =>
-      'Az Omi az Apple HealthKit keretrendszerén keresztül fér hozzá az Apple Healthhez. A hozzáférést bármikor visszavonhatod az iOS beállításaiból.';
+      'Az Chronicle az Apple HealthKit keretrendszerén keresztül fér hozzá az Apple Healthhez. A hozzáférést bármikor visszavonhatod az iOS beállításaiból.';
 
   @override
   String get appleHealthConnectCta => 'Csatlakozás az Apple Healthhez';
@@ -8870,26 +8870,26 @@ class AppLocalizationsHu extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Csak olvasási hozzáférés';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Az Omi soha nem ír az Apple Healthbe, és nem módosítja az adataidat.';
+  String get appleHealthFeatureReadOnlyDesc => 'Az Chronicle soha nem ír az Apple Healthbe, és nem módosítja az adataidat.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Biztonságos szinkronizálás';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Apple Health-adataid bizalmasan szinkronizálódnak az Omi-fiókoddal.';
+  String get appleHealthFeatureSecureDesc => 'Apple Health-adataid bizalmasan szinkronizálódnak az Chronicle-fiókoddal.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health-hozzáférés megtagadva';
 
   @override
   String get appleHealthDeniedBody =>
-      'Az Ominak nincs engedélye az Apple Health-adataid olvasására. Engedélyezd: iOS Beállítások → Adatvédelem és biztonság → Health → Omi.';
+      'Az Ominak nincs engedélye az Apple Health-adataid olvasására. Engedélyezd: iOS Beállítások → Adatvédelem és biztonság → Health → Chronicle.';
 
   @override
   String get deleteFlowReasonTitle => 'Miért távozol?';
 
   @override
-  String get deleteFlowReasonSubtitle => 'A visszajelzésed segít nekünk, hogy az Omi mindenki számára jobb legyen.';
+  String get deleteFlowReasonSubtitle => 'A visszajelzésed segít nekünk, hogy az Chronicle mindenki számára jobb legyen.';
 
   @override
   String get deleteReasonPrivacy => 'Adatvédelmi aggályok';
@@ -9063,14 +9063,14 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get chatQuotaSubtitle => 'AI chat messages used with Omi this month.';
+  String get chatQuotaSubtitle => 'AI chat messages used with Chronicle this month.';
 
   @override
   String get chatQuotaExceededReply =>
       'Elérted a havi limitedet. Frissíts, hogy korlátozás nélkül folytasd a csevegést az Omival.';
 
   @override
-  String get voiceResponseAudio => 'Omi válaszának felolvasása';
+  String get voiceResponseAudio => 'Chronicle válaszának felolvasása';
 
   @override
   String get voiceResponseMode => 'Hangválasz';
@@ -9222,7 +9222,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get deleteWhileProcessingMessage =>
-      'Ezt a felvételt feltöltöttük, de az Omi még készíti a beszélgetést. Ha most törli és a feldolgozás meghiúsul, nem állítható vissza. Mégis törli?';
+      'Ezt a felvételt feltöltöttük, de az Chronicle még készíti a beszélgetést. Ha most törli és a feldolgozás meghiúsul, nem állítható vissza. Mégis törli?';
 
   @override
   String get syncCardAllBackedUp => 'Minden felvétel szinkronizálva';
@@ -9257,19 +9257,19 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get syncFlowIntro =>
-      'A felvételek az eszközödről erre a telefonra kerülnek át, és helyben tárolódnak, majd feltöltődnek az Omi szerverére, ahol leiratot készít belőlük, és beszélgetésekké alakítja őket.';
+      'A felvételek az eszközödről erre a telefonra kerülnek át, és helyben tárolódnak, majd feltöltődnek az Chronicle szerverére, ahol leiratot készít belőlük, és beszélgetésekké alakítja őket.';
 
   @override
   String get syncStepUpload => 'Szinkronizálás';
 
   @override
-  String get syncStepUploadDesc => 'A felvételed az Omi szerverére kerül';
+  String get syncStepUploadDesc => 'A felvételed az Chronicle szerverére kerül';
 
   @override
   String get syncStepProcess => 'Átírás';
 
   @override
-  String get syncStepProcessDesc => 'Az Omi a hangból beszélgetést készít';
+  String get syncStepProcessDesc => 'Az Chronicle a hangból beszélgetést készít';
 
   @override
   String get syncStepBackedUp => 'A beszélgetés kész';
@@ -9319,7 +9319,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get syncCardBackendBusy =>
-      'Az Omi szerverei leterheltek — a felvételeid szinkronizálódnak, amint felszabadul a kapacitás';
+      'Az Chronicle szerverei leterheltek — a felvételeid szinkronizálódnak, amint felszabadul a kapacitás';
 
   @override
   String get unableToDetermineFirmwareVersion => 'A jelenlegi firmware verziója nem határozható meg';
@@ -9338,14 +9338,14 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get backgroundModeDescription =>
-      'Tartsd az Omi-t felvételen akkor is, amikor az alkalmazás teljesen be van zárva.';
+      'Tartsd az Chronicle-t felvételen akkor is, amikor az alkalmazás teljesen be van zárva.';
 
   @override
-  String get backgroundModeNote => 'Egyelőre csak Omi eszközökkel működik, és folyamatosan fejlesztjük.';
+  String get backgroundModeNote => 'Egyelőre csak Chronicle eszközökkel működik, és folyamatosan fejlesztjük.';
 
   @override
   String get backgroundModeUnavailable =>
-      'A Háttér mód nem érhető el, mert nincs csatlakoztatva kompatibilis eszköz. A funkció használatához csatlakoztass egy Omi, OpenGlass vagy Friend Pendant eszközt.';
+      'A Háttér mód nem érhető el, mert nincs csatlakoztatva kompatibilis eszköz. A funkció használatához csatlakoztass egy Chronicle, OpenGlass vagy Friend Pendant eszközt.';
 
   @override
   String get regenerateRecap => 'Összegzés újragenerálása';
@@ -9363,11 +9363,11 @@ class AppLocalizationsHu extends AppLocalizations {
   String get recapRegenerateNoConversations => 'Erre a napra nincsenek összegezhető beszélgetések.';
 
   @override
-  String get syncCustomSttWarningTitle => 'A szinkronizálás az Omi átiratát használja';
+  String get syncCustomSttWarningTitle => 'A szinkronizálás az Chronicle átiratát használja';
 
   @override
   String get syncCustomSttWarningMessage =>
-      'Saját átírási szolgáltatót használsz. Ezek a felvételek szinkronizáláskor az Omi szerverein kerülnek átírásra, és beleszámítanak a csomagod átírási keretébe.';
+      'Saját átírási szolgáltatót használsz. Ezek a felvételek szinkronizáláskor az Chronicle szerverein kerülnek átírásra, és beleszámítanak a csomagod átírási keretébe.';
 
   @override
   String get transcribeLaterTitle => 'Átírás később';
@@ -9378,7 +9378,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get transcribeLaterNote =>
-      'A telefon mikrofonjával, valamint Omi és Limitless eszközökkel működik. A hang a telefonodon marad, amíg el nem döntöd, hogy feltöltöd.';
+      'A telefon mikrofonjával, valamint Chronicle és Limitless eszközökkel működik. A hang a telefonodon marad, amíg el nem döntöd, hogy feltöltöd.';
 
   @override
   String get transcribeLaterStorageFull =>
@@ -9424,7 +9424,7 @@ class AppLocalizationsHu extends AppLocalizations {
   String get memoryProvenanceAndroid => 'Android';
 
   @override
-  String get deviceTutorial => 'Az Omi használata';
+  String get deviceTutorial => 'Az Chronicle használata';
 
   @override
   String get deviceOnboardingTranscriptionTitle => 'Beszélj az Omihoz';
@@ -9553,7 +9553,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get raybanMetaSetupDescription =>
-      'Használja a Ray-Ban Meta szemüvegét Omi rögzítőeszközként beszélgetésekhez és vizuális kontextushoz. Az Omi megnyitja a Meta AI alkalmazást a szemüveg összekapcsolásához.';
+      'Használja a Ray-Ban Meta szemüvegét Chronicle rögzítőeszközként beszélgetésekhez és vizuális kontextushoz. Az Chronicle megnyitja a Meta AI alkalmazást a szemüveg összekapcsolásához.';
 
   @override
   String get raybanMetaOpenMetaAI => 'Csatlakozás a Meta AI-n keresztül';
@@ -9569,7 +9569,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get raybanMetaCameraExplanation =>
-      'Az Omi a szemüveg kameráját használja fényképek hozzáadásához a beszélgetésekhez. Ezt kihagyhatja, és csak hangot használhat.';
+      'Az Chronicle a szemüveg kameráját használja fényképek hozzáadásához a beszélgetésekhez. Ezt kihagyhatja, és csak hangot használhat.';
 
   @override
   String get raybanMetaSkipForNow => 'Kihagyás egyelőre';
@@ -9579,7 +9579,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get raybanMetaAudioOnlyExplanation =>
-      'Az Omi ezen verziója Bluetooth-on keresztül tudja használni a szemüveg mikrofonját. A fényképek rögzítéséhez az Omi Meta fejlesztői változata szükséges.';
+      'Az Chronicle ezen verziója Bluetooth-on keresztül tudja használni a szemüveg mikrofonját. A fényképek rögzítéséhez az Chronicle Meta fejlesztői változata szükséges.';
 
   @override
   String get raybanMetaMusicPauseNote => 'A telefonon lévő zene szünetel, amíg a szemüveg mikrofonja használatban van.';
@@ -9793,7 +9793,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get rayBanMetaMicPickerDescription =>
-      'Válaszd ki a szemüveg Bluetooth-mikrofonját. A zene szünetel, amíg az Omi használja.';
+      'Válaszd ki a szemüveg Bluetooth-mikrofonját. A zene szünetel, amíg az Chronicle használja.';
 
   @override
   String get rayBanMetaMicPickerEmpty =>
@@ -9808,10 +9808,10 @@ class AppLocalizationsHu extends AppLocalizations {
       'Nem sikerült csatlakozni ehhez a mikrofonhoz. Ellenőrizd, hogy csatlakoztatva van-e az iPhone Beállításokban.';
 
   @override
-  String get syncStatusTooOld => 'Túl régi a szinkronizáláshoz — az Omi nem tudja elfogadni';
+  String get syncStatusTooOld => 'Túl régi a szinkronizáláshoz — az Chronicle nem tudja elfogadni';
 
   @override
-  String get planSheetChooseYourPlan => 'Válaszd ki a csomagodat a korlátlan Omi feloldásához.';
+  String get planSheetChooseYourPlan => 'Válaszd ki a csomagodat a korlátlan Chronicle feloldásához.';
 
   @override
   String get availableOnMacMobileWeb => 'Elérhető Macen, mobilon és weben';
@@ -9843,7 +9843,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get freemiumLimitsIntro =>
-      'Az Omi ingyenes, de az ingyenes verziónak vannak korlátai, amelyek befolyásolják az élményt:';
+      'Az Chronicle ingyenes, de az ingyenes verziónak vannak korlátai, amelyek befolyásolják az élményt:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5–7 másodperces késleltetés (nem valós idejű)';
@@ -9865,7 +9865,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get accountCutoverUpdateRequiredMessage =>
-      'Telepítse a legújabb Omi alkalmazást a fiókmigráció utáni folytatáshoz.';
+      'Telepítse a legújabb Chronicle alkalmazást a fiókmigráció utáni folytatáshoz.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Migráció folyamatban';

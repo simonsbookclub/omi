@@ -39,7 +39,7 @@ class DeviceUtils {
             latestVersionStr,
           );
         } else {
-          return ('A new version is available! Update your Omi now.', true, latestVersionStr);
+          return ('A new version is available! Update your Chronicle now.', true, latestVersionStr);
         }
       } else {
         return ('You are already on the latest version', false, latestVersionStr);
@@ -47,10 +47,10 @@ class DeviceUtils {
     }
   }
 
-  /// Whether an Omi-type device is a DevKit board rather than the consumer
+  /// Whether an Chronicle-type device is a DevKit board rather than the consumer
   /// pendant. Match on `DEVKIT`/`DEV KIT` (both spellings ship, e.g.
   /// "Friend Dev Kit 1"), not a loose `DEV` — the consumer's default model
-  /// fallback is `'Omi Device'`.
+  /// fallback is `'Chronicle Device'`.
   static bool isOmiDevKit({String? modelNumber, String? deviceName}) {
     bool matches(String? value) {
       if (value == null || value.isEmpty) return false;
@@ -64,13 +64,13 @@ class DeviceUtils {
   /// Whether a [DeviceType.omi] device is the consumer CV1 pendant rather than
   /// another omi-enumerated variant (DevKit 1/2, Glass, Neo, Friend), which all
   /// report the same DeviceType. Used to scope CV1-only UI like the "How to use
-  /// your Omi" button tutorial. Callers must have already checked the device is
-  /// [DeviceType.omi]. CV1 reports `'Omi CV 1'` (or the `'Omi Device'` fallback
+  /// your Chronicle" button tutorial. Callers must have already checked the device is
+  /// [DeviceType.omi]. CV1 reports `'Chronicle CV 1'` (or the `'Chronicle Device'` fallback
   /// when the GATT model read fails), so match by excluding the known non-CV1
   /// variants instead of allow-listing an exact CV1 string.
   ///
   /// A concrete GATT model number is authoritative — trust it and ignore the
-  /// name. The generic `'Omi Device'` / `'Unknown'` fallback (reported by CV1
+  /// name. The generic `'Chronicle Device'` / `'Unknown'` fallback (reported by CV1
   /// and DevKit alike when the model read fails) is not concrete, so defer to
   /// the advertised name in that case. With neither a concrete model nor a name
   /// we can't positively identify a CV1, so return false.
@@ -226,14 +226,14 @@ class DeviceUtils {
     return getDeviceImagePath(deviceType: device.type, modelNumber: device.modelNumber, deviceName: device.name);
   }
 
-  /// Get device image with connection state (for special cases like Omi)
+  /// Get device image with connection state (for special cases like Chronicle)
   static String getDeviceImagePathWithState({
     DeviceType? deviceType,
     String? modelNumber,
     String? deviceName,
     required bool isConnected,
   }) {
-    // Special case for Omi when disconnected
+    // Special case for Chronicle when disconnected
     if (deviceType == DeviceType.omi && !isConnected) {
       return Assets.images.omiWithoutRopeTurnedOff.path;
     }

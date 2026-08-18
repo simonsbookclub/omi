@@ -12,7 +12,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get sessionExpiredSignInAgain => 'Сеанс скончыўся — увайдзіце зноў.';
 
   @override
-  String get appTitle => 'Omi';
+  String get appTitle => 'Chronicle';
 
   @override
   String get conversationTab => 'Размова';
@@ -132,7 +132,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get editPerson => 'Рэдагаваць асобу';
 
   @override
-  String get createPersonHint => 'Стварыце новую асобу і навучыце Omi распазнаваць яе голас!';
+  String get createPersonHint => 'Стварыце новую асобу і навучыце Chronicle распазнаваць яе голас!';
 
   @override
   String get speechProfile => 'Профіль голасу';
@@ -170,7 +170,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get couldNotAccessFile => 'Не атрымалася атрымаць доступ да выбранага файла';
 
   @override
-  String get askOmi => 'Запытаць Omi';
+  String get askOmi => 'Запытаць Chronicle';
 
   @override
   String get done => 'Готава';
@@ -270,7 +270,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get noMessagesYet => 'Пакі нета паведамленняў!\nЧаму б вам не пачаць размову?';
 
   @override
-  String get deletingMessages => 'Выданне вашых паведамленняў з памяці Omi...';
+  String get deletingMessages => 'Выданне вашых паведамленняў з памяці Chronicle...';
 
   @override
   String get messageCopied => '✨ Паведамленне скапіяванае ў буфер абмену';
@@ -300,7 +300,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get maxFilesLimit => 'Вы можаце загрузіць толькі 4 файлы адначасова';
 
   @override
-  String get chatWithOmi => 'Чатаваць з Omi';
+  String get chatWithOmi => 'Чатаваць з Chronicle';
 
   @override
   String get apps => 'Дадатыі';
@@ -331,7 +331,7 @@ class AppLocalizationsBe extends AppLocalizations {
       'Не атрымалася загрузіць дадатыі :(\n\nПрацяніце вашае падключэнне да інтэрнету і спрабуйце яшчэ раз.';
 
   @override
-  String get aboutOmi => 'Пра Omi';
+  String get aboutOmi => 'Пра Chronicle';
 
   @override
   String get privacyPolicy => 'Палітыка прыватнасці';
@@ -452,7 +452,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get developerSettings => 'Параметры распрацоўніка';
 
   @override
-  String get getOmiForMac => 'Атрымаць Omi для Mac';
+  String get getOmiForMac => 'Атрымаць Chronicle для Mac';
 
   @override
   String get referralProgram => 'Праграма рэферальнага маркетынгу';
@@ -471,7 +471,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get privacyIntro =>
-      'У Omi мы адданы абаронцы вашай прыватнасці. Гэта старонка дазваляе вам кантраляваць, як вашы дадзеныя захоўваюцца і выкарыстоўваюцца.';
+      'У Chronicle мы адданы абаронцы вашай прыватнасці. Гэта старонка дазваляе вам кантраляваць, як вашы дадзеныя захоўваюцца і выкарыстоўваюцца.';
 
   @override
   String get learnMore => 'Даведацца больш...';
@@ -542,7 +542,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get unpairAndForget => 'Адключыць і забыць прыладу';
 
   @override
-  String get deviceDisconnectedMessage => 'Ваш Omi быў адключаны 😔';
+  String get deviceDisconnectedMessage => 'Ваш Chronicle быў адключаны 😔';
 
   @override
   String get deviceUnpairedMessage =>
@@ -560,7 +560,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get connectDeviceMessage =>
-      'Падключыце вашу прыладу Omi, каб атрымаць доступ\nдаа параметраў прылады і персанолізацыі';
+      'Падключыце вашу прыладу Chronicle, каб атрымаць доступ\nдаа параметраў прылады і персанолізацыі';
 
   @override
   String get deviceInfoSection => 'Інфармацыя пра прыладу';
@@ -690,7 +690,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get docs => 'Дакументацыя';
 
   @override
-  String get yourOmiInsights => 'Вашы ўсвідомленні Omi';
+  String get yourOmiInsights => 'Вашы ўсвідомленні Chronicle';
 
   @override
   String get today => 'Сёння';
@@ -709,13 +709,13 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get startConversationToSeeInsights =>
-      'Пачніце размову з Omi\nкаб убачыць вашыя ўсвідомленні выкарыстання тут.';
+      'Пачніце размову з Chronicle\nкаб убачыць вашыя ўсвідомленні выкарыстання тут.';
 
   @override
   String get listening => 'Слуханне';
 
   @override
-  String get listeningSubtitle => 'Усяго часу Omi актыўна слуша.';
+  String get listeningSubtitle => 'Усяго часу Chronicle актыўна слуша.';
 
   @override
   String get understanding => 'Разуменне';
@@ -766,7 +766,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Раздзеляюся мая статыстыкай Omi! (omi.me - ваш заўсёды ўключаны AI ассістэнт)';
+  String get shareStatsMessage => 'Раздзеляюся мая статыстыкай Chronicle! (omi.me - ваш заўсёды ўключаны AI ассістэнт)';
 
   @override
   String get sharePeriodToday => 'Сёння, omi:';
@@ -813,7 +813,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get noLogFilesFound => 'Файлы логаў не знойдзены.';
 
   @override
-  String get omiDebugLog => 'Лог адладкі Omi';
+  String get omiDebugLog => 'Лог адладкі Chronicle';
 
   @override
   String get logShared => 'Лог раздзелены';
@@ -837,7 +837,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get exportDataDesc => 'Экспартаваць размовы ў JSON файл';
 
   @override
-  String get exportedConversations => 'Экспартаваныя размовы з Omi';
+  String get exportedConversations => 'Экспартаваныя размовы з Chronicle';
 
   @override
   String get exportShared => 'Экспорт раздзелены';
@@ -1014,7 +1014,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get addWordsDesc => 'Імёны, тэрміны або не звычайныя словы';
 
   @override
-  String get vocabularyHint => 'Omi, Callie, OpenAI';
+  String get vocabularyHint => 'Chronicle, Callie, OpenAI';
 
   @override
   String get connect => 'Падключыць';
@@ -1058,7 +1058,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String authAccessMessage(String appName) {
-    return 'Вам потрабіцца аўтарызаваць Omi, каб атрымаць доступ да вашых дадзеных $appName. Гэта адкрые ваш браўзер для аўтэнтыфікацыі.';
+    return 'Вам потрабіцца аўтарызаваць Chronicle, каб атрымаць доступ да вашых дадзеных $appName. Гэта адкрые ваш браўзер для аўтэнтыфікацыі.';
   }
 
   @override
@@ -1154,7 +1154,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get editName => 'Змяніць імя';
 
   @override
-  String get howShouldOmiCallYou => 'Як Omi павінна вас называць?';
+  String get howShouldOmiCallYou => 'Як Chronicle павінна вас называць?';
 
   @override
   String get enterYourName => 'Уведзіце ваше імя';
@@ -1426,7 +1426,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String authorizeOmiForTasks(String appName) {
-    return 'Вам трэба авторызаваць Omi для стварэння задач ў вашым ліку $appName. Гэта адкрые ваш браўзер для аўтэнтыфікацыі.';
+    return 'Вам трэба авторызаваць Chronicle для стварэння задач ў вашым ліку $appName. Гэта адкрые ваш браўзер для аўтэнтыфікацыі.';
   }
 
   @override
@@ -1467,7 +1467,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get freeMinutesMonth => '300 свабодных мінут/месяц уключана. Неабмежавана з ';
 
   @override
-  String get omiUnlimited => 'Omi Unlimited';
+  String get omiUnlimited => 'Chronicle Unlimited';
 
   @override
   String get hostRequired => 'Хост абавязаны';
@@ -1585,11 +1585,11 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String deviceUsesCodec(String device, String reason) {
-    return '$device выкарыстоўвае $reason. Omi будзе выкарыстовуваца.';
+    return '$device выкарыстоўвае $reason. Chronicle будзе выкарыстовуваца.';
   }
 
   @override
-  String get omiTranscription => 'Расшыфроўка Omi';
+  String get omiTranscription => 'Расшыфроўка Chronicle';
 
   @override
   String get bestInClassTranscription => 'Лепшая ў сваім класе расшыфроўка без наладкі';
@@ -1741,7 +1741,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get bluetoothNeeded =>
-      'Omi трэба Bluetooth для падлучэння да вашага нашпігальнага прыстроя. Калі ласка, уключыце Bluetooth і спробуйце яшчэ раз.';
+      'Chronicle трэба Bluetooth для падлучэння да вашага нашпігальнага прыстроя. Калі ласка, уключыце Bluetooth і спробуйце яшчэ раз.';
 
   @override
   String get contactSupport => 'Звярнуцца ў тэхподтрымку?';
@@ -1756,7 +1756,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get backgroundActivity => 'Дзейнасць у фоне';
 
   @override
-  String get backgroundActivityDesc => 'Дайцюе Omi працаваць у фоне для лучшай стабільнасці';
+  String get backgroundActivityDesc => 'Дайцюе Chronicle працаваць у фоне для лучшай стабільнасці';
 
   @override
   String get locationAccess => 'Доступ да месцазнаходжання';
@@ -1785,13 +1785,13 @@ class AppLocalizationsBe extends AppLocalizations {
       'Калі ласка, перайдзіце ў налады прыстроя і ўстаноўце дазвол месцазнаходжання на \"Всегда разрешить\"';
 
   @override
-  String get lovingOmi => 'Нравіцца вам Omi?';
+  String get lovingOmi => 'Нравіцца вам Chronicle?';
 
   @override
   String get maybeLater => 'Магчыма пазней';
 
   @override
-  String get speechProfileIntro => 'Omi трэба вывучыць вашы мэты і ваш голас. Вы зможаце яго змяніць пазней.';
+  String get speechProfileIntro => 'Chronicle трэба вывучыць вашы мэты і ваш голас. Вы зможаце яго змяніць пазней.';
 
   @override
   String get getStarted => 'Пачаць';
@@ -1846,7 +1846,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get tryAgain => 'Спробуйце яшчэ раз';
 
   @override
-  String get connectOmiOmiGlass => 'Падключыце Omi / OmiGlass';
+  String get connectOmiOmiGlass => 'Падключыце Chronicle / OmiGlass';
 
   @override
   String get continueWithoutDevice => 'Прадоўжыць без прыстроя';
@@ -1883,7 +1883,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get termsOfUse => 'Усім ўмовам выкарыстання';
 
   @override
-  String get omiYourAiCompanion => 'Omi – вашы AI помочнік';
+  String get omiYourAiCompanion => 'Chronicle – вашы AI помочнік';
 
   @override
   String get captureEveryMoment => 'Захапляйце кожны момант. Атрымайце рэзюме на базе AI.\nАбыходіцеся бес запісаў.';
@@ -1899,7 +1899,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get permissionGrantedNow =>
-      'Дазвол дадзены! Зараз:\n\nАдкрыйце прыкладанне Omi на вашым гадзінніку і дакніце \"Прадоўжыць\" ніжэй';
+      'Дазвол дадзены! Зараз:\n\nАдкрыйце прыкладанне Chronicle на вашым гадзінніку і дакніце \"Прадоўжыць\" ніжэй';
 
   @override
   String get needMicrophonePermission =>
@@ -1913,7 +1913,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get troubleshootingSteps =>
-      'Развязанне праблем:\n\n1. Пераканайцеся, што Omi ўстаноўлена на вашым гадзінніку\n2. Адкрыйце прыкладанне Omi на вашым гадзінніку\n3. Поўкайце спливаючае акно дазвола\n4. Дакніце \"Дазволіць\" пры запыте\n5. Прыкладанне на гадзінніку затворыцца - адкрыйце яго\n6. Вярніцеся і дакніце \"Прадоўжыць\" на вашым iPhone';
+      'Развязанне праблем:\n\n1. Пераканайцеся, што Chronicle ўстаноўлена на вашым гадзінніку\n2. Адкрыйце прыкладанне Chronicle на вашым гадзінніку\n3. Поўкайце спливаючае акно дазвола\n4. Дакніце \"Дазволіць\" пры запыте\n5. Прыкладанне на гадзінніку затворыцца - адкрыйце яго\n6. Вярніцеся і дакніце \"Прадоўжыць\" на вашым iPhone';
 
   @override
   String get recordingStartedSuccessfully => 'Запіс пачаўся паспяхова!';
@@ -2065,16 +2065,16 @@ class AppLocalizationsBe extends AppLocalizations {
   String get addFirstMemory => 'Дадайце ваш першы спамін';
 
   @override
-  String get clearMemoryTitle => 'Вычысціць памяць Omi';
+  String get clearMemoryTitle => 'Вычысціць памяць Chronicle';
 
   @override
-  String get clearMemoryMessage => 'Вы ўпэўнены, што хочаце вычысціць памяць Omi? Гэтае дзеянне нельга адмяніць.';
+  String get clearMemoryMessage => 'Вы ўпэўнены, што хочаце вычысціць памяць Chronicle? Гэтае дзеянне нельга адмяніць.';
 
   @override
   String get clearMemoryButton => 'Вычысціць памяць';
 
   @override
-  String get memoryClearedSuccess => 'Памяць Omi аб вас вычышчана';
+  String get memoryClearedSuccess => 'Памяць Chronicle аб вас вычышчана';
 
   @override
   String get noMemoriesToDelete => 'Спамінаў для выдалення нету';
@@ -2234,7 +2234,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get translationNoticeMessage =>
-      'Omi перакладае разговоры на вашу асноўную мову. Абнавіце яе ў любы час у Наладах → Профілі.';
+      'Chronicle перакладае разговоры на вашу асноўную мову. Абнавіце яе ў любы час у Наладах → Профілі.';
 
   @override
   String get pleaseCheckInternetConnection => 'Калі ласка, праверыце вашу інтэрнэт-злучэнне і спробуйце яшчэ раз';
@@ -2425,7 +2425,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get privacyPolicyTitle => 'Палітыка прыватнасці';
 
   @override
-  String get omiSttProvider => 'Omi';
+  String get omiSttProvider => 'Chronicle';
 
   @override
   String labelCopied(String label) {
@@ -2570,7 +2570,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get checksForAudioFiles => 'Праверыць аўдыёфайлы на SD Card';
 
   @override
-  String get omiSyncsAudioFiles => 'Omi затым сінхранізуе аўдыёфайлы з сервером';
+  String get omiSyncsAudioFiles => 'Chronicle затым сінхранізуе аўдыёфайлы з сервером';
 
   @override
   String get serverProcessesAudio => 'Сервер апрацоўвае аўдыёфайлы і ствварае памяткі';
@@ -2580,10 +2580,10 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get welcomeToOmiDescription =>
-      'Вітаем у Omi! Ваш AI асістэнт готаў дапамагаць вам з разнамовамі, задачамі і многім іншым.';
+      'Вітаем у Chronicle! Ваш AI асістэнт готаў дапамагаць вам з разнамовамі, задачамі і многім іншым.';
 
   @override
-  String get startUsingOmi => 'Пачаць выкарыстоўваць Omi';
+  String get startUsingOmi => 'Пачаць выкарыстоўваць Chronicle';
 
   @override
   String get back => 'Назад';
@@ -2660,7 +2660,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get startCapturingConversations =>
-      'Пачніце перахоплівацьразнамовы з вашым прыбором Omi, каб яны паяўіліся здесь.';
+      'Пачніце перахоплівацьразнамовы з вашым прыбором Chronicle, каб яны паяўіліся здесь.';
 
   @override
   String get useMobileAppToCapture => 'Выкарыстоўвайце мабільны прыбор для перахоплівання аўдыё';
@@ -2675,7 +2675,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get showAll => 'Паказаць ўсё';
 
   @override
-  String get noTasksForToday => 'Памежаў на сёння няма.\nПапросіце Omi для дапамогаў або стварыце ручна.';
+  String get noTasksForToday => 'Памежаў на сёння няма.\nПапросіце Chronicle для дапамогаў або стварыце ручна.';
 
   @override
   String get dailyScore => 'ЕЖЕДНЕВНАЯ ОЦЕНКА';
@@ -2824,7 +2824,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get createNewApp => 'Ствараць новы прыбор';
 
   @override
-  String get buildSubmitCustomOmiApp => 'Збудуйце і падайце ваш другасны Omi прыбор';
+  String get buildSubmitCustomOmiApp => 'Збудуйце і падайце ваш другасны Chronicle прыбор';
 
   @override
   String get submittingYourApp => 'Адпраўка вашага прыбора...';
@@ -2871,7 +2871,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get submitAppTermsAgreement =>
-      'Адпраўляючы гэты прыбор, я пагаджаюся з Тэрмінамі абслугоўвання Omi AI і Палітыкай прыватнасці';
+      'Адпраўляючы гэты прыбор, я пагаджаюся з Тэрмінамі абслугоўвання Chronicle AI і Палітыкай прыватнасці';
 
   @override
   String get submitApp => 'Адправіць прыбор';
@@ -2916,7 +2916,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get dataAccessWarning =>
-      'Гэты прыбор будзе мець доступ да вашых дадзеных. Omi AI не адказны за тое, як вашыя дадзеныя выкарыстоўваюцца, змяняюцца ці выдаляюцца гэтым прыбором';
+      'Гэты прыбор будзе мець доступ да вашых дадзеных. Chronicle AI не адказны за тое, як вашыя дадзеныя выкарыстоўваюцца, змяняюцца ці выдаляюцца гэтым прыбором';
 
   @override
   String get installApp => 'Ўстанавіць прыбор';
@@ -3262,7 +3262,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get upgradeToPro => 'Абнавіць да Pro';
 
   @override
-  String get getOmiDevice => 'Атрымаць прыбор Omi';
+  String get getOmiDevice => 'Атрымаць прыбор Chronicle';
 
   @override
   String get wearableAiCompanion => 'Надзеваны AI асістэнт';
@@ -3329,7 +3329,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get setAllMemoriesToPublic => 'Установіць усе памяткі на публічны доступ';
 
   @override
-  String get permanentlyRemoveAllMemories => 'Назаўсёды выдаліць усе памяткі з Omi';
+  String get permanentlyRemoveAllMemories => 'Назаўсёды выдаліць усе памяткі з Chronicle';
 
   @override
   String get allMemoriesAreNowPrivate => 'Усе памяткі цяпер прыватныя';
@@ -3338,18 +3338,18 @@ class AppLocalizationsBe extends AppLocalizations {
   String get allMemoriesAreNowPublic => 'Усе памяткі цяпер публічныя';
 
   @override
-  String get clearOmisMemory => 'Очыстіць памяць Omi';
+  String get clearOmisMemory => 'Очыстіць памяць Chronicle';
 
   @override
   String clearMemoryConfirmation(int count) {
-    return 'Вы ўпэўнены, што хочаце очыстіць памяць Omi? Гэта дзеянне невозможна адмяніць і назаўсёды выдаліць усе $count памяткі.';
+    return 'Вы ўпэўнены, што хочаце очыстіць памяць Chronicle? Гэта дзеянне невозможна адмяніць і назаўсёды выдаліць усе $count памяткі.';
   }
 
   @override
-  String get omisMemoryCleared => 'Памяць Omi аб вас была очышчана';
+  String get omisMemoryCleared => 'Памяць Chronicle аб вас была очышчана';
 
   @override
-  String get welcomeToOmi => 'Вітаем у Omi';
+  String get welcomeToOmi => 'Вітаем у Chronicle';
 
   @override
   String get continueWithApple => 'Прадоўжыць з Apple';
@@ -3395,7 +3395,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get chooseYourLanguage => 'Выберыце вашу мову';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Выберыце вашу аддаленую мову для лепшага вопыту Omi';
+  String get selectPreferredLanguageForBestExperience => 'Выберыце вашу аддаленую мову для лепшага вопыту Chronicle';
 
   @override
   String get searchLanguages => 'Шукаць мовы...';
@@ -3414,7 +3414,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get tellUsHowYouWouldLikeToBeAddressed =>
-      'Скажыце нам, як вас завяць. Гэта дапамагае персаналізаваць ваш вопыт Omi.';
+      'Скажыце нам, як вас завяць. Гэта дапамагае персаналізаваць ваш вопыт Chronicle.';
 
   @override
   String charactersCount(int count) {
@@ -3422,7 +3422,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Ўключыце функцыі для лепшага вопыту Omi на вашым прыладзе.';
+  String get enableFeaturesForBestExperience => 'Ўключыце функцыі для лепшага вопыту Chronicle на вашым прыладзе.';
 
   @override
   String get microphoneAccess => 'Доступ да мікрофона';
@@ -3432,7 +3432,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get microphoneAccessDescription =>
-      'Omi патрабуе доступ да мікрофона для запісу вашых размаў і прадастаўлення транскрыпцый.';
+      'Chronicle патрабуе доступ да мікрофона для запісу вашых размаў і прадастаўлення транскрыпцый.';
 
   @override
   String get screenRecording => 'Запіс экрана';
@@ -3442,7 +3442,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get screenRecordingDescription =>
-      'Omi патрабуе дазвол на запіс экрана для захопу сістэмнага аўдыё з вашых веб-сустрэч.';
+      'Chronicle патрабуе дазвол на запіс экрана для захопу сістэмнага аўдыё з вашых веб-сустрэч.';
 
   @override
   String get accessibility => 'Доступнасць';
@@ -3452,7 +3452,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get accessibilityDescription =>
-      'Omi патрабуе дазвол на доступнасць для выявлення, калі вы ўдзельнічаеце ў сустрэчах Zoom, Meet або Teams у вашым браўзеры.';
+      'Chronicle патрабуе дазвол на доступнасць для выявлення, калі вы ўдзельнічаеце ў сустрэчах Zoom, Meet або Teams у вашым браўзеры.';
 
   @override
   String get pleaseWait => 'Пачакайце...';
@@ -3485,10 +3485,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get voiceAndPeople => 'Голас і людзі';
 
   @override
-  String get teachOmiYourVoice => 'Навучыце Omi вашему голасу';
+  String get teachOmiYourVoice => 'Навучыце Chronicle вашему голасу';
 
   @override
-  String get tellOmiWhoSaidIt => 'Скажыце Omi, хто гэта сказаў 🗣️';
+  String get tellOmiWhoSaidIt => 'Скажыце Chronicle, хто гэта сказаў 🗣️';
 
   @override
   String get payment => 'Плата';
@@ -3500,7 +3500,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get preferences => 'Адпавіды';
 
   @override
-  String get helpImproveOmiBySharing => 'Дапамажыце палепшыць Omi, дзяліўшыся анонімнымі дадзенымі аналітыкі';
+  String get helpImproveOmiBySharing => 'Дапамажыце палепшыць Chronicle, дзяліўшыся анонімнымі дадзенымі аналітыкі';
 
   @override
   String get deleteAccount => 'Выдаліць акаўнт';
@@ -3525,7 +3525,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get mcpDescription =>
-      'Для злучэння Omi з іншымі прыкладаннямі для чытання, пошуку і кіравання вашымі спогадамі і размовамі. Создайте ключ для пачатку.';
+      'Для злучэння Chronicle з іншымі прыкладаннямі для чытання, пошуку і кіравання вашымі спогадамі і размовамі. Создайте ключ для пачатку.';
 
   @override
   String get apiKeys => 'API ключы';
@@ -3560,7 +3560,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Спрацёўвае, калі генеруецца зводка дня.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Спрабуйце найноўшыя эксперыментальныя функцыі ад каманды Omi.';
+  String get tryLatestExperimentalFeatures => 'Спрабуйце найноўшыя эксперыментальныя функцыі ад каманды Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Статус дыягностыкі сервісу транскрыпцыі';
@@ -3631,7 +3631,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get letOmiChooseAutomatically => 'Дозвольце Omi выбраць най­лепшае прыкладанне аўтаматычна';
+  String get letOmiChooseAutomatically => 'Дозвольце Chronicle выбраць най­лепшае прыкладанне аўтаматычна';
 
   @override
   String get deleteConversationConfirmation =>
@@ -3830,7 +3830,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get customVocabularyHeader => 'АДВОЛЬНЫ СЛОЎНІК';
 
   @override
-  String get addWordsDescription => 'Дадайце словы, якія Omi павінна распазнаць падчас транскрыпцыі.';
+  String get addWordsDescription => 'Дадайце словы, якія Chronicle павінна распазнаць падчас транскрыпцыі.';
 
   @override
   String get enterWordsHint => 'Увядзіце словы (адокремлены коскамі)';
@@ -3916,7 +3916,7 @@ class AppLocalizationsBe extends AppLocalizations {
       'Гэта выдаліць ўсе вывядзеныя даныя графа ведаў. Вашы асноўныя спогады застаюцца бяспечны.';
 
   @override
-  String get connectOmiWithAI => 'Злучыце Omi з помацнікамі ШІ';
+  String get connectOmiWithAI => 'Злучыце Chronicle з помацнікамі ШІ';
 
   @override
   String get noAPIKeys => 'Адсутнічаюць API ключы. Создайте адзін для пачатку.';
@@ -3949,7 +3949,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get holdOnPreparingForm => 'Зачакайце, мы падрыхтоўваем форму для вас';
 
   @override
-  String get bySubmittingYouAgreeToOmi => 'Адправляючы, вы пагаджаецеся з Omi ';
+  String get bySubmittingYouAgreeToOmi => 'Адправляючы, вы пагаджаецеся з Chronicle ';
 
   @override
   String get termsAndPrivacyPolicy => 'Умовамі і палітыкай прыватнасці';
@@ -4112,7 +4112,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get dataAccessNoticeDescription =>
-      'Гэта прыкладанне будзе мець доступ да вашых даных. Omi AI не адказвае за тое, як ваша прыкладанне выкарыстоўвае, змяняе або выдаляе вашы даныя';
+      'Гэта прыкладанне будзе мець доступ да вашых даных. Chronicle AI не адказвае за тое, як ваша прыкладанне выкарыстоўвае, змяняе або выдаляе вашы даныя';
 
   @override
   String get copyUrl => 'Скапіяваць URL';
@@ -4197,14 +4197,14 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get omiApiKeys => 'API ключы Omi';
+  String get omiApiKeys => 'API ключы Chronicle';
 
   @override
   String get apiKeysDescription =>
       'API ключы выкарыстоўваюцца для аўтэнтыфікацыі, калі ваша прыкладанне зносіцца з сервером OMI. Яны дазваляюць вашаму прыкладанню стварыць спогады і бяспечна атрымаць доступ да іншых сервісаў OMI.';
 
   @override
-  String get aboutOmiApiKeys => 'Аб API ключах Omi';
+  String get aboutOmiApiKeys => 'Аб API ключах Chronicle';
 
   @override
   String get yourNewKey => 'Ваш новы ключ:';
@@ -4336,7 +4336,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get e2eeDescription =>
-      'Шыфраванне ад канца да канца - гэта золаты стандарт для прыватнасці. Калі ўключана, вашы даныя шыфруюцца на вашым прыладзе да адпраўкі на нашы серверы. Гэта азначае, што ніхто, нават Omi, не можа атрымаць доступ да вашага змесціва.';
+      'Шыфраванне ад канца да канца - гэта золаты стандарт для прыватнасці. Калі ўключана, вашы даныя шыфруюцца на вашым прыладзе да адпраўкі на нашы серверы. Гэта азначае, што ніхто, нават Chronicle, не можа атрымаць доступ да вашага змесціва.';
 
   @override
   String get importantTradeoffs => 'Важныя кампраміс:';
@@ -4372,7 +4372,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get secureEncryptionDescription =>
-      'Вашы даныя шыфруюцца з ключом, адзінкавым для вас на нашых серверах, размешчаны на Google Cloud. Гэта азначае, што ваше сыра змесціва недаступна ніхто, уключаючы персонал Omi або Google, непасрэдна з базы даных.';
+      'Вашы даныя шыфруюцца з ключом, адзінкавым для вас на нашых серверах, размешчаны на Google Cloud. Гэта азначае, што ваше сыра змесціва недаступна ніхто, уключаючы персонал Chronicle або Google, непасрэдна з базы даных.';
 
   @override
   String get endToEndEncryption => 'Шыфраванне ад канца да канца';
@@ -4442,14 +4442,14 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get omiTraining => 'Omi обучение';
+  String get omiTraining => 'Chronicle обучение';
 
   @override
   String get trainingDataProgram => 'Праграма даных навучання';
 
   @override
   String get getOmiUnlimitedFree =>
-      'Атрымайце Omi Unlimited бясплатна, удзельнічаючы ў даных для навучання мадэляў ШІ.';
+      'Атрымайце Chronicle Unlimited бясплатна, удзельнічаючы ў даных для навучання мадэляў ШІ.';
 
   @override
   String get trainingDataBullets =>
@@ -4534,7 +4534,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get youAreOnUnlimitedPlan => 'Вы прыйшлі да Неабмежаванага Плана.';
 
   @override
-  String get yourOmiUnleashed => 'Ваш Omi, далі. Прайсцяце неабмежавана для бясконцых магчымасцей.';
+  String get yourOmiUnleashed => 'Ваш Chronicle, далі. Прайсцяце неабмежавана для бясконцых магчымасцей.';
 
   @override
   String planEndedOn(String date) {
@@ -4559,10 +4559,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get unlimitedConversations => 'Неабмежаваныя разговоры';
 
   @override
-  String get askOmiAnything => 'Запытайцеся у Omi ўсё аб вашым жыцці';
+  String get askOmiAnything => 'Запытайцеся у Chronicle ўсё аб вашым жыцці';
 
   @override
-  String get unlockOmiInfiniteMemory => 'Разблакуйце бясконцую память Omi';
+  String get unlockOmiInfiniteMemory => 'Разблакуйце бясконцую память Chronicle';
 
   @override
   String get youreOnAnnualPlan => 'Вы на Гадавым Плане';
@@ -4616,7 +4616,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get privacyIntroText =>
-      'У Omi мы вельмі цэнім вашу прыватнасць. Мы хочам быць прозрыстымі адносна дадзеных, якія мы збіраем, і як мы іх выкарыстоўваем для палепшэння нашага прадукту для вас. Вось што вам трэба ведаць:';
+      'У Chronicle мы вельмі цэнім вашу прыватнасць. Мы хочам быць прозрыстымі адносна дадзеных, якія мы збіраем, і як мы іх выкарыстоўваем для палепшэння нашага прадукту для вас. Вось што вам трэба ведаць:';
 
   @override
   String get whatWeTrack => 'Што мы адсочваем';
@@ -4632,11 +4632,11 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get commitmentText =>
-      'Мы зацвёрджаны выкарыстоўваць дадзеныя, якія мы збіраем, толькі для палепшэння Omi. Ваша прыватнасць і даверыгу нам вельмі важныя.';
+      'Мы зацвёрджаны выкарыстоўваць дадзеныя, якія мы збіраем, толькі для палепшэння Chronicle. Ваша прыватнасць і даверыгу нам вельмі важныя.';
 
   @override
   String get thankYouText =>
-      'Дзякуем, што вы каристальнік Omi. Калі ў вас ёсць якія-либо пытанні або ўзнікаюць праблемы, не вагайцеся звяртацца да нас team@basedhardware.com.';
+      'Дзякуем, што вы каристальнік Chronicle. Калі ў вас ёсць якія-либо пытанні або ўзнікаюць праблемы, не вагайцеся звяртацца да нас team@basedhardware.com.';
 
   @override
   String get password => 'Пароль';
@@ -4720,7 +4720,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get minutes => 'хвіліны';
 
   @override
-  String get omiHas => 'Omi мае:';
+  String get omiHas => 'Chronicle мае:';
 
   @override
   String get premiumMinutesUsed => 'Прэміум хвіліны выкарыстаны.';
@@ -4813,7 +4813,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get howPeopleWorks =>
-      'Як толькі чалавек створаны, вы можаце перайсці да транскрыпцыі разговора і прызначыць яму іх адпаведныя сегменты, гэта дозваліт Omi распазнаваць іх мову!';
+      'Як толькі чалавек створаны, вы можаце перайсці да транскрыпцыі разговора і прызначыць яму іх адпаведныя сегменты, гэта дозваліт Chronicle распазнаваць іх мову!';
 
   @override
   String get tapToDelete => 'Тапніце для удалення';
@@ -5094,7 +5094,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get enableApps => 'Уключыць Прыложэнні';
 
   @override
-  String get omiAppName => 'Omi';
+  String get omiAppName => 'Chronicle';
 
   @override
   String get showMore => 'Паказаць больш ↓';
@@ -5118,18 +5118,18 @@ class AppLocalizationsBe extends AppLocalizations {
   String get checkingAppleWatch => 'Праверка Apple Watch...';
 
   @override
-  String get installOmiOnAppleWatch => 'Ўстаноўьце Omi на ваш\nApple Watch';
+  String get installOmiOnAppleWatch => 'Ўстаноўьце Chronicle на ваш\nApple Watch';
 
   @override
   String get installOmiOnAppleWatchDescription =>
-      'Каб выкарыстоўваць ваш Apple Watch з Omi, вам трэба спачатку ўсталяваць прыложэнне Omi на вашы гадзінкі.';
+      'Каб выкарыстоўваць ваш Apple Watch з Chronicle, вам трэба спачатку ўсталяваць прыложэнне Chronicle на вашы гадзінкі.';
 
   @override
-  String get openOmiOnAppleWatch => 'Адкрыйце Omi на ваш\nApple Watch';
+  String get openOmiOnAppleWatch => 'Адкрыйце Chronicle на ваш\nApple Watch';
 
   @override
   String get openOmiOnAppleWatchDescription =>
-      'Прыложэнне Omi ўстаноўлена на вашым Apple Watch. Адкрыйце яго і тапніце Пачаць, каб пачаць.';
+      'Прыложэнне Chronicle ўстаноўлена на вашым Apple Watch. Адкрыйце яго і тапніце Пачаць, каб пачаць.';
 
   @override
   String get openWatchApp => 'Адкрыць Прыложэнне Watch';
@@ -5139,14 +5139,14 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get unableToOpenWatchApp =>
-      'Не ўдалося адкрыць прыложэнне Apple Watch. Калі ласка, ручнічна адкрыйце прыложэнне Watch на вашым Apple Watch і ўсталяйце Omi з секкіі \"Даступныя Прыложэнні\".';
+      'Не ўдалося адкрыць прыложэнне Apple Watch. Калі ласка, ручнічна адкрыйце прыложэнне Watch на вашым Apple Watch і ўсталяйце Chronicle з секкіі \"Даступныя Прыложэнні\".';
 
   @override
   String get appleWatchConnectedSuccessfully => 'Apple Watch Успешна Падлучана!';
 
   @override
   String get appleWatchNotReachable =>
-      'Apple Watch яшчэ недаступна. Калі ласка, пераканайцеся, што прыложэнне Omi адкрыто на вашых гадзінках.';
+      'Apple Watch яшчэ недаступна. Калі ласка, пераканайцеся, што прыложэнне Chronicle адкрыто на вашых гадзінках.';
 
   @override
   String errorCheckingConnection(String error) {
@@ -5233,7 +5233,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get welcomeBackSimple => 'Дабро Пажаловаць Назад';
 
   @override
-  String get addVocabularyDescription => 'Дадайце словы, якія Omi павінен распазнаваць падчас транскрыпцыі.';
+  String get addVocabularyDescription => 'Дадайце словы, якія Chronicle павінен распазнаваць падчас транскрыпцыі.';
 
   @override
   String get enterWordsCommaSeparated => 'Уведзіце словы (падзелены коміст)';
@@ -5394,13 +5394,13 @@ class AppLocalizationsBe extends AppLocalizations {
   String get wrappedNoDataAvailable => 'Нема даступных дадзеных';
 
   @override
-  String get wrappedOmiLifeRecap => 'Omi Жыццё Резюмэ';
+  String get wrappedOmiLifeRecap => 'Chronicle Жыццё Резюмэ';
 
   @override
   String get wrappedSwipeUpToBegin => 'Пракруціце, каб пачаць';
 
   @override
-  String get wrappedShareText => 'Мая 2025, запамінана Omi ✨ omi.me/wrapped';
+  String get wrappedShareText => 'Мая 2025, запамінана Chronicle ✨ omi.me/wrapped';
 
   @override
   String get wrappedFailedToShare => 'Не ўдалось дзелік. Калі ласка, спробуйце яшчэ раз.';
@@ -5421,7 +5421,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get wrappedMy2025 => 'Мая 2025';
 
   @override
-  String get wrappedRememberedByOmi => 'запамінана Omi';
+  String get wrappedRememberedByOmi => 'запамінана Chronicle';
 
   @override
   String get wrappedMostFunDay => 'Найбольш Забавны';
@@ -5638,7 +5638,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get notificationFrequency => 'Частата апавяшчэнняў';
 
   @override
-  String get controlNotificationFrequency => 'Кантраліруйце, як часта Omi адпраўляе вам прааактыўныя апавяшчэнні.';
+  String get controlNotificationFrequency => 'Кантраліруйце, як часта Chronicle адпраўляе вам прааактыўныя апавяшчэнні.';
 
   @override
   String get yourScore => 'Ваш бал';
@@ -5664,7 +5664,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get notificationFrequencyDescription =>
-      'Кантраліруйце, як часта Omi адпраўляе вам прааактыўныя апавяшчэнні і напамінаўі.';
+      'Кантраліруйце, як часта Chronicle адпраўляе вам прааактыўныя апавяшчэнні і напамінаўі.';
 
   @override
   String get sliderOff => 'Выкл.';
@@ -5866,7 +5866,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get noRecordings => 'Няма запісаў';
 
   @override
-  String get audioFromOmiWillAppearHere => 'Аудыё з вашага прыбора Omi будзе пацвяршана тут';
+  String get audioFromOmiWillAppearHere => 'Аудыё з вашага прыбора Chronicle будзе пацвяршана тут';
 
   @override
   String get deleteProcessed => 'Выдаліць апрацаваныя';
@@ -5988,7 +5988,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get batteryUsageHigher => 'Выкарыстанне батарэі будзе вышэй за облачную транскрыпцыю.';
 
   @override
-  String get considerOmiCloud => 'Разгледайце выкарыстанне Omi Cloud для лепшай прадуктыўнасці.';
+  String get considerOmiCloud => 'Разгледайце выкарыстанне Chronicle Cloud для лепшай прадуктыўнасці.';
 
   @override
   String get highResourceUsage => 'Высокае выкарыстанне рэсурсаў';
@@ -6147,7 +6147,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get omiTranscriptionOptimized =>
-      'Убудаваная жывая транскрыпцыя Omi аптымізавана для разговораў у рэальным часе з аўтаматычным распазнаваннем дыктарыў і дыяризацыяй.';
+      'Убудаваная жывая транскрыпцыя Chronicle аптымізавана для разговораў у рэальным часе з аўтаматычным распазнаваннем дыктарыў і дыяризацыяй.';
 
   @override
   String get reset => 'Скінуць';
@@ -6235,13 +6235,13 @@ class AppLocalizationsBe extends AppLocalizations {
   String get writeReviewOptional => 'Напісаць адгук (неабавязаельна)';
 
   @override
-  String get setupQuestionsIntro => 'Дапамажыце нам палепшыць Omi, адпавядаючы на некалькі пытанняў. 🫶 💜';
+  String get setupQuestionsIntro => 'Дапамажыце нам палепшыць Chronicle, адпавядаючы на некалькі пытанняў. 🫶 💜';
 
   @override
   String get setupQuestionProfession => '1. Што вы робіце?';
 
   @override
-  String get setupQuestionUsage => '2. Дзе вы плануеце выкарыстоўваць сваю Omi?';
+  String get setupQuestionUsage => '2. Дзе вы плануеце выкарыстоўваць сваю Chronicle?';
 
   @override
   String get setupQuestionAge => '3. Якой ваш ўзрост?';
@@ -6757,23 +6757,23 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get batteryFullyChargedTitle => 'Omi поўнасцю зараджаны';
+  String get batteryFullyChargedTitle => 'Chronicle поўнасцю зараджаны';
 
   @override
-  String get batteryFullyChargedBody => 'Ваш прылада Omi поўнасцю зараджана. Можаце адключыць!';
+  String get batteryFullyChargedBody => 'Ваш прылада Chronicle поўнасцю зараджана. Можаце адключыць!';
 
   @override
-  String get deviceDisconnectedNotificationTitle => 'Ваша прыстасаванне Omi адключылося';
+  String get deviceDisconnectedNotificationTitle => 'Ваша прыстасаванне Chronicle адключылося';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Калі ласка, перазлучыцеся, каб пацягнуць Omi.';
+  String get deviceDisconnectedNotificationBody => 'Калі ласка, перазлучыцеся, каб пацягнуць Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Абнаўленне прашывак даступнае';
 
   @override
   String firmwareUpdateAvailableDescription(String version) {
-    return 'Новае абнаўленне прашывак ($version) даступнае для вашага прыстасавання Omi. Ці хочаце вы абнавіць прямо зараз?';
+    return 'Новае абнаўленне прашывак ($version) даступнае для вашага прыстасавання Chronicle. Ці хочаце вы абнавіць прямо зараз?';
   }
 
   @override
@@ -6810,7 +6810,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get almostDone => 'Амаль скончана...';
 
   @override
-  String get omiSays => 'Omi кажа';
+  String get omiSays => 'Chronicle кажа';
 
   @override
   String get analyzingYourData => 'Аналіз вашых даных...';
@@ -7052,7 +7052,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get nextButton => 'Далей';
 
   @override
-  String get connectOmiDevice => 'Падключыць прыстасаванне Omi';
+  String get connectOmiDevice => 'Падключыць прыстасаванне Chronicle';
 
   @override
   String planSwitchingDescriptionWithTitle(String title) {
@@ -7083,7 +7083,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get transcriptionJsonPlaceholder => 'Вставіце вашу кагфіўрацыю JSON тут...';
 
   @override
-  String get transcriptionSourceOmi => 'Omi';
+  String get transcriptionSourceOmi => 'Chronicle';
 
   @override
   String get pricePlaceholder => '0.00';
@@ -7107,7 +7107,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get actionItemReminderTitle => 'Нагадаванне Omi';
+  String get actionItemReminderTitle => 'Нагадаванне Chronicle';
 
   @override
   String deviceDisconnectedTitle(String deviceName) {
@@ -7135,7 +7135,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get onboardingComplete => 'Завяршыць';
 
   @override
-  String get onboardingWelcomeToOmi => 'Вітаем у Omi';
+  String get onboardingWelcomeToOmi => 'Вітаем у Chronicle';
 
   @override
   String get onboardingTellUsAboutYourself => 'Расказыце нам пра сябе';
@@ -7873,20 +7873,20 @@ class AppLocalizationsBe extends AppLocalizations {
   String get reportAnIssue => 'Паведаміць аб праблеме';
 
   @override
-  String get pairingTitleOmi => 'Уключыце Omi';
+  String get pairingTitleOmi => 'Уключыце Chronicle';
 
   @override
   String get pairingDescOmi => 'Прыціскайце і трымайце прыстасаванне да вібрацыі.';
 
   @override
-  String get pairingTitleOmiDevkit => 'Пакладзіце Omi DevKit у рэжым спарыпання';
+  String get pairingTitleOmiDevkit => 'Пакладзіце Chronicle DevKit у рэжым спарыпання';
 
   @override
   String get pairingDescOmiDevkit =>
       'Натысніце кнопку адзін раз для ўключэння. Калі рэжым спарыпання актыўны, LED мігацьме фіялетавым.';
 
   @override
-  String get pairingTitleOmiGlass => 'Уключыце Omi Glass';
+  String get pairingTitleOmiGlass => 'Уключыце Chronicle Glass';
 
   @override
   String get pairingDescOmiGlass => 'Уключыце, натыснуўшы бакавую кнопку на 3 секунды.';
@@ -7929,7 +7929,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get pairingDescAppleWatch =>
-      'Устанавіце і адкрыйце прыкладанне Omi на сваім Apple Watch, потым натысніце Connect у прыкладанні.';
+      'Устанавіце і адкрыйце прыкладанне Chronicle на сваім Apple Watch, потым натысніце Connect у прыкладанні.';
 
   @override
   String get pairingTitleNeoOne => 'Пакладзіце Neo One у рэжым спарыпання';
@@ -8025,7 +8025,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Вось што я пра вас ведаю';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Гэта карта абнаўляецца, калі Omi вучыцца з вашых размоў.';
+  String get onboardingWhatIKnowAboutYouDescription => 'Гэта карта абнаўляецца, калі Chronicle вучыцца з вашых размоў.';
 
   @override
   String get apiEnvironment => 'Окружэнне API';
@@ -8079,7 +8079,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get tasksOverdue => 'Прострочаныя';
 
   @override
-  String get phoneCallsWithOmi => 'Тэлефонныя вызовы з Omi';
+  String get phoneCallsWithOmi => 'Тэлефонныя вызовы з Chronicle';
 
   @override
   String get phoneCallsSubtitle => 'Делайце вызовы з трансляцыяй у рэжыме рэальнага часу';
@@ -8281,11 +8281,11 @@ class AppLocalizationsBe extends AppLocalizations {
   String get showTasksOnHomepage => 'Паказаць задачы на хаме';
 
   @override
-  String get phoneCallsUnlimitedOnly => 'Тэлефонныя вызовы праз Omi';
+  String get phoneCallsUnlimitedOnly => 'Тэлефонныя вызовы праз Chronicle';
 
   @override
   String get phoneCallsUpsellSubtitle =>
-      'Звяжэцца праз Omi і атрымайце трансляцыю у рэжыме рэальнага часу, аўтаматычныя аніяцыі і іншае. Даступна толькі для падпісчыкаў плана Unlimited.';
+      'Звяжэцца праз Chronicle і атрымайце трансляцыю у рэжыме рэальнага часу, аўтаматычныя аніяцыі і іншае. Даступна толькі для падпісчыкаў плана Unlimited.';
 
   @override
   String get phoneCallsUpsellFeature1 => 'Трансляцыя кожнага вызова у рэжыме рэальнага часу';
@@ -8404,7 +8404,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get fairUseAboutBody =>
-      'Omi прызначаны для асобных размоў, сустрэч і жывых узаёмадзеянняў. Ужыванне вымяраецца рэальным часом мовы, а не часам злучэння. Калі ўжыванне значна перавышае нармальныя мадэлі для ненасобнага контэнта, могуць быць зробленыя карэкцыі.';
+      'Chronicle прызначаны для асобных размоў, сустрэч і жывых узаёмадзеянняў. Ужыванне вымяраецца рэальным часом мовы, а не часам злучэння. Калі ўжыванне значна перавышае нармальныя мадэлі для ненасобнага контэнта, могуць быць зробленыя карэкцыі.';
 
   @override
   String fairUseCaseRefCopied(String caseRef) {
@@ -8443,7 +8443,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get improveConnectionContent =>
-      'Мы палепшылі, як Omi астается злучаным з вашым прыстасаваннем. Каб актывіраваць гэта, перайдзіце на старонку Device Info, натысніце \"Адключыць прыстасаванне\", а потым яшчэ раз спарыце свая прыстасаванне.';
+      'Мы палепшылі, як Chronicle астается злучаным з вашым прыстасаваннем. Каб актывіраваць гэта, перайдзіце на старонку Device Info, натысніце \"Адключыць прыстасаванне\", а потым яшчэ раз спарыце свая прыстасаванне.';
 
   @override
   String get improveConnectionAction => 'Зразумелі';
@@ -8454,7 +8454,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get omisStorage => 'Сховішча Omi';
+  String get omisStorage => 'Сховішча Chronicle';
 
   @override
   String get phoneStorage => 'Сховішча тэлефона';
@@ -8499,11 +8499,11 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get omisStorageDesc =>
-      'Калі вашы Omi не злучаны з вашым тэлефонам, ён захоўвае аўдыё адзінаў у абрана пам\'яці прыстасавання. Вы ніколі не страчаеце запіс.';
+      'Калі вашы Chronicle не злучаны з вашым тэлефонам, ён захоўвае аўдыё адзінаў у абрана пам\'яці прыстасавання. Вы ніколі не страчаеце запіс.';
 
   @override
   String get phoneStorageDesc =>
-      'Калі Omi яшчэ раз злучаюцца, запісы аўтаматычна переносяцца на вашы тэлефон як часовае адзінаў да загрузкі.';
+      'Калі Chronicle яшчэ раз злучаюцца, запісы аўтаматычна переносяцца на вашы тэлефон як часовае адзінаў да загрузкі.';
 
   @override
   String get cloudStorageDesc =>
@@ -8532,17 +8532,17 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get permissionsPageDescription =>
-      'Гэтыя дазволы важны для таго, как працуе Omi. Яны дазваляюць ключавыя функцыі, такія як апавяшчэнні, месцазнаходжанні і захоп аўдыё.';
+      'Гэтыя дазволы важны для таго, как працуе Chronicle. Яны дазваляюць ключавыя функцыі, такія як апавяшчэнні, месцазнаходжанні і захоп аўдыё.';
 
   @override
   String get permissionsRequiredDescription =>
-      'Omi патрабуе некалькі дазволаў для нармальнай работы. Калі ласка, дайце іх, каб прадолжыць.';
+      'Chronicle патрабуе некалькі дазволаў для нармальнай работы. Калі ласка, дайце іх, каб прадолжыць.';
 
   @override
   String get permissionsSetupTitle => 'Атрымайце найлепшыя адносіны';
 
   @override
-  String get permissionsSetupDescription => 'Уключыце некалькі дазволаў, каб Omi мог адкрыць свайна магію.';
+  String get permissionsSetupDescription => 'Уключыце некалькі дазволаў, каб Chronicle мог адкрыць свайна магію.';
 
   @override
   String get permissionsChangeAnytime => 'Вы можаце змяніць гэтыя дазволы ў любы час у Параметрах > Дазволы';
@@ -8637,7 +8637,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get feedbackTitleFoundAlternative => 'На што вы пераходзіце?';
 
   @override
-  String get feedbackTitleNotUsing => 'Што б зрабіў Omi больш карыснаю?';
+  String get feedbackTitleNotUsing => 'Што б зрабіў Chronicle больш карыснаю?';
 
   @override
   String get feedbackSubtitleTooExpensive => 'Ваш адгук дапамагае нам знайсці правільнае баланс.';
@@ -8655,7 +8655,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get feedbackSubtitleFoundAlternative => 'Мы б хацелі даведацца, якая рашэнне прыцягнула вашу ўвагу.';
 
   @override
-  String get feedbackSubtitleNotUsing => 'Мы хочам зрабіць Omi больш карыснаю для вас.';
+  String get feedbackSubtitleNotUsing => 'Мы хочам зрабіць Chronicle больш карыснаю для вас.';
 
   @override
   String get deviceDiagnostics => 'Дыягностыка прыстасавання';
@@ -8836,7 +8836,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get appleHealthManageNote =>
-      'Omi атрымлівае доступ да Apple Health праз фрэймворк HealthKit ад Apple. Вы можаце адклікаць доступ у любы час у Наладах iOS.';
+      'Chronicle атрымлівае доступ да Apple Health праз фрэймворк HealthKit ад Apple. Вы можаце адклікаць доступ у любы час у Наладах iOS.';
 
   @override
   String get appleHealthConnectCta => 'Падключыць Apple Health';
@@ -8851,32 +8851,32 @@ class AppLocalizationsBe extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Размаўляйце пра здароўе';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Пытайцеся ў Omi пра крокі, сон, пульс і трэніроўкі.';
+  String get appleHealthFeatureChatDesc => 'Пытайцеся ў Chronicle пра крокі, сон, пульс і трэніроўкі.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Толькі для чытання';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Omi ніколі не піша ў Apple Health і не змяняе вашы даныя.';
+  String get appleHealthFeatureReadOnlyDesc => 'Chronicle ніколі не піша ў Apple Health і не змяняе вашы даныя.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Бяспечная сінхранізацыя';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Даныя Apple Health прыватна сінхранізуюцца з акаўнтам Omi.';
+  String get appleHealthFeatureSecureDesc => 'Даныя Apple Health прыватна сінхранізуюцца з акаўнтам Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Доступ да Apple Health адхілены';
 
   @override
   String get appleHealthDeniedBody =>
-      'У Omi няма дазволу на чытанне даных Apple Health. Уключыце яго ў Налады iOS → Прыватнасць і бяспека → Health → Omi.';
+      'У Chronicle няма дазволу на чытанне даных Apple Health. Уключыце яго ў Налады iOS → Прыватнасць і бяспека → Health → Chronicle.';
 
   @override
   String get deleteFlowReasonTitle => 'Чаму вы сыходзіце?';
 
   @override
-  String get deleteFlowReasonSubtitle => 'Ваш водгук дапамагае нам зрабіць Omi лепшым для ўсіх.';
+  String get deleteFlowReasonSubtitle => 'Ваш водгук дапамагае нам зрабіць Chronicle лепшым для ўсіх.';
 
   @override
   String get deleteReasonPrivacy => 'Праблемы з прыватнасцю';
@@ -8903,7 +8903,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get deleteFlowFeedbackTitle => 'Раскажыце падрабязней';
 
   @override
-  String get deleteFlowFeedbackSubtitle => 'Што прымусіла б Omi працаваць для вас?';
+  String get deleteFlowFeedbackSubtitle => 'Што прымусіла б Chronicle працаваць для вас?';
 
   @override
   String get deleteFlowFeedbackHint => 'Неабавязкова — вашы думкі дапамагаюць нам ствараць лепшы прадукт.';
@@ -9050,14 +9050,14 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get chatQuotaSubtitle => 'AI chat messages used with Omi this month.';
+  String get chatQuotaSubtitle => 'AI chat messages used with Chronicle this month.';
 
   @override
   String get chatQuotaExceededReply =>
-      'Вы дасягнулі свайго месячнага ліміту. Абнавіце, каб працягваць размаўляць з Omi без абмежаванняў.';
+      'Вы дасягнулі свайго месячнага ліміту. Абнавіце, каб працягваць размаўляць з Chronicle без абмежаванняў.';
 
   @override
-  String get voiceResponseAudio => 'Чытаць адказ Omi уголас';
+  String get voiceResponseAudio => 'Чытаць адказ Chronicle уголас';
 
   @override
   String get voiceResponseMode => 'Галасавы адказ';
@@ -9202,14 +9202,14 @@ class AppLocalizationsBe extends AppLocalizations {
   String get syncInProgress => 'Сінхранізацыя выконваецца';
 
   @override
-  String get syncStatusUploaded => 'Запампавана · апрацоўка ў Omi';
+  String get syncStatusUploaded => 'Запампавана · апрацоўка ў Chronicle';
 
   @override
   String get deleteWhileProcessingTitle => 'Усё яшчэ апрацоўваецца';
 
   @override
   String get deleteWhileProcessingMessage =>
-      'Гэты запіс запампаваны, але Omi яшчэ стварае размову. Калі выдаліць зараз і апрацоўка не атрымаецца, аднавіць будзе немагчыма. Усё роўна выдаліць?';
+      'Гэты запіс запампаваны, але Chronicle яшчэ стварае размову. Калі выдаліць зараз і апрацоўка не атрымаецца, аднавіць будзе немагчыма. Усё роўна выдаліць?';
 
   @override
   String get syncCardAllBackedUp => 'Усе запісы сінхранізаваны';
@@ -9228,7 +9228,7 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
-  String get syncCardProcessing => 'Апрацоўка ў Omi…';
+  String get syncCardProcessing => 'Апрацоўка ў Chronicle…';
 
   @override
   String get syncCardWaitingInternet => 'Чаканне інтэрнэту';
@@ -9248,19 +9248,19 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get syncFlowIntro =>
-      'Запісы перадаюцца з вашага прыбора на гэты тэлефон і захоўваюцца лакальна, а потым загружаюцца на сервер Omi, дзе яны транскрыбуюцца і ператвараюцца ў размовы.';
+      'Запісы перадаюцца з вашага прыбора на гэты тэлефон і захоўваюцца лакальна, а потым загружаюцца на сервер Chronicle, дзе яны транскрыбуюцца і ператвараюцца ў размовы.';
 
   @override
   String get syncStepUpload => 'Сінхранізацыя';
 
   @override
-  String get syncStepUploadDesc => 'Ваш запіс адпраўляецца на сервер Omi';
+  String get syncStepUploadDesc => 'Ваш запіс адпраўляецца на сервер Chronicle';
 
   @override
   String get syncStepProcess => 'Транскрыпцыя';
 
   @override
-  String get syncStepProcessDesc => 'Omi ператварае аўдыя ў размову';
+  String get syncStepProcessDesc => 'Chronicle ператварае аўдыя ў размову';
 
   @override
   String get syncStepBackedUp => 'Размова гатовая';
@@ -9276,7 +9276,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get syncStatusConversationCreated => 'Размова створана';
 
   @override
-  String get syncCardUploadingTitle => 'Запампоўка ў Omi';
+  String get syncCardUploadingTitle => 'Запампоўка ў Chronicle';
 
   @override
   String get syncCardDownloadingTitle => 'Загрузка з вашага прыбора';
@@ -9308,7 +9308,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get syncCardRateLimited => 'Дасягнуты ліміт сумленнага выкарыстання — сінхранізацыя адновіцца аўтаматычна';
 
   @override
-  String get syncCardBackendBusy => 'Серверы Omi загружаныя — вашы запісы сінхранізуюцца, калі з\'явіцца магчымасць';
+  String get syncCardBackendBusy => 'Серверы Chronicle загружаныя — вашы запісы сінхранізуюцца, калі з\'явіцца магчымасць';
 
   @override
   String get unableToDetermineFirmwareVersion => 'Не ўдалося вызначыць бягучую версію прашыўкі';
@@ -9326,14 +9326,14 @@ class AppLocalizationsBe extends AppLocalizations {
   String get backgroundModeTitle => 'Фонавы рэжым';
 
   @override
-  String get backgroundModeDescription => 'Працягвайце запіс Omi, нават калі праграма цалкам закрыта.';
+  String get backgroundModeDescription => 'Працягвайце запіс Chronicle, нават калі праграма цалкам закрыта.';
 
   @override
-  String get backgroundModeNote => 'Пакуль працуе толькі з прыладамі Omi і пастаянна ўдасканальваецца.';
+  String get backgroundModeNote => 'Пакуль працуе толькі з прыладамі Chronicle і пастаянна ўдасканальваецца.';
 
   @override
   String get backgroundModeUnavailable =>
-      'Фонавы рэжым недаступны, бо не падключана сумяшчальная прылада. Падключыце Omi, OpenGlass або Friend Pendant, каб выкарыстоўваць гэту функцыю.';
+      'Фонавы рэжым недаступны, бо не падключана сумяшчальная прылада. Падключыце Chronicle, OpenGlass або Friend Pendant, каб выкарыстоўваць гэту функцыю.';
 
   @override
   String get regenerateRecap => 'Згенераваць рэзюмэ паўторна';
@@ -9351,11 +9351,11 @@ class AppLocalizationsBe extends AppLocalizations {
   String get recapRegenerateNoConversations => 'Няма размоў для рэзюмавання гэтага дня.';
 
   @override
-  String get syncCustomSttWarningTitle => 'Сінхранізацыя выкарыстоўвае транскрыпцыю Omi';
+  String get syncCustomSttWarningTitle => 'Сінхранізацыя выкарыстоўвае транскрыпцыю Chronicle';
 
   @override
   String get syncCustomSttWarningMessage =>
-      'Вы карыстаецеся ўласным сэрвісам транскрыпцыі. Сінхранізацыя гэтых запісаў транскрыбуе іх на серверах Omi, і яны залічацца ў ліміт транскрыпцыі вашага тарыфу.';
+      'Вы карыстаецеся ўласным сэрвісам транскрыпцыі. Сінхранізацыя гэтых запісаў транскрыбуе іх на серверах Chronicle, і яны залічацца ў ліміт транскрыпцыі вашага тарыфу.';
 
   @override
   String get transcribeLaterTitle => 'Транскрыпцыя пазней';
@@ -9366,7 +9366,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get transcribeLaterNote =>
-      'Працуе з мікрафонам тэлефона, прыладамі Omi і Limitless. Аўдыя застаецца на тэлефоне, пакуль вы самі не вырашыце яго загрузіць.';
+      'Працуе з мікрафонам тэлефона, прыладамі Chronicle і Limitless. Аўдыя застаецца на тэлефоне, пакуль вы самі не вырашыце яго загрузіць.';
 
   @override
   String get transcribeLaterStorageFull =>
@@ -9412,10 +9412,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get memoryProvenanceAndroid => 'Android';
 
   @override
-  String get deviceTutorial => 'Як карыстацца Omi';
+  String get deviceTutorial => 'Як карыстацца Chronicle';
 
   @override
-  String get deviceOnboardingTranscriptionTitle => 'Скажыце нешта свайму Omi';
+  String get deviceOnboardingTranscriptionTitle => 'Скажыце нешта свайму Chronicle';
 
   @override
   String get deviceOnboardingTranscriptionSubtitle =>
@@ -9428,7 +9428,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get deviceOnboardingStartSpeaking => 'Пачніце гаварыць...';
 
   @override
-  String get deviceOnboardingAskQuestionTitle => 'Задайце Omi пытанне';
+  String get deviceOnboardingAskQuestionTitle => 'Задайце Chronicle пытанне';
 
   @override
   String get deviceOnboardingAskQuestionSubtitle =>
@@ -9492,7 +9492,7 @@ class AppLocalizationsBe extends AppLocalizations {
   String get deviceOnboardingSingleTapHint => 'Гэта быў адзіночны націск — паспрабуйце націснуць двойчы хутка!';
 
   @override
-  String get deviceOnboardingTryDoubleTap => 'Паспрабуйце цяпер! Двойчы націсніце свой Omi';
+  String get deviceOnboardingTryDoubleTap => 'Паспрабуйце цяпер! Двойчы націсніце свой Chronicle';
 
   @override
   String get deviceOnboardingContinue => 'Працягнуць';
@@ -9501,10 +9501,10 @@ class AppLocalizationsBe extends AppLocalizations {
   String get deviceOnboardingFinish => 'Гатова';
 
   @override
-  String get deviceOnboardingIntroTitle => 'Пазнаёмцеся з Omi';
+  String get deviceOnboardingIntroTitle => 'Пазнаёмцеся з Chronicle';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Хуткі практычны агляд усяго, што ўмее ваш Omi.';
+  String get deviceOnboardingIntroSubtitle => 'Хуткі практычны агляд усяго, што ўмее ваш Chronicle.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Каля 1 хвіліны';
@@ -9542,7 +9542,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get raybanMetaSetupDescription =>
-      'Выкарыстоўвайце свае акуляры Ray-Ban Meta ў якасці прылады захопу Omi для размоў і візуальнага кантэксту. Omi адкрые праграму Meta AI, каб звязаць вашы акуляры.';
+      'Выкарыстоўвайце свае акуляры Ray-Ban Meta ў якасці прылады захопу Chronicle для размоў і візуальнага кантэксту. Chronicle адкрые праграму Meta AI, каб звязаць вашы акуляры.';
 
   @override
   String get raybanMetaOpenMetaAI => 'Падключыцца праз Meta AI';
@@ -9558,7 +9558,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get raybanMetaCameraExplanation =>
-      'Omi выкарыстоўвае камеру вашых акуляраў, каб дадаваць фота ў вашы размовы. Вы можаце прапусціць гэта і выкарыстоўваць толькі гук.';
+      'Chronicle выкарыстоўвае камеру вашых акуляраў, каб дадаваць фота ў вашы размовы. Вы можаце прапусціць гэта і выкарыстоўваць толькі гук.';
 
   @override
   String get raybanMetaSkipForNow => 'Прапусціць пакуль';
@@ -9568,7 +9568,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get raybanMetaAudioOnlyExplanation =>
-      'Гэтая версія Omi можа выкарыстоўваць мікрафон вашых акуляраў праз Bluetooth. Захоп фота патрабуе версіі распрацоўшчыка Omi ад Meta.';
+      'Гэтая версія Chronicle можа выкарыстоўваць мікрафон вашых акуляраў праз Bluetooth. Захоп фота патрабуе версіі распрацоўшчыка Chronicle ад Meta.';
 
   @override
   String get raybanMetaMusicPauseNote =>
@@ -9783,7 +9783,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get rayBanMetaMicPickerDescription =>
-      'Выберыце Bluetooth-мікрафон акуляраў. Музыка прыпыніцца, пакуль Omi яго выкарыстоўвае.';
+      'Выберыце Bluetooth-мікрафон акуляраў. Музыка прыпыніцца, пакуль Chronicle яго выкарыстоўвае.';
 
   @override
   String get rayBanMetaMicPickerEmpty =>
@@ -9798,10 +9798,10 @@ class AppLocalizationsBe extends AppLocalizations {
       'Не ўдалося падключыцца да гэтага мікрафона. Праверце, ці падключаны ён у наладах iPhone.';
 
   @override
-  String get syncStatusTooOld => 'Занадта старое для сінхранізацыі — Omi не можа яго прыняць';
+  String get syncStatusTooOld => 'Занадта старое для сінхранізацыі — Chronicle не можа яго прыняць';
 
   @override
-  String get planSheetChooseYourPlan => 'Выберыце свой план, каб адкрыць безмежны Omi.';
+  String get planSheetChooseYourPlan => 'Выберыце свой план, каб адкрыць безмежны Chronicle.';
 
   @override
   String get availableOnMacMobileWeb => 'Даступна на Mac, мабільным і ў вэбе';
@@ -9835,7 +9835,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get freemiumLimitsIntro =>
-      'Omi бясплатны, але бясплатная версія мае абмежаванні, якія ўплываюць на ваш вопыт:';
+      'Chronicle бясплатны, але бясплатная версія мае абмежаванні, якія ўплываюць на ваш вопыт:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Затрымка 5-7 секунд (не ў рэальным часе)';
@@ -9857,7 +9857,7 @@ class AppLocalizationsBe extends AppLocalizations {
 
   @override
   String get accountCutoverUpdateRequiredMessage =>
-      'Установите последнее приложение Omi, чтобы продолжить после миграции аккаунта.';
+      'Установите последнее приложение Chronicle, чтобы продолжить после миграции аккаунта.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Идёт миграция';
@@ -9874,9 +9874,9 @@ class AppLocalizationsBe extends AppLocalizations {
   String get accountCutoverOpenStore => 'Открыть магазин';
 
   @override
-  String get sendRawAudioToOmi => 'Адпраўляць неапрацаванае аўдыя ў Omi';
+  String get sendRawAudioToOmi => 'Адпраўляць неапрацаванае аўдыя ў Chronicle';
 
   @override
   String get sendRawAudioToOmiDescription =>
-      'Выключыце, каб не адпраўляць у Omi неапрацаванае аўдыя. Расшыфроўкі і даныя, патрэбныя воблачным функцыям, усё яшчэ могуць адпраўляцца ў Omi.';
+      'Выключыце, каб не адпраўляць у Chronicle неапрацаванае аўдыя. Расшыфроўкі і даныя, патрэбныя воблачным функцыям, усё яшчэ могуць адпраўляцца ў Chronicle.';
 }

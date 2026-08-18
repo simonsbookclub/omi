@@ -772,7 +772,7 @@ class AnalyticsManager {
   void setUserProperties(String whatDoYouDo, String whereDoYouPlanToUseYourFriend, String ageRange) {
     _setUserPropertiesBatch({
       'What the user does': whatDoYouDo,
-      'Using Omi At': whereDoYouPlanToUseYourFriend,
+      'Using Chronicle At': whereDoYouPlanToUseYourFriend,
       'Age Range': ageRange,
     });
   }
@@ -1611,7 +1611,7 @@ class AnalyticsManager {
 
   void omiDoubleTap({required String feature, Map<String, dynamic>? additionalProperties}) {
     track(
-      'Omi Double Tap',
+      'Chronicle Double Tap',
       properties: {'feature': feature, if (additionalProperties != null) ...additionalProperties},
     );
   }
@@ -1910,7 +1910,7 @@ class AnalyticsManager {
 
   void connectDevicePageOpened() => track('Connect Device Page Opened');
 
-  void getOmiDeviceClicked() => track('Get Omi Device Clicked');
+  void getOmiDeviceClicked() => track('Get Chronicle Device Clicked');
 
   void connectionGuideOpened() => track('Connection Guide Opened');
 

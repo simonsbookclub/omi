@@ -133,7 +133,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
         });
       }
       // Handle auto-message from notification (e.g., daily reflection or goal advice)
-      // This sends a message FROM Omi AI, not from the user
+      // This sends a message FROM Chronicle AI, not from the user
       if (widget.autoMessage != null && widget.autoMessage!.isNotEmpty && mounted) {
         // Wait for messages to load first, then add auto-message
         Future.delayed(const Duration(milliseconds: 800), () {
@@ -1435,7 +1435,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: [
-                      // Omi option
+                      // Chronicle option
                       _buildDrawerAppItem(
                         avatar: _getOmiAvatar(),
                         name: context.l10n.omiAppName,

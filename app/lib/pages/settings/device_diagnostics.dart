@@ -121,7 +121,7 @@ class _DeviceDiagnosticsState extends State<DeviceDiagnostics> {
     final file = File('${dir.path}/omi_diagnostics_${DateTime.now().millisecondsSinceEpoch}.json');
     await file.writeAsString(json);
     await SharePlus.instance.share(
-      ShareParams(files: [XFile(file.path)], title: 'Omi Device Diagnostics', subject: 'Omi Device Diagnostics'),
+      ShareParams(files: [XFile(file.path)], title: 'Chronicle Device Diagnostics', subject: 'Chronicle Device Diagnostics'),
     );
     PlatformManager.instance.analytics.track(
       'Diagnostics Exported',

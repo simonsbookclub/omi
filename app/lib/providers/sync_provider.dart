@@ -397,8 +397,8 @@ class SyncProvider extends ChangeNotifier implements IWalServiceListener, IWalSy
         drain: _drainEligibleWals,
         // SIMONSBOOKCLUB PATCH: upstream disables the automatic flash drain
         // whenever Custom STT is enabled (the !useCustomStt clause), because
-        // on Omi's hosted backend the drained audio could only be processed
-        // by Omi's own transcription. Consequence on a Limitless Pendant:
+        // on Chronicle's hosted backend the drained audio could only be processed
+        // by Chronicle's own transcription. Consequence on a Limitless Pendant:
         // flash is never ACK-freed, storage fills in ~23h of wear, and the
         // device stops recording (blinking red) — observed live on
         // 2026-08-13 and 2026-08-14. On our self-hosted backend the drained

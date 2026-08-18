@@ -135,7 +135,7 @@ Future<Map<String, String>> buildHeaders({
   )) {
     final accountGeneration = AccountCutoverRuntime.instance.control.accountGeneration;
     // Generation-zero remains compatible without the header; positive generations
-    // must present matching metadata on mutating Omi API requests / product WS.
+    // must present matching metadata on mutating Chronicle API requests / product WS.
     if (accountGeneration > 0) {
       headers['X-Account-Generation'] = accountGeneration.toString();
     }
@@ -153,7 +153,7 @@ Future<Map<String, String>> buildHeaders({
 @visibleForTesting
 String normalizeOmiApiUrlForHostMatch(String url) {
   // HTTP helpers and product sockets share one API host; compare scheme-neutrally
-  // so `wss://` listen URLs still count as Omi API traffic.
+  // so `wss://` listen URLs still count as Chronicle API traffic.
   return url
       .replaceFirst(RegExp(r'^https://', caseSensitive: false), '')
       .replaceFirst(RegExp(r'^http://', caseSensitive: false), '')
@@ -177,7 +177,7 @@ bool _isRequiredAuthCheck(String url) {
 
 const _mutatingHttpMethods = {'POST', 'PUT', 'PATCH', 'DELETE'};
 
-/// `X-Account-Generation` is only for authenticated Omi API mutation traffic and
+/// `X-Account-Generation` is only for authenticated Chronicle API mutation traffic and
 /// product WebSocket admission — never arbitrary third-party hosts (e.g. zip CDN).
 @visibleForTesting
 bool shouldAttachAccountGenerationHeader({

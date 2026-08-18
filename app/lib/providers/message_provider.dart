@@ -520,7 +520,7 @@ class MessageProvider extends ChangeNotifier {
     var aiIndex = messages.length - 1;
     notifyListeners();
 
-    // Voice response playback is triggered only from the Omi device-button
+    // Voice response playback is triggered only from the Chronicle device-button
     // path (capture_provider). The chat-screen mic input does not pass
     // playResponseAudio=true.
     final String playbackMessageId = message.id;
@@ -588,7 +588,7 @@ class MessageProvider extends ChangeNotifier {
           if (_tryParseQuotaError(chunk.text)) {
             final l10n = globalNavigatorKey.currentContext?.l10n;
             message.text = l10n?.chatQuotaExceededReply ??
-                "You've hit your monthly limit. Upgrade to keep chatting with Omi without restrictions.";
+                "You've hit your monthly limit. Upgrade to keep chatting with Chronicle without restrictions.";
             if (playResponseAudio) {
               await OmiVoicePlaybackService.instance.interrupt();
             }
@@ -617,7 +617,7 @@ class MessageProvider extends ChangeNotifier {
   Future sendMessageStreamToServer(String text) async {
     _chatQuotaExceeded = false; // Clear stale quota state from previous sends
     aiStreamProgress = 0.0;
-    // If Omi was still speaking a prior voice reply, stop it — the user's
+    // If Chronicle was still speaking a prior voice reply, stop it — the user's
     // typed message takes precedence.
     if (OmiVoicePlaybackService.instance.isSpeaking) {
       await OmiVoicePlaybackService.instance.interrupt();
@@ -719,7 +719,7 @@ class MessageProvider extends ChangeNotifier {
             // Keep the user's message visible; replace AI placeholder with quota message
             final l10n = globalNavigatorKey.currentContext?.l10n;
             message.text = l10n?.chatQuotaExceededReply ??
-                "You've hit your monthly limit. Upgrade to keep chatting with Omi without restrictions.";
+                "You've hit your monthly limit. Upgrade to keep chatting with Chronicle without restrictions.";
             notifyListeners();
             return;
           }

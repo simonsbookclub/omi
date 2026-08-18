@@ -557,7 +557,7 @@ class App {
     if (image.startsWith('http')) {
       return image;
     } else {
-      return 'https://raw.githubusercontent.com/BasedHardware/Omi/main$image';
+      return 'https://raw.githubusercontent.com/BasedHardware/Chronicle/main$image';
     }
   }
 

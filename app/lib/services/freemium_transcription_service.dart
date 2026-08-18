@@ -11,7 +11,7 @@ import 'package:omi/utils/logger.dart';
 
 /// Enum representing the current freemium transcription state
 enum FreemiumTranscriptionState {
-  /// Using premium (Omi) STT
+  /// Using premium (Chronicle) STT
   premium,
 
   /// Using free (on-device) STT
@@ -188,7 +188,7 @@ class FreemiumTranscriptionService extends ChangeNotifier {
   /// Check if currently using free (on-device) STT
   bool get isUsingFreeStt => _state == FreemiumTranscriptionState.free;
 
-  /// Check if currently using premium (Omi) STT
+  /// Check if currently using premium (Chronicle) STT
   bool get isUsingPremiumStt => _state == FreemiumTranscriptionState.premium;
 
   /// Reset state

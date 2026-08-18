@@ -250,7 +250,7 @@ class _FirmwareUpdateState extends State<FirmwareUpdate> with FirmwareMixin {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  context.l10n.restartDeviceToComplete(widget.device?.name ?? "Omi device"),
+                  context.l10n.restartDeviceToComplete(widget.device?.name ?? "Chronicle device"),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 15, color: Colors.grey.shade400, height: 1.4),
                 ),

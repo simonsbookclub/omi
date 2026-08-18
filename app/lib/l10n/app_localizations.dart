@@ -198,7 +198,7 @@ abstract class AppLocalizations {
   /// The app title displayed in various places
   ///
   /// In en, this message translates to:
-  /// **'Omi'**
+  /// **'Chronicle'**
   String get appTitle;
 
   /// Tab label for conversation summary
@@ -432,7 +432,7 @@ abstract class AppLocalizations {
   /// Hint text for creating a person
   ///
   /// In en, this message translates to:
-  /// **'Create a new person and train Omi to recognize their speech too!'**
+  /// **'Create a new person and train Chronicle to recognize their speech too!'**
   String get createPersonHint;
 
   /// Speech profile setting
@@ -501,10 +501,10 @@ abstract class AppLocalizations {
   /// **'Could not access the selected file'**
   String get couldNotAccessFile;
 
-  /// Shortcut to ask Omi a question
+  /// Shortcut to ask Chronicle a question
   ///
   /// In en, this message translates to:
-  /// **'Ask Omi'**
+  /// **'Ask Chronicle'**
   String get askOmi;
 
   /// Status when download is done
@@ -696,7 +696,7 @@ abstract class AppLocalizations {
   /// Loading text when clearing chat
   ///
   /// In en, this message translates to:
-  /// **'Deleting your messages from Omi\'s memory...'**
+  /// **'Deleting your messages from Chronicle\'s memory...'**
   String get deletingMessages;
 
   /// Snackbar message for copied text
@@ -756,7 +756,7 @@ abstract class AppLocalizations {
   /// Chat share subject
   ///
   /// In en, this message translates to:
-  /// **'Chat with Omi'**
+  /// **'Chat with Chronicle'**
   String get chatWithOmi;
 
   /// Navigation label for apps page
@@ -816,7 +816,7 @@ abstract class AppLocalizations {
   /// About page title
   ///
   /// In en, this message translates to:
-  /// **'About Omi'**
+  /// **'About Chronicle'**
   String get aboutOmi;
 
   /// Link text for Privacy Policy
@@ -1050,7 +1050,7 @@ abstract class AppLocalizations {
   /// Mac app download link
   ///
   /// In en, this message translates to:
-  /// **'Get Omi for Mac'**
+  /// **'Get Chronicle for Mac'**
   String get getOmiForMac;
 
   /// Referral program menu item
@@ -1086,7 +1086,7 @@ abstract class AppLocalizations {
   /// Data privacy page introduction
   ///
   /// In en, this message translates to:
-  /// **'At Omi, we are committed to protecting your privacy. This page allows you to control how your data is stored and used.'**
+  /// **'At Chronicle, we are committed to protecting your privacy. This page allows you to control how your data is stored and used.'**
   String get privacyIntro;
 
   /// Learn more link
@@ -1224,7 +1224,7 @@ abstract class AppLocalizations {
   /// Message shown when device is disconnected
   ///
   /// In en, this message translates to:
-  /// **'Your Omi has been disconnected 😔'**
+  /// **'Your Chronicle has been disconnected 😔'**
   String get deviceDisconnectedMessage;
 
   /// Message shown after device is unpaired
@@ -1254,7 +1254,7 @@ abstract class AppLocalizations {
   /// Message encouraging user to connect device
   ///
   /// In en, this message translates to:
-  /// **'Connect your Omi device to access\ndevice settings and customization'**
+  /// **'Connect your Chronicle device to access\ndevice settings and customization'**
   String get connectDeviceMessage;
 
   /// Device information section header
@@ -1512,7 +1512,7 @@ abstract class AppLocalizations {
   /// Usage page title
   ///
   /// In en, this message translates to:
-  /// **'Your Omi Insights'**
+  /// **'Your Chronicle Insights'**
   String get yourOmiInsights;
 
   /// Label for today date
@@ -1548,7 +1548,7 @@ abstract class AppLocalizations {
   /// Empty state description
   ///
   /// In en, this message translates to:
-  /// **'Start a conversation with Omi\nto see your usage insights here.'**
+  /// **'Start a conversation with Chronicle\nto see your usage insights here.'**
   String get startConversationToSeeInsights;
 
   /// Listening stat title
@@ -1560,7 +1560,7 @@ abstract class AppLocalizations {
   /// Listening stat subtitle
   ///
   /// In en, this message translates to:
-  /// **'Total time Omi has actively listened.'**
+  /// **'Total time Chronicle has actively listened.'**
   String get listeningSubtitle;
 
   /// Understanding stat title
@@ -1650,7 +1650,7 @@ abstract class AppLocalizations {
   /// Share stats base message
   ///
   /// In en, this message translates to:
-  /// **'Sharing my Omi stats! (omi.me - your always-on AI assistant)'**
+  /// **'Sharing my Chronicle stats! (omi.me - your always-on AI assistant)'**
   String get shareStatsMessage;
 
   /// Share stats period: Today
@@ -1728,7 +1728,7 @@ abstract class AppLocalizations {
   /// No description provided for @omiDebugLog.
   ///
   /// In en, this message translates to:
-  /// **'Omi debug log'**
+  /// **'Chronicle debug log'**
   String get omiDebugLog;
 
   /// No description provided for @logShared.
@@ -1776,7 +1776,7 @@ abstract class AppLocalizations {
   /// No description provided for @exportedConversations.
   ///
   /// In en, this message translates to:
-  /// **'Exported Conversations from Omi'**
+  /// **'Exported Conversations from Chronicle'**
   String get exportedConversations;
 
   /// No description provided for @exportShared.
@@ -2106,7 +2106,7 @@ abstract class AppLocalizations {
   /// No description provided for @vocabularyHint.
   ///
   /// In en, this message translates to:
-  /// **'Omi, Callie, OpenAI'**
+  /// **'Chronicle, Callie, OpenAI'**
   String get vocabularyHint;
 
   /// Title for device connection page
@@ -2172,7 +2172,7 @@ abstract class AppLocalizations {
   /// No description provided for @authAccessMessage.
   ///
   /// In en, this message translates to:
-  /// **'You\'ll need to authorize Omi to access your {appName} data. This will open your browser for authentication.'**
+  /// **'You\'ll need to authorize Chronicle to access your {appName} data. This will open your browser for authentication.'**
   String authAccessMessage(String appName);
 
   /// No description provided for @continueAction.
@@ -2352,7 +2352,7 @@ abstract class AppLocalizations {
   /// No description provided for @howShouldOmiCallYou.
   ///
   /// In en, this message translates to:
-  /// **'How should Omi call you?'**
+  /// **'How should Chronicle call you?'**
   String get howShouldOmiCallYou;
 
   /// Hint text for name input field
@@ -2826,7 +2826,7 @@ abstract class AppLocalizations {
   /// No description provided for @authorizeOmiForTasks.
   ///
   /// In en, this message translates to:
-  /// **'You\'ll need to authorize Omi to create tasks in your {appName} account. This will open your browser for authentication.'**
+  /// **'You\'ll need to authorize Chronicle to create tasks in your {appName} account. This will open your browser for authentication.'**
   String authorizeOmiForTasks(String appName);
 
   /// Continue button label
@@ -2898,7 +2898,7 @@ abstract class AppLocalizations {
   /// No description provided for @omiUnlimited.
   ///
   /// In en, this message translates to:
-  /// **'Omi Unlimited'**
+  /// **'Chronicle Unlimited'**
   String get omiUnlimited;
 
   /// No description provided for @hostRequired.
@@ -3120,13 +3120,13 @@ abstract class AppLocalizations {
   /// Warning about device codec compatibility
   ///
   /// In en, this message translates to:
-  /// **'{device} uses {reason}. Omi will be used.'**
+  /// **'{device} uses {reason}. Chronicle will be used.'**
   String deviceUsesCodec(String device, String reason);
 
   /// No description provided for @omiTranscription.
   ///
   /// In en, this message translates to:
-  /// **'Omi Transcription'**
+  /// **'Chronicle Transcription'**
   String get omiTranscription;
 
   /// No description provided for @bestInClassTranscription.
@@ -3408,7 +3408,7 @@ abstract class AppLocalizations {
   /// Explanation text for why Bluetooth is required
   ///
   /// In en, this message translates to:
-  /// **'Omi needs Bluetooth to connect to your wearable. Please enable Bluetooth and try again.'**
+  /// **'Chronicle needs Bluetooth to connect to your wearable. Please enable Bluetooth and try again.'**
   String get bluetoothNeeded;
 
   /// Link text to contact support
@@ -3438,7 +3438,7 @@ abstract class AppLocalizations {
   /// Description for background activity permission
   ///
   /// In en, this message translates to:
-  /// **'Let Omi run in the background for better stability'**
+  /// **'Let Chronicle run in the background for better stability'**
   String get backgroundActivityDesc;
 
   /// Title for location access permission
@@ -3492,7 +3492,7 @@ abstract class AppLocalizations {
   /// Title for the app review prompt
   ///
   /// In en, this message translates to:
-  /// **'Loving Omi?'**
+  /// **'Loving Chronicle?'**
   String get lovingOmi;
 
   /// Button text to defer action
@@ -3504,7 +3504,7 @@ abstract class AppLocalizations {
   /// Introduction text for speech profile setup
   ///
   /// In en, this message translates to:
-  /// **'Omi needs to learn your goals and your voice. You\'ll be able to modify it later.'**
+  /// **'Chronicle needs to learn your goals and your voice. You\'ll be able to modify it later.'**
   String get speechProfileIntro;
 
   /// Button text to begin a process
@@ -3606,7 +3606,7 @@ abstract class AppLocalizations {
   /// Button text to connect specific device models
   ///
   /// In en, this message translates to:
-  /// **'Connect Omi / OmiGlass'**
+  /// **'Connect Chronicle / OmiGlass'**
   String get connectOmiOmiGlass;
 
   /// Button text to proceed without connecting a hardware device
@@ -3678,7 +3678,7 @@ abstract class AppLocalizations {
   /// App title or branding on onboarding screen
   ///
   /// In en, this message translates to:
-  /// **'Omi – Your AI Companion'**
+  /// **'Chronicle – Your AI Companion'**
   String get omiYourAiCompanion;
 
   /// App value proposition or description
@@ -3708,7 +3708,7 @@ abstract class AppLocalizations {
   /// Instructions after permission is granted
   ///
   /// In en, this message translates to:
-  /// **'Permission granted! Now:\n\nOpen the Omi app on your watch and tap \"Continue\" below'**
+  /// **'Permission granted! Now:\n\nOpen the Chronicle app on your watch and tap \"Continue\" below'**
   String get permissionGrantedNow;
 
   /// Instructions for granting microphone permission
@@ -3732,7 +3732,7 @@ abstract class AppLocalizations {
   /// Troubleshooting instructions for watch setup
   ///
   /// In en, this message translates to:
-  /// **'Troubleshooting:\n\n1. Ensure Omi is installed on your watch\n2. Open the Omi app on your watch\n3. Look for the permission popup\n4. Tap \"Allow\" when prompted\n5. App on your watch will close - reopen it\n6. Come back and tap \"Continue\" on your iPhone'**
+  /// **'Troubleshooting:\n\n1. Ensure Chronicle is installed on your watch\n2. Open the Chronicle app on your watch\n3. Look for the permission popup\n4. Tap \"Allow\" when prompted\n5. App on your watch will close - reopen it\n6. Come back and tap \"Continue\" on your iPhone'**
   String get troubleshootingSteps;
 
   /// Success message
@@ -3783,7 +3783,7 @@ abstract class AppLocalizations {
   /// **'Select your language'**
   String get selectYourLanguage;
 
-  /// Subtitle describing Omi on auth screen
+  /// Subtitle describing Chronicle on auth screen
   ///
   /// In en, this message translates to:
   /// **'Your personal growth journey with AI that listens to your every word.'**
@@ -4008,13 +4008,13 @@ abstract class AppLocalizations {
   /// Dialog title for clearing memory
   ///
   /// In en, this message translates to:
-  /// **'Clear Omi\'s Memory'**
+  /// **'Clear Chronicle\'s Memory'**
   String get clearMemoryTitle;
 
   /// Dialog content for clearing memory
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to clear Omi\'s memory? This action cannot be undone.'**
+  /// **'Are you sure you want to clear Chronicle\'s memory? This action cannot be undone.'**
   String get clearMemoryMessage;
 
   /// Button text to confirm clearing all memories
@@ -4026,7 +4026,7 @@ abstract class AppLocalizations {
   /// Snackbar success message
   ///
   /// In en, this message translates to:
-  /// **'Omi\'s memory about you has been cleared'**
+  /// **'Chronicle\'s memory about you has been cleared'**
   String get memoryClearedSuccess;
 
   /// Info message when there are no memories to delete
@@ -4338,7 +4338,7 @@ abstract class AppLocalizations {
   /// Message explaining how translation works and where to change language settings
   ///
   /// In en, this message translates to:
-  /// **'Omi translates conversations into your primary language. Update it anytime in Settings → Profiles.'**
+  /// **'Chronicle translates conversations into your primary language. Update it anytime in Settings → Profiles.'**
   String get translationNoticeMessage;
 
   /// Error message shown when network request fails
@@ -4683,10 +4683,10 @@ abstract class AppLocalizations {
   /// **'Privacy Policy'**
   String get privacyPolicyTitle;
 
-  /// Label for default Omi STT provider
+  /// Label for default Chronicle STT provider
   ///
   /// In en, this message translates to:
-  /// **'Omi'**
+  /// **'Chronicle'**
   String get omiSttProvider;
 
   /// Message shown when a value is copied
@@ -4968,7 +4968,7 @@ abstract class AppLocalizations {
   /// Step 2: Syncing audio files
   ///
   /// In en, this message translates to:
-  /// **'Omi then syncs the audio files with the server'**
+  /// **'Chronicle then syncs the audio files with the server'**
   String get omiSyncsAudioFiles;
 
   /// Step 3: Server processing
@@ -4986,13 +4986,13 @@ abstract class AppLocalizations {
   /// Welcome message on completion screen
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Omi! Your AI companion is ready to assist you with conversations, tasks, and more.'**
+  /// **'Welcome to Chronicle! Your AI companion is ready to assist you with conversations, tasks, and more.'**
   String get welcomeToOmiDescription;
 
   /// Button to complete onboarding and start using the app
   ///
   /// In en, this message translates to:
-  /// **'Start Using Omi'**
+  /// **'Start Using Chronicle'**
   String get startUsingOmi;
 
   /// Back button text
@@ -5136,7 +5136,7 @@ abstract class AppLocalizations {
   /// Message explaining how to get started with conversations
   ///
   /// In en, this message translates to:
-  /// **'Start capturing conversations with your Omi device to see them here.'**
+  /// **'Start capturing conversations with your Chronicle device to see them here.'**
   String get startCapturingConversations;
 
   /// Tip about using mobile app for audio capture
@@ -5166,7 +5166,7 @@ abstract class AppLocalizations {
   /// Message shown when there are no tasks due today
   ///
   /// In en, this message translates to:
-  /// **'No tasks for today.\nAsk Omi for more tasks or create manually.'**
+  /// **'No tasks for today.\nAsk Chronicle for more tasks or create manually.'**
   String get noTasksForToday;
 
   /// Header for daily score widget
@@ -5460,7 +5460,7 @@ abstract class AppLocalizations {
   /// Subtitle describing the purpose of the create app page
   ///
   /// In en, this message translates to:
-  /// **'Build and submit your custom Omi app'**
+  /// **'Build and submit your custom Chronicle app'**
   String get buildSubmitCustomOmiApp;
 
   /// Loading message shown while app is being submitted
@@ -5550,7 +5550,7 @@ abstract class AppLocalizations {
   /// Terms and conditions agreement checkbox text
   ///
   /// In en, this message translates to:
-  /// **'By submitting this app, I agree to the Omi AI Terms of Service and Privacy Policy'**
+  /// **'By submitting this app, I agree to the Chronicle AI Terms of Service and Privacy Policy'**
   String get submitAppTermsAgreement;
 
   /// Button text to submit the app
@@ -5634,7 +5634,7 @@ abstract class AppLocalizations {
   /// Warning message about app data access in confirmation dialog
   ///
   /// In en, this message translates to:
-  /// **'This app will access your data. Omi AI is not responsible for how your data is used, modified, or deleted by this app'**
+  /// **'This app will access your data. Chronicle AI is not responsible for how your data is used, modified, or deleted by this app'**
   String get dataAccessWarning;
 
   /// Button label to install an app
@@ -6300,7 +6300,7 @@ abstract class AppLocalizations {
   /// Widget title for device promotion
   ///
   /// In en, this message translates to:
-  /// **'Get Omi Device'**
+  /// **'Get Chronicle Device'**
   String get getOmiDevice;
 
   /// Widget subtitle for device promotion
@@ -6432,7 +6432,7 @@ abstract class AppLocalizations {
   /// Description for deleting all memories
   ///
   /// In en, this message translates to:
-  /// **'Permanently remove all memories from Omi'**
+  /// **'Permanently remove all memories from Chronicle'**
   String get permanentlyRemoveAllMemories;
 
   /// Success message after making all memories private
@@ -6450,25 +6450,25 @@ abstract class AppLocalizations {
   /// Confirmation dialog title for clearing all memories
   ///
   /// In en, this message translates to:
-  /// **'Clear Omi\'s Memory'**
+  /// **'Clear Chronicle\'s Memory'**
   String get clearOmisMemory;
 
   /// Confirmation message for clearing all memories
   ///
   /// In en, this message translates to:
-  /// **'Are you sure you want to clear Omi\'s memory? This action cannot be undone and will permanently delete all {count} memories.'**
+  /// **'Are you sure you want to clear Chronicle\'s memory? This action cannot be undone and will permanently delete all {count} memories.'**
   String clearMemoryConfirmation(int count);
 
   /// Success message after clearing all memories
   ///
   /// In en, this message translates to:
-  /// **'Omi\'s memory about you has been cleared'**
+  /// **'Chronicle\'s memory about you has been cleared'**
   String get omisMemoryCleared;
 
   /// Welcome message on auth screen
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Omi'**
+  /// **'Welcome to Chronicle'**
   String get welcomeToOmi;
 
   /// Button to sign in with Apple
@@ -6558,7 +6558,7 @@ abstract class AppLocalizations {
   /// No description provided for @selectPreferredLanguageForBestExperience.
   ///
   /// In en, this message translates to:
-  /// **'Select your preferred language for the best Omi experience'**
+  /// **'Select your preferred language for the best Chronicle experience'**
   String get selectPreferredLanguageForBestExperience;
 
   /// No description provided for @searchLanguages.
@@ -6594,7 +6594,7 @@ abstract class AppLocalizations {
   /// No description provided for @tellUsHowYouWouldLikeToBeAddressed.
   ///
   /// In en, this message translates to:
-  /// **'Tell us how you\'d like to be addressed. This helps personalize your Omi experience.'**
+  /// **'Tell us how you\'d like to be addressed. This helps personalize your Chronicle experience.'**
   String get tellUsHowYouWouldLikeToBeAddressed;
 
   /// No description provided for @charactersCount.
@@ -6606,7 +6606,7 @@ abstract class AppLocalizations {
   /// No description provided for @enableFeaturesForBestExperience.
   ///
   /// In en, this message translates to:
-  /// **'Enable features for the best Omi experience on your device.'**
+  /// **'Enable features for the best Chronicle experience on your device.'**
   String get enableFeaturesForBestExperience;
 
   /// No description provided for @microphoneAccess.
@@ -6624,7 +6624,7 @@ abstract class AppLocalizations {
   /// No description provided for @microphoneAccessDescription.
   ///
   /// In en, this message translates to:
-  /// **'Omi needs microphone access to record your conversations and provide transcriptions.'**
+  /// **'Chronicle needs microphone access to record your conversations and provide transcriptions.'**
   String get microphoneAccessDescription;
 
   /// No description provided for @screenRecording.
@@ -6642,7 +6642,7 @@ abstract class AppLocalizations {
   /// No description provided for @screenRecordingDescription.
   ///
   /// In en, this message translates to:
-  /// **'Omi needs screen recording permission to capture system audio from your browser-based meetings.'**
+  /// **'Chronicle needs screen recording permission to capture system audio from your browser-based meetings.'**
   String get screenRecordingDescription;
 
   /// No description provided for @accessibility.
@@ -6660,7 +6660,7 @@ abstract class AppLocalizations {
   /// No description provided for @accessibilityDescription.
   ///
   /// In en, this message translates to:
-  /// **'Omi needs accessibility permission to detect when you join Zoom, Meet, or Teams meetings in your browser.'**
+  /// **'Chronicle needs accessibility permission to detect when you join Zoom, Meet, or Teams meetings in your browser.'**
   String get accessibilityDescription;
 
   /// No description provided for @pleaseWait.
@@ -6726,13 +6726,13 @@ abstract class AppLocalizations {
   /// No description provided for @teachOmiYourVoice.
   ///
   /// In en, this message translates to:
-  /// **'Teach Omi your voice'**
+  /// **'Teach Chronicle your voice'**
   String get teachOmiYourVoice;
 
   /// No description provided for @tellOmiWhoSaidIt.
   ///
   /// In en, this message translates to:
-  /// **'Tell Omi who said it 🗣️'**
+  /// **'Tell Chronicle who said it 🗣️'**
   String get tellOmiWhoSaidIt;
 
   /// No description provided for @payment.
@@ -6756,7 +6756,7 @@ abstract class AppLocalizations {
   /// No description provided for @helpImproveOmiBySharing.
   ///
   /// In en, this message translates to:
-  /// **'Help improve Omi by sharing anonymized analytics data'**
+  /// **'Help improve Chronicle by sharing anonymized analytics data'**
   String get helpImproveOmiBySharing;
 
   /// Delete account button
@@ -6804,7 +6804,7 @@ abstract class AppLocalizations {
   /// No description provided for @mcpDescription.
   ///
   /// In en, this message translates to:
-  /// **'To connect Omi with other applications to read, search, and manage your memories and conversations. Create a key to get started.'**
+  /// **'To connect Chronicle with other applications to read, search, and manage your memories and conversations. Create a key to get started.'**
   String get mcpDescription;
 
   /// No description provided for @apiKeys.
@@ -6870,7 +6870,7 @@ abstract class AppLocalizations {
   /// No description provided for @tryLatestExperimentalFeatures.
   ///
   /// In en, this message translates to:
-  /// **'Try the latest experimental features from Omi Team.'**
+  /// **'Try the latest experimental features from Chronicle Team.'**
   String get tryLatestExperimentalFeatures;
 
   /// No description provided for @transcriptionServiceDiagnosticStatus.
@@ -7002,7 +7002,7 @@ abstract class AppLocalizations {
   /// No description provided for @letOmiChooseAutomatically.
   ///
   /// In en, this message translates to:
-  /// **'Let Omi choose the best app automatically'**
+  /// **'Let Chronicle choose the best app automatically'**
   String get letOmiChooseAutomatically;
 
   /// No description provided for @deleteConversationConfirmation.
@@ -7368,7 +7368,7 @@ abstract class AppLocalizations {
   /// Custom vocabulary description
   ///
   /// In en, this message translates to:
-  /// **'Add words that Omi should recognize during transcription.'**
+  /// **'Add words that Chronicle should recognize during transcription.'**
   String get addWordsDescription;
 
   /// Text field hint for vocabulary input
@@ -7536,7 +7536,7 @@ abstract class AppLocalizations {
   /// No description provided for @connectOmiWithAI.
   ///
   /// In en, this message translates to:
-  /// **'Connect Omi with AI assistants'**
+  /// **'Connect Chronicle with AI assistants'**
   String get connectOmiWithAI;
 
   /// No description provided for @noAPIKeys.
@@ -7602,7 +7602,7 @@ abstract class AppLocalizations {
   /// Text before Terms & Privacy Policy link
   ///
   /// In en, this message translates to:
-  /// **'By submitting, you agree to Omi '**
+  /// **'By submitting, you agree to Chronicle '**
   String get bySubmittingYouAgreeToOmi;
 
   /// Terms and Privacy Policy link text
@@ -7902,7 +7902,7 @@ abstract class AppLocalizations {
   /// Description for data access notice dialog
   ///
   /// In en, this message translates to:
-  /// **'This app will access your data. Omi AI is not responsible for how your data is used, modified, or deleted by this app'**
+  /// **'This app will access your data. Chronicle AI is not responsible for how your data is used, modified, or deleted by this app'**
   String get dataAccessNoticeDescription;
 
   /// Button to copy conversation URL to clipboard
@@ -8040,7 +8040,7 @@ abstract class AppLocalizations {
   /// Dialog title for API keys info
   ///
   /// In en, this message translates to:
-  /// **'Omi API Keys'**
+  /// **'Chronicle API Keys'**
   String get omiApiKeys;
 
   /// Description of what API keys are used for
@@ -8052,7 +8052,7 @@ abstract class AppLocalizations {
   /// Tooltip for API keys info button
   ///
   /// In en, this message translates to:
-  /// **'About Omi API Keys'**
+  /// **'About Chronicle API Keys'**
   String get aboutOmiApiKeys;
 
   /// Label shown above newly created API key
@@ -8268,7 +8268,7 @@ abstract class AppLocalizations {
   /// Description of E2EE encryption explaining its benefits
   ///
   /// In en, this message translates to:
-  /// **'End-to-end encryption is the gold standard for privacy. When enabled, your data is encrypted on your device before it\'s sent to our servers. This means no one, not even Omi, can access your content.'**
+  /// **'End-to-end encryption is the gold standard for privacy. When enabled, your data is encrypted on your device before it\'s sent to our servers. This means no one, not even Chronicle, can access your content.'**
   String get e2eeDescription;
 
   /// Header for trade-offs section in E2EE dialog
@@ -8328,7 +8328,7 @@ abstract class AppLocalizations {
   /// Description of secure encryption explaining how data is protected
   ///
   /// In en, this message translates to:
-  /// **'Your data is encrypted with a key unique to you on our servers, hosted on Google Cloud. This means your raw content is inaccessible to anyone, including Omi staff or Google, directly from the database.'**
+  /// **'Your data is encrypted with a key unique to you on our servers, hosted on Google Cloud. This means your raw content is inaccessible to anyone, including Chronicle staff or Google, directly from the database.'**
   String get secureEncryptionDescription;
 
   /// Title for E2EE card
@@ -8457,10 +8457,10 @@ abstract class AppLocalizations {
   /// **'Error: {error}'**
   String errorWithMessage(String error);
 
-  /// Title for the Omi Training page/section
+  /// Title for the Chronicle Training page/section
   ///
   /// In en, this message translates to:
-  /// **'Omi Training'**
+  /// **'Chronicle Training'**
   String get omiTraining;
 
   /// Label for training data program
@@ -8469,10 +8469,10 @@ abstract class AppLocalizations {
   /// **'Training Data Program'**
   String get trainingDataProgram;
 
-  /// Description for getting Omi Unlimited free by contributing data
+  /// Description for getting Chronicle Unlimited free by contributing data
   ///
   /// In en, this message translates to:
-  /// **'Get Omi Unlimited for free by contributing your data to train AI models.'**
+  /// **'Get Chronicle Unlimited for free by contributing your data to train AI models.'**
   String get getOmiUnlimitedFree;
 
   /// Bullet points explaining training data program benefits
@@ -8634,7 +8634,7 @@ abstract class AppLocalizations {
   /// Marketing text for unlimited plan
   ///
   /// In en, this message translates to:
-  /// **'Your Omi, unleashed. Go unlimited for endless possibilities.'**
+  /// **'Your Chronicle, unleashed. Go unlimited for endless possibilities.'**
   String get yourOmiUnleashed;
 
   /// Message when plan has ended
@@ -8667,16 +8667,16 @@ abstract class AppLocalizations {
   /// **'Unlimited conversations'**
   String get unlimitedConversations;
 
-  /// Feature: ask Omi anything
+  /// Feature: ask Chronicle anything
   ///
   /// In en, this message translates to:
-  /// **'Ask Omi anything about your life'**
+  /// **'Ask Chronicle anything about your life'**
   String get askOmiAnything;
 
   /// Feature: unlock infinite memory
   ///
   /// In en, this message translates to:
-  /// **'Unlock Omi\'s infinite memory'**
+  /// **'Unlock Chronicle\'s infinite memory'**
   String get unlockOmiInfiniteMemory;
 
   /// Message showing user is on annual plan
@@ -8778,7 +8778,7 @@ abstract class AppLocalizations {
   /// Privacy page - privacyIntroText
   ///
   /// In en, this message translates to:
-  /// **'At Omi, we take your privacy very seriously. We want to be transparent about the data we collect and how we use it to improve our product for you. Here\'s what you need to know:'**
+  /// **'At Chronicle, we take your privacy very seriously. We want to be transparent about the data we collect and how we use it to improve our product for you. Here\'s what you need to know:'**
   String get privacyIntroText;
 
   /// Privacy page - whatWeTrack
@@ -8808,13 +8808,13 @@ abstract class AppLocalizations {
   /// Privacy page - commitmentText
   ///
   /// In en, this message translates to:
-  /// **'We are committed to using the data we collect only to make Omi a better product for you. Your privacy and trust are paramount to us.'**
+  /// **'We are committed to using the data we collect only to make Chronicle a better product for you. Your privacy and trust are paramount to us.'**
   String get commitmentText;
 
   /// Privacy page - thankYouText
   ///
   /// In en, this message translates to:
-  /// **'Thank you for being a valued user of Omi. If you have any questions or concerns, feel free to reach out to us to team@basedhardware.com.'**
+  /// **'Thank you for being a valued user of Chronicle. If you have any questions or concerns, feel free to reach out to us to team@basedhardware.com.'**
   String get thankYouText;
 
   /// WiFi sync settings - password
@@ -8958,7 +8958,7 @@ abstract class AppLocalizations {
   /// Fallback text for share stats when period is unknown
   ///
   /// In en, this message translates to:
-  /// **'Omi has:'**
+  /// **'Chronicle has:'**
   String get omiHas;
 
   /// Message shown when all premium minutes are used
@@ -9120,7 +9120,7 @@ abstract class AppLocalizations {
   /// Explanation of how people/speech recognition works
   ///
   /// In en, this message translates to:
-  /// **'Once a person is created, you can go to a conversation transcript, and assign them their corresponding segments, that way Omi will be able to recognize their speech too!'**
+  /// **'Once a person is created, you can go to a conversation transcript, and assign them their corresponding segments, that way Chronicle will be able to recognize their speech too!'**
   String get howPeopleWorks;
 
   /// Hint text for tap to delete action
@@ -9639,10 +9639,10 @@ abstract class AppLocalizations {
   /// **'Enable Apps'**
   String get enableApps;
 
-  /// The Omi app/assistant name shown in chat app selection
+  /// The Chronicle app/assistant name shown in chat app selection
   ///
   /// In en, this message translates to:
-  /// **'Omi'**
+  /// **'Chronicle'**
   String get omiAppName;
 
   /// Text shown to expand collapsed content, with down arrow
@@ -9687,28 +9687,28 @@ abstract class AppLocalizations {
   /// **'Checking Apple Watch...'**
   String get checkingAppleWatch;
 
-  /// Title prompting user to install Omi on Apple Watch
+  /// Title prompting user to install Chronicle on Apple Watch
   ///
   /// In en, this message translates to:
-  /// **'Install Omi on your\nApple Watch'**
+  /// **'Install Chronicle on your\nApple Watch'**
   String get installOmiOnAppleWatch;
 
-  /// Description explaining need to install Omi app on watch
+  /// Description explaining need to install Chronicle app on watch
   ///
   /// In en, this message translates to:
-  /// **'To use your Apple Watch with Omi, you need to install the Omi app on your watch first.'**
+  /// **'To use your Apple Watch with Chronicle, you need to install the Chronicle app on your watch first.'**
   String get installOmiOnAppleWatchDescription;
 
-  /// Title prompting user to open Omi on Apple Watch
+  /// Title prompting user to open Chronicle on Apple Watch
   ///
   /// In en, this message translates to:
-  /// **'Open Omi on your\nApple Watch'**
+  /// **'Open Chronicle on your\nApple Watch'**
   String get openOmiOnAppleWatch;
 
-  /// Description explaining Omi is installed and user should open it
+  /// Description explaining Chronicle is installed and user should open it
   ///
   /// In en, this message translates to:
-  /// **'The Omi app is installed on your Apple Watch. Open it and tap Start to begin.'**
+  /// **'The Chronicle app is installed on your Apple Watch. Open it and tap Start to begin.'**
   String get openOmiOnAppleWatchDescription;
 
   /// Button text to open Watch app on iPhone
@@ -9726,7 +9726,7 @@ abstract class AppLocalizations {
   /// Error message when Watch app cannot be opened automatically
   ///
   /// In en, this message translates to:
-  /// **'Unable to open Apple Watch app. Please manually open the Watch app on your Apple Watch and install Omi from the \"Available Apps\" section.'**
+  /// **'Unable to open Apple Watch app. Please manually open the Watch app on your Apple Watch and install Chronicle from the \"Available Apps\" section.'**
   String get unableToOpenWatchApp;
 
   /// Success message when Apple Watch connects
@@ -9738,7 +9738,7 @@ abstract class AppLocalizations {
   /// Error message when Apple Watch is not reachable
   ///
   /// In en, this message translates to:
-  /// **'Apple Watch still not reachable. Please make sure the Omi app is open on your watch.'**
+  /// **'Apple Watch still not reachable. Please make sure the Chronicle app is open on your watch.'**
   String get appleWatchNotReachable;
 
   /// Error message with error details when connection check fails
@@ -9879,7 +9879,7 @@ abstract class AppLocalizations {
   /// **'No summary'**
   String get noSummary;
 
-  /// Button text to update Omi device firmware
+  /// Button text to update Chronicle device firmware
   ///
   /// In en, this message translates to:
   /// **'Update omi firmware'**
@@ -9900,7 +9900,7 @@ abstract class AppLocalizations {
   /// Description for custom vocabulary section
   ///
   /// In en, this message translates to:
-  /// **'Add words that Omi should recognize during transcription.'**
+  /// **'Add words that Chronicle should recognize during transcription.'**
   String get addVocabularyDescription;
 
   /// Placeholder hint for vocabulary input field
@@ -10206,7 +10206,7 @@ abstract class AppLocalizations {
   /// Subtitle on the intro card
   ///
   /// In en, this message translates to:
-  /// **'Omi Life Recap'**
+  /// **'Chronicle Life Recap'**
   String get wrappedOmiLifeRecap;
 
   /// Instruction text on intro card
@@ -10218,7 +10218,7 @@ abstract class AppLocalizations {
   /// Text shared when sharing wrapped images
   ///
   /// In en, this message translates to:
-  /// **'My 2025, remembered by Omi ✨ omi.me/wrapped'**
+  /// **'My 2025, remembered by Chronicle ✨ omi.me/wrapped'**
   String get wrappedShareText;
 
   /// Error message when sharing fails
@@ -10260,7 +10260,7 @@ abstract class AppLocalizations {
   /// Subtitle text for shareable image
   ///
   /// In en, this message translates to:
-  /// **'remembered by Omi'**
+  /// **'remembered by Chronicle'**
   String get wrappedRememberedByOmi;
 
   /// Label for the most fun day in memorable days
@@ -10686,7 +10686,7 @@ abstract class AppLocalizations {
   /// Description for notification frequency control
   ///
   /// In en, this message translates to:
-  /// **'Control how often Omi sends you proactive notifications.'**
+  /// **'Control how often Chronicle sends you proactive notifications.'**
   String get controlNotificationFrequency;
 
   /// Label for your score button
@@ -10734,7 +10734,7 @@ abstract class AppLocalizations {
   /// Description text for notification frequency section
   ///
   /// In en, this message translates to:
-  /// **'Control how often Omi sends you proactive notifications and reminders.'**
+  /// **'Control how often Chronicle sends you proactive notifications and reminders.'**
   String get notificationFrequencyDescription;
 
   /// Label for slider minimum value
@@ -11106,7 +11106,7 @@ abstract class AppLocalizations {
   /// Empty state description for recordings
   ///
   /// In en, this message translates to:
-  /// **'Audio from your Omi device will appear here'**
+  /// **'Audio from your Chronicle device will appear here'**
   String get audioFromOmiWillAppearHere;
 
   /// Menu item to delete processed files
@@ -11322,7 +11322,7 @@ abstract class AppLocalizations {
   /// Suggestion to use cloud transcription
   ///
   /// In en, this message translates to:
-  /// **'Consider using Omi Cloud for better performance.'**
+  /// **'Consider using Chronicle Cloud for better performance.'**
   String get considerOmiCloud;
 
   /// Title for high resource usage dialog
@@ -11583,7 +11583,7 @@ abstract class AppLocalizations {
   /// **'Available Space: {space}'**
   String availableSpaceWithValue(String space);
 
-  /// Description of Omi transcription features
+  /// Description of Chronicle transcription features
   ///
   /// In en, this message translates to:
   /// **'Omis built-in live transcription is optimized for real-time conversations with automatic speaker detection and diarization.'**
@@ -11754,7 +11754,7 @@ abstract class AppLocalizations {
   /// Intro text for setup questions page
   ///
   /// In en, this message translates to:
-  /// **'Help us improve Omi by answering a few questions.  🫶 💜'**
+  /// **'Help us improve Chronicle by answering a few questions.  🫶 💜'**
   String get setupQuestionsIntro;
 
   /// Question about profession
@@ -11763,10 +11763,10 @@ abstract class AppLocalizations {
   /// **'1. What do you do?'**
   String get setupQuestionProfession;
 
-  /// Question about Omi usage location
+  /// Question about Chronicle usage location
   ///
   /// In en, this message translates to:
-  /// **'2. Where do you plan to use your Omi?'**
+  /// **'2. Where do you plan to use your Chronicle?'**
   String get setupQuestionUsage;
 
   /// Question about age range
@@ -12708,25 +12708,25 @@ abstract class AppLocalizations {
   /// No description provided for @batteryFullyChargedTitle.
   ///
   /// In en, this message translates to:
-  /// **'Omi is fully charged'**
+  /// **'Chronicle is fully charged'**
   String get batteryFullyChargedTitle;
 
   /// No description provided for @batteryFullyChargedBody.
   ///
   /// In en, this message translates to:
-  /// **'Your Omi device is fully charged. Feel free to unplug!'**
+  /// **'Your Chronicle device is fully charged. Feel free to unplug!'**
   String get batteryFullyChargedBody;
 
   /// Title for device disconnected notification
   ///
   /// In en, this message translates to:
-  /// **'Your Omi Device Disconnected'**
+  /// **'Your Chronicle Device Disconnected'**
   String get deviceDisconnectedNotificationTitle;
 
   /// Body text for device disconnected notification
   ///
   /// In en, this message translates to:
-  /// **'Please reconnect to continue using your Omi.'**
+  /// **'Please reconnect to continue using your Chronicle.'**
   String get deviceDisconnectedNotificationBody;
 
   /// Title for firmware update available dialog
@@ -12738,7 +12738,7 @@ abstract class AppLocalizations {
   /// Description for firmware update dialog with version parameter
   ///
   /// In en, this message translates to:
-  /// **'A new firmware update ({version}) is available for your Omi device. Would you like to update now?'**
+  /// **'A new firmware update ({version}) is available for your Chronicle device. Would you like to update now?'**
   String firmwareUpdateAvailableDescription(String version);
 
   /// Button text to postpone an action
@@ -13251,10 +13251,10 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get nextButton;
 
-  /// Button text to connect Omi device
+  /// Button text to connect Chronicle device
   ///
   /// In en, this message translates to:
-  /// **'Connect Omi Device'**
+  /// **'Connect Chronicle Device'**
   String get connectOmiDevice;
 
   /// Dialog description when switching from unlimited plan
@@ -13305,10 +13305,10 @@ abstract class AppLocalizations {
   /// **'Paste your JSON configuration here...'**
   String get transcriptionJsonPlaceholder;
 
-  /// Tab title for Omi transcription source option
+  /// Tab title for Chronicle transcription source option
   ///
   /// In en, this message translates to:
-  /// **'Omi'**
+  /// **'Chronicle'**
   String get transcriptionSourceOmi;
 
   /// Placeholder text for the price input field showing a sample price format
@@ -13344,7 +13344,7 @@ abstract class AppLocalizations {
   /// Title for action item reminder notifications
   ///
   /// In en, this message translates to:
-  /// **'Omi Reminder'**
+  /// **'Chronicle Reminder'**
   String get actionItemReminderTitle;
 
   /// Notification title when a device disconnects
@@ -13392,7 +13392,7 @@ abstract class AppLocalizations {
   /// Onboarding step description for sign in
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Omi'**
+  /// **'Welcome to Chronicle'**
   String get onboardingWelcomeToOmi;
 
   /// Onboarding step description for name entry
@@ -14697,37 +14697,37 @@ abstract class AppLocalizations {
   /// **'Report an issue'**
   String get reportAnIssue;
 
-  /// Pairing title for Omi device
+  /// Pairing title for Chronicle device
   ///
   /// In en, this message translates to:
-  /// **'Turn On Omi'**
+  /// **'Turn On Chronicle'**
   String get pairingTitleOmi;
 
-  /// Pairing description for Omi device
+  /// Pairing description for Chronicle device
   ///
   /// In en, this message translates to:
   /// **'Press and hold the device until it vibrates to turn it on.'**
   String get pairingDescOmi;
 
-  /// Pairing title for Omi DevKit
+  /// Pairing title for Chronicle DevKit
   ///
   /// In en, this message translates to:
-  /// **'Put Omi DevKit in Pairing Mode'**
+  /// **'Put Chronicle DevKit in Pairing Mode'**
   String get pairingTitleOmiDevkit;
 
-  /// Pairing description for Omi DevKit
+  /// Pairing description for Chronicle DevKit
   ///
   /// In en, this message translates to:
   /// **'Press the button once to turn on. The LED will blink purple when in pairing mode.'**
   String get pairingDescOmiDevkit;
 
-  /// Pairing title for Omi Glass
+  /// Pairing title for Chronicle Glass
   ///
   /// In en, this message translates to:
-  /// **'Turn On Omi Glass'**
+  /// **'Turn On Chronicle Glass'**
   String get pairingTitleOmiGlass;
 
-  /// Pairing description for Omi Glass
+  /// Pairing description for Chronicle Glass
   ///
   /// In en, this message translates to:
   /// **'Power on by pressing the side button for 3 seconds.'**
@@ -14802,7 +14802,7 @@ abstract class AppLocalizations {
   /// Pairing description for Apple Watch
   ///
   /// In en, this message translates to:
-  /// **'Install and open the Omi app on your Apple Watch, then tap Connect in the app.'**
+  /// **'Install and open the Chronicle app on your Apple Watch, then tap Connect in the app.'**
   String get pairingDescAppleWatch;
 
   /// Pairing title for Neo One device
@@ -14970,7 +14970,7 @@ abstract class AppLocalizations {
   /// Description for onboarding memory graph preview step
   ///
   /// In en, this message translates to:
-  /// **'This map updates as Omi learns from your conversations.'**
+  /// **'This map updates as Chronicle learns from your conversations.'**
   String get onboardingWhatIKnowAboutYouDescription;
 
   /// Title for the API environment switcher in developer settings
@@ -15072,7 +15072,7 @@ abstract class AppLocalizations {
   /// No description provided for @phoneCallsWithOmi.
   ///
   /// In en, this message translates to:
-  /// **'Phone Calls with Omi'**
+  /// **'Phone Calls with Chronicle'**
   String get phoneCallsWithOmi;
 
   /// No description provided for @phoneCallsSubtitle.
@@ -15456,13 +15456,13 @@ abstract class AppLocalizations {
   /// Title for the phone calls upsell sheet shown to non-unlimited users
   ///
   /// In en, this message translates to:
-  /// **'Phone Calls via Omi'**
+  /// **'Phone Calls via Chronicle'**
   String get phoneCallsUnlimitedOnly;
 
   /// Subtitle explaining phone calls feature on upsell sheet
   ///
   /// In en, this message translates to:
-  /// **'Make calls through Omi and get real-time transcription, automatic summaries, and more. Available exclusively for Unlimited plan subscribers.'**
+  /// **'Make calls through Chronicle and get real-time transcription, automatic summaries, and more. Available exclusively for Unlimited plan subscribers.'**
   String get phoneCallsUpsellSubtitle;
 
   /// Phone calls upsell feature 1
@@ -15690,7 +15690,7 @@ abstract class AppLocalizations {
   /// No description provided for @fairUseAboutBody.
   ///
   /// In en, this message translates to:
-  /// **'Omi is designed for personal conversations, meetings, and live interactions. Usage is measured by real speech time detected, not connection time. If usage significantly exceeds normal patterns for non-personal content, adjustments may apply.'**
+  /// **'Chronicle is designed for personal conversations, meetings, and live interactions. Usage is measured by real speech time detected, not connection time. If usage significantly exceeds normal patterns for non-personal content, adjustments may apply.'**
   String get fairUseAboutBody;
 
   /// Snackbar message when case reference is copied to clipboard
@@ -15750,7 +15750,7 @@ abstract class AppLocalizations {
   /// No description provided for @improveConnectionContent.
   ///
   /// In en, this message translates to:
-  /// **'We\'ve improved how Omi stays connected to your device. To activate this, please go to the Device Info page, tap \"Disconnect Device\", and then pair your device again.'**
+  /// **'We\'ve improved how Chronicle stays connected to your device. To activate this, please go to the Device Info page, tap \"Disconnect Device\", and then pair your device again.'**
   String get improveConnectionContent;
 
   /// No description provided for @improveConnectionAction.
@@ -15768,7 +15768,7 @@ abstract class AppLocalizations {
   /// Label for device storage tier in sync pipeline
   ///
   /// In en, this message translates to:
-  /// **'Omi\'s Storage'**
+  /// **'Chronicle\'s Storage'**
   String get omisStorage;
 
   /// Label for phone storage tier in sync pipeline
@@ -15840,13 +15840,13 @@ abstract class AppLocalizations {
   /// Description of device storage in sync info sheet
   ///
   /// In en, this message translates to:
-  /// **'When your Omi is not connected to your phone, it stores audio locally on its built-in memory. You never lose a recording.'**
+  /// **'When your Chronicle is not connected to your phone, it stores audio locally on its built-in memory. You never lose a recording.'**
   String get omisStorageDesc;
 
   /// Description of phone storage in sync info sheet
   ///
   /// In en, this message translates to:
-  /// **'When Omi reconnects, recordings are automatically transferred to your phone as a temporary holding area before uploading.'**
+  /// **'When Chronicle reconnects, recordings are automatically transferred to your phone as a temporary holding area before uploading.'**
   String get phoneStorageDesc;
 
   /// Description of cloud storage in sync info sheet
@@ -15900,13 +15900,13 @@ abstract class AppLocalizations {
   /// Description text shown at the bottom of the permissions page
   ///
   /// In en, this message translates to:
-  /// **'These permissions are core to how Omi works. They enable key features like notifications, location-based experiences, and audio capture.'**
+  /// **'These permissions are core to how Chronicle works. They enable key features like notifications, location-based experiences, and audio capture.'**
   String get permissionsPageDescription;
 
   /// Description for the permissions interstitial screen
   ///
   /// In en, this message translates to:
-  /// **'Omi needs a few permissions to work properly. Please grant them to continue.'**
+  /// **'Chronicle needs a few permissions to work properly. Please grant them to continue.'**
   String get permissionsRequiredDescription;
 
   /// Title for the permissions interstitial screen
@@ -15918,7 +15918,7 @@ abstract class AppLocalizations {
   /// Subtitle for the permissions interstitial screen
   ///
   /// In en, this message translates to:
-  /// **'Enable a few permissions so Omi can work its magic.'**
+  /// **'Enable a few permissions so Chronicle can work its magic.'**
   String get permissionsSetupDescription;
 
   /// Reassurance note on the permissions interstitial
@@ -16104,7 +16104,7 @@ abstract class AppLocalizations {
   /// Feedback title when cancel reason is not using enough
   ///
   /// In en, this message translates to:
-  /// **'What would make you use Omi more?'**
+  /// **'What would make you use Chronicle more?'**
   String get feedbackTitleNotUsing;
 
   /// Feedback subtitle for too expensive
@@ -16140,7 +16140,7 @@ abstract class AppLocalizations {
   /// Feedback subtitle for not using enough
   ///
   /// In en, this message translates to:
-  /// **'We want to make Omi more useful for you.'**
+  /// **'We want to make Chronicle more useful for you.'**
   String get feedbackSubtitleNotUsing;
 
   /// No description provided for @deviceDiagnostics.
@@ -16476,7 +16476,7 @@ abstract class AppLocalizations {
   /// No description provided for @appleHealthManageNote.
   ///
   /// In en, this message translates to:
-  /// **'Omi accesses Apple Health through Apple\'s HealthKit framework. You can revoke access anytime in iOS Settings.'**
+  /// **'Chronicle accesses Apple Health through Apple\'s HealthKit framework. You can revoke access anytime in iOS Settings.'**
   String get appleHealthManageNote;
 
   /// No description provided for @appleHealthConnectCta.
@@ -16506,7 +16506,7 @@ abstract class AppLocalizations {
   /// No description provided for @appleHealthFeatureChatDesc.
   ///
   /// In en, this message translates to:
-  /// **'Ask Omi about your steps, sleep, heart rate, and workouts.'**
+  /// **'Ask Chronicle about your steps, sleep, heart rate, and workouts.'**
   String get appleHealthFeatureChatDesc;
 
   /// No description provided for @appleHealthFeatureReadOnlyTitle.
@@ -16518,7 +16518,7 @@ abstract class AppLocalizations {
   /// No description provided for @appleHealthFeatureReadOnlyDesc.
   ///
   /// In en, this message translates to:
-  /// **'Omi never writes to Apple Health or modifies your data.'**
+  /// **'Chronicle never writes to Apple Health or modifies your data.'**
   String get appleHealthFeatureReadOnlyDesc;
 
   /// No description provided for @appleHealthFeatureSecureTitle.
@@ -16530,7 +16530,7 @@ abstract class AppLocalizations {
   /// No description provided for @appleHealthFeatureSecureDesc.
   ///
   /// In en, this message translates to:
-  /// **'Your Apple Health data syncs privately to your Omi account.'**
+  /// **'Your Apple Health data syncs privately to your Chronicle account.'**
   String get appleHealthFeatureSecureDesc;
 
   /// No description provided for @appleHealthDeniedTitle.
@@ -16542,7 +16542,7 @@ abstract class AppLocalizations {
   /// No description provided for @appleHealthDeniedBody.
   ///
   /// In en, this message translates to:
-  /// **'Omi doesn\'t have permission to read your Apple Health data. Enable it in iOS Settings → Privacy & Security → Health → Omi.'**
+  /// **'Chronicle doesn\'t have permission to read your Apple Health data. Enable it in iOS Settings → Privacy & Security → Health → Chronicle.'**
   String get appleHealthDeniedBody;
 
   /// Title on delete-account flow reason step
@@ -16554,7 +16554,7 @@ abstract class AppLocalizations {
   /// Subtitle on delete-account flow reason step
   ///
   /// In en, this message translates to:
-  /// **'Your feedback helps us improve Omi for everyone.'**
+  /// **'Your feedback helps us improve Chronicle for everyone.'**
   String get deleteFlowReasonSubtitle;
 
   /// Delete reason option
@@ -16608,7 +16608,7 @@ abstract class AppLocalizations {
   /// Subtitle on delete-account flow feedback step
   ///
   /// In en, this message translates to:
-  /// **'What would have made Omi work for you?'**
+  /// **'What would have made Chronicle work for you?'**
   String get deleteFlowFeedbackSubtitle;
 
   /// TextField hint on delete feedback step
@@ -16848,19 +16848,19 @@ abstract class AppLocalizations {
   /// No description provided for @chatQuotaSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'AI chat messages used with Omi this month.'**
+  /// **'AI chat messages used with Chronicle this month.'**
   String get chatQuotaSubtitle;
 
   /// AI reply message shown when user exceeds chat quota
   ///
   /// In en, this message translates to:
-  /// **'You\'ve hit your monthly limit. Upgrade to keep chatting with Omi without restrictions.'**
+  /// **'You\'ve hit your monthly limit. Upgrade to keep chatting with Chronicle without restrictions.'**
   String get chatQuotaExceededReply;
 
   /// Voice response audio feature title
   ///
   /// In en, this message translates to:
-  /// **'Speak Omi responses aloud'**
+  /// **'Speak Chronicle responses aloud'**
   String get voiceResponseAudio;
 
   /// Voice response mode setting row title
@@ -16926,7 +16926,7 @@ abstract class AppLocalizations {
   /// iOS home screen quick action: opens chat page
   ///
   /// In en, this message translates to:
-  /// **'Ask Omi Anything'**
+  /// **'Ask Chronicle Anything'**
   String get quickActionAskOmi;
 
   /// Label for the Record button on the home page app bar
@@ -17136,7 +17136,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncStatusUploaded.
   ///
   /// In en, this message translates to:
-  /// **'Uploaded · processing on Omi'**
+  /// **'Uploaded · processing on Chronicle'**
   String get syncStatusUploaded;
 
   /// No description provided for @deleteWhileProcessingTitle.
@@ -17148,7 +17148,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteWhileProcessingMessage.
   ///
   /// In en, this message translates to:
-  /// **'This recording is uploaded but Omi is still creating the conversation. If you delete it now and processing fails, it can\'t be recovered. Delete anyway?'**
+  /// **'This recording is uploaded but Chronicle is still creating the conversation. If you delete it now and processing fails, it can\'t be recovered. Delete anyway?'**
   String get deleteWhileProcessingMessage;
 
   /// No description provided for @syncCardAllBackedUp.
@@ -17166,7 +17166,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncCardProcessing.
   ///
   /// In en, this message translates to:
-  /// **'Processing on Omi…'**
+  /// **'Processing on Chronicle…'**
   String get syncCardProcessing;
 
   /// No description provided for @syncCardWaitingInternet.
@@ -17184,7 +17184,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncFlowIntro.
   ///
   /// In en, this message translates to:
-  /// **'Recordings are transferred from your device to this phone and stored locally, then uploaded to Omi\'s server where they\'re transcribed and turned into conversations.'**
+  /// **'Recordings are transferred from your device to this phone and stored locally, then uploaded to Chronicle\'s server where they\'re transcribed and turned into conversations.'**
   String get syncFlowIntro;
 
   /// No description provided for @syncStepUpload.
@@ -17196,7 +17196,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncStepUploadDesc.
   ///
   /// In en, this message translates to:
-  /// **'Your recording is sent to Omi\'s server'**
+  /// **'Your recording is sent to Chronicle\'s server'**
   String get syncStepUploadDesc;
 
   /// No description provided for @syncStepProcess.
@@ -17208,7 +17208,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncStepProcessDesc.
   ///
   /// In en, this message translates to:
-  /// **'Omi turns the audio into a conversation'**
+  /// **'Chronicle turns the audio into a conversation'**
   String get syncStepProcessDesc;
 
   /// No description provided for @syncStepBackedUp.
@@ -17235,13 +17235,13 @@ abstract class AppLocalizations {
   /// **'Conversation created'**
   String get syncStatusConversationCreated;
 
-  /// Top status card: phase title when uploading audio batches to Omi (sub-line shows X of Y)
+  /// Top status card: phase title when uploading audio batches to Chronicle (sub-line shows X of Y)
   ///
   /// In en, this message translates to:
-  /// **'Uploading to Omi'**
+  /// **'Uploading to Chronicle'**
   String get syncCardUploadingTitle;
 
-  /// Top status card: phase title when downloading recordings from the Omi device over BLE/Wi-Fi
+  /// Top status card: phase title when downloading recordings from the Chronicle device over BLE/Wi-Fi
   ///
   /// In en, this message translates to:
   /// **'Downloading from your device'**
@@ -17253,13 +17253,13 @@ abstract class AppLocalizations {
   /// **'{current} of {total}'**
   String syncCardProgressOf(int current, int total);
 
-  /// Row subtitle for a recording still on the Omi device (SD-card or flash page) that has not been downloaded to the phone yet.
+  /// Row subtitle for a recording still on the Chronicle device (SD-card or flash page) that has not been downloaded to the phone yet.
   ///
   /// In en, this message translates to:
   /// **'On your device'**
   String get syncStatusOnDevice;
 
-  /// Row subtitle for a recording currently being transferred from the Omi device to the phone.
+  /// Row subtitle for a recording currently being transferred from the Chronicle device to the phone.
   ///
   /// In en, this message translates to:
   /// **'Downloading from your device'**
@@ -17298,7 +17298,7 @@ abstract class AppLocalizations {
   /// Status card line when the backend stale-guard has flagged queued jobs (i.e. workers are saturated, not the user being rate-limited). Distinct from the 429 fair-use case.
   ///
   /// In en, this message translates to:
-  /// **'Omi servers are busy — your recordings will sync once capacity returns'**
+  /// **'Chronicle servers are busy — your recordings will sync once capacity returns'**
   String get syncCardBackendBusy;
 
   /// Shown when the device firmware revision cannot be read over BLE, so an OTA update offer would be unreliable.
@@ -17334,19 +17334,19 @@ abstract class AppLocalizations {
   /// Subtitle explaining the background mode toggle
   ///
   /// In en, this message translates to:
-  /// **'Keep your Omi recording even when the app is fully closed.'**
+  /// **'Keep your Chronicle recording even when the app is fully closed.'**
   String get backgroundModeDescription;
 
   /// Caveat note shown in the Background Mode sheet
   ///
   /// In en, this message translates to:
-  /// **'Works with Omi devices only for now, and is being improved continuously.'**
+  /// **'Works with Chronicle devices only for now, and is being improved continuously.'**
   String get backgroundModeNote;
 
   /// Warning shown in Background Mode sheet when no device with a native BLE audio route is connected
   ///
   /// In en, this message translates to:
-  /// **'Background Mode is not available because no compatible device is connected. Connect an Omi, OpenGlass, or Friend Pendant device to use this feature.'**
+  /// **'Background Mode is not available because no compatible device is connected. Connect an Chronicle, OpenGlass, or Friend Pendant device to use this feature.'**
   String get backgroundModeUnavailable;
 
   /// No description provided for @regenerateRecap.
@@ -17382,13 +17382,13 @@ abstract class AppLocalizations {
   /// Title of the dialog shown when a third-party (custom) STT user manually syncs offline recordings
   ///
   /// In en, this message translates to:
-  /// **'Sync uses Omi transcription'**
+  /// **'Sync uses Chronicle transcription'**
   String get syncCustomSttWarningTitle;
 
-  /// Body warning that syncing transcribes on Omi servers and counts toward the plan limit
+  /// Body warning that syncing transcribes on Chronicle servers and counts toward the plan limit
   ///
   /// In en, this message translates to:
-  /// **'You use your own transcription provider. Syncing these recordings transcribes them on Omi\'s servers instead, and they count toward your plan\'s transcription limit.'**
+  /// **'You use your own transcription provider. Syncing these recordings transcribes them on Chronicle\'s servers instead, and they count toward your plan\'s transcription limit.'**
   String get syncCustomSttWarningMessage;
 
   /// Title for the 'transcribe later' capture-mode toggle in device settings
@@ -17406,7 +17406,7 @@ abstract class AppLocalizations {
   /// Caveat note shown in the Transcribe Later sheet
   ///
   /// In en, this message translates to:
-  /// **'Works with the phone microphone, Omi, and Limitless devices. Audio stays on your phone until you choose to upload it.'**
+  /// **'Works with the phone microphone, Chronicle, and Limitless devices. Audio stays on your phone until you choose to upload it.'**
   String get transcribeLaterNote;
 
   /// Warning shown when storage is too low to keep recording in Transcribe Later mode
@@ -17493,16 +17493,16 @@ abstract class AppLocalizations {
   /// **'Android'**
   String get memoryProvenanceAndroid;
 
-  /// Row label that opens the interactive Omi device tutorial (Settings and the connected-device page)
+  /// Row label that opens the interactive Chronicle device tutorial (Settings and the connected-device page)
   ///
   /// In en, this message translates to:
-  /// **'How to Use Your Omi'**
+  /// **'How to Use Your Chronicle'**
   String get deviceTutorial;
 
-  /// Tutorial step 1 title — prompts the user to speak into the Omi device for the live-transcription demo
+  /// Tutorial step 1 title — prompts the user to speak into the Chronicle device for the live-transcription demo
   ///
   /// In en, this message translates to:
-  /// **'Speak Into Your Omi'**
+  /// **'Speak Into Your Chronicle'**
   String get deviceOnboardingTranscriptionTitle;
 
   /// Tutorial step 1 subtitle — explains that spoken words appear in real time
@@ -17523,10 +17523,10 @@ abstract class AppLocalizations {
   /// **'Start speaking...'**
   String get deviceOnboardingStartSpeaking;
 
-  /// Tutorial step 2 title — prompts the user to ask Omi a voice question with a single button press
+  /// Tutorial step 2 title — prompts the user to ask Chronicle a voice question with a single button press
   ///
   /// In en, this message translates to:
-  /// **'Ask Omi a Question'**
+  /// **'Ask Chronicle a Question'**
   String get deviceOnboardingAskQuestionTitle;
 
   /// Tutorial step 2 subtitle — instructions for the single-press ask-a-question flow
@@ -17541,7 +17541,7 @@ abstract class AppLocalizations {
   /// **'Processing your question...'**
   String get deviceOnboardingProcessingQuestion;
 
-  /// Tutorial step 2 status chip while Omi is actively listening to the question
+  /// Tutorial step 2 status chip while Chronicle is actively listening to the question
   ///
   /// In en, this message translates to:
   /// **'Listening...'**
@@ -17652,7 +17652,7 @@ abstract class AppLocalizations {
   /// Tutorial step 4 prompt encouraging the user to double-tap the device
   ///
   /// In en, this message translates to:
-  /// **'Try it now! Double tap your Omi'**
+  /// **'Try it now! Double tap your Chronicle'**
   String get deviceOnboardingTryDoubleTap;
 
   /// Onboarding tutorial primary button label to advance to the next step
@@ -17670,13 +17670,13 @@ abstract class AppLocalizations {
   /// Onboarding intro screen title shown before the device tutorial steps
   ///
   /// In en, this message translates to:
-  /// **'Get to Know Your Omi'**
+  /// **'Get to Know Your Chronicle'**
   String get deviceOnboardingIntroTitle;
 
   /// Onboarding intro screen subtitle explaining the tutorial
   ///
   /// In en, this message translates to:
-  /// **'A quick, hands-on tour of everything your Omi can do.'**
+  /// **'A quick, hands-on tour of everything your Chronicle can do.'**
   String get deviceOnboardingIntroSubtitle;
 
   /// Onboarding intro screen estimated duration hint
@@ -17742,7 +17742,7 @@ abstract class AppLocalizations {
   /// No description provided for @raybanMetaSetupDescription.
   ///
   /// In en, this message translates to:
-  /// **'Use your Ray-Ban Meta glasses as your Omi capture device for conversations and visual context. Omi will open the Meta AI app to link your glasses.'**
+  /// **'Use your Ray-Ban Meta glasses as your Chronicle capture device for conversations and visual context. Chronicle will open the Meta AI app to link your glasses.'**
   String get raybanMetaSetupDescription;
 
   /// No description provided for @raybanMetaOpenMetaAI.
@@ -17772,7 +17772,7 @@ abstract class AppLocalizations {
   /// No description provided for @raybanMetaCameraExplanation.
   ///
   /// In en, this message translates to:
-  /// **'Omi uses your glasses camera to add photos to your conversations. You can skip this and use audio only.'**
+  /// **'Chronicle uses your glasses camera to add photos to your conversations. You can skip this and use audio only.'**
   String get raybanMetaCameraExplanation;
 
   /// No description provided for @raybanMetaSkipForNow.
@@ -17790,7 +17790,7 @@ abstract class AppLocalizations {
   /// No description provided for @raybanMetaAudioOnlyExplanation.
   ///
   /// In en, this message translates to:
-  /// **'This version of Omi can use your glasses microphone over Bluetooth. Photo capture needs the Meta developer build of Omi.'**
+  /// **'This version of Chronicle can use your glasses microphone over Bluetooth. Photo capture needs the Meta developer build of Chronicle.'**
   String get raybanMetaAudioOnlyExplanation;
 
   /// No description provided for @raybanMetaMusicPauseNote.
@@ -18192,7 +18192,7 @@ abstract class AppLocalizations {
   /// Explains how to choose the glasses microphone and the Bluetooth HFP music tradeoff
   ///
   /// In en, this message translates to:
-  /// **'Select the Bluetooth microphone for your glasses. Music pauses while Omi uses it.'**
+  /// **'Select the Bluetooth microphone for your glasses. Music pauses while Chronicle uses it.'**
   String get rayBanMetaMicPickerDescription;
 
   /// Empty state when iOS reports no Bluetooth HFP microphone inputs
@@ -18216,16 +18216,16 @@ abstract class AppLocalizations {
   /// No description provided for @syncStatusTooOld.
   ///
   /// In en, this message translates to:
-  /// **'Too old to sync — Omi can\'t accept it'**
+  /// **'Too old to sync — Chronicle can\'t accept it'**
   String get syncStatusTooOld;
 
   /// Plans sheet subtitle prompting a free user to pick a paid plan
   ///
   /// In en, this message translates to:
-  /// **'Choose your plan to unlock unlimited Omi.'**
+  /// **'Choose your plan to unlock unlimited Chronicle.'**
   String get planSheetChooseYourPlan;
 
-  /// Plans sheet highlight: which platforms Omi runs on
+  /// Plans sheet highlight: which platforms Chronicle runs on
   ///
   /// In en, this message translates to:
   /// **'Available on Mac, mobile, and web'**
@@ -18264,7 +18264,7 @@ abstract class AppLocalizations {
   /// Intro line above the list of free-tier limitations
   ///
   /// In en, this message translates to:
-  /// **'Omi is free, but freemium has limits that affect your experience:'**
+  /// **'Chronicle is free, but freemium has limits that affect your experience:'**
   String get freemiumLimitsIntro;
 
   /// Free-tier limitation: transcription is delayed rather than live
@@ -18306,7 +18306,7 @@ abstract class AppLocalizations {
   /// Body for account cutover force-upgrade blocking screen
   ///
   /// In en, this message translates to:
-  /// **'Install the latest Omi app to continue after account migration.'**
+  /// **'Install the latest Chronicle app to continue after account migration.'**
   String get accountCutoverUpdateRequiredMessage;
 
   /// Title for account cutover migration-maintenance blocking screen
@@ -18333,16 +18333,16 @@ abstract class AppLocalizations {
   /// **'Open store'**
   String get accountCutoverOpenStore;
 
-  /// Toggle label controlling whether Custom STT raw audio is also sent to Omi
+  /// Toggle label controlling whether Custom STT raw audio is also sent to Chronicle
   ///
   /// In en, this message translates to:
-  /// **'Send raw audio to Omi'**
+  /// **'Send raw audio to Chronicle'**
   String get sendRawAudioToOmi;
 
   /// Explains that disabling raw audio forwarding preserves transcript-based cloud features
   ///
   /// In en, this message translates to:
-  /// **'Turn off to prevent raw audio from being sent to Omi. Transcripts and data needed by cloud features may still be sent to Omi.'**
+  /// **'Turn off to prevent raw audio from being sent to Chronicle. Transcripts and data needed by cloud features may still be sent to Chronicle.'**
   String get sendRawAudioToOmiDescription;
 }
 

@@ -103,7 +103,7 @@ class _OnboardingCompleteScreenState extends State<OnboardingCompleteScreen> wit
                             fontFamily: 'Manrope',
                           ),
                           children: const [
-                            TextSpan(text: 'Just use Omi in the background for '),
+                            TextSpan(text: 'Just use Chronicle in the background for '),
                             TextSpan(
                               text: '2\u00A0days',
                               style: TextStyle(color: Color(0xFF9B59B6)),

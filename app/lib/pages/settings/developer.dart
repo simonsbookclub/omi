@@ -137,7 +137,7 @@ class _DeveloperSettingsPageState extends State<_DeveloperSettingsPageView> {
   Widget _buildSttChip() {
     final useCustom = SharedPreferencesUtil().useCustomStt;
     final config = SharedPreferencesUtil().customSttConfig;
-    final label = useCustom ? SttProviderConfig.get(config.provider).displayName : 'Omi';
+    final label = useCustom ? SttProviderConfig.get(config.provider).displayName : 'Chronicle';
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -733,7 +733,7 @@ class _DeveloperSettingsPageState extends State<_DeveloperSettingsPageView> {
                                     if (files.length == 1) {
                                       final result = await Share.shareXFiles(
                                         [XFile(files.first.path)],
-                                        text: 'Omi debug log',
+                                        text: 'Chronicle debug log',
                                         sharePositionOrigin: _shareOrigin(),
                                       );
                                       if (result.status == ShareResultStatus.success) {
@@ -804,7 +804,7 @@ class _DeveloperSettingsPageState extends State<_DeveloperSettingsPageView> {
                                     if (selected != null) {
                                       final result = await Share.shareXFiles(
                                         [XFile(selected.path)],
-                                        text: 'Omi debug log',
+                                        text: 'Chronicle debug log',
                                         sharePositionOrigin: _shareOrigin(),
                                       );
                                       if (result.status == ShareResultStatus.success) {
@@ -1622,7 +1622,7 @@ class _DeveloperSettingsPageState extends State<_DeveloperSettingsPageView> {
                                   Row(
                                     children: [
                                       const Text(
-                                        'Omi Agent',
+                                        'Chronicle Agent',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -1869,7 +1869,7 @@ class _ManualFirmwareFlashPageState extends State<_ManualFirmwareFlashPage> with
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Flashing custom firmware can brick your device. Make sure this is a valid Omi firmware build. Do not disconnect during the update.',
+                        'Flashing custom firmware can brick your device. Make sure this is a valid Chronicle firmware build. Do not disconnect during the update.',
                         style: TextStyle(color: Colors.orange.shade300, fontSize: 13),
                       ),
                     ),

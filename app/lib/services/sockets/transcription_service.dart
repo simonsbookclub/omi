@@ -308,7 +308,7 @@ class TranscriptSocketServiceFactory {
     return config.isEnabled && !isCodecSupportedForCustomStt(codec) && !config.sendRawAudioToOmi;
   }
 
-  /// Create default Omi transcription service
+  /// Create default Chronicle transcription service
   static TranscriptSegmentSocketService createDefault(
     int sampleRate,
     BleAudioCodec codec,
@@ -362,7 +362,7 @@ class TranscriptSocketServiceFactory {
         ? _createStreamingSocket(sampleRate, codec, config)
         : _createPollingSocket(sampleRate, codec, config);
 
-    // Wrap with composite service (primary STT + Omi backend)
+    // Wrap with composite service (primary STT + Chronicle backend)
     return _createCompositeService(
       sampleRate,
       codec,
@@ -489,7 +489,7 @@ class TranscriptSocketServiceFactory {
     return uri.replace(queryParameters: {...uri.queryParameters, ...params}).toString();
   }
 
-  /// Create composite service: primary STT socket + Omi backend for conversation processing
+  /// Create composite service: primary STT socket + Chronicle backend for conversation processing
   static TranscriptSegmentSocketService _createCompositeService(
     int sampleRate,
     BleAudioCodec codec,

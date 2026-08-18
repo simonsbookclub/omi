@@ -11,7 +11,7 @@ abstract class Env {
     'OMI_API_BASE_URL',
   );
   // SIMONSBOOKCLUB PATCH: this fork talks to our own self-hosted Cloudflare
-  // Worker instead of Omi's backend (see
+  // Worker instead of Chronicle's backend (see
   // docs/plans/PLAN-omi-fork-cloudflare-backend.md), which has no concept of
   // Firebase-issued per-user tokens. The Worker checks one fixed bearer
   // token for every request instead. Both are injected at build time via
@@ -125,7 +125,7 @@ abstract class Env {
     bool releaseBuild = kReleaseMode,
   }) {
     // SIMONSBOOKCLUB PATCH: upstream pins every production-family build to
-    // Omi's own api.omi.me/api.omiapi.com hosts specifically to stop a
+    // Chronicle's own api.omi.me/api.omiapi.com hosts specifically to stop a
     // misconfigured signing group from leaking real user traffic to the
     // wrong backend. This fork intentionally always points at our own
     // self-hosted Cloudflare Worker (OMI_API_BASE_URL — see

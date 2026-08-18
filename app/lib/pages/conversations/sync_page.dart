@@ -425,7 +425,7 @@ class _SyncPageState extends State<SyncPage> {
   }
 
   void _handleSyncWals(BuildContext context, SyncProvider syncProvider) async {
-    // Custom STT users: offline files are transcribed on Omi and count toward
+    // Custom STT users: offline files are transcribed on Chronicle and count toward
     // the limit. Confirm before proceeding.
     if (!await confirmSyncForCustomStt(context)) return;
     if (!context.mounted) return;

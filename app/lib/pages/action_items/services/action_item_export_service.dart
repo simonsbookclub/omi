@@ -45,7 +45,7 @@ class ActionItemExportService {
     if (!service.isAuthenticated) return ExportResult.failed;
 
     try {
-      final ok = await service.createTask(content: item.description, description: 'From Omi', dueDate: item.dueAt);
+      final ok = await service.createTask(content: item.description, description: 'From Chronicle', dueDate: item.dueAt);
       if (!ok) return ExportResult.failed;
 
       final exportTime = DateTime.now();
@@ -67,7 +67,7 @@ class ActionItemExportService {
     if (!service.isAuthenticated) return ExportResult.failed;
 
     try {
-      final ok = await service.createTask(name: item.description, notes: 'From Omi', dueDate: item.dueAt);
+      final ok = await service.createTask(name: item.description, notes: 'From Chronicle', dueDate: item.dueAt);
       if (!ok) return ExportResult.failed;
 
       final exportTime = DateTime.now();
@@ -89,7 +89,7 @@ class ActionItemExportService {
     if (!service.isAuthenticated) return ExportResult.failed;
 
     try {
-      final ok = await service.createTask(title: item.description, notes: 'From Omi', dueDate: item.dueAt);
+      final ok = await service.createTask(title: item.description, notes: 'From Chronicle', dueDate: item.dueAt);
       if (!ok) return ExportResult.failed;
 
       final exportTime = DateTime.now();
@@ -111,7 +111,7 @@ class ActionItemExportService {
     if (!service.isAuthenticated) return ExportResult.failed;
 
     try {
-      final ok = await service.createTask(name: item.description, description: 'From Omi', dueDate: item.dueAt);
+      final ok = await service.createTask(name: item.description, description: 'From Chronicle', dueDate: item.dueAt);
       if (!ok) return ExportResult.failed;
 
       final exportTime = DateTime.now();
@@ -136,7 +136,7 @@ class ActionItemExportService {
       final hasPermission = await service.hasPermission() || await service.requestPermission();
       if (!hasPermission) return ExportResult.failed;
 
-      final calendarItemId = await service.addReminder(title: item.description, notes: 'From Omi', dueDate: item.dueAt);
+      final calendarItemId = await service.addReminder(title: item.description, notes: 'From Chronicle', dueDate: item.dueAt);
       if (calendarItemId == null) return ExportResult.failed;
 
       final exportTime = DateTime.now();

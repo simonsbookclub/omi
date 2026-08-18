@@ -2,7 +2,7 @@
     "@@locale": "tl",
     "sessionExpiredSignInAgain": "Nag-expire ang session — mag-sign in ulit.",
     "@@last_modified": "2024-12-26",
-    "appTitle": "Omi",
+    "appTitle": "Chronicle",
     "@appTitle": {
         "description": "The app title displayed in various places"
     },
@@ -158,7 +158,7 @@
     "@editPerson": {
         "description": "Title for edit person dialog"
     },
-    "createPersonHint": "Lumikha ng bagong tao at turuan ang Omi na kilalanin ang kanilang pagsasalita!",
+    "createPersonHint": "Lumikha ng bagong tao at turuan ang Chronicle na kilalanin ang kanilang pagsasalita!",
     "@createPersonHint": {
         "description": "Hint text for creating a person"
     },
@@ -212,9 +212,9 @@
     "@couldNotAccessFile": {
         "description": "Error when file access fails"
     },
-    "askOmi": "Tanungin ang Omi",
+    "askOmi": "Tanungin ang Chronicle",
     "@askOmi": {
-        "description": "Shortcut to ask Omi a question"
+        "description": "Shortcut to ask Chronicle a question"
     },
     "done": "Tapos na",
     "@done": {
@@ -350,7 +350,7 @@
     "@noMessagesYet": {
         "description": "Empty chat state message"
     },
-    "deletingMessages": "Inaalis ang iyong mga mensahe mula sa memorya ni Omi...",
+    "deletingMessages": "Inaalis ang iyong mga mensahe mula sa memorya ni Chronicle...",
     "@deletingMessages": {
         "description": "Loading text when clearing chat"
     },
@@ -390,7 +390,7 @@
     "@maxFilesLimit": {
         "description": "Max files upload warning"
     },
-    "chatWithOmi": "Makipag-chat sa Omi",
+    "chatWithOmi": "Makipag-chat sa Chronicle",
     "@chatWithOmi": {
         "description": "Chat share subject"
     },
@@ -430,7 +430,7 @@
     "@unableToFetchApps": {
         "description": "Error when apps fail to load"
     },
-    "aboutOmi": "Tungkol sa Omi",
+    "aboutOmi": "Tungkol sa Chronicle",
     "@aboutOmi": {
         "description": "About page title"
     },
@@ -580,7 +580,7 @@
     "@developerSettings": {
         "description": "Title for developer settings page"
     },
-    "getOmiForMac": "Kunin ang Omi para sa Mac",
+    "getOmiForMac": "Kunin ang Chronicle para sa Mac",
     "@getOmiForMac": {
         "description": "Mac app download link"
     },
@@ -604,7 +604,7 @@
     "@yourPrivacyYourControl": {
         "description": "Data privacy page heading"
     },
-    "privacyIntro": "Sa Omi, kami ay nakatuon sa pagprotekta ng iyong privacy. Ang pahina na ito ay nagbibigay-daan sa iyo na kontrolin kung paano ginagamit at iniimbak ang iyong data.",
+    "privacyIntro": "Sa Chronicle, kami ay nakatuon sa pagprotekta ng iyong privacy. Ang pahina na ito ay nagbibigay-daan sa iyo na kontrolin kung paano ginagamit at iniimbak ang iyong data.",
     "@privacyIntro": {
         "description": "Data privacy page introduction"
     },
@@ -696,7 +696,7 @@
     "@unpairAndForget": {
         "description": "Unpair and forget device button"
     },
-    "deviceDisconnectedMessage": "Ang iyong Omi ay nawawalan ng koneksyon 😔",
+    "deviceDisconnectedMessage": "Ang iyong Chronicle ay nawawalan ng koneksyon 😔",
     "@deviceDisconnectedMessage": {
         "description": "Message shown when device is disconnected"
     },
@@ -716,7 +716,7 @@
     "@deviceNotConnected": {
         "description": "Device not connected header"
     },
-    "connectDeviceMessage": "Ikonekta ang iyong Omi device upang ma-access\nang device settings at pag-customize",
+    "connectDeviceMessage": "Ikonekta ang iyong Chronicle device upang ma-access\nang device settings at pag-customize",
     "@connectDeviceMessage": {
         "description": "Message encouraging user to connect device"
     },
@@ -888,7 +888,7 @@
     "@docs": {
         "description": "Documentation button text"
     },
-    "yourOmiInsights": "Ang Iyong Omi Insights",
+    "yourOmiInsights": "Ang Iyong Chronicle Insights",
     "@yourOmiInsights": {
         "description": "Usage page title"
     },
@@ -912,7 +912,7 @@
     "@noActivityYet": {
         "description": "Empty state title"
     },
-    "startConversationToSeeInsights": "Magsimula ng pag-uusap sa Omi\nupang makita ang iyong usage insights dito.",
+    "startConversationToSeeInsights": "Magsimula ng pag-uusap sa Chronicle\nupang makita ang iyong usage insights dito.",
     "@startConversationToSeeInsights": {
         "description": "Empty state description"
     },
@@ -920,7 +920,7 @@
     "@listening": {
         "description": "Listening stat title"
     },
-    "listeningSubtitle": "Kabuuang oras na aktibong nakinig ang Omi.",
+    "listeningSubtitle": "Kabuuang oras na aktibong nakinig ang Chronicle.",
     "@listeningSubtitle": {
         "description": "Listening stat subtitle"
     },
@@ -1002,7 +1002,7 @@
             }
         }
     },
-    "shareStatsMessage": "Nagbabahagi ng aking Omi stats! (omi.me - ang iyong palaging-bukas na AI assistant)",
+    "shareStatsMessage": "Nagbabahagi ng aking Chronicle stats! (omi.me - ang iyong palaging-bukas na AI assistant)",
     "@shareStatsMessage": {
         "description": "Share stats base message"
     },
@@ -1066,7 +1066,7 @@
     "debugLogsAutoDelete": "Awtomatikong buburahin pagkatapos ng 3 araw.",
     "debugLogsDesc": "Tumutulong sa pag-diagnose ng mga isyu",
     "noLogFilesFound": "Walang log files na nahanap.",
-    "omiDebugLog": "Omi debug log",
+    "omiDebugLog": "Chronicle debug log",
     "logShared": "Log ay na-share",
     "selectLogFile": "Piliin ang Log File",
     "shareLogs": "Ibahagi ang Logs",
@@ -1074,7 +1074,7 @@
     "exportStarted": "Nagsimula ang pag-export. Maaaring tumagal ng ilang segundo...",
     "exportAllData": "I-export ang Lahat ng Data",
     "exportDataDesc": "I-export ang mga pag-uusap sa isang JSON file",
-    "exportedConversations": "Mga Exported Conversations mula sa Omi",
+    "exportedConversations": "Mga Exported Conversations mula sa Chronicle",
     "exportShared": "Export ay na-share",
     "deleteKnowledgeGraphTitle": "Tanggalin ang Knowledge Graph?",
     "deleteKnowledgeGraphMessage": "Ito ay tatanggal ang lahat ng derived knowledge graph data (nodes at connections). Ang iyong orihinal na mga alaala ay manatiling ligtas. Ang graph ay muling bubuo sa paglipas ng panahon o sa susunod na request.",
@@ -1174,7 +1174,7 @@
     "customVocabularyTitle": "Custom na Bokabularyo",
     "addWords": "Magdagdag ng Mga Salita",
     "addWordsDesc": "Mga pangalan, termino, o hindi karaniwang mga salita",
-    "vocabularyHint": "Omi, Callie, OpenAI",
+    "vocabularyHint": "Chronicle, Callie, OpenAI",
     "connect": "Ikonekta",
     "comingSoon": "Paparating Na",
     "integrationsFooter": "Ikonekta ang iyong mga app upang makita ang data at metrics sa chat.",
@@ -1220,7 +1220,7 @@
             }
         }
     },
-    "authAccessMessage": "Kailangan mong i-authorize ang Omi upang ma-access ang iyong {appName} data. Ito ay magbubukas ng iyong browser para sa pag-authenticate.",
+    "authAccessMessage": "Kailangan mong i-authorize ang Chronicle upang ma-access ang iyong {appName} data. Ito ay magbubukas ng iyong browser para sa pag-authenticate.",
     "@authAccessMessage": {
         "placeholders": {
             "appName": {
@@ -1257,7 +1257,7 @@
     "permissionRevokedMessage": "Gusto mo ba na i-remove namin ang lahat ng iyong mga recordings?",
     "yes": "Oo",
     "editName": "I-edit ang Pangalan",
-    "howShouldOmiCallYou": "Paano ka dapat tawagan ng Omi?",
+    "howShouldOmiCallYou": "Paano ka dapat tawagan ng Chronicle?",
     "enterYourName": "Ilagay ang iyong pangalan",
     "nameCannotBeEmpty": "Ang pangalan ay hindi maaaring walang laman",
     "nameUpdatedSuccessfully": "Ang pangalan ay na-update na!",
@@ -1441,7 +1441,7 @@
             }
         }
     },
-    "authorizeOmiForTasks": "Kakailanganin mong pahintulutan ang Omi na lumikha ng mga task sa iyong {appName} account. Ito ay magbubukas ng iyong browser para sa authentication.",
+    "authorizeOmiForTasks": "Kakailanganin mong pahintulutan ang Chronicle na lumikha ng mga task sa iyong {appName} account. Ito ay magbubukas ng iyong browser para sa authentication.",
     "@authorizeOmiForTasks": {
         "placeholders": {
             "appName": {
@@ -1474,7 +1474,7 @@
     "bringYourOwn": "Dalhin ang iyong sarili",
     "payYourSttProvider": "Gamitin ang omi nang libre. Direkta lang sa iyong STT provider ang babayaran mo.",
     "freeMinutesMonth": "300 libreng minuto/buwan kasama. Unlimited sa ",
-    "omiUnlimited": "Omi Unlimited",
+    "omiUnlimited": "Chronicle Unlimited",
     "hostRequired": "Ang Host ay kinakailangan",
     "validPortRequired": "Ang Valid port ay kinakailangan",
     "validWebsocketUrlRequired": "Ang Valid WebSocket URL ay kinakailangan (wss://)",
@@ -1532,7 +1532,7 @@
     "logs": "Mga Log",
     "logsCopied": "Ang mga log ay nakopya",
     "noLogsYet": "Walang mga log pa. Magsimula ng recording para makita ang custom STT activity.",
-    "deviceUsesCodec": "Ang {device} ay gumagamit ng {reason}. Ang Omi ay gagamitin.",
+    "deviceUsesCodec": "Ang {device} ay gumagamit ng {reason}. Ang Chronicle ay gagamitin.",
     "@deviceUsesCodec": {
         "description": "Warning about device codec compatibility",
         "placeholders": {
@@ -1544,7 +1544,7 @@
             }
         }
     },
-    "omiTranscription": "Omi Transcription",
+    "omiTranscription": "Chronicle Transcription",
     "bestInClassTranscription": "Best in class transcription na walang setup",
     "instantSpeakerLabels": "Instant speaker labels",
     "languageTranslation": "100+ language translation",
@@ -1626,7 +1626,7 @@
     "@enableBluetooth": {
         "description": "Title for dialog prompting user to enable Bluetooth"
     },
-    "bluetoothNeeded": "Ang Omi ay kailangan ng Bluetooth upang kumonekta sa iyong wearable. Mangyaring paganahin ang Bluetooth at subukan muli.",
+    "bluetoothNeeded": "Ang Chronicle ay kailangan ng Bluetooth upang kumonekta sa iyong wearable. Mangyaring paganahin ang Bluetooth at subukan muli.",
     "@bluetoothNeeded": {
         "description": "Explanation text for why Bluetooth is required"
     },
@@ -1646,7 +1646,7 @@
     "@backgroundActivity": {
         "description": "Title for background activity permission"
     },
-    "backgroundActivityDesc": "Hayaang tumakbo ang Omi sa background para sa mas magandang stability",
+    "backgroundActivityDesc": "Hayaang tumakbo ang Chronicle sa background para sa mas magandang stability",
     "@backgroundActivityDesc": {
         "description": "Description for background activity permission"
     },
@@ -1685,7 +1685,7 @@
     "@backgroundLocationDeniedDesc": {
         "description": "Instructions to grant background location permission"
     },
-    "lovingOmi": "Gusto mo ba ang Omi?",
+    "lovingOmi": "Gusto mo ba ang Chronicle?",
     "@lovingOmi": {
         "description": "Title for the app review prompt"
     },
@@ -1693,7 +1693,7 @@
     "@maybeLater": {
         "description": "Button text to defer action"
     },
-    "speechProfileIntro": "Ang Omi ay kailangan matuto ng iyong mga layunin at iyong boses. Makakabago ka nito mamaya.",
+    "speechProfileIntro": "Ang Chronicle ay kailangan matuto ng iyong mga layunin at iyong boses. Makakabago ka nito mamaya.",
     "@speechProfileIntro": {
         "description": "Introduction text for speech profile setup"
     },
@@ -1761,7 +1761,7 @@
     "@tryAgain": {
         "description": "Button text to retry an action"
     },
-    "connectOmiOmiGlass": "Kumonekta sa Omi / OmiGlass",
+    "connectOmiOmiGlass": "Kumonekta sa Chronicle / OmiGlass",
     "@connectOmiOmiGlass": {
         "description": "Button text to connect specific device models"
     },
@@ -1812,7 +1812,7 @@
     "@termsOfUse": {
         "description": "Link text for Terms of Use"
     },
-    "omiYourAiCompanion": "Omi – Ang Iyong AI Companion",
+    "omiYourAiCompanion": "Chronicle – Ang Iyong AI Companion",
     "@omiYourAiCompanion": {
         "description": "App title or branding on onboarding screen"
     },
@@ -1832,7 +1832,7 @@
     "@microphonePermission": {
         "description": "Title for microphone permission section"
     },
-    "permissionGrantedNow": "Ang pahintulot ay nabigyan na! Ngayon:\n\nBuksan ang Omi app sa iyong watch at tapin ang \"Continue\" sa ibaba",
+    "permissionGrantedNow": "Ang pahintulot ay nabigyan na! Ngayon:\n\nBuksan ang Chronicle app sa iyong watch at tapin ang \"Continue\" sa ibaba",
     "@permissionGrantedNow": {
         "description": "Instructions after permission is granted"
     },
@@ -1848,7 +1848,7 @@
     "@needHelp": {
         "description": "Link to help dialog"
     },
-    "troubleshootingSteps": "Troubleshooting:\n\n1. Masiguro na ang Omi ay naka-install sa iyong watch\n2. Buksan ang Omi app sa iyong watch\n3. Hanapin ang permission popup\n4. Tapin ang \"Allow\" kapag hiniling\n5. Ang app sa iyong watch ay magsasara - buksan ito muli\n6. Bumalik at tapin ang \"Continue\" sa iyong iPhone",
+    "troubleshootingSteps": "Troubleshooting:\n\n1. Masiguro na ang Chronicle ay naka-install sa iyong watch\n2. Buksan ang Chronicle app sa iyong watch\n3. Hanapin ang permission popup\n4. Tapin ang \"Allow\" kapag hiniling\n5. Ang app sa iyong watch ay magsasara - buksan ito muli\n6. Bumalik at tapin ang \"Continue\" sa iyong iPhone",
     "@troubleshootingSteps": {
         "description": "Troubleshooting instructions for watch setup"
     },
@@ -1905,7 +1905,7 @@
     },
     "personalGrowthJourney": "Ang iyong personal growth journey gamit ang AI na nakikinig sa bawat salita mo.",
     "@personalGrowthJourney": {
-        "description": "Subtitle describing Omi on auth screen"
+        "description": "Subtitle describing Chronicle on auth screen"
     },
     "actionItemsTitle": "Mga To-Do",
     "@actionItemsTitle": {
@@ -2078,11 +2078,11 @@
     "@addFirstMemory": {
         "description": "Button to add first memory"
     },
-    "clearMemoryTitle": "I-clear ang Alaala ng Omi",
+    "clearMemoryTitle": "I-clear ang Alaala ng Chronicle",
     "@clearMemoryTitle": {
         "description": "Dialog title for clearing memory"
     },
-    "clearMemoryMessage": "Sigurado ka ba na gusto mong i-clear ang alaala ng Omi? Ang aksyon na ito ay hindi mababawi.",
+    "clearMemoryMessage": "Sigurado ka ba na gusto mong i-clear ang alaala ng Chronicle? Ang aksyon na ito ay hindi mababawi.",
     "@clearMemoryMessage": {
         "description": "Dialog content for clearing memory"
     },
@@ -2090,7 +2090,7 @@
     "@clearMemoryButton": {
         "description": "Button text to confirm clearing all memories"
     },
-    "memoryClearedSuccess": "Ang alaala ng Omi tungkol sa iyo ay na-clear na",
+    "memoryClearedSuccess": "Ang alaala ng Chronicle tungkol sa iyo ay na-clear na",
     "@memoryClearedSuccess": {
         "description": "Snackbar success message"
     },
@@ -2287,7 +2287,7 @@
     "@translationNotice": {
         "description": "Title for dialog explaining that conversations are translated"
     },
-    "translationNoticeMessage": "Ang Omi ay nagsasalin ng mga pag-usap sa iyong pangunahing wika. I-update ito anumang oras sa Settings → Profiles.",
+    "translationNoticeMessage": "Ang Chronicle ay nagsasalin ng mga pag-usap sa iyong pangunahing wika. I-update ito anumang oras sa Settings → Profiles.",
     "@translationNoticeMessage": {
         "description": "Message explaining how translation works and where to change language settings"
     },
@@ -2536,9 +2536,9 @@
     "@privacyPolicyTitle": {
         "description": "Title for privacy policy page"
     },
-    "omiSttProvider": "Omi",
+    "omiSttProvider": "Chronicle",
     "@omiSttProvider": {
-        "description": "Label for default Omi STT provider"
+        "description": "Label for default Chronicle STT provider"
     },
     "labelCopied": "{label} ay nai-copy",
     "@labelCopied": {
@@ -2830,7 +2830,7 @@
     "@checksForAudioFiles": {
         "description": "Step 1: Checking for audio files"
     },
-    "omiSyncsAudioFiles": "Ang Omi ay nag-sync pagkatapos ng mga audio file sa server",
+    "omiSyncsAudioFiles": "Ang Chronicle ay nag-sync pagkatapos ng mga audio file sa server",
     "@omiSyncsAudioFiles": {
         "description": "Step 2: Syncing audio files"
     },
@@ -2842,11 +2842,11 @@
     "@youreAllSet": {
         "description": "Completion message when onboarding is finished"
     },
-    "welcomeToOmiDescription": "Maligayang pagdating sa Omi! Ang iyong AI companion ay handa nang tulungan ka sa mga conversation, gawain, at marami pa.",
+    "welcomeToOmiDescription": "Maligayang pagdating sa Chronicle! Ang iyong AI companion ay handa nang tulungan ka sa mga conversation, gawain, at marami pa.",
     "@welcomeToOmiDescription": {
         "description": "Welcome message on completion screen"
     },
-    "startUsingOmi": "Magsimulang Gumamit ng Omi",
+    "startUsingOmi": "Magsimulang Gumamit ng Chronicle",
     "@startUsingOmi": {
         "description": "Button to complete onboarding and start using the app"
     },
@@ -2955,7 +2955,7 @@
     "@reviewAndManageConversations": {
         "description": "Subtitle explaining what users can do on conversations page"
     },
-    "startCapturingConversations": "Magsimulang kumuha ng mga conversation gamit ang iyong Omi device upang makita ang mga ito dito.",
+    "startCapturingConversations": "Magsimulang kumuha ng mga conversation gamit ang iyong Chronicle device upang makita ang mga ito dito.",
     "@startCapturingConversations": {
         "description": "Message explaining how to get started with conversations"
     },
@@ -2975,7 +2975,7 @@
     "@showAll": {
         "description": "Button text to show all items"
     },
-    "noTasksForToday": "Walang mga gawain para sa araw na ito.\nTanungin ang Omi para sa higit pang mga gawain o lumikha nang manu-mano.",
+    "noTasksForToday": "Walang mga gawain para sa araw na ito.\nTanungin ang Chronicle para sa higit pang mga gawain o lumikha nang manu-mano.",
     "@noTasksForToday": {
         "description": "Message shown when there are no tasks due today"
     },
@@ -3174,7 +3174,7 @@
     "@createNewApp": {
         "description": "Title for the create new app page"
     },
-    "buildSubmitCustomOmiApp": "Bumuo at magpadala ng iyong custom na Omi app",
+    "buildSubmitCustomOmiApp": "Bumuo at magpadala ng iyong custom na Chronicle app",
     "@buildSubmitCustomOmiApp": {
         "description": "Subtitle describing the purpose of the create app page"
     },
@@ -3234,7 +3234,7 @@
     "@makeMyAppPublic": {
         "description": "Checkbox label for making app publicly available"
     },
-    "submitAppTermsAgreement": "Sa pag-submit ng app na ito, sumasang-ayon ako sa Omi AI Terms of Service at Privacy Policy",
+    "submitAppTermsAgreement": "Sa pag-submit ng app na ito, sumasang-ayon ako sa Chronicle AI Terms of Service at Privacy Policy",
     "@submitAppTermsAgreement": {
         "description": "Terms and conditions agreement checkbox text"
     },
@@ -3290,7 +3290,7 @@
     "@dataAccessNotice": {
         "description": "Dialog title warning about app data access"
     },
-    "dataAccessWarning": "Ang app na ito ay makakapag-access sa iyong data. Ang Omi AI ay hindi responsable sa kung paano ang iyong data ay ginagamit, binabago, o bina-delete ng app na ito",
+    "dataAccessWarning": "Ang app na ito ay makakapag-access sa iyong data. Ang Chronicle AI ay hindi responsable sa kung paano ang iyong data ay ginagamit, binabago, o bina-delete ng app na ito",
     "@dataAccessWarning": {
         "description": "Warning message about app data access in confirmation dialog"
     },
@@ -3762,7 +3762,7 @@
     "@upgradeToPro": {
         "description": "Subscription banner button text"
     },
-    "getOmiDevice": "Kumuha ng Omi Device",
+    "getOmiDevice": "Kumuha ng Chronicle Device",
     "@getOmiDevice": {
         "description": "Widget title for device promotion"
     },
@@ -3865,7 +3865,7 @@
     "@setAllMemoriesToPublic": {
         "description": "Description for making all memories public"
     },
-    "permanentlyRemoveAllMemories": "Permanenteng alisin ang lahat ng memories mula sa Omi",
+    "permanentlyRemoveAllMemories": "Permanenteng alisin ang lahat ng memories mula sa Chronicle",
     "@permanentlyRemoveAllMemories": {
         "description": "Description for deleting all memories"
     },
@@ -3877,11 +3877,11 @@
     "@allMemoriesAreNowPublic": {
         "description": "Success message after making all memories public"
     },
-    "clearOmisMemory": "Burahin ang Memory ng Omi",
+    "clearOmisMemory": "Burahin ang Memory ng Chronicle",
     "@clearOmisMemory": {
         "description": "Confirmation dialog title for clearing all memories"
     },
-    "clearMemoryConfirmation": "Sigurado ka na ba na nais mong burahin ang memory ng Omi? Ang aksyong ito ay hindi maaaring bawiin at permanenteng magsasabing lahat ng {count} memories.",
+    "clearMemoryConfirmation": "Sigurado ka na ba na nais mong burahin ang memory ng Chronicle? Ang aksyong ito ay hindi maaaring bawiin at permanenteng magsasabing lahat ng {count} memories.",
     "@clearMemoryConfirmation": {
         "description": "Confirmation message for clearing all memories",
         "placeholders": {
@@ -3890,11 +3890,11 @@
             }
         }
     },
-    "omisMemoryCleared": "Ang memory ng Omi tungkol sa iyo ay nabura na",
+    "omisMemoryCleared": "Ang memory ng Chronicle tungkol sa iyo ay nabura na",
     "@omisMemoryCleared": {
         "description": "Success message after clearing all memories"
     },
-    "welcomeToOmi": "Maligayang pagdating sa Omi",
+    "welcomeToOmi": "Maligayang pagdating sa Chronicle",
     "@welcomeToOmi": {
         "description": "Welcome message on auth screen"
     },
@@ -3948,13 +3948,13 @@
     },
     "pleaseSelectYourPrimaryLanguage": "Piliin ang iyong pangunahing wika",
     "chooseYourLanguage": "Piliin ang iyong wika",
-    "selectPreferredLanguageForBestExperience": "Piliin ang iyong preferred na wika para sa pinakamahusay na Omi experience",
+    "selectPreferredLanguageForBestExperience": "Piliin ang iyong preferred na wika para sa pinakamahusay na Chronicle experience",
     "searchLanguages": "Maghanap ng mga wika...",
     "selectALanguage": "Pumili ng isang wika",
     "tryDifferentSearchTerm": "Subukan ang ibang search term",
     "pleaseEnterYourName": "Mangyaring ilagay ang iyong pangalan",
     "nameMustBeAtLeast2Characters": "Ang pangalan ay dapat na hindi bababa sa 2 characters",
-    "tellUsHowYouWouldLikeToBeAddressed": "Sabihin sa amin kung paano ka nais tawagan. Ito ay tumutulong na i-personalize ang iyong Omi experience.",
+    "tellUsHowYouWouldLikeToBeAddressed": "Sabihin sa amin kung paano ka nais tawagan. Ito ay tumutulong na i-personalize ang iyong Chronicle experience.",
     "charactersCount": "{count} characters",
     "@charactersCount": {
         "placeholders": {
@@ -3963,16 +3963,16 @@
             }
         }
     },
-    "enableFeaturesForBestExperience": "Paganahin ang mga features para sa pinakamahusay na Omi experience sa iyong device.",
+    "enableFeaturesForBestExperience": "Paganahin ang mga features para sa pinakamahusay na Chronicle experience sa iyong device.",
     "microphoneAccess": "Microphone Access",
     "recordAudioConversations": "I-record ang audio conversations",
-    "microphoneAccessDescription": "Kailangan ng Omi ang microphone access upang i-record ang iyong mga conversation at magbigay ng mga transcription.",
+    "microphoneAccessDescription": "Kailangan ng Chronicle ang microphone access upang i-record ang iyong mga conversation at magbigay ng mga transcription.",
     "screenRecording": "Screen Recording",
     "captureSystemAudioFromMeetings": "Kunin ang system audio mula sa mga meeting",
-    "screenRecordingDescription": "Kailangan ng Omi ng screen recording permission upang kunin ang system audio mula sa iyong browser-based na mga meeting.",
+    "screenRecordingDescription": "Kailangan ng Chronicle ng screen recording permission upang kunin ang system audio mula sa iyong browser-based na mga meeting.",
     "accessibility": "Accessibility",
     "detectBrowserBasedMeetings": "Tukuyin ang browser-based na mga meeting",
-    "accessibilityDescription": "Kailangan ng Omi ng accessibility permission upang matukoy kung kailan ka sumali sa Zoom, Meet, o Teams meetings sa iyong browser.",
+    "accessibilityDescription": "Kailangan ng Chronicle ng accessibility permission upang matukoy kung kailan ka sumali sa Zoom, Meet, o Teams meetings sa iyong browser.",
     "pleaseWait": "Mangyaring maghintay...",
     "joinTheCommunity": "Sumali sa komunidad!",
     "loadingProfile": "Nag-load ng profile...",
@@ -3983,12 +3983,12 @@
     "setYourName": "Itakda ang Iyong Pangalan",
     "changeYourName": "Baguhin ang Iyong Pangalan",
     "voiceAndPeople": "Boses & Tao",
-    "teachOmiYourVoice": "Turuan ang Omi ng iyong boses",
-    "tellOmiWhoSaidIt": "Sabihin sa Omi kung sino ang nagsabi nito 🗣️",
+    "teachOmiYourVoice": "Turuan ang Chronicle ng iyong boses",
+    "tellOmiWhoSaidIt": "Sabihin sa Chronicle kung sino ang nagsabi nito 🗣️",
     "payment": "Pagbabayad",
     "addOrChangeYourPaymentMethod": "Magdagdag o baguhin ang iyong payment method",
     "preferences": "Mga Kagustuhan",
-    "helpImproveOmiBySharing": "Tumulong na mapabuti ang Omi sa pamamagitan ng pagbabahagi ng anonymized analytics data",
+    "helpImproveOmiBySharing": "Tumulong na mapabuti ang Chronicle sa pamamagitan ng pagbabahagi ng anonymized analytics data",
     "deleteAccount": "Burahin ang Account",
     "deleteYourAccountAndAllData": "Burahin ang iyong account at lahat ng data",
     "clearLogs": "I-clear ang logs",
@@ -3996,7 +3996,7 @@
     "exportConversations": "I-export ang Mga Conversation",
     "exportAllConversationsToJson": "I-export ang lahat ng iyong mga conversation sa isang JSON file.",
     "conversationsExportStarted": "Nagsimula na ang Conversations Export. Ito ay maaaring tumagal ng ilang segundo, mangyaring maghintay.",
-    "mcpDescription": "Upang ikonekta ang Omi sa ibang mga aplikasyon upang basahin, maghanap, at pamahalaan ang iyong mga memory at conversation. Lumikha ng isang key upang magsimula.",
+    "mcpDescription": "Upang ikonekta ang Chronicle sa ibang mga aplikasyon upang basahin, maghanap, at pamahalaan ang iyong mga memory at conversation. Lumikha ng isang key upang magsimula.",
     "apiKeys": "API Keys",
     "errorLabel": "Error: {error}",
     "@errorLabel": {
@@ -4014,7 +4014,7 @@
     "triggersWhenAudioBytesReceived": "Nag-trigger kapag ang audio bytes ay natanggap.",
     "everyXSeconds": "Bawat x segundo",
     "triggersWhenDaySummaryGenerated": "Nag-trigger kapag ang day summary ay nabuo.",
-    "tryLatestExperimentalFeatures": "Subukan ang pinakabagong experimental features mula sa Omi Team.",
+    "tryLatestExperimentalFeatures": "Subukan ang pinakabagong experimental features mula sa Chronicle Team.",
     "transcriptionServiceDiagnosticStatus": "Transcription service diagnostic status",
     "enableDetailedDiagnosticMessages": "Paganahin ang detailed diagnostic messages mula sa transcription service",
     "autoCreateAndTagNewSpeakers": "Auto-create at mag-tag ng bagong mga speaker",
@@ -4050,7 +4050,7 @@
             }
         }
     },
-    "letOmiChooseAutomatically": "Hayaan ang Omi na pumili ng pinakamahusay na app nang awtomatiko",
+    "letOmiChooseAutomatically": "Hayaan ang Chronicle na pumili ng pinakamahusay na app nang awtomatiko",
     "deleteConversationConfirmation": "Sigurado ka na ba na gusto mong burahin ang conversation na ito? Ang aksyong ito ay hindi mababawi.",
     "conversationDeleted": "Conversation na nabura",
     "generatingLink": "Gumagawa ng link...",
@@ -4317,7 +4317,7 @@
     "@customVocabularyHeader": {
         "description": "Custom vocabulary section header"
     },
-    "addWordsDescription": "Magdagdag ng mga salita na dapat kilalanin ng Omi sa panahon ng transcription.",
+    "addWordsDescription": "Magdagdag ng mga salita na dapat kilalanin ng Chronicle sa panahon ng transcription.",
     "@addWordsDescription": {
         "description": "Custom vocabulary description"
     },
@@ -4378,7 +4378,7 @@
     "clearNodesDescription": "I-clear ang lahat ng nodes at connections",
     "deleteKnowledgeGraphQuestion": "Burahin ang Knowledge Graph?",
     "deleteKnowledgeGraphWarning": "Ito ay buburahin ang lahat ng derived knowledge graph data. Ang iyong original na mga memory ay manatiling ligtas.",
-    "connectOmiWithAI": "Ikonekta ang Omi sa AI assistants",
+    "connectOmiWithAI": "Ikonekta ang Chronicle sa AI assistants",
     "noAPIKeys": "Walang API keys. Lumikha ng isa upang magsimula.",
     "autoCreateWhenDetected": "Auto-create kapag na-detect ang pangalan",
     "trackPersonalGoals": "Subaybayan ang personal na mga layunin sa homepage",
@@ -4398,7 +4398,7 @@
     "@holdOnPreparingForm": {
         "description": "Loading message while preparing form"
     },
-    "bySubmittingYouAgreeToOmi": "Sa pamamagitan ng pagpapadala, sumasang-ayon ka sa Omi ",
+    "bySubmittingYouAgreeToOmi": "Sa pamamagitan ng pagpapadala, sumasang-ayon ka sa Chronicle ",
     "@bySubmittingYouAgreeToOmi": {
         "description": "Text before Terms & Privacy Policy link"
     },
@@ -4610,7 +4610,7 @@
     "@issueActivatingApp": {
         "description": "Dialog description for activation error"
     },
-    "dataAccessNoticeDescription": "Ang app na ito ay mag-access sa iyong data. Ang Omi AI ay hindi responsable kung paano ginagamit, binabago, o binubura ang iyong data ng app na ito",
+    "dataAccessNoticeDescription": "Ang app na ito ay mag-access sa iyong data. Ang Chronicle AI ay hindi responsable kung paano ginagamit, binabago, o binubura ang iyong data ng app na ito",
     "@dataAccessNoticeDescription": {
         "description": "Description for data access notice dialog"
     },
@@ -4742,7 +4742,7 @@
             }
         }
     },
-    "omiApiKeys": "Omi API Keys",
+    "omiApiKeys": "Chronicle API Keys",
     "@omiApiKeys": {
         "description": "Dialog title for API keys info"
     },
@@ -4750,7 +4750,7 @@
     "@apiKeysDescription": {
         "description": "Description of what API keys are used for"
     },
-    "aboutOmiApiKeys": "Tungkol sa Omi API Keys",
+    "aboutOmiApiKeys": "Tungkol sa Chronicle API Keys",
     "@aboutOmiApiKeys": {
         "description": "Tooltip for API keys info button"
     },
@@ -4944,7 +4944,7 @@
     "@maximumSecurityE2ee": {
         "description": "Title for End-to-End Encryption dialog"
     },
-    "e2eeDescription": "Ang end-to-end encryption ay ang gold standard para sa privacy. Kapag na-enable ito, ang iyong data ay naka-encrypt sa iyong device bago ipadala sa aming mga server. Ito ay nangangahulugang walang isa, hindi pa naman ang Omi, ay makaka-access sa iyong content.",
+    "e2eeDescription": "Ang end-to-end encryption ay ang gold standard para sa privacy. Kapag na-enable ito, ang iyong data ay naka-encrypt sa iyong device bago ipadala sa aming mga server. Ito ay nangangahulugang walang isa, hindi pa naman ang Chronicle, ay makaka-access sa iyong content.",
     "@e2eeDescription": {
         "description": "Description of E2EE encryption explaining its benefits"
     },
@@ -5000,7 +5000,7 @@
     "@secureEncryption": {
         "description": "Title for secure encryption card"
     },
-    "secureEncryptionDescription": "Ang iyong data ay naka-encrypt gamit ang isang key na natatangi sa iyo sa aming mga server, hosted sa Google Cloud. Ito ay nangangahulugang ang iyong raw na content ay hindi accessible sa sinuman, kabilang ang Omi staff o Google, direkta mula sa database.",
+    "secureEncryptionDescription": "Ang iyong data ay naka-encrypt gamit ang isang key na natatangi sa iyo sa aming mga server, hosted sa Google Cloud. Ito ay nangangahulugang ang iyong raw na content ay hindi accessible sa sinuman, kabilang ang Chronicle staff o Google, direkta mula sa database.",
     "@secureEncryptionDescription": {
         "description": "Description of secure encryption explaining how data is protected"
     },
@@ -5097,17 +5097,17 @@
             }
         }
     },
-    "omiTraining": "Omi Training",
+    "omiTraining": "Chronicle Training",
     "@omiTraining": {
-        "description": "Title for the Omi Training page/section"
+        "description": "Title for the Chronicle Training page/section"
     },
     "trainingDataProgram": "Training Data Program",
     "@trainingDataProgram": {
         "description": "Label for training data program"
     },
-    "getOmiUnlimitedFree": "Makakuha ng Omi Unlimited nang libre sa pamamagitan ng pagbibigay ng iyong data upang magsanay sa AI models.",
+    "getOmiUnlimitedFree": "Makakuha ng Chronicle Unlimited nang libre sa pamamagitan ng pagbibigay ng iyong data upang magsanay sa AI models.",
     "@getOmiUnlimitedFree": {
-        "description": "Description for getting Omi Unlimited free by contributing data"
+        "description": "Description for getting Chronicle Unlimited free by contributing data"
     },
     "trainingDataBullets": "• Ang iyong data ay tumutulong na mapabuti ang AI models\n• Lamang ang non-sensitive data ang ibabahagi\n• Fully transparent na proseso",
     "@trainingDataBullets": {
@@ -5219,7 +5219,7 @@
     "@youAreOnUnlimitedPlan": {
         "description": "Message showing user is on unlimited plan"
     },
-    "yourOmiUnleashed": "Ang iyong Omi, na walang hanggan. Maging unlimited para sa walang hanggang posibilidad.",
+    "yourOmiUnleashed": "Ang iyong Chronicle, na walang hanggan. Maging unlimited para sa walang hanggang posibilidad.",
     "@yourOmiUnleashed": {
         "description": "Marketing text for unlimited plan"
     },
@@ -5261,11 +5261,11 @@
     "@unlimitedConversations": {
         "description": "Feature: unlimited conversations"
     },
-    "askOmiAnything": "Tanungin ang Omi tungkol sa kahit ano sa iyong buhay",
+    "askOmiAnything": "Tanungin ang Chronicle tungkol sa kahit ano sa iyong buhay",
     "@askOmiAnything": {
-        "description": "Feature: ask Omi anything"
+        "description": "Feature: ask Chronicle anything"
     },
-    "unlockOmiInfiniteMemory": "I-unlock ang walang hanggang memorya ng Omi",
+    "unlockOmiInfiniteMemory": "I-unlock ang walang hanggang memorya ng Chronicle",
     "@unlockOmiInfiniteMemory": {
         "description": "Feature: unlock infinite memory"
     },
@@ -5339,7 +5339,7 @@
     "@yourPrivacyMattersToUs": {
         "description": "Privacy page - yourPrivacyMattersToUs"
     },
-    "privacyIntroText": "Sa Omi, seryoso kami ang kinuha ang iyong privacy. Nais naming maging transparent tungkol sa data na aming kinukuha at kung paano namin ito ginagamit upang mapabuti ang aming produkto para sa iyo. Narito kung ano ang kailangan mong malaman:",
+    "privacyIntroText": "Sa Chronicle, seryoso kami ang kinuha ang iyong privacy. Nais naming maging transparent tungkol sa data na aming kinukuha at kung paano namin ito ginagamit upang mapabuti ang aming produkto para sa iyo. Narito kung ano ang kailangan mong malaman:",
     "@privacyIntroText": {
         "description": "Privacy page - privacyIntroText"
     },
@@ -5359,11 +5359,11 @@
     "@ourCommitment": {
         "description": "Privacy page - ourCommitment"
     },
-    "commitmentText": "Kami ay nakatuon sa paggamit ng data na aming kinukuha lamang upang gawing mas mahusay na produkto ang Omi para sa iyo. Ang iyong privacy at tiwala ay pangunahin para sa amin.",
+    "commitmentText": "Kami ay nakatuon sa paggamit ng data na aming kinukuha lamang upang gawing mas mahusay na produkto ang Chronicle para sa iyo. Ang iyong privacy at tiwala ay pangunahin para sa amin.",
     "@commitmentText": {
         "description": "Privacy page - commitmentText"
     },
-    "thankYouText": "Salamat sa pagiging valued user ng Omi. Kung mayroon kang anumang mga katanungan o alalahanin, huwag mag-atubiling makipag-ugnayan sa amin sa team@basedhardware.com.",
+    "thankYouText": "Salamat sa pagiging valued user ng Chronicle. Kung mayroon kang anumang mga katanungan o alalahanin, huwag mag-atubiling makipag-ugnayan sa amin sa team@basedhardware.com.",
     "@thankYouText": {
         "description": "Privacy page - thankYouText"
     },
@@ -5488,7 +5488,7 @@
     "@minutes": {
         "description": "Unit label for minutes"
     },
-    "omiHas": "Mayroon ang Omi:",
+    "omiHas": "Mayroon ang Chronicle:",
     "@omiHas": {
         "description": "Fallback text for share stats when period is unknown"
     },
@@ -5621,7 +5621,7 @@
     "@howItWorksTitle": {
         "description": "Help dialog title"
     },
-    "howPeopleWorks": "Kapag lumikha ng isang tao, maaari kang pumunta sa isang conversation transcript, at italaan sa kanila ang kanilang corresponding segments, sa ganitong paraan ang Omi ay makakapag-recognize ng kanilang speech din!",
+    "howPeopleWorks": "Kapag lumikha ng isang tao, maaari kang pumunta sa isang conversation transcript, at italaan sa kanila ang kanilang corresponding segments, sa ganitong paraan ang Chronicle ay makakapag-recognize ng kanilang speech din!",
     "@howPeopleWorks": {
         "description": "Explanation of how people/speech recognition works"
     },
@@ -5982,9 +5982,9 @@
     "@enableApps": {
         "description": "Menu item text to navigate to apps page and enable more chat apps"
     },
-    "omiAppName": "Omi",
+    "omiAppName": "Chronicle",
     "@omiAppName": {
-        "description": "The Omi app/assistant name shown in chat app selection"
+        "description": "The Chronicle app/assistant name shown in chat app selection"
     },
     "showMore": "magpakita ng higit pa ↓",
     "@showMore": {
@@ -6014,21 +6014,21 @@
     "@checkingAppleWatch": {
         "description": "Loading text while checking Apple Watch status"
     },
-    "installOmiOnAppleWatch": "I-install ang Omi sa iyong\nApple Watch",
+    "installOmiOnAppleWatch": "I-install ang Chronicle sa iyong\nApple Watch",
     "@installOmiOnAppleWatch": {
-        "description": "Title prompting user to install Omi on Apple Watch"
+        "description": "Title prompting user to install Chronicle on Apple Watch"
     },
-    "installOmiOnAppleWatchDescription": "Upang gamitin ang iyong Apple Watch kasama ang Omi, kailangan mo munang i-install ang Omi app sa iyong watch.",
+    "installOmiOnAppleWatchDescription": "Upang gamitin ang iyong Apple Watch kasama ang Chronicle, kailangan mo munang i-install ang Chronicle app sa iyong watch.",
     "@installOmiOnAppleWatchDescription": {
-        "description": "Description explaining need to install Omi app on watch"
+        "description": "Description explaining need to install Chronicle app on watch"
     },
-    "openOmiOnAppleWatch": "Buksan ang Omi sa iyong\nApple Watch",
+    "openOmiOnAppleWatch": "Buksan ang Chronicle sa iyong\nApple Watch",
     "@openOmiOnAppleWatch": {
-        "description": "Title prompting user to open Omi on Apple Watch"
+        "description": "Title prompting user to open Chronicle on Apple Watch"
     },
-    "openOmiOnAppleWatchDescription": "Ang Omi app ay naka-install na sa iyong Apple Watch. Buksan ito at i-tap ang Start upang magsimula.",
+    "openOmiOnAppleWatchDescription": "Ang Chronicle app ay naka-install na sa iyong Apple Watch. Buksan ito at i-tap ang Start upang magsimula.",
     "@openOmiOnAppleWatchDescription": {
-        "description": "Description explaining Omi is installed and user should open it"
+        "description": "Description explaining Chronicle is installed and user should open it"
     },
     "openWatchApp": "Buksan ang Watch App",
     "@openWatchApp": {
@@ -6038,7 +6038,7 @@
     "@iveInstalledAndOpenedTheApp": {
         "description": "Button text confirming user has installed and opened the app"
     },
-    "unableToOpenWatchApp": "Hindi maaaring buksan ang Apple Watch app. Mangyaring manu-manong buksan ang Watch app sa iyong Apple Watch at i-install ang Omi mula sa \"Available Apps\" section.",
+    "unableToOpenWatchApp": "Hindi maaaring buksan ang Apple Watch app. Mangyaring manu-manong buksan ang Watch app sa iyong Apple Watch at i-install ang Chronicle mula sa \"Available Apps\" section.",
     "@unableToOpenWatchApp": {
         "description": "Error message when Watch app cannot be opened automatically"
     },
@@ -6046,7 +6046,7 @@
     "@appleWatchConnectedSuccessfully": {
         "description": "Success message when Apple Watch connects"
     },
-    "appleWatchNotReachable": "Apple Watch ay hindi pa rin reachable. Mangyaring tiyakin na ang Omi app ay bukas sa iyong watch.",
+    "appleWatchNotReachable": "Apple Watch ay hindi pa rin reachable. Mangyaring tiyakin na ang Chronicle app ay bukas sa iyong watch.",
     "@appleWatchNotReachable": {
         "description": "Error message when Apple Watch is not reachable"
     },
@@ -6166,7 +6166,7 @@
     },
     "updateOmiFirmware": "I-update ang omi firmware",
     "@updateOmiFirmware": {
-        "description": "Button text to update Omi device firmware"
+        "description": "Button text to update Chronicle device firmware"
     },
     "anErrorOccurredTryAgain": "Isang error ang nangyari. Mangyaring subukan ulit.",
     "@anErrorOccurredTryAgain": {
@@ -6176,7 +6176,7 @@
     "@welcomeBackSimple": {
         "description": "Simple welcome message without user name"
     },
-    "addVocabularyDescription": "Magdagdag ng mga salita na dapat tanggapin ng Omi sa panahon ng transcription.",
+    "addVocabularyDescription": "Magdagdag ng mga salita na dapat tanggapin ng Chronicle sa panahon ng transcription.",
     "@addVocabularyDescription": {
         "description": "Description for custom vocabulary section"
     },
@@ -6409,7 +6409,7 @@
     "@wrappedNoDataAvailable": {
         "description": "Shown when wrapped result is null"
     },
-    "wrappedOmiLifeRecap": "Omi Life Recap",
+    "wrappedOmiLifeRecap": "Chronicle Life Recap",
     "@wrappedOmiLifeRecap": {
         "description": "Subtitle on the intro card"
     },
@@ -6417,7 +6417,7 @@
     "@wrappedSwipeUpToBegin": {
         "description": "Instruction text on intro card"
     },
-    "wrappedShareText": "Ang aking 2025, naalaala ng Omi ✨ omi.me/wrapped",
+    "wrappedShareText": "Ang aking 2025, naalaala ng Chronicle ✨ omi.me/wrapped",
     "@wrappedShareText": {
         "description": "Text shared when sharing wrapped images"
     },
@@ -6445,7 +6445,7 @@
     "@wrappedMy2025": {
         "description": "Title text for shareable image"
     },
-    "wrappedRememberedByOmi": "naalaala ng Omi",
+    "wrappedRememberedByOmi": "naalaala ng Chronicle",
     "@wrappedRememberedByOmi": {
         "description": "Subtitle text for shareable image"
     },
@@ -6729,7 +6729,7 @@
     "@notificationFrequency": {
         "description": "Section header for notification frequency settings"
     },
-    "controlNotificationFrequency": "Kontrolin kung gaano kadalas ang Omi na magpadala sa iyo ng proactive na mga notipikasyon.",
+    "controlNotificationFrequency": "Kontrolin kung gaano kadalas ang Chronicle na magpadala sa iyo ng proactive na mga notipikasyon.",
     "@controlNotificationFrequency": {
         "description": "Description for notification frequency control"
     },
@@ -6761,7 +6761,7 @@
     "@dailyScoreExplanation": {
         "description": "Explanation of how daily score is calculated"
     },
-    "notificationFrequencyDescription": "Kontrolin kung gaano kadalas ang Omi na magpadala sa iyo ng proactive na mga notipikasyon at mga reminder.",
+    "notificationFrequencyDescription": "Kontrolin kung gaano kadalas ang Chronicle na magpadala sa iyo ng proactive na mga notipikasyon at mga reminder.",
     "@notificationFrequencyDescription": {
         "description": "Description text for notification frequency section"
     },
@@ -7047,7 +7047,7 @@
     "@noRecordings": {
         "description": "Empty state title when there are no recordings"
     },
-    "audioFromOmiWillAppearHere": "Ang tunog mula sa iyong Omi device ay lilitaw dito",
+    "audioFromOmiWillAppearHere": "Ang tunog mula sa iyong Chronicle device ay lilitaw dito",
     "@audioFromOmiWillAppearHere": {
         "description": "Empty state description for recordings"
     },
@@ -7227,7 +7227,7 @@
     "@batteryUsageHigher": {
         "description": "Warning about battery usage"
     },
-    "considerOmiCloud": "Isaalang-alang ang paggamit ng Omi Cloud para sa mas magandang performance.",
+    "considerOmiCloud": "Isaalang-alang ang paggamit ng Chronicle Cloud para sa mas magandang performance.",
     "@considerOmiCloud": {
         "description": "Suggestion to use cloud transcription"
     },
@@ -7454,9 +7454,9 @@
             }
         }
     },
-    "omiTranscriptionOptimized": "Ang built-in live transcription ng Omi ay na-optimize para sa real-time na pag-usap na may automatic speaker detection at diarization.",
+    "omiTranscriptionOptimized": "Ang built-in live transcription ng Chronicle ay na-optimize para sa real-time na pag-usap na may automatic speaker detection at diarization.",
     "@omiTranscriptionOptimized": {
-        "description": "Description of Omi transcription features"
+        "description": "Description of Chronicle transcription features"
     },
     "reset": "I-reset",
     "@reset": {
@@ -7576,7 +7576,7 @@
     "@writeReviewOptional": {
         "description": "Hint text for review input field"
     },
-    "setupQuestionsIntro": "Tulungan kaming mapabuti ang Omi sa pamamagitan ng pagsagot sa ilang mga tanong.  🫶 💜",
+    "setupQuestionsIntro": "Tulungan kaming mapabuti ang Chronicle sa pamamagitan ng pagsagot sa ilang mga tanong.  🫶 💜",
     "@setupQuestionsIntro": {
         "description": "Intro text for setup questions page"
     },
@@ -7584,9 +7584,9 @@
     "@setupQuestionProfession": {
         "description": "Question about profession"
     },
-    "setupQuestionUsage": "2. Saan mo plano na gamitin ang iyong Omi?",
+    "setupQuestionUsage": "2. Saan mo plano na gamitin ang iyong Chronicle?",
     "@setupQuestionUsage": {
-        "description": "Question about Omi usage location"
+        "description": "Question about Chronicle usage location"
     },
     "setupQuestionAge": "3. Ano ang iyong age range?",
     "@setupQuestionAge": {
@@ -8053,7 +8053,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8063,7 +8063,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8230,8 +8230,8 @@
         "description": "Title for low battery notification"
     },
     "lowBatteryAlertBody": "Ang iyong baterya ay nasa {level}%. Panahon na para mag-recharge! 🔋",
-    "batteryFullyChargedTitle": "Naka-charge na ang Omi",
-    "batteryFullyChargedBody": "Ang iyong Omi device ay ganap nang na-charge. Maaari mo na itong i-unplug!",
+    "batteryFullyChargedTitle": "Naka-charge na ang Chronicle",
+    "batteryFullyChargedBody": "Ang iyong Chronicle device ay ganap nang na-charge. Maaari mo na itong i-unplug!",
     "@lowBatteryAlertBody": {
         "description": "Body text for low battery notification",
         "placeholders": {
@@ -8240,11 +8240,11 @@
             }
         }
     },
-    "deviceDisconnectedNotificationTitle": "Ang Iyong Omi Device ay Nadiskonekta",
+    "deviceDisconnectedNotificationTitle": "Ang Iyong Chronicle Device ay Nadiskonekta",
     "@deviceDisconnectedNotificationTitle": {
         "description": "Title for device disconnected notification"
     },
-    "deviceDisconnectedNotificationBody": "Mangyaring mag-reconnect upang magpatuloy ng paggamit ng iyong Omi.",
+    "deviceDisconnectedNotificationBody": "Mangyaring mag-reconnect upang magpatuloy ng paggamit ng iyong Chronicle.",
     "@deviceDisconnectedNotificationBody": {
         "description": "Body text for device disconnected notification"
     },
@@ -8252,7 +8252,7 @@
     "@firmwareUpdateAvailable": {
         "description": "Title for firmware update available dialog"
     },
-    "firmwareUpdateAvailableDescription": "Ang bagong firmware update ({version}) ay available para sa iyong Omi device. Gusto mo na bang mag-update ngayon?",
+    "firmwareUpdateAvailableDescription": "Ang bagong firmware update ({version}) ay available para sa iyong Chronicle device. Gusto mo na bang mag-update ngayon?",
     "@firmwareUpdateAvailableDescription": {
         "description": "Description for firmware update dialog with version parameter",
         "placeholders": {
@@ -8646,9 +8646,9 @@
     "@nextButton": {
         "description": "Button text to proceed to next step"
     },
-    "connectOmiDevice": "I-connect ang Omi Device",
+    "connectOmiDevice": "I-connect ang Chronicle Device",
     "@connectOmiDevice": {
-        "description": "Button text to connect Omi device"
+        "description": "Button text to connect Chronicle device"
     },
     "planSwitchingDescriptionWithTitle": "Ikaw ay gumagalit ng iyong Unlimited Plan sa {title}. Sigurado ka na bang gusto mong magpatuloy?",
     "@planSwitchingDescriptionWithTitle": {
@@ -8687,9 +8687,9 @@
     "@transcriptionJsonPlaceholder": {
         "description": "JSON configuration placeholder hint text in transcription settings"
     },
-    "transcriptionSourceOmi": "Omi",
+    "transcriptionSourceOmi": "Chronicle",
     "@transcriptionSourceOmi": {
-        "description": "Tab title for Omi transcription source option"
+        "description": "Tab title for Chronicle transcription source option"
     },
     "pricePlaceholder": "0.00",
     "@pricePlaceholder": {
@@ -8729,7 +8729,7 @@
             }
         }
     },
-    "actionItemReminderTitle": "Omi Reminder",
+    "actionItemReminderTitle": "Chronicle Reminder",
     "@actionItemReminderTitle": {
         "description": "Title for action item reminder notifications"
     },
@@ -8739,7 +8739,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8749,7 +8749,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8773,7 +8773,7 @@
     "@onboardingComplete": {
         "description": "Onboarding step title for completion"
     },
-    "onboardingWelcomeToOmi": "Maligayang Pagdating sa Omi",
+    "onboardingWelcomeToOmi": "Maligayang Pagdating sa Chronicle",
     "@onboardingWelcomeToOmi": {
         "description": "Onboarding step description for sign in"
     },
@@ -9554,29 +9554,29 @@
     "pairNewDevice": "I-pair ang bagong device",
     "dontSeeYourDevice": "Hindi mo makikita ang iyong device?",
     "reportAnIssue": "Mag-ulat ng isang isyu",
-    "pairingTitleOmi": "I-on ang Omi",
+    "pairingTitleOmi": "I-on ang Chronicle",
     "@pairingTitleOmi": {
-        "description": "Pairing title for Omi device"
+        "description": "Pairing title for Chronicle device"
     },
     "pairingDescOmi": "Pindutin at panatilihin ang device hanggang sa mag-vibrate upang i-on ito.",
     "@pairingDescOmi": {
-        "description": "Pairing description for Omi device"
+        "description": "Pairing description for Chronicle device"
     },
-    "pairingTitleOmiDevkit": "Ilagay ang Omi DevKit sa Pairing Mode",
+    "pairingTitleOmiDevkit": "Ilagay ang Chronicle DevKit sa Pairing Mode",
     "@pairingTitleOmiDevkit": {
-        "description": "Pairing title for Omi DevKit"
+        "description": "Pairing title for Chronicle DevKit"
     },
     "pairingDescOmiDevkit": "Pindutin ang button nang isang beses upang i-on. Ang LED ay mag-blink ng purple kapag nasa pairing mode.",
     "@pairingDescOmiDevkit": {
-        "description": "Pairing description for Omi DevKit"
+        "description": "Pairing description for Chronicle DevKit"
     },
-    "pairingTitleOmiGlass": "I-on ang Omi Glass",
+    "pairingTitleOmiGlass": "I-on ang Chronicle Glass",
     "@pairingTitleOmiGlass": {
-        "description": "Pairing title for Omi Glass"
+        "description": "Pairing title for Chronicle Glass"
     },
     "pairingDescOmiGlass": "I-power on sa pamamagitan ng pagpipigil sa side button sa loob ng 3 segundo.",
     "@pairingDescOmiGlass": {
-        "description": "Pairing description for Omi Glass"
+        "description": "Pairing description for Chronicle Glass"
     },
     "pairingTitlePlaudNote": "Ilagay ang Plaud Note sa Pairing Mode",
     "@pairingTitlePlaudNote": {
@@ -9622,7 +9622,7 @@
     "@pairingTitleAppleWatch": {
         "description": "Pairing title for Apple Watch"
     },
-    "pairingDescAppleWatch": "I-install at buksan ang Omi app sa iyong Apple Watch, pagkatapos ay i-tap ang Connect sa app.",
+    "pairingDescAppleWatch": "I-install at buksan ang Chronicle app sa iyong Apple Watch, pagkatapos ay i-tap ang Connect sa app.",
     "@pairingDescAppleWatch": {
         "description": "Pairing description for Apple Watch"
     },
@@ -9716,7 +9716,7 @@
     "@onboardingWhatIKnowAboutYouTitle": {
         "description": "Title for onboarding step that previews the memory graph"
     },
-    "onboardingWhatIKnowAboutYouDescription": "Ang map na ito ay nag-update habang natututo ang Omi mula sa iyong mga conversation.",
+    "onboardingWhatIKnowAboutYouDescription": "Ang map na ito ay nag-update habang natututo ang Chronicle mula sa iyong mga conversation.",
     "@onboardingWhatIKnowAboutYouDescription": {
         "description": "Description for onboarding memory graph preview step"
     },
@@ -9774,7 +9774,7 @@
         "description": "Confirmation dialog message for cleaning today task deadlines"
     },
     "tasksOverdue": "Overdue",
-    "phoneCallsWithOmi": "Phone Calls with Omi",
+    "phoneCallsWithOmi": "Phone Calls with Chronicle",
     "phoneCallsSubtitle": "Gumawa ng mga call na may real-time transcription",
     "phoneSetupStep1Title": "I-verify ang iyong phone number",
     "phoneSetupStep1Subtitle": "Tatawagin ka namin upang kumpirmahin na iyo ito",
@@ -9879,11 +9879,11 @@
     "@showTasksOnHomepage": {
         "description": "Description for show tasks toggle in developer settings"
     },
-    "phoneCallsUnlimitedOnly": "Phone Calls via Omi",
+    "phoneCallsUnlimitedOnly": "Phone Calls via Chronicle",
     "@phoneCallsUnlimitedOnly": {
         "description": "Title for the phone calls upsell sheet shown to non-unlimited users"
     },
-    "phoneCallsUpsellSubtitle": "Gumawa ng mga call sa pamamagitan ng Omi at makakuha ng real-time transcription, automatic summaries, at marami pang iba. Available exclusively para sa Unlimited plan subscribers.",
+    "phoneCallsUpsellSubtitle": "Gumawa ng mga call sa pamamagitan ng Chronicle at makakuha ng real-time transcription, automatic summaries, at marami pang iba. Available exclusively para sa Unlimited plan subscribers.",
     "@phoneCallsUpsellSubtitle": {
         "description": "Subtitle explaining phone calls feature on upsell sheet"
     },
@@ -10004,7 +10004,7 @@
     "fairUse3Day": "3-Day Rolling",
     "fairUseWeekly": "Weekly Rolling",
     "fairUseAboutTitle": "Tungkol sa Fair Use",
-    "fairUseAboutBody": "Ang Omi ay dinisenyo para sa personal conversations, meetings, at live interactions. Ang usage ay sinusukat ng real speech time detected, hindi ang connection time. Kung ang usage ay significantly lumalampas sa normal patterns para sa non-personal content, ang mga adjustments ay maaaring mag-apply.",
+    "fairUseAboutBody": "Ang Chronicle ay dinisenyo para sa personal conversations, meetings, at live interactions. Ang usage ay sinusukat ng real speech time detected, hindi ang connection time. Kung ang usage ay significantly lumalampas sa normal patterns para sa non-personal content, ang mga adjustments ay maaaring mag-apply.",
     "fairUseCaseRefCopied": "{caseRef} copied",
     "@fairUseCaseRefCopied": {
         "description": "Snackbar message when case reference is copied to clipboard",
@@ -10046,7 +10046,7 @@
         }
     },
     "improveConnectionTitle": "Pagbutihin ang Connection",
-    "improveConnectionContent": "Nag-improve kami ng kung paano ang Omi ay manatiling connected sa iyong device. Upang i-activate ito, mangyaring magpunta sa Device Info page, i-tap ang \"Disconnect Device\", at pagkatapos ay i-pair ang iyong device ulit.",
+    "improveConnectionContent": "Nag-improve kami ng kung paano ang Chronicle ay manatiling connected sa iyong device. Upang i-activate ito, mangyaring magpunta sa Device Info page, i-tap ang \"Disconnect Device\", at pagkatapos ay i-pair ang iyong device ulit.",
     "improveConnectionAction": "Nakaintindi",
     "clockSkewWarning": "Ang iyong device clock ay off ng ~{minutes} min. Tingnan ang iyong date & time settings.",
     "@clockSkewWarning": {
@@ -10056,7 +10056,7 @@
             }
         }
     },
-    "omisStorage": "Omi's Storage",
+    "omisStorage": "Chronicle's Storage",
     "@omisStorage": {
         "description": "Label for device storage tier in sync pipeline"
     },
@@ -10109,11 +10109,11 @@
     "@cancelSyncQuestion": {
         "description": "Title for cancel sync confirmation dialog"
     },
-    "omisStorageDesc": "Kapag ang iyong Omi ay hindi konektado sa iyong phone, ito ay nag-store ng audio locally sa built-in memory nito. Hindi mo kailanman mawawalan ng recording.",
+    "omisStorageDesc": "Kapag ang iyong Chronicle ay hindi konektado sa iyong phone, ito ay nag-store ng audio locally sa built-in memory nito. Hindi mo kailanman mawawalan ng recording.",
     "@omisStorageDesc": {
         "description": "Description of device storage in sync info sheet"
     },
-    "phoneStorageDesc": "Kapag muling kumokonekta ang Omi, ang mga recording ay automatic na inilipat sa iyong phone bilang isang temporary holding area bago i-upload.",
+    "phoneStorageDesc": "Kapag muling kumokonekta ang Chronicle, ang mga recording ay automatic na inilipat sa iyong phone bilang isang temporary holding area bago i-upload.",
     "@phoneStorageDesc": {
         "description": "Description of phone storage in sync info sheet"
     },
@@ -10149,11 +10149,11 @@
     "@permissionEnable": {
         "description": "Action text to enable a permission"
     },
-    "permissionsPageDescription": "Ang mga permissions na ito ay core sa kung paano gumagana ang Omi. Pinapahintulutan nila ang mga key features tulad ng notifications, location-based experiences, at audio capture.",
+    "permissionsPageDescription": "Ang mga permissions na ito ay core sa kung paano gumagana ang Chronicle. Pinapahintulutan nila ang mga key features tulad ng notifications, location-based experiences, at audio capture.",
     "@permissionsPageDescription": {
         "description": "Description text shown at the bottom of the permissions page"
     },
-    "permissionsRequiredDescription": "Ang Omi ay nangangailangan ng ilang permissions upang gumana nang maayos. Mangyaring bigyan ang mga ito upang magpatuloy.",
+    "permissionsRequiredDescription": "Ang Chronicle ay nangangailangan ng ilang permissions upang gumana nang maayos. Mangyaring bigyan ang mga ito upang magpatuloy.",
     "@permissionsRequiredDescription": {
         "description": "Description for the permissions interstitial screen"
     },
@@ -10161,7 +10161,7 @@
     "@permissionsSetupTitle": {
         "description": "Title for the permissions interstitial screen"
     },
-    "permissionsSetupDescription": "I-enable ang ilang permissions upang ang Omi ay gumawa ng mahika.",
+    "permissionsSetupDescription": "I-enable ang ilang permissions upang ang Chronicle ay gumawa ng mahika.",
     "@permissionsSetupDescription": {
         "description": "Subtitle for the permissions interstitial screen"
     },
@@ -10290,7 +10290,7 @@
     "@feedbackTitleFoundAlternative": {
         "description": "Feedback title when cancel reason is found alternative"
     },
-    "feedbackTitleNotUsing": "Ano ang gagawing mas maraming gamit ang Omi?",
+    "feedbackTitleNotUsing": "Ano ang gagawing mas maraming gamit ang Chronicle?",
     "@feedbackTitleNotUsing": {
         "description": "Feedback title when cancel reason is not using enough"
     },
@@ -10314,7 +10314,7 @@
     "@feedbackSubtitleFoundAlternative": {
         "description": "Feedback subtitle for found alternative"
     },
-    "feedbackSubtitleNotUsing": "Gusto naming gawing mas kapaki-pakinabang ang Omi para sa iyo.",
+    "feedbackSubtitleNotUsing": "Gusto naming gawing mas kapaki-pakinabang ang Chronicle para sa iyo.",
     "@feedbackSubtitleNotUsing": {
         "description": "Feedback subtitle for not using enough"
     },
@@ -10431,20 +10431,20 @@
     "tasksSelectAll": "Piliin lahat",
     "tasksDeleteSelected": "Burahin ang {count} gawain",
     "tasksMarkComplete": "Minarkahan bilang kumpleto",
-    "appleHealthManageNote": "Ina-access ng Omi ang Apple Health sa pamamagitan ng HealthKit framework ng Apple. Maaari mong bawiin ang access anumang oras sa iOS Settings.",
+    "appleHealthManageNote": "Ina-access ng Chronicle ang Apple Health sa pamamagitan ng HealthKit framework ng Apple. Maaari mong bawiin ang access anumang oras sa iOS Settings.",
     "appleHealthConnectCta": "Ikonekta sa Apple Health",
     "appleHealthDisconnectCta": "Idiskonekta ang Apple Health",
     "appleHealthConnectedBadge": "Nakakonekta",
     "appleHealthFeatureChatTitle": "Kumustahin ang iyong kalusugan",
-    "appleHealthFeatureChatDesc": "Tanungin ang Omi tungkol sa iyong hakbang, tulog, tibok ng puso, at mga ehersisyo.",
+    "appleHealthFeatureChatDesc": "Tanungin ang Chronicle tungkol sa iyong hakbang, tulog, tibok ng puso, at mga ehersisyo.",
     "appleHealthFeatureReadOnlyTitle": "Access na pambasa lamang",
-    "appleHealthFeatureReadOnlyDesc": "Hindi kailanman nagsusulat ang Omi sa Apple Health o nagbabago ng iyong datos.",
+    "appleHealthFeatureReadOnlyDesc": "Hindi kailanman nagsusulat ang Chronicle sa Apple Health o nagbabago ng iyong datos.",
     "appleHealthFeatureSecureTitle": "Ligtas na sync",
-    "appleHealthFeatureSecureDesc": "Ang iyong datos sa Apple Health ay pribadong sinisync sa iyong Omi account.",
+    "appleHealthFeatureSecureDesc": "Ang iyong datos sa Apple Health ay pribadong sinisync sa iyong Chronicle account.",
     "appleHealthDeniedTitle": "Tinanggihan ang access sa Apple Health",
-    "appleHealthDeniedBody": "Walang pahintulot ang Omi na basahin ang iyong Apple Health data. I-enable ito sa iOS Settings → Privacy & Security → Health → Omi.",
+    "appleHealthDeniedBody": "Walang pahintulot ang Chronicle na basahin ang iyong Apple Health data. I-enable ito sa iOS Settings → Privacy & Security → Health → Chronicle.",
     "deleteFlowReasonTitle": "Bakit ka aalis?",
-    "deleteFlowReasonSubtitle": "Ang iyong feedback ay tumutulong sa amin na pagbutihin ang Omi para sa lahat.",
+    "deleteFlowReasonSubtitle": "Ang iyong feedback ay tumutulong sa amin na pagbutihin ang Chronicle para sa lahat.",
     "deleteReasonPrivacy": "Mga alalahanin sa privacy",
     "deleteReasonNotUsing": "Hindi sapat ang paggamit",
     "deleteReasonMissingFeatures": "Kulang sa mga feature na kailangan ko",
@@ -10453,7 +10453,7 @@
     "deleteReasonTakingBreak": "Nagpapahinga lang",
     "deleteReasonOther": "Iba pa",
     "deleteFlowFeedbackTitle": "Sabihin mo sa amin ang higit pa",
-    "deleteFlowFeedbackSubtitle": "Ano ang magiging dahilan para gumana ang Omi para sa iyo?",
+    "deleteFlowFeedbackSubtitle": "Ano ang magiging dahilan para gumana ang Chronicle para sa iyo?",
     "deleteFlowFeedbackHint": "Opsyonal — ang mga isip mo ay tumutulong sa amin na makabuo ng mas mahusay na produkto.",
     "deleteFlowConfirmTitle": "Ito ay permanente",
     "deleteFlowConfirmSubtitle": "Kapag na-delete mo na ang account mo, wala nang paraan para mabawi ito.",
@@ -10505,13 +10505,13 @@
     "chatUsageCostNoLimit": "Chat: ${used} nagamit ngayong buwan",
     "chatUsageMessages": "Chat: {used} / {limit} mensahe ngayong buwan",
     "chatUsageMessagesNoLimit": "Chat: {used} mensahe ngayong buwan",
-    "chatQuotaSubtitle": "AI chat messages used with Omi this month.",
-    "chatQuotaExceededReply": "Naabot mo na ang iyong buwanang limitasyon. Mag-upgrade para magpatuloy ng chat sa Omi nang walang limitasyon.",
+    "chatQuotaSubtitle": "AI chat messages used with Chronicle this month.",
+    "chatQuotaExceededReply": "Naabot mo na ang iyong buwanang limitasyon. Mag-upgrade para magpatuloy ng chat sa Chronicle nang walang limitasyon.",
     "batteryHistory": "Baterya",
     "day": "Araw",
     "noBatteryDataYet": "Wala pang datos ng baterya",
     "week": "Linggo",
-    "voiceResponseAudio": "Basahin nang malakas ang sagot ng Omi",
+    "voiceResponseAudio": "Basahin nang malakas ang sagot ng Chronicle",
     "voiceResponseMode": "Tugon sa boses",
     "voiceResponseModeTitle": "Kailan bibigkasin ang tugon",
     "voiceResponseOff": "Naka-off",
@@ -10523,7 +10523,7 @@
         "description": "Section header for memory knowledge graph on home page"
     },
     "voiceMode": "Voice Mode",
-    "quickActionAskOmi": "Tanungin si Omi ng kahit ano",
+    "quickActionAskOmi": "Tanungin si Chronicle ng kahit ano",
     "record": "Mag-record",
     "stop": "Itigil",
     "recordWithPhoneMic": "Mag-record gamit ang mikropono ng telepono",
@@ -10557,28 +10557,28 @@
     "syncStatusWaiting": "Naghihintay na mag-sync",
     "syncStatusRetrying": "Hindi naproseso — sinusubukang muli",
     "syncStatusFailed": "Nabigo — i-tap ang Subukan Muli",
-    "syncStatusTooOld": "Masyadong luma para i-sync — hindi ito matatanggap ng Omi",
+    "syncStatusTooOld": "Masyadong luma para i-sync — hindi ito matatanggap ng Chronicle",
     "syncStatusFileUnavailable": "Hindi available ang file",
-    "syncStatusUploaded": "Na-upload · pinoproseso sa Omi",
+    "syncStatusUploaded": "Na-upload · pinoproseso sa Chronicle",
     "noRecordingsYet": "Wala pang mga recording",
     "syncInProgress": "Kasalukuyang nagsi-sync",
     "deleteWhileProcessingTitle": "Pinoproseso pa rin",
-    "deleteWhileProcessingMessage": "Na-upload na ang recording na ito ngunit ginagawa pa ng Omi ang usapan. Kung buburahin mo ito ngayon at mabigo ang pagproseso, hindi na ito mababawi. Burahin pa rin?",
+    "deleteWhileProcessingMessage": "Na-upload na ang recording na ito ngunit ginagawa pa ng Chronicle ang usapan. Kung buburahin mo ito ngayon at mabigo ang pagproseso, hindi na ito mababawi. Burahin pa rin?",
     "syncCardAllBackedUp": "Lahat ng recording ay na-sync na",
     "syncCardReadyCount": "{count, plural, one{1 recording ang handa nang i-sync} other{{count} na recording ang handa nang i-sync}}",
-    "syncCardProcessing": "Pinoproseso sa Omi…",
+    "syncCardProcessing": "Pinoproseso sa Chronicle…",
     "syncCardWaitingInternet": "Naghihintay ng internet",
     "syncCardNeedsAttention": "{count, plural, one{1 recording ang kailangang asikasuhin} other{{count} recording ang kailangang asikasuhin}}",
-    "syncFlowIntro": "Ang mga recording ay inililipat mula sa iyong device patungo sa telepono na ito at iniimbak nang lokal, pagkatapos ay ina-upload sa server ng Omi kung saan tina-transcribe ang mga ito at ginagawang mga pag-uusap.",
+    "syncFlowIntro": "Ang mga recording ay inililipat mula sa iyong device patungo sa telepono na ito at iniimbak nang lokal, pagkatapos ay ina-upload sa server ng Chronicle kung saan tina-transcribe ang mga ito at ginagawang mga pag-uusap.",
     "syncStepUpload": "I-sync",
-    "syncStepUploadDesc": "Ipinapadala ang iyong recording sa server ng Omi",
+    "syncStepUploadDesc": "Ipinapadala ang iyong recording sa server ng Chronicle",
     "syncStepProcess": "I-transcribe",
-    "syncStepProcessDesc": "Ginagawang conversation ng Omi ang audio",
+    "syncStepProcessDesc": "Ginagawang conversation ng Chronicle ang audio",
     "syncStepBackedUp": "Handa na ang conversation",
     "syncStepBackedUpDesc": "Hanapin sa ilalim ng Mga Conversation",
     "syncFailureFootnote": "Kung mabigo ang pagproseso, awtomatikong susubukan muli ang recording sa susunod na sync.",
     "syncStatusConversationCreated": "Nagawa ang usapan",
-    "syncCardUploadingTitle": "Ina-upload sa Omi",
+    "syncCardUploadingTitle": "Ina-upload sa Chronicle",
     "syncCardDownloadingTitle": "Dina-download mula sa iyong device",
     "syncCardProgressOf": "{current} ng {total}",
     "syncStatusOnDevice": "Nasa iyong device",
@@ -10591,24 +10591,24 @@
     },
     "syncProcessingBackgroundHint": "Magpapatuloy ito sa background — puwede mong iwan ang screen na ito.",
     "syncCardRateLimited": "Naabot na ang limitasyon ng patas na paggamit — awtomatikong magpapatuloy ang pag-sync",
-    "syncCardBackendBusy": "Abala ang mga server ng Omi — masi-sync ang iyong mga recording kapag may bakanteng kapasidad na muli",
+    "syncCardBackendBusy": "Abala ang mga server ng Chronicle — masi-sync ang iyong mga recording kapag may bakanteng kapasidad na muli",
     "unableToDetermineFirmwareVersion": "Hindi matukoy ang kasalukuyang bersyon ng firmware",
     "promoCode": "Promo code",
     "enterPromoCode": "Ilagay ang promo code",
     "invalidPromotionCode": "Hindi valid na promo code.",
     "backgroundModeTitle": "Background Mode",
-    "backgroundModeDescription": "Panatilihing nagre-record ang iyong Omi kahit na ganap nang sarado ang app.",
-    "backgroundModeNote": "Sa ngayon ay gumagana lang sa mga Omi device at patuloy na pinapabuti.",
+    "backgroundModeDescription": "Panatilihing nagre-record ang iyong Chronicle kahit na ganap nang sarado ang app.",
+    "backgroundModeNote": "Sa ngayon ay gumagana lang sa mga Chronicle device at patuloy na pinapabuti.",
     "regenerateRecap": "Buuin muli ang buod",
     "recapRegeneratedSnackbar": "Nabuo muli ang buod",
     "recapRegenerateFailed": "Hindi nagawang muling buuin ang buod. Subukang muli mamaya.",
     "recapRegenerateCooldown": "Mangyaring maghintay ng ilang segundo bago bumuo muli.",
     "recapRegenerateNoConversations": "Walang mga pag-uusap na ibubuod para sa araw na ito.",
-    "syncCustomSttWarningTitle": "Gumagamit ang pag-sync ng transcription ng Omi",
-    "syncCustomSttWarningMessage": "Gumagamit ka ng sarili mong transcription provider. Kapag in-sync ang mga recording na ito, ita-transcribe ang mga ito sa mga server ng Omi at mabibilang sa limitasyon ng transcription ng iyong plan.",
+    "syncCustomSttWarningTitle": "Gumagamit ang pag-sync ng transcription ng Chronicle",
+    "syncCustomSttWarningMessage": "Gumagamit ka ng sarili mong transcription provider. Kapag in-sync ang mga recording na ito, ita-transcribe ang mga ito sa mga server ng Chronicle at mabibilang sa limitasyon ng transcription ng iyong plan.",
     "transcribeLaterTitle": "I-transcribe Mamaya",
     "transcribeLaterDescription": "Mag-record ng audio ngayon at i-transcribe ito kapag kailangan mo, sa halip na live. Naka-save ang mga recording sa iyong telepono, tapos i-a-upload mo ang mga ito para gumawa ng mga usapan.",
-    "transcribeLaterNote": "Gumagana sa mikropono ng telepono at sa mga Omi at Limitless device. Mananatili ang audio sa iyong telepono hangga't hindi mo ito ina-upload.",
+    "transcribeLaterNote": "Gumagana sa mikropono ng telepono at sa mga Chronicle at Limitless device. Mananatili ang audio sa iyong telepono hangga't hindi mo ito ina-upload.",
     "transcribeLaterStorageFull": "Kapos na sa storage ang iyong telepono, kaya naka-pause ang pag-record. Magbakante ng espasyo o i-upload ang iyong mga recording, at awtomatiko itong magpapatuloy.",
     "unmute": "I-unmute",
     "newRecording": "Bagong recording",
@@ -10617,19 +10617,19 @@
     "captureModeLater": "Mamaya",
     "captureModeLiveDescription": "I-transcribe nang real time habang nagsasalita ka.",
     "captureModeLaterDescription": "I-save ang audio ngayon at i-transcribe kahit kailan mo gusto.",
-    "backgroundModeUnavailable": "Hindi available ang Background Mode dahil walang nakakonektang compatible na device. Magkonekta ng Omi, OpenGlass, o Friend Pendant device para magamit ang feature na ito.",
+    "backgroundModeUnavailable": "Hindi available ang Background Mode dahil walang nakakonektang compatible na device. Magkonekta ng Chronicle, OpenGlass, o Friend Pendant device para magamit ang feature na ito.",
     "memoryThisDevice": "Device na ito",
     "memoryThisIphone": "iPhone na ito",
     "memoryThisPhone": "Teleponong ito",
     "memoryProvenanceMac": "Mac",
     "memoryProvenanceIphone": "iPhone",
     "memoryProvenanceAndroid": "Android",
-    "deviceTutorial": "Paano Gamitin ang Omi",
-    "deviceOnboardingTranscriptionTitle": "Magsalita sa Iyong Omi",
+    "deviceTutorial": "Paano Gamitin ang Chronicle",
+    "deviceOnboardingTranscriptionTitle": "Magsalita sa Iyong Chronicle",
     "deviceOnboardingTranscriptionSubtitle": "Magsabi ng ilang salita at panoorin itong lumitaw nang real-time",
     "deviceOnboardingGoodJob": "Magaling!",
     "deviceOnboardingStartSpeaking": "Magsimulang magsalita...",
-    "deviceOnboardingAskQuestionTitle": "Magtanong sa Omi",
+    "deviceOnboardingAskQuestionTitle": "Magtanong sa Chronicle",
     "deviceOnboardingAskQuestionSubtitle": "Pindutin ang button nang isang beses, sabihin ang iyong tanong, pagkatapos ay pindutin muli kapag tapos na",
     "deviceOnboardingProcessingQuestion": "Pinoproseso ang iyong tanong...",
     "deviceOnboardingListening": "Nakikinig...",
@@ -10650,11 +10650,11 @@
     "deviceOnboardingStarConversation": "I-star ang Kasalukuyang Usapan",
     "deviceOnboardingStarConversationDesc": "Markahan ang usapan bilang mahalaga",
     "deviceOnboardingSingleTapHint": "Isang tap lang iyon — subukang mag-tap nang dalawang beses nang mabilis!",
-    "deviceOnboardingTryDoubleTap": "Subukan mo ngayon! I-double tap ang iyong Omi",
+    "deviceOnboardingTryDoubleTap": "Subukan mo ngayon! I-double tap ang iyong Chronicle",
     "deviceOnboardingContinue": "Magpatuloy",
     "deviceOnboardingFinish": "Tapusin",
-    "deviceOnboardingIntroTitle": "Kilalanin ang Iyong Omi",
-    "deviceOnboardingIntroSubtitle": "Isang mabilis at praktikal na pamamasyal sa lahat ng kayang gawin ng iyong Omi.",
+    "deviceOnboardingIntroTitle": "Kilalanin ang Iyong Chronicle",
+    "deviceOnboardingIntroSubtitle": "Isang mabilis at praktikal na pamamasyal sa lahat ng kayang gawin ng iyong Chronicle.",
     "deviceOnboardingIntroDuration": "Mga 1 minuto",
     "jumpToLatestMessage": "Tumalon sa pinakabagong mensahe",
     "latest": "Pinakabago",
@@ -10672,15 +10672,15 @@
     },
     "pendantStorageAlmostFull": "Halos puno na ang storage ng pendant — panatilihing bukas ang app para makapag-sync.",
     "connectRayBanMeta": "Ikonekta ang Ray-Ban Meta",
-    "raybanMetaSetupDescription": "Gamitin ang iyong Ray-Ban Meta glasses bilang iyong Omi capture device para sa mga conversation at visual na konteksto. Bubuksan ng Omi ang Meta AI app upang i-link ang iyong glasses.",
+    "raybanMetaSetupDescription": "Gamitin ang iyong Ray-Ban Meta glasses bilang iyong Chronicle capture device para sa mga conversation at visual na konteksto. Bubuksan ng Chronicle ang Meta AI app upang i-link ang iyong glasses.",
     "raybanMetaOpenMetaAI": "Kumonekta sa pamamagitan ng Meta AI",
     "raybanMetaWaitingForMetaAI": "Tapusin ang pagkonekta sa Meta AI app, pagkatapos ay bumalik dito.",
     "raybanMetaCheckAgain": "Tingnan Muli",
     "raybanMetaAllowCamera": "Payagan ang Camera sa Glasses",
-    "raybanMetaCameraExplanation": "Ginagamit ng Omi ang camera ng iyong glasses upang magdagdag ng mga larawan sa iyong mga conversation. Maaari mong laktawan ito at gumamit ng audio lamang.",
+    "raybanMetaCameraExplanation": "Ginagamit ng Chronicle ang camera ng iyong glasses upang magdagdag ng mga larawan sa iyong mga conversation. Maaari mong laktawan ito at gumamit ng audio lamang.",
     "raybanMetaSkipForNow": "Laktawan Muna",
     "raybanMetaAudioOnlyTitle": "Ray-Ban Meta audio-only mode",
-    "raybanMetaAudioOnlyExplanation": "Magagamit ng bersyong ito ng Omi ang mikropono ng iyong glasses sa pamamagitan ng Bluetooth. Kailangan ng Meta developer build ng Omi para sa photo capture.",
+    "raybanMetaAudioOnlyExplanation": "Magagamit ng bersyong ito ng Chronicle ang mikropono ng iyong glasses sa pamamagitan ng Bluetooth. Kailangan ng Meta developer build ng Chronicle para sa photo capture.",
     "raybanMetaMusicPauseNote": "Na-pause ang musika sa iyong telepono habang ginagamit ang mikropono ng glasses.",
     "raybanMetaContinue": "Magpatuloy",
     "raybanMetaCapturePhoto": "Kumuha ng Photo",
@@ -10705,7 +10705,7 @@
     "phoneMicOfflineFallbackMessage": "Walang koneksyon — nagre-record nang lokal. Ita-transcribe ito kapag online ka na ulit.",
     "dataEncryptedBanner": "Ang iyong data ay protektado bilang default gamit ang malakas na encryption, at ikaw ang kumokontrol kung paano ito iniimbak at ginagamit.",
     "rayBanMetaMicPickerTitle": "Piliin ang mikropono ng Ray-Ban Meta",
-    "rayBanMetaMicPickerDescription": "Piliin ang Bluetooth na mikropono ng salamin. Hihinto muna ang musika habang ginagamit ito ng Omi.",
+    "rayBanMetaMicPickerDescription": "Piliin ang Bluetooth na mikropono ng salamin. Hihinto muna ang musika habang ginagamit ito ng Chronicle.",
     "rayBanMetaMicPickerEmpty": "Walang nahanap na Bluetooth na mikropono. Ikonekta ang salamin sa Mga Setting ng iPhone, pagkatapos ay subukan muli.",
     "rayBanMetaMicPickerLoadError": "Hindi ma-load ang mga Bluetooth na mikropono. Tiyaking naka-on ang Bluetooth, pagkatapos ay subukan muli.",
     "rayBanMetaMicPickerConnectError": "Hindi makakonekta sa mikroponong iyon. Tiyaking nakakonekta ito sa Mga Setting ng iPhone.",
@@ -10758,14 +10758,14 @@
     "whisperModelSizeMedium": "Katamtaman",
     "whisperModelSizeSmall": "Maliit",
     "whisperModelSizeTiny": "Napakaliit",
-    "planSheetChooseYourPlan": "Piliin ang iyong plano para ma-unlock ang walang limitasyong Omi.",
+    "planSheetChooseYourPlan": "Piliin ang iyong plano para ma-unlock ang walang limitasyong Chronicle.",
     "availableOnMacMobileWeb": "Available sa Mac, mobile, at web",
     "popularBadge": "SIKAT",
     "worksOnDesktop": "Gumagana sa desktop",
     "noDesktopAccess": "Hindi gumagana sa desktop",
     "annualBillingSummary": "{months} buwan / {price}",
     "monthsFreeBadge": "{count, plural, =1{1 buwang libre} other{{count} buwang libre}}",
-    "freemiumLimitsIntro": "Libre ang Omi, pero may mga limitasyon ang libreng bersyon na nakakaapekto sa iyong karanasan:",
+    "freemiumLimitsIntro": "Libre ang Chronicle, pero may mga limitasyon ang libreng bersyon na nakakaapekto sa iyong karanasan:",
     "downgradeLimitDelayNotRealTime": "5-7 segundong delay (hindi real-time)",
     "downgradeToFreemiumAction": "Lumipat sa libreng bersyon",
     "getFreeUnlimitedAccess": "Kumuha ng libreng walang limitasyong access",
@@ -10776,11 +10776,11 @@
     "baselineMemory": "Baseline na memorya",
     "alwaysInContext": "Palaging nasa konteksto",
     "accountCutoverUpdateRequiredTitle": "Pembaruan diperlukan",
-    "accountCutoverUpdateRequiredMessage": "Instal aplikasi Omi terbaru untuk melanjutkan setelah migrasi akun.",
+    "accountCutoverUpdateRequiredMessage": "Instal aplikasi Chronicle terbaru untuk melanjutkan setelah migrasi akun.",
     "accountCutoverMigrationInProgressTitle": "Migrasi sedang berlangsung",
     "accountCutoverMigrationInProgressMessage": "Akun Anda sedang dimigrasi. Fitur produk dijeda hingga migrasi selesai.",
     "accountCutoverMigrationRollbackMessage": "Akun Anda dalam pemeliharaan setelah rollback migrasi. Beberapa data yang lebih baru mungkin terisolasi.",
     "accountCutoverOpenStore": "Buka toko",
-    "sendRawAudioToOmi": "Ipadala ang raw na audio sa Omi",
-    "sendRawAudioToOmiDescription": "I-off para hindi maipadala ang raw na audio sa Omi. Maaari pa ring ipadala sa Omi ang mga transcript at data na kailangan ng mga cloud feature."
+    "sendRawAudioToOmi": "Ipadala ang raw na audio sa Chronicle",
+    "sendRawAudioToOmiDescription": "I-off para hindi maipadala ang raw na audio sa Chronicle. Maaari pa ring ipadala sa Chronicle ang mga transcript at data na kailangan ng mga cloud feature."
 }

@@ -2,7 +2,7 @@
     "@@locale": "he",
     "sessionExpiredSignInAgain": "ההפעלה פגה — יש להתחבר שוב.",
     "@@last_modified": "2024-12-26",
-    "appTitle": "Omi",
+    "appTitle": "Chronicle",
     "@appTitle": {
         "description": "The app title displayed in various places"
     },
@@ -158,7 +158,7 @@
     "@editPerson": {
         "description": "Title for edit person dialog"
     },
-    "createPersonHint": "צור אדם חדש והדרך את Omi להכיר את קולם!",
+    "createPersonHint": "צור אדם חדש והדרך את Chronicle להכיר את קולם!",
     "@createPersonHint": {
         "description": "Hint text for creating a person"
     },
@@ -212,9 +212,9 @@
     "@couldNotAccessFile": {
         "description": "Error when file access fails"
     },
-    "askOmi": "שאל את Omi",
+    "askOmi": "שאל את Chronicle",
     "@askOmi": {
-        "description": "Shortcut to ask Omi a question"
+        "description": "Shortcut to ask Chronicle a question"
     },
     "done": "בוצע",
     "@done": {
@@ -350,7 +350,7 @@
     "@noMessagesYet": {
         "description": "Empty chat state message"
     },
-    "deletingMessages": "מוחק את ההודעות שלך מהזיכרון של Omi...",
+    "deletingMessages": "מוחק את ההודעות שלך מהזיכרון של Chronicle...",
     "@deletingMessages": {
         "description": "Loading text when clearing chat"
     },
@@ -390,7 +390,7 @@
     "@maxFilesLimit": {
         "description": "Max files upload warning"
     },
-    "chatWithOmi": "צ'ט עם Omi",
+    "chatWithOmi": "צ'ט עם Chronicle",
     "@chatWithOmi": {
         "description": "Chat share subject"
     },
@@ -430,7 +430,7 @@
     "@unableToFetchApps": {
         "description": "Error when apps fail to load"
     },
-    "aboutOmi": "על Omi",
+    "aboutOmi": "על Chronicle",
     "@aboutOmi": {
         "description": "About page title"
     },
@@ -580,7 +580,7 @@
     "@developerSettings": {
         "description": "Title for developer settings page"
     },
-    "getOmiForMac": "קבל Omi ל-Mac",
+    "getOmiForMac": "קבל Chronicle ל-Mac",
     "@getOmiForMac": {
         "description": "Mac app download link"
     },
@@ -604,7 +604,7 @@
     "@yourPrivacyYourControl": {
         "description": "Data privacy page heading"
     },
-    "privacyIntro": "ב-Omi, אנחנו מתחייבים להגן על הפרטיות שלך. דף זה מאפשר לך לשלוט בכיצד הנתונים שלך מאוחסנים ומשומשים.",
+    "privacyIntro": "ב-Chronicle, אנחנו מתחייבים להגן על הפרטיות שלך. דף זה מאפשר לך לשלוט בכיצד הנתונים שלך מאוחסנים ומשומשים.",
     "@privacyIntro": {
         "description": "Data privacy page introduction"
     },
@@ -696,7 +696,7 @@
     "@unpairAndForget": {
         "description": "Unpair and forget device button"
     },
-    "deviceDisconnectedMessage": "ה-Omi שלך נותק 😔",
+    "deviceDisconnectedMessage": "ה-Chronicle שלך נותק 😔",
     "@deviceDisconnectedMessage": {
         "description": "Message shown when device is disconnected"
     },
@@ -716,7 +716,7 @@
     "@deviceNotConnected": {
         "description": "Device not connected header"
     },
-    "connectDeviceMessage": "התחבר לעצמך Omi כדי לגשת\nלהגדרות מכשיר וקילוף",
+    "connectDeviceMessage": "התחבר לעצמך Chronicle כדי לגשת\nלהגדרות מכשיר וקילוף",
     "@connectDeviceMessage": {
         "description": "Message encouraging user to connect device"
     },
@@ -888,7 +888,7 @@
     "@docs": {
         "description": "Documentation button text"
     },
-    "yourOmiInsights": "ההשקפות שלך של Omi",
+    "yourOmiInsights": "ההשקפות שלך של Chronicle",
     "@yourOmiInsights": {
         "description": "Usage page title"
     },
@@ -912,7 +912,7 @@
     "@noActivityYet": {
         "description": "Empty state title"
     },
-    "startConversationToSeeInsights": "התחל שיחה עם Omi\nכדי לראות את תובנות השימוש שלך כאן.",
+    "startConversationToSeeInsights": "התחל שיחה עם Chronicle\nכדי לראות את תובנות השימוש שלך כאן.",
     "@startConversationToSeeInsights": {
         "description": "Empty state description"
     },
@@ -920,7 +920,7 @@
     "@listening": {
         "description": "Listening stat title"
     },
-    "listeningSubtitle": "סך הזמן ש-Omi האזין בפעילות.",
+    "listeningSubtitle": "סך הזמן ש-Chronicle האזין בפעילות.",
     "@listeningSubtitle": {
         "description": "Listening stat subtitle"
     },
@@ -1002,7 +1002,7 @@
             }
         }
     },
-    "shareStatsMessage": "שיתוף הסטטיסטיקה שלי של Omi! (omi.me - העוזר AI שלך שתמיד פועל)",
+    "shareStatsMessage": "שיתוף הסטטיסטיקה שלי של Chronicle! (omi.me - העוזר AI שלך שתמיד פועל)",
     "@shareStatsMessage": {
         "description": "Share stats base message"
     },
@@ -1066,7 +1066,7 @@
     "debugLogsAutoDelete": "מוחק באופן אוטומטי לאחר 3 ימים.",
     "debugLogsDesc": "עוזר לאבחן בעיות",
     "noLogFilesFound": "לא נמצאו קבצי יומן.",
-    "omiDebugLog": "יומן ניפוי באגים של Omi",
+    "omiDebugLog": "יומן ניפוי באגים של Chronicle",
     "logShared": "יומן שותף",
     "selectLogFile": "בחר קובץ יומן",
     "shareLogs": "שתף יומנים",
@@ -1074,7 +1074,7 @@
     "exportStarted": "ייצוא התחיל. זה אולי ייקח כמה שניות...",
     "exportAllData": "ייצא את כל הנתונים",
     "exportDataDesc": "ייצא שיחות לקובץ JSON",
-    "exportedConversations": "שיחות מיוצאות מ-Omi",
+    "exportedConversations": "שיחות מיוצאות מ-Chronicle",
     "exportShared": "ייצוא שותף",
     "deleteKnowledgeGraphTitle": "מחיקת גרף ידע?",
     "deleteKnowledgeGraphMessage": "פעולה זו תמחק את כל נתוני גרף הידע הנגזרים (צמתים וחיבורים). הזיכרונות המקוריים שלך יישארו בטוחים. הגרף יוחדש לאורך זמן או בעת הבקשה הבאה.",
@@ -1174,7 +1174,7 @@
     "customVocabularyTitle": "אוצר מילים מותאם",
     "addWords": "הוסף מילים",
     "addWordsDesc": "שמות, מונחים, או מילים נדירות",
-    "vocabularyHint": "Omi, Callie, OpenAI",
+    "vocabularyHint": "Chronicle, Callie, OpenAI",
     "connect": "התחבר",
     "comingSoon": "בקרוב",
     "integrationsFooter": "חבר את האפליקציות שלך כדי לצפות בנתונים ובמדדים בצ'ט.",
@@ -1220,7 +1220,7 @@
             }
         }
     },
-    "authAccessMessage": "תצטרך להרשות ל-Omi לגשת לנתונים {appName} שלך. זה יפתח את הדפדפן שלך לאימות.",
+    "authAccessMessage": "תצטרך להרשות ל-Chronicle לגשת לנתונים {appName} שלך. זה יפתח את הדפדפן שלך לאימות.",
     "@authAccessMessage": {
         "placeholders": {
             "appName": {
@@ -1257,7 +1257,7 @@
     "permissionRevokedMessage": "האם אתה רוצה שנמחוק גם את כל ההקלטות הקיימות שלך?",
     "yes": "כן",
     "editName": "עריכת שם",
-    "howShouldOmiCallYou": "איך Omiצריך לקרוא לך?",
+    "howShouldOmiCallYou": "איך Chronicleצריך לקרוא לך?",
     "enterYourName": "הזן את שמך",
     "nameCannotBeEmpty": "השם לא יכול להיות ריק",
     "nameUpdatedSuccessfully": "השם עודכן בהצלחה!",
@@ -1441,7 +1441,7 @@
             }
         }
     },
-    "authorizeOmiForTasks": "יהיה עליך להרשות ל-Omi ליצור משימות בחשבון {appName} שלך. זה יפתח את הדפדפן שלך לאימות.",
+    "authorizeOmiForTasks": "יהיה עליך להרשות ל-Chronicle ליצור משימות בחשבון {appName} שלך. זה יפתח את הדפדפן שלך לאימות.",
     "@authorizeOmiForTasks": {
         "placeholders": {
             "appName": {
@@ -1474,7 +1474,7 @@
     "bringYourOwn": "הביא שלך",
     "payYourSttProvider": "השתמש בomi בחופשיות. אתה משלם ישירות לספק STT שלך.",
     "freeMinutesMonth": "300 דקות חינם לחודש כלולות. בלתי מוגבל עם ",
-    "omiUnlimited": "Omi Unlimited",
+    "omiUnlimited": "Chronicle Unlimited",
     "hostRequired": "דרוש Host",
     "validPortRequired": "דרוש Port תקף",
     "validWebsocketUrlRequired": "דרוש WebSocket URL תקף (wss://)",
@@ -1532,7 +1532,7 @@
     "logs": "יומנים",
     "logsCopied": "יומנים הועתקו",
     "noLogsYet": "אין יומנים עדיין. התחל הקלטה כדי לראות פעילות STT מותאמת.",
-    "deviceUsesCodec": "{device} משתמש ב-{reason}. Omi יהיה בשימוש.",
+    "deviceUsesCodec": "{device} משתמש ב-{reason}. Chronicle יהיה בשימוש.",
     "@deviceUsesCodec": {
         "description": "Warning about device codec compatibility",
         "placeholders": {
@@ -1544,7 +1544,7 @@
             }
         }
     },
-    "omiTranscription": "תמלול Omi",
+    "omiTranscription": "תמלול Chronicle",
     "bestInClassTranscription": "תמלול מהטובים ביותר ללא הגדרה",
     "instantSpeakerLabels": "תוויות דובר מיידיות",
     "languageTranslation": "תרגום 100+ שפות",
@@ -1626,7 +1626,7 @@
     "@enableBluetooth": {
         "description": "Title for dialog prompting user to enable Bluetooth"
     },
-    "bluetoothNeeded": "Omi זקוק ל-Bluetooth כדי להתחבר לציוד הלביש שלך. בבקשה הפעל Bluetooth ונסה שנית.",
+    "bluetoothNeeded": "Chronicle זקוק ל-Bluetooth כדי להתחבר לציוד הלביש שלך. בבקשה הפעל Bluetooth ונסה שנית.",
     "@bluetoothNeeded": {
         "description": "Explanation text for why Bluetooth is required"
     },
@@ -1646,7 +1646,7 @@
     "@backgroundActivity": {
         "description": "Title for background activity permission"
     },
-    "backgroundActivityDesc": "תן ל-Omi להפעיל ברקע לטובת יציבות טובה יותר",
+    "backgroundActivityDesc": "תן ל-Chronicle להפעיל ברקע לטובת יציבות טובה יותר",
     "@backgroundActivityDesc": {
         "description": "Description for background activity permission"
     },
@@ -1685,7 +1685,7 @@
     "@backgroundLocationDeniedDesc": {
         "description": "Instructions to grant background location permission"
     },
-    "lovingOmi": "אוהב את Omi?",
+    "lovingOmi": "אוהב את Chronicle?",
     "@lovingOmi": {
         "description": "Title for the app review prompt"
     },
@@ -1693,7 +1693,7 @@
     "@maybeLater": {
         "description": "Button text to defer action"
     },
-    "speechProfileIntro": "Omi צריך ללמוד את המטרות שלך ואת הקול שלך. תוכל לשנות את זה מאוחר יותר.",
+    "speechProfileIntro": "Chronicle צריך ללמוד את המטרות שלך ואת הקול שלך. תוכל לשנות את זה מאוחר יותר.",
     "@speechProfileIntro": {
         "description": "Introduction text for speech profile setup"
     },
@@ -1761,7 +1761,7 @@
     "@tryAgain": {
         "description": "Button text to retry an action"
     },
-    "connectOmiOmiGlass": "התחבר ל-Omi / OmiGlass",
+    "connectOmiOmiGlass": "התחבר ל-Chronicle / OmiGlass",
     "@connectOmiOmiGlass": {
         "description": "Button text to connect specific device models"
     },
@@ -1812,7 +1812,7 @@
     "@termsOfUse": {
         "description": "Link text for Terms of Use"
     },
-    "omiYourAiCompanion": "Omi – בן הלוויה בינה מלאכותית שלך",
+    "omiYourAiCompanion": "Chronicle – בן הלוויה בינה מלאכותית שלך",
     "@omiYourAiCompanion": {
         "description": "App title or branding on onboarding screen"
     },
@@ -1832,7 +1832,7 @@
     "@microphonePermission": {
         "description": "Title for microphone permission section"
     },
-    "permissionGrantedNow": "הרשאה ניתנה! עכשיו:\n\nפתח את אפליקציית Omi בשעון שלך וטפוק \"המשך\" למטה",
+    "permissionGrantedNow": "הרשאה ניתנה! עכשיו:\n\nפתח את אפליקציית Chronicle בשעון שלך וטפוק \"המשך\" למטה",
     "@permissionGrantedNow": {
         "description": "Instructions after permission is granted"
     },
@@ -1848,7 +1848,7 @@
     "@needHelp": {
         "description": "Link to help dialog"
     },
-    "troubleshootingSteps": "פתרון בעיות:\n\n1. ודא שOmi מותקן בשעון שלך\n2. פתח את אפליקציית Omi בשעון שלך\n3. חפש את חלון ההרשאה\n4. טפוק \"אפשר\" כשתתבקש\n5. אפליקציה בשעון שלך תיסגר - פתח מחדש\n6. חזור וטפוק \"המשך\" באייפון שלך",
+    "troubleshootingSteps": "פתרון בעיות:\n\n1. ודא שChronicle מותקן בשעון שלך\n2. פתח את אפליקציית Chronicle בשעון שלך\n3. חפש את חלון ההרשאה\n4. טפוק \"אפשר\" כשתתבקש\n5. אפליקציה בשעון שלך תיסגר - פתח מחדש\n6. חזור וטפוק \"המשך\" באייפון שלך",
     "@troubleshootingSteps": {
         "description": "Troubleshooting instructions for watch setup"
     },
@@ -1905,7 +1905,7 @@
     },
     "personalGrowthJourney": "מסע הצמיחה האישי שלך עם בינה מלאכותית שמקשיבה לכל מילה שלך.",
     "@personalGrowthJourney": {
-        "description": "Subtitle describing Omi on auth screen"
+        "description": "Subtitle describing Chronicle on auth screen"
     },
     "actionItemsTitle": "עסקים לעשות",
     "@actionItemsTitle": {
@@ -2078,11 +2078,11 @@
     "@addFirstMemory": {
         "description": "Button to add first memory"
     },
-    "clearMemoryTitle": "נקה את הזיכרון של Omi",
+    "clearMemoryTitle": "נקה את הזיכרון של Chronicle",
     "@clearMemoryTitle": {
         "description": "Dialog title for clearing memory"
     },
-    "clearMemoryMessage": "האם אתה בטוח שברצונך לנקות את הזיכרון של Omi? לא ניתן לבטל פעולה זו.",
+    "clearMemoryMessage": "האם אתה בטוח שברצונך לנקות את הזיכרון של Chronicle? לא ניתן לבטל פעולה זו.",
     "@clearMemoryMessage": {
         "description": "Dialog content for clearing memory"
     },
@@ -2090,7 +2090,7 @@
     "@clearMemoryButton": {
         "description": "Button text to confirm clearing all memories"
     },
-    "memoryClearedSuccess": "הזיכרון של Omi עליך נוקה",
+    "memoryClearedSuccess": "הזיכרון של Chronicle עליך נוקה",
     "@memoryClearedSuccess": {
         "description": "Snackbar success message"
     },
@@ -2287,7 +2287,7 @@
     "@translationNotice": {
         "description": "Title for dialog explaining that conversations are translated"
     },
-    "translationNoticeMessage": "Omi תורגם שיחות לשפתך העיקרית. עדכן זאת בכל עת בהגדרות → פרופילים.",
+    "translationNoticeMessage": "Chronicle תורגם שיחות לשפתך העיקרית. עדכן זאת בכל עת בהגדרות → פרופילים.",
     "@translationNoticeMessage": {
         "description": "Message explaining how translation works and where to change language settings"
     },
@@ -2536,9 +2536,9 @@
     "@privacyPolicyTitle": {
         "description": "Title for privacy policy page"
     },
-    "omiSttProvider": "Omi",
+    "omiSttProvider": "Chronicle",
     "@omiSttProvider": {
-        "description": "Label for default Omi STT provider"
+        "description": "Label for default Chronicle STT provider"
     },
     "labelCopied": "{label} הועתק",
     "@labelCopied": {
@@ -2830,7 +2830,7 @@
     "@checksForAudioFiles": {
         "description": "Step 1: Checking for audio files"
     },
-    "omiSyncsAudioFiles": "לאחר מכן Omi מסנכרן את קבצי השמע עם השרת",
+    "omiSyncsAudioFiles": "לאחר מכן Chronicle מסנכרן את קבצי השמע עם השרת",
     "@omiSyncsAudioFiles": {
         "description": "Step 2: Syncing audio files"
     },
@@ -2842,11 +2842,11 @@
     "@youreAllSet": {
         "description": "Completion message when onboarding is finished"
     },
-    "welcomeToOmiDescription": "ברוכים הבאים ל-Omi! עוזר ה-AI שלך מוכן לסייע לך בשיחות, משימות ועוד.",
+    "welcomeToOmiDescription": "ברוכים הבאים ל-Chronicle! עוזר ה-AI שלך מוכן לסייע לך בשיחות, משימות ועוד.",
     "@welcomeToOmiDescription": {
         "description": "Welcome message on completion screen"
     },
-    "startUsingOmi": "התחל להשתמש ב-Omi",
+    "startUsingOmi": "התחל להשתמש ב-Chronicle",
     "@startUsingOmi": {
         "description": "Button to complete onboarding and start using the app"
     },
@@ -2955,7 +2955,7 @@
     "@reviewAndManageConversations": {
         "description": "Subtitle explaining what users can do on conversations page"
     },
-    "startCapturingConversations": "התחל ללכוד שיחות עם מכשיר Omi שלך כדי לראות אותן כאן.",
+    "startCapturingConversations": "התחל ללכוד שיחות עם מכשיר Chronicle שלך כדי לראות אותן כאן.",
     "@startCapturingConversations": {
         "description": "Message explaining how to get started with conversations"
     },
@@ -2975,7 +2975,7 @@
     "@showAll": {
         "description": "Button text to show all items"
     },
-    "noTasksForToday": "אין משימות להיום.\nבקש מ-Omi משימות נוספות או צור באופן ידני.",
+    "noTasksForToday": "אין משימות להיום.\nבקש מ-Chronicle משימות נוספות או צור באופן ידני.",
     "@noTasksForToday": {
         "description": "Message shown when there are no tasks due today"
     },
@@ -3174,7 +3174,7 @@
     "@createNewApp": {
         "description": "Title for the create new app page"
     },
-    "buildSubmitCustomOmiApp": "בנה והגש את אפליקציית Omi המותאמת שלך",
+    "buildSubmitCustomOmiApp": "בנה והגש את אפליקציית Chronicle המותאמת שלך",
     "@buildSubmitCustomOmiApp": {
         "description": "Subtitle describing the purpose of the create app page"
     },
@@ -3234,7 +3234,7 @@
     "@makeMyAppPublic": {
         "description": "Checkbox label for making app publicly available"
     },
-    "submitAppTermsAgreement": "בהגשת אפליקציה זו, אני מסכים לתנאי השירות ולמדיניות הפרטיות של Omi AI",
+    "submitAppTermsAgreement": "בהגשת אפליקציה זו, אני מסכים לתנאי השירות ולמדיניות הפרטיות של Chronicle AI",
     "@submitAppTermsAgreement": {
         "description": "Terms and conditions agreement checkbox text"
     },
@@ -3290,7 +3290,7 @@
     "@dataAccessNotice": {
         "description": "Dialog title warning about app data access"
     },
-    "dataAccessWarning": "אפליקציה זו תוכל לגשת לנתונים שלך. Omi AI אינה אחראית לאופן שבו הנתונים שלך משמשים, משתנים או נמחקים על ידי אפליקציה זו",
+    "dataAccessWarning": "אפליקציה זו תוכל לגשת לנתונים שלך. Chronicle AI אינה אחראית לאופן שבו הנתונים שלך משמשים, משתנים או נמחקים על ידי אפליקציה זו",
     "@dataAccessWarning": {
         "description": "Warning message about app data access in confirmation dialog"
     },
@@ -3762,7 +3762,7 @@
     "@upgradeToPro": {
         "description": "Subscription banner button text"
     },
-    "getOmiDevice": "קנה מכשיר Omi",
+    "getOmiDevice": "קנה מכשיר Chronicle",
     "@getOmiDevice": {
         "description": "Widget title for device promotion"
     },
@@ -3865,7 +3865,7 @@
     "@setAllMemoriesToPublic": {
         "description": "Description for making all memories public"
     },
-    "permanentlyRemoveAllMemories": "הסר באופן קבוע את כל הזיכרונות מ-Omi",
+    "permanentlyRemoveAllMemories": "הסר באופן קבוע את כל הזיכרונות מ-Chronicle",
     "@permanentlyRemoveAllMemories": {
         "description": "Description for deleting all memories"
     },
@@ -3877,11 +3877,11 @@
     "@allMemoriesAreNowPublic": {
         "description": "Success message after making all memories public"
     },
-    "clearOmisMemory": "נקה את הזיכרון של Omi",
+    "clearOmisMemory": "נקה את הזיכרון של Chronicle",
     "@clearOmisMemory": {
         "description": "Confirmation dialog title for clearing all memories"
     },
-    "clearMemoryConfirmation": "האם אתה בטוח שברצונך לנקות את הזיכרון של Omi? פעולה זו לא יכולה להיות בוטלה ותמחק בצורה קבועה את כל {count} הזיכרונות.",
+    "clearMemoryConfirmation": "האם אתה בטוח שברצונך לנקות את הזיכרון של Chronicle? פעולה זו לא יכולה להיות בוטלה ותמחק בצורה קבועה את כל {count} הזיכרונות.",
     "@clearMemoryConfirmation": {
         "description": "Confirmation message for clearing all memories",
         "placeholders": {
@@ -3890,11 +3890,11 @@
             }
         }
     },
-    "omisMemoryCleared": "הזיכרון של Omi עליך נוקה",
+    "omisMemoryCleared": "הזיכרון של Chronicle עליך נוקה",
     "@omisMemoryCleared": {
         "description": "Success message after clearing all memories"
     },
-    "welcomeToOmi": "ברוכים הבאים ל-Omi",
+    "welcomeToOmi": "ברוכים הבאים ל-Chronicle",
     "@welcomeToOmi": {
         "description": "Welcome message on auth screen"
     },
@@ -3948,13 +3948,13 @@
     },
     "pleaseSelectYourPrimaryLanguage": "אנא בחר בשפה הראשונה שלך",
     "chooseYourLanguage": "בחר את שפתך",
-    "selectPreferredLanguageForBestExperience": "בחר את השפה המועדפת עליך לחוויית Omi הטובה ביותר",
+    "selectPreferredLanguageForBestExperience": "בחר את השפה המועדפת עליך לחוויית Chronicle הטובה ביותר",
     "searchLanguages": "חפש שפות...",
     "selectALanguage": "בחר שפה",
     "tryDifferentSearchTerm": "נסה מונח חיפוש אחר",
     "pleaseEnterYourName": "אנא הזן את שמך",
     "nameMustBeAtLeast2Characters": "השם חייב להיות לפחות 2 תווים",
-    "tellUsHowYouWouldLikeToBeAddressed": "ספר לנו איך היית רוצה להיקרא. זה עוזר להתאים אישית את חוויית Omi שלך.",
+    "tellUsHowYouWouldLikeToBeAddressed": "ספר לנו איך היית רוצה להיקרא. זה עוזר להתאים אישית את חוויית Chronicle שלך.",
     "charactersCount": "{count} תווים",
     "@charactersCount": {
         "placeholders": {
@@ -3963,16 +3963,16 @@
             }
         }
     },
-    "enableFeaturesForBestExperience": "הפעל תכונות לחוויית Omi הטובה ביותר בהתקנה שלך.",
+    "enableFeaturesForBestExperience": "הפעל תכונות לחוויית Chronicle הטובה ביותר בהתקנה שלך.",
     "microphoneAccess": "גישה למיקרופון",
     "recordAudioConversations": "הקלט שיחות אודיו",
-    "microphoneAccessDescription": "Omi צריכה גישה למיקרופון כדי להקליט את השיחות שלך ולספק עתודות.",
+    "microphoneAccessDescription": "Chronicle צריכה גישה למיקרופון כדי להקליט את השיחות שלך ולספק עתודות.",
     "screenRecording": "הקלטת מסך",
     "captureSystemAudioFromMeetings": "תפוס אודיו מערכת מפגישות",
-    "screenRecordingDescription": "Omi זקוקה להרשאת הקלטת מסך כדי לתפוס אודיו מערכת מהפגישות בדפדפן שלך.",
+    "screenRecordingDescription": "Chronicle זקוקה להרשאת הקלטת מסך כדי לתפוס אודיו מערכת מהפגישות בדפדפן שלך.",
     "accessibility": "נגישות",
     "detectBrowserBasedMeetings": "זהה פגישות מבוססות דפדפן",
-    "accessibilityDescription": "Omi זקוקה להרשאת נגישות כדי לזהות כאשר אתה משתתף בפגישות Zoom, Meet או Teams בדפדפן שלך.",
+    "accessibilityDescription": "Chronicle זקוקה להרשאת נגישות כדי לזהות כאשר אתה משתתף בפגישות Zoom, Meet או Teams בדפדפן שלך.",
     "pleaseWait": "אנא המתן...",
     "joinTheCommunity": "הצטרף לקהילה!",
     "loadingProfile": "טוען פרופיל...",
@@ -3983,12 +3983,12 @@
     "setYourName": "קבע את שמך",
     "changeYourName": "שנה את שמך",
     "voiceAndPeople": "קול ואנשים",
-    "teachOmiYourVoice": "לימד את Omi את קולך",
-    "tellOmiWhoSaidIt": "ספר ל-Omi מי אמר זאת 🗣️",
+    "teachOmiYourVoice": "לימד את Chronicle את קולך",
+    "tellOmiWhoSaidIt": "ספר ל-Chronicle מי אמר זאת 🗣️",
     "payment": "תשלום",
     "addOrChangeYourPaymentMethod": "הוסף או שנה את שיטת התשלום שלך",
     "preferences": "העדפות",
-    "helpImproveOmiBySharing": "עזור לשפר את Omi בשיתוף נתוני ניתוח מאומתות",
+    "helpImproveOmiBySharing": "עזור לשפר את Chronicle בשיתוף נתוני ניתוח מאומתות",
     "deleteAccount": "מחק חשבון",
     "deleteYourAccountAndAllData": "מחק את חשבונך וכל הנתונים שלך",
     "clearLogs": "נקה יומנים",
@@ -3996,7 +3996,7 @@
     "exportConversations": "ייצא שיחות",
     "exportAllConversationsToJson": "ייצא את כל השיחות שלך לקובץ JSON.",
     "conversationsExportStarted": "ייצוא שיחות החל. זה עשוי לקחת כמה שניות, אנא המתן.",
-    "mcpDescription": "כדי לחבר את Omi עם יישומים אחרים כדי לקרוא, לחפוש ולנהל את הזיכרונות והשיחות שלך. צור מפתח כדי להתחיל.",
+    "mcpDescription": "כדי לחבר את Chronicle עם יישומים אחרים כדי לקרוא, לחפוש ולנהל את הזיכרונות והשיחות שלך. צור מפתח כדי להתחיל.",
     "apiKeys": "מפתחות API",
     "errorLabel": "שגיאה: {error}",
     "@errorLabel": {
@@ -4014,7 +4014,7 @@
     "triggersWhenAudioBytesReceived": "מופעל כאשר מתקבלים בתים אודיו.",
     "everyXSeconds": "כל x שניות",
     "triggersWhenDaySummaryGenerated": "מופעל כאשר מתבצע סיכום יום.",
-    "tryLatestExperimentalFeatures": "נסה את התכונות הניסיוניות העדכניות מקבוצת Omi.",
+    "tryLatestExperimentalFeatures": "נסה את התכונות הניסיוניות העדכניות מקבוצת Chronicle.",
     "transcriptionServiceDiagnosticStatus": "מצב אבחון של שירות תמלול",
     "enableDetailedDiagnosticMessages": "הפעל הודעות אבחון מפורטות משירות התמלול",
     "autoCreateAndTagNewSpeakers": "צור וציין בעלי קול חדשים באופן אוטומטי",
@@ -4050,7 +4050,7 @@
             }
         }
     },
-    "letOmiChooseAutomatically": "תן לOmi לבחור את האפליקציה הטובה ביותר באופן אוטומטי",
+    "letOmiChooseAutomatically": "תן לChronicle לבחור את האפליקציה הטובה ביותר באופן אוטומטי",
     "deleteConversationConfirmation": "האם אתה בטוח שברצונך למחוק שיחה זו? אין דרך לבטל פעולה זו.",
     "conversationDeleted": "השיחה נמחקה",
     "generatingLink": "הוצר קישור...",
@@ -4317,7 +4317,7 @@
     "@customVocabularyHeader": {
         "description": "Custom vocabulary section header"
     },
-    "addWordsDescription": "הוסף מילים שOmi צריכה להכיר בזמן התמלול.",
+    "addWordsDescription": "הוסף מילים שChronicle צריכה להכיר בזמן התמלול.",
     "@addWordsDescription": {
         "description": "Custom vocabulary description"
     },
@@ -4378,7 +4378,7 @@
     "clearNodesDescription": "נקה את כל הצמתים וההתחברויות",
     "deleteKnowledgeGraphQuestion": "מחק גרף ידע?",
     "deleteKnowledgeGraphWarning": "זה ימחק את כל נתוני גרף הידע שהוכלו. הזיכרונות המקוריים שלך נשמרים בבטחון.",
-    "connectOmiWithAI": "חבר את Omi עם עוזרים AI",
+    "connectOmiWithAI": "חבר את Chronicle עם עוזרים AI",
     "noAPIKeys": "אין מפתחות API. צור אחד כדי להתחיל.",
     "autoCreateWhenDetected": "צור באופן אוטומטי כאשר שם מזוהה",
     "trackPersonalGoals": "עקוב אחר יעדים אישיים בדף הבית",
@@ -4398,7 +4398,7 @@
     "@holdOnPreparingForm": {
         "description": "Loading message while preparing form"
     },
-    "bySubmittingYouAgreeToOmi": "בהגשה, אתה מסכים ל-Omi",
+    "bySubmittingYouAgreeToOmi": "בהגשה, אתה מסכים ל-Chronicle",
     "@bySubmittingYouAgreeToOmi": {
         "description": "Text before Terms & Privacy Policy link"
     },
@@ -4610,7 +4610,7 @@
     "@issueActivatingApp": {
         "description": "Dialog description for activation error"
     },
-    "dataAccessNoticeDescription": "אפליקציה זו תגיע לגישה לנתונים שלך. Omi AI אינה אחראית לאופן השימוש, השינוי או המחיקה של הנתונים שלך על ידי אפליקציה זו.",
+    "dataAccessNoticeDescription": "אפליקציה זו תגיע לגישה לנתונים שלך. Chronicle AI אינה אחראית לאופן השימוש, השינוי או המחיקה של הנתונים שלך על ידי אפליקציה זו.",
     "@dataAccessNoticeDescription": {
         "description": "Description for data access notice dialog"
     },
@@ -4742,7 +4742,7 @@
             }
         }
     },
-    "omiApiKeys": "מפתחות API של Omi",
+    "omiApiKeys": "מפתחות API של Chronicle",
     "@omiApiKeys": {
         "description": "Dialog title for API keys info"
     },
@@ -4750,7 +4750,7 @@
     "@apiKeysDescription": {
         "description": "Description of what API keys are used for"
     },
-    "aboutOmiApiKeys": "אודות מפתחות API של Omi",
+    "aboutOmiApiKeys": "אודות מפתחות API של Chronicle",
     "@aboutOmiApiKeys": {
         "description": "Tooltip for API keys info button"
     },
@@ -4944,7 +4944,7 @@
     "@maximumSecurityE2ee": {
         "description": "Title for End-to-End Encryption dialog"
     },
-    "e2eeDescription": "הצפנה מקצה לקצה היא התקן הזהב לפרטיות. כאשר זה מופעל, הנתונים שלך מוצפנים בהתקן שלך לפני שהם נשלחים לשרתים שלנו. זה אומר שאף אחד, אפילו Omi, לא יכול לגשת לתוכן שלך.",
+    "e2eeDescription": "הצפנה מקצה לקצה היא התקן הזהב לפרטיות. כאשר זה מופעל, הנתונים שלך מוצפנים בהתקן שלך לפני שהם נשלחים לשרתים שלנו. זה אומר שאף אחד, אפילו Chronicle, לא יכול לגשת לתוכן שלך.",
     "@e2eeDescription": {
         "description": "Description of E2EE encryption explaining its benefits"
     },
@@ -5000,7 +5000,7 @@
     "@secureEncryption": {
         "description": "Title for secure encryption card"
     },
-    "secureEncryptionDescription": "הנתונים שלך מוצפנים עם מפתח ייחודי לך בשרתים שלנו, מתוחזקים על Google Cloud. זה אומר שהתוכן הגולמי שלך לא נגיש לאף אחד, כולל צוות Omi או Google, ישירות מ-DB.",
+    "secureEncryptionDescription": "הנתונים שלך מוצפנים עם מפתח ייחודי לך בשרתים שלנו, מתוחזקים על Google Cloud. זה אומר שהתוכן הגולמי שלך לא נגיש לאף אחד, כולל צוות Chronicle או Google, ישירות מ-DB.",
     "@secureEncryptionDescription": {
         "description": "Description of secure encryption explaining how data is protected"
     },
@@ -5097,17 +5097,17 @@
             }
         }
     },
-    "omiTraining": "הדרכה של Omi",
+    "omiTraining": "הדרכה של Chronicle",
     "@omiTraining": {
-        "description": "Title for the Omi Training page/section"
+        "description": "Title for the Chronicle Training page/section"
     },
     "trainingDataProgram": "תוכנית נתוני הדרכה",
     "@trainingDataProgram": {
         "description": "Label for training data program"
     },
-    "getOmiUnlimitedFree": "קבל Omi Unlimited בחינם על ידי תרומת הנתונים שלך לאימון מודלי AI.",
+    "getOmiUnlimitedFree": "קבל Chronicle Unlimited בחינם על ידי תרומת הנתונים שלך לאימון מודלי AI.",
     "@getOmiUnlimitedFree": {
-        "description": "Description for getting Omi Unlimited free by contributing data"
+        "description": "Description for getting Chronicle Unlimited free by contributing data"
     },
     "trainingDataBullets": "• הנתונים שלך עוזרים לשפר את מודלי ה-AI\n• רק נתונים שאינם רגישים משותפים\n• תהליך שקוף לחלוטין",
     "@trainingDataBullets": {
@@ -5219,7 +5219,7 @@
     "@youAreOnUnlimitedPlan": {
         "description": "Message showing user is on unlimited plan"
     },
-    "yourOmiUnleashed": "ה-Omi שלך, משוחרר. עברו ללימיטציה עבור אפשרויות אינסופיות.",
+    "yourOmiUnleashed": "ה-Chronicle שלך, משוחרר. עברו ללימיטציה עבור אפשרויות אינסופיות.",
     "@yourOmiUnleashed": {
         "description": "Marketing text for unlimited plan"
     },
@@ -5261,11 +5261,11 @@
     "@unlimitedConversations": {
         "description": "Feature: unlimited conversations"
     },
-    "askOmiAnything": "שאל את Omi כל דבר על חייך",
+    "askOmiAnything": "שאל את Chronicle כל דבר על חייך",
     "@askOmiAnything": {
-        "description": "Feature: ask Omi anything"
+        "description": "Feature: ask Chronicle anything"
     },
-    "unlockOmiInfiniteMemory": "בטל את הנעילה של הזיכרון האינסופי של Omi",
+    "unlockOmiInfiniteMemory": "בטל את הנעילה של הזיכרון האינסופי של Chronicle",
     "@unlockOmiInfiniteMemory": {
         "description": "Feature: unlock infinite memory"
     },
@@ -5339,7 +5339,7 @@
     "@yourPrivacyMattersToUs": {
         "description": "Privacy page - yourPrivacyMattersToUs"
     },
-    "privacyIntroText": "ב-Omi, אנחנו לוקחים את הפרטיות שלך ברצינות רבה. אנחנו רוצים להיות שקופים לגבי הנתונים שאנחנו אוספים וכיצד אנחנו משתמשים בהם כדי לשפר את המוצר שלך. הנה מה שאתה צריך לדעת:",
+    "privacyIntroText": "ב-Chronicle, אנחנו לוקחים את הפרטיות שלך ברצינות רבה. אנחנו רוצים להיות שקופים לגבי הנתונים שאנחנו אוספים וכיצד אנחנו משתמשים בהם כדי לשפר את המוצר שלך. הנה מה שאתה צריך לדעת:",
     "@privacyIntroText": {
         "description": "Privacy page - privacyIntroText"
     },
@@ -5359,11 +5359,11 @@
     "@ourCommitment": {
         "description": "Privacy page - ourCommitment"
     },
-    "commitmentText": "אנחנו מחויבים להשתמש בנתונים שאנחנו אוספים רק כדי לעשות את Omi למוצר טוב יותר בשבילך. הפרטיות והאמון שלך הם חיוניים לנו.",
+    "commitmentText": "אנחנו מחויבים להשתמש בנתונים שאנחנו אוספים רק כדי לעשות את Chronicle למוצר טוב יותר בשבילך. הפרטיות והאמון שלך הם חיוניים לנו.",
     "@commitmentText": {
         "description": "Privacy page - commitmentText"
     },
-    "thankYouText": "תודה על היותך משתמש מוערך של Omi. אם יש לך שאלות או חששות, אתה מוזמן לפנות אלינו ל-team@basedhardware.com.",
+    "thankYouText": "תודה על היותך משתמש מוערך של Chronicle. אם יש לך שאלות או חששות, אתה מוזמן לפנות אלינו ל-team@basedhardware.com.",
     "@thankYouText": {
         "description": "Privacy page - thankYouText"
     },
@@ -5488,7 +5488,7 @@
     "@minutes": {
         "description": "Unit label for minutes"
     },
-    "omiHas": "ל-Omi יש:",
+    "omiHas": "ל-Chronicle יש:",
     "@omiHas": {
         "description": "Fallback text for share stats when period is unknown"
     },
@@ -5621,7 +5621,7 @@
     "@howItWorksTitle": {
         "description": "Help dialog title"
     },
-    "howPeopleWorks": "ברגע שנוצרת אדם, אתה יכול ללכת לתמלול שיחה, ולהקצות להם את הקטעים המתאימים שלהם, בדרך זו Omi יוכל גם לזהות את הדיבור שלהם!",
+    "howPeopleWorks": "ברגע שנוצרת אדם, אתה יכול ללכת לתמלול שיחה, ולהקצות להם את הקטעים המתאימים שלהם, בדרך זו Chronicle יוכל גם לזהות את הדיבור שלהם!",
     "@howPeopleWorks": {
         "description": "Explanation of how people/speech recognition works"
     },
@@ -5982,9 +5982,9 @@
     "@enableApps": {
         "description": "Menu item text to navigate to apps page and enable more chat apps"
     },
-    "omiAppName": "Omi",
+    "omiAppName": "Chronicle",
     "@omiAppName": {
-        "description": "The Omi app/assistant name shown in chat app selection"
+        "description": "The Chronicle app/assistant name shown in chat app selection"
     },
     "showMore": "הצג עוד ↓",
     "@showMore": {
@@ -6014,21 +6014,21 @@
     "@checkingAppleWatch": {
         "description": "Loading text while checking Apple Watch status"
     },
-    "installOmiOnAppleWatch": "התקן Omi ב-\nApple Watch",
+    "installOmiOnAppleWatch": "התקן Chronicle ב-\nApple Watch",
     "@installOmiOnAppleWatch": {
-        "description": "Title prompting user to install Omi on Apple Watch"
+        "description": "Title prompting user to install Chronicle on Apple Watch"
     },
-    "installOmiOnAppleWatchDescription": "כדי להשתמש ב-Apple Watch שלך עם Omi, תחילה עליך להתקין את אפליקציית Omi בשעון שלך.",
+    "installOmiOnAppleWatchDescription": "כדי להשתמש ב-Apple Watch שלך עם Chronicle, תחילה עליך להתקין את אפליקציית Chronicle בשעון שלך.",
     "@installOmiOnAppleWatchDescription": {
-        "description": "Description explaining need to install Omi app on watch"
+        "description": "Description explaining need to install Chronicle app on watch"
     },
-    "openOmiOnAppleWatch": "פתח Omi ב-\nApple Watch",
+    "openOmiOnAppleWatch": "פתח Chronicle ב-\nApple Watch",
     "@openOmiOnAppleWatch": {
-        "description": "Title prompting user to open Omi on Apple Watch"
+        "description": "Title prompting user to open Chronicle on Apple Watch"
     },
-    "openOmiOnAppleWatchDescription": "אפליקציית Omi מותקנת ב-Apple Watch שלך. פתח אותה והקש Start כדי להתחיל.",
+    "openOmiOnAppleWatchDescription": "אפליקציית Chronicle מותקנת ב-Apple Watch שלך. פתח אותה והקש Start כדי להתחיל.",
     "@openOmiOnAppleWatchDescription": {
-        "description": "Description explaining Omi is installed and user should open it"
+        "description": "Description explaining Chronicle is installed and user should open it"
     },
     "openWatchApp": "פתח אפליקציית Watch",
     "@openWatchApp": {
@@ -6038,7 +6038,7 @@
     "@iveInstalledAndOpenedTheApp": {
         "description": "Button text confirming user has installed and opened the app"
     },
-    "unableToOpenWatchApp": "לא ניתן לפתוח אפליקציית Apple Watch. אנא פתח ידנית את אפליקציית Watch בשעון Apple Watch שלך והתקן את Omi מסעיף \"Available Apps\".",
+    "unableToOpenWatchApp": "לא ניתן לפתוח אפליקציית Apple Watch. אנא פתח ידנית את אפליקציית Watch בשעון Apple Watch שלך והתקן את Chronicle מסעיף \"Available Apps\".",
     "@unableToOpenWatchApp": {
         "description": "Error message when Watch app cannot be opened automatically"
     },
@@ -6046,7 +6046,7 @@
     "@appleWatchConnectedSuccessfully": {
         "description": "Success message when Apple Watch connects"
     },
-    "appleWatchNotReachable": "Apple Watch עדיין לא זמין. אנא ודא שאפליקציית Omi פתוחה בשעון שלך.",
+    "appleWatchNotReachable": "Apple Watch עדיין לא זמין. אנא ודא שאפליקציית Chronicle פתוחה בשעון שלך.",
     "@appleWatchNotReachable": {
         "description": "Error message when Apple Watch is not reachable"
     },
@@ -6166,7 +6166,7 @@
     },
     "updateOmiFirmware": "עדכן firmware של omi",
     "@updateOmiFirmware": {
-        "description": "Button text to update Omi device firmware"
+        "description": "Button text to update Chronicle device firmware"
     },
     "anErrorOccurredTryAgain": "ארעה שגיאה. אנא נסה שוב.",
     "@anErrorOccurredTryAgain": {
@@ -6176,7 +6176,7 @@
     "@welcomeBackSimple": {
         "description": "Simple welcome message without user name"
     },
-    "addVocabularyDescription": "הוסף מילים שOmi צריך לזהות במהלך תמלול.",
+    "addVocabularyDescription": "הוסף מילים שChronicle צריך לזהות במהלך תמלול.",
     "@addVocabularyDescription": {
         "description": "Description for custom vocabulary section"
     },
@@ -6409,7 +6409,7 @@
     "@wrappedNoDataAvailable": {
         "description": "Shown when wrapped result is null"
     },
-    "wrappedOmiLifeRecap": "סיכום החיים של Omi",
+    "wrappedOmiLifeRecap": "סיכום החיים של Chronicle",
     "@wrappedOmiLifeRecap": {
         "description": "Subtitle on the intro card"
     },
@@ -6417,7 +6417,7 @@
     "@wrappedSwipeUpToBegin": {
         "description": "Instruction text on intro card"
     },
-    "wrappedShareText": "ה-2025 שלי, זכור על ידי Omi ✨ omi.me/wrapped",
+    "wrappedShareText": "ה-2025 שלי, זכור על ידי Chronicle ✨ omi.me/wrapped",
     "@wrappedShareText": {
         "description": "Text shared when sharing wrapped images"
     },
@@ -6445,7 +6445,7 @@
     "@wrappedMy2025": {
         "description": "Title text for shareable image"
     },
-    "wrappedRememberedByOmi": "זכור על ידי Omi",
+    "wrappedRememberedByOmi": "זכור על ידי Chronicle",
     "@wrappedRememberedByOmi": {
         "description": "Subtitle text for shareable image"
     },
@@ -6729,7 +6729,7 @@
     "@notificationFrequency": {
         "description": "Section header for notification frequency settings"
     },
-    "controlNotificationFrequency": "שלוט בתדירות של הודעות Omi פרואקטיביות שלך.",
+    "controlNotificationFrequency": "שלוט בתדירות של הודעות Chronicle פרואקטיביות שלך.",
     "@controlNotificationFrequency": {
         "description": "Description for notification frequency control"
     },
@@ -6761,7 +6761,7 @@
     "@dailyScoreExplanation": {
         "description": "Explanation of how daily score is calculated"
     },
-    "notificationFrequencyDescription": "שלוט בתדירות של הודעות ותזכורות פרואקטיביות של Omi.",
+    "notificationFrequencyDescription": "שלוט בתדירות של הודעות ותזכורות פרואקטיביות של Chronicle.",
     "@notificationFrequencyDescription": {
         "description": "Description text for notification frequency section"
     },
@@ -7047,7 +7047,7 @@
     "@noRecordings": {
         "description": "Empty state title when there are no recordings"
     },
-    "audioFromOmiWillAppearHere": "אודיו מהמכשיר Omi שלך יופיע כאן",
+    "audioFromOmiWillAppearHere": "אודיו מהמכשיר Chronicle שלך יופיע כאן",
     "@audioFromOmiWillAppearHere": {
         "description": "Empty state description for recordings"
     },
@@ -7227,7 +7227,7 @@
     "@batteryUsageHigher": {
         "description": "Warning about battery usage"
     },
-    "considerOmiCloud": "שקול להשתמש ב-Omi Cloud לביצועים טובים יותר.",
+    "considerOmiCloud": "שקול להשתמש ב-Chronicle Cloud לביצועים טובים יותר.",
     "@considerOmiCloud": {
         "description": "Suggestion to use cloud transcription"
     },
@@ -7454,9 +7454,9 @@
             }
         }
     },
-    "omiTranscriptionOptimized": "התמלול החי המובנה של Omi מותאם לשיחות בזמן אמת עם זיהוי דוברים אוטומטי וdiarization.",
+    "omiTranscriptionOptimized": "התמלול החי המובנה של Chronicle מותאם לשיחות בזמן אמת עם זיהוי דוברים אוטומטי וdiarization.",
     "@omiTranscriptionOptimized": {
-        "description": "Description of Omi transcription features"
+        "description": "Description of Chronicle transcription features"
     },
     "reset": "איפוס",
     "@reset": {
@@ -7576,7 +7576,7 @@
     "@writeReviewOptional": {
         "description": "Hint text for review input field"
     },
-    "setupQuestionsIntro": "עזור לנו לשפר את Omi על ידי מענה לכמה שאלות. 🫶 💜",
+    "setupQuestionsIntro": "עזור לנו לשפר את Chronicle על ידי מענה לכמה שאלות. 🫶 💜",
     "@setupQuestionsIntro": {
         "description": "Intro text for setup questions page"
     },
@@ -7584,9 +7584,9 @@
     "@setupQuestionProfession": {
         "description": "Question about profession"
     },
-    "setupQuestionUsage": "2. איפה אתה מתכנן להשתמש ב-Omi שלך?",
+    "setupQuestionUsage": "2. איפה אתה מתכנן להשתמש ב-Chronicle שלך?",
     "@setupQuestionUsage": {
-        "description": "Question about Omi usage location"
+        "description": "Question about Chronicle usage location"
     },
     "setupQuestionAge": "3. מה טווח הגיל שלך?",
     "@setupQuestionAge": {
@@ -8053,7 +8053,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8063,7 +8063,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8230,8 +8230,8 @@
         "description": "Title for low battery notification"
     },
     "lowBatteryAlertBody": "הסוללה שלך ב-{level}%. הגיע הזמן לטעון! 🔋",
-    "batteryFullyChargedTitle": "Omi טעון לגמרי",
-    "batteryFullyChargedBody": "מכשיר Omi שלך טעון לגמרי. אפשר לנתק אותו!",
+    "batteryFullyChargedTitle": "Chronicle טעון לגמרי",
+    "batteryFullyChargedBody": "מכשיר Chronicle שלך טעון לגמרי. אפשר לנתק אותו!",
     "@lowBatteryAlertBody": {
         "description": "Body text for low battery notification",
         "placeholders": {
@@ -8240,11 +8240,11 @@
             }
         }
     },
-    "deviceDisconnectedNotificationTitle": "התקן Omi שלך התנתק",
+    "deviceDisconnectedNotificationTitle": "התקן Chronicle שלך התנתק",
     "@deviceDisconnectedNotificationTitle": {
         "description": "Title for device disconnected notification"
     },
-    "deviceDisconnectedNotificationBody": "אנא התחבר מחדש כדי להמשיך להשתמש ב-Omi שלך.",
+    "deviceDisconnectedNotificationBody": "אנא התחבר מחדש כדי להמשיך להשתמש ב-Chronicle שלך.",
     "@deviceDisconnectedNotificationBody": {
         "description": "Body text for device disconnected notification"
     },
@@ -8252,7 +8252,7 @@
     "@firmwareUpdateAvailable": {
         "description": "Title for firmware update available dialog"
     },
-    "firmwareUpdateAvailableDescription": "עדכון קושחה חדש ({version}) זמין להתקן Omi שלך. האם תרצה לעדכן כעת?",
+    "firmwareUpdateAvailableDescription": "עדכון קושחה חדש ({version}) זמין להתקן Chronicle שלך. האם תרצה לעדכן כעת?",
     "@firmwareUpdateAvailableDescription": {
         "description": "Description for firmware update dialog with version parameter",
         "placeholders": {
@@ -8307,7 +8307,7 @@
     "@almostDone": {
         "description": "Migration is almost complete"
     },
-    "omiSays": "Omi אומר",
+    "omiSays": "Chronicle אומר",
     "@omiSays": {
         "description": "Notification title for omi app messages"
     },
@@ -8646,9 +8646,9 @@
     "@nextButton": {
         "description": "Button text to proceed to next step"
     },
-    "connectOmiDevice": "חבר התקן Omi",
+    "connectOmiDevice": "חבר התקן Chronicle",
     "@connectOmiDevice": {
-        "description": "Button text to connect Omi device"
+        "description": "Button text to connect Chronicle device"
     },
     "planSwitchingDescriptionWithTitle": "אתה עובר מתוכנית Unlimited ל-{title}. האם אתה בטוח שברצונך להמשיך?",
     "@planSwitchingDescriptionWithTitle": {
@@ -8687,9 +8687,9 @@
     "@transcriptionJsonPlaceholder": {
         "description": "JSON configuration placeholder hint text in transcription settings"
     },
-    "transcriptionSourceOmi": "Omi",
+    "transcriptionSourceOmi": "Chronicle",
     "@transcriptionSourceOmi": {
-        "description": "Tab title for Omi transcription source option"
+        "description": "Tab title for Chronicle transcription source option"
     },
     "pricePlaceholder": "0.00",
     "@pricePlaceholder": {
@@ -8729,7 +8729,7 @@
             }
         }
     },
-    "actionItemReminderTitle": "תזכורת Omi",
+    "actionItemReminderTitle": "תזכורת Chronicle",
     "@actionItemReminderTitle": {
         "description": "Title for action item reminder notifications"
     },
@@ -8739,7 +8739,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8749,7 +8749,7 @@
         "placeholders": {
             "deviceName": {
                 "type": "String",
-                "example": "Omi"
+                "example": "Chronicle"
             }
         }
     },
@@ -8773,7 +8773,7 @@
     "@onboardingComplete": {
         "description": "Onboarding step title for completion"
     },
-    "onboardingWelcomeToOmi": "ברוכים הבאים ל-Omi",
+    "onboardingWelcomeToOmi": "ברוכים הבאים ל-Chronicle",
     "@onboardingWelcomeToOmi": {
         "description": "Onboarding step description for sign in"
     },
@@ -9533,7 +9533,7 @@
     },
     "mcpConnectionFailed": "חיבור לשרת MCP נכשל",
     "authorizingMcpServer": "מאשר...",
-    "whereDidYouHearAboutOmi": "איך גילית את Omi?",
+    "whereDidYouHearAboutOmi": "איך גילית את Chronicle?",
     "tiktok": "TikTok",
     "youtube": "YouTube",
     "instagram": "Instagram",
@@ -9554,29 +9554,29 @@
     "pairNewDevice": "חבר התקן חדש",
     "dontSeeYourDevice": "לא רואה את ההתקן שלך?",
     "reportAnIssue": "דווח על בעיה",
-    "pairingTitleOmi": "הפעל את Omi",
+    "pairingTitleOmi": "הפעל את Chronicle",
     "@pairingTitleOmi": {
-        "description": "Pairing title for Omi device"
+        "description": "Pairing title for Chronicle device"
     },
     "pairingDescOmi": "לחץ וחזיק על ההתקן עד שהוא רועד כדי להפעיל אותו.",
     "@pairingDescOmi": {
-        "description": "Pairing description for Omi device"
+        "description": "Pairing description for Chronicle device"
     },
-    "pairingTitleOmiDevkit": "הכנס את Omi DevKit למצב זיווג",
+    "pairingTitleOmiDevkit": "הכנס את Chronicle DevKit למצב זיווג",
     "@pairingTitleOmiDevkit": {
-        "description": "Pairing title for Omi DevKit"
+        "description": "Pairing title for Chronicle DevKit"
     },
     "pairingDescOmiDevkit": "לחץ על הכפתור פעם אחת כדי להפעיל. ה-LED יהבהב בסגול כשהוא במצב זיווג.",
     "@pairingDescOmiDevkit": {
-        "description": "Pairing description for Omi DevKit"
+        "description": "Pairing description for Chronicle DevKit"
     },
-    "pairingTitleOmiGlass": "הפעל את Omi Glass",
+    "pairingTitleOmiGlass": "הפעל את Chronicle Glass",
     "@pairingTitleOmiGlass": {
-        "description": "Pairing title for Omi Glass"
+        "description": "Pairing title for Chronicle Glass"
     },
     "pairingDescOmiGlass": "הפעל על ידי לחיצה על הכפתור הצדדי לשך 3 שניות.",
     "@pairingDescOmiGlass": {
-        "description": "Pairing description for Omi Glass"
+        "description": "Pairing description for Chronicle Glass"
     },
     "pairingTitlePlaudNote": "הכנס את Plaud Note למצב זיווג",
     "@pairingTitlePlaudNote": {
@@ -9622,7 +9622,7 @@
     "@pairingTitleAppleWatch": {
         "description": "Pairing title for Apple Watch"
     },
-    "pairingDescAppleWatch": "התקן ופתח את אפליקציית Omi ב-Apple Watch שלך, לאחר מכן הקש על חיבור באפליקציה.",
+    "pairingDescAppleWatch": "התקן ופתח את אפליקציית Chronicle ב-Apple Watch שלך, לאחר מכן הקש על חיבור באפליקציה.",
     "@pairingDescAppleWatch": {
         "description": "Pairing description for Apple Watch"
     },
@@ -9716,7 +9716,7 @@
     "@onboardingWhatIKnowAboutYouTitle": {
         "description": "Title for onboarding step that previews the memory graph"
     },
-    "onboardingWhatIKnowAboutYouDescription": "מפה זו מתעדכנת כש-Omi לומד מהשיחות שלך.",
+    "onboardingWhatIKnowAboutYouDescription": "מפה זו מתעדכנת כש-Chronicle לומד מהשיחות שלך.",
     "@onboardingWhatIKnowAboutYouDescription": {
         "description": "Description for onboarding memory graph preview step"
     },
@@ -9774,7 +9774,7 @@
         "description": "Confirmation dialog message for cleaning today task deadlines"
     },
     "tasksOverdue": "逾期",
-    "phoneCallsWithOmi": "שיחות טלפון עם Omi",
+    "phoneCallsWithOmi": "שיחות טלפון עם Chronicle",
     "phoneCallsSubtitle": "השתמש בשיחות עם תמלול בזמן אמת",
     "phoneSetupStep1Title": "אמת את מספר הטלפון שלך",
     "phoneSetupStep1Subtitle": "נתקשר אליך כדי לאשר שזה שלך",
@@ -9879,11 +9879,11 @@
     "@showTasksOnHomepage": {
         "description": "Description for show tasks toggle in developer settings"
     },
-    "phoneCallsUnlimitedOnly": "שיחות טלפון דרך Omi",
+    "phoneCallsUnlimitedOnly": "שיחות טלפון דרך Chronicle",
     "@phoneCallsUnlimitedOnly": {
         "description": "Title for the phone calls upsell sheet shown to non-unlimited users"
     },
-    "phoneCallsUpsellSubtitle": "בצע שיחות דרך Omi וקבל תמלול בזמן אמת, סיכומים אוטומטיים ועוד. זמין אך ורק למנויי תוכנית Unlimited.",
+    "phoneCallsUpsellSubtitle": "בצע שיחות דרך Chronicle וקבל תמלול בזמן אמת, סיכומים אוטומטיים ועוד. זמין אך ורק למנויי תוכנית Unlimited.",
     "@phoneCallsUpsellSubtitle": {
         "description": "Subtitle explaining phone calls feature on upsell sheet"
     },
@@ -10004,7 +10004,7 @@
     "fairUse3Day": "3 ימים מתגלגל",
     "fairUseWeekly": "שבוע מתגלגל",
     "fairUseAboutTitle": "אודות שימוש הוגן",
-    "fairUseAboutBody": "Omi מעוצב לשיחות אישיות, פגישות ואינטראקציות חיות. השימוש נמדד לפי זמן דיבור אמיתי שזוהה, לא זמן חיבור. אם השימוש חורג משמעותית מדפוסים רגילים לתוכן שאינו אישי, ייתכנו התאמות.",
+    "fairUseAboutBody": "Chronicle מעוצב לשיחות אישיות, פגישות ואינטראקציות חיות. השימוש נמדד לפי זמן דיבור אמיתי שזוהה, לא זמן חיבור. אם השימוש חורג משמעותית מדפוסים רגילים לתוכן שאינו אישי, ייתכנו התאמות.",
     "fairUseCaseRefCopied": "{caseRef} הועתק",
     "@fairUseCaseRefCopied": {
         "description": "Snackbar message when case reference is copied to clipboard",
@@ -10046,7 +10046,7 @@
         }
     },
     "improveConnectionTitle": "שפר חיבור",
-    "improveConnectionContent": "שיפרנו את אופן החיבור של Omi להתקן שלך. כדי להפעיל זאת, אנא עבור לעמוד פרטי ההתקן, הקש על \"ניתוק התקן\", ואז חבר את ההתקן שלך שוב.",
+    "improveConnectionContent": "שיפרנו את אופן החיבור של Chronicle להתקן שלך. כדי להפעיל זאת, אנא עבור לעמוד פרטי ההתקן, הקש על \"ניתוק התקן\", ואז חבר את ההתקן שלך שוב.",
     "improveConnectionAction": "הבנתי",
     "clockSkewWarning": "שעון ההתקן שלך מופקע ב-~{minutes} דקות. בדוק את הגדרות התאריך והשעה שלך.",
     "@clockSkewWarning": {
@@ -10056,7 +10056,7 @@
             }
         }
     },
-    "omisStorage": "אחסון של Omi",
+    "omisStorage": "אחסון של Chronicle",
     "@omisStorage": {
         "description": "Label for device storage tier in sync pipeline"
     },
@@ -10109,11 +10109,11 @@
     "@cancelSyncQuestion": {
         "description": "Title for cancel sync confirmation dialog"
     },
-    "omisStorageDesc": "כאשר ה-Omi שלך לא מחובר לטלפון, הוא מאחסן אודיו מקומית בזיכרון המובנה שלו. אתה לעולם לא מאבד הקלטה.",
+    "omisStorageDesc": "כאשר ה-Chronicle שלך לא מחובר לטלפון, הוא מאחסן אודיו מקומית בזיכרון המובנה שלו. אתה לעולם לא מאבד הקלטה.",
     "@omisStorageDesc": {
         "description": "Description of device storage in sync info sheet"
     },
-    "phoneStorageDesc": "כאשר Omi מתחבר מחדש, הקלטות מועברות באופן אוטומטי לטלפון שלך כאזור החזקה זמני לפני העלאה.",
+    "phoneStorageDesc": "כאשר Chronicle מתחבר מחדש, הקלטות מועברות באופן אוטומטי לטלפון שלך כאזור החזקה זמני לפני העלאה.",
     "@phoneStorageDesc": {
         "description": "Description of phone storage in sync info sheet"
     },
@@ -10149,11 +10149,11 @@
     "@permissionEnable": {
         "description": "Action text to enable a permission"
     },
-    "permissionsPageDescription": "הרשאות אלה הן ליבה לאופן ה-Omi. הן מאפשרות תכונות חיוניות כמו הודעות, חוויות מבוססות מיקום והילוכי אודיו.",
+    "permissionsPageDescription": "הרשאות אלה הן ליבה לאופן ה-Chronicle. הן מאפשרות תכונות חיוניות כמו הודעות, חוויות מבוססות מיקום והילוכי אודיו.",
     "@permissionsPageDescription": {
         "description": "Description text shown at the bottom of the permissions page"
     },
-    "permissionsRequiredDescription": "Omi זקוק לכמה הרשאות כדי לפעול כראוי. אנא הענק אותן כדי להמשיך.",
+    "permissionsRequiredDescription": "Chronicle זקוק לכמה הרשאות כדי לפעול כראוי. אנא הענק אותן כדי להמשיך.",
     "@permissionsRequiredDescription": {
         "description": "Description for the permissions interstitial screen"
     },
@@ -10161,7 +10161,7 @@
     "@permissionsSetupTitle": {
         "description": "Title for the permissions interstitial screen"
     },
-    "permissionsSetupDescription": "הפעל כמה הרשאות כדי ש-Omi יוכל לעשות הקסם שלו.",
+    "permissionsSetupDescription": "הפעל כמה הרשאות כדי ש-Chronicle יוכל לעשות הקסם שלו.",
     "@permissionsSetupDescription": {
         "description": "Subtitle for the permissions interstitial screen"
     },
@@ -10290,7 +10290,7 @@
     "@feedbackTitleFoundAlternative": {
         "description": "Feedback title when cancel reason is found alternative"
     },
-    "feedbackTitleNotUsing": "מה יגרום לך להשתמש ב-Omi יותר?",
+    "feedbackTitleNotUsing": "מה יגרום לך להשתמש ב-Chronicle יותר?",
     "@feedbackTitleNotUsing": {
         "description": "Feedback title when cancel reason is not using enough"
     },
@@ -10314,7 +10314,7 @@
     "@feedbackSubtitleFoundAlternative": {
         "description": "Feedback subtitle for found alternative"
     },
-    "feedbackSubtitleNotUsing": "אנחנו רוצים להפוך את Omi לשימושי יותר עבורך.",
+    "feedbackSubtitleNotUsing": "אנחנו רוצים להפוך את Chronicle לשימושי יותר עבורך.",
     "@feedbackSubtitleNotUsing": {
         "description": "Feedback subtitle for not using enough"
     },
@@ -10431,20 +10431,20 @@
     "tasksSelectAll": "בחר הכל",
     "tasksDeleteSelected": "מחק {count} משימה(ות)",
     "tasksMarkComplete": "סומן כהושלם",
-    "appleHealthManageNote": "Omi ניגש ל-Apple Health דרך מסגרת העבודה HealthKit של Apple. ניתן לבטל את הגישה בכל עת בהגדרות iOS.",
+    "appleHealthManageNote": "Chronicle ניגש ל-Apple Health דרך מסגרת העבודה HealthKit של Apple. ניתן לבטל את הגישה בכל עת בהגדרות iOS.",
     "appleHealthConnectCta": "התחבר ל-Apple Health",
     "appleHealthDisconnectCta": "נתק את Apple Health",
     "appleHealthConnectedBadge": "מחובר",
     "appleHealthFeatureChatTitle": "צ'אט על הבריאות שלך",
-    "appleHealthFeatureChatDesc": "שאל את Omi על הצעדים, השינה, הדופק והאימונים שלך.",
+    "appleHealthFeatureChatDesc": "שאל את Chronicle על הצעדים, השינה, הדופק והאימונים שלך.",
     "appleHealthFeatureReadOnlyTitle": "גישת קריאה בלבד",
-    "appleHealthFeatureReadOnlyDesc": "Omi לעולם לא כותב ל-Apple Health ולא משנה את הנתונים שלך.",
+    "appleHealthFeatureReadOnlyDesc": "Chronicle לעולם לא כותב ל-Apple Health ולא משנה את הנתונים שלך.",
     "appleHealthFeatureSecureTitle": "סנכרון מאובטח",
-    "appleHealthFeatureSecureDesc": "נתוני Apple Health שלך מסונכרנים באופן פרטי לחשבון Omi.",
+    "appleHealthFeatureSecureDesc": "נתוני Apple Health שלך מסונכרנים באופן פרטי לחשבון Chronicle.",
     "appleHealthDeniedTitle": "הגישה ל-Apple Health נדחתה",
-    "appleHealthDeniedBody": "ל-Omi אין הרשאה לקרוא את נתוני Apple Health שלך. הפעל אותה בהגדרות iOS ← פרטיות ואבטחה ← Health ← Omi.",
+    "appleHealthDeniedBody": "ל-Chronicle אין הרשאה לקרוא את נתוני Apple Health שלך. הפעל אותה בהגדרות iOS ← פרטיות ואבטחה ← Health ← Chronicle.",
     "deleteFlowReasonTitle": "למה אתה עוזב?",
-    "deleteFlowReasonSubtitle": "המשוב שלך עוזר לנו לשפר את Omi עבור כולם.",
+    "deleteFlowReasonSubtitle": "המשוב שלך עוזר לנו לשפר את Chronicle עבור כולם.",
     "deleteReasonPrivacy": "חששות פרטיות",
     "deleteReasonNotUsing": "לא משתמש בו מספיק",
     "deleteReasonMissingFeatures": "חסרות תכונות שאני צריך",
@@ -10453,7 +10453,7 @@
     "deleteReasonTakingBreak": "סתם לוקח הפסקה",
     "deleteReasonOther": "אחר",
     "deleteFlowFeedbackTitle": "ספר לנו עוד",
-    "deleteFlowFeedbackSubtitle": "מה היה גורם ל-Omi לעבוד עבורך?",
+    "deleteFlowFeedbackSubtitle": "מה היה גורם ל-Chronicle לעבוד עבורך?",
     "deleteFlowFeedbackHint": "אופציונלי — המחשבות שלך עוזרות לנו לבנות מוצר טוב יותר.",
     "deleteFlowConfirmTitle": "זה לצמיתות",
     "deleteFlowConfirmSubtitle": "לאחר מחיקת החשבון, אין דרך לשחזר אותו.",
@@ -10505,13 +10505,13 @@
     "chatUsageCostNoLimit": "צ'אט: ${used} נוצל החודש",
     "chatUsageMessages": "צ'אט: {used} / {limit} הודעות החודש",
     "chatUsageMessagesNoLimit": "צ'אט: {used} הודעות החודש",
-    "chatQuotaSubtitle": "AI chat messages used with Omi this month.",
-    "chatQuotaExceededReply": "הגעת למגבלה החודשית שלך. שדרג כדי להמשיך לשוחח עם Omi ללא הגבלות.",
+    "chatQuotaSubtitle": "AI chat messages used with Chronicle this month.",
+    "chatQuotaExceededReply": "הגעת למגבלה החודשית שלך. שדרג כדי להמשיך לשוחח עם Chronicle ללא הגבלות.",
     "batteryHistory": "סוללה",
     "day": "יום",
     "noBatteryDataYet": "אין עדיין נתוני סוללה",
     "week": "שבוע",
-    "voiceResponseAudio": "קרא את תגובת Omi בקול",
+    "voiceResponseAudio": "קרא את תגובת Chronicle בקול",
     "voiceResponseMode": "תגובה קולית",
     "voiceResponseModeTitle": "מתי לקרוא תשובות",
     "voiceResponseOff": "כבוי",
@@ -10523,7 +10523,7 @@
         "description": "Section header for memory knowledge graph on home page"
     },
     "voiceMode": "מצב קולי",
-    "quickActionAskOmi": "שאל את Omi כל דבר",
+    "quickActionAskOmi": "שאל את Chronicle כל דבר",
     "record": "הקלט",
     "stop": "עצור",
     "recordWithPhoneMic": "הקלט עם מיקרופון הטלפון",
@@ -10557,28 +10557,28 @@
     "syncStatusWaiting": "ממתין לסנכרון",
     "syncStatusRetrying": "העיבוד נכשל — מנסה שוב",
     "syncStatusFailed": "נכשל — הקש על נסה שוב",
-    "syncStatusTooOld": "ישן מדי לסנכרון — Omi לא יכול לקבל אותו",
+    "syncStatusTooOld": "ישן מדי לסנכרון — Chronicle לא יכול לקבל אותו",
     "syncStatusFileUnavailable": "הקובץ אינו זמין",
-    "syncStatusUploaded": "הועלה · בעיבוד ב-Omi",
+    "syncStatusUploaded": "הועלה · בעיבוד ב-Chronicle",
     "noRecordingsYet": "אין הקלטות עדיין",
     "syncInProgress": "מתבצע סנכרון",
     "deleteWhileProcessingTitle": "עדיין בעיבוד",
-    "deleteWhileProcessingMessage": "ההקלטה הזו הועלתה אך Omi עדיין יוצר את השיחה. אם תמחק אותה עכשיו והעיבוד ייכשל, לא יהיה ניתן לשחזר אותה. למחוק בכל זאת?",
+    "deleteWhileProcessingMessage": "ההקלטה הזו הועלתה אך Chronicle עדיין יוצר את השיחה. אם תמחק אותה עכשיו והעיבוד ייכשל, לא יהיה ניתן לשחזר אותה. למחוק בכל זאת?",
     "syncCardAllBackedUp": "כל ההקלטות סונכרנו",
     "syncCardReadyCount": "{count, plural, one{הקלטה אחת מוכנה לסנכרון} two{2 הקלטות מוכנות לסנכרון} many{{count} הקלטות מוכנות לסנכרון} other{{count} הקלטות מוכנות לסנכרון}}",
-    "syncCardProcessing": "בעיבוד ב-Omi…",
+    "syncCardProcessing": "בעיבוד ב-Chronicle…",
     "syncCardWaitingInternet": "ממתין לאינטרנט",
     "syncCardNeedsAttention": "{count, plural, one{הקלטה אחת דורשת תשומת לב} two{2 הקלטות דורשות תשומת לב} many{{count} הקלטות דורשות תשומת לב} other{{count} הקלטות דורשות תשומת לב}}",
-    "syncFlowIntro": "ההקלטות מועברות מהמכשיר שלך לטלפון הזה ונשמרות מקומית, ולאחר מכן מועלות לשרת של Omi, שם הן מתומללות והופכות לשיחות.",
+    "syncFlowIntro": "ההקלטות מועברות מהמכשיר שלך לטלפון הזה ונשמרות מקומית, ולאחר מכן מועלות לשרת של Chronicle, שם הן מתומללות והופכות לשיחות.",
     "syncStepUpload": "סנכרון",
-    "syncStepUploadDesc": "ההקלטה שלך נשלחת לשרת של Omi",
+    "syncStepUploadDesc": "ההקלטה שלך נשלחת לשרת של Chronicle",
     "syncStepProcess": "תמלול",
-    "syncStepProcessDesc": "Omi הופך את האודיו לשיחה",
+    "syncStepProcessDesc": "Chronicle הופך את האודיו לשיחה",
     "syncStepBackedUp": "השיחה מוכנה",
     "syncStepBackedUpDesc": "תמצא אותה תחת שיחות",
     "syncFailureFootnote": "אם העיבוד נכשל, ההקלטה תנוסה שוב באופן אוטומטי בסנכרון הבא.",
     "syncStatusConversationCreated": "השיחה נוצרה",
-    "syncCardUploadingTitle": "מעלה ל-Omi",
+    "syncCardUploadingTitle": "מעלה ל-Chronicle",
     "syncCardDownloadingTitle": "מוריד מהמכשיר שלך",
     "syncCardProgressOf": "{current} מתוך {total}",
     "syncStatusOnDevice": "במכשיר שלך",
@@ -10591,24 +10591,24 @@
     },
     "syncProcessingBackgroundHint": "התהליך נמשך ברקע — אפשר לצאת מהמסך הזה.",
     "syncCardRateLimited": "הגעת למגבלת השימוש ההוגן — הסנכרון יתחדש באופן אוטומטי",
-    "syncCardBackendBusy": "השרתים של Omi עמוסים — ההקלטות שלך יסונכרנו ברגע שתתפנה תפוסה",
+    "syncCardBackendBusy": "השרתים של Chronicle עמוסים — ההקלטות שלך יסונכרנו ברגע שתתפנה תפוסה",
     "unableToDetermineFirmwareVersion": "לא ניתן לקבוע את גרסת הקושחה הנוכחית",
     "promoCode": "קוד קידום",
     "enterPromoCode": "הזינו קוד קידום",
     "invalidPromotionCode": "קוד קידום לא תקין.",
     "backgroundModeTitle": "מצב רקע",
-    "backgroundModeDescription": "השאירו את ה-Omi מקליט גם כשהאפליקציה סגורה לחלוטין.",
-    "backgroundModeNote": "כרגע עובד רק עם מכשירי Omi ומשתפר באופן מתמיד.",
+    "backgroundModeDescription": "השאירו את ה-Chronicle מקליט גם כשהאפליקציה סגורה לחלוטין.",
+    "backgroundModeNote": "כרגע עובד רק עם מכשירי Chronicle ומשתפר באופן מתמיד.",
     "regenerateRecap": "צור סיכום מחדש",
     "recapRegeneratedSnackbar": "הסיכום נוצר מחדש",
     "recapRegenerateFailed": "לא ניתן ליצור מחדש את הסיכום. נסה שוב מאוחר יותר.",
     "recapRegenerateCooldown": "אנא המתן מספר שניות לפני יצירה מחודשת.",
     "recapRegenerateNoConversations": "אין שיחות לסיכום עבור היום הזה.",
-    "syncCustomSttWarningTitle": "הסנכרון משתמש בתמלול של Omi",
-    "syncCustomSttWarningMessage": "אתה משתמש בספק תמלול משלך. סנכרון ההקלטות האלה יתמלל אותן בשרתי Omi והן ייכללו במגבלת התמלול של התוכנית שלך.",
+    "syncCustomSttWarningTitle": "הסנכרון משתמש בתמלול של Chronicle",
+    "syncCustomSttWarningMessage": "אתה משתמש בספק תמלול משלך. סנכרון ההקלטות האלה יתמלל אותן בשרתי Chronicle והן ייכללו במגבלת התמלול של התוכנית שלך.",
     "transcribeLaterTitle": "תמלול מאוחר יותר",
     "transcribeLaterDescription": "הקלט אודיו עכשיו ותמלל אותו לפי דרישה במקום בזמן אמת. ההקלטות נשמרות בטלפון, ואז אתה מעלה אותן כדי ליצור שיחות.",
-    "transcribeLaterNote": "פועל עם מיקרופון הטלפון ועם מכשירי Omi ו-Limitless. האודיו נשאר בטלפון שלך עד שתבחר להעלות אותו.",
+    "transcribeLaterNote": "פועל עם מיקרופון הטלפון ועם מכשירי Chronicle ו-Limitless. האודיו נשאר בטלפון שלך עד שתבחר להעלות אותו.",
     "transcribeLaterStorageFull": "האחסון בטלפון שלך כמעט מלא, ולכן ההקלטה הושהתה. פנה מקום או העלה את ההקלטות, וההקלטה תתחדש אוטומטית.",
     "unmute": "בטל השתקה",
     "newRecording": "הקלטה חדשה",
@@ -10617,19 +10617,19 @@
     "captureModeLater": "מאוחר יותר",
     "captureModeLiveDescription": "תמלול בזמן אמת תוך כדי דיבור.",
     "captureModeLaterDescription": "שמרו את האודיו עכשיו ותמללו מתי שתרצו.",
-    "backgroundModeUnavailable": "מצב רקע אינו זמין כי לא מחובר מכשיר תואם. חבר מכשיר Omi, OpenGlass או Friend Pendant כדי להשתמש בתכונה הזו.",
+    "backgroundModeUnavailable": "מצב רקע אינו זמין כי לא מחובר מכשיר תואם. חבר מכשיר Chronicle, OpenGlass או Friend Pendant כדי להשתמש בתכונה הזו.",
     "memoryThisDevice": "המכשיר הזה",
     "memoryThisIphone": "ה-iPhone הזה",
     "memoryThisPhone": "הטלפון הזה",
     "memoryProvenanceMac": "Mac",
     "memoryProvenanceIphone": "iPhone",
     "memoryProvenanceAndroid": "Android",
-    "deviceTutorial": "איך להשתמש ב-Omi",
-    "deviceOnboardingTranscriptionTitle": "דברו אל ה-Omi שלכם",
+    "deviceTutorial": "איך להשתמש ב-Chronicle",
+    "deviceOnboardingTranscriptionTitle": "דברו אל ה-Chronicle שלכם",
     "deviceOnboardingTranscriptionSubtitle": "אמרו כמה מילים וצפו בהן מופיעות בזמן אמת",
     "deviceOnboardingGoodJob": "כל הכבוד!",
     "deviceOnboardingStartSpeaking": "התחילו לדבר...",
-    "deviceOnboardingAskQuestionTitle": "שאלו את Omi שאלה",
+    "deviceOnboardingAskQuestionTitle": "שאלו את Chronicle שאלה",
     "deviceOnboardingAskQuestionSubtitle": "לחצו על הכפתור פעם אחת, אמרו את השאלה, ואז לחצו שוב כשתסיימו",
     "deviceOnboardingProcessingQuestion": "מעבד את השאלה שלכם...",
     "deviceOnboardingListening": "מאזין...",
@@ -10650,11 +10650,11 @@
     "deviceOnboardingStarConversation": "סימון שיחה פעילה בכוכב",
     "deviceOnboardingStarConversationDesc": "סימון השיחה כחשובה",
     "deviceOnboardingSingleTapHint": "זו הייתה הקשה אחת — נסו להקיש פעמיים במהירות!",
-    "deviceOnboardingTryDoubleTap": "נסו עכשיו! הקישו פעמיים על ה-Omi שלכם",
+    "deviceOnboardingTryDoubleTap": "נסו עכשיו! הקישו פעמיים על ה-Chronicle שלכם",
     "deviceOnboardingContinue": "המשך",
     "deviceOnboardingFinish": "סיום",
-    "deviceOnboardingIntroTitle": "הכירו את ה-Omi שלכם",
-    "deviceOnboardingIntroSubtitle": "סיור מהיר ומעשי בכל מה שה-Omi שלכם יכול לעשות.",
+    "deviceOnboardingIntroTitle": "הכירו את ה-Chronicle שלכם",
+    "deviceOnboardingIntroSubtitle": "סיור מהיר ומעשי בכל מה שה-Chronicle שלכם יכול לעשות.",
     "deviceOnboardingIntroDuration": "כדקה אחת",
     "jumpToLatestMessage": "קפוץ להודעה האחרונה",
     "latest": "האחרון",
@@ -10672,15 +10672,15 @@
     },
     "pendantStorageAlmostFull": "אחסון התליון כמעט מלא — השאר את האפליקציה פתוחה כדי לסנכרן.",
     "connectRayBanMeta": "חבר את Ray-Ban Meta",
-    "raybanMetaSetupDescription": "השתמש במשקפי Ray-Ban Meta שלך כמכשיר הלכידה של Omi עבור שיחות והקשר חזותי. Omi יפתח את אפליקציית Meta AI כדי לקשר את המשקפיים שלך.",
+    "raybanMetaSetupDescription": "השתמש במשקפי Ray-Ban Meta שלך כמכשיר הלכידה של Chronicle עבור שיחות והקשר חזותי. Chronicle יפתח את אפליקציית Meta AI כדי לקשר את המשקפיים שלך.",
     "raybanMetaOpenMetaAI": "התחבר דרך Meta AI",
     "raybanMetaWaitingForMetaAI": "סיים את ההתחברות באפליקציית Meta AI, ואז חזור לכאן.",
     "raybanMetaCheckAgain": "בדוק שוב",
     "raybanMetaAllowCamera": "אפשר מצלמה במשקפיים",
-    "raybanMetaCameraExplanation": "Omi משתמש במצלמת המשקפיים שלך כדי להוסיף תמונות לשיחות שלך. אפשר לדלג על כך ולהשתמש בשמע בלבד.",
+    "raybanMetaCameraExplanation": "Chronicle משתמש במצלמת המשקפיים שלך כדי להוסיף תמונות לשיחות שלך. אפשר לדלג על כך ולהשתמש בשמע בלבד.",
     "raybanMetaSkipForNow": "דלג לעת עתה",
     "raybanMetaAudioOnlyTitle": "מצב שמע בלבד של Ray-Ban Meta",
-    "raybanMetaAudioOnlyExplanation": "גרסה זו של Omi יכולה להשתמש במיקרופון המשקפיים שלך באמצעות Bluetooth. לכידת תמונות דורשת את גרסת המפתחים של Meta עבור Omi.",
+    "raybanMetaAudioOnlyExplanation": "גרסה זו של Chronicle יכולה להשתמש במיקרופון המשקפיים שלך באמצעות Bluetooth. לכידת תמונות דורשת את גרסת המפתחים של Meta עבור Chronicle.",
     "raybanMetaMusicPauseNote": "המוזיקה בטלפון שלך מושהית בזמן השימוש במיקרופון המשקפיים.",
     "raybanMetaContinue": "המשך",
     "raybanMetaCapturePhoto": "צלם תמונה",
@@ -10705,7 +10705,7 @@
     "phoneMicOfflineFallbackMessage": "אין חיבור — מקליטים מקומית. התמלול יתבצע כשתחזור לרשת.",
     "dataEncryptedBanner": "הנתונים שלך מאובטחים כברירת מחדל בהצפנה חזקה, ואתה שולט באופן שבו הם נשמרים ומשמשים.",
     "rayBanMetaMicPickerTitle": "בחירת המיקרופון של Ray-Ban Meta",
-    "rayBanMetaMicPickerDescription": "בחרו את מיקרופון ה-Bluetooth של המשקפיים. המוזיקה מושהית בזמן ש-Omi משתמש בו.",
+    "rayBanMetaMicPickerDescription": "בחרו את מיקרופון ה-Bluetooth של המשקפיים. המוזיקה מושהית בזמן ש-Chronicle משתמש בו.",
     "rayBanMetaMicPickerEmpty": "לא נמצאו מיקרופוני Bluetooth. חברו את המשקפיים בהגדרות ה-iPhone ונסו שוב.",
     "rayBanMetaMicPickerLoadError": "לא ניתן היה לטעון את מיקרופוני ה-Bluetooth. ודאו ש-Bluetooth מופעל ונסו שוב.",
     "rayBanMetaMicPickerConnectError": "לא ניתן היה להתחבר למיקרופון הזה. ודאו שהוא מחובר בהגדרות ה-iPhone.",
@@ -10758,14 +10758,14 @@
     "whisperModelSizeMedium": "בינוני",
     "whisperModelSizeSmall": "קטן",
     "whisperModelSizeTiny": "זעיר",
-    "planSheetChooseYourPlan": "בחרו תוכנית כדי לפתוח את Omi ללא הגבלה.",
+    "planSheetChooseYourPlan": "בחרו תוכנית כדי לפתוח את Chronicle ללא הגבלה.",
     "availableOnMacMobileWeb": "זמין ב-Mac, בנייד ובאינטרנט",
     "popularBadge": "פופולרי",
     "worksOnDesktop": "עובד במחשב",
     "noDesktopAccess": "לא עובד במחשב",
     "annualBillingSummary": "{months} חודשים / {price}",
     "monthsFreeBadge": "{count, plural, =1{חודש אחד חינם} other{{count} חודשים חינם}}",
-    "freemiumLimitsIntro": "Omi בחינם, אבל לגרסה החינמית יש מגבלות שמשפיעות על החוויה שלכם:",
+    "freemiumLimitsIntro": "Chronicle בחינם, אבל לגרסה החינמית יש מגבלות שמשפיעות על החוויה שלכם:",
     "downgradeLimitDelayNotRealTime": "עיכוב של 5-7 שניות (לא בזמן אמת)",
     "downgradeToFreemiumAction": "מעבר לגרסה החינמית",
     "getFreeUnlimitedAccess": "קבלו גישה בלתי מוגבלת בחינם",
@@ -10776,11 +10776,11 @@
     "baselineMemory": "זיכרון בסיס",
     "alwaysInContext": "תמיד בהקשר",
     "accountCutoverUpdateRequiredTitle": "נדרש עדכון",
-    "accountCutoverUpdateRequiredMessage": "התקינו את אפליקציית Omi העדכנית כדי להמשיך לאחר העברת החשבון.",
+    "accountCutoverUpdateRequiredMessage": "התקינו את אפליקציית Chronicle העדכנית כדי להמשיך לאחר העברת החשבון.",
     "accountCutoverMigrationInProgressTitle": "העברה בתהליך",
     "accountCutoverMigrationInProgressMessage": "החשבון שלכם בהעברה. תכונות המוצר מושהות עד לסיום ההעברה.",
     "accountCutoverMigrationRollbackMessage": "החשבון שלכם בתחזוקה לאחר ביטול העברה. ייתכן שנתונים חדשים יותר נותרו מבודדים.",
     "accountCutoverOpenStore": "פתחו חנות",
-    "sendRawAudioToOmi": "שליחת שמע גולמי ל-Omi",
-    "sendRawAudioToOmiDescription": "כבו כדי למנוע שליחת שמע גולמי ל-Omi. תמלילים ונתונים הדרושים לתכונות הענן עדיין עשויים להישלח ל-Omi."
+    "sendRawAudioToOmi": "שליחת שמע גולמי ל-Chronicle",
+    "sendRawAudioToOmiDescription": "כבו כדי למנוע שליחת שמע גולמי ל-Chronicle. תמלילים ונתונים הדרושים לתכונות הענן עדיין עשויים להישלח ל-Chronicle."
 }

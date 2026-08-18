@@ -64,7 +64,7 @@ class _ConversationCapturingPageState extends State<ConversationCapturingPage> w
       });
 
       if (provider.havingRecordingDevice) {
-        // Device recording (Omi device)
+        // Device recording (Chronicle device)
         await provider.resumeDeviceRecording();
       } else {
         // Phone mic
@@ -81,7 +81,7 @@ class _ConversationCapturingPageState extends State<ConversationCapturingPage> w
       });
 
       if (provider.havingRecordingDevice) {
-        // Device recording (Omi device)
+        // Device recording (Chronicle device)
         await provider.pauseDeviceRecording();
       } else {
         // Phone mic

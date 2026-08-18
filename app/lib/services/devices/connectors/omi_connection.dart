@@ -100,7 +100,7 @@ class OmiDeviceConnection extends DeviceConnection {
     try {
       final stream = transport.getCharacteristicStream(buttonServiceUuid, buttonTriggerCharacteristicUuid);
 
-      Logger.debug('Subscribed to button stream from Omi Device');
+      Logger.debug('Subscribed to button stream from Chronicle Device');
       final subscription = stream.listen((value) {
         Logger.debug("new button value $value");
         if (value.isNotEmpty) onButtonReceived(value);
@@ -120,7 +120,7 @@ class OmiDeviceConnection extends DeviceConnection {
     try {
       final stream = transport.getCharacteristicStream(omiServiceUuid, audioDataStreamCharacteristicUuid);
 
-      Logger.debug('Subscribed to audioBytes stream from Omi Device');
+      Logger.debug('Subscribed to audioBytes stream from Chronicle Device');
       final subscription = stream.listen((value) {
         if (value.isNotEmpty) onAudioBytesReceived(value);
       });
@@ -625,7 +625,7 @@ class OmiDeviceConnection extends DeviceConnection {
     try {
       final stream = transport.getCharacteristicStream(omiServiceUuid, imageDataStreamCharacteristicUuid);
 
-      Logger.debug('Subscribed to imageBytes stream from Omi Device');
+      Logger.debug('Subscribed to imageBytes stream from Chronicle Device');
       final subscription = stream.listen((value) {
         if (value.isNotEmpty) onImageBytesReceived(value);
       });
@@ -910,7 +910,7 @@ class OmiDeviceConnection extends DeviceConnection {
     }
   }
 
-  /// Get device information from Omi device
+  /// Get device information from Chronicle device
   Future<Map<String, String>> getDeviceInfo() async {
     Map<String, String> deviceInfo = {};
 
@@ -986,7 +986,7 @@ class OmiDeviceConnection extends DeviceConnection {
     // default like '1.0.2' tricked the backend into recommending Omi_CV1_v3.0.5
     // (the only release whose minimum_firmware_required is 1.0.0) to users
     // whose actual firmware was 3.0.19 — see callers for the empty-check guard.
-    deviceInfo['modelNumber'] ??= 'Omi Device';
+    deviceInfo['modelNumber'] ??= 'Chronicle Device';
     deviceInfo['firmwareRevision'] ??= '';
     deviceInfo['hardwareRevision'] ??= 'Seeed Xiao BLE Sense';
     deviceInfo['manufacturerName'] ??= 'Based Hardware';

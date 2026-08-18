@@ -4,7 +4,7 @@ import 'package:omi/backend/schema/bt_device/bt_device.dart';
 /// Ray-Ban DAT build.
 ///
 /// MWDATCore embeds SwiftProtobuf, so the DAT build intentionally omits the
-/// native mcumgr plugin used for Omi pendant firmware updates. OpenGlass uses
+/// native mcumgr plugin used for Chronicle pendant firmware updates. OpenGlass uses
 /// its independent Wi-Fi OTA path and remains available in both builds.
 class FirmwareUpdateBuildPolicy {
   const FirmwareUpdateBuildPolicy({required this.rayBanDat});

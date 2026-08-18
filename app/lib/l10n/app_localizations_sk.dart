@@ -12,7 +12,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get sessionExpiredSignInAgain => 'Platnosť relácie vypršala — prihláste sa znova.';
 
   @override
-  String get appTitle => 'Omi';
+  String get appTitle => 'Chronicle';
 
   @override
   String get conversationTab => 'Konverzácia';
@@ -132,7 +132,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get editPerson => 'Upraviť osobu';
 
   @override
-  String get createPersonHint => 'Vytvorte novú osobu a naučte Omi rozpoznávať aj jej hlas!';
+  String get createPersonHint => 'Vytvorte novú osobu a naučte Chronicle rozpoznávať aj jej hlas!';
 
   @override
   String get speechProfile => 'Rečový Profil';
@@ -171,7 +171,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get couldNotAccessFile => 'Nepodarilo sa pristúpiť k vybranému súboru';
 
   @override
-  String get askOmi => 'Opýtať sa Omi';
+  String get askOmi => 'Opýtať sa Chronicle';
 
   @override
   String get done => 'Hotovo';
@@ -272,7 +272,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get noMessagesYet => 'Zatiaľ žiadne správy!\nPrečo nespustíte konverzáciu?';
 
   @override
-  String get deletingMessages => 'Odstraňovanie vašich správ z pamäte Omi...';
+  String get deletingMessages => 'Odstraňovanie vašich správ z pamäte Chronicle...';
 
   @override
   String get messageCopied => '✨ Správa skopírovaná do schránky';
@@ -302,7 +302,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get maxFilesLimit => 'Môžete nahrať maximálne 4 súbory naraz';
 
   @override
-  String get chatWithOmi => 'Chat s Omi';
+  String get chatWithOmi => 'Chat s Chronicle';
 
   @override
   String get apps => 'Aplikácie';
@@ -333,7 +333,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Nepodarilo sa načítať aplikácie :(\n\nSkontrolujte prosím svoje internetové pripojenie a skúste to znova.';
 
   @override
-  String get aboutOmi => 'O Omi';
+  String get aboutOmi => 'O Chronicle';
 
   @override
   String get privacyPolicy => 'Zásady ochrany osobných údajov';
@@ -454,7 +454,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get developerSettings => 'Nastavenia vývojára';
 
   @override
-  String get getOmiForMac => 'Získať Omi pre Mac';
+  String get getOmiForMac => 'Získať Chronicle pre Mac';
 
   @override
   String get referralProgram => 'Odporúčací program';
@@ -473,7 +473,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get privacyIntro =>
-      'V Omi sa zaväzujeme chrániť vaše súkromie. Táto stránka vám umožňuje kontrolovať, ako sú vaše údaje ukladané a používané.';
+      'V Chronicle sa zaväzujeme chrániť vaše súkromie. Táto stránka vám umožňuje kontrolovať, ako sú vaše údaje ukladané a používané.';
 
   @override
   String get learnMore => 'Dozvedieť sa viac...';
@@ -544,7 +544,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get unpairAndForget => 'Zrušiť párovanie a zabudnúť zariadenie';
 
   @override
-  String get deviceDisconnectedMessage => 'Vaše Omi bolo odpojené 😔';
+  String get deviceDisconnectedMessage => 'Vaše Chronicle bolo odpojené 😔';
 
   @override
   String get deviceUnpairedMessage =>
@@ -562,7 +562,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get connectDeviceMessage =>
-      'Pripojte svoje zariadenie Omi pre prístup\nk nastaveniam a prispôsobeniu zariadenia';
+      'Pripojte svoje zariadenie Chronicle pre prístup\nk nastaveniam a prispôsobeniu zariadenia';
 
   @override
   String get deviceInfoSection => 'Informácie o zariadení';
@@ -692,7 +692,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get docs => 'Dokumentácia';
 
   @override
-  String get yourOmiInsights => 'Vaše štatistiky Omi';
+  String get yourOmiInsights => 'Vaše štatistiky Chronicle';
 
   @override
   String get today => 'Dnes';
@@ -711,13 +711,13 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get startConversationToSeeInsights =>
-      'Začnite konverzáciu s Omi,\naby ste tu videli svoje štatistiky využitia.';
+      'Začnite konverzáciu s Chronicle,\naby ste tu videli svoje štatistiky využitia.';
 
   @override
   String get listening => 'Počúvanie';
 
   @override
-  String get listeningSubtitle => 'Celkový čas, počas ktorého Omi aktívne počúvalo.';
+  String get listeningSubtitle => 'Celkový čas, počas ktorého Chronicle aktívne počúvalo.';
 
   @override
   String get understanding => 'Porozumenie';
@@ -768,19 +768,19 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Zdieľam svoje štatistiky Omi! (omi.me - váš AI asistent vždy po ruke)';
+  String get shareStatsMessage => 'Zdieľam svoje štatistiky Chronicle! (omi.me - váš AI asistent vždy po ruke)';
 
   @override
-  String get sharePeriodToday => 'Dnes Omi:';
+  String get sharePeriodToday => 'Dnes Chronicle:';
 
   @override
-  String get sharePeriodMonth => 'Tento mesiac Omi:';
+  String get sharePeriodMonth => 'Tento mesiac Chronicle:';
 
   @override
-  String get sharePeriodYear => 'Tento rok Omi:';
+  String get sharePeriodYear => 'Tento rok Chronicle:';
 
   @override
-  String get sharePeriodAllTime => 'Doteraz Omi:';
+  String get sharePeriodAllTime => 'Doteraz Chronicle:';
 
   @override
   String shareStatsListened(String minutes) {
@@ -815,7 +815,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get noLogFilesFound => 'Nenašli sa žiadne súbory denníka.';
 
   @override
-  String get omiDebugLog => 'Omi debug log';
+  String get omiDebugLog => 'Chronicle debug log';
 
   @override
   String get logShared => 'Log bol zdieľaný';
@@ -839,7 +839,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get exportDataDesc => 'Exportovať konverzácie do JSON súboru';
 
   @override
-  String get exportedConversations => 'Exportované konverzácie z Omi';
+  String get exportedConversations => 'Exportované konverzácie z Chronicle';
 
   @override
   String get exportShared => 'Export bol zdieľaný';
@@ -1016,7 +1016,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get addWordsDesc => 'Mená, výrazy alebo neobvyklé slová';
 
   @override
-  String get vocabularyHint => 'Omi, Callie, OpenAI';
+  String get vocabularyHint => 'Chronicle, Callie, OpenAI';
 
   @override
   String get connect => 'Pripojiť';
@@ -1061,7 +1061,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String authAccessMessage(String appName) {
-    return 'Budete musieť autorizovať Omi na prístup k vašim údajom $appName. Toto otvorí váš prehliadač pre autentifikáciu.';
+    return 'Budete musieť autorizovať Chronicle na prístup k vašim údajom $appName. Toto otvorí váš prehliadač pre autentifikáciu.';
   }
 
   @override
@@ -1157,7 +1157,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get editName => 'Upraviť meno';
 
   @override
-  String get howShouldOmiCallYou => 'Ako by vás malo Omi oslovovať?';
+  String get howShouldOmiCallYou => 'Ako by vás malo Chronicle oslovovať?';
 
   @override
   String get enterYourName => 'Zadajte svoje meno';
@@ -1428,7 +1428,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String authorizeOmiForTasks(String appName) {
-    return 'Budete musieť autorizovať Omi na vytváranie úloh vo vašom účte $appName. Toto otvorí váš prehliadač pre autentifikáciu.';
+    return 'Budete musieť autorizovať Chronicle na vytváranie úloh vo vašom účte $appName. Toto otvorí váš prehliadač pre autentifikáciu.';
   }
 
   @override
@@ -1469,7 +1469,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get freeMinutesMonth => '300 bezplatných minút/mesiac je zahrnutých. Neobmedzené s ';
 
   @override
-  String get omiUnlimited => 'Omi Unlimited';
+  String get omiUnlimited => 'Chronicle Unlimited';
 
   @override
   String get hostRequired => 'Hostiteľ je povinný';
@@ -1587,11 +1587,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String deviceUsesCodec(String device, String reason) {
-    return '$device používa $reason. Bude použité Omi.';
+    return '$device používa $reason. Bude použité Chronicle.';
   }
 
   @override
-  String get omiTranscription => 'Omi Prepis';
+  String get omiTranscription => 'Chronicle Prepis';
 
   @override
   String get bestInClassTranscription => 'Najlepší prepis v triede s nulovou konfiguráciou';
@@ -1743,7 +1743,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get bluetoothNeeded =>
-      'Omi potrebuje Bluetooth na pripojenie k vášmu nositeľnému zariadeniu. Povoľte prosím Bluetooth a skúste to znova.';
+      'Chronicle potrebuje Bluetooth na pripojenie k vášmu nositeľnému zariadeniu. Povoľte prosím Bluetooth a skúste to znova.';
 
   @override
   String get contactSupport => 'Kontaktovať podporu?';
@@ -1758,7 +1758,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get backgroundActivity => 'Aktivita na pozadí';
 
   @override
-  String get backgroundActivityDesc => 'Nechajte Omi bežať na pozadí pre lepšiu stabilitu';
+  String get backgroundActivityDesc => 'Nechajte Chronicle bežať na pozadí pre lepšiu stabilitu';
 
   @override
   String get locationAccess => 'Prístup k polohe';
@@ -1787,13 +1787,13 @@ class AppLocalizationsSk extends AppLocalizations {
       'Prejdite do nastavení zariadenia a nastavte povolenie polohy na \"Vždy povoliť\"';
 
   @override
-  String get lovingOmi => 'Páči sa vám Omi?';
+  String get lovingOmi => 'Páči sa vám Chronicle?';
 
   @override
   String get maybeLater => 'Možno neskôr';
 
   @override
-  String get speechProfileIntro => 'Omi potrebuje spoznať vaše ciele a váš hlas. Neskôr to budete môcť zmeniť.';
+  String get speechProfileIntro => 'Chronicle potrebuje spoznať vaše ciele a váš hlas. Neskôr to budete môcť zmeniť.';
 
   @override
   String get getStarted => 'Začať';
@@ -1848,7 +1848,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get tryAgain => 'Skúsiť znova';
 
   @override
-  String get connectOmiOmiGlass => 'Pripojiť Omi / OmiGlass';
+  String get connectOmiOmiGlass => 'Pripojiť Chronicle / OmiGlass';
 
   @override
   String get continueWithoutDevice => 'Pokračovať bez zariadenia';
@@ -1885,7 +1885,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get termsOfUse => 'Podmienky používania';
 
   @override
-  String get omiYourAiCompanion => 'Omi – Váš AI spoločník';
+  String get omiYourAiCompanion => 'Chronicle – Váš AI spoločník';
 
   @override
   String get captureEveryMoment =>
@@ -1902,7 +1902,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get permissionGrantedNow =>
-      'Povolenie bolo udelené! Teraz:\n\nOtvorte aplikáciu Omi na hodinkách a ťuknite na \"Pokračovať\" nižšie';
+      'Povolenie bolo udelené! Teraz:\n\nOtvorte aplikáciu Chronicle na hodinkách a ťuknite na \"Pokračovať\" nižšie';
 
   @override
   String get needMicrophonePermission =>
@@ -1916,7 +1916,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get troubleshootingSteps =>
-      'Riešenie problémov:\n\n1. Uistite sa, že Omi je nainštalované na vašich hodinkách\n2. Otvorte aplikáciu Omi na hodinkách\n3. Hľadajte vyskakovacie okno s povolením\n4. Ťuknite na \"Povoliť\", keď sa zobrazí\n5. Aplikácia na hodinkách sa zatvorí - znovu ju otvorte\n6. Vráťte sa a ťuknite na \"Pokračovať\" na vašom iPhone';
+      'Riešenie problémov:\n\n1. Uistite sa, že Chronicle je nainštalované na vašich hodinkách\n2. Otvorte aplikáciu Chronicle na hodinkách\n3. Hľadajte vyskakovacie okno s povolením\n4. Ťuknite na \"Povoliť\", keď sa zobrazí\n5. Aplikácia na hodinkách sa zatvorí - znovu ju otvorte\n6. Vráťte sa a ťuknite na \"Pokračovať\" na vašom iPhone';
 
   @override
   String get recordingStartedSuccessfully => 'Nahrávanie bolo úspešne spustené!';
@@ -2068,16 +2068,16 @@ class AppLocalizationsSk extends AppLocalizations {
   String get addFirstMemory => 'Pridajte svoju prvú spomienku';
 
   @override
-  String get clearMemoryTitle => 'Vymazať pamäť Omi';
+  String get clearMemoryTitle => 'Vymazať pamäť Chronicle';
 
   @override
-  String get clearMemoryMessage => 'Naozaj chcete vymazať pamäť Omi? Túto akciu nie je možné vrátiť späť.';
+  String get clearMemoryMessage => 'Naozaj chcete vymazať pamäť Chronicle? Túto akciu nie je možné vrátiť späť.';
 
   @override
   String get clearMemoryButton => 'Vymazať pamäť';
 
   @override
-  String get memoryClearedSuccess => 'Pamäť Omi o vás bola vymazaná';
+  String get memoryClearedSuccess => 'Pamäť Chronicle o vás bola vymazaná';
 
   @override
   String get noMemoriesToDelete => 'Žiadne spomienky na odstránenie';
@@ -2237,7 +2237,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get translationNoticeMessage =>
-      'Omi prekladá konverzácie do vášho hlavného jazyka. Aktualizujte to kedykoľvek v Nastavenia → Profily.';
+      'Chronicle prekladá konverzácie do vášho hlavného jazyka. Aktualizujte to kedykoľvek v Nastavenia → Profily.';
 
   @override
   String get pleaseCheckInternetConnection => 'Skontrolujte prosím pripojenie k internetu a skúste to znova';
@@ -2420,7 +2420,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get privacyPolicyTitle => 'Zásady ochrany osobných údajov';
 
   @override
-  String get omiSttProvider => 'Omi';
+  String get omiSttProvider => 'Chronicle';
 
   @override
   String labelCopied(String label) {
@@ -2565,7 +2565,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get checksForAudioFiles => 'Kontroluje zvukové súbory na SD karte';
 
   @override
-  String get omiSyncsAudioFiles => 'Omi potom synchronizuje zvukové súbory so serverom';
+  String get omiSyncsAudioFiles => 'Chronicle potom synchronizuje zvukové súbory so serverom';
 
   @override
   String get serverProcessesAudio => 'Server spracováva zvukové súbory a vytvára spomienky';
@@ -2575,10 +2575,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get welcomeToOmiDescription =>
-      'Vitajte v Omi! Váš AI spoločník je pripravený pomôcť vám s rozhovormi, úlohami a oveľa viac.';
+      'Vitajte v Chronicle! Váš AI spoločník je pripravený pomôcť vám s rozhovormi, úlohami a oveľa viac.';
 
   @override
-  String get startUsingOmi => 'Začať používať Omi';
+  String get startUsingOmi => 'Začať používať Chronicle';
 
   @override
   String get back => 'Späť';
@@ -2654,7 +2654,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get reviewAndManageConversations => 'Prezrite si a spravujte svoje zaznamenané konverzácie';
 
   @override
-  String get startCapturingConversations => 'Začnite zachytávať konverzácie pomocou zariadenia Omi a uvidíte ich tu.';
+  String get startCapturingConversations => 'Začnite zachytávať konverzácie pomocou zariadenia Chronicle a uvidíte ich tu.';
 
   @override
   String get useMobileAppToCapture => 'Použite mobilnú aplikáciu na zachytenie zvuku';
@@ -2669,7 +2669,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get showAll => 'Zobraziť všetko →';
 
   @override
-  String get noTasksForToday => 'Žiadne úlohy na dnes.\nSpýtajte sa Omi na ďalšie úlohy alebo ich vytvorte manuálne.';
+  String get noTasksForToday => 'Žiadne úlohy na dnes.\nSpýtajte sa Chronicle na ďalšie úlohy alebo ich vytvorte manuálne.';
 
   @override
   String get dailyScore => 'DENNÉ SKÓRE';
@@ -2818,7 +2818,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get createNewApp => 'Vytvoriť novú aplikáciu';
 
   @override
-  String get buildSubmitCustomOmiApp => 'Vytvorte a odošlite svoju vlastnú Omi aplikáciu';
+  String get buildSubmitCustomOmiApp => 'Vytvorte a odošlite svoju vlastnú Chronicle aplikáciu';
 
   @override
   String get submittingYourApp => 'Odosielanie vašej aplikácie...';
@@ -2865,7 +2865,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get submitAppTermsAgreement =>
-      'Odoslaním tejto aplikácie súhlasím so Zmluvnými podmienkami a Zásadami ochrany osobných údajov Omi AI';
+      'Odoslaním tejto aplikácie súhlasím so Zmluvnými podmienkami a Zásadami ochrany osobných údajov Chronicle AI';
 
   @override
   String get submitApp => 'Odoslať aplikáciu';
@@ -2910,7 +2910,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get dataAccessWarning =>
-      'Táto aplikácia bude mať prístup k vašim údajom. Omi AI nie je zodpovedný za to, ako táto aplikácia používa, upravuje alebo maže vaše údaje';
+      'Táto aplikácia bude mať prístup k vašim údajom. Chronicle AI nie je zodpovedný za to, ako táto aplikácia používa, upravuje alebo maže vaše údaje';
 
   @override
   String get installApp => 'Inštalovať aplikáciu';
@@ -3256,7 +3256,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get upgradeToPro => 'Upgrade na Pro';
 
   @override
-  String get getOmiDevice => 'Získať zariadenie Omi';
+  String get getOmiDevice => 'Získať zariadenie Chronicle';
 
   @override
   String get wearableAiCompanion => 'Nositeľný AI spoločník';
@@ -3322,7 +3322,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get setAllMemoriesToPublic => 'Nastaviť všetky spomienky na verejnú viditeľnosť';
 
   @override
-  String get permanentlyRemoveAllMemories => 'Trvalo odstrániť všetky spomienky z Omi';
+  String get permanentlyRemoveAllMemories => 'Trvalo odstrániť všetky spomienky z Chronicle';
 
   @override
   String get allMemoriesAreNowPrivate => 'Všetky spomienky sú teraz súkromné';
@@ -3331,18 +3331,18 @@ class AppLocalizationsSk extends AppLocalizations {
   String get allMemoriesAreNowPublic => 'Všetky spomienky sú teraz verejné';
 
   @override
-  String get clearOmisMemory => 'Vymazať pamäť Omi';
+  String get clearOmisMemory => 'Vymazať pamäť Chronicle';
 
   @override
   String clearMemoryConfirmation(int count) {
-    return 'Naozaj chcete vymazať pamäť Omi? Túto akciu nie je možné vrátiť späť a trvalo odstráni všetkých $count spomienok.';
+    return 'Naozaj chcete vymazať pamäť Chronicle? Túto akciu nie je možné vrátiť späť a trvalo odstráni všetkých $count spomienok.';
   }
 
   @override
-  String get omisMemoryCleared => 'Pamäť Omi o vás bola vymazaná';
+  String get omisMemoryCleared => 'Pamäť Chronicle o vás bola vymazaná';
 
   @override
-  String get welcomeToOmi => 'Vitajte v Omi';
+  String get welcomeToOmi => 'Vitajte v Chronicle';
 
   @override
   String get continueWithApple => 'Pokračovať s Apple';
@@ -3388,7 +3388,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chooseYourLanguage => 'Vyberte si svoj jazyk';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Vyberte si preferovaný jazyk pre najlepší Omi zážitok';
+  String get selectPreferredLanguageForBestExperience => 'Vyberte si preferovaný jazyk pre najlepší Chronicle zážitok';
 
   @override
   String get searchLanguages => 'Hľadať jazyky...';
@@ -3407,7 +3407,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get tellUsHowYouWouldLikeToBeAddressed =>
-      'Povedzte nám, ako by ste chceli byť oslovovaní. To pomáha prispôsobiť váš Omi zážitok.';
+      'Povedzte nám, ako by ste chceli byť oslovovaní. To pomáha prispôsobiť váš Chronicle zážitok.';
 
   @override
   String charactersCount(int count) {
@@ -3415,7 +3415,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Povoľte funkcie pre najlepší Omi zážitok na vašom zariadení.';
+  String get enableFeaturesForBestExperience => 'Povoľte funkcie pre najlepší Chronicle zážitok na vašom zariadení.';
 
   @override
   String get microphoneAccess => 'Prístup k mikrofónu';
@@ -3425,7 +3425,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get microphoneAccessDescription =>
-      'Omi potrebuje prístup k mikrofónu na nahrávanie vašich konverzácií a poskytovanie prepisov.';
+      'Chronicle potrebuje prístup k mikrofónu na nahrávanie vašich konverzácií a poskytovanie prepisov.';
 
   @override
   String get screenRecording => 'Záznam obrazovky';
@@ -3435,7 +3435,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get screenRecordingDescription =>
-      'Omi potrebuje povolenie na záznam obrazovky na zachytenie systémového zvuku z vašich schôdzok v prehliadači.';
+      'Chronicle potrebuje povolenie na záznam obrazovky na zachytenie systémového zvuku z vašich schôdzok v prehliadači.';
 
   @override
   String get accessibility => 'Prístupnosť';
@@ -3445,7 +3445,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get accessibilityDescription =>
-      'Omi potrebuje povolenie prístupnosti na detekciu, kedy sa pripájate k schôdzkam Zoom, Meet alebo Teams vo vašom prehliadači.';
+      'Chronicle potrebuje povolenie prístupnosti na detekciu, kedy sa pripájate k schôdzkam Zoom, Meet alebo Teams vo vašom prehliadači.';
 
   @override
   String get pleaseWait => 'Prosím čakajte...';
@@ -3478,10 +3478,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get voiceAndPeople => 'Hlas a Ľudia';
 
   @override
-  String get teachOmiYourVoice => 'Naučiť Omi svoj hlas';
+  String get teachOmiYourVoice => 'Naučiť Chronicle svoj hlas';
 
   @override
-  String get tellOmiWhoSaidIt => 'Povedzte Omi, kto to povedal 🗣️';
+  String get tellOmiWhoSaidIt => 'Povedzte Chronicle, kto to povedal 🗣️';
 
   @override
   String get payment => 'Platba';
@@ -3493,7 +3493,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get preferences => 'Predvoľby';
 
   @override
-  String get helpImproveOmiBySharing => 'Pomôžte vylepšiť Omi zdieľaním anonymizovaných analytických dát';
+  String get helpImproveOmiBySharing => 'Pomôžte vylepšiť Chronicle zdieľaním anonymizovaných analytických dát';
 
   @override
   String get deleteAccount => 'Zmazať Účet';
@@ -3518,7 +3518,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get mcpDescription =>
-      'Na pripojenie Omi k iným aplikáciám na čítanie, vyhľadávanie a správu vašich spomienok a konverzácií. Vytvorte kľúč na začatie.';
+      'Na pripojenie Chronicle k iným aplikáciám na čítanie, vyhľadávanie a správu vašich spomienok a konverzácií. Vytvorte kľúč na začatie.';
 
   @override
   String get apiKeys => 'API kľúče';
@@ -3553,7 +3553,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Spustí sa pri vytvorení denného súhrnu.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Vyskúšajte najnovšie experimentálne funkcie od tímu Omi.';
+  String get tryLatestExperimentalFeatures => 'Vyskúšajte najnovšie experimentálne funkcie od tímu Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Diagnostický stav služby prepisu';
@@ -3624,7 +3624,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get letOmiChooseAutomatically => 'Nechajte Omi automaticky vybrať najlepšiu aplikáciu';
+  String get letOmiChooseAutomatically => 'Nechajte Chronicle automaticky vybrať najlepšiu aplikáciu';
 
   @override
   String get deleteConversationConfirmation =>
@@ -3823,7 +3823,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get customVocabularyHeader => 'VLASTNÝ SLOVNÍK';
 
   @override
-  String get addWordsDescription => 'Pridajte slová, ktoré má Omi rozpoznávať počas prepisu.';
+  String get addWordsDescription => 'Pridajte slová, ktoré má Chronicle rozpoznávať počas prepisu.';
 
   @override
   String get enterWordsHint => 'Zadajte slová (oddelené čiarkami)';
@@ -3908,7 +3908,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Tým sa vymažú všetky odvodené údaje grafu znalostí. Vaše pôvodné spomienky zostanú v bezpečí.';
 
   @override
-  String get connectOmiWithAI => 'Pripojte Omi k AI asistentom';
+  String get connectOmiWithAI => 'Pripojte Chronicle k AI asistentom';
 
   @override
   String get noAPIKeys => 'Žiadne kľúče API. Vytvorte jeden na začatie.';
@@ -3941,7 +3941,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get holdOnPreparingForm => 'Počkajte, pripravujeme pre vás formulár';
 
   @override
-  String get bySubmittingYouAgreeToOmi => 'Odoslaním súhlasíte s Omi ';
+  String get bySubmittingYouAgreeToOmi => 'Odoslaním súhlasíte s Chronicle ';
 
   @override
   String get termsAndPrivacyPolicy => 'Podmienky a Zásady ochrany osobných údajov';
@@ -4101,7 +4101,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get issueActivatingApp => 'Pri aktivácii tejto aplikácie došlo k problému. Skúste to prosím znova.';
 
   @override
-  String get dataAccessNoticeDescription => 'Omi pristupuje k vašim údajom len na zlepšenie vášho zážitku';
+  String get dataAccessNoticeDescription => 'Chronicle pristupuje k vašim údajom len na zlepšenie vášho zážitku';
 
   @override
   String get copyUrl => 'Kopírovať URL';
@@ -4186,14 +4186,14 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get omiApiKeys => 'Omi API kľúče';
+  String get omiApiKeys => 'Chronicle API kľúče';
 
   @override
   String get apiKeysDescription =>
       'API kľúče sa používajú na overenie, keď vaša aplikácia komunikuje so serverom OMI. Umožňujú vašej aplikácii vytvárať spomienky a bezpečne pristupovať k ďalším službám OMI.';
 
   @override
-  String get aboutOmiApiKeys => 'O Omi API kľúčoch';
+  String get aboutOmiApiKeys => 'O Chronicle API kľúčoch';
 
   @override
   String get yourNewKey => 'Váš nový kľúč:';
@@ -4324,7 +4324,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get e2eeDescription =>
-      'End-to-end šifrovanie je zlatý štandard ochrany súkromia. Keď je povolené, vaše údaje sú šifrované na vašom zariadení pred odoslaním na naše servery. To znamená, že nikto, ani Omi, nemôže pristupovať k vášmu obsahu.';
+      'End-to-end šifrovanie je zlatý štandard ochrany súkromia. Keď je povolené, vaše údaje sú šifrované na vašom zariadení pred odoslaním na naše servery. To znamená, že nikto, ani Chronicle, nemôže pristupovať k vášmu obsahu.';
 
   @override
   String get importantTradeoffs => 'Dôležité kompromisy:';
@@ -4359,7 +4359,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get secureEncryptionDescription =>
-      'Vaše údaje sú šifrované kľúčom jedinečným pre vás na našich serveroch hostovaných v Google Cloud. To znamená, že váš surový obsah je neprístupný nikomu, vrátane zamestnancov Omi alebo Google, priamo z databázy.';
+      'Vaše údaje sú šifrované kľúčom jedinečným pre vás na našich serveroch hostovaných v Google Cloud. To znamená, že váš surový obsah je neprístupný nikomu, vrátane zamestnancov Chronicle alebo Google, priamo z databázy.';
 
   @override
   String get endToEndEncryption => 'End-to-end šifrovanie';
@@ -4428,13 +4428,13 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get omiTraining => 'Školenie Omi';
+  String get omiTraining => 'Školenie Chronicle';
 
   @override
   String get trainingDataProgram => 'Program tréningových dát';
 
   @override
-  String get getOmiUnlimitedFree => 'Získajte Omi Unlimited zadarmo prispením vašich dát na trénovanie AI modelov.';
+  String get getOmiUnlimitedFree => 'Získajte Chronicle Unlimited zadarmo prispením vašich dát na trénovanie AI modelov.';
 
   @override
   String get trainingDataBullets =>
@@ -4519,7 +4519,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get youAreOnUnlimitedPlan => 'Ste na pláne Unlimited.';
 
   @override
-  String get yourOmiUnleashed => 'Váš Omi, uvoľnený. Prejdite na neobmedzený pre nekonečné možnosti.';
+  String get yourOmiUnleashed => 'Váš Chronicle, uvoľnený. Prejdite na neobmedzený pre nekonečné možnosti.';
 
   @override
   String planEndedOn(String date) {
@@ -4543,10 +4543,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get unlimitedConversations => 'Neobmedzené konverzácie';
 
   @override
-  String get askOmiAnything => 'Opýtajte sa Omi čokoľvek o svojom živote';
+  String get askOmiAnything => 'Opýtajte sa Chronicle čokoľvek o svojom živote';
 
   @override
-  String get unlockOmiInfiniteMemory => 'Odomknite nekonečnú pamäť Omi';
+  String get unlockOmiInfiniteMemory => 'Odomknite nekonečnú pamäť Chronicle';
 
   @override
   String get youreOnAnnualPlan => 'Ste na ročnom pláne';
@@ -4600,7 +4600,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get privacyIntroText =>
-      'V Omi berieme vaše súkromie veľmi vážne. Chceme byť transparentní ohľadom údajov, ktoré zhromažďujeme a ako ich používame. Tu je to, čo potrebujete vedieť:';
+      'V Chronicle berieme vaše súkromie veľmi vážne. Chceme byť transparentní ohľadom údajov, ktoré zhromažďujeme a ako ich používame. Tu je to, čo potrebujete vedieť:';
 
   @override
   String get whatWeTrack => 'Čo sledujeme';
@@ -4616,11 +4616,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get commitmentText =>
-      'Zaväzujeme sa používať zhromaždené údaje len na to, aby sme z Omi urobili lepší produkt pre vás. Vaše súkromie a dôvera sú pre nás prvoradé.';
+      'Zaväzujeme sa používať zhromaždené údaje len na to, aby sme z Chronicle urobili lepší produkt pre vás. Vaše súkromie a dôvera sú pre nás prvoradé.';
 
   @override
   String get thankYouText =>
-      'Ďakujeme, že ste cenený používateľ Omi. Ak máte akékoľvek otázky alebo obavy, neváhajte nás kontaktovať na team@basedhardware.com.';
+      'Ďakujeme, že ste cenený používateľ Chronicle. Ak máte akékoľvek otázky alebo obavy, neváhajte nás kontaktovať na team@basedhardware.com.';
 
   @override
   String get password => 'Heslo';
@@ -4704,7 +4704,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get minutes => 'minút';
 
   @override
-  String get omiHas => 'Omi má:';
+  String get omiHas => 'Chronicle má:';
 
   @override
   String get premiumMinutesUsed => 'Prémiové minúty vyčerpané.';
@@ -4797,7 +4797,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get howPeopleWorks =>
-      'Po vytvorení osoby môžete prejsť na prepis konverzácie a priradiť im zodpovedajúce segmenty, takto bude Omi schopné rozpoznať aj ich reč!';
+      'Po vytvorení osoby môžete prejsť na prepis konverzácie a priradiť im zodpovedajúce segmenty, takto bude Chronicle schopné rozpoznať aj ich reč!';
 
   @override
   String get tapToDelete => 'Klepnite pre odstránenie';
@@ -5077,7 +5077,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get enableApps => 'Povoliť aplikácie';
 
   @override
-  String get omiAppName => 'Omi';
+  String get omiAppName => 'Chronicle';
 
   @override
   String get showMore => 'zobraziť viac ↓';
@@ -5101,18 +5101,18 @@ class AppLocalizationsSk extends AppLocalizations {
   String get checkingAppleWatch => 'Kontrola Apple Watch...';
 
   @override
-  String get installOmiOnAppleWatch => 'Nainštalujte Omi na\nApple Watch';
+  String get installOmiOnAppleWatch => 'Nainštalujte Chronicle na\nApple Watch';
 
   @override
   String get installOmiOnAppleWatchDescription =>
-      'Ak chcete používať Apple Watch s Omi, musíte najprv nainštalovať aplikáciu Omi na hodinky.';
+      'Ak chcete používať Apple Watch s Chronicle, musíte najprv nainštalovať aplikáciu Chronicle na hodinky.';
 
   @override
-  String get openOmiOnAppleWatch => 'Otvorte Omi na\nApple Watch';
+  String get openOmiOnAppleWatch => 'Otvorte Chronicle na\nApple Watch';
 
   @override
   String get openOmiOnAppleWatchDescription =>
-      'Aplikácia Omi je nainštalovaná na Apple Watch. Otvorte ju a klepnite na Štart.';
+      'Aplikácia Chronicle je nainštalovaná na Apple Watch. Otvorte ju a klepnite na Štart.';
 
   @override
   String get openWatchApp => 'Otvoriť aplikáciu Watch';
@@ -5122,14 +5122,14 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get unableToOpenWatchApp =>
-      'Aplikáciu Apple Watch sa nepodarilo otvoriť. Manuálne otvorte aplikáciu Watch na Apple Watch a nainštalujte Omi zo sekcie \"Dostupné aplikácie\".';
+      'Aplikáciu Apple Watch sa nepodarilo otvoriť. Manuálne otvorte aplikáciu Watch na Apple Watch a nainštalujte Chronicle zo sekcie \"Dostupné aplikácie\".';
 
   @override
   String get appleWatchConnectedSuccessfully => 'Apple Watch úspešne pripojené!';
 
   @override
   String get appleWatchNotReachable =>
-      'Apple Watch stále nie je dostupné. Uistite sa, že aplikácia Omi je na hodinkách otvorená.';
+      'Apple Watch stále nie je dostupné. Uistite sa, že aplikácia Chronicle je na hodinkách otvorená.';
 
   @override
   String errorCheckingConnection(String error) {
@@ -5216,7 +5216,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get welcomeBackSimple => 'Vitajte späť';
 
   @override
-  String get addVocabularyDescription => 'Pridajte slová, ktoré má Omi rozpoznať počas prepisu.';
+  String get addVocabularyDescription => 'Pridajte slová, ktoré má Chronicle rozpoznať počas prepisu.';
 
   @override
   String get enterWordsCommaSeparated => 'Zadajte slová (oddelené čiarkou)';
@@ -5377,13 +5377,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get wrappedNoDataAvailable => 'Žiadne údaje nie sú k dispozícii';
 
   @override
-  String get wrappedOmiLifeRecap => 'Omi zhrnutie života';
+  String get wrappedOmiLifeRecap => 'Chronicle zhrnutie života';
 
   @override
   String get wrappedSwipeUpToBegin => 'Potiahni nahor pre začiatok';
 
   @override
-  String get wrappedShareText => 'Môj 2025, zaznamenaný Omi ✨ omi.me/wrapped';
+  String get wrappedShareText => 'Môj 2025, zaznamenaný Chronicle ✨ omi.me/wrapped';
 
   @override
   String get wrappedFailedToShare => 'Zdieľanie zlyhalo. Skúste to znova.';
@@ -5404,7 +5404,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get wrappedMy2025 => 'Môj 2025';
 
   @override
-  String get wrappedRememberedByOmi => 'zaznamenaný Omi';
+  String get wrappedRememberedByOmi => 'zaznamenaný Chronicle';
 
   @override
   String get wrappedMostFunDay => 'Najzábavnejší';
@@ -5620,7 +5620,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get notificationFrequency => 'Frekvencia upozornení';
 
   @override
-  String get controlNotificationFrequency => 'Ovládajte, ako často vám Omi posiela proaktívne oznámenia.';
+  String get controlNotificationFrequency => 'Ovládajte, ako často vám Chronicle posiela proaktívne oznámenia.';
 
   @override
   String get yourScore => 'Vaše skóre';
@@ -5646,7 +5646,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get notificationFrequencyDescription =>
-      'Ovládajte, ako často vám Omi posiela proaktívne upozornenia a pripomienky.';
+      'Ovládajte, ako často vám Chronicle posiela proaktívne upozornenia a pripomienky.';
 
   @override
   String get sliderOff => 'Vyp.';
@@ -5848,7 +5848,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get noRecordings => 'Žiadne nahrávky';
 
   @override
-  String get audioFromOmiWillAppearHere => 'Audio z vášho zariadenia Omi sa zobrazí tu';
+  String get audioFromOmiWillAppearHere => 'Audio z vášho zariadenia Chronicle sa zobrazí tu';
 
   @override
   String get deleteProcessed => 'Odstrániť spracované';
@@ -5968,7 +5968,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get batteryUsageHigher => 'Spotreba batérie bude vyššia ako pri cloudovom prepise.';
 
   @override
-  String get considerOmiCloud => 'Zvážte použitie Omi Cloud pre lepší výkon.';
+  String get considerOmiCloud => 'Zvážte použitie Chronicle Cloud pre lepší výkon.';
 
   @override
   String get highResourceUsage => 'Vysoká spotreba zdrojov';
@@ -6127,7 +6127,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get omiTranscriptionOptimized =>
-      'Vstavaný živý prepis Omi je optimalizovaný pre konverzácie v reálnom čase s automatickou detekciou rečníkov a diarizáciou.';
+      'Vstavaný živý prepis Chronicle je optimalizovaný pre konverzácie v reálnom čase s automatickou detekciou rečníkov a diarizáciou.';
 
   @override
   String get reset => 'Resetovať';
@@ -6221,7 +6221,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get setupQuestionProfession => 'Aká je vaša profesia?';
 
   @override
-  String get setupQuestionUsage => 'Kde budete Omi najviac používať?';
+  String get setupQuestionUsage => 'Kde budete Chronicle najviac používať?';
 
   @override
   String get setupQuestionAge => 'Aký je váš vek?';
@@ -6735,24 +6735,24 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get batteryFullyChargedTitle => 'Omi je plne nabitý';
+  String get batteryFullyChargedTitle => 'Chronicle je plne nabitý';
 
   @override
-  String get batteryFullyChargedBody => 'Vaše zariadenie Omi je plne nabité. Môžete ho odpojiť!';
+  String get batteryFullyChargedBody => 'Vaše zariadenie Chronicle je plne nabité. Môžete ho odpojiť!';
 
   @override
-  String get deviceDisconnectedNotificationTitle => 'Vaše zariadenie Omi bolo odpojené';
+  String get deviceDisconnectedNotificationTitle => 'Vaše zariadenie Chronicle bolo odpojené';
 
   @override
   String get deviceDisconnectedNotificationBody =>
-      'Prosím, znova sa pripojte, aby ste mohli pokračovať v používaní Omi.';
+      'Prosím, znova sa pripojte, aby ste mohli pokračovať v používaní Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'K dispozícii je aktualizácia firmvéru';
 
   @override
   String firmwareUpdateAvailableDescription(String version) {
-    return 'Pre vaše zariadenie Omi je k dispozícii nová aktualizácia firmvéru ($version). Chcete aktualizovať teraz?';
+    return 'Pre vaše zariadenie Chronicle je k dispozícii nová aktualizácia firmvéru ($version). Chcete aktualizovať teraz?';
   }
 
   @override
@@ -7029,7 +7029,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get nextButton => 'Ďalej';
 
   @override
-  String get connectOmiDevice => 'Pripojiť zariadenie Omi';
+  String get connectOmiDevice => 'Pripojiť zariadenie Chronicle';
 
   @override
   String planSwitchingDescriptionWithTitle(String title) {
@@ -7059,7 +7059,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get transcriptionJsonPlaceholder => 'Tu sa zobrazí JSON prepisu';
 
   @override
-  String get transcriptionSourceOmi => 'Omi';
+  String get transcriptionSourceOmi => 'Chronicle';
 
   @override
   String get pricePlaceholder => '0.00';
@@ -7083,7 +7083,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get actionItemReminderTitle => 'Pripomienka Omi';
+  String get actionItemReminderTitle => 'Pripomienka Chronicle';
 
   @override
   String deviceDisconnectedTitle(String deviceName) {
@@ -7111,7 +7111,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get onboardingComplete => 'Hotovo';
 
   @override
-  String get onboardingWelcomeToOmi => 'Vitajte v Omi';
+  String get onboardingWelcomeToOmi => 'Vitajte v Chronicle';
 
   @override
   String get onboardingTellUsAboutYourself => 'Povedzte nám niečo o sebe';
@@ -7841,19 +7841,19 @@ class AppLocalizationsSk extends AppLocalizations {
   String get reportAnIssue => 'Nahlásiť problém';
 
   @override
-  String get pairingTitleOmi => 'Zapnite Omi';
+  String get pairingTitleOmi => 'Zapnite Chronicle';
 
   @override
   String get pairingDescOmi => 'Stlačte a podržte zariadenie, kým nezavibruje, pre zapnutie.';
 
   @override
-  String get pairingTitleOmiDevkit => 'Prepnite Omi DevKit do režimu párovania';
+  String get pairingTitleOmiDevkit => 'Prepnite Chronicle DevKit do režimu párovania';
 
   @override
   String get pairingDescOmiDevkit => 'Stlačte tlačidlo raz pre zapnutie. LED bude blikať fialovo v režime párovania.';
 
   @override
-  String get pairingTitleOmiGlass => 'Zapnite Omi Glass';
+  String get pairingTitleOmiGlass => 'Zapnite Chronicle Glass';
 
   @override
   String get pairingDescOmiGlass => 'Stlačte a podržte bočné tlačidlo na 3 sekundy pre zapnutie.';
@@ -7896,7 +7896,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get pairingDescAppleWatch =>
-      'Nainštalujte a otvorte aplikáciu Omi na Apple Watch, potom klepnite na Pripojiť v aplikácii.';
+      'Nainštalujte a otvorte aplikáciu Chronicle na Apple Watch, potom klepnite na Pripojiť v aplikácii.';
 
   @override
   String get pairingTitleNeoOne => 'Prepnite Neo One do režimu párovania';
@@ -7991,7 +7991,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Tu je, čo o vás viem';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Táto mapa sa aktualizuje, keď sa Omi učí z vašich konverzácií.';
+  String get onboardingWhatIKnowAboutYouDescription => 'Táto mapa sa aktualizuje, keď sa Chronicle učí z vašich konverzácií.';
 
   @override
   String get apiEnvironment => 'API prostredie';
@@ -8045,7 +8045,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get tasksOverdue => 'Po termíne';
 
   @override
-  String get phoneCallsWithOmi => 'Hovory s Omi';
+  String get phoneCallsWithOmi => 'Hovory s Chronicle';
 
   @override
   String get phoneCallsSubtitle => 'Volajte s prepisom v realnom case';
@@ -8247,11 +8247,11 @@ class AppLocalizationsSk extends AppLocalizations {
   String get showTasksOnHomepage => 'Zobraziť úlohy na domovskej stránke';
 
   @override
-  String get phoneCallsUnlimitedOnly => 'Telefonáty cez Omi';
+  String get phoneCallsUnlimitedOnly => 'Telefonáty cez Chronicle';
 
   @override
   String get phoneCallsUpsellSubtitle =>
-      'Telefonujte cez Omi a získajte prepis v reálnom čase, automatické zhrnutia a ďalšie.';
+      'Telefonujte cez Chronicle a získajte prepis v reálnom čase, automatické zhrnutia a ďalšie.';
 
   @override
   String get phoneCallsUpsellFeature1 => 'Prepis každého hovoru v reálnom čase';
@@ -8371,7 +8371,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get fairUseAboutBody =>
-      'Omi je navrhnutý pre osobné konverzácie, stretnutia a živé interakcie. Používanie sa meria skutočným detegovaným časom reči, nie časom pripojenia. Ak používanie výrazne prekročí bežné vzory pre neosobný obsah, môžu sa uplatniť úpravy.';
+      'Chronicle je navrhnutý pre osobné konverzácie, stretnutia a živé interakcie. Používanie sa meria skutočným detegovaným časom reči, nie časom pripojenia. Ak používanie výrazne prekročí bežné vzory pre neosobný obsah, môžu sa uplatniť úpravy.';
 
   @override
   String fairUseCaseRefCopied(String caseRef) {
@@ -8410,7 +8410,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get improveConnectionContent =>
-      'Vylepšili sme spôsob, akým Omi zostáva pripojené k vášmu zariadeniu. Pre aktiváciu prejdite na stránku Informácie o zariadení, klepnite na \"Odpojiť zariadenie\" a znova spárujte zariadenie.';
+      'Vylepšili sme spôsob, akým Chronicle zostáva pripojené k vášmu zariadeniu. Pre aktiváciu prejdite na stránku Informácie o zariadení, klepnite na \"Odpojiť zariadenie\" a znova spárujte zariadenie.';
 
   @override
   String get improveConnectionAction => 'Rozumiem';
@@ -8421,7 +8421,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get omisStorage => 'Úložisko Omi';
+  String get omisStorage => 'Úložisko Chronicle';
 
   @override
   String get phoneStorage => 'Úložisko telefónu';
@@ -8466,10 +8466,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get omisStorageDesc =>
-      'Keď váš Omi nie je pripojený k telefónu, ukladá zvuk lokálne vo vstavanej pamäti. Nikdy nestratíte nahrávku.';
+      'Keď váš Chronicle nie je pripojený k telefónu, ukladá zvuk lokálne vo vstavanej pamäti. Nikdy nestratíte nahrávku.';
 
   @override
-  String get phoneStorageDesc => 'Keď sa Omi znova pripojí, nahrávky sa automaticky prenesú do telefónu pred nahraním.';
+  String get phoneStorageDesc => 'Keď sa Chronicle znova pripojí, nahrávky sa automaticky prenesú do telefónu pred nahraním.';
 
   @override
   String get cloudStorageDesc => 'Po nahraní sa vaše nahrávky spracujú a prepíšu. Konverzácie budú dostupné do minúty.';
@@ -8497,17 +8497,17 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get permissionsPageDescription =>
-      'Tieto oprávnenia sú kľúčové pre fungovanie Omi. Umožňujú kľúčové funkcie ako upozornenia, zážitky založené na polohe a nahrávanie zvuku.';
+      'Tieto oprávnenia sú kľúčové pre fungovanie Chronicle. Umožňujú kľúčové funkcie ako upozornenia, zážitky založené na polohe a nahrávanie zvuku.';
 
   @override
   String get permissionsRequiredDescription =>
-      'Omi potrebuje niekoľko oprávnení, aby správne fungoval. Prosím, udeľte ich pre pokračovanie.';
+      'Chronicle potrebuje niekoľko oprávnení, aby správne fungoval. Prosím, udeľte ich pre pokračovanie.';
 
   @override
   String get permissionsSetupTitle => 'Získajte najlepší zážitok';
 
   @override
-  String get permissionsSetupDescription => 'Povoľte niekoľko oprávnení, aby Omi mohol fungovať naplno.';
+  String get permissionsSetupDescription => 'Povoľte niekoľko oprávnení, aby Chronicle mohol fungovať naplno.';
 
   @override
   String get permissionsChangeAnytime => 'Môžete to kedykoľvek zmeniť v Nastavenia > Oprávnenia';
@@ -8602,7 +8602,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get feedbackTitleFoundAlternative => 'Na čo prechádzate?';
 
   @override
-  String get feedbackTitleNotUsing => 'Čo by vás primälo používať Omi viac?';
+  String get feedbackTitleNotUsing => 'Čo by vás primälo používať Chronicle viac?';
 
   @override
   String get feedbackSubtitleTooExpensive => 'Vaša spätná väzba nám pomáha nájsť správnu rovnováhu.';
@@ -8620,7 +8620,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get feedbackSubtitleFoundAlternative => 'Radi by sme sa dozvedeli, čo vás zaujalo.';
 
   @override
-  String get feedbackSubtitleNotUsing => 'Chceme, aby bol Omi pre vás užitočnejší.';
+  String get feedbackSubtitleNotUsing => 'Chceme, aby bol Chronicle pre vás užitočnejší.';
 
   @override
   String get deviceDiagnostics => 'Diagnostika zariadenia';
@@ -8800,7 +8800,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get appleHealthManageNote =>
-      'Omi pristupuje k Apple Health prostredníctvom frameworku HealthKit od spoločnosti Apple. Prístup môžete kedykoľvek zrušiť v Nastaveniach iOS.';
+      'Chronicle pristupuje k Apple Health prostredníctvom frameworku HealthKit od spoločnosti Apple. Prístup môžete kedykoľvek zrušiť v Nastaveniach iOS.';
 
   @override
   String get appleHealthConnectCta => 'Pripojiť k Apple Health';
@@ -8815,32 +8815,32 @@ class AppLocalizationsSk extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Hovorte o svojom zdraví';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Pýtajte sa Omi na kroky, spánok, tep a tréningy.';
+  String get appleHealthFeatureChatDesc => 'Pýtajte sa Chronicle na kroky, spánok, tep a tréningy.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Prístup iba na čítanie';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Omi nikdy nezapisuje do Apple Health ani neupravuje vaše údaje.';
+  String get appleHealthFeatureReadOnlyDesc => 'Chronicle nikdy nezapisuje do Apple Health ani neupravuje vaše údaje.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Bezpečná synchronizácia';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Vaše údaje z Apple Health sa súkromne synchronizujú s účtom Omi.';
+  String get appleHealthFeatureSecureDesc => 'Vaše údaje z Apple Health sa súkromne synchronizujú s účtom Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Prístup k Apple Health zamietnutý';
 
   @override
   String get appleHealthDeniedBody =>
-      'Omi nemá povolenie na čítanie vašich údajov Apple Health. Povoľte ho v Nastaveniach iOS → Súkromie a bezpečnosť → Health → Omi.';
+      'Chronicle nemá povolenie na čítanie vašich údajov Apple Health. Povoľte ho v Nastaveniach iOS → Súkromie a bezpečnosť → Health → Chronicle.';
 
   @override
   String get deleteFlowReasonTitle => 'Prečo odchádzate?';
 
   @override
-  String get deleteFlowReasonSubtitle => 'Vaša spätná väzba nám pomáha zlepšovať Omi pre všetkých.';
+  String get deleteFlowReasonSubtitle => 'Vaša spätná väzba nám pomáha zlepšovať Chronicle pre všetkých.';
 
   @override
   String get deleteReasonPrivacy => 'Obavy o súkromie';
@@ -8867,7 +8867,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get deleteFlowFeedbackTitle => 'Povedzte nám viac';
 
   @override
-  String get deleteFlowFeedbackSubtitle => 'Čo by spôsobilo, že by Omi pre vás fungovalo?';
+  String get deleteFlowFeedbackSubtitle => 'Čo by spôsobilo, že by Chronicle pre vás fungovalo?';
 
   @override
   String get deleteFlowFeedbackHint => 'Nepovinné — vaše myšlienky nám pomáhajú vytvoriť lepší produkt.';
@@ -9014,14 +9014,14 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get chatQuotaSubtitle => 'AI chat messages used with Omi this month.';
+  String get chatQuotaSubtitle => 'AI chat messages used with Chronicle this month.';
 
   @override
   String get chatQuotaExceededReply =>
-      'Dosiahli ste svoj mesačný limit. Inovujte, aby ste mohli pokračovať v chate s Omi bez obmedzení.';
+      'Dosiahli ste svoj mesačný limit. Inovujte, aby ste mohli pokračovať v chate s Chronicle bez obmedzení.';
 
   @override
-  String get voiceResponseAudio => 'Prečítať odpoveď Omi nahlas';
+  String get voiceResponseAudio => 'Prečítať odpoveď Chronicle nahlas';
 
   @override
   String get voiceResponseMode => 'Hlasová odpoveď';
@@ -9054,7 +9054,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get voiceMode => 'Hlasový režim';
 
   @override
-  String get quickActionAskOmi => 'Spýtajte sa Omi na čokoľvek';
+  String get quickActionAskOmi => 'Spýtajte sa Chronicle na čokoľvek';
 
   @override
   String get record => 'Nahrať';
@@ -9166,14 +9166,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get syncInProgress => 'Prebieha synchronizácia';
 
   @override
-  String get syncStatusUploaded => 'Nahraté · spracúva sa v Omi';
+  String get syncStatusUploaded => 'Nahraté · spracúva sa v Chronicle';
 
   @override
   String get deleteWhileProcessingTitle => 'Stále sa spracúva';
 
   @override
   String get deleteWhileProcessingMessage =>
-      'Táto nahrávka je nahraná, ale Omi ešte vytvára konverzáciu. Ak ju teraz odstránite a spracovanie zlyhá, nebude sa dať obnoviť. Napriek tomu odstrániť?';
+      'Táto nahrávka je nahraná, ale Chronicle ešte vytvára konverzáciu. Ak ju teraz odstránite a spracovanie zlyhá, nebude sa dať obnoviť. Napriek tomu odstrániť?';
 
   @override
   String get syncCardAllBackedUp => 'Všetky nahrávky synchronizované';
@@ -9192,7 +9192,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get syncCardProcessing => 'Spracovanie v Omi…';
+  String get syncCardProcessing => 'Spracovanie v Chronicle…';
 
   @override
   String get syncCardWaitingInternet => 'Čaká sa na internet';
@@ -9212,19 +9212,19 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get syncFlowIntro =>
-      'Nahrávky sa prenášajú z vášho zariadenia do tohto telefónu a ukladajú sa lokálne, potom sa nahrávajú na server Omi, kde sa prepisujú a menia na konverzácie.';
+      'Nahrávky sa prenášajú z vášho zariadenia do tohto telefónu a ukladajú sa lokálne, potom sa nahrávajú na server Chronicle, kde sa prepisujú a menia na konverzácie.';
 
   @override
   String get syncStepUpload => 'Synchronizácia';
 
   @override
-  String get syncStepUploadDesc => 'Vaša nahrávka sa odosiela na server Omi';
+  String get syncStepUploadDesc => 'Vaša nahrávka sa odosiela na server Chronicle';
 
   @override
   String get syncStepProcess => 'Prepis';
 
   @override
-  String get syncStepProcessDesc => 'Omi premení zvuk na konverzáciu';
+  String get syncStepProcessDesc => 'Chronicle premení zvuk na konverzáciu';
 
   @override
   String get syncStepBackedUp => 'Konverzácia je hotová';
@@ -9239,7 +9239,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get syncStatusConversationCreated => 'Konverzácia vytvorená';
 
   @override
-  String get syncCardUploadingTitle => 'Nahráva sa do Omi';
+  String get syncCardUploadingTitle => 'Nahráva sa do Chronicle';
 
   @override
   String get syncCardDownloadingTitle => 'Sťahovanie z vášho zariadenia';
@@ -9272,7 +9272,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get syncCardBackendBusy =>
-      'Servery Omi sú vyťažené — vaše nahrávky sa zosynchronizujú, hneď ako sa uvoľní kapacita';
+      'Servery Chronicle sú vyťažené — vaše nahrávky sa zosynchronizujú, hneď ako sa uvoľní kapacita';
 
   @override
   String get unableToDetermineFirmwareVersion => 'Nedá sa určiť aktuálna verzia firmvéru';
@@ -9290,14 +9290,14 @@ class AppLocalizationsSk extends AppLocalizations {
   String get backgroundModeTitle => 'Režim na pozadí';
 
   @override
-  String get backgroundModeDescription => 'Udržujte nahrávanie Omi, aj keď je aplikácia úplne zatvorená.';
+  String get backgroundModeDescription => 'Udržujte nahrávanie Chronicle, aj keď je aplikácia úplne zatvorená.';
 
   @override
-  String get backgroundModeNote => 'Zatiaľ funguje len so zariadeniami Omi a priebežne sa vylepšuje.';
+  String get backgroundModeNote => 'Zatiaľ funguje len so zariadeniami Chronicle a priebežne sa vylepšuje.';
 
   @override
   String get backgroundModeUnavailable =>
-      'Režim na pozadí nie je dostupný, pretože nie je pripojené žiadne kompatibilné zariadenie. Ak chcete túto funkciu používať, pripojte zariadenie Omi, OpenGlass alebo Friend Pendant.';
+      'Režim na pozadí nie je dostupný, pretože nie je pripojené žiadne kompatibilné zariadenie. Ak chcete túto funkciu používať, pripojte zariadenie Chronicle, OpenGlass alebo Friend Pendant.';
 
   @override
   String get regenerateRecap => 'Znovu vygenerovať zhrnutie';
@@ -9315,11 +9315,11 @@ class AppLocalizationsSk extends AppLocalizations {
   String get recapRegenerateNoConversations => 'Pre tento deň nie sú žiadne konverzácie na zhrnutie.';
 
   @override
-  String get syncCustomSttWarningTitle => 'Synchronizácia používa prepis Omi';
+  String get syncCustomSttWarningTitle => 'Synchronizácia používa prepis Chronicle';
 
   @override
   String get syncCustomSttWarningMessage =>
-      'Používate vlastného poskytovateľa prepisu. Synchronizácia týchto nahrávok ich prepíše na serveroch Omi a započítajú sa do limitu prepisu vášho plánu.';
+      'Používate vlastného poskytovateľa prepisu. Synchronizácia týchto nahrávok ich prepíše na serveroch Chronicle a započítajú sa do limitu prepisu vášho plánu.';
 
   @override
   String get transcribeLaterTitle => 'Prepísať neskôr';
@@ -9330,7 +9330,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get transcribeLaterNote =>
-      'Funguje s mikrofónom telefónu a so zariadeniami Omi a Limitless. Zvuk zostáva v telefóne, kým sa ho nerozhodnete odoslať.';
+      'Funguje s mikrofónom telefónu a so zariadeniami Chronicle a Limitless. Zvuk zostáva v telefóne, kým sa ho nerozhodnete odoslať.';
 
   @override
   String get transcribeLaterStorageFull =>
@@ -9376,10 +9376,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get memoryProvenanceAndroid => 'Android';
 
   @override
-  String get deviceTutorial => 'Ako používať Omi';
+  String get deviceTutorial => 'Ako používať Chronicle';
 
   @override
-  String get deviceOnboardingTranscriptionTitle => 'Hovorte do svojho Omi';
+  String get deviceOnboardingTranscriptionTitle => 'Hovorte do svojho Chronicle';
 
   @override
   String get deviceOnboardingTranscriptionSubtitle => 'Povedzte pár slov a sledujte, ako sa zobrazia v reálnom čase';
@@ -9391,7 +9391,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get deviceOnboardingStartSpeaking => 'Začnite hovoriť...';
 
   @override
-  String get deviceOnboardingAskQuestionTitle => 'Spýtajte sa Omi';
+  String get deviceOnboardingAskQuestionTitle => 'Spýtajte sa Chronicle';
 
   @override
   String get deviceOnboardingAskQuestionSubtitle => 'Stlačte tlačidlo raz, položte otázku a po dokončení stlačte znova';
@@ -9454,7 +9454,7 @@ class AppLocalizationsSk extends AppLocalizations {
   String get deviceOnboardingSingleTapHint => 'To bolo jedno ťuknutie – skúste ťuknúť dvakrát rýchlo za sebou!';
 
   @override
-  String get deviceOnboardingTryDoubleTap => 'Skúste to hneď! Dvakrát ťuknite na svoje Omi';
+  String get deviceOnboardingTryDoubleTap => 'Skúste to hneď! Dvakrát ťuknite na svoje Chronicle';
 
   @override
   String get deviceOnboardingContinue => 'Pokračovať';
@@ -9463,10 +9463,10 @@ class AppLocalizationsSk extends AppLocalizations {
   String get deviceOnboardingFinish => 'Dokončiť';
 
   @override
-  String get deviceOnboardingIntroTitle => 'Spoznajte svoj Omi';
+  String get deviceOnboardingIntroTitle => 'Spoznajte svoj Chronicle';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Rýchla praktická prehliadka všetkého, čo váš Omi dokáže.';
+  String get deviceOnboardingIntroSubtitle => 'Rýchla praktická prehliadka všetkého, čo váš Chronicle dokáže.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Približne 1 minúta';
@@ -9504,7 +9504,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get raybanMetaSetupDescription =>
-      'Používajte svoje okuliare Ray-Ban Meta ako zariadenie na zaznamenávanie Omi pre konverzácie a vizuálny kontext. Omi otvorí aplikáciu Meta AI, aby prepojila vaše okuliare.';
+      'Používajte svoje okuliare Ray-Ban Meta ako zariadenie na zaznamenávanie Chronicle pre konverzácie a vizuálny kontext. Chronicle otvorí aplikáciu Meta AI, aby prepojila vaše okuliare.';
 
   @override
   String get raybanMetaOpenMetaAI => 'Pripojiť cez Meta AI';
@@ -9520,7 +9520,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get raybanMetaCameraExplanation =>
-      'Omi používa kameru vašich okuliarov na pridávanie fotografií do vašich konverzácií. Tento krok môžete preskočiť a používať iba zvuk.';
+      'Chronicle používa kameru vašich okuliarov na pridávanie fotografií do vašich konverzácií. Tento krok môžete preskočiť a používať iba zvuk.';
 
   @override
   String get raybanMetaSkipForNow => 'Zatiaľ preskočiť';
@@ -9530,7 +9530,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get raybanMetaAudioOnlyExplanation =>
-      'Táto verzia Omi môže používať mikrofón vašich okuliarov cez Bluetooth. Snímanie fotografií vyžaduje verziu Omi pre vývojárov Meta.';
+      'Táto verzia Chronicle môže používať mikrofón vašich okuliarov cez Bluetooth. Snímanie fotografií vyžaduje verziu Chronicle pre vývojárov Meta.';
 
   @override
   String get raybanMetaMusicPauseNote => 'Hudba vo vašom telefóne sa pozastaví, kým sa používa mikrofón okuliarov.';
@@ -9745,7 +9745,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get rayBanMetaMicPickerDescription =>
-      'Vyberte Bluetooth mikrofón okuliarov. Počas jeho používania aplikáciou Omi sa hudba pozastaví.';
+      'Vyberte Bluetooth mikrofón okuliarov. Počas jeho používania aplikáciou Chronicle sa hudba pozastaví.';
 
   @override
   String get rayBanMetaMicPickerEmpty =>
@@ -9760,10 +9760,10 @@ class AppLocalizationsSk extends AppLocalizations {
       'K tomuto mikrofónu sa nepodarilo pripojiť. Uistite sa, že je pripojený v nastaveniach iPhonu.';
 
   @override
-  String get syncStatusTooOld => 'Príliš staré na synchronizáciu — Omi ho nemôže prijať';
+  String get syncStatusTooOld => 'Príliš staré na synchronizáciu — Chronicle ho nemôže prijať';
 
   @override
-  String get planSheetChooseYourPlan => 'Vyberte si plán a odomknite neobmedzené Omi.';
+  String get planSheetChooseYourPlan => 'Vyberte si plán a odomknite neobmedzené Chronicle.';
 
   @override
   String get availableOnMacMobileWeb => 'Dostupné na Macu, mobile a webe';
@@ -9796,7 +9796,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Omi je zadarmo, ale bezplatná verzia má obmedzenia, ktoré ovplyvňujú váš zážitok:';
+  String get freemiumLimitsIntro => 'Chronicle je zadarmo, ale bezplatná verzia má obmedzenia, ktoré ovplyvňujú váš zážitok:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Oneskorenie 5–7 sekúnd (nie v reálnom čase)';
@@ -9818,7 +9818,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get accountCutoverUpdateRequiredMessage =>
-      'Nainstalujte nejnovější aplikaci Omi, abyste mohli pokračovat po migraci účtu.';
+      'Nainstalujte nejnovější aplikaci Chronicle, abyste mohli pokračovat po migraci účtu.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Probíhá migrace';
@@ -9835,9 +9835,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get accountCutoverOpenStore => 'Otevřít obchod';
 
   @override
-  String get sendRawAudioToOmi => 'Odosielať nespracovaný zvuk do Omi';
+  String get sendRawAudioToOmi => 'Odosielať nespracovaný zvuk do Chronicle';
 
   @override
   String get sendRawAudioToOmiDescription =>
-      'Vypnutím zabránite odosielaniu nespracovaného zvuku do Omi. Prepisy a údaje potrebné pre cloudové funkcie sa môžu naďalej odosielať do Omi.';
+      'Vypnutím zabránite odosielaniu nespracovaného zvuku do Chronicle. Prepisy a údaje potrebné pre cloudové funkcie sa môžu naďalej odosielať do Chronicle.';
 }

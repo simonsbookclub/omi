@@ -396,7 +396,7 @@ class BtDevice {
   }
 
   Future _getDeviceInfoFromOmi(DeviceConnection conn) async {
-    var modelNumber = 'Omi';
+    var modelNumber = 'Chronicle';
     var firmwareRevision = '1.0.2';
     var hardwareRevision = 'Seeed Xiao BLE Sense';
     var manufacturerName = 'Based Hardware';
@@ -430,7 +430,7 @@ class BtDevice {
     } on PlatformException catch (e) {
       Logger.error('Device Disconnected while getting device info: $e');
     } catch (e) {
-      Logger.error('Error getting Omi device info: $e');
+      Logger.error('Error getting Chronicle device info: $e');
     }
 
     return copyWith(
@@ -644,29 +644,29 @@ class BtDevice {
   String getFirmwareWarningMessage() {
     switch (type) {
       case DeviceType.plaud:
-        return 'Your $name\'s current firmware works great with Omi.\n\n'
+        return 'Your $name\'s current firmware works great with Chronicle.\n\n'
             'We recommend keeping your current firmware and not updating through the PLAUD app, as newer versions may affect compatibility.';
 
       case DeviceType.bee:
         if (isBeeFirmwareUnsupported) {
-          return 'Your $name is running firmware v$firmwareRevision which uses encrypted audio that Omi cannot process.\n\n'
-              'Please downgrade your Bee firmware to a version below 0.6.1 for compatibility with Omi.\n\n'
+          return 'Your $name is running firmware v$firmwareRevision which uses encrypted audio that Chronicle cannot process.\n\n'
+              'Please downgrade your Bee firmware to a version below 0.6.1 for compatibility with Chronicle.\n\n'
               'Audio capture will not work with the current firmware.';
         }
-        return 'Your $name\'s current firmware works great with Omi.\n\n'
+        return 'Your $name\'s current firmware works great with Chronicle.\n\n'
             'We recommend keeping your current firmware and not updating through the Bee app, as newer versions may affect compatibility.\n\n'
             'For the best experience, please keep your current firmware version.';
 
       case DeviceType.fieldy:
-        return 'Your $name\'s current firmware works great with Omi.\n\n'
+        return 'Your $name\'s current firmware works great with Chronicle.\n\n'
             'We recommend keeping your current firmware and not updating through the Compass app, as newer versions may affect compatibility.';
 
       case DeviceType.friendPendant:
-        return 'Your $name\'s current firmware works great with Omi.\n\n'
+        return 'Your $name\'s current firmware works great with Chronicle.\n\n'
             'We recommend keeping your current firmware and not updating through the Friend app, as newer versions may affect compatibility.';
 
       case DeviceType.limitless:
-        return 'Your $name\'s current firmware works great with Omi.\n\n'
+        return 'Your $name\'s current firmware works great with Chronicle.\n\n'
             'We recommend keeping your current firmware and not updating through the Limitless app, as newer versions may affect compatibility.';
 
       case DeviceType.omi:

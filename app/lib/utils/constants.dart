@@ -1,2 +1,2 @@
-/// Special speaker ID for Omi (must match backend OnboardingHandler.OMI_SPEAKER_ID)
+/// Special speaker ID for Chronicle (must match backend OnboardingHandler.OMI_SPEAKER_ID)
 const int omiSpeakerId = 99;

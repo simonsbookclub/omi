@@ -61,7 +61,7 @@ class QuickActionsService {
     final l10n = context.l10n;
 
     // iOS displays items in reverse array order (last = top of menu).
-    // Desired display (top→bottom): Add Task / Ask Omi Anything / Voice Mode / [Mute|Unmute] / Connect Device|Device Settings
+    // Desired display (top→bottom): Add Task / Ask Chronicle Anything / Voice Mode / [Mute|Unmute] / Connect Device|Device Settings
     final items = <ShortcutItem>[
       ShortcutItem(
         type: isDeviceConnected ? _kDeviceSettings : _kConnectDevice,

@@ -83,7 +83,7 @@ mixin FirmwareMixin<T extends StatefulWidget> on State<T> {
 
   Future<void> startDfu(BtDevice btDevice, {bool fileInAssets = false, String? zipFilePath}) async {
     if (!firmwareUpdatePolicy.allowsOmiFirmwareUpdate) {
-      Logger.debug('Omi firmware updates are unavailable in the Ray-Ban DAT build');
+      Logger.debug('Chronicle firmware updates are unavailable in the Ray-Ban DAT build');
       return;
     }
     if (isLegacySecureDFU) {

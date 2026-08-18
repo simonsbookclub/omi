@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Localized labels for Android / desktop notification *channels*.
 ///
 /// These strings appear in the OS settings UI (Android: Settings → Apps →
-/// Omi → Notifications) and are passed to `awesome_notifications` at
+/// Chronicle → Notifications) and are passed to `awesome_notifications` at
 /// channel-registration time. Because `awesome_notifications` registers
 /// channels eagerly — sometimes before Flutter's widgets binding has a
 /// `BuildContext` available — we cannot use `AppLocalizations` /
@@ -28,16 +28,16 @@ class NotificationChannelStrings {
     _appLocale = prefs.getString(_appLocaleKey);
   }
 
-  /// Display name of the main Omi notification channel.
+  /// Display name of the main Chronicle notification channel.
   static String get omiChannelName {
-    if (_isJapanese) return 'Omi の通知';
-    return 'Omi Notifications';
+    if (_isJapanese) return 'Chronicle の通知';
+    return 'Chronicle Notifications';
   }
 
-  /// Description of the main Omi notification channel.
+  /// Description of the main Chronicle notification channel.
   static String get omiChannelDescription {
-    if (_isJapanese) return 'Omi の通知チャンネル';
-    return 'Notification channel for Omi';
+    if (_isJapanese) return 'Chronicle の通知チャンネル';
+    return 'Notification channel for Chronicle';
   }
 
   /// Display name of the foreground-transcription notification channel.

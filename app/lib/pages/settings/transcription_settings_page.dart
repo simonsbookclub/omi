@@ -39,8 +39,8 @@ class TranscriptionSettingsPage extends StatefulWidget {
 
 class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
   bool _useCustomStt = false;
-  // "Omi Parakeet" is an Omi-hosted engine (not custom STT): _useCustomStt stays false and the
-  // backend is told via transcriptionModel='parakeet'. This flag distinguishes it from plain Omi.
+  // "Chronicle Parakeet" is an Chronicle-hosted engine (not custom STT): _useCustomStt stays false and the
+  // backend is told via transcriptionModel='parakeet'. This flag distinguishes it from plain Chronicle.
   bool _omiParakeet = false;
   SttProvider _selectedProvider = SttProvider.openai;
   bool _showAdvanced = false;
@@ -568,7 +568,7 @@ class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
       final currentConfig = _buildCurrentConfig();
       final activeConfig = _useCustomStt ? currentConfig : const CustomSttConfig(provider: SttProvider.omi);
 
-      // Omi-hosted engine choice (server-side): pick Parakeet vs the default via transcriptionModel.
+      // Chronicle-hosted engine choice (server-side): pick Parakeet vs the default via transcriptionModel.
       // The backend reads this as stt_service and routes to the self-hosted Parakeet service.
       final prevModel = SharedPreferencesUtil().transcriptionModel;
       if (!_useCustomStt) {
@@ -1101,7 +1101,7 @@ class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
         _validateAndSetError();
         break;
       case TranscriptionMode.omiParakeet:
-        // Omi-hosted Parakeet — server-routed (transcriptionModel='parakeet' on save), not custom STT.
+        // Chronicle-hosted Parakeet — server-routed (transcriptionModel='parakeet' on save), not custom STT.
         setState(() {
           _useCustomStt = false;
           _omiParakeet = true;
@@ -1204,7 +1204,7 @@ class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
   }
 
   Widget _buildProviderSection() {
-    // On-Device Whisper and Omi Parakeet are fixed providers chosen from the
+    // On-Device Whisper and Chronicle Parakeet are fixed providers chosen from the
     // top dropdown — there's no sub-provider to pick, so hide this section.
     if (_selectedProvider == SttProvider.onDeviceWhisper || _selectedProvider == SttProvider.omiParakeet) {
       return const SizedBox.shrink();
@@ -1315,7 +1315,7 @@ class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
     } else if (_selectedProvider == SttProvider.customLive) {
       return _buildCustomLiveConfig();
     } else if (_selectedProvider == SttProvider.omiParakeet) {
-      // Omi-hosted — no API key needed, just language.
+      // Chronicle-hosted — no API key needed, just language.
       return _buildLanguageSelector();
     }
     return Column(
@@ -1960,7 +1960,7 @@ class _TranscriptionSettingsPageState extends State<TranscriptionSettingsPage> {
   }
 
   Widget _buildAdvancedSection() {
-    // Show advanced section for all providers except Omi
+    // Show advanced section for all providers except Chronicle
     if (_selectedProvider == SttProvider.omi) return const SizedBox.shrink();
 
     return Column(

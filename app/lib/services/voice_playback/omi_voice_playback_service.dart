@@ -1,4 +1,4 @@
-// Plays Omi's spoken response when the user talks to the device via the
+// Plays Chronicle's spoken response when the user talks to the device via the
 // hardware button. Ports the chunking + pipelined-playback architecture from
 // `desktop/Desktop/Sources/FloatingControlBar/FloatingBarVoicePlaybackService.swift`.
 
@@ -97,7 +97,7 @@ class OmiVoicePlaybackService {
     await _ensureInitialized();
 
     // Mode 1 (headphones only): skip if no private-listening output is
-    // connected so Omi never blasts a private answer out of the phone
+    // connected so Chronicle never blasts a private answer out of the phone
     // speaker in public. Mode 2 (always) bypasses this gate.
     if (mode == 1) {
       final headphones = await _hasHeadphonesConnected();

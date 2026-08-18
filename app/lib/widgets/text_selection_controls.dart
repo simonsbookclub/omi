@@ -63,7 +63,7 @@ Widget omiSelectionMenuBuilder(
     text = delegate.textEditingValue.selection.textInside(delegate.textEditingValue.text);
   }
 
-  // Ask Omi
+  // Ask Chronicle
   if (text.trim().isNotEmpty) {
     toolbarItems.add(
       OmiToolbarAction(

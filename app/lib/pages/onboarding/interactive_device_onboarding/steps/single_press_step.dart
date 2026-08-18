@@ -182,7 +182,7 @@ class _SinglePressStepState extends State<SinglePressStep> with TickerProviderSt
       );
     }
 
-    // Listening — Omi with pulsating circles + waveform
+    // Listening — Chronicle with pulsating circles + waveform
     if (provider.voiceSessionActive) {
       return Column(
         children: [
@@ -225,7 +225,7 @@ class _SinglePressStepState extends State<SinglePressStep> with TickerProviderSt
       );
     }
 
-    // Waiting — Omi with bounce click animation
+    // Waiting — Chronicle with bounce click animation
     return _buildOmiWithBounce();
   }
 

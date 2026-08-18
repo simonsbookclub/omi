@@ -35,7 +35,7 @@ enum SyncMethod { ble }
 /// recording is never shown as an indistinct row — every state is explicit.
 ///
 /// - [syncing]    — actively uploading right now
-/// - [uploaded]   — uploaded; processing on Omi's servers (will finish in the background)
+/// - [uploaded]   — uploaded; processing on Chronicle's servers (will finish in the background)
 /// - [synced]     — safely backed up to the cloud
 /// - [waiting]    — recorded, never attempted yet (will sync automatically)
 /// - [retrying]   — a sync attempt failed; will be retried automatically

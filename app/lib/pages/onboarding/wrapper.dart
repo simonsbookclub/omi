@@ -49,7 +49,7 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> with TickerProvid
   static const int kPrimaryLanguagePage = 3;
   static const int kFoundOmiPage = 4;
   static const int kPermissionsPage = 5;
-  static const int kUserReviewPage = 6; // "Loving Omi?" screen
+  static const int kUserReviewPage = 6; // "Loving Chronicle?" screen
   static const int kWelcomePage = 7;
   static const int kFindDevicesPage = 8;
   static const int kSpeechProfilePage = 9; // Speech profile with questions (requires device)
@@ -320,7 +320,7 @@ class _OnboardingWrapperState extends State<OnboardingWrapper> with TickerProvid
       ),
       PrimaryLanguageWidget(
         goNext: () {
-          _goNext(); // Go to Found Omi page
+          _goNext(); // Go to Found Chronicle page
           PlatformManager.instance.analytics.onboardingStepCompleted('Primary Language');
         },
       ),
