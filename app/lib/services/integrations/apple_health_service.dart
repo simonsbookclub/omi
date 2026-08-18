@@ -201,6 +201,13 @@ class AppleHealthService {
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     final sinceMs = lastSynced > 0 ? lastSynced - 24 * 60 * 60 * 1000 : now - 30 * 24 * 60 * 60 * 1000;
 
+    // Ask for authorization first: iOS shows the sheet only for types the
+    // user hasn't been asked about yet (e.g. after we add new HealthKit
+    // types), and is completely silent otherwise. Without this, a user who
+    // connected under the old, smaller type set never gets asked for the
+    // new types and their samples silently come back empty.
+    await requestPermission();
+
     final samples = await getSamples(sinceMs: sinceMs);
     prefs.saveInt('healthSamplesLastRunMs', now);
     if (samples == null || samples.isEmpty) return false;
