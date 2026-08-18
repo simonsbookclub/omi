@@ -1,3 +1,5 @@
-// This is a generated file; do not edit or check into version control.
+// SIMONSBOOKCLUB PATCH: this fork's own bundle ID, so Simon's Apple
+// Developer team can provision it (the upstream bundle ID belongs to
+// Omi's own team and can't be signed by anyone else's account).
 GOOGLE_REVERSE_CLIENT_ID=com.googleusercontent.apps.1031333818730-dusn243nct6i5rgfpfkj5mchuj1qnmde
-APP_BUNDLE_IDENTIFIER=com.friend-app-with-wearable.ios12
+APP_BUNDLE_IDENTIFIER=com.simonsbookclub.omi
