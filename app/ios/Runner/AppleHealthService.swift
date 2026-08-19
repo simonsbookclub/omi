@@ -777,7 +777,12 @@ class AppleHealthService {
             (.heartRateVariabilitySDNN, "hrv_sdnn", HKUnit.secondUnit(with: .milli), "ms"),
             (.respiratoryRate, "respiratory_rate", HKUnit.count().unitDivided(by: .minute()), "breaths/min"),
             (.oxygenSaturation, "oxygen_saturation", HKUnit.percent(), "%"),
-            (.vo2Max, "vo2_max", HKUnit(from: "ml/kg*min"), "ml/kg/min"),
+            // NB: the unit string needs the parentheses — "ml/kg*min" parses
+            // as (ml/kg)·min, which is INCOMPATIBLE with VO2max samples and
+            // makes doubleValue(for:) throw an uncatchable NSException the
+            // moment a real sample exists (crashed the app on cold start the
+            // first time VO2max became readable, 2026-08-19).
+            (.vo2Max, "vo2_max", HKUnit(from: "ml/(kg*min)"), "ml/kg/min"),
         ]
         if #available(iOS 16.0, *) {
             quantitySeries.append((.runningSpeed, "running_speed", HKUnit.meter().unitDivided(by: .second()), "m/s"))
@@ -788,7 +793,10 @@ class AppleHealthService {
             guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
             group.enter()
             let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
-                let rows: [[String: Any]] = (results as? [HKQuantitySample] ?? []).map { s in
+                let rows: [[String: Any]] = (results as? [HKQuantitySample] ?? []).compactMap { s in
+                    // doubleValue(for:) throws an uncatchable NSException on
+                    // a unit mismatch — guard instead of crash.
+                    guard s.quantity.is(compatibleWith: unit) else { return nil }
                     var value = s.quantity.doubleValue(for: unit)
                     if identifier == .oxygenSaturation { value *= 100 }
                     return [
