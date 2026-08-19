@@ -340,6 +340,15 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
     }
     updateUserOnboardingState(completed: true);
 
+    // SIMONSBOOKCLUB: granular health sync must also run on COLD START —
+    // the resumed-lifecycle trigger below never fires on a fresh launch
+    // (seen live 2026-08-19: permissions granted, app opened, zero samples
+    // uploaded because the app had been terminated by an install and only
+    // ever cold-started afterwards). Self-throttled to 1/hour.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AppleHealthService().syncGranularSamples();
+    });
+
     // Navigate uri
     Uri? navigateToUri;
     var pageAlias = "home";
