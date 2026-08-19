@@ -756,8 +756,12 @@ class AppleHealthService {
         let startDate = Date(timeIntervalSince1970: sinceMs / 1000)
         let endDate = Date()
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
-        let sortByDate = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-        let perTypeLimit = 20000
+        // Descending: when a series overflows the cap, keep the NEWEST
+        // samples. Ascending silently dropped the most recent week of heart
+        // rate on the first 30-day backfill (2026-08-19). Order is
+        // irrelevant to the server (idempotent keyed inserts).
+        let sortByDate = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
+        let perTypeLimit = 40000
 
         var samples: [[String: Any]] = []
         let lock = NSLock()
@@ -934,11 +938,14 @@ class AppleHealthService {
                 // Walk the workout's distance samples, stamping elapsed time
                 // at each cumulative kilometer boundary.
                 inner.enter()
+                // Splits need chronological order — the shared descriptor is
+                // descending (cap policy), which would corrupt the cumulative
+                // distance walk.
                 let splitQuery = HKSampleQuery(
                     sampleType: distType,
                     predicate: HKQuery.predicateForObjects(from: w),
                     limit: HKObjectQueryNoLimit,
-                    sortDescriptors: [sortByDate]
+                    sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
                 ) { _, dResults, _ in
                     var splits: [Int] = []
                     var cumulativeMeters = 0.0

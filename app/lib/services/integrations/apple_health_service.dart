@@ -198,8 +198,15 @@ class AppleHealthService {
     final lastRun = prefs.getInt('healthSamplesLastRunMs');
     if (!force && now - lastRun < 60 * 60 * 1000) return false;
 
+    // One-time full re-sync (v2): the first backfill truncated heart rate
+    // to its oldest 20k samples (ascending sort + cap), losing the most
+    // recent week. Refetch the full 30 days once under the fixed native
+    // query; the server dedupes everything already stored.
+    final needsFullResyncV2 = prefs.getInt('healthFullResyncV2') == 0;
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
-    final sinceMs = lastSynced > 0 ? lastSynced - 24 * 60 * 60 * 1000 : now - 30 * 24 * 60 * 60 * 1000;
+    final sinceMs = (!needsFullResyncV2 && lastSynced > 0)
+        ? lastSynced - 24 * 60 * 60 * 1000
+        : now - 30 * 24 * 60 * 60 * 1000;
 
     // Release builds have no visible logging, so this sync reports its own
     // outcome to the backend (the snapshot endpoint stores arbitrary JSON)
@@ -240,6 +247,7 @@ class AppleHealthService {
         }
       }
       prefs.saveInt('healthSamplesSyncedToMs', now);
+      prefs.saveInt('healthFullResyncV2', 1);
       status['granular_status'] = 'ok';
       return true;
     } catch (e) {
