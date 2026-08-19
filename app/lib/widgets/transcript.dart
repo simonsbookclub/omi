@@ -15,6 +15,7 @@ import 'package:omi/models/stt_provider.dart';
 import 'package:omi/utils/constants.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/utils/other/temp.dart';
+import 'package:omi/widgets/contact_avatar.dart';
 
 // Use speaker colors from person.dart for bubble colors
 final List<Color> _speakerColors = speakerColors;
@@ -174,13 +175,21 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
     if (speakerId == omiSpeakerId) {
       return Image.asset(Assets.images.herologo.path, height: 16, width: 16);
     }
-    if (isUser) {
-      return Image.asset(Assets.images.speaker0Icon.path, width: 24, height: 24);
-    }
-    // Always modulo by speakerImagePath.length to prevent index out of bounds
-    final imageIndex =
-        person != null ? person.colorIdx! % speakerImagePath.length : speakerId % speakerImagePath.length;
-    return Image.asset(speakerImagePath[imageIndex], width: 24, height: 24);
+    // SIMONSBOOKCLUB: a linked iOS contact photo wins over the generated
+    // avatar. The wearer's own segments carry no Person, so they resolve
+    // against the enrolled wearer name instead.
+    final linkName = isUser ? SharedPreferencesUtil().givenName : person?.name;
+    final fallback = isUser
+        ? Image.asset(Assets.images.speaker0Icon.path, width: 24, height: 24)
+        // Always modulo by speakerImagePath.length to prevent index out of bounds
+        : Image.asset(
+            speakerImagePath[
+                person != null ? person.colorIdx! % speakerImagePath.length : speakerId % speakerImagePath.length],
+            width: 24,
+            height: 24,
+          );
+    if (linkName == null || linkName.isEmpty) return fallback;
+    return ContactAvatar(speakerName: linkName, size: 32, fallback: fallback);
   }
 
   @override

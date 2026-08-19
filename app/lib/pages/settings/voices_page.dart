@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'package:omi/backend/http/shared.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/providers/people_provider.dart';
+import 'package:omi/services/contacts_link_service.dart';
+import 'package:omi/widgets/contact_avatar.dart';
 import 'package:omi/utils/logger.dart';
 
 /// SIMONSBOOKCLUB PAGE: listen to recurring voices the backend has
@@ -126,6 +128,102 @@ class _VoicesPageState extends State<VoicesPage> {
     }
   }
 
+  /// Pick an iOS contact for a known speaker. The mapping stays on the
+  /// phone (ContactsLinkService) — no contact data reaches the backend.
+  Future<void> _linkContact(String personName) async {
+    final service = ContactsLinkService();
+    if (!service.isAvailable) return;
+
+    if (!await service.hasAccess()) {
+      final granted = await service.requestAccess();
+      if (!granted) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Contacts access denied — enable it in iOS Settings')),
+          );
+        }
+        return;
+      }
+    }
+
+    final contacts = await service.listContacts();
+    if (!mounted) return;
+    if (contacts.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('No contacts found')));
+      return;
+    }
+
+    // Offer the closest name matches first — linking "Masha" should not
+    // mean scrolling a thousand contacts.
+    final needle = personName.toLowerCase();
+    contacts.sort((a, b) {
+      final aM = a.name.toLowerCase().contains(needle) ? 0 : 1;
+      final bM = b.name.toLowerCase().contains(needle) ? 0 : 1;
+      return aM != bM ? aM - bM : a.name.compareTo(b.name);
+    });
+
+    final chosen = await showModalBottomSheet<ContactLink>(
+      context: context,
+      backgroundColor: const Color(0xFF1F1F25),
+      isScrollControlled: true,
+      builder: (context) {
+        var filtered = contacts;
+        return StatefulBuilder(
+          builder: (context, setSheetState) => SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text('Link $personName to a contact',
+                      style: const TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.w600)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TextField(
+                    autofocus: false,
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                      hintText: 'Search contacts',
+                      hintStyle: TextStyle(color: Colors.white38),
+                      prefixIcon: Icon(Icons.search, color: Colors.white38),
+                    ),
+                    onChanged: (q) => setSheetState(() {
+                      final needle = q.toLowerCase();
+                      filtered = needle.isEmpty
+                          ? contacts
+                          : contacts.where((c) => c.name.toLowerCase().contains(needle)).toList();
+                    }),
+                  ),
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: filtered.length,
+                    itemBuilder: (context, i) => ListTile(
+                      leading: Icon(filtered[i].hasImage ? Icons.account_circle : Icons.person_outline,
+                          color: Colors.white54),
+                      title: Text(filtered[i].name, style: const TextStyle(color: Colors.white)),
+                      onTap: () => Navigator.pop(context, filtered[i]),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (chosen == null) return;
+    service.link(personName, chosen.identifier);
+    await service.warmThumbnail(personName);
+    if (!mounted) return;
+    setState(() {});
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('$personName linked to ${chosen.name}'), backgroundColor: Colors.green),
+    );
+  }
+
   Future<void> _name(_Voice voice, {String? preset}) async {
     String? name = preset;
     if (name == null) {
@@ -193,16 +291,36 @@ class _VoicesPageState extends State<VoicesPage> {
                   if (_people.isNotEmpty) ...[
                     const Text('Known voices', style: TextStyle(color: Colors.white70, fontSize: 13)),
                     const SizedBox(height: 8),
-                    ..._people.map((p) => Card(
-                          color: const Color(0xFF1F1F25),
-                          child: ListTile(
-                            leading: const Icon(Icons.person, color: Colors.white70),
-                            title: Text(p['person_name'] as String? ?? '?',
-                                style: const TextStyle(color: Colors.white)),
-                            subtitle: Text('${p['sample_count'] ?? 0} voice sample(s)',
-                                style: const TextStyle(color: Colors.white38, fontSize: 12)),
+                    ..._people.map((p) {
+                      final name = p['person_name'] as String? ?? '?';
+                      final linked = ContactsLinkService().isLinked(name);
+                      return Card(
+                        color: const Color(0xFF1F1F25),
+                        child: ListTile(
+                          leading: SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: ContactAvatar(
+                              speakerName: name,
+                              size: 40,
+                              fallback: const CircleAvatar(
+                                backgroundColor: Color(0xFF2C2C34),
+                                child: Icon(Icons.person, color: Colors.white70),
+                              ),
+                            ),
                           ),
-                        )),
+                          title: Text(name, style: const TextStyle(color: Colors.white)),
+                          subtitle: Text(
+                            '${p['sample_count'] ?? 0} voice sample(s)${linked ? ' · contact linked' : ''}',
+                            style: const TextStyle(color: Colors.white38, fontSize: 12),
+                          ),
+                          trailing: TextButton(
+                            onPressed: () => _linkContact(name),
+                            child: Text(linked ? 'Change' : 'Link contact'),
+                          ),
+                        ),
+                      );
+                    }),
                     const SizedBox(height: 20),
                   ],
                   const Text('Unidentified voices — tap play, then name them',

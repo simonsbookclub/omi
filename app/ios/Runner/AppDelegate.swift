@@ -175,6 +175,14 @@ final class QuickActionsIconPatcher: NSObject {
       self?.handleAppleHealthCall(call, result: result)
     }
 
+    // SIMONSBOOKCLUB: read-only Contacts bridge so identified speakers can
+    // show their real contact photo (ContactsService.swift).
+    let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
+    let contactsHandler = ContactsService()
+    contactsChannel.setMethodCallHandler { (call, result) in
+      contactsHandler.handleMethodCall(call, result: result)
+    }
+
     // Create Speech Recognition method channel
     let speechChannel = FlutterMethodChannel(name: "com.omi.ios/speech", binaryMessenger: controller!.binaryMessenger)
     let speechHandler = SpeechRecognitionHandler()
