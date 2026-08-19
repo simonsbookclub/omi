@@ -454,8 +454,14 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     notifyListeners();
   }
 
+  /// Process-wide mirror of [isConnected], for code with no BuildContext.
+  /// SyncProvider reads it to keep the offline drain from starving live
+  /// audio on the shared BLE link (see sync_provider.dart).
+  static bool deviceIsConnected = false;
+
   void setIsConnected(bool value) {
     isConnected = value;
+    deviceIsConnected = value;
     if (isConnected) {
       _discoveryTimer?.cancel();
     }

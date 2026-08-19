@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:omi/backend/http/shared.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/backend/schema/conversation.dart';
+import 'package:omi/providers/device_provider.dart';
 import 'package:omi/services/connectivity_service.dart';
 import 'package:omi/services/services.dart';
 import 'package:omi/services/wals.dart';
@@ -405,7 +406,21 @@ class SyncProvider extends ChangeNotifier implements IWalServiceListener, IWalSy
         // audio goes to our own server on our own keys, so the reason for
         // the gate does not apply. Keep this patch minimal for upstream
         // rebases: only the !useCustomStt clause is removed.
-        autoUploadEnabled: () => SharedPreferencesUtil().autoSyncOfflineRecordings,
+        // LIVE SPEECH ALWAYS WINS (simonsbookclub, 2026-08-19): draining
+        // flash and streaming live audio share one BLE link, and the drain
+        // starves it — a ~100-file backlog silenced live capture for hours
+        // while the user was actively talking. Auto-drain now yields
+        // whenever the device is connected; the backlog moves when the
+        // device is away/idle, or immediately on an explicit user sync
+        // (WakeTrigger.userRetry bypasses this gate).
+        autoUploadEnabled: () {
+          if (!SharedPreferencesUtil().autoSyncOfflineRecordings) return false;
+          try {
+            return !DeviceProvider.deviceIsConnected;
+          } catch (_) {
+            return true;
+          }
+        },
         connectivityChanges: ConnectivityService().onConnectionChange,
         initiallyConnected: ConnectivityService().isConnected,
       );
