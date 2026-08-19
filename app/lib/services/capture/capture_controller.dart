@@ -66,6 +66,10 @@ import 'package:omi/backend/schema/message_event.dart'
 class CaptureController extends ChangeNotifier
     with MessageNotifierMixin
     implements ITransctiptSegmentSocketServiceListener {
+  /// Epoch ms of the last audio frame received from the device over BLE.
+  /// Read by SyncProvider to decide when the offline drain may use the link.
+  static int lastLiveAudioAtMs = 0;
+
   static const MethodChannel _nativeBleTranscriptChannel = MethodChannel('com.friend.ios/native_ble_transcript');
   static const int _maxInProgressConversationRefreshAttempts = 30;
   static const Duration _inProgressConversationRefreshInterval = Duration(seconds: 2);
@@ -974,6 +978,12 @@ class CaptureController extends ChangeNotifier
 
         // Track bytes received from BLE
         _metrics.addBleBytes(snapshot.length);
+        // Timestamp of the last live audio from the device. SyncProvider
+        // gates the offline drain on this: draining and streaming share one
+        // BLE link, so the drain must yield while audio is actually
+        // flowing — but must NOT wait for a disconnect, or a backlog can
+        // sit unreachable for hours on a permanently-connected pendant.
+        lastLiveAudioAtMs = DateTime.now().millisecondsSinceEpoch;
 
         // Command button triggered
         bool voiceCommandSupported = _recordingDevice != null

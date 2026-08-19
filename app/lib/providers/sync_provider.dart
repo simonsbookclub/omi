@@ -6,6 +6,7 @@ import 'package:omi/backend/http/shared.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/providers/device_provider.dart';
+import 'package:omi/services/capture/capture_controller.dart';
 import 'package:omi/services/connectivity_service.dart';
 import 'package:omi/services/services.dart';
 import 'package:omi/services/wals.dart';
@@ -416,7 +417,15 @@ class SyncProvider extends ChangeNotifier implements IWalServiceListener, IWalSy
         autoUploadEnabled: () {
           if (!SharedPreferencesUtil().autoSyncOfflineRecordings) return false;
           try {
-            return !DeviceProvider.deviceIsConnected;
+            if (!DeviceProvider.deviceIsConnected) return true;
+            // Connected: drain only while the link is quiet. Gating on
+            // disconnection alone (first attempt, 2026-08-19) left a
+            // backlog stranded for hours on a pendant that never
+            // disconnects — the audio recorded while the app was offline
+            // could not come back.
+            final last = CaptureController.lastLiveAudioAtMs;
+            if (last == 0) return true;
+            return DateTime.now().millisecondsSinceEpoch - last > 90 * 1000;
           } catch (_) {
             return true;
           }
