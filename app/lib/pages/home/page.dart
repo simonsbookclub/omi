@@ -346,7 +346,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
     // uploaded because the app had been terminated by an install and only
     // ever cold-started afterwards). Self-throttled to 1/hour.
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      AppleHealthService().syncGranularSamples();
+      // force: a cold start is rare enough that skipping the hourly
+      // throttle is fine, and it makes every fresh launch a full
+      // sync-plus-status-beacon — the only client-side diagnostics a
+      // release build has.
+      AppleHealthService().syncGranularSamples(force: true);
     });
 
     // Navigate uri

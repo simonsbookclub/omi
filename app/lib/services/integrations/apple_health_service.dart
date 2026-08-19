@@ -201,29 +201,56 @@ class AppleHealthService {
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     final sinceMs = lastSynced > 0 ? lastSynced - 24 * 60 * 60 * 1000 : now - 30 * 24 * 60 * 60 * 1000;
 
-    // Ask for authorization first: iOS shows the sheet only for types the
-    // user hasn't been asked about yet (e.g. after we add new HealthKit
-    // types), and is completely silent otherwise. Without this, a user who
-    // connected under the old, smaller type set never gets asked for the
-    // new types and their samples silently come back empty.
-    await requestPermission();
+    // Release builds have no visible logging, so this sync reports its own
+    // outcome to the backend (the snapshot endpoint stores arbitrary JSON)
+    // — that beacon is the only way to see WHY a sync produced nothing.
+    final status = <String, dynamic>{'granular_status': 'started', 'since_ms': sinceMs};
+    try {
+      // Ask for authorization first: iOS shows the sheet only for types the
+      // user hasn't been asked about yet (e.g. after we add new HealthKit
+      // types), and is completely silent otherwise. Without this, a user who
+      // connected under the old, smaller type set never gets asked for the
+      // new types and their samples silently come back empty.
+      status['permission_prompt_ok'] = await requestPermission();
 
-    final samples = await getSamples(sinceMs: sinceMs);
-    prefs.saveInt('healthSamplesLastRunMs', now);
-    if (samples == null || samples.isEmpty) return false;
+      final samples = await getSamples(sinceMs: sinceMs);
+      prefs.saveInt('healthSamplesLastRunMs', now);
+      status['sample_count'] = samples?.length ?? -1;
+      if (samples != null && samples.isNotEmpty) {
+        final byType = <String, int>{};
+        for (final s in samples) {
+          final t = s['type'] as String? ?? '?';
+          byType[t] = (byType[t] ?? 0) + 1;
+        }
+        status['by_type'] = byType;
+      }
 
-    const chunkSize = 2000;
-    for (var i = 0; i < samples.length; i += chunkSize) {
-      final chunk = samples.sublist(i, i + chunkSize > samples.length ? samples.length : i + chunkSize);
-      final ok = await syncAppleHealthSamples(chunk);
-      if (!ok) {
-        Logger.debug('Granular health sync failed at chunk ${i ~/ chunkSize}');
+      if (samples == null || samples.isEmpty) {
+        status['granular_status'] = 'no_samples';
         return false;
       }
+
+      const chunkSize = 2000;
+      for (var i = 0; i < samples.length; i += chunkSize) {
+        final chunk = samples.sublist(i, i + chunkSize > samples.length ? samples.length : i + chunkSize);
+        final ok = await syncAppleHealthSamples(chunk);
+        if (!ok) {
+          status['granular_status'] = 'upload_failed_at_chunk_${i ~/ chunkSize}';
+          return false;
+        }
+      }
+      prefs.saveInt('healthSamplesSyncedToMs', now);
+      status['granular_status'] = 'ok';
+      return true;
+    } catch (e) {
+      status['granular_status'] = 'error';
+      status['error'] = e.toString().substring(0, e.toString().length > 300 ? 300 : e.toString().length);
+      return false;
+    } finally {
+      try {
+        await syncAppleHealthData(status);
+      } catch (_) {}
     }
-    prefs.saveInt('healthSamplesSyncedToMs', now);
-    Logger.debug('Granular health sync: ${samples.length} samples pushed');
-    return true;
   }
 
   /// Connect to Apple Health with automatic permission handling
