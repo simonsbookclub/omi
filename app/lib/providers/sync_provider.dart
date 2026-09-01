@@ -418,6 +418,10 @@ class SyncProvider extends ChangeNotifier implements IWalServiceListener, IWalSy
           if (!SharedPreferencesUtil().autoSyncOfflineRecordings) return false;
           try {
             if (!DeviceProvider.deviceIsConnected) return true;
+            // A nearly-full pendant stops recording altogether (blinks red).
+            // At that point yielding the link to live audio protects the
+            // wrong thing — drain regardless of how busy the link is.
+            if (DeviceProvider.deviceStorageUnderPressure) return true;
             // Connected: drain only while the link is quiet. Gating on
             // disconnection alone (first attempt, 2026-08-19) left a
             // backlog stranded for hours on a pendant that never

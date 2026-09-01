@@ -459,6 +459,24 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   /// audio on the shared BLE link (see sync_provider.dart).
   static bool deviceIsConnected = false;
 
+  /// True when the pendant's flash is close to full. SyncProvider drops the
+  /// wait-for-a-quiet-link rule while this holds: a full pendant records
+  /// NOTHING (it blinks red and stops — live 2026-09-01, after six hours
+  /// with no app to drain it), which is strictly worse than the drain and
+  /// live audio sharing bandwidth for a while.
+  static bool deviceStorageUnderPressure = false;
+
+  static const double _storagePressureThreshold = 0.75;
+
+  static void _updateStoragePressure(RingStatus? status) {
+    if (status == null) return;
+    final used = status.usedBytes < 0 ? 0 : status.usedBytes;
+    final free = status.freeBytes < 0 ? 0 : status.freeBytes;
+    final total = used + free;
+    if (total <= 0) return;
+    deviceStorageUnderPressure = used / total >= _storagePressureThreshold;
+  }
+
   void setIsConnected(bool value) {
     isConnected = value;
     deviceIsConnected = value;
@@ -656,6 +674,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
         final ringStatus = await connection.getRingStatus();
         if (ringStatus != null) {
           _ringStatus = ringStatus;
+          _updateStoragePressure(ringStatus);
           notifyListeners();
         }
         if (ringStatus == null || ringStatus.unreadPackets <= 0) return;
@@ -690,6 +709,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       final status = await connection.getRingStatus();
       if (status != null) {
         _ringStatus = status;
+        _updateStoragePressure(status);
         notifyListeners();
       }
     } catch (e) {
