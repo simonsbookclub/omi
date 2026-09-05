@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:omi/backend/http/api/us.dart';
+import 'package:omi/services/us_reminders.dart';
 import 'package:omi/services/us_session.dart';
 import 'package:omi/utils/logger.dart';
 
@@ -43,6 +44,9 @@ class UsProvider extends ChangeNotifier {
       if (isLive) {
         final h = await UsApi.history(days: 28);
         if (h != null && h['error'] == null) history = h;
+        UsReminders.scheduleMorning();
+      } else {
+        UsReminders.cancelMorning();
       }
       if (protocols.isEmpty) {
         final p = await UsApi.protocols();

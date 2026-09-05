@@ -379,6 +379,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
           homePageIdx = 0;
           break;
         case "apps":
+        case "us":
           homePageIdx = 3;
           break;
       }

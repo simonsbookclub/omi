@@ -1,4 +1,10 @@
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +28,7 @@ class UsPage extends StatefulWidget {
 
 class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   final _codeController = TextEditingController();
+  final GlobalKey _weeklyKey = GlobalKey();
 
   @override
   bool get wantKeepAlive => true;
@@ -488,11 +495,11 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         '${r['repaired_within_twenty']} repaired within twenty minutes\n'
         '${r['minutes_together']} minutes together\n'
         '${r['protocols_done']}/${r['protocols_offered']} protocols done';
-    return _card(children: [
+    return RepaintBoundary(key: _weeklyKey, child: _card(children: [
       Row(children: [
         Text('Week of ${r['week_start']}', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
         const Spacer(),
-        IconButton(icon: const FaIcon(FontAwesomeIcons.share, color: Colors.white70, size: 16), onPressed: () => Share.share(text)),
+        IconButton(icon: const FaIcon(FontAwesomeIcons.share, color: Colors.white70, size: 16), onPressed: () => _shareWeekly(text)),
         IconButton(icon: const FaIcon(FontAwesomeIcons.rotate, color: Colors.white38, size: 14), onPressed: () => us.loadWeekly(refresh: true)),
       ]),
       _kv('Hard conversations', '${r['hard_conversations']}  (last week ${r['hard_conversations_prev_week']})'),
@@ -502,7 +509,26 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       if (strongest != null) _kv('Strongest predictor', '${strongest['text']} (${strongest['hard_days']} of ${strongest['days']} days)'),
       const SizedBox(height: 6),
       Text('Honest test: ${honest['verdict'] ?? '—'}', style: const TextStyle(color: Colors.white54, fontSize: 13, fontStyle: FontStyle.italic)),
-    ]);
+    ]));
+  }
+
+  /// The weekly card as an image for the share sheet: numbers, never text
+  /// from a conversation. Falls back to plain text if rendering fails.
+  Future<void> _shareWeekly(String fallbackText) async {
+    try {
+      final boundary = _weeklyKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) throw Exception('no boundary');
+      final ui.Image image = await boundary.toImage(pixelRatio: 3);
+      final data = await image.toByteData(format: ui.ImageByteFormat.png);
+      if (data == null) throw Exception('no png');
+      final Uint8List bytes = data.buffer.asUint8List();
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/us-week.png');
+      await file.writeAsBytes(bytes);
+      await Share.shareXFiles([XFile(file.path, mimeType: 'image/png')], text: 'Us · this week');
+    } catch (e) {
+      await Share.share(fallbackText);
+    }
   }
 
   Widget _kv(String k, String v) => Padding(

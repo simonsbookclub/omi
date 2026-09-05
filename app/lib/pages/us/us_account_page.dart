@@ -6,6 +6,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:omi/backend/http/api/us.dart';
+import 'package:omi/pages/us/voice_enroll_page.dart';
 import 'package:omi/providers/auth_provider.dart';
 import 'package:omi/providers/us_provider.dart';
 import 'package:omi/services/us_session.dart';
@@ -92,6 +93,12 @@ class _UsAccountPageState extends State<UsAccountPage> {
         if (mounted) context.read<UsProvider>().refresh(force: true);
       });
 
+  Future<void> _recordVoice() async {
+    await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const VoiceEnrollPage()));
+    if (!mounted) return;
+    context.read<UsProvider>().loadAccount();
+  }
+
   Future<void> _signOut() async {
     final ok = await showDialog<bool>(
       context: context,
@@ -149,7 +156,8 @@ class _UsAccountPageState extends State<UsAccountPage> {
           const _Header('Voice'),
           _card([
             _row('My voice', voice?.toString() ?? 'not chosen'),
-            _action(FontAwesomeIcons.microphone, 'This voice is me', _busy ? null : _claimVoice),
+            _action(FontAwesomeIcons.microphone, 'Record my voice (read a passage)', _busy ? null : _recordVoice),
+            _action(FontAwesomeIcons.userCheck, 'This voice is me (pick a known voice)', _busy ? null : _claimVoice),
           ]),
           if (_message != null) Padding(padding: const EdgeInsets.all(12), child: Text(_message!, style: const TextStyle(color: Colors.white70))),
           const SizedBox(height: 24),
