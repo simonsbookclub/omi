@@ -219,6 +219,7 @@ class TranscriptSegment {
     // Find minimum speaker ID among non-user segments
     int? minSpeakerId;
     for (var segment in segments) {
+      if (segment.speaker == 'MARKER') continue; // SIMONSBOOKCLUB: a pinned moment, not a voice
       if (!segment.isUser) {
         if (minSpeakerId == null || segment.speakerId < minSpeakerId) {
           minSpeakerId = segment.speakerId;
