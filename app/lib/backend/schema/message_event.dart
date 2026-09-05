@@ -34,6 +34,16 @@ abstract class MessageEvent {
         return FreemiumThresholdReachedEvent.fromJson(json);
       case 'segments_deleted':
         return SegmentsDeletedEvent.fromJson(json);
+      // SIMONSBOOKCLUB: in-band events from the self-hosted backend
+      // (workers/pendant/src/notify.ts). A conversation whose speakers were
+      // just labeled, and the result of a wake-word command, both used to
+      // reach the phone only via an APNs push to a different app.
+      case 'memory_updated':
+        return ConversationUpdatedEvent.fromJson(json);
+      case 'command_result':
+        return CommandResultEvent.fromJson(json);
+      case 'wake_heard':
+        return WakeHeardEvent.fromJson(json);
       default:
         // Return a generic event or throw an error if the type is unknown
         return UnknownEvent(eventType: json['type'] ?? 'unknown');
@@ -43,6 +53,57 @@ abstract class MessageEvent {
 
 class UnknownEvent extends MessageEvent {
   UnknownEvent({required super.eventType});
+}
+
+/// The server rewrote a conversation the app may already hold (speaker
+/// labels resolved, a drained chunk merged in): refetch and replace it.
+class ConversationUpdatedEvent extends MessageEvent {
+  final String memoryId;
+  final String? reason;
+
+  ConversationUpdatedEvent({required this.memoryId, this.reason}) : super(eventType: 'memory_updated');
+
+  factory ConversationUpdatedEvent.fromJson(Map<String, dynamic> json) {
+    return ConversationUpdatedEvent(
+      memoryId: (json['memory_id'] ?? '').toString(),
+      reason: json['reason']?.toString(),
+    );
+  }
+}
+
+/// A wake-word command finished (or failed) on the server.
+class CommandResultEvent extends MessageEvent {
+  final String utterance;
+  final bool success;
+  final String message;
+  final String path;
+
+  CommandResultEvent({required this.utterance, required this.success, required this.message, required this.path})
+      : super(eventType: 'command_result');
+
+  factory CommandResultEvent.fromJson(Map<String, dynamic> json) {
+    return CommandResultEvent(
+      utterance: (json['utterance'] ?? '').toString(),
+      success: json['success'] == true,
+      message: (json['message'] ?? '').toString(),
+      path: (json['path'] ?? 'relay').toString(),
+    );
+  }
+}
+
+/// The relay heard the wake word — acknowledged before the command runs.
+class WakeHeardEvent extends MessageEvent {
+  final String text;
+  final int extracted;
+
+  WakeHeardEvent({required this.text, required this.extracted}) : super(eventType: 'wake_heard');
+
+  factory WakeHeardEvent.fromJson(Map<String, dynamic> json) {
+    return WakeHeardEvent(
+      text: (json['text'] ?? '').toString(),
+      extracted: (json['extracted'] is int) ? json['extracted'] as int : int.tryParse('${json['extracted']}') ?? 0,
+    );
+  }
 }
 
 class MessageServiceStatusEvent extends MessageEvent {

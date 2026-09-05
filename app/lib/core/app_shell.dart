@@ -363,6 +363,12 @@ class _AppShellState extends State<AppShell> {
       homeProvider.loadLanguagesThenSetupPrimary();
       context.read<UserProvider>().initialize();
       context.read<PeopleProvider>().initialize();
+      // SIMONSBOOKCLUB: the static-token auth never supplies a display name,
+      // and an empty givenName degrades the wearer's bubbles, tag chips and
+      // exports to blank. One wearer, one name.
+      if (SharedPreferencesUtil().givenName.trim().isEmpty) {
+        SharedPreferencesUtil().givenName = 'Simon';
+      }
       try {
         await PlatformManager.instance.intercom.loginIdentifiedUser(SharedPreferencesUtil().uid);
       } catch (e) {

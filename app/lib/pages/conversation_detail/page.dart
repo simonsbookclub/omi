@@ -212,6 +212,10 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
       }
 
       await provider.initConversation();
+      // SIMONSBOOKCLUB: speaker labels are written server-side minutes after
+      // a conversation is created; the list copy we were handed may be
+      // stale. Refetch on open, unconditionally.
+      unawaited(provider.refreshConversation());
       if (provider.conversation.appResults.isEmpty) {
         final conversationId = provider.conversation.id;
         if (conversationProvider.getConversationDateAndIndexById(conversationId) != null) {

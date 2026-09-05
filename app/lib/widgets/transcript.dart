@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart' show RenderAbstractViewport, RenderBox, 
 import 'package:flutter/services.dart';
 
 import 'package:omi/backend/preferences.dart';
+import 'package:omi/providers/people_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:omi/backend/schema/message_event.dart';
 import 'package:omi/backend/schema/person.dart';
 import 'package:omi/backend/schema/transcript_segment.dart';
@@ -697,12 +699,36 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
     return spans;
   }
 
+  static DateTime? _lastPeopleRefresh;
+
   Person? _getPersonById(String? personId) {
     if (personId == null) return null;
-    if (!_personCache.containsKey(personId)) {
-      _personCache[personId] = SharedPreferencesUtil().getPersonById(personId);
+    final cached = _personCache[personId];
+    if (cached != null) return cached;
+    final person = SharedPreferencesUtil().getPersonById(personId);
+    if (person != null) {
+      _personCache[personId] = person;
+      return person;
     }
-    return _personCache[personId];
+    // SIMONSBOOKCLUB: a person the app has not seen yet (server-side voice
+    // ID names people the phone never created). Do not memoize the miss —
+    // it used to render "Speaker N" for the widget's whole lifetime — and
+    // pull the people list again, at most once every 30 s.
+    final now = DateTime.now();
+    if (_lastPeopleRefresh == null || now.difference(_lastPeopleRefresh!) > const Duration(seconds: 30)) {
+      _lastPeopleRefresh = now;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        try {
+          context.read<PeopleProvider>().setPeople().then((_) {
+            if (mounted) setState(() {});
+          });
+        } catch (e) {
+          debugPrint('people refresh failed: $e');
+        }
+      });
+    }
+    return null;
   }
 
   @override

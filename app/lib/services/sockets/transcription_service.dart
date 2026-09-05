@@ -409,7 +409,9 @@ class TranscriptSocketServiceFactory {
         headers: headers,
         transcoder: transcoder,
         serviceId: config.provider.name,
-        sendKeepAlive: config.provider == SttProvider.deepgramLive,
+        // SIMONSBOOKCLUB: our relay (customLive) idles out without frames;
+        // a keepalive text frame resets its timer through quiet stretches.
+        sendKeepAlive: config.provider == SttProvider.deepgramLive || config.provider == SttProvider.customLive,
         keepAliveInterval: const Duration(seconds: 8),
       ),
     );

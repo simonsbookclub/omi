@@ -48,6 +48,7 @@ import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/services/battery_widget_service.dart';
 import 'package:omi/utils/logger.dart';
 import 'package:omi/app_globals.dart';
+import 'package:omi/services/notifications.dart';
 
 import 'package:omi/backend/schema/message_event.dart'
     show
@@ -56,6 +57,9 @@ import 'package:omi/backend/schema/message_event.dart'
         ConversationProcessingStartedEvent,
         ConversationEvent,
         LastConversationEvent,
+        ConversationUpdatedEvent,
+        CommandResultEvent,
+        WakeHeardEvent,
         SpeakerLabelSuggestionEvent,
         TranslationEvent,
         PhotoProcessingEvent,
@@ -1706,6 +1710,18 @@ class CaptureController extends ChangeNotifier
 
   void _startKeepAliveServices() {
     _keepAliveTimer?.cancel();
+    // SIMONSBOOKCLUB: try to reconnect within two seconds of a drop instead
+    // of waiting for the first 15 s tick — with the relay now holding
+    // sessions across silence, a drop is rare and the first seconds after it
+    // are exactly where a wake word gets lost.
+    Future.delayed(const Duration(seconds: 2), () async {
+      if (!recordingDeviceServiceReady || _socket?.state == SocketServiceState.connected) return;
+      if (!AuthService.instance.isSignedIn()) return;
+      if (_recordingDevice != null) {
+        BleAudioCodec codec = await _getAudioCodec(_recordingDevice!.id);
+        await _initiateWebsocket(audioCodec: codec, source: _getConversationSourceFromDevice());
+      }
+    });
     _keepAliveTimer = Timer.periodic(const Duration(seconds: 15), (t) async {
       Logger.debug("[Provider] keep alive");
       // rate 1/15s
@@ -1935,6 +1951,35 @@ class CaptureController extends ChangeNotifier
       return;
     }
 
+    // SIMONSBOOKCLUB: server-side speaker labels land a few minutes after a
+    // conversation is created; refetch so the names show without a restart.
+    if (event is ConversationUpdatedEvent) {
+      _handleConversationUpdatedEvent(event.memoryId);
+      return;
+    }
+
+    if (event is WakeHeardEvent) {
+      HapticFeedback.mediumImpact();
+      final ctx = globalNavigatorKey.currentContext;
+      if (ctx != null) {
+        AppSnackbar.showSnackbar('Heard: ${event.text}', duration: const Duration(seconds: 2));
+      }
+      return;
+    }
+
+    if (event is CommandResultEvent) {
+      HapticFeedback.heavyImpact();
+      final ctx = globalNavigatorKey.currentContext;
+      if (ctx != null) {
+        AppSnackbar.showSnackbar(event.message, duration: const Duration(seconds: 4));
+      }
+      NotificationUtil.showCommandResult(
+        event.success ? 'ReadingRate' : 'ReadingRate could not do that',
+        event.message,
+      );
+      return;
+    }
+
     if (event is SpeakerLabelSuggestionEvent) {
       _handleSpeakerLabelSuggestionEvent(event);
       return;
@@ -2080,6 +2125,16 @@ class CaptureController extends ChangeNotifier
 
     externalActions.upsertConversation(conversation);
     PlatformManager.instance.analytics.conversationCreated(conversation);
+  }
+
+  Future<void> _handleConversationUpdatedEvent(String memoryId) async {
+    if (memoryId.isEmpty) return;
+    final conversation = await getConversationById(memoryId);
+    if (conversation == null) {
+      Logger.debug("Failed to refetch updated conversation: $memoryId");
+      return;
+    }
+    externalActions.upsertConversation(conversation);
   }
 
   Future<void> _handleLastConvoEvent(String memoryId) async {

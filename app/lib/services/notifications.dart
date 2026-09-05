@@ -120,6 +120,23 @@ class NotificationUtil {
     );
   }
 
+  /// SIMONSBOOKCLUB: outcome of a wake-word command, delivered in-band by
+  /// the self-hosted backend over the listen socket (no APNs involved).
+  static Future<void> showCommandResult(String title, String body) async {
+    final allowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!allowed) return;
+    await AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: 7000 + (DateTime.now().millisecondsSinceEpoch % 1000),
+        channelKey: 'channel',
+        actionType: ActionType.Default,
+        title: title,
+        body: body,
+        wakeUpScreen: false,
+      ),
+    );
+  }
+
   static Future<void> triggerFallNotification() async {
     final allowed = await AwesomeNotifications().isNotificationAllowed();
     if (!allowed) return;
