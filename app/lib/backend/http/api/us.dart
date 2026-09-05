@@ -10,11 +10,17 @@ import 'package:omi/utils/logger.dart';
 class UsApi {
   static String get _base => '${Env.apiBaseUrl}v1/us';
 
+  /// One phone, two people: when set, requests are made on the partner's
+  /// behalf (X-Act-As). The server allows only the caller's own partner.
+  static String? actAs;
+
+  static Map<String, String> get actHeaders => actAs == null ? {} : {'X-Act-As': actAs!};
+
   static Future<Map<String, dynamic>?> _call(String method, String path, {Map<String, dynamic>? body}) async {
     try {
       final res = await makeApiCall(
         url: '$_base/$path',
-        headers: {},
+        headers: actHeaders,
         method: method,
         body: body == null ? '' : jsonEncode(body),
       );
@@ -45,6 +51,9 @@ class UsApi {
   static Future<Map<String, dynamic>?> voices() => _call('GET', 'voices');
 
   static Future<Map<String, dynamic>?> couple() => _call('GET', 'couple');
+  static Future<Map<String, dynamic>?> addPartner(String name) => _call('POST', 'partner', body: {'name': name});
+  static Future<Map<String, dynamic>?> partnerConsent() => _call('POST', 'partner/consent', body: {});
+  static Future<Map<String, dynamic>?> renamePartner(String name) => _call('PATCH', 'partner', body: {'name': name});
   static Future<Map<String, dynamic>?> invite() => _call('POST', 'couple/invite', body: {});
   static Future<Map<String, dynamic>?> accept(String code) => _call('POST', 'couple/accept', body: {'code': code});
   static Future<Map<String, dynamic>?> pause(bool paused) => _call('POST', 'couple/pause', body: {'paused': paused});

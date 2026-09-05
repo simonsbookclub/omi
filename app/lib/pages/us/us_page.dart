@@ -13,6 +13,9 @@ import 'package:share_plus/share_plus.dart';
 import 'package:omi/pages/us/prompt_sheet.dart';
 import 'package:omi/pages/us/protocol_page.dart';
 import 'package:omi/pages/us/us_account_page.dart';
+import 'package:omi/pages/us/voice_enroll_page.dart';
+import 'package:omi/backend/http/api/us.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:omi/providers/us_provider.dart';
 import 'package:omi/widgets/dialog.dart';
 
@@ -28,6 +31,7 @@ class UsPage extends StatefulWidget {
 
 class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
   final _codeController = TextEditingController();
+  final _nameController = TextEditingController();
   final GlobalKey _weeklyKey = GlobalKey();
 
   @override
@@ -48,6 +52,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _codeController.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -83,12 +88,14 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
                 children: [
                   const Text('Us', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600)),
                   const Spacer(),
+                  if (us.isLive && us.partnerOnThisPhone) _personSwitch(us),
                   IconButton(
                     icon: const FaIcon(FontAwesomeIcons.circleUser, color: Colors.white70, size: 22),
                     onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const UsAccountPage())),
                   ),
                 ],
               ),
+              if (us.isActingAsPartner) _notice('Acting as ${us.ownerName}. Everything below is theirs: period log, sharing, prompts, voice, ring.'),
               if (us.error != null) _errorBox(us.error!),
               if (us.today == null && us.loading) const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: Colors.white54))),
               if (us.today != null) ...[
@@ -121,15 +128,69 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         ]),
       ]);
     }
-    return Column(children: [
-      _card(children: [
-        const Text('Two of you', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 6),
-        const Text(
-          'Us only runs on conversations where both of you are present and both have said yes. One of you sends a code; the other enters it.',
-          style: TextStyle(color: Colors.white70, height: 1.4),
+    if (state == 'pending' && us.pendingPartnerConsent) {
+      final partnerName = couple['partner']?['name'] ?? 'your partner';
+      return _card(children: [
+        Text('Hand the phone to $partnerName', style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 10),
+        Text(
+          '$partnerName, this app listens through ${couple['me']?['name'] ?? 'your partner'}\'s pendant. If you agree, conversations where both of you are present will be scored for tension and repair, and each morning you both get one number with reasons. Your own body data and cycle are yours to share or not. You can pause or end this at any time from this screen.',
+          style: const TextStyle(color: Colors.white70, height: 1.45),
         ),
         const SizedBox(height: 16),
+        Row(children: [
+          Expanded(
+            child: ElevatedButton(
+              style: _primary,
+              onPressed: () async {
+                final err = await us.partnerConsent();
+                if (err != null && mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(err)));
+              },
+              child: Text('I agree — I\'m $partnerName'),
+            ),
+          ),
+          const SizedBox(width: 12),
+          TextButton(onPressed: () => _confirmEnd(us), child: const Text('Not now', style: TextStyle(color: Colors.white54))),
+        ]),
+      ]);
+    }
+    return Column(children: [
+      _card(children: [
+        const Text('Two of you, one phone', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600)),
+        const SizedBox(height: 6),
+        const Text(
+          'Only one of you wears the pendant, so your partner lives inside this app: add them by name, hand them the phone once to say yes, and switch between you at the top of this tab.',
+          style: TextStyle(color: Colors.white70, height: 1.4),
+        ),
+        const SizedBox(height: 14),
+        Row(children: [
+          Expanded(
+            child: TextField(
+              controller: _nameController,
+              textCapitalization: TextCapitalization.words,
+              style: const TextStyle(color: Colors.white, fontSize: 18),
+              decoration: const InputDecoration(hintText: 'Partner\'s first name', hintStyle: TextStyle(color: Colors.white24), filled: true, fillColor: Color(0xFF2A2A30), border: OutlineInputBorder(borderSide: BorderSide.none)),
+            ),
+          ),
+          const SizedBox(width: 10),
+          ElevatedButton(
+            style: _primary,
+            onPressed: () async {
+              final name = _nameController.text.trim();
+              if (name.isEmpty) return;
+              final err = await us.addPartner(name);
+              if (err != null && mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(err)));
+            },
+            child: const Text('Add'),
+          ),
+        ]),
+      ]),
+      const SizedBox(height: 12),
+      _card(children: [
+        const Text('Or a second phone', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+        const SizedBox(height: 6),
+        const Text('If your partner installs Chronicle themselves, send a code instead.', style: TextStyle(color: Colors.white54, fontSize: 13)),
+        const SizedBox(height: 12),
         if (invite != null) ...[
           const Text('Your code', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
           const SizedBox(height: 4),
@@ -195,6 +256,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       if (myVoice == null) _notice('Your voice is not chosen yet. Open Account → "This voice is me" so the app knows which speaker is you.'),
       if (partner['voice'] == null) _notice('${partner['name']} has not chosen a voice yet. Until then no conversation can be "us".'),
       for (final p in us.prompts) _promptRow(us, p),
+      if (us.isActingAsPartner) _partnerSetup(us, me),
       _todayCard(us, card, me, partner),
       const SizedBox(height: 12),
       _quickActions(us, me),
@@ -211,6 +273,110 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       const SizedBox(height: 24),
       Center(child: Text('Since ${(couple['since'] ?? '').toString().substring(0, 10)} · ${me['name']} & ${partner['name']}', style: const TextStyle(color: Colors.white24, fontSize: 12))),
     ];
+  }
+
+  Widget _personSwitch(UsProvider us) {
+    // Names as the owner sees them: me = owner, partner = partner, whatever
+    // the current act-as is.
+    final ownerLabel = us.isActingAsPartner ? us.partnerName : us.ownerName;
+    final partnerLabel = us.isActingAsPartner ? us.ownerName : us.partnerName;
+    final pid = us.partnerId;
+    Widget seg(String label, bool selected, VoidCallback onTap) => InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(999),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(color: selected ? Colors.white : Colors.transparent, borderRadius: BorderRadius.circular(999)),
+            child: Text(label, style: TextStyle(color: selected ? Colors.black : Colors.white70, fontWeight: FontWeight.w600, fontSize: 13)),
+          ),
+        );
+    return Container(
+      padding: const EdgeInsets.all(3),
+      margin: const EdgeInsets.only(right: 4),
+      decoration: BoxDecoration(color: const Color(0xFF2A2A30), borderRadius: BorderRadius.circular(999)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        seg(ownerLabel, !us.isActingAsPartner, () => us.actAs(null)),
+        seg(partnerLabel, us.isActingAsPartner, () { if (pid != null) us.actAs(pid); }),
+      ]),
+    );
+  }
+
+  Widget _partnerSetup(UsProvider us, Map<String, dynamic> me) {
+    final voice = me['voice'];
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: _card(children: [
+        Text('${us.ownerName}\'s setup', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+        const SizedBox(height: 6),
+        Row(children: [
+          const Text('Voice', style: TextStyle(color: Colors.white54)),
+          const Spacer(),
+          Text(voice?.toString() ?? 'not set', style: const TextStyle(color: Colors.white)),
+        ]),
+        const SizedBox(height: 8),
+        Wrap(spacing: 8, runSpacing: 8, children: [
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white24)),
+            onPressed: () async {
+              await Navigator.of(context).push(MaterialPageRoute(builder: (_) => const VoiceEnrollPage()));
+              if (mounted) us.refresh(force: true);
+            },
+            icon: const FaIcon(FontAwesomeIcons.microphone, size: 14),
+            label: const Text('Record voice'),
+          ),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white24)),
+            onPressed: () => _pickKnownVoice(us),
+            icon: const FaIcon(FontAwesomeIcons.userCheck, size: 14),
+            label: const Text('Pick a known voice'),
+          ),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white24)),
+            onPressed: () async {
+              final r = await UsApi.ouraLinkUrl();
+              final url = r?['url'];
+              if (url is String) {
+                await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+              } else if (mounted) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text((r?['error'] ?? 'Oura is not configured yet.').toString())));
+              }
+            },
+            icon: const FaIcon(FontAwesomeIcons.ring, size: 14),
+            label: const Text('Link Oura'),
+          ),
+        ]),
+      ]),
+    );
+  }
+
+  Future<void> _pickKnownVoice(UsProvider us) async {
+    final r = await UsApi.voices();
+    final voices = ((r?['voices'] as List?) ?? const []).cast<Map<String, dynamic>>();
+    if (!mounted) return;
+    final chosen = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: const Color(0xFF1F1F25),
+      builder: (ctx) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Padding(padding: EdgeInsets.all(16), child: Text('Which voice?', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600))),
+          for (final v in voices)
+            ListTile(
+              title: Text(v['person_name'].toString(), style: const TextStyle(color: Colors.white)),
+              subtitle: Text('${v['sample_count']} samples${v['user_id'] != null ? ' · linked' : ''}', style: const TextStyle(color: Colors.white54)),
+              onTap: () => Navigator.of(ctx).pop(v['person_name'].toString()),
+            ),
+          const SizedBox(height: 12),
+        ]),
+      ),
+    );
+    if (chosen == null) return;
+    final res = await UsApi.claimVoice(chosen);
+    if (!mounted) return;
+    if (res?['error'] != null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(res!['error'].toString())));
+    } else {
+      us.refresh(force: true);
+    }
   }
 
   Widget _todayCard(UsProvider us, Map<String, dynamic>? card, Map<String, dynamic> me, Map<String, dynamic> partner) {

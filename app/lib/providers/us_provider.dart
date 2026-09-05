@@ -22,6 +22,39 @@ class UsProvider extends ChangeNotifier {
   Map<String, dynamic>? incomingPrompt;
 
   Map<String, dynamic>? get couple => today?['couple'] as Map<String, dynamic>?;
+
+  /// Who the phone is acting as right now: null = the signed-in owner,
+  /// otherwise the partner's user id (shared-phone mode).
+  String? get actingAs => UsApi.actAs;
+  bool get isActingAsPartner => UsApi.actAs != null;
+  String get partnerName => (couple?['partner']?['name'] ?? 'Partner').toString();
+  String get ownerName => (couple?['me']?['name'] ?? 'You').toString();
+  bool get partnerOnThisPhone => couple?['partner_on_this_phone'] == true;
+  bool get pendingPartnerConsent => couple?['pending_partner_consent'] == true;
+
+  /// The partner's id as seen from the owner (stable across act-as switches).
+  String? _partnerId;
+
+  Future<void> actAs(String? partnerUserId) async {
+    UsApi.actAs = partnerUserId;
+    _lastRefresh = null;
+    notifyListeners();
+    await refresh(force: true);
+  }
+
+  Future<String?> addPartner(String name) async {
+    final r = await UsApi.addPartner(name);
+    if (r == null || r['error'] != null) return r?['error']?.toString() ?? 'Could not add your partner.';
+    await refresh(force: true);
+    return null;
+  }
+
+  Future<String?> partnerConsent() async {
+    final r = await UsApi.partnerConsent();
+    if (r == null || r['error'] != null) return r?['error']?.toString() ?? 'Could not record consent.';
+    await refresh(force: true, card: true);
+    return null;
+  }
   Map<String, dynamic>? get card => today?['card'] as Map<String, dynamic>?;
   String get coupleState => (couple?['state'] ?? 'none').toString();
   bool get isLive => coupleState == 'live';
@@ -38,8 +71,14 @@ class UsProvider extends ChangeNotifier {
       final t = await UsApi.today(refresh: card);
       if (t != null && t['error'] != null) {
         error = t['error'].toString();
+        // Acting as a partner that no longer exists: fall back to the owner.
+        if (UsApi.actAs != null && (t['_status'] == 403 || t['_status'] == 404)) {
+          UsApi.actAs = null;
+        }
       } else if (t != null) {
         today = t;
+        final c = t['couple'] as Map<String, dynamic>?;
+        if (UsApi.actAs == null) _partnerId = c?['partner']?['id']?.toString();
       }
       if (isLive) {
         final h = await UsApi.history(days: 28);
@@ -111,7 +150,10 @@ class UsProvider extends ChangeNotifier {
     await refresh(force: true);
   }
 
+  String? get partnerId => _partnerId ?? (isActingAsPartner ? couple?['me']?['id']?.toString() : couple?['partner']?['id']?.toString());
+
   Future<void> endCouple() async {
+    UsApi.actAs = null;
     await UsApi.endCouple();
     today = null;
     history = null;

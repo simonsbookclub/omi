@@ -7,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
+import 'package:omi/backend/http/api/us.dart';
 import 'package:omi/backend/http/shared.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/providers/us_provider.dart';
@@ -93,7 +94,7 @@ class _VoiceEnrollPageState extends State<VoiceEnrollPage> {
       final auth = await getAuthHeader();
       final res = await http.post(
         Uri.parse('${Env.apiBaseUrl}v1/us/voice/enroll'),
-        headers: {'Authorization': auth, 'Content-Type': 'audio/L16'},
+        headers: {'Authorization': auth, 'Content-Type': 'audio/L16', ...UsApi.actHeaders},
         body: bytes,
       );
       final body = res.body;
@@ -128,7 +129,7 @@ class _VoiceEnrollPageState extends State<VoiceEnrollPage> {
             child: ListView(
               padding: const EdgeInsets.all(20),
               children: [
-                const Text('Read this aloud, at your normal pace, somewhere quiet. About thirty seconds.', style: TextStyle(color: Colors.white70, height: 1.4)),
+                Text('${UsApi.actAs != null ? 'Hand the phone over. ' : ''}Read this aloud, at your normal pace, somewhere quiet. About thirty seconds.', style: const TextStyle(color: Colors.white70, height: 1.4)),
                 const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(18),
