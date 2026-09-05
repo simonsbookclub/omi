@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:omi/backend/http/api/us.dart';
 import 'package:omi/services/us_reminders.dart';
+import 'package:omi/services/us_visits.dart';
 import 'package:omi/services/us_session.dart';
 import 'package:omi/utils/logger.dart';
 
@@ -56,6 +57,18 @@ class UsProvider extends ChangeNotifier {
     return null;
   }
   Map<String, dynamic>? get card => today?['card'] as Map<String, dynamic>?;
+  Map<String, dynamic>? get body => today?['my_body'] as Map<String, dynamic>?;
+  Map<String, dynamic> visitsStatus = const {};
+
+  Future<void> refreshVisitsStatus() async {
+    visitsStatus = await UsVisits.status();
+    notifyListeners();
+  }
+
+  Future<void> setTrackOutside(bool on) async {
+    visitsStatus = on ? await UsVisits.start() : await UsVisits.stop();
+    notifyListeners();
+  }
   String get coupleState => (couple?['state'] ?? 'none').toString();
   bool get isLive => coupleState == 'live';
   List<Map<String, dynamic>> get prompts =>
@@ -84,6 +97,7 @@ class UsProvider extends ChangeNotifier {
         final h = await UsApi.history(days: 28);
         if (h != null && h['error'] == null) history = h;
         UsReminders.scheduleMorning();
+        if (UsVisits.enabled && !isActingAsPartner) UsVisits.configure();
       } else {
         UsReminders.cancelMorning();
       }

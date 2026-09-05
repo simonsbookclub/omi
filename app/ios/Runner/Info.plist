@@ -162,7 +162,7 @@
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Chronicle does not write any data to Apple Health. This string is only present because iOS requires it when the HealthKit framework is linked.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>When creating your memories, we use your location for determining where they were created.</string>
+	<string>Us uses arrivals and departures at places to know how much of the day you spent away from home and in daylight. Coordinates are rounded to about 100 m before they leave the phone.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>When creating your memories, we use your location for determining where they were created.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

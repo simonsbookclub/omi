@@ -6,6 +6,139 @@ import WatchConnectivity
 import AVFoundation
 import Speech
 import WidgetKit
+import CoreLocation
+
+// MARK: - Visits (time outside) — SIMONSBOOKCLUB "Us"
+
+/// CoreLocation visit monitoring: iOS tells us when the phone arrives at
+/// and leaves a place, at almost no battery cost, even when the app is not
+/// running (the system relaunches it for the event — hence the shared
+/// instance created at launch). Each visit is POSTed to the pendant
+/// worker, where "home" and "time outside" are derived. Coordinates are
+/// rounded to ~100 m before leaving the phone.
+final class VisitsService: NSObject, CLLocationManagerDelegate {
+    static let shared = VisitsService()
+    private let manager = CLLocationManager()
+    private let defaults = UserDefaults.standard
+    private let enabledKey = "chronicle.visits.enabled"
+    private let endpointKey = "chronicle.visits.endpoint"
+    private let authKey = "chronicle.visits.auth"
+    private let pendingKey = "chronicle.visits.pending"
+    private var channel: FlutterMethodChannel?
+
+    override init() {
+        super.init()
+        manager.delegate = self
+        manager.allowsBackgroundLocationUpdates = false
+        manager.pausesLocationUpdatesAutomatically = true
+    }
+
+    func attach(messenger: FlutterBinaryMessenger) {
+        channel = FlutterMethodChannel(name: "com.simonsbookclub.visits", binaryMessenger: messenger)
+        channel?.setMethodCallHandler { [weak self] call, result in
+            guard let self = self else { return }
+            switch call.method {
+            case "configure":
+                let args = call.arguments as? [String: Any]
+                if let endpoint = args?["endpoint"] as? String { self.defaults.set(endpoint, forKey: self.endpointKey) }
+                if let auth = args?["auth"] as? String { self.defaults.set(auth, forKey: self.authKey) }
+                self.flushPending()
+                result(true)
+            case "start":
+                self.defaults.set(true, forKey: self.enabledKey)
+                self.start()
+                result(self.statusDict())
+            case "stop":
+                self.defaults.set(false, forKey: self.enabledKey)
+                self.manager.stopMonitoringVisits()
+                result(self.statusDict())
+            case "status":
+                result(self.statusDict())
+            default:
+                result(FlutterMethodNotImplemented)
+            }
+        }
+    }
+
+    /// Called at every launch: a background relaunch for a visit event must
+    /// find a live manager or the event is lost.
+    func resumeIfEnabled() {
+        if defaults.bool(forKey: enabledKey) { start() }
+    }
+
+    private func start() {
+        let status = manager.authorizationStatus
+        if status == .notDetermined {
+            manager.requestAlwaysAuthorization()
+        } else if status == .authorizedWhenInUse {
+            manager.requestAlwaysAuthorization()
+        }
+        manager.startMonitoringVisits()
+        NSLog("[Visits] monitoring started (auth=\(status.rawValue))")
+    }
+
+    private func statusDict() -> [String: Any] {
+        let auth: String
+        switch manager.authorizationStatus {
+        case .authorizedAlways: auth = "always"
+        case .authorizedWhenInUse: auth = "when_in_use"
+        case .denied: auth = "denied"
+        case .restricted: auth = "restricted"
+        default: auth = "not_determined"
+        }
+        return ["enabled": defaults.bool(forKey: enabledKey), "authorization": auth, "pending": (defaults.array(forKey: pendingKey) ?? []).count]
+    }
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        if defaults.bool(forKey: enabledKey) && (manager.authorizationStatus == .authorizedAlways || manager.authorizationStatus == .authorizedWhenInUse) {
+            manager.startMonitoringVisits()
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didVisit visit: CLVisit) {
+        let round3 = { (v: Double) -> Double in (v * 1000).rounded() / 1000 }
+        var row: [String: Any] = [
+            "arrival_ms": visit.arrivalDate == Date.distantPast ? 0 : visit.arrivalDate.timeIntervalSince1970 * 1000,
+            "lat": round3(visit.coordinate.latitude),
+            "lng": round3(visit.coordinate.longitude),
+            "accuracy_m": visit.horizontalAccuracy,
+        ]
+        if visit.departureDate != Date.distantFuture {
+            row["departure_ms"] = visit.departureDate.timeIntervalSince1970 * 1000
+        }
+        if (row["arrival_ms"] as? Double ?? 0) <= 0 {
+            // A departure-only visit for a place we were already at when
+            // monitoring began: stamp arrival as "unknown, before now".
+            row["arrival_ms"] = (visit.departureDate == Date.distantFuture ? Date() : visit.departureDate).addingTimeInterval(-3600).timeIntervalSince1970 * 1000
+        }
+        var pending = defaults.array(forKey: pendingKey) as? [[String: Any]] ?? []
+        pending.append(row)
+        defaults.set(pending, forKey: pendingKey)
+        flushPending()
+    }
+
+    private func flushPending() {
+        guard let endpoint = defaults.string(forKey: endpointKey), let auth = defaults.string(forKey: authKey), let url = URL(string: endpoint) else { return }
+        let pending = defaults.array(forKey: pendingKey) as? [[String: Any]] ?? []
+        if pending.isEmpty { return }
+        guard let body = try? JSONSerialization.data(withJSONObject: ["visits": pending]) else { return }
+        var req = URLRequest(url: url)
+        req.httpMethod = "POST"
+        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue(auth, forHTTPHeaderField: "Authorization")
+        req.httpBody = body
+        let task = URLSession.shared.dataTask(with: req) { [weak self] _, response, error in
+            guard let self = self else { return }
+            if error == nil, let http = response as? HTTPURLResponse, http.statusCode == 200 {
+                self.defaults.set([], forKey: self.pendingKey)
+                NSLog("[Visits] sent \(pending.count) visit(s)")
+            } else {
+                NSLog("[Visits] send failed: \(error?.localizedDescription ?? "http \((response as? HTTPURLResponse)?.statusCode ?? -1)")")
+            }
+        }
+        task.resume()
+    }
+}
 
 extension FlutterError: Error {}
 
@@ -103,6 +236,8 @@ final class QuickActionsIconPatcher: NSObject {
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
     QuickActionsIconPatcher.shared.startObserving()
+    // "Us": visit monitoring survives app death; re-arm on every launch.
+    VisitsService.shared.resumeIfEnabled()
       
       
       if WCSession.isSupported() {
@@ -177,6 +312,9 @@ final class QuickActionsIconPatcher: NSObject {
 
     // SIMONSBOOKCLUB: read-only Contacts bridge so identified speakers can
     // show their real contact photo (ContactsService.swift).
+    // "Us": time outside — CoreLocation visits (VisitsService above).
+    VisitsService.shared.attach(messenger: controller!.binaryMessenger)
+
     let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
     let contactsHandler = ContactsService()
     contactsChannel.setMethodCallHandler { (call, result) in

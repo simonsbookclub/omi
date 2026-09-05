@@ -64,6 +64,17 @@ class AppleHealthService {
             types.insert(sleep)
         }
 
+        // SIMONSBOOKCLUB ("Us" body features): daylight the watch measured,
+        // exercise minutes as Apple counts them.
+        if #available(iOS 17.0, *) {
+            if let daylight = HKQuantityType.quantityType(forIdentifier: .timeInDaylight) {
+                types.insert(daylight)
+            }
+        }
+        if let exercise = HKQuantityType.quantityType(forIdentifier: .appleExerciseTime) {
+            types.insert(exercise)
+        }
+
         // Workouts
         types.insert(HKWorkoutType.workoutType())
 
@@ -818,11 +829,16 @@ class AppleHealthService {
         }
 
         // Dense cumulative series: hourly sums.
-        let hourlySeries: [(HKQuantityTypeIdentifier, String, HKUnit, String)] = [
+        var hourlySeries: [(HKQuantityTypeIdentifier, String, HKUnit, String)] = [
             (.stepCount, "steps_hourly", HKUnit.count(), "steps"),
             (.activeEnergyBurned, "active_energy_hourly", HKUnit.kilocalorie(), "kcal"),
             (.distanceWalkingRunning, "distance_hourly", HKUnit.meterUnit(with: .kilo), "km"),
+            (.appleExerciseTime, "exercise_hourly", HKUnit.minute(), "min"),
         ]
+        if #available(iOS 17.0, *) {
+            // Time in Daylight — the watch's ambient light sensor, minutes per hour.
+            hourlySeries.append((.timeInDaylight, "daylight_hourly", HKUnit.minute(), "min"))
+        }
         var hourly = DateComponents()
         hourly.hour = 1
         for (identifier, name, unit, unitLabel) in hourlySeries {
@@ -914,6 +930,18 @@ class AppleHealthService {
                 var metaDict: [String: Any] = ["activity": self.workoutTypeString(w.workoutActivityType)]
                 if let energy = w.totalEnergyBurned?.doubleValue(for: .kilocalorie()) {
                     metaDict["kcal"] = Int(energy.rounded())
+                }
+                // Indoor/outdoor and the workout's own heart-rate statistics
+                // (exertion is judged against the person's ceiling server-side).
+                if let indoor = w.metadata?[HKMetadataKeyIndoorWorkout] as? Bool {
+                    metaDict["indoor"] = indoor
+                }
+                if #available(iOS 16.0, *), let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+                    let bpm = HKUnit.count().unitDivided(by: .minute())
+                    if let stats = w.statistics(for: hrType) {
+                        if let avg = stats.averageQuantity()?.doubleValue(for: bpm) { metaDict["avg_hr"] = Int(avg.rounded()) }
+                        if let mx = stats.maximumQuantity()?.doubleValue(for: bpm) { metaDict["max_hr"] = Int(mx.rounded()) }
+                    }
                 }
                 let km = w.totalDistance?.doubleValue(for: .meterUnit(with: .kilo))
                 if let km = km, km > 0 {

@@ -17,6 +17,7 @@ import 'package:omi/pages/us/voice_enroll_page.dart';
 import 'package:omi/backend/http/api/us.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:omi/providers/us_provider.dart';
+import 'package:omi/services/us_visits.dart';
 import 'package:omi/widgets/dialog.dart';
 
 /// SIMONSBOOKCLUB ("Us"): the tab. Today's risk with reasons for both of
@@ -260,6 +261,8 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       _todayCard(us, card, me, partner),
       const SizedBox(height: 12),
       _quickActions(us, me),
+      const SizedBox(height: 12),
+      _bodyCard(us),
       const SizedBox(height: 12),
       _weekStrip(us),
       const SizedBox(height: 12),
@@ -560,6 +563,54 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final s = '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
     await us.logPeriodStarted(day: s);
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged $s')));
+  }
+
+  Widget _bodyCard(UsProvider us) {
+    final b = us.body;
+    final workouts = ((b?['workouts'] as List?) ?? const []).cast<Map<String, dynamic>>();
+    final last = b?['last_workout'] as Map<String, dynamic>?;
+    final outside = b?['outside'] as Map<String, dynamic>? ?? const {};
+    final daylight = b?['daylight_minutes'];
+    final exercise = b?['exercise_minutes'];
+    final tracking = outside['tracking'] == true;
+    final homeKnown = outside['home_known'] == true;
+    final outsideMin = outside['outside_minutes'];
+    final sunEst = outside['sun_minutes_est'];
+    final sunAvail = outside['sunshine_minutes_available'];
+    String workoutLine(Map<String, dynamic> w, {bool withDay = false}) {
+      final parts = <String>[w['activity'].toString(), '${w['minutes']} min'];
+      if (w['km'] != null) parts.add('${w['km']} km');
+      if (w['exertion_label'] != null) parts.add('${w['exertion_label']}${w['avg_hr'] != null ? ' · ${w['avg_hr']} bpm' : ''}');
+      if (w['indoor'] == true) parts.add('indoor');
+      if (withDay && w['days_ago'] != null) parts.add(w['days_ago'] == 0 ? 'today' : w['days_ago'] == 1 ? 'yesterday' : '${w['days_ago']} days ago');
+      return parts.join(' · ');
+    }
+    return _card(children: [
+      Text('${us.isActingAsPartner ? us.ownerName : 'Your'} body today', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+      const SizedBox(height: 8),
+      if (workouts.isEmpty && last == null) const Text('No workouts on record.', style: TextStyle(color: Colors.white54)),
+      for (final w in workouts) _kv('Workout', workoutLine(w)),
+      if (workouts.isEmpty && last != null) _kv('Last workout', workoutLine(last, withDay: true)),
+      if (b?['days_since_strength'] != null) _kv('Strength', b!['days_since_strength'] == 0 ? 'today' : '${b['days_since_strength']} days ago'),
+      if (exercise != null) _kv('Exercise minutes', '$exercise'),
+      _kv('Daylight (watch)', daylight == null ? 'not reported yet' : '$daylight min'),
+      _kv('Away from home', !tracking ? 'off' : !homeKnown ? 'learning where home is' : outsideMin == null ? '—' : '${(outsideMin / 60).toStringAsFixed(1)} h${sunEst != null ? ' · ~$sunEst min of sun (of $sunAvail available)' : ''}'),
+      const SizedBox(height: 4),
+      SwitchListTile(
+        dense: true,
+        contentPadding: EdgeInsets.zero,
+        activeColor: const Color(0xFF6FC3B8),
+        title: const Text('Track time outside', style: TextStyle(color: Colors.white)),
+        subtitle: Text(
+          us.visitsStatus['authorization'] == 'denied'
+              ? 'Location is denied in Settings.'
+              : 'Arrivals and departures at places, rounded to 100 m. Needs "Always" location.',
+          style: const TextStyle(color: Colors.white38, fontSize: 12),
+        ),
+        value: UsVisits.enabled,
+        onChanged: us.isActingAsPartner ? null : (v) => us.setTrackOutside(v),
+      ),
+    ]);
   }
 
   Widget _weekStrip(UsProvider us) {

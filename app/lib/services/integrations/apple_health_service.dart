@@ -202,7 +202,10 @@ class AppleHealthService {
     // to its oldest 20k samples (ascending sort + cap), losing the most
     // recent week. Refetch the full 30 days once under the fixed native
     // query; the server dedupes everything already stored.
-    final needsFullResyncV2 = prefs.getInt('healthFullResyncV2') == 0;
+    // v3 (2026-09-05): Time in Daylight, exercise minutes and workout
+    // heart-rate stats were added — refetch thirty days once so the new
+    // types have history (idempotent inserts on the server).
+    final needsFullResyncV2 = prefs.getInt('healthFullResyncV3') == 0;
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     final sinceMs = (!needsFullResyncV2 && lastSynced > 0)
         ? lastSynced - 24 * 60 * 60 * 1000
@@ -248,6 +251,7 @@ class AppleHealthService {
       }
       prefs.saveInt('healthSamplesSyncedToMs', now);
       prefs.saveInt('healthFullResyncV2', 1);
+      prefs.saveInt('healthFullResyncV3', 1);
       status['granular_status'] = 'ok';
       return true;
     } catch (e) {
