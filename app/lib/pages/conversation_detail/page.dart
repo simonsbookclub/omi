@@ -21,6 +21,7 @@ import 'package:omi/backend/schema/structured.dart';
 import 'package:omi/backend/schema/transcript_segment.dart';
 import 'package:omi/pages/capture/widgets/widgets.dart';
 import 'package:omi/pages/conversation_detail/widgets.dart';
+import 'package:omi/pages/us/us_conversation_bar.dart';
 import 'package:omi/pages/home/page.dart';
 import 'package:omi/providers/connectivity_provider.dart';
 import 'package:omi/providers/conversation_provider.dart';
@@ -1043,6 +1044,13 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
                     : null,
                 child: Column(
                   children: [
+                    // SIMONSBOOKCLUB ("Us"): "This was us" / "Hard conversation".
+                    Consumer<ConversationDetailProvider>(
+                      builder: (context, provider, _) => UsConversationBar(
+                        key: ValueKey('us-bar-${provider.conversation.id}'),
+                        conversation: provider.conversation,
+                      ),
+                    ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),

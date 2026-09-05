@@ -128,6 +128,13 @@ class AuthenticationProvider extends BaseProvider {
     return !_requiresReauthentication && AuthService.instance.isSignedIn();
   }
 
+  /// "Us": a Chronicle session was stored (or cleared) outside Firebase —
+  /// re-evaluate the sign-in gate.
+  void refreshSignInState() {
+    _requiresReauthentication = false;
+    notifyListeners();
+  }
+
   bool get _hasFirebaseUser => _auth.currentUser != null && !_auth.currentUser!.isAnonymous;
 
   @override

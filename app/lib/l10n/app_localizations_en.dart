@@ -1786,7 +1786,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get maybeLater => 'Maybe Later';
 
   @override
-  String get speechProfileIntro => 'Chronicle needs to learn your goals and your voice. You\'ll be able to modify it later.';
+  String get speechProfileIntro =>
+      'Chronicle needs to learn your goals and your voice. You\'ll be able to modify it later.';
 
   @override
   String get getStarted => 'Get Started';
@@ -2653,7 +2654,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reviewAndManageConversations => 'Review and manage your captured conversations';
 
   @override
-  String get startCapturingConversations => 'Start capturing conversations with your Chronicle device to see them here.';
+  String get startCapturingConversations =>
+      'Start capturing conversations with your Chronicle device to see them here.';
 
   @override
   String get useMobileAppToCapture => 'Use your mobile app to capture audio';
@@ -3389,7 +3391,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseYourLanguage => 'Choose your language';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Select your preferred language for the best Chronicle experience';
+  String get selectPreferredLanguageForBestExperience =>
+      'Select your preferred language for the best Chronicle experience';
 
   @override
   String get searchLanguages => 'Search languages...';
@@ -7902,7 +7905,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pairingTitleAppleWatch => 'Connect Apple Watch';
 
   @override
-  String get pairingDescAppleWatch => 'Install and open the Chronicle app on your Apple Watch, then tap Connect in the app.';
+  String get pairingDescAppleWatch =>
+      'Install and open the Chronicle app on your Apple Watch, then tap Connect in the app.';
 
   @override
   String get pairingTitleNeoOne => 'Put Neo One in Pairing Mode';
@@ -9817,7 +9821,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get accountCutoverUpdateRequiredTitle => 'Update Required';
 
   @override
-  String get accountCutoverUpdateRequiredMessage => 'Install the latest Chronicle app to continue after account migration.';
+  String get accountCutoverUpdateRequiredMessage =>
+      'Install the latest Chronicle app to continue after account migration.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Migration in Progress';

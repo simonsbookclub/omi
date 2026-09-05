@@ -560,7 +560,8 @@ class AppLocalizationsBs extends AppLocalizations {
   String get deviceNotConnected => 'Uređaj nije povezan';
 
   @override
-  String get connectDeviceMessage => 'Povežite svoj Chronicle uređaj da pristupite\npostavkama uređaja i prilagođavanju';
+  String get connectDeviceMessage =>
+      'Povežite svoj Chronicle uređaj da pristupite\npostavkama uređaja i prilagođavanju';
 
   @override
   String get deviceInfoSection => 'Informacije o uređaju';
@@ -1789,7 +1790,8 @@ class AppLocalizationsBs extends AppLocalizations {
   String get maybeLater => 'Možda kasnije';
 
   @override
-  String get speechProfileIntro => 'Chronicle trebا da nauči vaše ciljeve i vaš glas. Moći ćete ga da izmenjujete kasnije.';
+  String get speechProfileIntro =>
+      'Chronicle trebا da nauči vaše ciljeve i vaš glas. Moći ćete ga da izmenjujete kasnije.';
 
   @override
   String get getStarted => 'Početak';
@@ -5662,7 +5664,8 @@ class AppLocalizationsBs extends AppLocalizations {
       'Tvoj dnevni rezultat je zasnovan na završetku zadataka. Završi svoje zadatke da poboljšaš rezultat!';
 
   @override
-  String get notificationFrequencyDescription => 'Kontroliši kako često Chronicle šalje proaktivna obaveštenja i podsetnike.';
+  String get notificationFrequencyDescription =>
+      'Kontroliši kako često Chronicle šalje proaktivna obaveštenja i podsetnike.';
 
   @override
   String get sliderOff => 'Isključeno';
@@ -8862,7 +8865,8 @@ class AppLocalizationsBs extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Sigurna sinhronizacija';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Vaši Apple Health podaci se privatno sinhroniziraju s vašim Chronicle računom.';
+  String get appleHealthFeatureSecureDesc =>
+      'Vaši Apple Health podaci se privatno sinhroniziraju s vašim Chronicle računom.';
 
   @override
   String get appleHealthDeniedTitle => 'Pristup Apple Health-u je odbijen';

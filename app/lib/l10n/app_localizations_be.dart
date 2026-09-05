@@ -5638,7 +5638,8 @@ class AppLocalizationsBe extends AppLocalizations {
   String get notificationFrequency => 'Частата апавяшчэнняў';
 
   @override
-  String get controlNotificationFrequency => 'Кантраліруйце, як часта Chronicle адпраўляе вам прааактыўныя апавяшчэнні.';
+  String get controlNotificationFrequency =>
+      'Кантраліруйце, як часта Chronicle адпраўляе вам прааактыўныя апавяшчэнні.';
 
   @override
   String get yourScore => 'Ваш бал';
@@ -9308,7 +9309,8 @@ class AppLocalizationsBe extends AppLocalizations {
   String get syncCardRateLimited => 'Дасягнуты ліміт сумленнага выкарыстання — сінхранізацыя адновіцца аўтаматычна';
 
   @override
-  String get syncCardBackendBusy => 'Серверы Chronicle загружаныя — вашы запісы сінхранізуюцца, калі з\'явіцца магчымасць';
+  String get syncCardBackendBusy =>
+      'Серверы Chronicle загружаныя — вашы запісы сінхранізуюцца, калі з\'явіцца магчымасць';
 
   @override
   String get unableToDetermineFirmwareVersion => 'Не ўдалося вызначыць бягучую версію прашыўкі';

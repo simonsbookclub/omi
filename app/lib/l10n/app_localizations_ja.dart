@@ -9040,7 +9040,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get deleteWhileProcessingTitle => 'まだ処理中です';
 
   @override
-  String get deleteWhileProcessingMessage => 'この録音はアップロード済みですが、Chronicle はまだ会話を作成しています。今削除して処理が失敗すると復元できません。それでも削除しますか？';
+  String get deleteWhileProcessingMessage =>
+      'この録音はアップロード済みですが、Chronicle はまだ会話を作成しています。今削除して処理が失敗すると復元できません。それでも削除しますか？';
 
   @override
   String get syncCardAllBackedUp => 'すべての録音を同期済み';
@@ -9187,7 +9188,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get transcribeLaterDescription => 'リアルタイムではなく、まず録音してから必要なときに文字起こしします。録音データはスマートフォンに保存され、アップロードすると会話が作成されます。';
 
   @override
-  String get transcribeLaterNote => 'スマートフォンのマイク、ChronicleおよびLimitlessデバイスでご利用いただけます。音声はアップロードするまでスマートフォンに保存されたままになります。';
+  String get transcribeLaterNote =>
+      'スマートフォンのマイク、ChronicleおよびLimitlessデバイスでご利用いただけます。音声はアップロードするまでスマートフォンに保存されたままになります。';
 
   @override
   String get transcribeLaterStorageFull => 'スマートフォンの空き容量が不足しているため、録音を一時停止しました。空き容量を確保するか、録音をアップロードすると自動的に再開します。';
@@ -9679,5 +9681,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get sendRawAudioToOmi => '未処理の音声を Chronicle に送信';
 
   @override
-  String get sendRawAudioToOmiDescription => 'オフにすると、未処理の音声は Chronicle に送信されません。文字起こしとクラウド機能に必要なデータは、引き続き Chronicle に送信される場合があります。';
+  String get sendRawAudioToOmiDescription =>
+      'オフにすると、未処理の音声は Chronicle に送信されません。文字起こしとクラウド機能に必要なデータは、引き続き Chronicle に送信される場合があります。';
 }

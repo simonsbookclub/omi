@@ -561,7 +561,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get deviceNotConnected => 'Ierīce nav savienota';
 
   @override
-  String get connectDeviceMessage => 'Savienojiet savu Chronicle ierīci, lai piekļūtu\nierīces iestatījumiem un pielāgošanai';
+  String get connectDeviceMessage =>
+      'Savienojiet savu Chronicle ierīci, lai piekļūtu\nierīces iestatījumiem un pielāgošanai';
 
   @override
   String get deviceInfoSection => 'Ierīces informācija';
@@ -766,7 +767,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Dalījums ar manu Chronicle statistiku! (omi.me - jūsu vienmēr ieslēgtais AI asistents)';
+  String get shareStatsMessage =>
+      'Dalījums ar manu Chronicle statistiku! (omi.me - jūsu vienmēr ieslēgtais AI asistents)';
 
   @override
   String get sharePeriodToday => 'Šodien omi ir:';
@@ -4444,7 +4446,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get trainingDataProgram => 'Apmācības datu programma';
 
   @override
-  String get getOmiUnlimitedFree => 'Iegūstiet Chronicle Unlimited bez maksas, sniedzot savus datus AI modeļu apmācībai.';
+  String get getOmiUnlimitedFree =>
+      'Iegūstiet Chronicle Unlimited bez maksas, sniedzot savus datus AI modeļu apmācībai.';
 
   @override
   String get trainingDataBullets =>
@@ -8019,7 +8022,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Lūk, ko es zinu par tevi';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Šī karte tiek atjaunināta, kad Chronicle mācās no jūsu sarunām.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Šī karte tiek atjaunināta, kad Chronicle mācās no jūsu sarunām.';
 
   @override
   String get apiEnvironment => 'API vide';
@@ -9320,7 +9324,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get backgroundModeTitle => 'Fona režīms';
 
   @override
-  String get backgroundModeDescription => 'Saglabājiet Chronicle ierakstīšanu pat tad, kad lietotne ir pilnībā aizvērta.';
+  String get backgroundModeDescription =>
+      'Saglabājiet Chronicle ierakstīšanu pat tad, kad lietotne ir pilnībā aizvērta.';
 
   @override
   String get backgroundModeNote => 'Pagaidām darbojas tikai ar Chronicle ierīcēm un tiek nepārtraukti uzlabota.';

@@ -44,6 +44,12 @@ abstract class MessageEvent {
         return CommandResultEvent.fromJson(json);
       case 'wake_heard':
         return WakeHeardEvent.fromJson(json);
+      case 'us_card':
+      case 'us_prompt':
+      case 'us_couple':
+      case 'us_protocol':
+      case 'us_weekly':
+        return UsEvent.fromJson(json);
       default:
         // Return a generic event or throw an error if the type is unknown
         return UnknownEvent(eventType: json['type'] ?? 'unknown');
@@ -53,6 +59,16 @@ abstract class MessageEvent {
 
 class UnknownEvent extends MessageEvent {
   UnknownEvent({required super.eventType});
+}
+
+/// "Us": morning card, a prompt (post-conflict question, in-the-moment
+/// breath), a couple state change, a partner's protocol, the weekly report.
+class UsEvent extends MessageEvent {
+  final Map<String, dynamic> payload;
+
+  UsEvent({required String type, required this.payload}) : super(eventType: type);
+
+  factory UsEvent.fromJson(Map<String, dynamic> json) => UsEvent(type: (json['type'] ?? 'us').toString(), payload: json);
 }
 
 /// The server rewrote a conversation the app may already hold (speaker

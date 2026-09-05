@@ -1794,7 +1794,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get maybeLater => 'Mungkin nanti';
 
   @override
-  String get speechProfileIntro => 'Chronicle perlu mempelajari tujuan dan suara Anda. Anda dapat memodifikasinya nanti.';
+  String get speechProfileIntro =>
+      'Chronicle perlu mempelajari tujuan dan suara Anda. Anda dapat memodifikasinya nanti.';
 
   @override
   String get getStarted => 'Mulai';
@@ -2072,7 +2073,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get clearMemoryTitle => 'Hapus Memori Chronicle';
 
   @override
-  String get clearMemoryMessage => 'Apakah Anda yakin ingin menghapus memori Chronicle? Tindakan ini tidak dapat dibatalkan.';
+  String get clearMemoryMessage =>
+      'Apakah Anda yakin ingin menghapus memori Chronicle? Tindakan ini tidak dapat dibatalkan.';
 
   @override
   String get clearMemoryButton => 'Hapus Memori';
@@ -5638,7 +5640,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get notificationFrequency => 'Frekuensi Notifikasi';
 
   @override
-  String get controlNotificationFrequency => 'Kontrol seberapa sering Chronicle mengirimkan notifikasi proaktif kepada Anda.';
+  String get controlNotificationFrequency =>
+      'Kontrol seberapa sering Chronicle mengirimkan notifikasi proaktif kepada Anda.';
 
   @override
   String get yourScore => 'Skor Anda';
@@ -8010,7 +8013,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Inilah yang saya ketahui tentang Anda';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Peta ini diperbarui saat Chronicle belajar dari percakapan Anda.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Peta ini diperbarui saat Chronicle belajar dari percakapan Anda.';
 
   @override
   String get apiEnvironment => 'Lingkungan API';
@@ -8836,13 +8840,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Bicarakan kesehatan Anda';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Tanyakan pada Chronicle tentang langkah, tidur, detak jantung, dan latihan Anda.';
+  String get appleHealthFeatureChatDesc =>
+      'Tanyakan pada Chronicle tentang langkah, tidur, detak jantung, dan latihan Anda.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Akses hanya-baca';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle tidak pernah menulis ke Apple Health atau mengubah data Anda.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle tidak pernah menulis ke Apple Health atau mengubah data Anda.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Sinkronisasi aman';
@@ -9484,7 +9490,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'Kenali Chronicle Anda';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Tur singkat dan praktis tentang semua yang bisa dilakukan Chronicle Anda.';
+  String get deviceOnboardingIntroSubtitle =>
+      'Tur singkat dan praktis tentang semua yang bisa dilakukan Chronicle Anda.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Sekitar 1 menit';

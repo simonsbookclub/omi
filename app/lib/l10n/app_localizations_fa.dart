@@ -709,7 +709,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get noActivityYet => 'هنوز فعالیتی وجود ندارد';
 
   @override
-  String get startConversationToSeeInsights => 'یک گفتگو با Chronicle شروع کنید\nتا بینش‌های استفاده خود را اینجا ببینید.';
+  String get startConversationToSeeInsights =>
+      'یک گفتگو با Chronicle شروع کنید\nتا بینش‌های استفاده خود را اینجا ببینید.';
 
   @override
   String get listening => 'گوش دادن';
@@ -1790,7 +1791,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get maybeLater => 'شاید بعداً';
 
   @override
-  String get speechProfileIntro => 'Chronicle نیاز دارد اهداف و صدای شما را یاد بگیرد. بعداً می‌توانید آن را تغییر دهید.';
+  String get speechProfileIntro =>
+      'Chronicle نیاز دارد اهداف و صدای شما را یاد بگیرد. بعداً می‌توانید آن را تغییر دهید.';
 
   @override
   String get getStarted => 'شروع کنید';
@@ -2064,7 +2066,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get clearMemoryTitle => 'پاک کردن حافظه Chronicle';
 
   @override
-  String get clearMemoryMessage => 'آیا مطمئن هستید که می‌خواهید حافظه Chronicle را پاک کنید؟ این اقدام قابل برگشت نیست.';
+  String get clearMemoryMessage =>
+      'آیا مطمئن هستید که می‌خواهید حافظه Chronicle را پاک کنید؟ این اقدام قابل برگشت نیست.';
 
   @override
   String get clearMemoryButton => 'پاک کردن حافظه';
@@ -2654,7 +2657,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get reviewAndManageConversations => 'بررسی و مدیریت گفتگوهای ضبط‌شده خود';
 
   @override
-  String get startCapturingConversations => 'برای مشاهده گفتگوها در اینجا، شروع به ضبط گفتگوها با دستگاه Chronicle خود کنید.';
+  String get startCapturingConversations =>
+      'برای مشاهده گفتگوها در اینجا، شروع به ضبط گفتگوها با دستگاه Chronicle خود کنید.';
 
   @override
   String get useMobileAppToCapture => 'برای ضبط صوت از برنامه موبایل خود استفاده کنید';
@@ -2669,7 +2673,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get showAll => 'نمایش همه';
 
   @override
-  String get noTasksForToday => 'امروز هیچ وظیفه‌ای وجود ندارد.\nاز Chronicle وظایف بیشتری بخواهید یا به‌صورت دستی بسازید.';
+  String get noTasksForToday =>
+      'امروز هیچ وظیفه‌ای وجود ندارد.\nاز Chronicle وظایف بیشتری بخواهید یا به‌صورت دستی بسازید.';
 
   @override
   String get dailyScore => 'امتیاز روزانه';
@@ -3428,7 +3433,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get recordAudioConversations => 'ضبط گفتگوهای صوتی';
 
   @override
-  String get microphoneAccessDescription => 'Chronicle برای ضبط گفتگوهای شما و ارائه رونوشت‌ها به دسترسی میکروفن نیاز دارد.';
+  String get microphoneAccessDescription =>
+      'Chronicle برای ضبط گفتگوهای شما و ارائه رونوشت‌ها به دسترسی میکروفن نیاز دارد.';
 
   @override
   String get screenRecording => 'ضبط صفحه';
@@ -5652,7 +5658,8 @@ class AppLocalizationsFa extends AppLocalizations {
       'امتیاز روزانه شما بر اساس تکمیل تکالیف است. تکالیف خود را تکمیل کنید تا امتیاز خود را بهبود بخشید!';
 
   @override
-  String get notificationFrequencyDescription => 'کنترل کنید که Chronicle چند بار اعلانات پیشفعال و یادآوری ارسال می کند.';
+  String get notificationFrequencyDescription =>
+      'کنترل کنید که Chronicle چند بار اعلانات پیشفعال و یادآوری ارسال می کند.';
 
   @override
   String get sliderOff => 'خاموش';
@@ -8834,7 +8841,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'دسترسی فقط خواندنی';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle هرگز در Apple Health نمی‌نویسد و داده‌های شما را تغییر نمی‌دهد.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle هرگز در Apple Health نمی‌نویسد و داده‌های شما را تغییر نمی‌دهد.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'همگام‌سازی امن';
@@ -9282,7 +9290,8 @@ class AppLocalizationsFa extends AppLocalizations {
       'محدودیت استفاده منصفانه به پایان رسید — همگام‌سازی به‌طور خودکار از سر گرفته می‌شود';
 
   @override
-  String get syncCardBackendBusy => 'سرورهای Chronicle شلوغ هستند — ضبط‌های شما به‌محض آزاد شدن ظرفیت همگام‌سازی می‌شوند';
+  String get syncCardBackendBusy =>
+      'سرورهای Chronicle شلوغ هستند — ضبط‌های شما به‌محض آزاد شدن ظرفیت همگام‌سازی می‌شوند';
 
   @override
   String get unableToDetermineFirmwareVersion => 'تعیین نسخه فعلی سفت‌افزار امکان‌پذیر نیست';
@@ -9477,7 +9486,8 @@ class AppLocalizationsFa extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'با Chronicle خود آشنا شوید';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'یک گشت سریع و کاربردی در همه‌ی کارهایی که Chronicle شما می‌تواند انجام دهد.';
+  String get deviceOnboardingIntroSubtitle =>
+      'یک گشت سریع و کاربردی در همه‌ی کارهایی که Chronicle شما می‌تواند انجام دهد.';
 
   @override
   String get deviceOnboardingIntroDuration => 'حدود ۱ دقیقه';
@@ -9804,7 +9814,8 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle رایگان است، اما نسخه رایگان محدودیت‌هایی دارد که بر تجربه شما اثر می‌گذارد:';
+  String get freemiumLimitsIntro =>
+      'Chronicle رایگان است، اما نسخه رایگان محدودیت‌هایی دارد که بر تجربه شما اثر می‌گذارد:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '۵ تا ۷ ثانیه تأخیر (بلادرنگ نیست)';

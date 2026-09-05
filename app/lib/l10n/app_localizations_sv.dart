@@ -3389,7 +3389,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chooseYourLanguage => 'Välj ditt språk';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Välj ditt föredragna språk för den bästa Chronicle-upplevelsen';
+  String get selectPreferredLanguageForBestExperience =>
+      'Välj ditt föredragna språk för den bästa Chronicle-upplevelsen';
 
   @override
   String get searchLanguages => 'Sök språk...';
@@ -4440,7 +4441,8 @@ class AppLocalizationsSv extends AppLocalizations {
   String get trainingDataProgram => 'Träningsdataprogram';
 
   @override
-  String get getOmiUnlimitedFree => 'Få Chronicle Unlimited gratis genom att bidra med dina data för att träna AI-modeller.';
+  String get getOmiUnlimitedFree =>
+      'Få Chronicle Unlimited gratis genom att bidra med dina data för att träna AI-modeller.';
 
   @override
   String get trainingDataBullets =>
@@ -9807,7 +9809,8 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle är gratis, men gratisversionen har begränsningar som påverkar din upplevelse:';
+  String get freemiumLimitsIntro =>
+      'Chronicle är gratis, men gratisversionen har begränsningar som påverkar din upplevelse:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5–7 sekunders fördröjning (inte i realtid)';

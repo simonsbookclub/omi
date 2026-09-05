@@ -132,7 +132,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get editPerson => 'Modifica Persona';
 
   @override
-  String get createPersonHint => 'Crea una nuova persona e allena Chronicle a riconoscere anche il suo modo di parlare!';
+  String get createPersonHint =>
+      'Crea una nuova persona e allena Chronicle a riconoscere anche il suo modo di parlare!';
 
   @override
   String get speechProfile => 'Profilo Vocale';
@@ -769,7 +770,8 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Condivido le mie statistiche Chronicle! (omi.me - il tuo assistente AI sempre attivo)';
+  String get shareStatsMessage =>
+      'Condivido le mie statistiche Chronicle! (omi.me - il tuo assistente AI sempre attivo)';
 
   @override
   String get sharePeriodToday => 'Oggi, Chronicle ha:';
@@ -1796,7 +1798,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get maybeLater => 'Forse più tardi';
 
   @override
-  String get speechProfileIntro => 'Chronicle deve imparare i tuoi obiettivi e la tua voce. Potrai modificarlo in seguito.';
+  String get speechProfileIntro =>
+      'Chronicle deve imparare i tuoi obiettivi e la tua voce. Potrai modificarlo in seguito.';
 
   @override
   String get getStarted => 'Inizia';
@@ -7952,7 +7955,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get pairingTitleAppleWatch => 'Collega Apple Watch';
 
   @override
-  String get pairingDescAppleWatch => 'Installa e apri l\'app Chronicle sul tuo Apple Watch, poi tocca Connetti nell\'app.';
+  String get pairingDescAppleWatch =>
+      'Installa e apri l\'app Chronicle sul tuo Apple Watch, poi tocca Connetti nell\'app.';
 
   @override
   String get pairingTitleNeoOne => 'Metti Neo One in modalità di accoppiamento';
@@ -8569,7 +8573,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get permissionsSetupTitle => 'Ottieni la migliore esperienza';
 
   @override
-  String get permissionsSetupDescription => 'Abilita alcune autorizzazioni per permettere a Chronicle di fare la sua magia.';
+  String get permissionsSetupDescription =>
+      'Abilita alcune autorizzazioni per permettere a Chronicle di fare la sua magia.';
 
   @override
   String get permissionsChangeAnytime => 'Puoi modificarle in qualsiasi momento in Impostazioni > Autorizzazioni';
@@ -8879,7 +8884,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Parla della tua salute';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Chiedi a Chronicle dei tuoi passi, sonno, frequenza cardiaca e allenamenti.';
+  String get appleHealthFeatureChatDesc =>
+      'Chiedi a Chronicle dei tuoi passi, sonno, frequenza cardiaca e allenamenti.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Accesso in sola lettura';

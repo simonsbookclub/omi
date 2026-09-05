@@ -300,6 +300,40 @@ class ConversationAudioInfo {
   }
 }
 
+/// SIMONSBOOKCLUB ("Us"): couple scoping and analysis v4 as served by the
+/// worker (omi-conversation.ts toServerConversation → `us`).
+class UsInfo {
+  final String? ownerUserId;
+  final String? coupleId;
+  final String? scope; // 'us' | 'us_others' | 'not_us' | null
+  final String? override; // 'us' | 'not_us' | null
+  final bool? hard;
+  final Map<String, dynamic>? participation;
+  final Map<String, dynamic>? analysis;
+
+  const UsInfo({this.ownerUserId, this.coupleId, this.scope, this.override, this.hard, this.participation, this.analysis});
+
+  factory UsInfo.fromJson(Map<String, dynamic> json) => UsInfo(
+        ownerUserId: json['owner_user_id']?.toString(),
+        coupleId: json['couple_id']?.toString(),
+        scope: json['scope']?.toString(),
+        override: json['override']?.toString(),
+        hard: json['hard'] is bool ? json['hard'] as bool : null,
+        participation: json['participation'] is Map<String, dynamic> ? json['participation'] as Map<String, dynamic> : null,
+        analysis: json['analysis'] is Map<String, dynamic> ? json['analysis'] as Map<String, dynamic> : null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'owner_user_id': ownerUserId,
+        'couple_id': coupleId,
+        'scope': scope,
+        'override': override,
+        'hard': hard,
+        'participation': participation,
+        'analysis': analysis,
+      };
+}
+
 class ServerConversation {
   final String id;
   final DateTime createdAt;
@@ -330,6 +364,9 @@ class ServerConversation {
   bool starred;
   String? folderId;
   ConversationVisibility visibility;
+
+  /// SIMONSBOOKCLUB ("Us"): null when the server did not say.
+  UsInfo? us;
 
   // local label
   bool isNew = false;
@@ -378,12 +415,14 @@ class ServerConversation {
       }).toList();
     }
     final generated = wire.GeneratedConversation.fromJson(normalized);
-    return ServerConversation.fromGenerated(
+    final conversation = ServerConversation.fromGenerated(
       generated,
       structured: structured,
       geolocation: json['geolocation'] is Map<String, dynamic> ? Geolocation.fromJson(json['geolocation']) : null,
       deleted: json['deleted'] ?? false,
     );
+    if (json['us'] is Map<String, dynamic>) conversation.us = UsInfo.fromJson(json['us'] as Map<String, dynamic>);
+    return conversation;
   }
 
   factory ServerConversation.fromGenerated(
@@ -453,6 +492,7 @@ class ServerConversation {
       'is_locked': isLocked,
       'starred': starred,
       'folder_id': folderId,
+      if (us != null) 'us': us!.toJson(),
       'visibility': visibility.value,
     };
   }

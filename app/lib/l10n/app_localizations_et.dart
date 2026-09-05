@@ -561,7 +561,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get deviceNotConnected => 'Seade pole ühendatud';
 
   @override
-  String get connectDeviceMessage => 'Ühendage oma Chronicle seade, et pääseda juurde\nseadme seadetele ja kohandamisele';
+  String get connectDeviceMessage =>
+      'Ühendage oma Chronicle seade, et pääseda juurde\nseadme seadetele ja kohandamisele';
 
   @override
   String get deviceInfoSection => 'Seadme teave';
@@ -709,7 +710,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get noActivityYet => 'Tegevust pole veel';
 
   @override
-  String get startConversationToSeeInsights => 'Alustage Chronicle-ga vestlust,\net näha siinkohal oma kasutuse ülevaadet.';
+  String get startConversationToSeeInsights =>
+      'Alustage Chronicle-ga vestlust,\net näha siinkohal oma kasutuse ülevaadet.';
 
   @override
   String get listening => 'Kuulamine';
@@ -2649,7 +2651,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get reviewAndManageConversations => 'Vaadake üle ja hallake oma salvestatud vestlusi';
 
   @override
-  String get startCapturingConversations => 'Alustage vestluste salvestamist oma Chronicle seadmega, et neid siin näha.';
+  String get startCapturingConversations =>
+      'Alustage vestluste salvestamist oma Chronicle seadmega, et neid siin näha.';
 
   @override
   String get useMobileAppToCapture => 'Kasutage heeli salvestamiseks mobiilirakendust';
@@ -4437,7 +4440,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get trainingDataProgram => 'Treeningandmete programm';
 
   @override
-  String get getOmiUnlimitedFree => 'Saage Chronicle Unlimited tasuta, panustades oma andmetega AI mudelite treenimisse.';
+  String get getOmiUnlimitedFree =>
+      'Saage Chronicle Unlimited tasuta, panustades oma andmetega AI mudelite treenimisse.';
 
   @override
   String get trainingDataBullets =>
@@ -8836,7 +8840,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Turvaline sünkroonimine';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Teie Apple Health\'i andmed sünkroonitakse privaatselt teie Chronicle kontoga.';
+  String get appleHealthFeatureSecureDesc =>
+      'Teie Apple Health\'i andmed sünkroonitakse privaatselt teie Chronicle kontoga.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health\'i juurdepääs keelatud';
@@ -9277,7 +9282,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get syncCardRateLimited => 'Õiglase kasutuse piir on saavutatud — sünkroonimine jätkub automaatselt';
 
   @override
-  String get syncCardBackendBusy => 'Chronicle serverid on hõivatud — sinu salvestised sünkroonitakse, kui maht vabaneb';
+  String get syncCardBackendBusy =>
+      'Chronicle serverid on hõivatud — sinu salvestised sünkroonitakse, kui maht vabaneb';
 
   @override
   String get unableToDetermineFirmwareVersion => 'Praeguse püsivara versiooni ei õnnestunud tuvastada';
@@ -9798,7 +9804,8 @@ class AppLocalizationsEt extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle on tasuta, kuid tasuta versioonil on piirangud, mis mõjutavad sinu kogemust:';
+  String get freemiumLimitsIntro =>
+      'Chronicle on tasuta, kuid tasuta versioonil on piirangud, mis mõjutavad sinu kogemust:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5–7 sekundi viivitus (mitte reaalajas)';
@@ -9819,7 +9826,8 @@ class AppLocalizationsEt extends AppLocalizations {
   String get accountCutoverUpdateRequiredTitle => 'Päivitys vaaditaan';
 
   @override
-  String get accountCutoverUpdateRequiredMessage => 'Asenna uusin Chronicle-sovellus jatkaaksesi tilin siirron jälkeen.';
+  String get accountCutoverUpdateRequiredMessage =>
+      'Asenna uusin Chronicle-sovellus jatkaaksesi tilin siirron jälkeen.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Siirto käynnissä';

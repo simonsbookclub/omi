@@ -767,7 +767,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Chronicle istatistiklerimi paylaşıyorum! (omi.me - her zaman açık yapay zeka asistanınız)';
+  String get shareStatsMessage =>
+      'Chronicle istatistiklerimi paylaşıyorum! (omi.me - her zaman açık yapay zeka asistanınız)';
 
   @override
   String get sharePeriodToday => 'Bugün, omi:';
@@ -1464,7 +1465,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get bringYourOwn => 'Kendininkini getir';
 
   @override
-  String get payYourSttProvider => 'Chronicle\'yi özgürce kullanın. Sadece STT sağlayıcınıza doğrudan ödeme yaparsınız.';
+  String get payYourSttProvider =>
+      'Chronicle\'yi özgürce kullanın. Sadece STT sağlayıcınıza doğrudan ödeme yaparsınız.';
 
   @override
   String get freeMinutesMonth => 'Ayda 300 ücretsiz dakika dahildir. ';
@@ -2670,7 +2672,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get showAll => 'Hepsini göster →';
 
   @override
-  String get noTasksForToday => 'Bugün için görev yok.\nDaha fazla görev için Chronicle\'ye sorun veya manuel oluşturun.';
+  String get noTasksForToday =>
+      'Bugün için görev yok.\nDaha fazla görev için Chronicle\'ye sorun veya manuel oluşturun.';
 
   @override
   String get dailyScore => 'GÜNLÜK SKOR';
@@ -8839,7 +8842,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Sağlığın hakkında sohbet et';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Adımların, uykun, kalp atışın ve antrenmanların hakkında Chronicle\'ye sor.';
+  String get appleHealthFeatureChatDesc =>
+      'Adımların, uykun, kalp atışın ve antrenmanların hakkında Chronicle\'ye sor.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Yalnızca okuma erişimi';
@@ -8851,7 +8855,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Güvenli senkronizasyon';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Apple Health verilerin Chronicle hesabına gizli şekilde senkronize edilir.';
+  String get appleHealthFeatureSecureDesc =>
+      'Apple Health verilerin Chronicle hesabına gizli şekilde senkronize edilir.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health erişimi reddedildi';
@@ -9814,7 +9819,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle ücretsizdir, ancak ücretsiz sürümün deneyimini etkileyen sınırları vardır:';
+  String get freemiumLimitsIntro =>
+      'Chronicle ücretsizdir, ancak ücretsiz sürümün deneyimini etkileyen sınırları vardır:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5-7 saniye gecikme (gerçek zamanlı değil)';

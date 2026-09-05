@@ -4452,7 +4452,8 @@ class AppLocalizationsHr extends AppLocalizations {
   String get trainingDataProgram => 'Program za podatke o obukama';
 
   @override
-  String get getOmiUnlimitedFree => 'Dobijte Chronicle Unlimited besplatno doprinoseći svoje podatke za obuku AI modela.';
+  String get getOmiUnlimitedFree =>
+      'Dobijte Chronicle Unlimited besplatno doprinoseći svoje podatke za obuku AI modela.';
 
   @override
   String get trainingDataBullets =>

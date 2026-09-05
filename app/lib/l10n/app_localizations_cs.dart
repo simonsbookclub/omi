@@ -560,7 +560,8 @@ class AppLocalizationsCs extends AppLocalizations {
   String get deviceNotConnected => 'Zařízení není připojeno';
 
   @override
-  String get connectDeviceMessage => 'Připojte své zařízení Chronicle pro přístup\nk nastavením a přizpůsobení zařízení';
+  String get connectDeviceMessage =>
+      'Připojte své zařízení Chronicle pro přístup\nk nastavením a přizpůsobení zařízení';
 
   @override
   String get deviceInfoSection => 'Informace o zařízení';
@@ -708,7 +709,8 @@ class AppLocalizationsCs extends AppLocalizations {
   String get noActivityYet => 'Zatím žádná aktivita';
 
   @override
-  String get startConversationToSeeInsights => 'Začněte konverzaci s Chronicle,\nabyste zde viděli své přehledy využití.';
+  String get startConversationToSeeInsights =>
+      'Začněte konverzaci s Chronicle,\nabyste zde viděli své přehledy využití.';
 
   @override
   String get listening => 'Naslouchání';
@@ -7995,7 +7997,8 @@ class AppLocalizationsCs extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Toto o vás vím';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Tato mapa se aktualizuje, jak se Chronicle učí z vašich konverzací.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Tato mapa se aktualizuje, jak se Chronicle učí z vašich konverzací.';
 
   @override
   String get apiEnvironment => 'Prostředí API';

@@ -133,7 +133,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get editPerson => 'Επεξεργασία Ατόμου';
 
   @override
-  String get createPersonHint => 'Δημιουργήστε ένα νέο άτομο και εκπαιδεύστε το Chronicle να αναγνωρίζει και την ομιλία του!';
+  String get createPersonHint =>
+      'Δημιουργήστε ένα νέο άτομο και εκπαιδεύστε το Chronicle να αναγνωρίζει και την ομιλία του!';
 
   @override
   String get speechProfile => 'Προφίλ Ομιλίας';
@@ -770,7 +771,8 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Μοιράζομαι τα στατιστικά μου στο Chronicle! (omi.me - ο πάντα ενεργός βοηθός AI σας)';
+  String get shareStatsMessage =>
+      'Μοιράζομαι τα στατιστικά μου στο Chronicle! (omi.me - ο πάντα ενεργός βοηθός AI σας)';
 
   @override
   String get sharePeriodToday => 'Σήμερα, το omi:';
@@ -3578,7 +3580,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Ενεργοποιείται όταν δημιουργείται η περίληψη της ημέρας.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Δοκιμάστε τις πιο πρόσφατες πειραματικές λειτουργίες από την ομάδα Chronicle.';
+  String get tryLatestExperimentalFeatures =>
+      'Δοκιμάστε τις πιο πρόσφατες πειραματικές λειτουργίες από την ομάδα Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Κατάσταση διαγνωστικών υπηρεσίας μεταγραφής';
@@ -8579,7 +8582,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get permissionsSetupTitle => 'Αποκτήστε την καλύτερη εμπειρία';
 
   @override
-  String get permissionsSetupDescription => 'Ενεργοποιήστε μερικές άδειες για να μπορεί το Chronicle να κάνει τα μαγικά του.';
+  String get permissionsSetupDescription =>
+      'Ενεργοποιήστε μερικές άδειες για να μπορεί το Chronicle να κάνει τα μαγικά του.';
 
   @override
   String get permissionsChangeAnytime => 'Μπορείτε να τα αλλάξετε ανά πάσα στιγμή στις Ρυθμίσεις > Άδειες';
@@ -8902,7 +8906,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Ασφαλής συγχρονισμός';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Τα δεδομένα Apple Health συγχρονίζονται ιδιωτικά στον λογαριασμό Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Τα δεδομένα Apple Health συγχρονίζονται ιδιωτικά στον λογαριασμό Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Απορρίφθηκε η πρόσβαση στο Apple Health';
@@ -9542,7 +9547,8 @@ class AppLocalizationsEl extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'Γνωρίστε το Chronicle σας';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Μια γρήγορη, πρακτική περιήγηση σε όλα όσα μπορεί να κάνει το Chronicle σας.';
+  String get deviceOnboardingIntroSubtitle =>
+      'Μια γρήγορη, πρακτική περιήγηση σε όλα όσα μπορεί να κάνει το Chronicle σας.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Περίπου 1 λεπτό';

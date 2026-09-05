@@ -2042,7 +2042,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get clearMemoryTitle => 'Limpar memória do Chronicle?';
 
   @override
-  String get clearMemoryMessage => 'Tem certeza de que deseja limpar a memória do Chronicle? Isso não pode ser desfeito.';
+  String get clearMemoryMessage =>
+      'Tem certeza de que deseja limpar a memória do Chronicle? Isso não pode ser desfeito.';
 
   @override
   String get clearMemoryButton => 'Limpar memória';
@@ -2627,7 +2628,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get reviewAndManageConversations => 'Revise e gerencie suas conversas gravadas';
 
   @override
-  String get startCapturingConversations => 'Comece a capturar conversas com seu dispositivo Chronicle para vê-las aqui.';
+  String get startCapturingConversations =>
+      'Comece a capturar conversas com seu dispositivo Chronicle para vê-las aqui.';
 
   @override
   String get useMobileAppToCapture => 'Use seu aplicativo móvel para capturar áudio';
@@ -2642,7 +2644,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get showAll => 'Mostrar tudo →';
 
   @override
-  String get noTasksForToday => 'Nenhuma tarefa para hoje.\nPergunte ao Chronicle por mais tarefas ou crie manualmente.';
+  String get noTasksForToday =>
+      'Nenhuma tarefa para hoje.\nPergunte ao Chronicle por mais tarefas ou crie manualmente.';
 
   @override
   String get dailyScore => 'PONTUAÇÃO DIÁRIA';
@@ -3395,7 +3398,8 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Ative recursos para a melhor experiência Chronicle no seu dispositivo.';
+  String get enableFeaturesForBestExperience =>
+      'Ative recursos para a melhor experiência Chronicle no seu dispositivo.';
 
   @override
   String get microphoneAccess => 'Acesso ao Microfone';
@@ -8832,7 +8836,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Converse sobre sua saúde';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Pergunte ao Chronicle sobre seus passos, sono, frequência cardíaca e treinos.';
+  String get appleHealthFeatureChatDesc =>
+      'Pergunte ao Chronicle sobre seus passos, sono, frequência cardíaca e treinos.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Acesso apenas de leitura';
@@ -8844,7 +8849,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Sincronização segura';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Seus dados do Apple Health sincronizam privadamente com sua conta Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Seus dados do Apple Health sincronizam privadamente com sua conta Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Acesso ao Apple Health negado';
@@ -9304,7 +9310,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get backgroundModeTitle => 'Modo em segundo plano';
 
   @override
-  String get backgroundModeDescription => 'Mantenha o seu Chronicle gravando mesmo quando o app está totalmente fechado.';
+  String get backgroundModeDescription =>
+      'Mantenha o seu Chronicle gravando mesmo quando o app está totalmente fechado.';
 
   @override
   String get backgroundModeNote =>
@@ -9811,7 +9818,8 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'O Chronicle é gratuito, mas a versão gratuita tem limites que afetam sua experiência:';
+  String get freemiumLimitsIntro =>
+      'O Chronicle é gratuito, mas a versão gratuita tem limites que afetam sua experiência:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Atraso de 5-7 segundos (não é em tempo real)';

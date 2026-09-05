@@ -710,7 +710,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get noActivityYet => 'Активності поки немає';
 
   @override
-  String get startConversationToSeeInsights => 'Почніть розмову з Chronicle,\nщоб побачити статистику використання тут.';
+  String get startConversationToSeeInsights =>
+      'Почніть розмову з Chronicle,\nщоб побачити статистику використання тут.';
 
   @override
   String get listening => 'Прослуховування';
@@ -2669,7 +2670,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get showAll => 'Показати все →';
 
   @override
-  String get noTasksForToday => 'Немає завдань на сьогодні.\nЗапитайте Chronicle про більше завдань або створіть вручну.';
+  String get noTasksForToday =>
+      'Немає завдань на сьогодні.\nЗапитайте Chronicle про більше завдань або створіть вручну.';
 
   @override
   String get dailyScore => 'ДЕННИЙ РАХУНОК';
@@ -3418,7 +3420,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Увімкніть функції для найкращого досвіду Chronicle на вашому пристрої.';
+  String get enableFeaturesForBestExperience =>
+      'Увімкніть функції для найкращого досвіду Chronicle на вашому пристрої.';
 
   @override
   String get microphoneAccess => 'Доступ до мікрофона';
@@ -4441,7 +4444,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get trainingDataProgram => 'Програма даних для навчання';
 
   @override
-  String get getOmiUnlimitedFree => 'Отримайте Chronicle Unlimited безкоштовно, надавши свої дані для навчання моделей ШІ.';
+  String get getOmiUnlimitedFree =>
+      'Отримайте Chronicle Unlimited безкоштовно, надавши свої дані для навчання моделей ШІ.';
 
   @override
   String get trainingDataBullets =>
@@ -6756,7 +6760,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Ваш пристрій Chronicle відключено';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Будь ласка, підключіться знову, щоб продовжити використання Chronicle.';
+  String get deviceDisconnectedNotificationBody =>
+      'Будь ласка, підключіться знову, щоб продовжити використання Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Доступне оновлення прошивки';
@@ -8013,7 +8018,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Ось що я знаю про тебе';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Ця карта оновлюється, коли Chronicle навчається з ваших розмов.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Ця карта оновлюється, коли Chronicle навчається з ваших розмов.';
 
   @override
   String get apiEnvironment => 'Середовище API';
@@ -8852,7 +8858,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Безпечна синхронізація';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Ваші дані Apple Health приватно синхронізуються з обліковим записом Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Ваші дані Apple Health приватно синхронізуються з обліковим записом Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Доступ до Apple Health заборонено';

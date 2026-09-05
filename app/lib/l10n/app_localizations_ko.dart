@@ -4031,7 +4031,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get issueActivatingApp => '이 앱을 활성화하는 데 문제가 발생했습니다. 다시 시도해 주세요.';
 
   @override
-  String get dataAccessNoticeDescription => '이 앱은 귀하의 데이터에 액세스합니다. Chronicle AI는 이 앱에 의한 데이터 사용, 수정 또는 삭제에 대해 책임지지 않습니다';
+  String get dataAccessNoticeDescription =>
+      '이 앱은 귀하의 데이터에 액세스합니다. Chronicle AI는 이 앱에 의한 데이터 사용, 수정 또는 삭제에 대해 책임지지 않습니다';
 
   @override
   String get copyUrl => 'URL 복사';
@@ -8705,7 +8706,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get appleHealthDeniedTitle => 'Apple Health 접근이 거부됨';
 
   @override
-  String get appleHealthDeniedBody => 'Chronicle에 Apple Health 데이터를 읽을 권한이 없습니다. iOS 설정 → 개인정보 보호 및 보안 → 건강 → Chronicle에서 활성화하세요.';
+  String get appleHealthDeniedBody =>
+      'Chronicle에 Apple Health 데이터를 읽을 권한이 없습니다. iOS 설정 → 개인정보 보호 및 보안 → 건강 → Chronicle에서 활성화하세요.';
 
   @override
   String get deleteFlowReasonTitle => '왜 떠나시나요?';
@@ -9179,7 +9181,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get syncCustomSttWarningTitle => '동기화는 Chronicle 전사를 사용합니다';
 
   @override
-  String get syncCustomSttWarningMessage => '직접 설정한 전사 제공자를 사용 중입니다. 이 녹음을 동기화하면 Chronicle 서버에서 전사되며 요금제의 전사 한도에 포함됩니다.';
+  String get syncCustomSttWarningMessage =>
+      '직접 설정한 전사 제공자를 사용 중입니다. 이 녹음을 동기화하면 Chronicle 서버에서 전사되며 요금제의 전사 한도에 포함됩니다.';
 
   @override
   String get transcribeLaterTitle => '나중에 변환하기';

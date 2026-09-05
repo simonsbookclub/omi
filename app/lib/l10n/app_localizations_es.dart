@@ -765,7 +765,8 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => '¡Compartiendo mis estadísticas de Chronicle! (omi.me - mi asistente IA siempre activo)';
+  String get shareStatsMessage =>
+      '¡Compartiendo mis estadísticas de Chronicle! (omi.me - mi asistente IA siempre activo)';
 
   @override
   String get sharePeriodToday => 'Hoy Chronicle:';
@@ -3376,7 +3377,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get chooseYourLanguage => 'Elige tu idioma';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Seleccione su idioma preferido para la mejor experiencia Chronicle';
+  String get selectPreferredLanguageForBestExperience =>
+      'Seleccione su idioma preferido para la mejor experiencia Chronicle';
 
   @override
   String get searchLanguages => 'Buscar idiomas...';
@@ -3403,7 +3405,8 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Active funciones para la mejor experiencia Chronicle en su dispositivo.';
+  String get enableFeaturesForBestExperience =>
+      'Active funciones para la mejor experiencia Chronicle en su dispositivo.';
 
   @override
   String get microphoneAccess => 'Acceso al micrófono';
@@ -4433,7 +4436,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get trainingDataProgram => 'Programa de datos de entrenamiento';
 
   @override
-  String get getOmiUnlimitedFree => 'Obtén Chronicle Ilimitado gratis contribuyendo tus datos para entrenar modelos de IA.';
+  String get getOmiUnlimitedFree =>
+      'Obtén Chronicle Ilimitado gratis contribuyendo tus datos para entrenar modelos de IA.';
 
   @override
   String get trainingDataBullets =>
@@ -5625,7 +5629,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get notificationFrequency => 'Frecuencia de notificaciones';
 
   @override
-  String get controlNotificationFrequency => 'Controla con qué frecuencia Chronicle te envía notificaciones proactivas.';
+  String get controlNotificationFrequency =>
+      'Controla con qué frecuencia Chronicle te envía notificaciones proactivas.';
 
   @override
   String get yourScore => 'Tu puntuación';
@@ -9321,7 +9326,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backgroundModeTitle => 'Modo en segundo plano';
 
   @override
-  String get backgroundModeDescription => 'Mantén tu Chronicle grabando incluso cuando la app está completamente cerrada.';
+  String get backgroundModeDescription =>
+      'Mantén tu Chronicle grabando incluso cuando la app está completamente cerrada.';
 
   @override
   String get backgroundModeNote => 'Por ahora solo funciona con dispositivos Chronicle y se mejora continuamente.';
@@ -9498,7 +9504,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'Conoce tu Chronicle';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Un recorrido rápido y práctico por todo lo que tu Chronicle puede hacer.';
+  String get deviceOnboardingIntroSubtitle =>
+      'Un recorrido rápido y práctico por todo lo que tu Chronicle puede hacer.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Aproximadamente 1 minuto';
@@ -9826,7 +9833,8 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle es gratis, pero la versión gratuita tiene límites que afectan tu experiencia:';
+  String get freemiumLimitsIntro =>
+      'Chronicle es gratis, pero la versión gratuita tiene límites que afectan tu experiencia:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Retraso de 5-7 segundos (no en tiempo real)';

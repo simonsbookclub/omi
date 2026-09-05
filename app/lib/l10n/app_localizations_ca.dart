@@ -2079,7 +2079,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get clearMemoryTitle => 'Esborrar la memòria d\'Chronicle';
 
   @override
-  String get clearMemoryMessage => 'Esteu segur que voleu esborrar la memòria d\'Chronicle? Aquesta acció no es pot desfer.';
+  String get clearMemoryMessage =>
+      'Esteu segur que voleu esborrar la memòria d\'Chronicle? Aquesta acció no es pot desfer.';
 
   @override
   String get clearMemoryButton => 'Esborrar memòria';
@@ -5656,7 +5657,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get notificationFrequency => 'Freqüència de notificacions';
 
   @override
-  String get controlNotificationFrequency => 'Controla amb quina freqüència Chronicle t\'envia notificacions proactives.';
+  String get controlNotificationFrequency =>
+      'Controla amb quina freqüència Chronicle t\'envia notificacions proactives.';
 
   @override
   String get yourScore => 'La teva puntuació';

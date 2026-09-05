@@ -559,7 +559,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get deviceNotConnected => 'Naprava ni priključena';
 
   @override
-  String get connectDeviceMessage => 'Povežite svojo Chronicle napravo za dostop\ndo nastavitev naprave in prilagoditve';
+  String get connectDeviceMessage =>
+      'Povežite svojo Chronicle napravo za dostop\ndo nastavitev naprave in prilagoditve';
 
   @override
   String get deviceInfoSection => 'Informacije o napravi';
@@ -3393,7 +3394,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chooseYourLanguage => 'Izberite svoj jezik';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Izberite svoj izbrani jezik za najboljšo izkušnjo z Chronicle';
+  String get selectPreferredLanguageForBestExperience =>
+      'Izberite svoj izbrani jezik za najboljšo izkušnjo z Chronicle';
 
   @override
   String get searchLanguages => 'Iskanje jezikov...';
@@ -7927,7 +7929,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get pairingTitleAppleWatch => 'Poveži Apple Watch';
 
   @override
-  String get pairingDescAppleWatch => 'Namesti in odpri Chronicle aplikacijo na Apple Watch, nato v aplikaciji tapni Poveži.';
+  String get pairingDescAppleWatch =>
+      'Namesti in odpri Chronicle aplikacijo na Apple Watch, nato v aplikaciji tapni Poveži.';
 
   @override
   String get pairingTitleNeoOne => 'Postavi Neo One v način pariranja';
@@ -8023,7 +8026,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Tukaj je, kaj vem o tebi';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Ta zemljevid se posodablja, ko se Chronicle uči iz tvojih pogovorov.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Ta zemljevid se posodablja, ko se Chronicle uči iz tvojih pogovorov.';
 
   @override
   String get apiEnvironment => 'API okolje';
@@ -8856,7 +8860,8 @@ class AppLocalizationsSl extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Dostop samo za branje';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle nikoli ne piše v Apple Health in ne spreminja vaših podatkov.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle nikoli ne piše v Apple Health in ne spreminja vaših podatkov.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Varna sinhronizacija';

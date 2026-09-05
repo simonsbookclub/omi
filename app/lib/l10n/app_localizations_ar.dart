@@ -2552,7 +2552,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get youreAllSet => 'أنت جاهز تمامًا!';
 
   @override
-  String get welcomeToOmiDescription => 'مرحبًا بك في Chronicle! رفيقك الذكي جاهز لمساعدتك في المحادثات والمهام والمزيد.';
+  String get welcomeToOmiDescription =>
+      'مرحبًا بك في Chronicle! رفيقك الذكي جاهز لمساعدتك في المحادثات والمهام والمزيد.';
 
   @override
   String get startUsingOmi => 'ابدأ استخدام Chronicle';
@@ -3378,7 +3379,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nameMustBeAtLeast2Characters => 'يجب أن يكون الاسم على الأقل حرفين';
 
   @override
-  String get tellUsHowYouWouldLikeToBeAddressed => 'أخبرنا كيف تريد أن نخاطبك. هذا يساعد في تخصيص تجربة Chronicle الخاصة بك.';
+  String get tellUsHowYouWouldLikeToBeAddressed =>
+      'أخبرنا كيف تريد أن نخاطبك. هذا يساعد في تخصيص تجربة Chronicle الخاصة بك.';
 
   @override
   String charactersCount(int count) {

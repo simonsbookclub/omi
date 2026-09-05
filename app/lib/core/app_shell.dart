@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:app_links/app_links.dart';
+import 'package:omi/providers/us_provider.dart';
+import 'package:omi/services/us_session.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/http/api/action_items.dart' as action_items_api;
@@ -62,6 +64,22 @@ class _AppShellState extends State<AppShell> {
   }
 
   void openAppLink(Uri uri) async {
+    // "Us": the browser sign-in (Oura) comes back as chronicle://auth?token=…
+    if (uri.scheme == 'chronicle' && uri.host == 'auth') {
+      final err = await UsSession.handleAuthCallback(uri);
+      if (!mounted) return;
+      if (err != null) {
+        AppSnackbar.showSnackbarError(err);
+        return;
+      }
+      SharedPreferencesUtil().onboardingCompleted = true;
+      SharedPreferencesUtil().aiConsentGiven = true;
+      context.read<AuthenticationProvider>().refreshSignInState();
+      context.read<UsProvider>().loadAccount();
+      context.read<UsProvider>().refresh(force: true);
+      AppSnackbar.showSnackbar('Signed in.');
+      return;
+    }
     if (uri.pathSegments.isEmpty) {
       Logger.debug('No path segments in URI: $uri');
       return;
@@ -367,7 +385,7 @@ class _AppShellState extends State<AppShell> {
       // and an empty givenName degrades the wearer's bubbles, tag chips and
       // exports to blank. One wearer, one name.
       if (SharedPreferencesUtil().givenName.trim().isEmpty) {
-        SharedPreferencesUtil().givenName = 'Simon';
+        SharedPreferencesUtil().givenName = UsSession.userName.isNotEmpty ? UsSession.userName : 'Simon';
       }
       try {
         await PlatformManager.instance.intercom.loginIdentifiedUser(SharedPreferencesUtil().uid);

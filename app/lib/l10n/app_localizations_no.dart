@@ -3385,7 +3385,8 @@ class AppLocalizationsNo extends AppLocalizations {
   String get chooseYourLanguage => 'Velg språket ditt';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Velg ditt foretrukne språk for den beste Chronicle-opplevelsen';
+  String get selectPreferredLanguageForBestExperience =>
+      'Velg ditt foretrukne språk for den beste Chronicle-opplevelsen';
 
   @override
   String get searchLanguages => 'Søk språk...';
@@ -3412,7 +3413,8 @@ class AppLocalizationsNo extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Aktiver funksjoner for den beste Chronicle-opplevelsen på enheten din.';
+  String get enableFeaturesForBestExperience =>
+      'Aktiver funksjoner for den beste Chronicle-opplevelsen på enheten din.';
 
   @override
   String get microphoneAccess => 'Mikrofontilgang';
@@ -4436,7 +4438,8 @@ class AppLocalizationsNo extends AppLocalizations {
   String get trainingDataProgram => 'Treningsdataprogram';
 
   @override
-  String get getOmiUnlimitedFree => 'Få Chronicle Unlimited gratis ved å bidra med dataene dine til å trene AI-modeller.';
+  String get getOmiUnlimitedFree =>
+      'Få Chronicle Unlimited gratis ved å bidra med dataene dine til å trene AI-modeller.';
 
   @override
   String get trainingDataBullets =>
@@ -8255,7 +8258,8 @@ class AppLocalizationsNo extends AppLocalizations {
   String get phoneCallsUnlimitedOnly => 'Telefonsamtaler via Chronicle';
 
   @override
-  String get phoneCallsUpsellSubtitle => 'Ring via Chronicle og få sanntids transkripsjon, automatiske sammendrag og mer.';
+  String get phoneCallsUpsellSubtitle =>
+      'Ring via Chronicle og få sanntids transkripsjon, automatiske sammendrag og mer.';
 
   @override
   String get phoneCallsUpsellFeature1 => 'Sanntids transkripsjon av hver samtale';
@@ -8835,7 +8839,8 @@ class AppLocalizationsNo extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Sikker synkronisering';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Apple Health-dataene dine synkroniseres privat til Chronicle-kontoen din.';
+  String get appleHealthFeatureSecureDesc =>
+      'Apple Health-dataene dine synkroniseres privat til Chronicle-kontoen din.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health-tilgang avvist';

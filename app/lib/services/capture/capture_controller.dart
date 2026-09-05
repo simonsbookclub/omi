@@ -25,6 +25,8 @@ import 'package:omi/backend/schema/transcript_segment.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/models/custom_stt_config.dart';
 import 'package:omi/providers/device_onboarding_provider.dart';
+import 'package:omi/providers/us_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:omi/services/capture/capture_external_actions.dart';
 import 'package:omi/services/capture/capture_metrics_tracker.dart';
 import 'package:omi/services/capture/conversation_source_for_device.dart';
@@ -60,6 +62,7 @@ import 'package:omi/backend/schema/message_event.dart'
         ConversationUpdatedEvent,
         CommandResultEvent,
         WakeHeardEvent,
+        UsEvent,
         SpeakerLabelSuggestionEvent,
         TranslationEvent,
         PhotoProcessingEvent,
@@ -1983,6 +1986,11 @@ class CaptureController extends ChangeNotifier
       return;
     }
 
+    if (event is UsEvent) {
+      _handleUsEvent(event);
+      return;
+    }
+
     if (event is CommandResultEvent) {
       HapticFeedback.heavyImpact();
       final ctx = globalNavigatorKey.currentContext;
@@ -2141,6 +2149,47 @@ class CaptureController extends ChangeNotifier
 
     externalActions.upsertConversation(conversation);
     PlatformManager.instance.analytics.conversationCreated(conversation);
+  }
+
+  /// SIMONSBOOKCLUB ("Us"): hand the frame to UsProvider and show a local
+  /// notification for the ones that matter when the app is in the background.
+  void _handleUsEvent(UsEvent event) {
+    final ctx = globalNavigatorKey.currentContext;
+    if (ctx != null) {
+      try {
+        ctx.read<UsProvider>().onSocketEvent(event.eventType, event.payload);
+      } catch (e) {
+        Logger.debug('UsProvider not available: $e');
+      }
+    }
+    final p = event.payload;
+    switch (event.eventType) {
+      case 'us_card':
+        final card = p['card'] as Map<String, dynamic>?;
+        final level = (card?['level'] ?? '').toString();
+        final factors = ((card?['factors'] as List?) ?? const []).cast<Map<String, dynamic>>().where((f) => f['active'] == true).toList();
+        final body = factors.isEmpty ? 'Nothing pulling on either of you.' : factors.map((f) => '${f['who']}: ${f['text']}').join(' · ');
+        NotificationUtil.showCommandResult('Us · today: ${level.isEmpty ? 'card ready' : level}', body);
+        HapticFeedback.mediumImpact();
+        break;
+      case 'us_prompt':
+        final kind = (p['kind'] ?? '').toString();
+        NotificationUtil.showCommandResult(
+          kind == 'in_moment' ? 'Us' : 'Us · a moment ago',
+          kind == 'in_moment' ? (p['text'] ?? 'Two minutes of breathing together?').toString() : 'Was that a conflict? Did it resolve?',
+        );
+        HapticFeedback.heavyImpact();
+        break;
+      case 'us_couple':
+        NotificationUtil.showCommandResult('Us', 'Your couple is now ${p['state']}.');
+        break;
+      case 'us_protocol':
+        NotificationUtil.showCommandResult('Us', '${p['by'] ?? 'Your partner'} completed a protocol.');
+        break;
+      case 'us_weekly':
+        NotificationUtil.showCommandResult('Us · weekly report', 'The week of ${p['week_start']} is ready.');
+        break;
+    }
   }
 
   Future<void> _handleConversationUpdatedEvent(String memoryId) async {

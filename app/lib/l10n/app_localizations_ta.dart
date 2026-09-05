@@ -2078,7 +2078,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get clearMemoryTitle => 'Chronicle இன் பதிவை அழிக்கவும்';
 
   @override
-  String get clearMemoryMessage => 'Chronicle இன் உங்கள் பற்றிய பதிவை அழிக்க விரும்புகிறீர்களா? இந்தச் செயல் மாற்றமுடியாது.';
+  String get clearMemoryMessage =>
+      'Chronicle இன் உங்கள் பற்றிய பதிவை அழிக்க விரும்புகிறீர்களா? இந்தச் செயல் மாற்றமுடியாது.';
 
   @override
   String get clearMemoryButton => 'பதிவு அழிக்கவும்';
@@ -2669,7 +2670,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get reviewAndManageConversations => 'உங்கள் கைப்பற்றிய உரையாடல்களை மீளாய்வு செய்க மற்றும் நிர்வகிக்கவும்';
 
   @override
-  String get startCapturingConversations => 'உங்கள் Chronicle சாதனம் உடன் உரையாடல்களை கைப்பற்ற தொடங்கவும் அவற்றை இங்கே காண.';
+  String get startCapturingConversations =>
+      'உங்கள் Chronicle சாதனம் உடன் உரையாடல்களை கைப்பற்ற தொடங்கவும் அவற்றை இங்கே காண.';
 
   @override
   String get useMobileAppToCapture => 'ஆடியோ கைப்பற்ற உங்கள் மொபைல் ஆப்பைப் பயன்படுத்தவும்';
@@ -3436,7 +3438,8 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'உங்கள் சாதனத்தில் சிறந்த Chronicle அভிজ்ஞதைக்கான அம்சங்களை செயல்படுத்தவும்.';
+  String get enableFeaturesForBestExperience =>
+      'உங்கள் சாதனத்தில் சிறந்த Chronicle அভிজ்ஞதைக்கான அம்சங்களை செயல்படுத்தவும்.';
 
   @override
   String get microphoneAccess => 'மைக்ரோஃபோன் அணுக்கம்';
@@ -8896,7 +8899,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'படிக்க மட்டுமே அணுகல்';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle ஒருபோதும் Apple Health-இல் எழுதாது அல்லது உங்கள் தரவை மாற்றாது.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle ஒருபோதும் Apple Health-இல் எழுதாது அல்லது உங்கள் தரவை மாற்றாது.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'பாதுகாப்பான ஒத்திசைவு';
@@ -9367,7 +9371,8 @@ class AppLocalizationsTa extends AppLocalizations {
   String get backgroundModeDescription => 'ஆப்ஸ் முழுவதுமாக மூடப்பட்டிருந்தாலும் உங்கள் Chronicle பதிவைத் தொடரவும்.';
 
   @override
-  String get backgroundModeNote => 'தற்போது Chronicle சாதனங்களுடன் மட்டுமே செயல்படுகிறது, தொடர்ந்து மேம்படுத்தப்படுகிறது.';
+  String get backgroundModeNote =>
+      'தற்போது Chronicle சாதனங்களுடன் மட்டுமே செயல்படுகிறது, தொடர்ந்து மேம்படுத்தப்படுகிறது.';
 
   @override
   String get backgroundModeUnavailable =>
@@ -9872,7 +9877,8 @@ class AppLocalizationsTa extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle இலவசம், ஆனால் இலவச பதிப்பில் உங்கள் அனுபவத்தைப் பாதிக்கும் வரம்புகள் உள்ளன:';
+  String get freemiumLimitsIntro =>
+      'Chronicle இலவசம், ஆனால் இலவச பதிப்பில் உங்கள் அனுபவத்தைப் பாதிக்கும் வரம்புகள் உள்ளன:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5-7 வினாடி தாமதம் (நிகழ்நேரம் அல்ல)';

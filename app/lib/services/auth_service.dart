@@ -16,6 +16,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:omi/backend/http/api/users.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/env/env.dart';
+import 'package:omi/services/us_session.dart';
 import 'package:omi/flavors.dart';
 import 'package:omi/services/auth/auth_token_result.dart';
 import 'package:omi/utils/logger.dart';
@@ -52,20 +53,32 @@ final class _FirebaseAuthTokenGateway implements AuthTokenGateway {
 final class _StaticAuthTokenGateway implements AuthTokenGateway {
   static final DateTime _farFutureExpiry = DateTime.utc(2099);
 
+  // "Us" (2026-09-05): a Chronicle session token (Sign in with Apple, Oura,
+  // or the owner shortcut) comes first; the static build token remains the
+  // fallback so Simon's existing build keeps working unchanged.
+  String? get _token {
+    if (UsSession.hasSession) return UsSession.token;
+    if (Env.nativeBackendToken.isNotEmpty) return Env.nativeBackendToken;
+    return null;
+  }
+
   @override
   AuthUserSnapshot? get currentUser {
-    if (Env.nativeBackendToken.isEmpty) return null;
-    return const AuthUserSnapshot(uid: Env.nativeBackendUid);
+    final token = _token;
+    if (token == null) return null;
+    final uid = UsSession.hasSession && UsSession.userId.isNotEmpty ? UsSession.userId : Env.nativeBackendUid;
+    return AuthUserSnapshot(uid: uid);
   }
 
   @override
   Future<RefreshedAuthToken?> forceRefresh() async {
-    if (Env.nativeBackendToken.isEmpty) return null;
-    return RefreshedAuthToken(token: Env.nativeBackendToken, expirationTime: _farFutureExpiry);
+    final token = _token;
+    if (token == null) return null;
+    return RefreshedAuthToken(token: token, expirationTime: _farFutureExpiry);
   }
 
   @override
-  Future<void> signOut() async {}
+  Future<void> signOut() => UsSession.clear();
 }
 
 /// Source-bound proof captured before a credential-collision sign-in replaces
@@ -169,7 +182,7 @@ class AuthService {
   // signed-out once sign-in stopped touching real Firebase. Our identity is
   // the static gateway's fixed uid, which is present whenever a build token
   // was supplied — see Env.nativeBackendToken.
-  bool isSignedIn() => Env.nativeBackendToken.isNotEmpty;
+  bool isSignedIn() => UsSession.hasSession || Env.nativeBackendToken.isNotEmpty;
 
   static const _pkceCodeVerifierLength = 64;
   static const _pkceCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';

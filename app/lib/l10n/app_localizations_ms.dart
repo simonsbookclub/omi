@@ -560,7 +560,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String get deviceNotConnected => 'Peranti Tidak Disambungkan';
 
   @override
-  String get connectDeviceMessage => 'Sambungkan peranti Chronicle anda untuk mengakses\ntetapan peranti dan penyesuaian';
+  String get connectDeviceMessage =>
+      'Sambungkan peranti Chronicle anda untuk mengakses\ntetapan peranti dan penyesuaian';
 
   @override
   String get deviceInfoSection => 'Maklumat Peranti';
@@ -1795,7 +1796,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String get maybeLater => 'Mungkin nanti';
 
   @override
-  String get speechProfileIntro => 'Chronicle perlu mempelajari matlamat dan suara anda. Anda boleh mengubahnya kemudian.';
+  String get speechProfileIntro =>
+      'Chronicle perlu mempelajari matlamat dan suara anda. Anda boleh mengubahnya kemudian.';
 
   @override
   String get getStarted => 'Mulakan';
@@ -2657,7 +2659,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String get reviewAndManageConversations => 'Semak dan urus perbualan yang dirakam';
 
   @override
-  String get startCapturingConversations => 'Mula tangkap perbualan dengan peranti Chronicle anda untuk melihatnya di sini.';
+  String get startCapturingConversations =>
+      'Mula tangkap perbualan dengan peranti Chronicle anda untuk melihatnya di sini.';
 
   @override
   String get useMobileAppToCapture => 'Gunakan aplikasi mudah alih anda untuk merakam audio';
@@ -8856,7 +8859,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Akses baca sahaja';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle tidak pernah menulis ke Apple Health atau mengubah data anda.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle tidak pernah menulis ke Apple Health atau mengubah data anda.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Penyegerakan selamat';

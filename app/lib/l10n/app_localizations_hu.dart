@@ -133,7 +133,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get editPerson => 'Személy szerkesztése';
 
   @override
-  String get createPersonHint => 'Hozz létre egy új személyt, és tanítsd meg az Chronicle-t, hogy felismerje a beszédét is!';
+  String get createPersonHint =>
+      'Hozz létre egy új személyt, és tanítsd meg az Chronicle-t, hogy felismerje a beszédét is!';
 
   @override
   String get speechProfile => 'Beszédprofil';
@@ -3405,7 +3406,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chooseYourLanguage => 'Válassza ki a nyelvét';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Válassza ki a preferált nyelvét a legjobb Chronicle élményért';
+  String get selectPreferredLanguageForBestExperience =>
+      'Válassza ki a preferált nyelvét a legjobb Chronicle élményért';
 
   @override
   String get searchLanguages => 'Nyelvek keresése...';
@@ -5652,7 +5654,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get notificationFrequency => 'Értesítések gyakorisága';
 
   @override
-  String get controlNotificationFrequency => 'Szabályozza, milyen gyakran küld Önnek proaktív értesítéseket az Chronicle.';
+  String get controlNotificationFrequency =>
+      'Szabályozza, milyen gyakran küld Önnek proaktív értesítéseket az Chronicle.';
 
   @override
   String get yourScore => 'Az Ön pontszáma';
@@ -6777,7 +6780,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Az Chronicle eszköz lecsatlakozott';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Kérjük, csatlakozzon újra az Chronicle használatának folytatásához.';
+  String get deviceDisconnectedNotificationBody =>
+      'Kérjük, csatlakozzon újra az Chronicle használatának folytatásához.';
 
   @override
   String get firmwareUpdateAvailable => 'Firmware frissítés elérhető';
@@ -8036,7 +8040,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Ezt tudom rólad';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Ez a térkép frissül, ahogy az Chronicle tanul a beszélgetéseidből.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Ez a térkép frissül, ahogy az Chronicle tanul a beszélgetéseidből.';
 
   @override
   String get apiEnvironment => 'API környezet';
@@ -8870,13 +8875,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Csak olvasási hozzáférés';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Az Chronicle soha nem ír az Apple Healthbe, és nem módosítja az adataidat.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Az Chronicle soha nem ír az Apple Healthbe, és nem módosítja az adataidat.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Biztonságos szinkronizálás';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Apple Health-adataid bizalmasan szinkronizálódnak az Chronicle-fiókoddal.';
+  String get appleHealthFeatureSecureDesc =>
+      'Apple Health-adataid bizalmasan szinkronizálódnak az Chronicle-fiókoddal.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health-hozzáférés megtagadva';
@@ -8889,7 +8896,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get deleteFlowReasonTitle => 'Miért távozol?';
 
   @override
-  String get deleteFlowReasonSubtitle => 'A visszajelzésed segít nekünk, hogy az Chronicle mindenki számára jobb legyen.';
+  String get deleteFlowReasonSubtitle =>
+      'A visszajelzésed segít nekünk, hogy az Chronicle mindenki számára jobb legyen.';
 
   @override
   String get deleteReasonPrivacy => 'Adatvédelmi aggályok';

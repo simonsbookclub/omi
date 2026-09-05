@@ -9341,7 +9341,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connectRayBanMeta => '连接 Ray-Ban Meta';
 
   @override
-  String get raybanMetaSetupDescription => '将您的 Ray-Ban Meta 眼镜用作 Chronicle 采集设备，用于对话和视觉情境。Chronicle 将打开 Meta AI 应用以关联您的眼镜。';
+  String get raybanMetaSetupDescription =>
+      '将您的 Ray-Ban Meta 眼镜用作 Chronicle 采集设备，用于对话和视觉情境。Chronicle 将打开 Meta AI 应用以关联您的眼镜。';
 
   @override
   String get raybanMetaOpenMetaAI => '通过 Meta AI 连接';

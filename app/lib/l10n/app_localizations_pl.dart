@@ -3391,7 +3391,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get chooseYourLanguage => 'Wybierz swój język';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Wybierz preferowany język dla najlepszego doświadczenia Chronicle';
+  String get selectPreferredLanguageForBestExperience =>
+      'Wybierz preferowany język dla najlepszego doświadczenia Chronicle';
 
   @override
   String get searchLanguages => 'Szukaj języków...';
@@ -3418,7 +3419,8 @@ class AppLocalizationsPl extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Włącz funkcje dla najlepszego doświadczenia Chronicle na swoim urządzeniu.';
+  String get enableFeaturesForBestExperience =>
+      'Włącz funkcje dla najlepszego doświadczenia Chronicle na swoim urządzeniu.';
 
   @override
   String get microphoneAccess => 'Dostęp do mikrofonu';
@@ -4443,7 +4445,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get trainingDataProgram => 'Program danych szkoleniowych';
 
   @override
-  String get getOmiUnlimitedFree => 'Uzyskaj Chronicle Unlimited za darmo, przekazując swoje dane do trenowania modeli AI.';
+  String get getOmiUnlimitedFree =>
+      'Uzyskaj Chronicle Unlimited za darmo, przekazując swoje dane do trenowania modeli AI.';
 
   @override
   String get trainingDataBullets =>
@@ -8018,7 +8021,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Oto co o Tobie wiem';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Ta mapa aktualizuje się, gdy Chronicle uczy się z Twoich rozmów.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Ta mapa aktualizuje się, gdy Chronicle uczy się z Twoich rozmów.';
 
   @override
   String get apiEnvironment => 'Środowisko API';
@@ -8858,7 +8862,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Bezpieczna synchronizacja';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Twoje dane z Apple Health prywatnie synchronizują się z kontem Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Twoje dane z Apple Health prywatnie synchronizują się z kontem Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Odmowa dostępu do Apple Health';

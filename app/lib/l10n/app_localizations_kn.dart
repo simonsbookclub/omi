@@ -1461,7 +1461,8 @@ class AppLocalizationsKn extends AppLocalizations {
   String get bringYourOwn => 'ನಿಮ್ಮ ಸ್ವಂತ ತರಿಸಿ';
 
   @override
-  String get payYourSttProvider => 'Chronicle ಅನ್ನು ಅವಿರತವಾಗಿ ಬಳಸಿ. ನೀವು ಕೇವಲ ನಿಮ್ಮ STT ಪ್ರದಾನಕಾರಕನಿಗೆ ನೇರವಾಗಿ ಪಾವತಿ ಮಾಡಿ.';
+  String get payYourSttProvider =>
+      'Chronicle ಅನ್ನು ಅವಿರತವಾಗಿ ಬಳಸಿ. ನೀವು ಕೇವಲ ನಿಮ್ಮ STT ಪ್ರದಾನಕಾರಕನಿಗೆ ನೇರವಾಗಿ ಪಾವತಿ ಮಾಡಿ.';
 
   @override
   String get freeMinutesMonth => '300 ಅಪ್ರೈಲ್ ಮುಕ್ತ ನಿಮಿಷ/ತಿಂಗಳು. ಅಸೀಮಿತ ';
@@ -3425,7 +3426,8 @@ class AppLocalizationsKn extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸರ್ವೋತ್ತಮ Chronicle ಅನುಭವಕ್ಕೆ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.';
+  String get enableFeaturesForBestExperience =>
+      'ನಿಮ್ಮ ಸಾಧನದಲ್ಲಿ ಸರ್ವೋತ್ತಮ Chronicle ಅನುಭವಕ್ಕೆ ವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ.';
 
   @override
   String get microphoneAccess => 'ಮೈಕ್ರೋಫೋನ್ ಪ್ರವೇಶ';
@@ -5646,7 +5648,8 @@ class AppLocalizationsKn extends AppLocalizations {
   String get notificationFrequency => 'ಅಧಿಸೂಚನೆ ಆವೃತ್ತಿ';
 
   @override
-  String get controlNotificationFrequency => 'Chronicle ನಿಮಗೆ ಕಳುಹಿಸುವ ಪ್ರೋಯಾಕ್ಟಿವ್ ಅಧಿಸೂಚನೆಗಳ ಆವೃತ್ತಿಯನ್ನು ನಿಯಂತ್ರಿಸಿ.';
+  String get controlNotificationFrequency =>
+      'Chronicle ನಿಮಗೆ ಕಳುಹಿಸುವ ಪ್ರೋಯಾಕ್ಟಿವ್ ಅಧಿಸೂಚನೆಗಳ ಆವೃತ್ತಿಯನ್ನು ನಿಯಂತ್ರಿಸಿ.';
 
   @override
   String get yourScore => 'ನಿಮ್ಮ ಸ್ಕೋರ್';
@@ -9332,7 +9335,8 @@ class AppLocalizationsKn extends AppLocalizations {
   String get backgroundModeDescription => 'ಆ್ಯಪ್ ಸಂಪೂರ್ಣವಾಗಿ ಮುಚ್ಚಿದ್ದರೂ ನಿಮ್ಮ Chronicle ರೆಕಾರ್ಡಿಂಗ್ ಮುಂದುವರಿಸಿ.';
 
   @override
-  String get backgroundModeNote => 'ಸದ್ಯಕ್ಕೆ Chronicle ಸಾಧನಗಳೊಂದಿಗೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿರಂತರವಾಗಿ ಸುಧಾರಿಸಲಾಗುತ್ತಿದೆ.';
+  String get backgroundModeNote =>
+      'ಸದ್ಯಕ್ಕೆ Chronicle ಸಾಧನಗಳೊಂದಿಗೆ ಮಾತ್ರ ಕೆಲಸ ಮಾಡುತ್ತದೆ ಮತ್ತು ನಿರಂತರವಾಗಿ ಸುಧಾರಿಸಲಾಗುತ್ತಿದೆ.';
 
   @override
   String get backgroundModeUnavailable =>

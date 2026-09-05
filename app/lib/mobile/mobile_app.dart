@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:omi/pages/us/sign_in_page.dart';
 
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/pages/home/page.dart';
-import 'package:omi/pages/onboarding/device_selection.dart';
 import 'package:omi/pages/onboarding/permissions/permissions_checker.dart';
 import 'package:omi/pages/onboarding/wrapper.dart';
 import 'package:omi/providers/auth_provider.dart';
@@ -63,7 +63,9 @@ class _MobileAppState extends State<MobileApp> {
             },
           );
         } else {
-          return const DeviceSelectionPage();
+          // "Us": Chronicle's own sign-in (Apple / Oura / owner), not
+          // upstream's Firebase device-selection flow.
+          return const UsSignInPage();
         }
       },
     );

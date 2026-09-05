@@ -2219,7 +2219,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get translationNotice => 'ประกาศการแปล';
 
   @override
-  String get translationNoticeMessage => 'Chronicle แปลการสนทนาเป็นภาษาหลักของคุณ อัปเดตได้ทุกเมื่อในการตั้งค่า → โปรไฟล์';
+  String get translationNoticeMessage =>
+      'Chronicle แปลการสนทนาเป็นภาษาหลักของคุณ อัปเดตได้ทุกเมื่อในการตั้งค่า → โปรไฟล์';
 
   @override
   String get pleaseCheckInternetConnection => 'โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองอีกครั้ง';
@@ -2844,7 +2845,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get makeMyAppPublic => 'ทำให้แอปของฉันเป็นสาธารณะ';
 
   @override
-  String get submitAppTermsAgreement => 'การส่งแอปนี้ ฉันยอมรับข้อกำหนดการให้บริการและนโยบายความเป็นส่วนตัวของ Chronicle AI';
+  String get submitAppTermsAgreement =>
+      'การส่งแอปนี้ ฉันยอมรับข้อกำหนดการให้บริการและนโยบายความเป็นส่วนตัวของ Chronicle AI';
 
   @override
   String get submitApp => 'ส่งแอป';
@@ -3404,7 +3406,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get recordAudioConversations => 'บันทึกการสนทนาเสียง';
 
   @override
-  String get microphoneAccessDescription => 'Chronicle ต้องการการเข้าถึงไมโครโฟนเพื่อบันทึกการสนทนาของคุณและให้การถอดความ';
+  String get microphoneAccessDescription =>
+      'Chronicle ต้องการการเข้าถึงไมโครโฟนเพื่อบันทึกการสนทนาของคุณและให้การถอดความ';
 
   @override
   String get screenRecording => 'การบันทึกหน้าจอ';
@@ -5620,7 +5623,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get dailyScoreExplanation => 'คะแนนประจำวันของคุณขึ้นอยู่กับการทำงานเสร็จ ทำงานให้เสร็จเพื่อเพิ่มคะแนน!';
 
   @override
-  String get notificationFrequencyDescription => 'ควบคุมความถี่ที่ Chronicle ส่งการแจ้งเตือนเชิงรุกและการเตือนความจำให้คุณ';
+  String get notificationFrequencyDescription =>
+      'ควบคุมความถี่ที่ Chronicle ส่งการแจ้งเตือนเชิงรุกและการเตือนความจำให้คุณ';
 
   @override
   String get sliderOff => 'ปิด';
@@ -8435,7 +8439,8 @@ class AppLocalizationsTh extends AppLocalizations {
       'เมื่อ Chronicle ของคุณไม่ได้เชื่อมต่อกับโทรศัพท์ มันจะเก็บเสียงไว้ในหน่วยความจำภายใน คุณจะไม่สูญเสียการบันทึกใดๆ';
 
   @override
-  String get phoneStorageDesc => 'เมื่อ Chronicle เชื่อมต่ออีกครั้ง การบันทึกจะถูกโอนไปยังโทรศัพท์โดยอัตโนมัติก่อนอัปโหลด';
+  String get phoneStorageDesc =>
+      'เมื่อ Chronicle เชื่อมต่ออีกครั้ง การบันทึกจะถูกโอนไปยังโทรศัพท์โดยอัตโนมัติก่อนอัปโหลด';
 
   @override
   String get cloudStorageDesc =>
@@ -8782,7 +8787,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'สนทนาเกี่ยวกับสุขภาพของคุณ';
 
   @override
-  String get appleHealthFeatureChatDesc => 'ถาม Chronicle เกี่ยวกับก้าว การนอน อัตราการเต้นของหัวใจ และการออกกำลังกายของคุณ';
+  String get appleHealthFeatureChatDesc =>
+      'ถาม Chronicle เกี่ยวกับก้าว การนอน อัตราการเต้นของหัวใจ และการออกกำลังกายของคุณ';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'สิทธิ์เข้าถึงแบบอ่านอย่างเดียว';
@@ -9230,7 +9236,8 @@ class AppLocalizationsTh extends AppLocalizations {
   String get syncCardRateLimited => 'ถึงขีดจำกัดการใช้งานที่เป็นธรรมแล้ว — การซิงค์จะดำเนินต่อโดยอัตโนมัติ';
 
   @override
-  String get syncCardBackendBusy => 'เซิร์ฟเวอร์ของ Chronicle กำลังคับคั่ง — การบันทึกของคุณจะซิงค์เมื่อมีพื้นที่ว่างกลับมา';
+  String get syncCardBackendBusy =>
+      'เซิร์ฟเวอร์ของ Chronicle กำลังคับคั่ง — การบันทึกของคุณจะซิงค์เมื่อมีพื้นที่ว่างกลับมา';
 
   @override
   String get unableToDetermineFirmwareVersion => 'ไม่สามารถระบุเวอร์ชันเฟิร์มแวร์ปัจจุบันได้';

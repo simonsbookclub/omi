@@ -102,6 +102,16 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
+			<string>chronicle.auth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>chronicle</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
 			<string>rayban-meta-callback</string>
 			<key>CFBundleURLSchemes</key>
 			<array>

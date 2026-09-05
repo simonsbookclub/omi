@@ -770,7 +770,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Je partage mes statistiques Chronicle ! (omi.me - votre assistant IA toujours actif)';
+  String get shareStatsMessage =>
+      'Je partage mes statistiques Chronicle ! (omi.me - votre assistant IA toujours actif)';
 
   @override
   String get sharePeriodToday => 'Aujourd\'hui, Chronicle a :';
@@ -3581,7 +3582,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Se déclenche lors de la génération du résumé du jour.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Essayez les dernières fonctionnalités expérimentales de l\'équipe Chronicle.';
+  String get tryLatestExperimentalFeatures =>
+      'Essayez les dernières fonctionnalités expérimentales de l\'équipe Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'État de diagnostic du service de transcription';
@@ -6804,7 +6806,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Votre appareil Chronicle s\'est déconnecté';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Veuillez vous reconnecter pour continuer à utiliser votre Chronicle.';
+  String get deviceDisconnectedNotificationBody =>
+      'Veuillez vous reconnecter pour continuer à utiliser votre Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Mise à jour du firmware disponible';
@@ -8913,7 +8916,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Accès en lecture seule';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle n\'écrit jamais dans Apple Health et ne modifie pas vos données.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle n\'écrit jamais dans Apple Health et ne modifie pas vos données.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Synchronisation sécurisée';

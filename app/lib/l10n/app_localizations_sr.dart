@@ -4445,7 +4445,8 @@ class AppLocalizationsSr extends AppLocalizations {
   String get trainingDataProgram => 'Програм обучних podataka';
 
   @override
-  String get getOmiUnlimitedFree => 'Добијте Chronicle неограничено бесплатно доприносећи своје податке за обуку AI модела.';
+  String get getOmiUnlimitedFree =>
+      'Добијте Chronicle неограничено бесплатно доприносећи своје податке за обуку AI модела.';
 
   @override
   String get trainingDataBullets =>
@@ -5655,7 +5656,8 @@ class AppLocalizationsSr extends AppLocalizations {
       'Ваш дневни резултат је заснован на завршавању задатака. Завршите своје задатке да бисте побољшали резултат!';
 
   @override
-  String get notificationFrequencyDescription => 'Контролишите колико често Chronicle шаље активна обавештења и подсетнике.';
+  String get notificationFrequencyDescription =>
+      'Контролишите колико често Chronicle шаље активна обавештења и подсетнике.';
 
   @override
   String get sliderOff => 'Искључено';

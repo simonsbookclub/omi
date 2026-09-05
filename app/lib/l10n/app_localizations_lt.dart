@@ -561,7 +561,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get deviceNotConnected => 'Įrenginys neprijungtas';
 
   @override
-  String get connectDeviceMessage => 'Prijunkite Chronicle įrenginį, kad pasiektumėte\nįrenginio nustatymus ir pritaikymą';
+  String get connectDeviceMessage =>
+      'Prijunkite Chronicle įrenginį, kad pasiektumėte\nįrenginio nustatymus ir pritaikymą';
 
   @override
   String get deviceInfoSection => 'Įrenginio informacija';
@@ -709,7 +710,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get noActivityYet => 'Kol kas nėra veiklos';
 
   @override
-  String get startConversationToSeeInsights => 'Pradėkite pokalbį su Chronicle,\nkad čia matytumėte naudojimo įžvalgas.';
+  String get startConversationToSeeInsights =>
+      'Pradėkite pokalbį su Chronicle,\nkad čia matytumėte naudojimo įžvalgas.';
 
   @override
   String get listening => 'Klausymasis';
@@ -2650,7 +2652,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get reviewAndManageConversations => 'Peržiūrėkite ir tvarkykite įrašytus pokalbius';
 
   @override
-  String get startCapturingConversations => 'Pradėkite fiksuoti pokalbius su Chronicle įrenginiu, kad juos matytumėte čia.';
+  String get startCapturingConversations =>
+      'Pradėkite fiksuoti pokalbius su Chronicle įrenginiu, kad juos matytumėte čia.';
 
   @override
   String get useMobileAppToCapture => 'Naudokite mobilią programą garso įrašymui';
@@ -3386,7 +3389,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get chooseYourLanguage => 'Pasirinkite kalbą';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Pasirinkite pageidaujamą kalbą geriausiam Chronicle patirčiai';
+  String get selectPreferredLanguageForBestExperience =>
+      'Pasirinkite pageidaujamą kalbą geriausiam Chronicle patirčiai';
 
   @override
   String get searchLanguages => 'Ieškoti kalbų...';
@@ -6750,7 +6754,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Jūsų Chronicle įrenginys atsijungė';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Prašome prisijungti iš naujo, kad galėtumėte toliau naudoti Chronicle.';
+  String get deviceDisconnectedNotificationBody =>
+      'Prašome prisijungti iš naujo, kad galėtumėte toliau naudoti Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Yra programinės aparatinės įrangos atnaujinimas';
@@ -8009,7 +8014,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Štai ką žinau apie tave';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Šis žemėlapis atnaujinamas, kai Chronicle mokosi iš jūsų pokalbių.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Šis žemėlapis atnaujinamas, kai Chronicle mokosi iš jūsų pokalbių.';
 
   @override
   String get apiEnvironment => 'API aplinka';
@@ -8848,7 +8854,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Saugus sinchronizavimas';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Jūsų Apple Health duomenys privačiai sinchronizuojami su Chronicle paskyra.';
+  String get appleHealthFeatureSecureDesc =>
+      'Jūsų Apple Health duomenys privačiai sinchronizuojami su Chronicle paskyra.';
 
   @override
   String get appleHealthDeniedTitle => 'Prieiga prie Apple Health atmesta';
@@ -9293,7 +9300,8 @@ class AppLocalizationsLt extends AppLocalizations {
   String get syncCardRateLimited => 'Pasiekta sąžiningo naudojimo riba — sinchronizavimas bus tęsiamas automatiškai';
 
   @override
-  String get syncCardBackendBusy => 'Chronicle serveriai užimti — jūsų įrašai bus sinchronizuoti, kai atsilaisvins pajėgumai';
+  String get syncCardBackendBusy =>
+      'Chronicle serveriai užimti — jūsų įrašai bus sinchronizuoti, kai atsilaisvins pajėgumai';
 
   @override
   String get unableToDetermineFirmwareVersion =>

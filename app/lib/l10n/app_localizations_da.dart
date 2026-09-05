@@ -560,7 +560,8 @@ class AppLocalizationsDa extends AppLocalizations {
   String get deviceNotConnected => 'Enhed ikke tilsluttet';
 
   @override
-  String get connectDeviceMessage => 'Tilslut din Chronicle-enhed for at få adgang til\nenhedsindstillinger og tilpasning';
+  String get connectDeviceMessage =>
+      'Tilslut din Chronicle-enhed for at få adgang til\nenhedsindstillinger og tilpasning';
 
   @override
   String get deviceInfoSection => 'Enhedsinformation';
@@ -4422,7 +4423,8 @@ class AppLocalizationsDa extends AppLocalizations {
   String get trainingDataProgram => 'Træningsdataprogram';
 
   @override
-  String get getOmiUnlimitedFree => 'Få Chronicle Unlimited gratis ved at bidrage med dine data til at træne AI-modeller.';
+  String get getOmiUnlimitedFree =>
+      'Få Chronicle Unlimited gratis ved at bidrage med dine data til at træne AI-modeller.';
 
   @override
   String get trainingDataBullets =>
@@ -9788,7 +9790,8 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle er gratis, men gratisversionen har begrænsninger, der påvirker din oplevelse:';
+  String get freemiumLimitsIntro =>
+      'Chronicle er gratis, men gratisversionen har begrænsninger, der påvirker din oplevelse:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5-7 sekunders forsinkelse (ikke i realtid)';

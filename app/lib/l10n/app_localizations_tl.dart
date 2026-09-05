@@ -769,7 +769,8 @@ class AppLocalizationsTl extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'Nagbabahagi ng aking Chronicle stats! (omi.me - ang iyong palaging-bukas na AI assistant)';
+  String get shareStatsMessage =>
+      'Nagbabahagi ng aking Chronicle stats! (omi.me - ang iyong palaging-bukas na AI assistant)';
 
   @override
   String get sharePeriodToday => 'Ngayon, omi ay:';
@@ -3853,7 +3854,8 @@ class AppLocalizationsTl extends AppLocalizations {
   String get customVocabularyHeader => 'CUSTOM VOCABULARY';
 
   @override
-  String get addWordsDescription => 'Magdagdag ng mga salita na dapat kilalanin ng Chronicle sa panahon ng transcription.';
+  String get addWordsDescription =>
+      'Magdagdag ng mga salita na dapat kilalanin ng Chronicle sa panahon ng transcription.';
 
   @override
   String get enterWordsHint => 'Ilagay ang mga salita (comma separated)';
@@ -6797,7 +6799,8 @@ class AppLocalizationsTl extends AppLocalizations {
   String get batteryFullyChargedTitle => 'Naka-charge na ang Chronicle';
 
   @override
-  String get batteryFullyChargedBody => 'Ang iyong Chronicle device ay ganap nang na-charge. Maaari mo na itong i-unplug!';
+  String get batteryFullyChargedBody =>
+      'Ang iyong Chronicle device ay ganap nang na-charge. Maaari mo na itong i-unplug!';
 
   @override
   String get deviceDisconnectedNotificationTitle => 'Ang Iyong Chronicle Device ay Nadiskonekta';
@@ -9383,7 +9386,8 @@ class AppLocalizationsTl extends AppLocalizations {
   String get backgroundModeTitle => 'Background Mode';
 
   @override
-  String get backgroundModeDescription => 'Panatilihing nagre-record ang iyong Chronicle kahit na ganap nang sarado ang app.';
+  String get backgroundModeDescription =>
+      'Panatilihing nagre-record ang iyong Chronicle kahit na ganap nang sarado ang app.';
 
   @override
   String get backgroundModeNote => 'Sa ngayon ay gumagana lang sa mga Chronicle device at patuloy na pinapabuti.';

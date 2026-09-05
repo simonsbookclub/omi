@@ -2647,7 +2647,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get reviewAndManageConversations => 'Tarkista ja hallitse tallennettuja keskustelujasi';
 
   @override
-  String get startCapturingConversations => 'Aloita keskustelujen tallentaminen Chronicle-laitteellasi nähdäksesi ne täällä.';
+  String get startCapturingConversations =>
+      'Aloita keskustelujen tallentaminen Chronicle-laitteellasi nähdäksesi ne täällä.';
 
   @override
   String get useMobileAppToCapture => 'Käytä mobiilisovellusta äänen tallentamiseen';
@@ -3383,7 +3384,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get chooseYourLanguage => 'Valitse kielesi';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Valitse suosikkikielesi parhaan Chronicle-kokemuksen saamiseksi';
+  String get selectPreferredLanguageForBestExperience =>
+      'Valitse suosikkikielesi parhaan Chronicle-kokemuksen saamiseksi';
 
   @override
   String get searchLanguages => 'Hae kieliä...';
@@ -4522,7 +4524,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get youAreOnUnlimitedPlan => 'Sinulla on Rajoittamaton tilaus.';
 
   @override
-  String get yourOmiUnleashed => 'Chronicle vapaana. Siirry rajoittamattomaan loputtomien mahdollisuuksien saavuttamiseksi.';
+  String get yourOmiUnleashed =>
+      'Chronicle vapaana. Siirry rajoittamattomaan loputtomien mahdollisuuksien saavuttamiseksi.';
 
   @override
   String planEndedOn(String date) {
@@ -9301,7 +9304,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get backgroundModeDescription => 'Pidä Chronicle tallentamassa, vaikka sovellus olisi kokonaan suljettu.';
 
   @override
-  String get backgroundModeNote => 'Toimii toistaiseksi vain Chronicle-laitteiden kanssa ja sitä kehitetään jatkuvasti.';
+  String get backgroundModeNote =>
+      'Toimii toistaiseksi vain Chronicle-laitteiden kanssa ja sitä kehitetään jatkuvasti.';
 
   @override
   String get backgroundModeUnavailable =>
@@ -9825,7 +9829,8 @@ class AppLocalizationsFi extends AppLocalizations {
   String get accountCutoverUpdateRequiredTitle => 'Päivitys vaaditaan';
 
   @override
-  String get accountCutoverUpdateRequiredMessage => 'Asenna uusin Chronicle-sovellus jatkaaksesi tilin siirron jälkeen.';
+  String get accountCutoverUpdateRequiredMessage =>
+      'Asenna uusin Chronicle-sovellus jatkaaksesi tilin siirron jälkeen.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'Siirto käynnissä';

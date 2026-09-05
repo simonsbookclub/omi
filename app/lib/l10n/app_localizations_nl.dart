@@ -2656,7 +2656,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get reviewAndManageConversations => 'Bekijk en beheer je opgenomen gesprekken';
 
   @override
-  String get startCapturingConversations => 'Begin gesprekken vast te leggen met je Chronicle-apparaat om ze hier te zien.';
+  String get startCapturingConversations =>
+      'Begin gesprekken vast te leggen met je Chronicle-apparaat om ze hier te zien.';
 
   @override
   String get useMobileAppToCapture => 'Gebruik je mobiele app om audio vast te leggen';
@@ -5665,7 +5666,8 @@ class AppLocalizationsNl extends AppLocalizations {
       'Je dagelijkse score is gebaseerd op taakvoltooiing. Voltooi je taken om je score te verbeteren!';
 
   @override
-  String get notificationFrequencyDescription => 'Bepaal hoe vaak Chronicle je proactieve meldingen en herinneringen stuurt.';
+  String get notificationFrequencyDescription =>
+      'Bepaal hoe vaak Chronicle je proactieve meldingen en herinneringen stuurt.';
 
   @override
   String get sliderOff => 'Uit';
@@ -8858,7 +8860,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Alleen-lezen toegang';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle schrijft nooit naar Apple Health en wijzigt je gegevens niet.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle schrijft nooit naar Apple Health en wijzigt je gegevens niet.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Veilige synchronisatie';
@@ -9324,7 +9327,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get backgroundModeTitle => 'Achtergrondmodus';
 
   @override
-  String get backgroundModeDescription => 'Houd je Chronicle aan het opnemen, zelfs wanneer de app volledig gesloten is.';
+  String get backgroundModeDescription =>
+      'Houd je Chronicle aan het opnemen, zelfs wanneer de app volledig gesloten is.';
 
   @override
   String get backgroundModeNote => 'Werkt voorlopig alleen met Chronicle-apparaten en wordt voortdurend verbeterd.';

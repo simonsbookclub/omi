@@ -2672,7 +2672,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get showAll => 'Показать все →';
 
   @override
-  String get noTasksForToday => 'Нет задач на сегодня.\nСпросите Chronicle о дополнительных задачах или создайте вручную.';
+  String get noTasksForToday =>
+      'Нет задач на сегодня.\nСпросите Chronicle о дополнительных задачах или создайте вручную.';
 
   @override
   String get dailyScore => 'ДНЕВНОЙ СЧЁТ';
@@ -8861,13 +8862,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Доступ только для чтения';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle никогда не записывает в Apple Health и не изменяет ваши данные.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle никогда не записывает в Apple Health и не изменяет ваши данные.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Безопасная синхронизация';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Данные Apple Health приватно синхронизируются с вашим аккаунтом Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Данные Apple Health приватно синхронизируются с вашим аккаунтом Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Доступ к Apple Health запрещён';
@@ -9840,7 +9843,8 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle бесплатен, но у бесплатной версии есть ограничения, влияющие на ваш опыт:';
+  String get freemiumLimitsIntro =>
+      'Chronicle бесплатен, но у бесплатной версии есть ограничения, влияющие на ваш опыт:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Задержка 5–7 секунд (не в реальном времени)';

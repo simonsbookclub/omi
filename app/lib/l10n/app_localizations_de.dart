@@ -2686,7 +2686,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get showAll => 'Alle anzeigen →';
 
   @override
-  String get noTasksForToday => 'Keine Aufgaben für heute.\nFrage Chronicle nach mehr Aufgaben oder erstelle sie manuell.';
+  String get noTasksForToday =>
+      'Keine Aufgaben für heute.\nFrage Chronicle nach mehr Aufgaben oder erstelle sie manuell.';
 
   @override
   String get dailyScore => 'TAGES-SCORE';
@@ -3440,7 +3441,8 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get enableFeaturesForBestExperience => 'Aktivieren Sie Funktionen für das beste Chronicle-Erlebnis auf Ihrem Gerät.';
+  String get enableFeaturesForBestExperience =>
+      'Aktivieren Sie Funktionen für das beste Chronicle-Erlebnis auf Ihrem Gerät.';
 
   @override
   String get microphoneAccess => 'Mikrofonzugriff';
@@ -3518,7 +3520,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get preferences => 'Einstellungen';
 
   @override
-  String get helpImproveOmiBySharing => 'Helfen Sie, Chronicle zu verbessern, indem Sie anonymisierte Analysedaten teilen';
+  String get helpImproveOmiBySharing =>
+      'Helfen Sie, Chronicle zu verbessern, indem Sie anonymisierte Analysedaten teilen';
 
   @override
   String get deleteAccount => 'Konto Löschen';
@@ -3579,7 +3582,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Wird ausgelöst, wenn die Tageszusammenfassung generiert wird.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Probieren Sie die neuesten experimentellen Funktionen vom Chronicle-Team aus.';
+  String get tryLatestExperimentalFeatures =>
+      'Probieren Sie die neuesten experimentellen Funktionen vom Chronicle-Team aus.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Diagnosestatus des Transkriptionsdienstes';
@@ -5666,7 +5670,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notificationFrequency => 'Benachrichtigungshäufigkeit';
 
   @override
-  String get controlNotificationFrequency => 'Steuern Sie, wie oft Chronicle Ihnen proaktive Benachrichtigungen sendet.';
+  String get controlNotificationFrequency =>
+      'Steuern Sie, wie oft Chronicle Ihnen proaktive Benachrichtigungen sendet.';
 
   @override
   String get yourScore => 'Ihr Score';
@@ -6794,7 +6799,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Ihr Chronicle-Gerät wurde getrennt';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Bitte verbinden Sie sich erneut, um Ihr Chronicle weiter zu nutzen.';
+  String get deviceDisconnectedNotificationBody =>
+      'Bitte verbinden Sie sich erneut, um Ihr Chronicle weiter zu nutzen.';
 
   @override
   String get firmwareUpdateAvailable => 'Firmware-Update verfügbar';
@@ -8589,7 +8595,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get permissionsSetupTitle => 'Hol dir das beste Erlebnis';
 
   @override
-  String get permissionsSetupDescription => 'Aktiviere ein paar Berechtigungen, damit Chronicle seine Magie entfalten kann.';
+  String get permissionsSetupDescription =>
+      'Aktiviere ein paar Berechtigungen, damit Chronicle seine Magie entfalten kann.';
 
   @override
   String get permissionsChangeAnytime => 'Du kannst diese jederzeit unter Einstellungen > Berechtigungen ändern';

@@ -1773,7 +1773,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get maybeLater => 'शायद बाद में';
 
   @override
-  String get speechProfileIntro => 'Chronicle को आपके लक्ष्यों और आपकी आवाज़ सीखनी होगी। आप इसे बाद में संशोधित कर सकते हैं।';
+  String get speechProfileIntro =>
+      'Chronicle को आपके लक्ष्यों और आपकी आवाज़ सीखनी होगी। आप इसे बाद में संशोधित कर सकते हैं।';
 
   @override
   String get getStarted => 'शुरू करें';
@@ -2624,7 +2625,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get reviewAndManageConversations => 'अपनी रिकॉर्ड की गई बातचीत की समीक्षा करें और प्रबंधित करें';
 
   @override
-  String get startCapturingConversations => 'उन्हें यहां देखने के लिए अपने Chronicle डिवाइस से बातचीत कैप्चर करना शुरू करें।';
+  String get startCapturingConversations =>
+      'उन्हें यहां देखने के लिए अपने Chronicle डिवाइस से बातचीत कैप्चर करना शुरू करें।';
 
   @override
   String get useMobileAppToCapture => 'ऑडियो कैप्चर करने के लिए अपने मोबाइल ऐप का उपयोग करें';
@@ -2639,7 +2641,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get showAll => 'सभी दिखाएं →';
 
   @override
-  String get noTasksForToday => 'आज के लिए कोई कार्य नहीं।\nअधिक कार्यों के लिए Chronicle से पूछें या मैन्युअल रूप से बनाएं।';
+  String get noTasksForToday =>
+      'आज के लिए कोई कार्य नहीं।\nअधिक कार्यों के लिए Chronicle से पूछें या मैन्युअल रूप से बनाएं।';
 
   @override
   String get dailyScore => 'दैनिक स्कोर';
@@ -9259,7 +9262,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get syncCardRateLimited => 'उचित उपयोग की सीमा पूरी हो गई — सिंक अपने आप फिर से शुरू हो जाएगा';
 
   @override
-  String get syncCardBackendBusy => 'Chronicle के सर्वर व्यस्त हैं — क्षमता उपलब्ध होते ही आपकी रिकॉर्डिंग सिंक हो जाएंगी';
+  String get syncCardBackendBusy =>
+      'Chronicle के सर्वर व्यस्त हैं — क्षमता उपलब्ध होते ही आपकी रिकॉर्डिंग सिंक हो जाएंगी';
 
   @override
   String get unableToDetermineFirmwareVersion => 'वर्तमान फ़र्मवेयर संस्करण निर्धारित नहीं किया जा सका';
@@ -9280,7 +9284,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get backgroundModeDescription => 'ऐप पूरी तरह बंद होने पर भी अपने Chronicle की रिकॉर्डिंग जारी रखें।';
 
   @override
-  String get backgroundModeNote => 'फ़िलहाल केवल Chronicle डिवाइस के साथ काम करता है और इसे लगातार बेहतर बनाया जा रहा है।';
+  String get backgroundModeNote =>
+      'फ़िलहाल केवल Chronicle डिवाइस के साथ काम करता है और इसे लगातार बेहतर बनाया जा रहा है।';
 
   @override
   String get backgroundModeUnavailable =>

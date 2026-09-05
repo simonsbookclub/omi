@@ -1798,7 +1798,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get maybeLater => 'Poate mai târziu';
 
   @override
-  String get speechProfileIntro => 'Chronicle trebuie să învețe obiectivele și vocea ta. Vei putea să o modifici mai târziu.';
+  String get speechProfileIntro =>
+      'Chronicle trebuie să învețe obiectivele și vocea ta. Vei putea să o modifici mai târziu.';
 
   @override
   String get getStarted => 'Începe';
@@ -3403,7 +3404,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get chooseYourLanguage => 'Alegeți limba dvs.';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Selectați limba preferată pentru cea mai bună experiență Chronicle';
+  String get selectPreferredLanguageForBestExperience =>
+      'Selectați limba preferată pentru cea mai bună experiență Chronicle';
 
   @override
   String get searchLanguages => 'Căutați limbi...';
@@ -3509,7 +3511,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get preferences => 'Preferințe';
 
   @override
-  String get helpImproveOmiBySharing => 'Ajutați la îmbunătățirea Chronicle prin partajarea datelor de analiză anonimizate';
+  String get helpImproveOmiBySharing =>
+      'Ajutați la îmbunătățirea Chronicle prin partajarea datelor de analiză anonimizate';
 
   @override
   String get deleteAccount => 'Șterge Contul';
@@ -3570,7 +3573,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get triggersWhenDaySummaryGenerated => 'Se declanșează când este generat rezumatul zilnic.';
 
   @override
-  String get tryLatestExperimentalFeatures => 'Încercați cele mai recente funcții experimentale de la echipa Chronicle.';
+  String get tryLatestExperimentalFeatures =>
+      'Încercați cele mai recente funcții experimentale de la echipa Chronicle.';
 
   @override
   String get transcriptionServiceDiagnosticStatus => 'Starea diagnostică a serviciului de transcriere';
@@ -3842,7 +3846,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get customVocabularyHeader => 'VOCABULAR PERSONALIZAT';
 
   @override
-  String get addWordsDescription => 'Adăugați cuvinte pe care Chronicle ar trebui să le recunoască în timpul transcrierii.';
+  String get addWordsDescription =>
+      'Adăugați cuvinte pe care Chronicle ar trebui să le recunoască în timpul transcrierii.';
 
   @override
   String get enterWordsHint => 'Introduceți cuvinte (separate prin virgulă)';
@@ -6778,7 +6783,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Dispozitivul Chronicle a fost deconectat';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Vă rugăm să vă reconectați pentru a continua să utilizați Chronicle.';
+  String get deviceDisconnectedNotificationBody =>
+      'Vă rugăm să vă reconectați pentru a continua să utilizați Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Actualizare firmware disponibilă';
@@ -8867,19 +8873,22 @@ class AppLocalizationsRo extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'Discută despre sănătatea ta';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Întreabă Chronicle despre pașii, somnul, ritmul cardiac și antrenamentele tale.';
+  String get appleHealthFeatureChatDesc =>
+      'Întreabă Chronicle despre pașii, somnul, ritmul cardiac și antrenamentele tale.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'Acces doar pentru citire';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle nu scrie niciodată în Apple Health și nu modifică datele tale.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle nu scrie niciodată în Apple Health și nu modifică datele tale.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Sincronizare sigură';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Datele tale Apple Health se sincronizează privat cu contul tău Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Datele tale Apple Health se sincronizează privat cu contul tău Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Acces la Apple Health refuzat';
@@ -9342,10 +9351,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get backgroundModeTitle => 'Mod în fundal';
 
   @override
-  String get backgroundModeDescription => 'Păstrează Chronicle în înregistrare chiar și când aplicația este complet închisă.';
+  String get backgroundModeDescription =>
+      'Păstrează Chronicle în înregistrare chiar și când aplicația este complet închisă.';
 
   @override
-  String get backgroundModeNote => 'Deocamdată funcționează doar cu dispozitive Chronicle și este îmbunătățit continuu.';
+  String get backgroundModeNote =>
+      'Deocamdată funcționează doar cu dispozitive Chronicle și este îmbunătățit continuu.';
 
   @override
   String get backgroundModeUnavailable =>

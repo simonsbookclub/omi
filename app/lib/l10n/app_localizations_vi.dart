@@ -3391,7 +3391,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get chooseYourLanguage => 'Chọn ngôn ngữ của bạn';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Chọn ngôn ngữ ưu tiên của bạn để có trải nghiệm Chronicle tốt nhất';
+  String get selectPreferredLanguageForBestExperience =>
+      'Chọn ngôn ngữ ưu tiên của bạn để có trải nghiệm Chronicle tốt nhất';
 
   @override
   String get searchLanguages => 'Tìm kiếm ngôn ngữ...';
@@ -5657,7 +5658,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Điểm hàng ngày dựa trên việc hoàn thành nhiệm vụ. Hoàn thành nhiệm vụ để cải thiện điểm!';
 
   @override
-  String get notificationFrequencyDescription => 'Kiểm soát tần suất Chronicle gửi thông báo và nhắc nhở chủ động cho bạn.';
+  String get notificationFrequencyDescription =>
+      'Kiểm soát tần suất Chronicle gửi thông báo và nhắc nhở chủ động cho bạn.';
 
   @override
   String get sliderOff => 'Tắt';
@@ -8833,13 +8835,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'Quyền chỉ đọc';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle không bao giờ ghi vào Apple Health hoặc thay đổi dữ liệu của bạn.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle không bao giờ ghi vào Apple Health hoặc thay đổi dữ liệu của bạn.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'Đồng bộ an toàn';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Dữ liệu Apple Health của bạn được đồng bộ riêng tư vào tài khoản Chronicle.';
+  String get appleHealthFeatureSecureDesc =>
+      'Dữ liệu Apple Health của bạn được đồng bộ riêng tư vào tài khoản Chronicle.';
 
   @override
   String get appleHealthDeniedTitle => 'Truy cập Apple Health bị từ chối';
@@ -9296,7 +9300,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get backgroundModeTitle => 'Chế độ nền';
 
   @override
-  String get backgroundModeDescription => 'Giữ cho Chronicle của bạn tiếp tục ghi âm ngay cả khi ứng dụng đã đóng hoàn toàn.';
+  String get backgroundModeDescription =>
+      'Giữ cho Chronicle của bạn tiếp tục ghi âm ngay cả khi ứng dụng đã đóng hoàn toàn.';
 
   @override
   String get backgroundModeNote => 'Hiện chỉ hoạt động với thiết bị Chronicle và đang được cải thiện liên tục.';
@@ -9472,7 +9477,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'Tìm hiểu về Chronicle của bạn';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Một chuyến tham quan nhanh, thực tế về mọi điều Chronicle của bạn có thể làm.';
+  String get deviceOnboardingIntroSubtitle =>
+      'Một chuyến tham quan nhanh, thực tế về mọi điều Chronicle của bạn có thể làm.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Khoảng 1 phút';
@@ -9749,7 +9755,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get rayBanMetaMicPickerTitle => 'Chọn micrô Ray-Ban Meta của bạn';
 
   @override
-  String get rayBanMetaMicPickerDescription => 'Chọn micrô Bluetooth của kính. Nhạc sẽ tạm dừng khi Chronicle sử dụng micrô.';
+  String get rayBanMetaMicPickerDescription =>
+      'Chọn micrô Bluetooth của kính. Nhạc sẽ tạm dừng khi Chronicle sử dụng micrô.';
 
   @override
   String get rayBanMetaMicPickerEmpty =>

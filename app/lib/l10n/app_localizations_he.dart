@@ -1728,7 +1728,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get enableBluetooth => 'הפעל Bluetooth';
 
   @override
-  String get bluetoothNeeded => 'Chronicle זקוק ל-Bluetooth כדי להתחבר לציוד הלביש שלך. בבקשה הפעל Bluetooth ונסה שנית.';
+  String get bluetoothNeeded =>
+      'Chronicle זקוק ל-Bluetooth כדי להתחבר לציוד הלביש שלך. בבקשה הפעל Bluetooth ונסה שנית.';
 
   @override
   String get contactSupport => 'יצור קשר עם תמיכה?';
@@ -3411,7 +3412,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get captureSystemAudioFromMeetings => 'תפוס אודיו מערכת מפגישות';
 
   @override
-  String get screenRecordingDescription => 'Chronicle זקוקה להרשאת הקלטת מסך כדי לתפוס אודיו מערכת מהפגישות בדפדפן שלך.';
+  String get screenRecordingDescription =>
+      'Chronicle זקוקה להרשאת הקלטת מסך כדי לתפוס אודיו מערכת מהפגישות בדפדפן שלך.';
 
   @override
   String get accessibility => 'נגישות';
@@ -7841,7 +7843,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get pairingTitleAppleWatch => 'חבר Apple Watch';
 
   @override
-  String get pairingDescAppleWatch => 'התקן ופתח את אפליקציית Chronicle ב-Apple Watch שלך, לאחר מכן הקש על חיבור באפליקציה.';
+  String get pairingDescAppleWatch =>
+      'התקן ופתח את אפליקציית Chronicle ב-Apple Watch שלך, לאחר מכן הקש על חיבור באפליקציה.';
 
   @override
   String get pairingTitleNeoOne => 'הכנס את Neo One למצב זיווג';
@@ -9748,7 +9751,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get accountCutoverUpdateRequiredTitle => 'נדרש עדכון';
 
   @override
-  String get accountCutoverUpdateRequiredMessage => 'התקינו את אפליקציית Chronicle העדכנית כדי להמשיך לאחר העברת החשבון.';
+  String get accountCutoverUpdateRequiredMessage =>
+      'התקינו את אפליקציית Chronicle העדכנית כדי להמשיך לאחר העברת החשבון.';
 
   @override
   String get accountCutoverMigrationInProgressTitle => 'העברה בתהליך';

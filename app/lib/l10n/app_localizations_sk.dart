@@ -2654,7 +2654,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get reviewAndManageConversations => 'Prezrite si a spravujte svoje zaznamenané konverzácie';
 
   @override
-  String get startCapturingConversations => 'Začnite zachytávať konverzácie pomocou zariadenia Chronicle a uvidíte ich tu.';
+  String get startCapturingConversations =>
+      'Začnite zachytávať konverzácie pomocou zariadenia Chronicle a uvidíte ich tu.';
 
   @override
   String get useMobileAppToCapture => 'Použite mobilnú aplikáciu na zachytenie zvuku';
@@ -2669,7 +2670,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get showAll => 'Zobraziť všetko →';
 
   @override
-  String get noTasksForToday => 'Žiadne úlohy na dnes.\nSpýtajte sa Chronicle na ďalšie úlohy alebo ich vytvorte manuálne.';
+  String get noTasksForToday =>
+      'Žiadne úlohy na dnes.\nSpýtajte sa Chronicle na ďalšie úlohy alebo ich vytvorte manuálne.';
 
   @override
   String get dailyScore => 'DENNÉ SKÓRE';
@@ -4434,7 +4436,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get trainingDataProgram => 'Program tréningových dát';
 
   @override
-  String get getOmiUnlimitedFree => 'Získajte Chronicle Unlimited zadarmo prispením vašich dát na trénovanie AI modelov.';
+  String get getOmiUnlimitedFree =>
+      'Získajte Chronicle Unlimited zadarmo prispením vašich dát na trénovanie AI modelov.';
 
   @override
   String get trainingDataBullets =>
@@ -7991,7 +7994,8 @@ class AppLocalizationsSk extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Tu je, čo o vás viem';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Táto mapa sa aktualizuje, keď sa Chronicle učí z vašich konverzácií.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Táto mapa sa aktualizuje, keď sa Chronicle učí z vašich konverzácií.';
 
   @override
   String get apiEnvironment => 'API prostredie';
@@ -8469,7 +8473,8 @@ class AppLocalizationsSk extends AppLocalizations {
       'Keď váš Chronicle nie je pripojený k telefónu, ukladá zvuk lokálne vo vstavanej pamäti. Nikdy nestratíte nahrávku.';
 
   @override
-  String get phoneStorageDesc => 'Keď sa Chronicle znova pripojí, nahrávky sa automaticky prenesú do telefónu pred nahraním.';
+  String get phoneStorageDesc =>
+      'Keď sa Chronicle znova pripojí, nahrávky sa automaticky prenesú do telefónu pred nahraním.';
 
   @override
   String get cloudStorageDesc => 'Po nahraní sa vaše nahrávky spracujú a prepíšu. Konverzácie budú dostupné do minúty.';
@@ -9796,7 +9801,8 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle je zadarmo, ale bezplatná verzia má obmedzenia, ktoré ovplyvňujú váš zážitok:';
+  String get freemiumLimitsIntro =>
+      'Chronicle je zadarmo, ale bezplatná verzia má obmedzenia, ktoré ovplyvňujú váš zážitok:';
 
   @override
   String get downgradeLimitDelayNotRealTime => 'Oneskorenie 5–7 sekúnd (nie v reálnom čase)';

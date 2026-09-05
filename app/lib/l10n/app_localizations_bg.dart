@@ -3392,7 +3392,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chooseYourLanguage => 'Изберете вашия език';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'Изберете предпочитания език за най-добро Chronicle изживяване';
+  String get selectPreferredLanguageForBestExperience =>
+      'Изберете предпочитания език за най-добро Chronicle изживяване';
 
   @override
   String get searchLanguages => 'Търсене на езици...';
@@ -5237,7 +5238,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get welcomeBackSimple => 'Добре дошли отново';
 
   @override
-  String get addVocabularyDescription => 'Добавете думи, които Chronicle трябва да разпознава по време на транскрипция.';
+  String get addVocabularyDescription =>
+      'Добавете думи, които Chronicle трябва да разпознава по време на транскрипция.';
 
   @override
   String get enterWordsCommaSeparated => 'Въведете думи (разделени със запетая)';
@@ -6770,7 +6772,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'Вашето Chronicle устройство е изключено';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'Моля, свържете се отново, за да продължите да използвате Chronicle.';
+  String get deviceDisconnectedNotificationBody =>
+      'Моля, свържете се отново, за да продължите да използвате Chronicle.';
 
   @override
   String get firmwareUpdateAvailable => 'Налична е актуализация на фърмуера';
@@ -8031,7 +8034,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Ето какво знам за теб';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Тази карта се обновява, докато Chronicle учи от вашите разговори.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Тази карта се обновява, докато Chronicle учи от вашите разговори.';
 
   @override
   String get apiEnvironment => 'API среда';
@@ -9510,7 +9514,8 @@ class AppLocalizationsBg extends AppLocalizations {
   String get deviceOnboardingIntroTitle => 'Опознайте своя Chronicle';
 
   @override
-  String get deviceOnboardingIntroSubtitle => 'Бърза практическа обиколка на всичко, което вашият Chronicle може да прави.';
+  String get deviceOnboardingIntroSubtitle =>
+      'Бърза практическа обиколка на всичко, което вашият Chronicle може да прави.';
 
   @override
   String get deviceOnboardingIntroDuration => 'Около 1 минута';

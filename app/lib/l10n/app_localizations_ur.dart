@@ -1458,7 +1458,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get bringYourOwn => 'اپنا لے کر آئیں';
 
   @override
-  String get payYourSttProvider => 'Chronicle کو آزادانہ استعمال کریں۔ آپ صرف اپنے STT فراہم کنندہ کو براہ راست ادا کریں۔';
+  String get payYourSttProvider =>
+      'Chronicle کو آزادانہ استعمال کریں۔ آپ صرف اپنے STT فراہم کنندہ کو براہ راست ادا کریں۔';
 
   @override
   String get freeMinutesMonth => 'ہر ماہ 300 منٹ مفت شامل ہیں۔ آن لائن کریں ';
@@ -2065,7 +2066,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get clearMemoryTitle => 'Chronicle کی میموری صاف کریں';
 
   @override
-  String get clearMemoryMessage => 'کیا آپ یقینی ہیں کہ Chronicle کی میموری صاف کرنا چاہتے ہیں؟ یہ عمل الٹایا نہیں جا سکتا۔';
+  String get clearMemoryMessage =>
+      'کیا آپ یقینی ہیں کہ Chronicle کی میموری صاف کرنا چاہتے ہیں؟ یہ عمل الٹایا نہیں جا سکتا۔';
 
   @override
   String get clearMemoryButton => 'میموری صاف کریں';
@@ -4444,7 +4446,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get trainingDataProgram => 'تربیت کا ڈیٹا پروگرام';
 
   @override
-  String get getOmiUnlimitedFree => 'اپنے ڈیٹا کو AI ماڈلز کی تربیت کے لیے شراکت کر کے Chronicle Unlimited مفت حاصل کریں۔';
+  String get getOmiUnlimitedFree =>
+      'اپنے ڈیٹا کو AI ماڈلز کی تربیت کے لیے شراکت کر کے Chronicle Unlimited مفت حاصل کریں۔';
 
   @override
   String get trainingDataBullets =>
@@ -6755,7 +6758,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get deviceDisconnectedNotificationTitle => 'آپ کا Chronicle ڈیوائس منقطع ہو گیا';
 
   @override
-  String get deviceDisconnectedNotificationBody => 'براہ کرم اپنے Chronicle کو استعمال جاری رکھنے کے لیے دوبارہ منسلک کریں۔';
+  String get deviceDisconnectedNotificationBody =>
+      'براہ کرم اپنے Chronicle کو استعمال جاری رکھنے کے لیے دوبارہ منسلک کریں۔';
 
   @override
   String get firmwareUpdateAvailable => 'فرم ویئر اپڈیٹ دستیاب ہے';
@@ -9294,7 +9298,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get syncCardRateLimited => 'منصفانہ استعمال کی حد پوری ہو گئی — ہم آہنگی خودکار طور پر دوبارہ شروع ہو جائے گی';
 
   @override
-  String get syncCardBackendBusy => 'Chronicle کے سرورز مصروف ہیں — گنجائش بحال ہوتے ہی آپ کی ریکارڈنگز سنک ہو جائیں گی';
+  String get syncCardBackendBusy =>
+      'Chronicle کے سرورز مصروف ہیں — گنجائش بحال ہوتے ہی آپ کی ریکارڈنگز سنک ہو جائیں گی';
 
   @override
   String get unableToDetermineFirmwareVersion => 'موجودہ فرم ویئر ورژن کا تعین نہیں کیا جا سکا';
@@ -9816,7 +9821,8 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle مفت ہے، لیکن مفت ورژن میں ایسی حدود ہیں جو آپ کے تجربے پر اثر ڈالتی ہیں:';
+  String get freemiumLimitsIntro =>
+      'Chronicle مفت ہے، لیکن مفت ورژن میں ایسی حدود ہیں جو آپ کے تجربے پر اثر ڈالتی ہیں:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5-7 سیکنڈ کی تاخیر (ریئل ٹائم نہیں)';

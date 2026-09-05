@@ -710,7 +710,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get noActivityYet => 'ఇంకా చర్య లేదు';
 
   @override
-  String get startConversationToSeeInsights => 'మీ ఉపయోగ అంతర్దృష్టులను ఇక్కడ చూడటానికి Chronicleతో సంభాషణను ప్రారంభించండి.';
+  String get startConversationToSeeInsights =>
+      'మీ ఉపయోగ అంతర్దృష్టులను ఇక్కడ చూడటానికి Chronicleతో సంభాషణను ప్రారంభించండి.';
 
   @override
   String get listening => 'వినుట';
@@ -767,7 +768,8 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get shareStatsMessage => 'నా Chronicle గణాంకాలు భాగస్వామ్యం చేస్తోంది! (omi.me - మీ ఎల్లప్పుడు ఆన్ AI సహాయకుడు)';
+  String get shareStatsMessage =>
+      'నా Chronicle గణాంకాలు భాగస్వామ్యం చేస్తోంది! (omi.me - మీ ఎల్లప్పుడు ఆన్ AI సహాయకుడు)';
 
   @override
   String get sharePeriodToday => 'ఈ రోజు, omi చేసింది:';
@@ -5656,7 +5658,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get notificationFrequency => 'నోటిఫికేషన్ ఫ్రీక్వెన్సీ';
 
   @override
-  String get controlNotificationFrequency => 'Chronicle మీకు సక్రియ నోటిఫికేషన్‌లను ఎంత తరచుగా పంపుతుందో నియంత్రించండి.';
+  String get controlNotificationFrequency =>
+      'Chronicle మీకు సక్రియ నోటిఫికేషన్‌లను ఎంత తరచుగా పంపుతుందో నియంత్రించండి.';
 
   @override
   String get yourScore => 'మీ స్కోర్';
@@ -8876,7 +8879,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'మీ ఆరోగ్యం గురించి చాట్ చేయండి';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Chronicle ను మీ అడుగులు, నిద్ర, గుండె రేటు మరియు వర్కవుట్‌ల గురించి అడగండి.';
+  String get appleHealthFeatureChatDesc =>
+      'Chronicle ను మీ అడుగులు, నిద్ర, గుండె రేటు మరియు వర్కవుట్‌ల గురించి అడగండి.';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'చదవడానికి మాత్రమే యాక్సెస్';
@@ -8888,7 +8892,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'సురక్షిత సమకాలీకరణ';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'మీ Apple Health డేటా ప్రైవేట్‌గా మీ Chronicle ఖాతాకు సమకాలీకరించబడుతుంది.';
+  String get appleHealthFeatureSecureDesc =>
+      'మీ Apple Health డేటా ప్రైవేట్‌గా మీ Chronicle ఖాతాకు సమకాలీకరించబడుతుంది.';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health యాక్సెస్ తిరస్కరించబడింది';
@@ -9350,7 +9355,8 @@ class AppLocalizationsTe extends AppLocalizations {
   String get backgroundModeDescription => 'యాప్ పూర్తిగా మూసివేయబడినా మీ Chronicle రికార్డింగ్‌ను కొనసాగించండి.';
 
   @override
-  String get backgroundModeNote => 'ప్రస్తుతం Chronicle పరికరాలతో మాత్రమే పనిచేస్తుంది మరియు నిరంతరం మెరుగుపరచబడుతోంది.';
+  String get backgroundModeNote =>
+      'ప్రస్తుతం Chronicle పరికరాలతో మాత్రమే పనిచేస్తుంది మరియు నిరంతరం మెరుగుపరచబడుతోంది.';
 
   @override
   String get backgroundModeUnavailable =>
@@ -9851,7 +9857,8 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle ఉచితం, కానీ ఉచిత వెర్షన్‌లో మీ అనుభవాన్ని ప్రభావితం చేసే పరిమితులు ఉన్నాయి:';
+  String get freemiumLimitsIntro =>
+      'Chronicle ఉచితం, కానీ ఉచిత వెర్షన్‌లో మీ అనుభవాన్ని ప్రభావితం చేసే పరిమితులు ఉన్నాయి:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '5-7 సెకన్ల ఆలస్యం (రియల్-టైమ్ కాదు)';

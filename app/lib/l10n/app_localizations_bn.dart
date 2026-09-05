@@ -559,7 +559,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get deviceNotConnected => 'ডিভাইস সংযুক্ত নয়';
 
   @override
-  String get connectDeviceMessage => 'ডিভাইস সেটিংস এবং কাস্টমাইজেশন অ্যাক্সেস করতে আপনার Chronicle ডিভাইস সংযুক্ত করুন';
+  String get connectDeviceMessage =>
+      'ডিভাইস সেটিংস এবং কাস্টমাইজেশন অ্যাক্সেস করতে আপনার Chronicle ডিভাইস সংযুক্ত করুন';
 
   @override
   String get deviceInfoSection => 'ডিভাইস তথ্য';
@@ -1788,7 +1789,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get maybeLater => 'হয়তো পরে';
 
   @override
-  String get speechProfileIntro => 'Chronicle কে আপনার লক্ষ্য এবং আপনার কণ্ঠস্বর শিখতে হবে। আপনি পরে এটি সংশোধন করতে পারবেন।';
+  String get speechProfileIntro =>
+      'Chronicle কে আপনার লক্ষ্য এবং আপনার কণ্ঠস্বর শিখতে হবে। আপনি পরে এটি সংশোধন করতে পারবেন।';
 
   @override
   String get getStarted => 'শুরু করুন';
@@ -2866,7 +2868,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get makeMyAppPublic => 'আমার অ্যাপ জনসাধারণের জন্য উপলব্ধ করুন';
 
   @override
-  String get submitAppTermsAgreement => 'এই অ্যাপ জমা দিয়ে, আমি Chronicle AI পরিষেবার শর্তাবলী এবং গোপনীয়তা নীতিতে সম্মত';
+  String get submitAppTermsAgreement =>
+      'এই অ্যাপ জমা দিয়ে, আমি Chronicle AI পরিষেবার শর্তাবলী এবং গোপনীয়তা নীতিতে সম্মত';
 
   @override
   String get submitApp => 'অ্যাপ জমা দিন';
@@ -3390,7 +3393,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get chooseYourLanguage => 'আপনার ভাষা বেছে নিন';
 
   @override
-  String get selectPreferredLanguageForBestExperience => 'সেরা Chronicle অভিজ্ঞতার জন্য আপনার পছন্দের ভাষা নির্বাচন করুন';
+  String get selectPreferredLanguageForBestExperience =>
+      'সেরা Chronicle অভিজ্ঞতার জন্য আপনার পছন্দের ভাষা নির্বাচন করুন';
 
   @override
   String get searchLanguages => 'ভাষা অনুসন্ধান করুন...';
@@ -4441,7 +4445,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get trainingDataProgram => 'প্রশিক্ষণ ডেটা প্রোগ্রাম';
 
   @override
-  String get getOmiUnlimitedFree => 'AI মডেল প্রশিক্ষণের জন্য আপনার ডেটা অবদান রেখে বিনামূল্যে Chronicle Unlimited পান।';
+  String get getOmiUnlimitedFree =>
+      'AI মডেল প্রশিক্ষণের জন্য আপনার ডেটা অবদান রেখে বিনামূল্যে Chronicle Unlimited পান।';
 
   @override
   String get trainingDataBullets =>
@@ -5657,7 +5662,8 @@ class AppLocalizationsBn extends AppLocalizations {
       'আপনার দৈনিক স্কোর কাজ সম্পূর্ণতার উপর ভিত্তি করে। আপনার স্কোর উন্নত করতে আপনার কাজগুলি সম্পূর্ণ করুন!';
 
   @override
-  String get notificationFrequencyDescription => 'Chronicle কতবার সক্রিয় বিজ্ঞপ্তি এবং অনুস্মারক পাঠায় তা নিয়ন্ত্রণ করুন।';
+  String get notificationFrequencyDescription =>
+      'Chronicle কতবার সক্রিয় বিজ্ঞপ্তি এবং অনুস্মারক পাঠায় তা নিয়ন্ত্রণ করুন।';
 
   @override
   String get sliderOff => 'বন্ধ';
@@ -8835,7 +8841,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get appleHealthFeatureChatTitle => 'আপনার স্বাস্থ্য নিয়ে চ্যাট করুন';
 
   @override
-  String get appleHealthFeatureChatDesc => 'Chronicle-কে আপনার পদক্ষেপ, ঘুম, হৃদস্পন্দন ও ব্যায়াম সম্পর্কে জিজ্ঞাসা করুন।';
+  String get appleHealthFeatureChatDesc =>
+      'Chronicle-কে আপনার পদক্ষেপ, ঘুম, হৃদস্পন্দন ও ব্যায়াম সম্পর্কে জিজ্ঞাসা করুন।';
 
   @override
   String get appleHealthFeatureReadOnlyTitle => 'শুধুমাত্র পড়ার অ্যাক্সেস';
@@ -8847,7 +8854,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'সুরক্ষিত সিঙ্ক';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'আপনার Apple Health ডেটা ব্যক্তিগতভাবে আপনার Chronicle অ্যাকাউন্টে সিঙ্ক হয়।';
+  String get appleHealthFeatureSecureDesc =>
+      'আপনার Apple Health ডেটা ব্যক্তিগতভাবে আপনার Chronicle অ্যাকাউন্টে সিঙ্ক হয়।';
 
   @override
   String get appleHealthDeniedTitle => 'Apple Health অ্যাক্সেস অস্বীকৃত';
@@ -9808,7 +9816,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get freemiumLimitsIntro => 'Chronicle ফ্রি, তবে ফ্রি সংস্করণে কিছু সীমাবদ্ধতা আছে যা আপনার অভিজ্ঞতাকে প্রভাবিত করে:';
+  String get freemiumLimitsIntro =>
+      'Chronicle ফ্রি, তবে ফ্রি সংস্করণে কিছু সীমাবদ্ধতা আছে যা আপনার অভিজ্ঞতাকে প্রভাবিত করে:';
 
   @override
   String get downgradeLimitDelayNotRealTime => '৫-৭ সেকেন্ড বিলম্ব (রিয়েল-টাইম নয়)';

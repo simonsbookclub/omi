@@ -562,7 +562,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get deviceNotConnected => 'Уредот не е поврзан';
 
   @override
-  String get connectDeviceMessage => 'Поврзете го вашиот Chronicle уред за пристап\nна поставки на уред и прилагодување';
+  String get connectDeviceMessage =>
+      'Поврзете го вашиот Chronicle уред за пристап\nна поставки на уред и прилагодување';
 
   @override
   String get deviceInfoSection => 'Информации на уред';
@@ -710,7 +711,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get noActivityYet => 'Сè нема активност';
 
   @override
-  String get startConversationToSeeInsights => 'Почнете разговор со Chronicle\nза да видите ваши увиди за користење овде.';
+  String get startConversationToSeeInsights =>
+      'Почнете разговор со Chronicle\nза да видите ваши увиди за користење овде.';
 
   @override
   String get listening => 'Слушам';
@@ -5247,7 +5249,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get welcomeBackSimple => 'Добредојде повторно';
 
   @override
-  String get addVocabularyDescription => 'Додајте зборови што Chronicle треба да ги препознае за време на транскрипција.';
+  String get addVocabularyDescription =>
+      'Додајте зборови што Chronicle треба да ги препознае за време на транскрипција.';
 
   @override
   String get enterWordsCommaSeparated => 'Внесете зборови (одделени со запирка)';
@@ -8046,7 +8049,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'Ево што знам за тебе';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'Оваа карта се ажурира додека Chronicle учи од твоите разговори.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'Оваа карта се ажурира додека Chronicle учи од твоите разговори.';
 
   @override
   String get apiEnvironment => 'API окружување';
@@ -8887,7 +8891,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get appleHealthFeatureSecureTitle => 'Безбедна синхронизација';
 
   @override
-  String get appleHealthFeatureSecureDesc => 'Вашите Apple Health податоци приватно се синхронизираат со Chronicle сметката.';
+  String get appleHealthFeatureSecureDesc =>
+      'Вашите Apple Health податоци приватно се синхронизираат со Chronicle сметката.';
 
   @override
   String get appleHealthDeniedTitle => 'Пристапот до Apple Health е одбиен';
@@ -9347,7 +9352,8 @@ class AppLocalizationsMk extends AppLocalizations {
   String get backgroundModeTitle => 'Режим во заднина';
 
   @override
-  String get backgroundModeDescription => 'Зачувајте го снимањето на Chronicle дури и кога апликацијата е целосно затворена.';
+  String get backgroundModeDescription =>
+      'Зачувајте го снимањето на Chronicle дури и кога апликацијата е целосно затворена.';
 
   @override
   String get backgroundModeNote => 'Засега работи само со уреди Chronicle и постојано се подобрува.';

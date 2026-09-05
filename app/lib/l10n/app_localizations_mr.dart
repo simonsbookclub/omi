@@ -709,7 +709,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get noActivityYet => 'अद्याप कोणतीही क्रिया नाही';
 
   @override
-  String get startConversationToSeeInsights => 'Chronicle सह संभाषण सुरू करा\nआपल्या वापर अंतर्दृष्टी येथे पाहण्यासाठी.';
+  String get startConversationToSeeInsights =>
+      'Chronicle सह संभाषण सुरू करा\nआपल्या वापर अंतर्दृष्टी येथे पाहण्यासाठी.';
 
   @override
   String get listening => 'ऐकत आहे';
@@ -1790,7 +1791,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get maybeLater => 'कदाचित नंतर';
 
   @override
-  String get speechProfileIntro => 'Chronicle आपल्या लक्ष्य आणि आपल्या व्हॉइस शिकणे आवश्यक आहे. आपण ते नंतर सुधारू शकता.';
+  String get speechProfileIntro =>
+      'Chronicle आपल्या लक्ष्य आणि आपल्या व्हॉइस शिकणे आवश्यक आहे. आपण ते नंतर सुधारू शकता.';
 
   @override
   String get getStarted => 'सुरुवात करा';
@@ -1896,7 +1898,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get microphonePermission => 'मायक्रोफोन परवानगी';
 
   @override
-  String get permissionGrantedNow => 'परवानगी दिली! आता:\n\nआपल्या वॉचवर Chronicle अॅप खोला आणि खाली \"सुरू करा\" टॅप करा';
+  String get permissionGrantedNow =>
+      'परवानगी दिली! आता:\n\nआपल्या वॉचवर Chronicle अॅप खोला आणि खाली \"सुरू करा\" टॅप करा';
 
   @override
   String get needMicrophonePermission =>
@@ -5659,7 +5662,8 @@ class AppLocalizationsMr extends AppLocalizations {
       'आपला दैनिक स्कोर कार्य पूर्णतेवर आधारित आहे. आपला स्कोर सुधारण्यासाठी आपले कार्य पूर्ण करा!';
 
   @override
-  String get notificationFrequencyDescription => 'Chronicle किती वेळा सक्रिय सूचना आणि स्मरणीये पाठवते हे नियंत्रित करा.';
+  String get notificationFrequencyDescription =>
+      'Chronicle किती वेळा सक्रिय सूचना आणि स्मरणीये पाठवते हे नियंत्रित करा.';
 
   @override
   String get sliderOff => 'बंद';
@@ -7917,7 +7921,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get pairingTitleAppleWatch => 'Apple Watch जोडा';
 
   @override
-  String get pairingDescAppleWatch => 'तुमच्या Apple Watch वर Chronicle अॅप इंस्टॉल आणि उघडा, नंतर अॅपमध्ये जोडण्या टॅप करा.';
+  String get pairingDescAppleWatch =>
+      'तुमच्या Apple Watch वर Chronicle अॅप इंस्टॉल आणि उघडा, नंतर अॅपमध्ये जोडण्या टॅप करा.';
 
   @override
   String get pairingTitleNeoOne => 'Neo One पेयरिंग मोडमध्ये ठेवा';
@@ -8011,7 +8016,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get onboardingWhatIKnowAboutYouTitle => 'मला तुमच्याबद्दल काय माहिती आहे';
 
   @override
-  String get onboardingWhatIKnowAboutYouDescription => 'हा नकाशा Chronicle तुमच्या संभाषणांमधून शिखरत असताना अपडेट होतो.';
+  String get onboardingWhatIKnowAboutYouDescription =>
+      'हा नकाशा Chronicle तुमच्या संभाषणांमधून शिखरत असताना अपडेट होतो.';
 
   @override
   String get apiEnvironment => 'API वातावरण';
@@ -8843,7 +8849,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get appleHealthFeatureReadOnlyTitle => 'फक्त वाचन प्रवेश';
 
   @override
-  String get appleHealthFeatureReadOnlyDesc => 'Chronicle कधीही Apple Health मध्ये लिहित नाही किंवा आपला डेटा बदलत नाही.';
+  String get appleHealthFeatureReadOnlyDesc =>
+      'Chronicle कधीही Apple Health मध्ये लिहित नाही किंवा आपला डेटा बदलत नाही.';
 
   @override
   String get appleHealthFeatureSecureTitle => 'सुरक्षित सिंक';
@@ -9290,7 +9297,8 @@ class AppLocalizationsMr extends AppLocalizations {
   String get syncCardRateLimited => 'वाजवी वापराची मर्यादा गाठली — सिंक आपोआप पुन्हा सुरू होईल';
 
   @override
-  String get syncCardBackendBusy => 'Chronicle चे सर्व्हर व्यस्त आहेत — क्षमता उपलब्ध होताच तुमची रेकॉर्डिंग्ज सिंक होतील';
+  String get syncCardBackendBusy =>
+      'Chronicle चे सर्व्हर व्यस्त आहेत — क्षमता उपलब्ध होताच तुमची रेकॉर्डिंग्ज सिंक होतील';
 
   @override
   String get unableToDetermineFirmwareVersion => 'सद्य फर्मवेअर आवृत्ती निर्धारित करता आली नाही';
