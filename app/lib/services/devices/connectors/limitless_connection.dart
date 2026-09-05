@@ -1411,18 +1411,13 @@ class LimitlessDeviceConnection extends DeviceConnection {
 
               // Skip NOT_PRESSED events
               if (buttonEvent == _buttonNotPressed) return;
-
-              // Skip LONG_PRESS - Limitless uses this to start/stop recording on device
               if (buttonEvent == _buttonLongPress) return;
-
-              // Skip SHORT_PRESS -  what to do with this?
-              if (buttonEvent == _buttonShortPress) return;
-
-              // DOUBLE_PRESS
-              if (buttonEvent != _buttonDoublePress) return;
-
-              // Double press -> pause/resume/process conversation
-              const int mappedState = 2;
+              // SIMONSBOOKCLUB: a single short press used to be dropped here,
+              // so pressing the pendant did nothing at all. It now reaches
+              // the app as state 6 ("mark this moment"); a double press keeps
+              // Omi's configurable double-tap action (state 2).
+              if (buttonEvent != _buttonShortPress && buttonEvent != _buttonDoublePress) return;
+              final int mappedState = buttonEvent == _buttonShortPress ? 6 : 2;
 
               final buttonBytes = [
                 mappedState & 0xFF,

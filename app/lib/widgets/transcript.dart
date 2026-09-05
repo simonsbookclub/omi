@@ -842,6 +842,23 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
 
   Widget _buildSegmentItem(int segmentIdx) {
     final data = widget.segments[segmentIdx];
+    if (data.speaker == 'MARKER') {
+      // SIMONSBOOKCLUB: a pendant-button moment, pinned in the flow.
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Center(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.amber.withValues(alpha: 0.14),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.5)),
+            ),
+            child: Text(data.text, style: const TextStyle(color: Colors.amber, fontSize: 12, fontWeight: FontWeight.w600)),
+          ),
+        ),
+      );
+    }
     final Person? person = data.personId != null ? _getPersonById(data.personId) : null;
     final isTagging = widget.taggingSegmentIds.contains(data.id);
     final bool isUser = data.isUser;

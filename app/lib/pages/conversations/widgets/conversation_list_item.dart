@@ -22,6 +22,9 @@ import 'package:omi/utils/other/time_utils.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 import 'package:omi/widgets/dialog.dart';
 import 'package:omi/widgets/extensions/string.dart';
+import 'package:omi/backend/schema/person.dart';
+import 'package:omi/gen/assets.gen.dart';
+import 'package:omi/widgets/contact_avatar.dart';
 
 class ConversationListItem extends StatefulWidget {
   final bool isFromOnboarding;
@@ -414,6 +417,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      if (!widget.conversation.discarded) _buildParticipants(context),
                       const SizedBox(height: 8),
                       // Duration and time below title (or New status)
                       isNew
@@ -464,6 +468,82 @@ class _ConversationListItemState extends State<ConversationListItem> {
         ),
         if (widget.conversation.isLocked) _buildLockedOverlay(),
       ],
+    );
+  }
+
+  /// SIMONSBOOKCLUB: who took part, from the transcript's resolved
+  /// identities — the wearer, named people, and a count of voices that
+  /// were not recognised.
+  Widget _buildParticipants(BuildContext context) {
+    final segments = widget.conversation.transcriptSegments;
+    if (segments.isEmpty) return const SizedBox.shrink();
+    final people = {for (final p in SharedPreferencesUtil().cachedPeople) p.id: p};
+    bool hasUser = false;
+    final personIds = <String>[];
+    final unknownSpeakers = <int>{};
+    for (final s in segments) {
+      if (s.speaker == 'MARKER') continue;
+      if (s.isUser) {
+        hasUser = true;
+      } else if (s.personId != null) {
+        if (!personIds.contains(s.personId)) personIds.add(s.personId!);
+      } else {
+        unknownSpeakers.add(s.speakerId);
+      }
+    }
+    if (!hasUser && personIds.isEmpty && unknownSpeakers.isEmpty) return const SizedBox.shrink();
+
+    final avatars = <Widget>[];
+    final names = <String>[];
+    if (hasUser) {
+      final me = SharedPreferencesUtil().givenName;
+      names.add(me.isEmpty ? 'You' : me);
+      avatars.add(ContactAvatar(
+        speakerName: me,
+        size: 20,
+        fallback: Image.asset(Assets.images.speaker0Icon.path, width: 20, height: 20),
+      ));
+    }
+    for (final id in personIds) {
+      final person = people[id];
+      final name = person?.name ?? id;
+      names.add(name);
+      avatars.add(ContactAvatar(
+        speakerName: name,
+        size: 20,
+        fallback: Image.asset(
+          speakerImagePath[(person?.colorIdx ?? name.hashCode.abs()) % speakerImagePath.length],
+          width: 20,
+          height: 20,
+        ),
+      ));
+    }
+    final unknown = unknownSpeakers.length;
+    final label = [
+      ...names,
+      if (unknown > 0) (names.isEmpty ? '$unknown ${unknown == 1 ? 'voice' : 'voices'}' : '+$unknown'),
+    ].join(', ');
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 6),
+      child: Row(
+        children: [
+          for (int i = 0; i < avatars.length && i < 4; i++)
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: ClipOval(child: SizedBox(width: 20, height: 20, child: avatars[i])),
+            ),
+          if (avatars.isNotEmpty) const SizedBox(width: 2),
+          Expanded(
+            child: Text(
+              label,
+              style: const TextStyle(color: Color(0xFF9A9BA1), fontSize: 13),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 

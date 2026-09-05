@@ -927,6 +927,22 @@ class CaptureController extends ChangeNotifier
 
         // Single tap (buttonState == 1) - toggle voice question mode
         // Tap once to start, tap again to end
+        if (buttonState == 6) {
+          // SIMONSBOOKCLUB: Limitless single press — star this conversation
+          // and pin the moment in the transcript. The listen DO stars the
+          // stored row itself, so this survives even if the app dies before
+          // the conversation is created.
+          HapticFeedback.mediumImpact();
+          markConversationForStarring();
+          if (_socket?.state == SocketServiceState.connected) {
+            _socket?.send(jsonEncode({'type': 'moment_marked', 'at': DateTime.now().toUtc().toIso8601String()}));
+          }
+          final ctx = globalNavigatorKey.currentContext;
+          if (ctx != null) {
+            AppSnackbar.showSnackbar('Marked as important ⭐', duration: const Duration(seconds: 2));
+          }
+          return;
+        }
         if (buttonState == 1) {
           debugPrint("Single tap detected");
           if (_voiceCommandSession == null) {
