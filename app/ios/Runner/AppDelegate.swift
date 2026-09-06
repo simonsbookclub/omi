@@ -7,6 +7,71 @@ import AVFoundation
 import Speech
 import WidgetKit
 import CoreLocation
+import CallKit
+
+// MARK: - Media playback (phone audio the pendant can hear) — SIMONSBOOKCLUB
+
+/// Answers one question for the transcript pipeline: is this phone playing
+/// audio right now through something the pendant can hear? A video, a voice
+/// note or music on the speaker gets transcribed as if people in the room
+/// said it; the relay tags speech inside these windows as media. Headphones
+/// are not audible to the pendant, and a call is a conversation, not media.
+final class MediaPlaybackService: NSObject {
+    static let shared = MediaPlaybackService()
+    private var channel: FlutterMethodChannel?
+    private let callObserver = CXCallObserver()
+
+    func attach(messenger: FlutterBinaryMessenger) {
+        channel = FlutterMethodChannel(name: "com.simonsbookclub.media", binaryMessenger: messenger)
+        channel?.setMethodCallHandler { [weak self] call, result in
+            guard let self = self else { return }
+            switch call.method {
+            case "status":
+                result(self.status())
+            default:
+                result(FlutterMethodNotImplemented)
+            }
+        }
+    }
+
+    private func status() -> [String: Any] {
+        let session = AVAudioSession.sharedInstance()
+        let playing = session.isOtherAudioPlaying
+        let inCall = callObserver.calls.contains { !$0.hasEnded }
+        var audible = false
+        var route = "none"
+        var port = ""
+        if let out = session.currentRoute.outputs.first {
+            route = out.portType.rawValue
+            port = out.portName
+            audible = MediaPlaybackService.isAudibleToRoom(portType: out.portType, portName: out.portName)
+        }
+        return [
+            "playing": playing,
+            "audible": playing && audible && !inCall,
+            "in_call": inCall,
+            "route": route,
+            "port": port,
+        ]
+    }
+
+    /// Speaker-like outputs reach the room; anything worn on the head does not.
+    static func isAudibleToRoom(portType: AVAudioSession.Port, portName: String) -> Bool {
+        switch portType {
+        case .builtInSpeaker, .airPlay, .HDMI, .carAudio, .usbAudio, .lineOut:
+            return true
+        case .builtInReceiver, .headphones, .bluetoothHFP, .bluetoothLE:
+            return false
+        case .bluetoothA2DP:
+            // A Bluetooth speaker in the room or earbuds: the name decides.
+            let name = portName.lowercased()
+            let worn = ["airpod", "pods", "buds", "beats", "headphone", "earphone", "earbud", "wh-", "wf-", "flex", "studio"]
+            return !worn.contains { name.contains($0) }
+        default:
+            return false
+        }
+    }
+}
 
 // MARK: - Visits (time outside) — SIMONSBOOKCLUB "Us"
 
@@ -314,6 +379,7 @@ final class QuickActionsIconPatcher: NSObject {
     // show their real contact photo (ContactsService.swift).
     // "Us": time outside — CoreLocation visits (VisitsService above).
     VisitsService.shared.attach(messenger: controller!.binaryMessenger)
+    MediaPlaybackService.shared.attach(messenger: controller!.binaryMessenger)
 
     let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
     let contactsHandler = ContactsService()

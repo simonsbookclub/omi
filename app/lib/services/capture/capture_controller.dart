@@ -29,6 +29,7 @@ import 'package:omi/providers/us_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:omi/services/capture/capture_external_actions.dart';
 import 'package:omi/services/capture/capture_metrics_tracker.dart';
+import 'package:omi/services/media_playback_monitor.dart';
 import 'package:omi/services/capture/conversation_source_for_device.dart';
 import 'package:omi/services/capture/conversation_location_capture.dart';
 import 'package:omi/services/capture/freemium_threshold_tracker.dart';
@@ -91,6 +92,8 @@ class CaptureController extends ChangeNotifier
 
   TranscriptSegmentSocketService? _socket;
   Timer? _keepAliveTimer;
+  // SIMONSBOOKCLUB: phone audio through a speaker → the relay tags it as media.
+  MediaPlaybackMonitor? _mediaMonitor;
   DateTime? _keepAliveLastExecutedAt;
   Timer? _inProgressConversationRefreshTimer;
   int _inProgressConversationRefreshAttempts = 0;
@@ -781,6 +784,14 @@ class CaptureController extends ChangeNotifier
     }
     _socket?.subscribe(this, this);
     _transcriptServiceReady = true;
+    // SIMONSBOOKCLUB: tell the relay when this phone plays audio through a
+    // speaker (a video, a voice note), so that speech is tagged as media
+    // instead of being read as people in the room.
+    _mediaMonitor ??= MediaPlaybackMonitor(onChange: (state) {
+      if (_socket?.state == SocketServiceState.connected) _socket?.send(jsonEncode(state));
+    });
+    _mediaMonitor?.start();
+    if (_mediaMonitor?.isPlaying == true) _socket?.send(jsonEncode(_mediaMonitor!.snapshot()));
     if (_sessionStartSeconds == 0) {
       _sessionStartSeconds = DateTime.now().millisecondsSinceEpoch ~/ 1000;
     }
@@ -1436,6 +1447,7 @@ class CaptureController extends ChangeNotifier
     await _blePhotoStream?.cancel();
     await _bleButtonStream?.cancel();
     _stopMetricsTracking();
+    _mediaMonitor?.stop();
     if (disableNativeBackground) {
       await SharedPreferencesUtil().saveBool('nativeBleForegroundReady', false);
       await SharedPreferencesUtil().saveBool('nativeBleStreamingEnabled', false);
@@ -1453,6 +1465,7 @@ class CaptureController extends ChangeNotifier
 
   @override
   void dispose() {
+    _mediaMonitor?.stop();
     _bleBytesStream?.cancel();
     _blePhotoStream?.cancel();
     _bleButtonStream?.cancel();
@@ -1790,6 +1803,8 @@ class CaptureController extends ChangeNotifier
   @override
   void onConnected() {
     _transcriptServiceReady = true;
+    // A relay session starts with no media windows; restate the current one.
+    if (_mediaMonitor?.isPlaying == true) _socket?.send(jsonEncode(_mediaMonitor!.snapshot()));
     // Restart mic on reconnect if interrupted (skip during active call).
     if (recordingState == RecordingState.interrupted && !_micInterrupted) {
       if (_activeSource is PhoneMicSource) {

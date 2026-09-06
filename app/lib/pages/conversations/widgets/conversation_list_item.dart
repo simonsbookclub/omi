@@ -482,7 +482,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
     final personIds = <String>[];
     final unknownSpeakers = <int>{};
     for (final s in segments) {
-      if (s.speaker == 'MARKER') continue;
+      if (s.speaker == 'MARKER' || s.media) continue;
       if (s.isUser) {
         hasUser = true;
       } else if (s.personId != null) {

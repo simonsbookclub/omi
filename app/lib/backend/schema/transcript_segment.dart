@@ -21,6 +21,9 @@ class TranscriptSegment {
   List<Translation> translations = [];
   bool speechProfileProcessed;
   String? sttProvider;
+  /// SIMONSBOOKCLUB: audio the phone was playing (a video, a voice note) —
+  /// shown folded in the transcript, never counted as a voice.
+  bool media;
 
   TranscriptSegment({
     required this.id,
@@ -33,6 +36,7 @@ class TranscriptSegment {
     required this.translations,
     this.speechProfileProcessed = true,
     this.sttProvider,
+    this.media = false,
   }) {
     final parts = speaker?.split('_') ?? [];
     speakerId = parts.length > 1 ? (int.tryParse(parts[1]) ?? 0) : 0;
@@ -52,7 +56,9 @@ class TranscriptSegment {
   // Factory constructor to create a new Message instance from a map
   factory TranscriptSegment.fromJson(Map<String, dynamic> json) {
     final generated = wire.GeneratedTranscriptSegment.fromJson(json);
-    return TranscriptSegment.fromGenerated(generated);
+    final segment = TranscriptSegment.fromGenerated(generated);
+    segment.media = json['media'] == true;
+    return segment;
   }
 
   factory TranscriptSegment.fromGenerated(wire.GeneratedTranscriptSegment generated) {
@@ -88,7 +94,9 @@ class TranscriptSegment {
 
   // Method to convert a Message instance into a map
   Map<String, dynamic> toJson() {
-    return toGenerated().toJson();
+    final map = toGenerated().toJson();
+    if (media) map['media'] = true;
+    return map;
   }
 
   static List<TranscriptSegment> updateSegments(
@@ -219,7 +227,7 @@ class TranscriptSegment {
     // Find minimum speaker ID among non-user segments
     int? minSpeakerId;
     for (var segment in segments) {
-      if (segment.speaker == 'MARKER') continue; // SIMONSBOOKCLUB: a pinned moment, not a voice
+      if (segment.speaker == 'MARKER' || segment.media) continue; // SIMONSBOOKCLUB: a pinned moment or phone audio, not a voice
       if (!segment.isUser) {
         if (minSpeakerId == null || segment.speakerId < minSpeakerId) {
           minSpeakerId = segment.speakerId;

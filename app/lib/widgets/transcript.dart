@@ -247,6 +247,7 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
     final searchQuery = widget.searchQuery.toLowerCase();
 
     for (var segment in widget.segments) {
+      if (segment.media) continue; // folded away, not searchable
       final text = _getDecodedText(segment.text).toLowerCase();
       final matches = RegExp(RegExp.escape(searchQuery), caseSensitive: false).allMatches(text);
       for (final _ in matches) {
@@ -769,7 +770,8 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
               }
 
               final segment = widget.segments[segmentIndex];
-              final customSegment = widget.segmentBuilder?.call(context, segment, segmentIndex);
+              // Media (phone audio) is always folded here, whatever the page's own bubble looks like.
+              final customSegment = segment.media ? null : widget.segmentBuilder?.call(context, segment, segmentIndex);
               Widget child = customSegment == null
                   ? _buildSegmentItem(segmentIndex)
                   : Container(key: _segmentKeys[segment.id], child: customSegment);
@@ -842,6 +844,18 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
 
   Widget _buildSegmentItem(int segmentIdx) {
     final data = widget.segments[segmentIdx];
+    if (data.media) {
+      // SIMONSBOOKCLUB: audio the phone was playing (a video, a voice note).
+      // One pill per run, with the words folded underneath for checking.
+      final prev = segmentIdx > 0 ? widget.segments[segmentIdx - 1] : null;
+      if (prev != null && prev.media) return SizedBox.shrink(key: _segmentKeys[data.id]);
+      var end = segmentIdx;
+      while (end + 1 < widget.segments.length && widget.segments[end + 1].media) {
+        end++;
+      }
+      final run = widget.segments.sublist(segmentIdx, end + 1);
+      return Container(key: _segmentKeys[data.id], child: _MediaRunPill(run: run));
+    }
     if (data.speaker == 'MARKER') {
       // SIMONSBOOKCLUB: a pendant-button moment, pinned in the flow.
       return Padding(
@@ -1248,5 +1262,68 @@ String formatChatTimestamp(DateTime dateTime, {BuildContext? context}) {
   } else {
     // Other days
     return dateTimeFormat('MMM d, h:mm a', dateTime);
+  }
+}
+
+/// SIMONSBOOKCLUB: a run of media segments (audio the phone was playing)
+/// folded into one pill. Tap to read what was heard.
+class _MediaRunPill extends StatefulWidget {
+  final List<TranscriptSegment> run;
+  const _MediaRunPill({required this.run});
+
+  @override
+  State<_MediaRunPill> createState() => _MediaRunPillState();
+}
+
+class _MediaRunPillState extends State<_MediaRunPill> {
+  bool _open = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final seconds = (widget.run.last.end - widget.run.first.start).clamp(0.0, double.infinity);
+    final length = seconds >= 90 ? '${(seconds / 60).round()} min' : '${seconds.round()} s';
+    final words = widget.run.fold<int>(
+      0,
+      (n, s) => n + s.text.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length,
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: () => setState(() => _open = !_open),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.06),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.smartphone, size: 14, color: Colors.grey.shade400),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Playing on the phone · $length · $words words',
+                    style: TextStyle(color: Colors.grey.shade400, fontSize: 12, fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(width: 4),
+                  Icon(_open ? Icons.expand_less : Icons.expand_more, size: 16, color: Colors.grey.shade500),
+                ],
+              ),
+            ),
+          ),
+          if (_open)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                widget.run.map((s) => s.text.trim()).where((t) => t.isNotEmpty).join(' '),
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 13, height: 1.35),
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }
