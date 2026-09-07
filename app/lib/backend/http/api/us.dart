@@ -88,6 +88,8 @@ class UsApi {
 
   static Future<Map<String, dynamic>?> dismissPrompt(int id) => _call('POST', 'prompts/$id/dismiss', body: {});
   static Future<Map<String, dynamic>?> answerPrompt(int id) => _call('POST', 'prompts/$id/answer', body: {});
+  /// The couple's verdict on a prompt: false_alarm, right, or late. Teaches the live detector.
+  static Future<Map<String, dynamic>?> promptFeedback(int id, String verdict) => _call('POST', 'prompts/$id/feedback', body: {'verdict': verdict});
   static Future<Map<String, dynamic>?> protocols() => _call('GET', 'protocols');
   static Future<Map<String, dynamic>?> protocolEvent(String protocolId, String status, {String? trigger, String? conversationId}) =>
       _call('POST', 'protocols/$protocolId/$status', body: {

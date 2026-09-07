@@ -539,12 +539,24 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   }
 
   Future<void> _periodStarted(UsProvider us) async {
+    // Whose cycle this logs under is the person switch at the top. Say so:
+    // one tap under the wrong profile (2026-09-07) took a server fix.
+    final who = us.ownerName;
+    final other = us.partnerOnThisPhone && !us.isActingAsPartner ? us.partnerName : null;
     final choice = await showModalBottomSheet<String>(
       context: context,
       backgroundColor: const Color(0xFF1F1F25),
       builder: (ctx) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const Padding(padding: EdgeInsets.all(16), child: Text('Period started', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600))),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+            child: Text('Period started · $who', style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+          ),
+          if (other != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Text('This logs under $who. For $other, switch the person at the top of the Us tab first.', style: const TextStyle(color: Colors.white54, fontSize: 13)),
+            ),
           ListTile(title: const Text('Today', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('today')),
           ListTile(title: const Text('Yesterday', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('yesterday')),
           ListTile(title: const Text('Pick a date', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('pick')),
@@ -562,7 +574,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     }
     final s = '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
     await us.logPeriodStarted(day: s);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged $s')));
+    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged $s for $who')));
   }
 
   Widget _bodyCard(UsProvider us) {

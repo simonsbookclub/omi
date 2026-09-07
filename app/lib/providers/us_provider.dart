@@ -196,6 +196,13 @@ class UsProvider extends ChangeNotifier {
     await refresh(force: true);
   }
 
+  /// "False alarm" or "it was right": stored on the prompt and read back by
+  /// the live detector as calibration for this couple.
+  Future<void> flagPrompt(int promptId, String verdict) async {
+    await UsApi.promptFeedback(promptId, verdict);
+    await refresh(force: true);
+  }
+
   Future<void> protocolEvent(String protocolId, String status, {String? trigger, String? conversationId}) async {
     await UsApi.protocolEvent(protocolId, status, trigger: trigger, conversationId: conversationId);
     await refresh(force: true);

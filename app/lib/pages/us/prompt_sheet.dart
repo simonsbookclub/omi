@@ -126,6 +126,8 @@ class _InMomentSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final protocol = payload['protocol'];
+    // A live push carries the prompt id inside its payload; the list passes it separately.
+    final promptId = id ?? (payload['id'] is int ? payload['id'] as int : int.tryParse(payload['id']?.toString() ?? ''));
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -134,10 +136,20 @@ class _InMomentSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(payload['text']?.toString() ?? 'Things are heating up.', style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600, height: 1.3)),
+            if (payload['why'] is String && (payload['why'] as String).isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text('Heard: ${payload['why']}', style: const TextStyle(color: Colors.white38, fontSize: 13)),
+            ],
             const SizedBox(height: 20),
             Row(children: [
+              // A wrong prompt is the most useful thing to tell it: the
+              // detector reads these verdicts back as calibration.
               TextButton(
-                onPressed: () async { if (id != null) await context.read<UsProvider>().dismissPrompt(id!); if (context.mounted) Navigator.of(context).pop(); },
+                onPressed: () async { if (promptId != null) await context.read<UsProvider>().flagPrompt(promptId, 'false_alarm'); if (context.mounted) Navigator.of(context).pop(); },
+                child: const Text('False alarm', style: TextStyle(color: Color(0xFFE8A87C))),
+              ),
+              TextButton(
+                onPressed: () async { if (promptId != null) await context.read<UsProvider>().dismissPrompt(promptId); if (context.mounted) Navigator.of(context).pop(); },
                 child: const Text('Not now', style: TextStyle(color: Colors.white54)),
               ),
               const Spacer(),
@@ -146,7 +158,8 @@ class _InMomentSheet extends StatelessWidget {
                   style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF6FC3B8), foregroundColor: Colors.black),
                   onPressed: () async {
                     final us = context.read<UsProvider>();
-                    if (id != null) await us.dismissPrompt(id!);
+                    // Starting the exercise is the verdict that it was right.
+                    if (promptId != null) await us.flagPrompt(promptId, 'right');
                     if (!context.mounted) return;
                     Navigator.of(context).pop();
                     final full = us.protocols.where((p) => p['id'] == protocol['id']).firstOrNull ?? protocol;
