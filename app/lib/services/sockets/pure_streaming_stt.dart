@@ -521,6 +521,22 @@ class PureStreamingSttSocket implements IPureSocket {
         }
       }
 
+      // SIMONSBOOKCLUB: the Chronicle relay already speaks the backend
+      // segment format, with fields the schema path below would drop —
+      // `stream` (which the listen socket needs to merge one speaker's
+      // turns and to propagate names by speaker number) and `media` (phone
+      // audio). Forward its segments untouched.
+      if (json is Map && json['segments'] is List) {
+        final raw = <Map<String, dynamic>>[];
+        for (final item in json['segments'] as List) {
+          if (item is Map && (item['text']?.toString().trim().isNotEmpty ?? false)) {
+            raw.add(Map<String, dynamic>.from(item));
+          }
+        }
+        if (raw.isNotEmpty) onMessage(jsonEncode(raw));
+        return;
+      }
+
       // Parse using schema
       final result = SttTranscriptionResult.fromJsonWithSchema(json, config.responseSchema, audioOffsetSeconds: 0);
 
