@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 import 'package:omi/backend/http/api/us.dart';
 import 'package:omi/pages/us/voice_enroll_page.dart';
@@ -44,12 +45,27 @@ class _UsAccountPageState extends State<UsAccountPage> {
     }
   }
 
-  Future<void> _linkOura() => _run(() async {
+  /// Sign in to Oura in the browser on this phone; [actAs] links the ring
+  /// to the partner's profile instead of the owner's.
+  Future<void> _linkOura(String? actAs) => _run(() async {
         await UsSession.ensureSession();
-        final r = await UsApi.ouraLinkUrl();
+        final r = await UsApi.ouraLinkUrl(actAs: actAs);
         final url = r?['url'];
         if (url is! String) throw Exception(r?['error'] ?? 'Oura is not configured yet.');
         await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      });
+
+  /// A sign-in link the partner opens on her own phone: she signs in to
+  /// Oura there, the ring attaches to her profile here. Valid for a day.
+  Future<void> _shareOuraLink(String actAs, String name) => _run(() async {
+        await UsSession.ensureSession();
+        final r = await UsApi.ouraLinkUrl(actAs: actAs, web: true);
+        final url = r?['url'];
+        if (url is! String) throw Exception(r?['error'] ?? 'Oura is not configured yet.');
+        await SharePlus.instance.share(ShareParams(
+          text: '$name, this links your Oura ring to Chronicle. Open it on your phone and sign in to Oura. It works for 24 hours.\n$url',
+          subject: 'Link your Oura ring to Chronicle',
+        ));
       });
 
   Future<void> _linkApple() => _run(() async {
@@ -119,6 +135,10 @@ class _UsAccountPageState extends State<UsAccountPage> {
     final identities = ((account?['identities'] as List?) ?? const []).cast<Map<String, dynamic>>();
     final wearables = ((account?['wearables'] as List?) ?? const []).cast<Map<String, dynamic>>();
     final oura = wearables.where((w) => w['provider'] == 'oura').firstOrNull;
+    final partner = account?['partner'] as Map<String, dynamic>?;
+    final partnerWearables = ((partner?['wearables'] as List?) ?? const []).cast<Map<String, dynamic>>();
+    final partnerOura = partnerWearables.where((w) => w['provider'] == 'oura').firstOrNull;
+    final ouraAvailable = account?['oura_available'] == true;
     final voice = account?['voice'];
     return Scaffold(
       backgroundColor: Colors.black,
@@ -140,18 +160,12 @@ class _UsAccountPageState extends State<UsAccountPage> {
             _action(FontAwesomeIcons.apple, 'Link Apple ID', _busy ? null : _linkApple),
           ]),
           const SizedBox(height: 16),
-          const _Header('Ring'),
-          _card([
-            if (oura != null) ...[
-              _row('Oura', oura['last_sync_at'] != null ? 'synced ${oura['last_sync_at']}' : 'linked, not synced yet'),
-              if (oura['last_error'] != null) _row('Last error', oura['last_error'].toString()),
-              _action(FontAwesomeIcons.rotate, 'Sync now', _busy ? null : () => _run(() async { await UsApi.ouraSync(); })),
-              _action(FontAwesomeIcons.linkSlash, 'Unlink Oura', _busy ? null : () => _run(() async { await UsApi.ouraUnlink(); })),
-            ] else ...[
-              _row('Oura', account?['oura_available'] == true ? 'not linked' : 'not configured on the server yet'),
-              _action(FontAwesomeIcons.ring, 'Link Oura ring', _busy || account?['oura_available'] != true ? null : _linkOura),
-            ],
-          ]),
+          const _Header('Rings'),
+          _ringCard('Your ring', oura, null, ouraAvailable),
+          if (partner != null) ...[
+            const SizedBox(height: 8),
+            _ringCard("${partner['name']}'s ring", partnerOura, partner['user_id'].toString(), ouraAvailable, shareName: partner['name'].toString()),
+          ],
           const SizedBox(height: 16),
           const _Header('Voice'),
           _card([
@@ -166,6 +180,22 @@ class _UsAccountPageState extends State<UsAccountPage> {
       ),
     );
   }
+
+  /// One ring, one card: the owner's, or the partner's linked from this
+  /// phone or from a link sent to hers.
+  Widget _ringCard(String title, Map<String, dynamic>? oura, String? actAs, bool available, {String? shareName}) => _card([
+        if (oura != null) ...[
+          _row(title, oura['last_sync_at'] != null ? 'synced ${oura['last_sync_at']}' : 'linked, not synced yet'),
+          if (oura['last_error'] != null) _row('Last error', oura['last_error'].toString()),
+          _action(FontAwesomeIcons.rotate, 'Sync now', _busy ? null : () => _run(() async { await UsApi.ouraSync(actAs: actAs); })),
+          _action(FontAwesomeIcons.linkSlash, 'Unlink', _busy ? null : () => _run(() async { await UsApi.ouraUnlink(actAs: actAs); })),
+        ] else ...[
+          _row(title, available ? 'not linked' : 'not configured on the server yet'),
+          _action(FontAwesomeIcons.ring, actAs == null ? 'Link Oura ring' : 'Sign in to Oura on this phone', _busy || !available ? null : () => _linkOura(actAs)),
+          if (shareName != null && actAs != null)
+            _action(FontAwesomeIcons.paperPlane, 'Send $shareName a sign-in link', _busy || !available ? null : () => _shareOuraLink(actAs, shareName)),
+        ],
+      ]);
 
   Widget _card(List<Widget> children) => Container(
         decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(14)),

@@ -16,11 +16,15 @@ class UsApi {
 
   static Map<String, String> get actHeaders => actAs == null ? {} : {'X-Act-As': actAs!};
 
-  static Future<Map<String, dynamic>?> _call(String method, String path, {Map<String, dynamic>? body}) async {
+  /// Explicit act-as for a call, ignoring the person switch: the account
+  /// page names whose ring it is touching instead of relying on state.
+  static Map<String, String> _explicitActAs(String? actAs) => actAs == null ? {} : {'X-Act-As': actAs};
+
+  static Future<Map<String, dynamic>?> _call(String method, String path, {Map<String, dynamic>? body, Map<String, String>? headers}) async {
     try {
       final res = await makeApiCall(
         url: '$_base/$path',
-        headers: actHeaders,
+        headers: headers ?? actHeaders,
         method: method,
         body: body == null ? '' : jsonEncode(body),
       );
@@ -44,9 +48,11 @@ class UsApi {
   static Future<Map<String, dynamic>?> updateMe({String? givenName, String? timezone}) =>
       _call('PATCH', 'me', body: {if (givenName != null) 'given_name': givenName, if (timezone != null) 'timezone': timezone});
   static Future<Map<String, dynamic>?> signOut() => _call('POST', 'signout', body: {});
-  static Future<Map<String, dynamic>?> ouraLinkUrl() => _call('GET', 'oura/link');
-  static Future<Map<String, dynamic>?> ouraSync() => _call('POST', 'oura/sync', body: {});
-  static Future<Map<String, dynamic>?> ouraUnlink() => _call('DELETE', 'oura');
+  /// [web]: a link for the partner's own phone (no app there), valid a day.
+  static Future<Map<String, dynamic>?> ouraLinkUrl({String? actAs, bool web = false}) =>
+      _call('GET', web ? 'oura/link?web=1' : 'oura/link', headers: _explicitActAs(actAs));
+  static Future<Map<String, dynamic>?> ouraSync({String? actAs}) => _call('POST', 'oura/sync', body: {}, headers: _explicitActAs(actAs));
+  static Future<Map<String, dynamic>?> ouraUnlink({String? actAs}) => _call('DELETE', 'oura', headers: _explicitActAs(actAs));
   static Future<Map<String, dynamic>?> claimVoice(String personName) => _call('POST', 'voice', body: {'person_name': personName});
   static Future<Map<String, dynamic>?> voices() => _call('GET', 'voices');
 
