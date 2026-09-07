@@ -94,6 +94,18 @@ class CaptureController extends ChangeNotifier
   Timer? _keepAliveTimer;
   // SIMONSBOOKCLUB: phone audio through a speaker → the relay tags it as media.
   MediaPlaybackMonitor? _mediaMonitor;
+
+  // SIMONSBOOKCLUB: the "connected but deaf" watchdog (2026-09-07). The
+  // socket can stay up and the tile can say connected while no BLE audio
+  // arrives — the app came back from an hour at the gym in exactly that
+  // state and a spoken wake word went nowhere. If the device is meant to be
+  // streaming and no audio byte has arrived for _audioStallSeconds, restart
+  // the device stream the way a fresh connection would; on the third stall
+  // in a row, drop the socket too so the keepalive rebuilds everything.
+  static const int _audioStallSeconds = 45;
+  Timer? _audioWatchdogTimer;
+  int _audioRestarts = 0;
+  int _lastAudioRestartAtMs = 0;
   DateTime? _keepAliveLastExecutedAt;
   Timer? _inProgressConversationRefreshTimer;
   int _inProgressConversationRefreshAttempts = 0;
@@ -1190,6 +1202,7 @@ class CaptureController extends ChangeNotifier
       if (SharedPreferencesUtil().batchMuted) SharedPreferencesUtil().batchMuted = false;
     }
     updateRecordingState(RecordingState.deviceRecord);
+    _startAudioWatchdog();
     notifyListeners();
   }
 
@@ -1448,6 +1461,7 @@ class CaptureController extends ChangeNotifier
     await _bleButtonStream?.cancel();
     _stopMetricsTracking();
     _mediaMonitor?.stop();
+    _stopAudioWatchdog();
     if (disableNativeBackground) {
       await SharedPreferencesUtil().saveBool('nativeBleForegroundReady', false);
       await SharedPreferencesUtil().saveBool('nativeBleStreamingEnabled', false);
@@ -1466,6 +1480,7 @@ class CaptureController extends ChangeNotifier
   @override
   void dispose() {
     _mediaMonitor?.stop();
+    _stopAudioWatchdog();
     _bleBytesStream?.cancel();
     _blePhotoStream?.cancel();
     _bleButtonStream?.cancel();
@@ -1738,6 +1753,54 @@ class CaptureController extends ChangeNotifier
 
     notifyListeners();
     _startKeepAliveServices();
+  }
+
+  void _startAudioWatchdog() {
+    _audioWatchdogTimer?.cancel();
+    _audioRestarts = 0;
+    // Grace for a fresh stream: measure from now, not from a stale stamp.
+    lastLiveAudioAtMs = DateTime.now().millisecondsSinceEpoch;
+    _audioWatchdogTimer = Timer.periodic(const Duration(seconds: 15), (_) => _checkAudioLiveness());
+  }
+
+  void _stopAudioWatchdog() {
+    _audioWatchdogTimer?.cancel();
+    _audioWatchdogTimer = null;
+    _audioRestarts = 0;
+  }
+
+  Future<void> _checkAudioLiveness() async {
+    if (recordingState != RecordingState.deviceRecord || _recordingDevice == null || _isPaused) return;
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final sinceAudio = now - lastLiveAudioAtMs;
+    if (sinceAudio < _audioStallSeconds * 1000) {
+      _audioRestarts = 0;
+      return;
+    }
+    // Give the previous restart a full stall window to produce audio.
+    if (now - _lastAudioRestartAtMs < _audioStallSeconds * 1000) return;
+    _lastAudioRestartAtMs = now;
+    _audioRestarts++;
+    Logger.warning('[AudioWatchdog] no BLE audio for ${sinceAudio ~/ 1000}s; restart #$_audioRestarts');
+    try {
+      if (_audioRestarts >= 3) {
+        final stale = _socket;
+        _socket = null;
+        _transcriptServiceReady = false;
+        _socketReconnectPending = true;
+        await stale?.stop(reason: 'audio watchdog: no audio after two stream restarts');
+        _audioRestarts = 0;
+        _startKeepAliveServices();
+        return;
+      }
+      final deviceId = _recordingDevice!.id;
+      final conn = await ServiceManager.instance().device.ensureConnection(deviceId);
+      await conn?.onNetworkSocketReconnected();
+      final codec = await _getAudioCodec(deviceId);
+      await streamAudioToWs(deviceId, codec);
+    } catch (e, st) {
+      Logger.error('[AudioWatchdog] restart failed: $e\n$st');
+    }
   }
 
   void _startKeepAliveServices() {
