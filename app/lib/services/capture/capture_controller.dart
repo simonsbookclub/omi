@@ -2078,6 +2078,7 @@ class CaptureController extends ChangeNotifier
       NotificationUtil.showCommandResult(
         event.success ? 'ReadingRate' : 'ReadingRate could not do that',
         event.message,
+        deepLink: event.deepLink,
       );
       return;
     }

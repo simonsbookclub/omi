@@ -10,6 +10,7 @@ import 'package:omi/app_globals.dart';
 import 'package:omi/pages/home/page.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/utils/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // Re-export the main notification service for backward compatibility
 // All notification functionality is now handled by the platform-aware service
@@ -58,7 +59,46 @@ class NotificationUtil {
     if (receivedAction.payload == null || receivedAction.payload!.isEmpty) {
       return;
     }
+    if (receivedAction.payload!['type'] == 'command_result') {
+      await _showCommandResult(receivedAction.payload!);
+      return;
+    }
     await _handleAppLinkOrDeepLink(receivedAction.payload!);
+  }
+
+  /// SIMONSBOOKCLUB: a tap on a command result shows the whole answer, with
+  /// a way into ReadingRate when the result has a place there. Before this
+  /// a tap opened the dashboard and the banner's truncated text was all
+  /// there was (2026-09-07).
+  static Future<void> _showCommandResult(Map<String, String?> payload) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    final title = payload['title'] ?? 'ReadingRate';
+    final body = payload['body'] ?? '';
+    final deepLink = payload['deep_link'];
+    final context = await waitUntilNonNull(() => globalNavigatorKey.currentContext);
+    if (context == null || body.isEmpty || !context.mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF1F1F25),
+        title: Text(title, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
+        content: SingleChildScrollView(
+          child: SelectableText(body, style: const TextStyle(color: Colors.white, fontSize: 16, height: 1.4)),
+        ),
+        actions: [
+          if (deepLink != null && deepLink.isNotEmpty)
+            TextButton(
+              onPressed: () async {
+                Navigator.of(ctx).pop();
+                final uri = Uri.tryParse(deepLink);
+                if (uri != null) await launchUrl(uri, mode: LaunchMode.externalApplication);
+              },
+              child: const Text('Open in ReadingRate', style: TextStyle(color: Color(0xFF6FC3B8))),
+            ),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Close', style: TextStyle(color: Colors.white70))),
+        ],
+      ),
+    );
   }
 
   /// Public entry for FCM background/terminated notification taps (#5126).
@@ -122,7 +162,7 @@ class NotificationUtil {
 
   /// SIMONSBOOKCLUB: outcome of a wake-word command, delivered in-band by
   /// the self-hosted backend over the listen socket (no APNs involved).
-  static Future<void> showCommandResult(String title, String body) async {
+  static Future<void> showCommandResult(String title, String body, {String? deepLink}) async {
     final allowed = await AwesomeNotifications().isNotificationAllowed();
     if (!allowed) return;
     await AwesomeNotifications().createNotification(
@@ -130,8 +170,16 @@ class NotificationUtil {
         id: 7000 + (DateTime.now().millisecondsSinceEpoch % 1000),
         channelKey: 'channel',
         actionType: ActionType.Default,
+        // The full text when expanded; a tap opens the whole answer in-app.
+        notificationLayout: NotificationLayout.BigText,
         title: title,
         body: body,
+        payload: {
+          'type': 'command_result',
+          'title': title,
+          'body': body,
+          if (deepLink != null && deepLink.isNotEmpty) 'deep_link': deepLink,
+        },
         wakeUpScreen: false,
       ),
     );

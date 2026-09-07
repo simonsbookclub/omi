@@ -93,12 +93,16 @@ class CommandResultEvent extends MessageEvent {
   final bool success;
   final String message;
   final String path;
+  /// readingrate:// or https link into the ReadingRate app, when the result has a place.
+  final String? deepLink;
 
-  CommandResultEvent({required this.utterance, required this.success, required this.message, required this.path})
+  CommandResultEvent({required this.utterance, required this.success, required this.message, required this.path, this.deepLink})
       : super(eventType: 'command_result');
 
   factory CommandResultEvent.fromJson(Map<String, dynamic> json) {
+    final link = json['deep_link'];
     return CommandResultEvent(
+      deepLink: link is String && link.isNotEmpty ? link : null,
       utterance: (json['utterance'] ?? '').toString(),
       success: json['success'] == true,
       message: (json['message'] ?? '').toString(),
