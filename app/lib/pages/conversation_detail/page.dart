@@ -39,7 +39,6 @@ import 'package:omi/widgets/dialog.dart';
 import 'package:omi/widgets/expandable_text.dart';
 import 'package:omi/widgets/extensions/string.dart';
 import 'conversation_detail_provider.dart';
-import 'share.dart';
 import 'test_prompts.dart';
 import 'widgets/audio_download_progress_sheet.dart';
 import 'widgets/edit_segment_sheet.dart';
@@ -81,7 +80,6 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
 
   // Callback to seek audio to transcript segment (start, end) in wall seconds
   Future<void> Function(double start, double end)? _seekToSegmentCallback;
-  bool _isSharing = false;
   bool _isTogglingStarred = false;
   bool _isDownloadingAudio = false;
   bool _providerInitialized = false;
@@ -818,69 +816,9 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
                                   ),
                           ),
                         ),
-                        // Share button (second) - directly share summary link
-                        Container(
-                          key: _shareButtonKey,
-                          width: 36,
-                          height: 36,
-                          margin: const EdgeInsets.only(right: 8),
-                          decoration: BoxDecoration(color: Colors.grey.withValues(alpha: 0.3), shape: BoxShape.circle),
-                          child: IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: _isSharing
-                                ? null
-                                : () async {
-                                    setState(() {
-                                      _isSharing = true;
-                                    });
-                                    HapticFeedback.mediumImpact();
-                                    try {
-                                      // Directly share the summary link
-                                      bool shared = await setConversationVisibility(provider.conversation.id);
-                                      if (!shared) {
-                                        if (context.mounted) {
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(content: Text(context.l10n.conversationUrlNotShared)),
-                                          );
-                                        }
-                                        setState(() {
-                                          _isSharing = false;
-                                        });
-                                        return;
-                                      }
-                                      provider.updateVisibilityLocally(ConversationVisibility.shared);
-                                      // Track share event
-                                      PlatformManager.instance.analytics.conversationShared(
-                                        conversation: provider.conversation,
-                                        shareMethod: 'url_share',
-                                      );
-                                      shareConversationLink(
-                                        provider.conversation,
-                                        sharePositionOrigin: _shareSheetOrigin(),
-                                      );
-                                      // Small delay to let share sheet appear, then clear loading
-                                      await Future.delayed(const Duration(milliseconds: 150));
-                                      setState(() {
-                                        _isSharing = false;
-                                      });
-                                    } catch (e) {
-                                      setState(() {
-                                        _isSharing = false;
-                                      });
-                                    }
-                                  },
-                            icon: _isSharing
-                                ? const SizedBox(
-                                    width: 16,
-                                    height: 16,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                                    ),
-                                  )
-                                : const FaIcon(FontAwesomeIcons.arrowUpFromBracket, size: 16.0, color: Colors.white),
-                          ),
-                        ),
+                        // Share button removed 2026-09-08: public sharing
+                        // 404s on this backend and the link it built pointed
+                        // at Omi's own domain.
                         // Search button (second) - only show on transcript and summary tabs
                         if (_controller?.index != 2)
                           Container(

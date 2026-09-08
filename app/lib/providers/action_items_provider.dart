@@ -355,6 +355,24 @@ class ActionItemsProvider extends ChangeNotifier {
     }
   }
 
+  /// Local due-date reminder: cancel any existing one, then schedule a new
+  /// one when a future date is set. Fires one hour before the due time
+  /// (ActionItemNotificationHandler).
+  Future<void> _scheduleDueReminder(String id, String description, DateTime? dueDate) async {
+    try {
+      await ActionItemNotificationHandler.cancelNotification(id);
+      if (dueDate == null) return;
+      await ActionItemNotificationHandler.scheduleNotification(
+        actionItemId: id,
+        description: description,
+        dueAtIso: dueDate.toUtc().toIso8601String(),
+        channelKey: 'channel',
+      );
+    } catch (e) {
+      Logger.debug('[ActionItem] local reminder scheduling failed: $e');
+    }
+  }
+
   Future<void> updateActionItemDueDate(ActionItemWithMetadata item, DateTime? dueDate) async {
     // Optimistic update: update locally first for instant UI feedback
     final index = _actionItems.indexWhere((i) => i.id == item.id);
@@ -389,6 +407,12 @@ class ActionItemsProvider extends ChangeNotifier {
           _actionItems[idx] = updatedItem;
           notifyListeners();
         }
+        // Schedule the reminder here, on the phone. Upstream only ever
+        // scheduled one in response to a push from Omi's server; this fork
+        // has no push sender and never registers a token, so a due date
+        // produced no reminder at all. Same mechanism the Us morning
+        // reminder already uses (services/us_reminders.dart).
+        await _scheduleDueReminder(item.id, updatedItem.description, dueDate);
         _pushUpdateToAppleReminder(item, dueDate: dueDate);
       } else {
         // Revert on failure — re-find index in case list changed during await
@@ -536,6 +560,8 @@ class ActionItemsProvider extends ChangeNotifier {
           _actionItems[index] = newItem;
           notifyListeners();
         }
+        // A task created with a due date gets its reminder here too.
+        await _scheduleDueReminder(newItem.id, newItem.description, newItem.dueAt);
         // Direct sync to Apple Reminders — no FCM roundtrip needed
         _syncToAppleRemindersIfNeeded(newItem);
         return newItem;

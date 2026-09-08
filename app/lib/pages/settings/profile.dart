@@ -4,20 +4,17 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/providers/capture_provider.dart';
-import 'package:omi/pages/memories/page.dart';
 import 'package:provider/provider.dart';
 import 'package:omi/pages/settings/change_name_widget.dart';
 import 'package:omi/pages/settings/language_settings_page.dart';
 import 'package:omi/pages/settings/custom_vocabulary_page.dart';
 import 'package:omi/pages/settings/people.dart';
-import 'package:omi/pages/speech_profile/page.dart';
 
 import 'package:omi/utils/alerts/app_snackbar.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/utils/other/temp.dart';
 import 'package:omi/utils/platform/platform_service.dart';
 
-import 'delete_account.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -526,14 +523,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     routeToPage(context, const CustomVocabularyPage());
                   },
                 ),
-                const Divider(height: 1, color: Color(0xFF3C3C43)),
-                _buildProfileItem(
-                  title: context.l10n.memories,
-                  icon: const FaIcon(FontAwesomeIcons.brain, color: Color(0xFF8E8E93), size: 20),
-                  onTap: () {
-                    routeToPage(context, const MemoriesPage());
-                  },
-                ),
+                // Memories removed 2026-09-08: this backend serves a canned
+                // empty list and no write route, so every saved memory sat in
+                // local pending storage forever and was retried on each sync.
               ],
             ),
             const SizedBox(height: 32),
@@ -541,15 +533,12 @@ class _ProfilePageState extends State<ProfilePage> {
             // VOICE & PEOPLE SECTION
             _buildSectionContainer(
               children: [
-                _buildProfileItem(
-                  title: context.l10n.speechProfile,
-                  icon: const FaIcon(FontAwesomeIcons.microphone, color: Color(0xFF8E8E93), size: 20),
-                  onTap: () {
-                    routeToPage(context, const SpeechProfilePage());
-                    PlatformManager.instance.analytics.pageOpened('Profile Speech Profile');
-                  },
-                ),
-                const Divider(height: 1, color: Color(0xFF3C3C43)),
+                // Speech Profile removed 2026-09-08. It opened the live
+                // capture socket with an onboarding flag this backend ignores,
+                // so the enrollment reading was filed as an ordinary
+                // conversation and the upload afterwards 404'd. Voice
+                // enrollment that works lives on the Us account page
+                // ("Record my voice" → POST v1/us/voice/enroll).
                 _buildProfileItem(
                   title: context.l10n.identifyingOthers,
                   icon: const FaIcon(FontAwesomeIcons.users, color: Color(0xFF8E8E93), size: 20),
@@ -605,15 +594,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     );
                   },
                 ),
-                const Divider(height: 1, color: Color(0xFF3C3C43)),
-                _buildProfileItem(
-                  title: context.l10n.deleteAccountTitle,
-                  icon: const FaIcon(FontAwesomeIcons.exclamationTriangle, color: Colors.red, size: 20),
-                  onTap: () {
-                    PlatformManager.instance.analytics.pageOpened('Profile Delete Account Dialog');
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const DeleteAccount()));
-                  },
-                ),
+                // Delete Account removed 2026-09-08: the request 404s on this
+                // backend, but the flow still cleared the local session, so it
+                // looked successful while every recording stayed on the server.
               ],
             ),
             const SizedBox(height: 32),

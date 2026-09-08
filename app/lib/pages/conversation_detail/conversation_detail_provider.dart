@@ -319,23 +319,10 @@ class ConversationDetailProvider extends ChangeNotifier with MessageNotifierMixi
       precacheConversationAudio(conversation.id);
     }
 
-    if (!conversation.discarded) {
-      getHasConversationSummaryRating(conversation.id).then((value) {
-        if (_isDisposed) return;
-        hasConversationSummaryRatingSet = value;
-        notifyListeners();
-        if (!hasConversationSummaryRatingSet) {
-          _ratingTimer = Timer(const Duration(seconds: 15), () {
-            if (_isDisposed) return;
-            final conv = conversationOrNull;
-            if (conv == null) return;
-            setConversationSummaryRating(conv.id, -1); // set -1 to indicate is was shown
-            showRatingUI = true;
-            notifyListeners();
-          });
-        }
-      });
-    }
+    // Summary rating removed 2026-09-08. The widget it fed was already gone
+    // from the page, but opening any conversation still cost two requests
+    // to v1/users/analytics/memory_summary — which this backend does not
+    // serve — plus a fifteen second timer that fired a third.
 
     // updateLoadingState(false);
     notifyListeners();

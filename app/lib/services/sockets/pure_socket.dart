@@ -41,8 +41,28 @@ class PureSocketMessage {
 
 typedef SocketHeadersProvider = Future<Map<String, String>> Function();
 
+/// Audio frames handed to [PureSocket.send] while the socket is down used
+/// to be dropped on the floor, because `send` is `_channel?.sink.add(...)`
+/// and `_channel` is null between connections.
+///
+/// That silently ate the beginning of speech after every quiet stretch. Live
+/// on 2026-09-08: the pendant sent nothing for minutes while Simon read, the
+/// audio watchdog dropped the socket at 19:54:03, and the wake word he spoke
+/// before reading a passage aloud landed in the two seconds before the new
+/// socket and Deepgram were up. The transcript began mid-sentence and no
+/// command ever ran.
+///
+/// Frames are now held while the socket is away and flushed in order on
+/// connect. Bounded by bytes AND age, because replaying minutes-old audio
+/// into a fresh Deepgram generation would be worse than losing it: only the
+/// last few seconds before the reconnect are worth anything.
+const int _kReplayMaxBytes = 512 * 1024;
+const Duration _kReplayMaxAge = Duration(seconds: 20);
+
 class PureSocket implements IPureSocket {
   WebSocketChannel? _channel;
+  final List<({List<int> frame, DateTime at})> _replay = [];
+  int _replayBytes = 0;
   WebSocketChannel get channel {
     if (_channel == null) {
       throw Exception('Socket is not connected');
@@ -215,11 +235,49 @@ class PureSocket implements IPureSocket {
 
   @override
   void onConnected() {
+    _flushReplay();
     _listener?.onConnected();
+  }
+
+  /// Send everything held while the socket was away, oldest first, dropping
+  /// anything too old to belong to the speech now arriving.
+  void _flushReplay() {
+    if (_replay.isEmpty) return;
+    final sink = _channel?.sink;
+    final cutoff = DateTime.now().subtract(_kReplayMaxAge);
+    final held = List<({List<int> frame, DateTime at})>.from(_replay);
+    _replay.clear();
+    _replayBytes = 0;
+    if (sink == null) return;
+    var sent = 0;
+    for (final held0 in held) {
+      if (held0.at.isBefore(cutoff)) continue;
+      sink.add(held0.frame);
+      sent++;
+    }
+    if (sent > 0) Logger.debug('[Socket] replayed $sent buffered frame(s) after reconnect');
+  }
+
+  void _hold(List<int> frame) {
+    final now = DateTime.now();
+    _replay.add((frame: frame, at: now));
+    _replayBytes += frame.length;
+    final cutoff = now.subtract(_kReplayMaxAge);
+    while (_replay.isNotEmpty && (_replayBytes > _kReplayMaxBytes || _replay.first.at.isBefore(cutoff))) {
+      _replayBytes -= _replay.first.frame.length;
+      _replay.removeAt(0);
+    }
   }
 
   @override
   void send(message) {
-    _channel?.sink.add(message);
+    final sink = _channel?.sink;
+    if (sink != null && _status == PureSocketStatus.connected) {
+      sink.add(message);
+      return;
+    }
+    // Only audio is worth replaying; a control frame written while the
+    // socket is down belongs to a session that no longer exists.
+    if (message is List<int>) _hold(message);
   }
 }

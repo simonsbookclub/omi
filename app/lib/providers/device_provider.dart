@@ -558,6 +558,14 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       manufacturerName: device.manufacturerName,
     );
 
+    // This backend has no firmware catalogue: the endpoint answers 200 with
+    // an empty object, every field is optional, and the check therefore used
+    // to report "your device is up to date" on every single connection —
+    // a green tick that had checked nothing. Say what is true instead.
+    if (latestFirmwareDetails.isEmpty || latestFirmwareDetails['version'] == null) {
+      return ('Firmware updates are not managed by this app', false, '', {});
+    }
+
     var (message, hasUpdate, version) = await DeviceUtils.shouldUpdateFirmware(
       currentFirmware: device.firmwareRevision,
       latestFirmwareDetails: latestFirmwareDetails,

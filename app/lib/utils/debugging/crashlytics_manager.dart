@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -13,13 +12,15 @@ class CrashlyticsManager {
     return _instance;
   }
 
+  /// Chronicle is a private, self-hosted fork: the upstream Firebase project
+  /// (based-hardware-dev) belongs to Omi, not to us, and a device that
+  /// records its owner's life continuously has no business reporting
+  /// anything to it. Info.plist already sets
+  /// FirebaseCrashlyticsCollectionEnabled=false; this call used to turn it
+  /// back on at every release launch, which is what actually decided the
+  /// behaviour. Collection now stays off in every build.
   static Future<void> init() async {
-    // Disable Crashlytics collection in debug mode
-    if (kDebugMode) {
-      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
-    } else {
-      await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
-    }
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 
   void identifyUser(String email, String name, String userId) {

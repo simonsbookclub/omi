@@ -9,7 +9,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_down_button/pull_down_button.dart';
 import 'package:upgrader/upgrader.dart';
 
 import 'package:omi/backend/http/api/agents.dart';
@@ -36,8 +35,6 @@ import 'package:omi/pages/phone_calls/active_call_banner.dart';
 import 'package:omi/providers/usage_provider.dart';
 import 'package:omi/pages/settings/daily_summary_detail_page.dart';
 import 'package:omi/pages/settings/data_privacy_page.dart';
-import 'package:omi/pages/apps/add_app.dart';
-import 'package:omi/pages/apps/add_mcp_server_page.dart';
 import 'package:omi/pages/settings/settings_drawer.dart';
 import 'package:omi/pages/settings/task_integrations_page.dart';
 import 'package:omi/pages/settings/wrapped_2025_page.dart';
@@ -65,7 +62,6 @@ import 'package:omi/services/notifications.dart';
 import 'package:omi/services/wals/recording_transfer_coordinator.dart';
 import 'package:omi/utils/other/temp.dart';
 import 'package:omi/utils/audio/foreground.dart';
-import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/utils/logger.dart';
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:omi/widgets/calendar_date_picker_sheet.dart';
@@ -838,8 +834,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                                 }
                               },
                             ),
-                            if (home.selectedIndex == 0)
-                              Positioned(left: 16, right: 16, bottom: 78, child: _buildChatBar(context)),
+                            // Chat bar removed 2026-09-08: this fork has no
+                            // chat backend (GET v2/messages is a canned empty
+                            // list, POST 404s), so the bar opened a screen
+                            // that could never answer.
+
                           ],
                         );
                       },
@@ -860,68 +859,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
     );
   }
 
-  Widget _buildChatBar(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        HapticFeedback.lightImpact();
-        PlatformManager.instance.analytics.bottomNavigationTabClicked('Chat');
-        Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatPage(isPivotBottom: false)));
-      },
-      child: Container(
-        height: 62,
-        decoration: BoxDecoration(
-          color: const Color(0xFF1F1F25),
-          borderRadius: BorderRadius.circular(32),
-          border: Border.all(color: const Color(0xFF35343B), width: 1),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.65),
-              blurRadius: 60,
-              spreadRadius: 14,
-              offset: const Offset(0, -16),
-            ),
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.45),
-              blurRadius: 32,
-              spreadRadius: 6,
-              offset: const Offset(0, -8),
-            ),
-            BoxShadow(color: Colors.black.withValues(alpha: 0.25), blurRadius: 10, offset: const Offset(0, 2)),
-          ],
-        ),
-        child: Row(
-          children: [
-            const SizedBox(width: 18),
-            const Expanded(
-              child: Text(
-                'Ask Chronicle anything about your life...',
-                style: TextStyle(color: Color(0xFF8E8E93), fontSize: 15),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                HapticFeedback.lightImpact();
-                PlatformManager.instance.analytics.bottomNavigationTabClicked('Chat Voice');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ChatPage(isPivotBottom: false, autoStartVoice: true)),
-                );
-              },
-              child: Container(
-                width: 42,
-                height: 42,
-                margin: const EdgeInsets.only(right: 6),
-                alignment: Alignment.center,
-                decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-                child: const FaIcon(FontAwesomeIcons.microphone, size: 15, color: Colors.black),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
@@ -1089,49 +1026,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                   );
                 },
               ),
-              // Apps tab — Create app pull-down menu (shown only on Apps tab, left of settings)
-              Consumer<HomeProvider>(
-                builder: (context, homeProvider, _) {
-                  if (homeProvider.selectedIndex != 3) return const SizedBox.shrink();
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: PullDownButton(
-                      itemBuilder: (context) => [
-                        PullDownMenuItem(
-                          title: context.l10n.createAnApp,
-                          subtitle: context.l10n.createAndShareYourApp,
-                          iconWidget: const Icon(Icons.apps, size: 18),
-                          onTap: () {
-                            PlatformManager.instance.analytics.pageOpened('Submit App');
-                            routeToPage(context, const AddAppPage());
-                          },
-                        ),
-                        PullDownMenuItem(
-                          title: context.l10n.addMcpServer,
-                          subtitle: context.l10n.connectExternalAiTools,
-                          iconWidget: const Icon(Icons.cable, size: 18),
-                          onTap: () {
-                            PlatformManager.instance.analytics.pageOpened('Add MCP Server');
-                            routeToPage(context, const AddMcpServerPage());
-                          },
-                        ),
-                      ],
-                      buttonBuilder: (context, showMenu) => GestureDetector(
-                        onTap: () {
-                          HapticFeedback.mediumImpact();
-                          showMenu();
-                        },
-                        child: Container(
-                          width: 36,
-                          height: 36,
-                          decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
-                          child: const Icon(Icons.add, size: 18, color: Colors.white70),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+              // Removed 2026-09-08: a leftover from when tab 3 was the
+              // Apps marketplace. Tab 3 is now Us, so this put a "+"
+              // offering "Create an app" and "Add MCP server" on the
+              // couple screen, both backed by routes this app does not serve.
               // Settings button - always visible
               Container(
                 width: 36,
