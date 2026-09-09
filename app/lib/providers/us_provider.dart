@@ -58,6 +58,9 @@ class UsProvider extends ChangeNotifier {
   }
   Map<String, dynamic>? get card => today?['card'] as Map<String, dynamic>?;
   Map<String, dynamic>? get body => today?['my_body'] as Map<String, dynamic>?;
+  /// The partner's day, served only while the couple is live and they share it.
+  Map<String, dynamic>? get partnerBody => today?['partner_body'] as Map<String, dynamic>?;
+  String get partnerBodyName => (today?['partner_name'] as String?) ?? 'Partner';
   Map<String, dynamic> visitsStatus = const {};
 
   Future<void> refreshVisitsStatus() async {

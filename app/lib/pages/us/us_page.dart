@@ -263,6 +263,11 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       _quickActions(us, me),
       const SizedBox(height: 12),
       _bodyCard(us),
+      if (us.partnerBody != null) ...[
+        const SizedBox(height: 12),
+        // The partner's day, same shape. The switch is theirs, not yours.
+        _bodyCard(us, body: us.partnerBody, title: "${us.partnerBodyName}'s body today", showTracking: false),
+      ],
       const SizedBox(height: 12),
       _weekStrip(us),
       const SizedBox(height: 12),
@@ -577,8 +582,8 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged $s for $who')));
   }
 
-  Widget _bodyCard(UsProvider us) {
-    final b = us.body;
+  Widget _bodyCard(UsProvider us, {Map<String, dynamic>? body, String? title, bool showTracking = true}) {
+    final b = body ?? us.body;
     final workouts = ((b?['workouts'] as List?) ?? const []).cast<Map<String, dynamic>>();
     final last = b?['last_workout'] as Map<String, dynamic>?;
     final outside = b?['outside'] as Map<String, dynamic>? ?? const {};
@@ -598,7 +603,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       return parts.join(' · ');
     }
     return _card(children: [
-      Text('${us.isActingAsPartner ? us.ownerName : 'Your'} body today', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+      Text(title ?? '${us.isActingAsPartner ? us.ownerName : 'Your'} body today', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
       const SizedBox(height: 8),
       if (workouts.isEmpty && last == null) const Text('No workouts on record.', style: TextStyle(color: Colors.white54)),
       for (final w in workouts) _kv('Workout', workoutLine(w)),
@@ -607,8 +612,8 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       if (exercise != null) _kv('Exercise minutes', '$exercise'),
       _kv('Daylight (watch)', daylight == null ? 'not reported yet' : '$daylight min'),
       _kv('Away from home', !tracking ? 'off' : !homeKnown ? 'learning where home is' : outsideMin == null ? '—' : '${(outsideMin / 60).toStringAsFixed(1)} h${sunEst != null ? ' · ~$sunEst min of sun (of $sunAvail available)' : ''}'),
-      const SizedBox(height: 4),
-      SwitchListTile(
+      if (showTracking) const SizedBox(height: 4),
+      if (showTracking) SwitchListTile(
         dense: true,
         contentPadding: EdgeInsets.zero,
         activeColor: const Color(0xFF6FC3B8),
