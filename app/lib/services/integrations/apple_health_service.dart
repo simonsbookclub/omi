@@ -196,7 +196,12 @@ class AppleHealthService {
     final prefs = SharedPreferencesUtil();
     final now = DateTime.now().millisecondsSinceEpoch;
     final lastRun = prefs.getInt('healthSamplesLastRunMs');
-    if (!force && now - lastRun < 60 * 60 * 1000) return false;
+    // Was one hour. The desktop Vitals panel refreshes every minute and the
+    // heart-rate graph is only as fresh as this push, so the throttle is the
+    // real limit — not the polling. Ten minutes, with a narrower catch-up
+    // window below so the upload stays small at that cadence.
+    const throttleMs = 10 * 60 * 1000;
+    if (!force && now - lastRun < throttleMs) return false;
 
     // One-time full re-sync (v2): the first backfill truncated heart rate
     // to its oldest 20k samples (ascending sort + cap), losing the most
@@ -207,8 +212,14 @@ class AppleHealthService {
     // types have history (idempotent inserts on the server).
     final needsFullResyncV2 = prefs.getInt('healthFullResyncV3') == 0;
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
+    // The 24-hour overlap catches samples the watch delivers late. At a
+    // ten-minute cadence that would re-upload the same day over and over, so
+    // only the first sync of each hour reaches that far back; the rest carry
+    // a three-hour tail, which is ample for a watch that is on the wrist.
+    final wideCatchUp = now - lastRun >= 60 * 60 * 1000;
+    final overlapMs = wideCatchUp ? 24 * 60 * 60 * 1000 : 3 * 60 * 60 * 1000;
     final sinceMs = (!needsFullResyncV2 && lastSynced > 0)
-        ? lastSynced - 24 * 60 * 60 * 1000
+        ? lastSynced - overlapMs
         : now - 30 * 24 * 60 * 60 * 1000;
 
     // Release builds have no visible logging, so this sync reports its own
