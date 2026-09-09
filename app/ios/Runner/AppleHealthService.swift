@@ -807,6 +807,9 @@ class AppleHealthService {
             // first time VO2max became readable, 2026-08-19).
             (.vo2Max, "vo2_max", HKUnit(from: "ml/(kg*min)"), "ml/kg/min"),
             (.bodyMass, "body_mass", HKUnit.gramUnit(with: .kilo), "kg"),
+            // HKUnit.percent() is a FRACTION: a 16% body fat reads 0.16, which
+            // showed on the desktop panel as "0.2%". Scaled to a real
+            // percentage below, where the unit label already says "%".
             (.bodyFatPercentage, "body_fat", HKUnit.percent(), "%"),
         ]
         if #available(iOS 16.0, *) {
@@ -823,7 +826,7 @@ class AppleHealthService {
                     // a unit mismatch — guard instead of crash.
                     guard s.quantity.is(compatibleWith: unit) else { return nil }
                     var value = s.quantity.doubleValue(for: unit)
-                    if identifier == .oxygenSaturation { value *= 100 }
+                    if identifier == .oxygenSaturation || identifier == .bodyFatPercentage { value *= 100 }
                     return [
                         "type": name,
                         "start_ms": s.startDate.timeIntervalSince1970 * 1000,
