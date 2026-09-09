@@ -42,6 +42,14 @@ class AppleHealthService {
         if let vo2Max = HKQuantityType.quantityType(forIdentifier: .vo2Max) {
             types.insert(vo2Max)
         }
+        // Body composition — slow-moving, but the desktop Vitals panel shows
+        // them, and they are the two figures a scale writes to Health.
+        if let bodyMass = HKQuantityType.quantityType(forIdentifier: .bodyMass) {
+            types.insert(bodyMass)
+        }
+        if let bodyFat = HKQuantityType.quantityType(forIdentifier: .bodyFatPercentage) {
+            types.insert(bodyFat)
+        }
         if let cyclingDistance = HKQuantityType.quantityType(forIdentifier: .distanceCycling) {
             types.insert(cyclingDistance)
         }
@@ -798,6 +806,8 @@ class AppleHealthService {
             // moment a real sample exists (crashed the app on cold start the
             // first time VO2max became readable, 2026-08-19).
             (.vo2Max, "vo2_max", HKUnit(from: "ml/(kg*min)"), "ml/kg/min"),
+            (.bodyMass, "body_mass", HKUnit.gramUnit(with: .kilo), "kg"),
+            (.bodyFatPercentage, "body_fat", HKUnit.percent(), "%"),
         ]
         if #available(iOS 16.0, *) {
             quantitySeries.append((.runningSpeed, "running_speed", HKUnit.meter().unitDivided(by: .second()), "m/s"))
