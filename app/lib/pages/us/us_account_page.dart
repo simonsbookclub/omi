@@ -58,13 +58,23 @@ class _UsAccountPageState extends State<UsAccountPage> {
   /// A sign-in link the partner opens on her own phone: she signs in to
   /// Oura there, the ring attaches to her profile here. Valid for a day.
   Future<void> _shareOuraLink(String actAs, String name) => _run(() async {
+        // Captured before any await: iOS needs an anchor rectangle for the
+        // share sheet, and reading context after an await is unsafe.
+        final box = context.findRenderObject() as RenderBox?;
+        final media = MediaQuery.of(context).size;
+        final origin = (box != null && box.hasSize && box.size.width > 0)
+            ? box.localToGlobal(Offset.zero) & box.size
+            : Rect.fromCenter(center: Offset(media.width / 2, media.height / 2), width: 1, height: 1);
         await UsSession.ensureSession();
         final r = await UsApi.ouraLinkUrl(actAs: actAs, web: true);
         final url = r?['url'];
         if (url is! String) throw Exception(r?['error'] ?? 'Oura is not configured yet.');
+        // Without sharePositionOrigin iOS throws "argument must be set" and
+        // nothing is shared at all (live 2026-09-09).
         await SharePlus.instance.share(ShareParams(
           text: '$name, this links your Oura ring to Chronicle. Open it on your phone and sign in to Oura. It works for 24 hours.\n$url',
           subject: 'Link your Oura ring to Chronicle',
+          sharePositionOrigin: origin,
         ));
       });
 
