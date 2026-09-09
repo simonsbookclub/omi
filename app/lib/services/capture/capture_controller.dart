@@ -969,6 +969,16 @@ class CaptureController extends ChangeNotifier
           }
           return;
         }
+        // SIMONSBOOKCLUB: long press — open a ReadingRate command window on
+        // the relay. The spoken wake word has to survive the microphone, a
+        // reconnect and Deepgram; this cannot be misheard. The relay puts the
+        // wake word at the head of its window, so whatever is said next runs
+        // as a command with nothing to pronounce.
+        if (buttonState == 7) {
+          HapticFeedback.heavyImpact();
+          _requestCommandWindow();
+          return;
+        }
         if (buttonState == 1) {
           debugPrint("Single tap detected");
           if (_voiceCommandSession == null) {
@@ -1863,9 +1873,37 @@ class CaptureController extends ChangeNotifier
     _startKeepAliveServices();
   }
 
+  /// Long press on the pendant: tell the relay a ReadingRate command is
+  /// coming, so the next thing said runs without the spoken wake word.
+  /// If the socket is away, hold the press briefly and send it on connect —
+  /// the reconnect gap is exactly when a spoken wake word gets lost, so the
+  /// button must not have the same weakness.
+  DateTime? _pendingCommandWindow;
+  static const Duration _commandWindowHold = Duration(seconds: 45);
+
+  void _requestCommandWindow() {
+    if (_socket?.state == SocketServiceState.connected) {
+      _socket?.send(jsonEncode({'type': 'command_window', 'at': DateTime.now().toUtc().toIso8601String()}));
+      _pendingCommandWindow = null;
+      AppSnackbar.showSnackbar('Listening for a command', duration: const Duration(seconds: 2));
+      return;
+    }
+    _pendingCommandWindow = DateTime.now();
+    AppSnackbar.showSnackbar('Reconnecting, then listening', duration: const Duration(seconds: 2));
+  }
+
+  void _flushPendingCommandWindow() {
+    final at = _pendingCommandWindow;
+    if (at == null) return;
+    _pendingCommandWindow = null;
+    if (DateTime.now().difference(at) > _commandWindowHold) return;
+    _socket?.send(jsonEncode({'type': 'command_window', 'at': at.toUtc().toIso8601String()}));
+  }
+
   @override
   void onConnected() {
     _transcriptServiceReady = true;
+    _flushPendingCommandWindow();
     // A relay session starts with no media windows; restate the current one.
     if (_mediaMonitor?.isPlaying == true) _socket?.send(jsonEncode(_mediaMonitor!.snapshot()));
     // Restart mic on reconnect if interrupted (skip during active call).

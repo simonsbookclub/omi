@@ -1411,13 +1411,20 @@ class LimitlessDeviceConnection extends DeviceConnection {
 
               // Skip NOT_PRESSED events
               if (buttonEvent == _buttonNotPressed) return;
-              if (buttonEvent == _buttonLongPress) return;
               // SIMONSBOOKCLUB: a single short press used to be dropped here,
               // so pressing the pendant did nothing at all. It now reaches
               // the app as state 6 ("mark this moment"); a double press keeps
-              // Omi's configurable double-tap action (state 2).
-              if (buttonEvent != _buttonShortPress && buttonEvent != _buttonDoublePress) return;
-              final int mappedState = buttonEvent == _buttonShortPress ? 6 : 2;
+              // Omi's configurable double-tap action (state 2); and a long
+              // press, which was also dropped, is state 7 — "a ReadingRate
+              // command follows", the wake word you press instead of say.
+              if (buttonEvent != _buttonShortPress && buttonEvent != _buttonDoublePress && buttonEvent != _buttonLongPress) {
+                return;
+              }
+              final int mappedState = buttonEvent == _buttonShortPress
+                  ? 6
+                  : buttonEvent == _buttonLongPress
+                      ? 7
+                      : 2;
 
               final buttonBytes = [
                 mappedState & 0xFF,
