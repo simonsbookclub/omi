@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
@@ -208,19 +210,19 @@ class _ConversationListItemState extends State<ConversationListItem> {
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? Colors.deepPurple.withValues(alpha: 0.3)
+                            ? AppStyles.accent.withValues(alpha: 0.16)
                             : (isSelectionMode && !isEligible)
                                 ? Colors.grey.shade800
-                                : const Color(0xFF1F1F25),
-                        borderRadius: BorderRadius.circular(24.0),
+                                : AppStyles.backgroundSecondary,
+                        borderRadius: BorderRadius.circular(AppStyles.radiusLarge),
                         border: isSelected
-                            ? Border.all(color: Colors.deepPurple, width: 2)
+                            ? Border.all(color: AppStyles.accent, width: 2)
                             : (isSelectionMode && !isEligible)
                                 ? Border.all(color: Colors.grey.shade600, width: 1)
                                 : null,
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(24.0),
+                        borderRadius: BorderRadius.circular(AppStyles.radiusLarge),
                         child: Dismissible(
                           // Keep the dismissible state stable when the conversation provider
                           // refreshes. A UniqueKey here recreated every row during unrelated
@@ -258,7 +260,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                                               child: Checkbox(
                                                 value: dontShow,
                                                 onChanged: (v) => setState(() => dontShow = v ?? false),
-                                                activeColor: Colors.deepPurple,
+                                                activeColor: AppStyles.accent,
                                                 checkColor: Colors.white,
                                                 side: const BorderSide(color: Colors.white54),
                                                 materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -397,7 +399,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                   Container(
                     width: 40,
                     height: 40,
-                    decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(12)),
+                    decoration: BoxDecoration(color: AppStyles.backgroundRaised, borderRadius: BorderRadius.circular(12)),
                     alignment: Alignment.center,
                     child: Text(
                       widget.conversation.structured.getEmoji(),
@@ -428,7 +430,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                                 if (widget.conversation.starred)
                                   const Padding(
                                     padding: EdgeInsets.only(right: 4.0),
-                                    child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: Colors.amber),
+                                    child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: AppStyles.attention),
                                   ),
                               ],
                             )
@@ -440,14 +442,14 @@ class _ConversationListItemState extends State<ConversationListItem> {
                                     widget.conversation.startedAt ?? widget.conversation.createdAt,
                                     locale: Localizations.localeOf(context).languageCode,
                                   ),
-                                  style: const TextStyle(color: Color(0xFF9A9BA1), fontSize: 14),
+                                  style: const TextStyle(color: AppStyles.inkMeta, fontSize: 14),
                                   maxLines: 1,
                                 ),
                                 if (_getConversationDuration(context).isNotEmpty) ...[
-                                  const Text(' • ', style: TextStyle(color: Color(0xFF9A9BA1), fontSize: 14)),
+                                  const Text(' • ', style: TextStyle(color: AppStyles.inkMeta, fontSize: 14)),
                                   Text(
                                     _getConversationDuration(context),
-                                    style: const TextStyle(color: Color(0xFF9A9BA1), fontSize: 14),
+                                    style: const TextStyle(color: AppStyles.inkMeta, fontSize: 14),
                                     maxLines: 1,
                                   ),
                                 ],
@@ -455,7 +457,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                                 if (widget.conversation.starred)
                                   const Padding(
                                     padding: EdgeInsets.only(right: 4.0),
-                                    child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: Colors.amber),
+                                    child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: AppStyles.attention),
                                   ),
                               ],
                             ),
@@ -537,7 +539,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
           Expanded(
             child: Text(
               label,
-              style: const TextStyle(color: Color(0xFF9A9BA1), fontSize: 13),
+              style: const TextStyle(color: AppStyles.inkMeta, fontSize: 13),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
@@ -686,7 +688,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF35343B),
+                              color: AppStyles.backgroundRaised,
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
@@ -699,7 +701,7 @@ class _ConversationListItemState extends State<ConversationListItem> {
                       if (widget.conversation.starred)
                         const Padding(
                           padding: EdgeInsets.only(left: 8.0),
-                          child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: Colors.amber),
+                          child: FaIcon(FontAwesomeIcons.solidStar, size: 12, color: AppStyles.attention),
                         ),
                     ],
                   ),

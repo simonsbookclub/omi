@@ -2,6 +2,8 @@ import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -184,8 +186,8 @@ class _AppsListState extends State<_AppsList> {
 
   Widget _buildShimmerListItem() {
     return ShimmerWithTimeout(
-      baseColor: const Color(0xFF1F1F25),
-      highlightColor: const Color(0xFF35343B),
+      baseColor: AppStyles.backgroundSecondary,
+      highlightColor: AppStyles.backgroundTertiary,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Row(
@@ -194,7 +196,7 @@ class _AppsListState extends State<_AppsList> {
             Container(
               width: 32,
               height: 32,
-              decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
+              decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16)),
             ),
             const SizedBox(width: 16),
             // Title and subtitle placeholders
@@ -205,13 +207,13 @@ class _AppsListState extends State<_AppsList> {
                   Container(
                     width: double.infinity,
                     height: 16,
-                    decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(4)),
+                    decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(4)),
                   ),
                   const SizedBox(height: 8),
                   Container(
                     width: 200,
                     height: 12,
-                    decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(4)),
+                    decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(4)),
                   ),
                 ],
               ),
@@ -529,7 +531,7 @@ class _AppListItemState extends State<_AppListItem> {
         gradient: LinearGradient(
           begin: isLeft ? Alignment.centerLeft : Alignment.centerRight,
           end: isLeft ? Alignment.centerRight : Alignment.centerLeft,
-          colors: [Colors.deepPurple.withValues(alpha: 0.7), Colors.transparent],
+          colors: [AppStyles.accent.withValues(alpha: 0.7), Colors.transparent],
         ),
       ),
       alignment: isLeft ? Alignment.centerLeft : Alignment.centerRight,

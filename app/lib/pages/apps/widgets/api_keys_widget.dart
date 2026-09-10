@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:intl/intl.dart';
@@ -79,7 +81,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         title: Text(context.l10n.createAKey, textAlign: TextAlign.center),
         content: _buildNewKeyContent(),
         contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 0),
@@ -136,7 +138,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
     final provider = Provider.of<AddAppProvider>(context);
 
     return Container(
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12.0)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12.0)),
       padding: const EdgeInsets.all(14.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +160,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
                         showDialog(
                           context: context,
                           builder: (dialogContext) => AlertDialog(
-                            backgroundColor: const Color(0xFF1F1F25),
+                            backgroundColor: AppStyles.backgroundSecondary,
                             title: Text(context.l10n.omiApiKeys),
                             content: Text(context.l10n.apiKeysDescription),
                             actions: [
@@ -233,7 +235,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
         const SizedBox(height: 16),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 8),
-          decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(4)),
+          decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(4)),
           child: Row(
             children: [
               Expanded(
@@ -290,7 +292,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
       itemBuilder: (context, index) {
         final key = provider.apiKeys[index];
         return Container(
-          decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(10.0)),
+          decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(10.0)),
           child: ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
             title: Text(key.label, style: const TextStyle(fontWeight: FontWeight.bold)),
@@ -325,7 +327,7 @@ class _ApiKeysWidgetState extends State<ApiKeysWidget> {
     showDialog(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         title: Text(context.l10n.revokeApiKeyQuestion),
         content: Text(context.l10n.revokeApiKeyWarning),
         actions: [

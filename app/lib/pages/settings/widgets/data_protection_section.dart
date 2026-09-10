@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/providers/user_provider.dart';
@@ -159,9 +161,9 @@ class _DataProtectionSectionState extends State<DataProtectionSection> {
       padding: const EdgeInsets.all(16),
       margin: const EdgeInsets.only(bottom: 24),
       decoration: BoxDecoration(
-        color: const Color(0xFF35343B).withValues(alpha: 0.5),
+        color: AppStyles.backgroundTertiary.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.deepPurple.shade300),
+        border: Border.all(color: AppStyles.accent),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -179,7 +181,7 @@ class _DataProtectionSectionState extends State<DataProtectionSection> {
                       ? provider.migrationProcessedCount / provider.migrationTotalCount
                       : 0.0,
                   backgroundColor: Colors.grey.shade700,
-                  color: Colors.deepPurple,
+                  color: AppStyles.accent,
                   minHeight: 6,
                   borderRadius: BorderRadius.circular(3),
                 ),
@@ -216,7 +218,7 @@ class _DataProtectionSectionState extends State<DataProtectionSection> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.deepPurple.withValues(alpha: 0.15),
+        color: AppStyles.accent.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: Theme.of(context).colorScheme.secondary, width: 1.5),
       ),
@@ -255,7 +257,7 @@ class _DataProtectionSectionState extends State<DataProtectionSection> {
         decoration: BoxDecoration(
           color: const Color(0xFF1A1A1A),
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: const Color(0xFF35343B)),
+          border: Border.all(color: AppStyles.backgroundTertiary),
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

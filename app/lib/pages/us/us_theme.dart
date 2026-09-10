@@ -1,48 +1,43 @@
 import 'package:flutter/material.dart';
 
-/// SIMONSBOOKCLUB ("Us"): the visual vocabulary of the couple screens.
+import 'package:omi/utils/ui_guidelines.dart';
+
+/// SIMONSBOOKCLUB ("Us"): the couple screens' names for the app's palette.
 ///
-/// The one idea worth stating: each of you gets a colour, used everywhere.
-/// A chip beside a factor, a rail beside a column, a line on a chart — all
-/// the same two colours, so "who is this about" never needs reading.
-///
-/// Teal and violet, not teal and rose. Rose separates from teal at ΔE 3.9
-/// under deuteranopia, which is a fail; violet separates at 15.2, and sits
-/// far from the amber and coral the app already spends on status, so a
-/// person's colour can never be mistaken for a warning.
+/// The palette itself lives in AppStyles (lib/utils/ui_guidelines.dart) and
+/// is the whole app's, not this tab's — a person is the same colour on the
+/// home screen's transcript as on an Us chart. These are the short names the
+/// couple screens read better with, plus the two helpers that only make
+/// sense where there are two of you.
 class UsInk {
   UsInk._();
 
   // Ground and surfaces
-  static const ground = Colors.black;
-  static const card = Color(0xFF1F1F25);
-  static const raised = Color(0xFF26262E);
-  static const sheet = Color(0xFF17171C);
-  static const hairline = Color(0x12FFFFFF);
+  static const ground = AppStyles.backgroundPrimary;
+  static const card = AppStyles.backgroundSecondary;
+  static const raised = AppStyles.backgroundRaised;
+  static const sheet = AppStyles.backgroundSheet;
+  static const hairline = AppStyles.hairline;
 
   // People
-  static const you = Color(0xFF4ECFC0);
-  static const them = Color(0xFFA78BFA);
-  static const onYou = Color(0xFF05201D);
-  static const onThem = Color(0xFF1B1030);
+  static const you = AppStyles.accent;
+  static const them = AppStyles.partner;
+  static const onYou = AppStyles.onAccent;
+  static const onThem = AppStyles.onPartner;
 
   /// The two meeting: only where both of you are in it.
-  static const sharedGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [you, them],
-  );
+  static const sharedGradient = AppStyles.sharedGradient;
 
-  // Status — unchanged from the rest of the app
-  static const calm = Color(0xFF6FC3B8);
-  static const elevated = Color(0xFFD4A64F);
-  static const high = Color(0xFFE5785C);
+  // Status
+  static const calm = AppStyles.calm;
+  static const elevated = AppStyles.attention;
+  static const high = AppStyles.live;
 
   // Ink
   static const strong = Colors.white;
-  static const body = Color(0xB8FFFFFF);
-  static const label = Color(0x61FFFFFF);
-  static const faint = Color(0x3DFFFFFF);
+  static const body = AppStyles.inkBody;
+  static const label = AppStyles.inkLabel;
+  static const faint = AppStyles.inkFaint;
 
   /// The colour for a person, by whether they are the viewer.
   static Color person(bool mine) => mine ? you : them;
@@ -55,12 +50,7 @@ class UsInk {
         _ => faint,
       };
 
-  static const labelStyle = TextStyle(
-    color: label,
-    fontSize: 10.5,
-    fontWeight: FontWeight.w700,
-    letterSpacing: 1.4,
-  );
+  static const labelStyle = AppStyles.sectionLabel;
 }
 
 /// A section label: small, spaced, upper case. Used once per card.

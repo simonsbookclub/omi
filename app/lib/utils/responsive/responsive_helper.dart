@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 /// Premium responsive utility class with sophisticated dark theme
 /// Inspired by modern productivity apps with purple accent system
 class ResponsiveHelper {
@@ -35,7 +37,7 @@ class ResponsiveHelper {
   // Premium purple gradient system
   static const Color purplePrimary = Color(0xFF8B5CF6); // Main purple
   static const Color purpleSecondary = Color(0xFFA855F7); // Lighter purple
-  static const Color purpleAccent = Color(0xFF7C3AED); // Darker purple
+  static const Color purpleAccent = AppStyles.accent; // Darker purple
   static const Color purpleLight = Color(0xFFD946EF); // Pink-purple
 
   // Sophisticated text colors

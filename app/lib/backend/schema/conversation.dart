@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:collection/collection.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -558,13 +560,13 @@ class ServerConversation {
   }
 
   Color getTagTextColor() {
-    if (source == ConversationSource.screenpipe) return Colors.deepPurple;
+    if (source == ConversationSource.screenpipe) return AppStyles.accent;
     return Colors.white;
   }
 
   Color getTagColor() {
     if (source == ConversationSource.screenpipe) return Colors.white;
-    return const Color(0xFF35343B);
+    return AppStyles.backgroundTertiary;
   }
 
   VoidCallback? onTagPressed(BuildContext context) {

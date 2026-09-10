@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import 'package:omi/widgets/shimmer_with_timeout.dart';
@@ -42,7 +44,7 @@ class AppListItem extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             margin: EdgeInsets.only(bottom: 8, top: index == 0 ? 16 : 0),
             decoration: BoxDecoration(
-              color: const Color(0xFF1F1F25).withValues(alpha: 0.3),
+              color: AppStyles.backgroundSecondary.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -53,7 +55,7 @@ class AppListItem extends StatelessWidget {
                   child: Container(
                     width: 60,
                     height: 60,
-                    decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(12)),
+                    decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(12)),
                     child: CachedNetworkImage(
                       imageUrl: app.getImageUrl(),
                       httpHeaders: const {
@@ -62,13 +64,13 @@ class AppListItem extends StatelessWidget {
                       },
                       fit: BoxFit.cover,
                       placeholder: (context, url) => ShimmerWithTimeout(
-                        baseColor: const Color(0xFF1F1F25),
-                        highlightColor: const Color(0xFF35343B),
+                        baseColor: AppStyles.backgroundSecondary,
+                        highlightColor: AppStyles.backgroundTertiary,
                         child: Container(
                           width: double.infinity,
                           height: double.infinity,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF1F1F25),
+                            color: AppStyles.backgroundSecondary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),

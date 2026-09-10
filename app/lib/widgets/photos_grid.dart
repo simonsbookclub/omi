@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/widgets/photo_viewer_page.dart';
 
@@ -39,7 +41,7 @@ class PhotosGridComponent extends StatelessWidget {
                     base64Decode(photo.base64),
                     fit: BoxFit.cover,
                     gaplessPlayback: true,
-                    color: photo.discarded ? const Color(0xFF35343B) : null,
+                    color: photo.discarded ? AppStyles.backgroundTertiary : null,
                     colorBlendMode: photo.discarded ? BlendMode.saturation : null,
                   ),
                   if (photo.discarded)

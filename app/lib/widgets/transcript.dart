@@ -3,6 +3,8 @@ import 'dart:math';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/rendering.dart' show RenderAbstractViewport, RenderBox, ScrollDirection;
 import 'package:flutter/services.dart';
 
@@ -677,7 +679,7 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
           child: Container(
             key: matchKey,
             decoration: BoxDecoration(
-              color: isCurrentResult ? Colors.orange.withValues(alpha: 0.9) : Colors.deepPurple.withValues(alpha: 0.6),
+              color: isCurrentResult ? Colors.orange.withValues(alpha: 0.9) : AppStyles.accent.withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(2),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 1),
@@ -808,7 +810,7 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
                       key: const ValueKey('transcript_jump_to_latest'),
                       heroTag: null,
                       tooltip: context.l10n.jumpToLatestMessage,
-                      backgroundColor: const Color(0xFF35343B),
+                      backgroundColor: AppStyles.backgroundTertiary,
                       foregroundColor: Colors.white,
                       onPressed: () => _scrollToBottomGently(force: true),
                       child: const Icon(Icons.keyboard_arrow_down_rounded),

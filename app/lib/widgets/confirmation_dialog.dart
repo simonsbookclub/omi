@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/utils/l10n_extensions.dart';
 
 class ConfirmationDialog extends StatefulWidget {
@@ -60,7 +62,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog> {
 
     if (Platform.isAndroid) {
       return AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         contentPadding: const EdgeInsets.only(top: 20, left: 24, right: 24, bottom: 10),
         title: Text(
@@ -88,7 +90,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog> {
                       checkboxTheme: CheckboxThemeData(
                         fillColor: WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
                           if (states.contains(WidgetState.selected)) {
-                            return Colors.deepPurple;
+                            return AppStyles.accent;
                           }
                           return Colors.grey.shade700;
                         }),
@@ -118,7 +120,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog> {
             onPressed: widget.onConfirm,
             style: TextButton.styleFrom(
               foregroundColor: Colors.white,
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: AppStyles.accent,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             ),
@@ -151,7 +153,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog> {
                   CupertinoCheckbox(
                     value: _checkboxValue,
                     onChanged: _updateCheckboxValue,
-                    activeColor: Colors.deepPurple,
+                    activeColor: AppStyles.accent,
                   ),
                   const SizedBox(width: 8),
                   Text(widget.checkboxText!, style: TextStyle(fontSize: 14, color: Colors.grey.shade300)),
@@ -175,7 +177,7 @@ class _ConfirmationDialogState extends State<ConfirmationDialog> {
             isDefaultAction: true,
             child: Text(
               widget.confirmText ?? context.l10n.confirm,
-              style: const TextStyle(fontSize: 16, color: Colors.deepPurple, fontWeight: FontWeight.w600),
+              style: const TextStyle(fontSize: 16, color: AppStyles.accent, fontWeight: FontWeight.w600),
             ),
           ),
         ],

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -57,7 +59,7 @@ class _AppOwnerReviewCardState extends State<AppOwnerReviewCard> {
         width: MediaQuery.of(context).size.width * 0.78,
         padding: const EdgeInsets.all(16.0),
         margin: const EdgeInsets.only(left: 12.0, right: 12.0, top: 2, bottom: 6),
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16.0)),
+        decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
@@ -74,7 +76,7 @@ class _AppOwnerReviewCardState extends State<AppOwnerReviewCard> {
                   itemSize: 20,
                   tapOnlyMode: false,
                   itemPadding: const EdgeInsets.symmetric(horizontal: 0),
-                  itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.deepPurple),
+                  itemBuilder: (context, _) => const Icon(Icons.star, color: AppStyles.accent),
                   maxRating: 5.0,
                   onRatingUpdate: (rating) {},
                 ),

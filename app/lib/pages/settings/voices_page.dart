@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:just_audio/just_audio.dart';
 import 'package:path_provider/path_provider.dart';
@@ -164,7 +166,7 @@ class _VoicesPageState extends State<VoicesPage> {
 
     final chosen = await showModalBottomSheet<ContactLink>(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       isScrollControlled: true,
       builder: (context) {
         var filtered = contacts;
@@ -231,7 +233,7 @@ class _VoicesPageState extends State<VoicesPage> {
       name = await showDialog<String>(
         context: context,
         builder: (context) => AlertDialog(
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           title: Text('Who is ${voice.label}?', style: const TextStyle(color: Colors.white)),
           content: TextField(
             controller: controller,
@@ -295,7 +297,7 @@ class _VoicesPageState extends State<VoicesPage> {
                       final name = p['person_name'] as String? ?? '?';
                       final linked = ContactsLinkService().isLinked(name);
                       return Card(
-                        color: const Color(0xFF1F1F25),
+                        color: AppStyles.backgroundSecondary,
                         child: ListTile(
                           leading: SizedBox(
                             width: 40,
@@ -333,12 +335,12 @@ class _VoicesPageState extends State<VoicesPage> {
                           textAlign: TextAlign.center, style: TextStyle(color: Colors.white38)),
                     ),
                   ..._voices.map((v) => Card(
-                        color: const Color(0xFF1F1F25),
+                        color: AppStyles.backgroundSecondary,
                         child: ListTile(
                           leading: IconButton(
                             icon: Icon(
                               _playingId == v.id ? Icons.stop_circle : Icons.play_circle,
-                              color: Colors.deepPurpleAccent,
+                              color: AppStyles.accent,
                               size: 34,
                             ),
                             onPressed: () => _play(v),

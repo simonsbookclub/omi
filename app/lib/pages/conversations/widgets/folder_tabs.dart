@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:collection/collection.dart';
@@ -219,7 +221,7 @@ class _FolderTab extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       builder: (ctx) => _FolderContextMenu(folder: folder!),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -49,7 +51,7 @@ class _UsAccountPageState extends State<UsAccountPage> {
     final key = await showDialog<String>(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         title: const Text('Link Hevy', style: TextStyle(color: Colors.white, fontSize: 18)),
         content: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Text('Hevy → Settings → Developer → API key. Paste it here.',
@@ -150,7 +152,7 @@ class _UsAccountPageState extends State<UsAccountPage> {
         if (!mounted) return;
         final chosen = await showModalBottomSheet<String>(
           context: context,
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           builder: (ctx) => SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -282,7 +284,7 @@ class _UsAccountPageState extends State<UsAccountPage> {
       ]);
 
   Widget _card(List<Widget> children) => Container(
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(14)),
+        decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(14)),
         child: Column(children: children),
       );
 

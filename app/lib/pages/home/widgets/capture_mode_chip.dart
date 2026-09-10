@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -34,7 +36,7 @@ class CaptureModeChip extends StatelessWidget {
           child: Container(
             height: 36,
             padding: const EdgeInsets.fromLTRB(10, 0, 6, 0),
-            decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18)),
+            decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18)),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -74,7 +76,7 @@ class _CaptureModeSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(16, 12, 16, MediaQuery.of(context).padding.bottom + 16),
       decoration: const BoxDecoration(
-        color: Color(0xFF1F1F25),
+        color: AppStyles.backgroundSecondary,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
@@ -155,7 +157,7 @@ class _ModeOption extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
-              decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(12)),
               child: Icon(icon, color: Colors.white, size: 18),
             ),
             const SizedBox(width: 14),
@@ -182,7 +184,7 @@ class _ModeOption extends StatelessWidget {
                 color: selected ? Colors.white : Colors.transparent,
                 border: Border.all(color: selected ? Colors.white : Colors.grey.shade600, width: 2),
               ),
-              child: selected ? const Icon(Icons.check, size: 14, color: Color(0xFF1F1F25)) : null,
+              child: selected ? const Icon(Icons.check, size: 14, color: AppStyles.backgroundSecondary) : null,
             ),
           ],
         ),

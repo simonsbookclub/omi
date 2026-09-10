@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -56,7 +58,7 @@ class AppMetadataWidget extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18.0)),
+              decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18.0)),
               padding: const EdgeInsets.all(14.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -132,7 +134,7 @@ class AppMetadataWidget extends StatelessWidget {
                               height: 105,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16.0),
-                                border: Border.all(color: const Color(0xFF35343B), width: 2.0),
+                                border: Border.all(color: AppStyles.backgroundTertiary, width: 2.0),
                               ),
                               child: imageFile != null || imageUrl != null
                                   ? (imageUrl == null
@@ -165,7 +167,7 @@ class AppMetadataWidget extends StatelessWidget {
                                 onTap: pickImage,
                                 child: Container(
                                   padding: const EdgeInsets.all(6.0),
-                                  decoration: const BoxDecoration(color: Color(0xFF35343B), shape: BoxShape.circle),
+                                  decoration: const BoxDecoration(color: AppStyles.backgroundTertiary, shape: BoxShape.circle),
                                   child: const FaIcon(FontAwesomeIcons.pen, color: Colors.white, size: 12),
                                 ),
                               ),
@@ -473,7 +475,7 @@ class AppMetadataWidget extends StatelessWidget {
                             margin: const EdgeInsets.only(left: 2.0, right: 2.0, top: 10, bottom: 6),
                             padding: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 10.0),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF35343B),
+                              color: AppStyles.backgroundTertiary,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             width: double.infinity,

@@ -2,6 +2,8 @@ import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -145,7 +147,7 @@ class _AddAppPageState extends State<AddAppPage> {
                             const SizedBox(height: 18),
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1F1F25),
+                                color: AppStyles.backgroundSecondary,
                                 borderRadius: BorderRadius.circular(18.0),
                               ),
                               padding: const EdgeInsets.all(14.0),
@@ -212,7 +214,7 @@ class _AddAppPageState extends State<AddAppPage> {
                                                   height: 180,
                                                   margin: const EdgeInsets.only(right: 8),
                                                   decoration: BoxDecoration(
-                                                    color: const Color(0xFF35343B),
+                                                    color: AppStyles.backgroundTertiary,
                                                     borderRadius: BorderRadius.circular(8),
                                                   ),
                                                   child: provider.isUploadingThumbnail
@@ -317,7 +319,7 @@ class _AddAppPageState extends State<AddAppPage> {
                             const SizedBox(height: 18),
                             Container(
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1F1F25),
+                                color: AppStyles.backgroundSecondary,
                                 borderRadius: BorderRadius.circular(18.0),
                               ),
                               padding: const EdgeInsets.fromLTRB(14.0, 20.0, 14.0, 14.0),
@@ -376,7 +378,7 @@ class _AddAppPageState extends State<AddAppPage> {
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFF1F1F25),
+                                          color: AppStyles.backgroundSecondary,
                                           borderRadius: BorderRadius.circular(18.0),
                                         ),
                                         padding: const EdgeInsets.all(14.0),
@@ -411,7 +413,7 @@ class _AddAppPageState extends State<AddAppPage> {
                                   const SizedBox(height: 12),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFF1F1F25),
+                                      color: AppStyles.backgroundSecondary,
                                       borderRadius: BorderRadius.circular(18.0),
                                     ),
                                     padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 20.0),
@@ -440,7 +442,7 @@ class _AddAppPageState extends State<AddAppPage> {
                                   const SizedBox(height: 12),
                                   Container(
                                     decoration: BoxDecoration(
-                                      color: const Color(0xFF1F1F25),
+                                      color: AppStyles.backgroundSecondary,
                                       borderRadius: BorderRadius.circular(18.0),
                                     ),
                                     padding: const EdgeInsets.all(14.0),
@@ -512,7 +514,7 @@ class _AddAppPageState extends State<AddAppPage> {
                             Container(
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1F1F25),
+                                color: AppStyles.backgroundSecondary,
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               child: Column(
@@ -689,7 +691,7 @@ class _AddAppPageState extends State<AddAppPage> {
                   padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 30, top: 10),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12.0),
-                    color: const Color(0xFF1F1F25),
+                    color: AppStyles.backgroundSecondary,
                     gradient: LinearGradient(
                       colors: [Colors.black, Colors.black.withValues(alpha: 0)],
                       begin: Alignment.bottomCenter,
@@ -754,7 +756,7 @@ class _AddAppPageState extends State<AddAppPage> {
                                                 builder: (ctx) => Container(
                                                   padding: const EdgeInsets.all(20),
                                                   decoration: const BoxDecoration(
-                                                    color: Color(0xFF1F1F25),
+                                                    color: AppStyles.backgroundSecondary,
                                                     borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                                                   ),
                                                   child: Material(

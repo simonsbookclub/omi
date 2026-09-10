@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:provider/provider.dart';
@@ -110,7 +112,7 @@ class ChatAppsDropdownWidget extends StatelessWidget {
                 itemBuilder: (BuildContext context) {
                   return _getChatDropdownItems(context, messageProvider, appProvider);
                 },
-                color: const Color(0xFF1F1F25),
+                color: AppStyles.backgroundSecondary,
               ),
             ),
           );

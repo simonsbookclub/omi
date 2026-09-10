@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -188,12 +190,12 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
     } else if (attention > 0) {
       title = l.syncCardNeedsAttention(attention);
       titleColor = Colors.orangeAccent;
-      action = _statusActionPill(l.sync, Colors.deepPurpleAccent, () async {
+      action = _statusActionPill(l.sync, AppStyles.accent, () async {
         if (await confirmSyncForCustomStt(context) && context.mounted) p.syncWals();
       });
     } else if (readyToBackUp > 0) {
       title = l.syncCardReadyCount(readyToBackUp);
-      action = _statusActionPill(l.sync, Colors.deepPurpleAccent, () async {
+      action = _statusActionPill(l.sync, AppStyles.accent, () async {
         if (await confirmSyncForCustomStt(context) && context.mounted) p.syncWals();
       });
     } else if (hasAnyRecording) {
@@ -217,7 +219,7 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
               height: 16,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
-                valueColor: AlwaysStoppedAnimation(Colors.deepPurpleAccent),
+                valueColor: AlwaysStoppedAnimation(AppStyles.accent),
               ),
             ),
             const SizedBox(width: 12),
@@ -642,7 +644,7 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
       return const SizedBox(
         width: 16,
         height: 16,
-        child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.deepPurpleAccent)),
+        child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(AppStyles.accent)),
       );
     }
     if (state == WalSyncDisplayState.failed || state == WalSyncDisplayState.retrying) {
@@ -651,12 +653,12 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
           decoration: BoxDecoration(
-            color: Colors.deepPurpleAccent.withValues(alpha: 0.15),
+            color: AppStyles.accent.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(100),
           ),
           child: Text(
             context.l10n.retry,
-            style: const TextStyle(color: Colors.deepPurpleAccent, fontSize: 13, fontWeight: FontWeight.w500),
+            style: const TextStyle(color: AppStyles.accent, fontSize: 13, fontWeight: FontWeight.w500),
           ),
         ),
       );
@@ -695,7 +697,7 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
   void _showInfoSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
       isScrollControlled: true,
       builder: (context) {
@@ -745,7 +747,7 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
           width: 22,
           child: Text(
             '$n.',
-            style: const TextStyle(color: Colors.deepPurpleAccent, fontSize: 15, fontWeight: FontWeight.w600),
+            style: const TextStyle(color: AppStyles.accent, fontSize: 15, fontWeight: FontWeight.w600),
           ),
         ),
         const SizedBox(width: 8),

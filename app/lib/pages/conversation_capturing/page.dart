@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -377,7 +379,7 @@ class _ConversationCapturingPageState extends State<ConversationCapturingPage> w
                           width: 52,
                           height: 52,
                           decoration: BoxDecoration(
-                            color: effectivelyMuted ? Colors.red : const Color(0xFF35343B),
+                            color: effectivelyMuted ? Colors.red : AppStyles.backgroundTertiary,
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(

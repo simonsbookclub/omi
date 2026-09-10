@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/widgets/omi_confirm_dialog.dart';
 import 'package:omi/utils/l10n_extensions.dart';
@@ -24,7 +26,7 @@ Future<bool> confirmSyncForCustomStt(BuildContext context) async {
     message: l.syncCustomSttWarningMessage,
     confirmLabel: l.sync,
     cancelLabel: l.cancel,
-    confirmColor: Colors.deepPurpleAccent,
+    confirmColor: AppStyles.accent,
   );
   return confirmed ?? false;
 }

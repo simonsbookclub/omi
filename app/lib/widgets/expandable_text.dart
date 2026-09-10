@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_markdown/flutter_markdown.dart';
 
 import 'package:omi/utils/l10n_extensions.dart';
@@ -21,7 +23,7 @@ class ExpandableTextWidget extends StatefulWidget {
     this.maxLines = 3,
     this.expandText,
     this.collapseText,
-    this.linkColor = Colors.deepPurple,
+    this.linkColor = AppStyles.accent,
     required this.isExpanded,
     required this.toggleExpand,
   });
@@ -54,7 +56,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
               p: widget.style,
               blockquote: widget.style.copyWith(backgroundColor: Colors.transparent, color: Colors.black),
               blockquoteDecoration: BoxDecoration(
-                color: const Color(0xFF35343B),
+                color: AppStyles.backgroundTertiary,
                 borderRadius: BorderRadius.circular(4),
               ),
               code: widget.style.copyWith(
@@ -84,7 +86,7 @@ class _ExpandableTextWidgetState extends State<ExpandableTextWidget> {
                 child: Text(
                   widget.isExpanded ? collapseLabel : expandLabel,
                   style: TextStyle(
-                    color: Colors.deepPurple,
+                    color: AppStyles.accent,
                     fontWeight: FontWeight.w500,
                     fontSize: widget.style.fontSize,
                   ),

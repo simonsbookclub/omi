@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:omi/utils/alerts/app_snackbar.dart';
 import 'package:omi/utils/l10n_extensions.dart';
@@ -146,7 +148,7 @@ class _WalItemDetailPageState extends State<WalItemDetailPage> {
     final storageLabel =
         isFlashPage ? context.l10n.storageLocationLimitlessPendant : context.l10n.storageLocationSdCard;
     final storageIcon = isFlashPage ? Icons.memory : Icons.sd_card;
-    final storageColor = isFlashPage ? Colors.teal : Colors.deepPurpleAccent;
+    final storageColor = isFlashPage ? Colors.teal : AppStyles.accent;
 
     return Consumer<SyncProvider>(
       builder: (context, syncProvider, child) {
@@ -223,14 +225,14 @@ class _WalItemDetailPageState extends State<WalItemDetailPage> {
                         width: 120,
                         height: 120,
                         decoration: BoxDecoration(
-                          color: Colors.deepPurple.withValues(alpha: 0.1),
+                          color: AppStyles.accent.withValues(alpha: 0.1),
                           shape: BoxShape.circle,
                         ),
                         child: Center(
                           child: Icon(
                             isTransferring ? Icons.downloading : Icons.sd_card,
                             size: 56,
-                            color: Colors.deepPurpleAccent,
+                            color: AppStyles.accent,
                           ),
                         ),
                       ),
@@ -262,7 +264,7 @@ class _WalItemDetailPageState extends State<WalItemDetailPage> {
                           child: LinearProgressIndicator(
                             value: transferProgress > 0 ? transferProgress : null,
                             backgroundColor: Colors.grey.shade800,
-                            color: Colors.deepPurpleAccent,
+                            color: AppStyles.accent,
                             minHeight: 6,
                           ),
                         ),
@@ -306,7 +308,7 @@ class _WalItemDetailPageState extends State<WalItemDetailPage> {
                 child: ElevatedButton(
                   onPressed: isTransferring ? _handleCancelTransfer : _handleTransferToPhone,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isTransferring ? Colors.orange : Colors.deepPurpleAccent,
+                    backgroundColor: isTransferring ? Colors.orange : AppStyles.accent,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   ),
                   child: Row(
@@ -525,7 +527,7 @@ class _WalItemDetailPageState extends State<WalItemDetailPage> {
 
     showModalBottomSheet(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       builder: (sheetContext) => Container(
         padding: const EdgeInsets.all(24),
         child: Column(

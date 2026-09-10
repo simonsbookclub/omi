@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/pages/settings/widgets/dev_api_key_created_dialog.dart';
@@ -280,7 +282,7 @@ class _CreateDevApiKeySheetState extends State<CreateDevApiKeySheet> {
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(colors: [Color(0xFF8B5CF6), Color(0xFF7C3AED)]),
+                          gradient: const LinearGradient(colors: [Color(0xFF8B5CF6), AppStyles.accent]),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(Icons.key, color: Colors.white, size: 22),

@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -39,7 +41,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 stops: [0.0, 0.30, 1.0],
-                colors: [Colors.transparent, Color.fromARGB(255, 15, 15, 15), Color.fromARGB(255, 15, 15, 15)],
+                colors: [Colors.transparent, Color(0xFF0A0A0C), Color(0xFF0A0A0C)],
               ),
             ),
             child: Row(
@@ -76,7 +78,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },
         child: SizedBox(
           height: 90,
-          child: Center(child: FaIcon(icon, color: selectedIndex == index ? Colors.white : Colors.grey, size: 26)),
+          child: Center(child: FaIcon(icon, color: selectedIndex == index ? AppStyles.accent : AppStyles.inkLabel, size: 24)),
         ),
       ),
     );

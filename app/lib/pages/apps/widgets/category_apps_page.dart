@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/http/api/apps.dart';
@@ -97,7 +99,7 @@ class _CategoryAppsPageState extends State<CategoryAppsPage> {
           ),
           Expanded(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator(color: Colors.deepPurpleAccent))
+                ? const Center(child: CircularProgressIndicator(color: AppStyles.accent))
                 : _apps.isEmpty
                     ? Center(
                         child: Column(

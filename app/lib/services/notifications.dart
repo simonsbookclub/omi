@@ -4,6 +4,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:awesome_notifications/awesome_notifications.dart';
 
 import 'package:omi/app_globals.dart';
@@ -80,7 +82,7 @@ class NotificationUtil {
     await showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         title: Text(title, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
         content: SingleChildScrollView(
           child: SelectableText(body, style: const TextStyle(color: Colors.white, fontSize: 16, height: 1.4)),

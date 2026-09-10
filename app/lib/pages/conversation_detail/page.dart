@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
@@ -827,7 +829,7 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
                             margin: const EdgeInsets.only(right: 8),
                             decoration: BoxDecoration(
                               color: _isSearching
-                                  ? Colors.deepPurple.withValues(alpha: 0.8)
+                                  ? AppStyles.accent.withValues(alpha: 0.8)
                                   : Colors.grey.withValues(alpha: 0.3),
                               shape: BoxShape.circle,
                             ),
@@ -1135,7 +1137,7 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
               //        ),
               //        decoration: BoxDecoration(
               //          borderRadius: BorderRadius.circular(16),
-              //          color: const Color(0xFF1F1F25),
+              //          color: AppStyles.backgroundSecondary,
               //          boxShadow: [
               //            BoxShadow(
               //              color: Colors.black.withValues(alpha: 0.3),
@@ -1172,7 +1174,7 @@ class _ConversationDetailPageState extends State<ConversationDetailPage> with Ti
               //            ),
               //            ElevatedButton(
               //              style: ElevatedButton.styleFrom(
-              //                backgroundColor: Colors.deepPurple.withValues(alpha: 0.5),
+              //                backgroundColor: AppStyles.accent.withValues(alpha: 0.5),
               //                shape: RoundedRectangleBorder(
               //                  borderRadius: BorderRadius.circular(16),
               //                ),
@@ -1627,7 +1629,7 @@ class _CalendarEventPickerSheetState extends State<CalendarEventPickerSheet> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple.withValues(alpha: 0.4),
+                        color: AppStyles.accent.withValues(alpha: 0.4),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: const Text(

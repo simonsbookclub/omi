@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +80,7 @@ class _ProtocolPageState extends State<ProtocolPage> {
                 p: const TextStyle(color: Colors.white, fontSize: 17, height: 1.5),
                 listBullet: const TextStyle(color: Colors.white, fontSize: 17),
                 blockquote: const TextStyle(color: Color(0xFFD4A64F), fontSize: 18, fontStyle: FontStyle.italic),
-                blockquoteDecoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(10)),
+                blockquoteDecoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(10)),
                 strong: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
               ),
             ),

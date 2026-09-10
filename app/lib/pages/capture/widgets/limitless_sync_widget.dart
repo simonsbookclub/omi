@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
@@ -35,7 +37,7 @@ class LimitlessSyncCardWidget extends StatelessWidget {
 
         return Container(
           decoration: const BoxDecoration(
-            color: Color(0xFF1F1F25),
+            color: AppStyles.backgroundSecondary,
             borderRadius: BorderRadius.all(Radius.circular(12)),
           ),
           margin: const EdgeInsets.fromLTRB(16, 15, 16, 0),
@@ -59,7 +61,7 @@ class LimitlessSyncCardWidget extends StatelessWidget {
                         if (await confirmSyncForCustomStt(context) && context.mounted) syncProvider.syncWals();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: AppStyles.accent,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -81,7 +83,7 @@ class LimitlessSyncCardWidget extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: progress > 0 ? progress : null,
                     backgroundColor: Colors.grey.shade800,
-                    color: Colors.deepPurple,
+                    color: AppStyles.accent,
                     minHeight: 4,
                   ),
                 ),

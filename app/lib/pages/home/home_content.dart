@@ -9,10 +9,12 @@ import 'package:omi/backend/preferences.dart';
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/backend/schema/daily_summary.dart';
 import 'package:omi/pages/conversation_capturing/page.dart';
-import 'package:omi/pages/conversations/widgets/conversation_list_item.dart';
 import 'package:omi/pages/conversations/widgets/processing_capture.dart';
 import 'package:omi/pages/conversations/widgets/today_tasks_widget.dart';
 import 'package:omi/pages/home/widgets/daily_summary_card.dart';
+import 'package:omi/pages/home/widgets/day_rail.dart';
+import 'package:omi/providers/action_items_provider.dart';
+import 'package:omi/providers/capture_provider.dart' as capture;
 import 'package:omi/pages/memories/widgets/memory_graph_page.dart';
 import 'package:omi/pages/onboarding/device_selection.dart';
 import 'package:omi/pages/phone_calls/phone_calls_page.dart';
@@ -76,17 +78,25 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
     super.build(context);
     return Consumer<ConversationProvider>(
       builder: (context, convoProvider, child) {
+        // Sorted once per build and shared by the header and the rail.
+        // Calling _rail() at both use sites sorted the list twice a frame.
+        final rail = _rail(convoProvider);
         return RefreshIndicator(
           onRefresh: () async {
             HapticFeedback.mediumImpact();
             await Future.wait([convoProvider.getInitialConversations(), _loadSummaries()]);
           },
-          color: Colors.deepPurpleAccent,
+          color: AppStyles.accent,
           backgroundColor: Colors.white,
           child: CustomScrollView(
             controller: _scrollController,
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
+              // The day is the subject of this screen, so the day is the
+              // title — and the three numbers under it are context, on one
+              // line, not three tiles competing with the heading.
+              SliverToBoxAdapter(child: _buildDayHeader(context, convoProvider)),
+
               // Live capture widget — shows when device or phone mic is recording
               const SliverToBoxAdapter(child: ConversationCaptureWidget()),
 
@@ -118,7 +128,7 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
                 SliverToBoxAdapter(
                   child: _buildSectionHeader(
                     context,
-                    context.l10n.conversations,
+                    rail.label,
                     onViewAll: () {
                       // Reset the daily-summaries flag so the conversations tab
                       // actually shows conversations (it persists from Daily
@@ -128,7 +138,7 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
                     },
                   ),
                 ),
-                HomeConversationsPreview(conversationProvider: convoProvider),
+                SliverToBoxAdapter(child: DayRail(conversations: rail.items)),
 
                 // Mind Map section — only shown for users with enough activity.
                 SliverToBoxAdapter(
@@ -144,8 +154,10 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
                 ),
                 SliverToBoxAdapter(child: _buildMindMapPreview(context)),
 
-                // Bottom padding so content isn't hidden behind chat bar + nav
-                const SliverToBoxAdapter(child: SizedBox(height: 160)),
+                // Clears the nav bar (100) with room to breathe. It was 160,
+                // reserved for a floating chat bar deleted on 2026-09-08 —
+                // sixty points of dead space at the foot of every day.
+                const SliverToBoxAdapter(child: SizedBox(height: 116)),
               ] else if (convoProvider.isLoadingConversations || convoProvider.isFetchingConversations)
                 // Hide both the recent-convos preview AND the get-started tiles
                 // while we're still fetching — otherwise users with conversations
@@ -160,8 +172,8 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
                 SliverFillRemaining(
                   hasScrollBody: false,
                   child: Padding(
-                    // Bottom padding leaves room for the floating chat bar.
-                    padding: const EdgeInsets.only(bottom: 160),
+                    // Clears the nav bar; the chat bar it used to clear is gone.
+                    padding: const EdgeInsets.only(bottom: 116),
                     child: Center(child: _buildGetStartedOptions(context)),
                   ),
                 ),
@@ -170,6 +182,148 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
         );
       },
     );
+  }
+
+  /// Today's conversations, newest first. The rail is a day, so it holds a
+  /// day — the conversations tab is where the rest lives.
+  List<ServerConversation> _todaysConversations(ConversationProvider provider) {
+    final now = DateTime.now();
+    return _conversationsOn(provider, now);
+  }
+
+  List<ServerConversation> _conversationsOn(ConversationProvider provider, DateTime day) {
+    return provider.conversations
+        .where((c) => !c.discarded)
+        .where((c) {
+          final at = (c.startedAt ?? c.createdAt).toLocal();
+          return at.year == day.year && at.month == day.month && at.day == day.day;
+        })
+        .toList()
+      ..sort((a, b) => (b.startedAt ?? b.createdAt).compareTo(a.startedAt ?? a.createdAt));
+  }
+
+  /// What the rail shows, and what to call it. Before the first conversation
+  /// of the morning "today" is empty, and an empty rail under a heading is
+  /// worse than showing the last day that had anything in it.
+  ({List<ServerConversation> items, String label}) _rail(ConversationProvider provider) {
+    final today = _todaysConversations(provider);
+    if (today.isNotEmpty) return (items: today, label: 'The day so far');
+    final kept = provider.conversations.where((c) => !c.discarded).toList()
+      ..sort((a, b) => (b.startedAt ?? b.createdAt).compareTo(a.startedAt ?? a.createdAt));
+    if (kept.isEmpty) return (items: const <ServerConversation>[], label: 'The day so far');
+    final last = (kept.first.startedAt ?? kept.first.createdAt).toLocal();
+    final now = DateTime.now();
+    final yesterday = now.subtract(const Duration(days: 1));
+    final isYesterday = last.year == yesterday.year && last.month == yesterday.month && last.day == yesterday.day;
+    return (
+      items: _conversationsOn(provider, last),
+      label: isYesterday ? 'Yesterday' : _longDate(last),
+    );
+  }
+
+  /// How long the day's capture spans, first to last. Not the same as how
+  /// long the pendant listened, and the label says "captured" for that
+  /// reason rather than claiming more than it knows.
+  String? _capturedSpan(List<ServerConversation> today) {
+    if (today.length < 2) return null;
+    final first = (today.last.startedAt ?? today.last.createdAt);
+    final last = (today.first.finishedAt ?? today.first.startedAt ?? today.first.createdAt);
+    final minutes = last.difference(first).inMinutes;
+    if (minutes <= 0) return null;
+    final h = minutes ~/ 60;
+    final m = minutes % 60;
+    return h == 0 ? '${m}m' : '${h}h ${m}m';
+  }
+
+  Widget _buildDayHeader(BuildContext context, ConversationProvider convoProvider) {
+    final today = _todaysConversations(convoProvider);
+    final span = _capturedSpan(today);
+    final open = context.watch<ActionItemsProvider>().incompleteItems.length;
+    final recording = context.watch<capture.CaptureProvider>().recordingState == RecordingState.record;
+    final now = DateTime.now();
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(_longDate(now).toUpperCase(), style: AppStyles.sectionLabel),
+              const SizedBox(height: 4),
+              const Text('Today', style: AppStyles.screenTitle),
+            ]),
+          ),
+          // Only what is happening now is allowed a colour up here.
+          Container(
+            margin: const EdgeInsets.only(top: 6),
+            padding: const EdgeInsets.fromLTRB(10, 7, 12, 7),
+            decoration: BoxDecoration(
+              color: recording
+                  ? AppStyles.live.withValues(alpha: 0.13)
+                  : Colors.white.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(AppStyles.radiusCircular),
+            ),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Container(
+                width: 7,
+                height: 7,
+                decoration: BoxDecoration(
+                  color: recording ? AppStyles.live : AppStyles.inkFaint,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 7),
+              Text(
+                recording ? 'Listening' : 'Idle',
+                style: TextStyle(
+                  color: recording ? AppStyles.live : AppStyles.inkLabel,
+                  fontSize: 12.5,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ]),
+          ),
+        ]),
+        if (today.isNotEmpty || open > 0)
+          Padding(
+            padding: const EdgeInsets.only(top: 12, bottom: 18),
+            child: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 6,
+              runSpacing: 2,
+              children: [
+                if (today.isNotEmpty) ..._stat('${today.length}', today.length == 1 ? 'conversation' : 'conversations'),
+                if (span != null) ...[_dot(), ..._stat(span, 'captured')],
+                if (open > 0) ...[_dot(), ..._stat('$open', 'open')],
+              ],
+            ),
+          )
+        else
+          const SizedBox(height: 18),
+      ]),
+    );
+  }
+
+  List<Widget> _stat(String value, String label) => [
+        Text(value,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              fontFeatures: [FontFeature.tabularFigures()],
+            )),
+        Text(label, style: const TextStyle(color: Color(0x73FFFFFF), fontSize: 13)),
+      ];
+
+  Widget _dot() => const Text('·', style: TextStyle(color: Color(0x29FFFFFF), fontSize: 13));
+
+  static String _longDate(DateTime d) {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const months = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+    ];
+    return '${days[d.weekday - 1]} ${d.day} ${months[d.month - 1]}';
   }
 
   int _nonDiscardedConversationCount(ConversationProvider provider) {
@@ -226,19 +380,19 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF7B5CFF), Color(0xFF5733E0)],
+                  colors: [AppStyles.accent, Color(0xFF2FA99C)],
                 ),
                 border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.deepPurple.withValues(alpha: 0.45),
+                    color: AppStyles.accent.withValues(alpha: 0.28),
                     blurRadius: 28,
                     spreadRadius: 1,
                     offset: const Offset(0, 10),
                   ),
                 ],
               ),
-              child: Icon(icon, color: Colors.white, size: 32),
+              child: Icon(icon, color: AppStyles.onAccent, size: 32),
             ),
             const SizedBox(height: 10),
             SizedBox(
@@ -292,30 +446,23 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
 
   Widget _buildSectionHeader(BuildContext context, String title, {VoidCallback? onViewAll, String? buttonLabel}) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(24, 20, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: onViewAll,
-            child: Text(
-              title,
-              style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-            ),
+            child: Text(title.toUpperCase(), style: AppStyles.sectionLabel),
           ),
+          const Spacer(),
           if (onViewAll != null)
             GestureDetector(
               onTap: onViewAll,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.grey.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: Text(
-                  buttonLabel ?? context.l10n.viewAll,
-                  style: TextStyle(color: Colors.grey[400], fontSize: 12, fontWeight: FontWeight.w500),
-                ),
+              // A section header is a label, not a card: the old pill made
+              // every heading look like a control.
+              child: Text(
+                buttonLabel ?? context.l10n.viewAll,
+                style: const TextStyle(color: Color(0x66FFFFFF), fontSize: 12.5, fontWeight: FontWeight.w500),
               ),
             ),
         ],
@@ -447,63 +594,3 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
 ///
 /// This consumes [ConversationProvider.groupedConversations], which already
 /// carries the conversations page's discarded/short/starred/date filters.
-class HomeConversationsPreview extends StatelessWidget {
-  final ConversationProvider conversationProvider;
-
-  const HomeConversationsPreview({super.key, required this.conversationProvider});
-
-  @override
-  Widget build(BuildContext context) {
-    if (conversationProvider.isLoadingConversations && conversationProvider.conversations.isEmpty) {
-      return SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: List.generate(
-              2,
-              (_) => Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: ShimmerWithTimeout(
-                  baseColor: AppStyles.backgroundSecondary,
-                  highlightColor: AppStyles.backgroundTertiary,
-                  child: Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: AppStyles.backgroundSecondary,
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
-    final sortedDates = conversationProvider.groupedConversations.keys.toList()..sort((a, b) => b.compareTo(a));
-    final recent = <ServerConversation>[];
-    for (final date in sortedDates) {
-      final list = conversationProvider.groupedConversations[date] ?? const [];
-      for (final conversation in list) {
-        recent.add(conversation);
-        if (recent.length >= 3) break;
-      }
-      if (recent.length >= 3) break;
-    }
-    if (recent.isEmpty) return const SliverToBoxAdapter(child: SizedBox.shrink());
-
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(childCount: recent.length, (context, index) {
-        final conversation = recent[index];
-        final date = conversationLocalDayKey(conversation.startedAt ?? conversation.createdAt);
-        return ConversationListItem(
-          key: ValueKey(conversation.id),
-          conversation: conversation,
-          date: date,
-          conversationIdx: index,
-        );
-      }),
-    );
-  }
-}

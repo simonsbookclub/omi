@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -108,7 +110,7 @@ class _BatteryInfoWidgetState extends State<BatteryInfoWidget> {
                 child: Container(
                   height: 36,
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                  decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18)),
+                  decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -169,7 +171,7 @@ class _BatteryInfoWidgetState extends State<BatteryInfoWidget> {
                       height: 36,
                       width: 36,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1F1F25),
+                        color: AppStyles.backgroundSecondary,
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: const Icon(Icons.phone_in_talk_rounded, color: Colors.white, size: 16),
@@ -186,7 +188,7 @@ class _BatteryInfoWidgetState extends State<BatteryInfoWidget> {
                 child: Container(
                   height: 36,
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
-                  decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18)),
+                  decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18)),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -229,7 +231,7 @@ class _BatteryInfoWidgetState extends State<BatteryInfoWidget> {
                       height: 36,
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 0),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1F1F25),
+                        color: AppStyles.backgroundSecondary,
                         borderRadius: BorderRadius.circular(18),
                       ),
                       child: Row(
@@ -265,7 +267,7 @@ class _BatteryInfoWidgetState extends State<BatteryInfoWidget> {
                             duration: const Duration(milliseconds: 200),
                             height: 36,
                             decoration: BoxDecoration(
-                              color: isRecording ? Colors.red.shade700 : Colors.deepPurple,
+                              color: isRecording ? Colors.red.shade700 : AppStyles.accent,
                               borderRadius: BorderRadius.circular(18),
                             ),
                             child: Row(
@@ -387,7 +389,7 @@ class RecordOptionsSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.fromLTRB(16, 12, 16, MediaQuery.of(context).padding.bottom + 16),
       decoration: const BoxDecoration(
-        color: Color(0xFF1F1F25),
+        color: AppStyles.backgroundSecondary,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
@@ -450,11 +452,11 @@ class _RecordOption extends StatelessWidget {
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF7B5CFF), Color(0xFF5733E0)],
+                  colors: [AppStyles.accent, Color(0xFF2FA99C)],
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.deepPurple.withValues(alpha: 0.35),
+                    color: AppStyles.accent.withValues(alpha: 0.28),
                     blurRadius: 14,
                     offset: const Offset(0, 4),
                   ),

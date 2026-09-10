@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/schema/app.dart';
@@ -93,7 +95,7 @@ class ManageCreatePage extends StatelessWidget {
                               padding: const EdgeInsets.all(12.0),
                               margin: const EdgeInsets.only(left: 12.0, right: 12.0, top: 2, bottom: 24),
                               decoration: BoxDecoration(
-                                color: const Color(0xFF1F1F25),
+                                color: AppStyles.backgroundSecondary,
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                               child: ListTile(

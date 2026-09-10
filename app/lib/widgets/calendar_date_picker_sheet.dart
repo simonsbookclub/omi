@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:provider/provider.dart';
 
@@ -67,7 +69,7 @@ Future<void> showConversationDateRangePicker(BuildContext context) async {
         height: 420,
         padding: const EdgeInsets.only(top: 6.0),
         margin: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        color: const Color(0xFF1F1F25),
+        color: AppStyles.backgroundSecondary,
         child: SafeArea(
           top: false,
           child: Column(
@@ -76,8 +78,8 @@ Future<void> showConversationDateRangePicker(BuildContext context) async {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 decoration: const BoxDecoration(
-                  color: Color(0xFF1F1F25),
-                  border: Border(bottom: BorderSide(color: Color(0xFF35343B), width: 0.5)),
+                  color: AppStyles.backgroundSecondary,
+                  border: Border(bottom: BorderSide(color: AppStyles.backgroundTertiary, width: 0.5)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

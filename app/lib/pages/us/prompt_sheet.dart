@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/pages/us/protocol_page.dart';
@@ -13,7 +15,7 @@ Future<void> showUsPromptSheet(BuildContext context, Map<String, dynamic> prompt
   await showModalBottomSheet<void>(
     context: context,
     isScrollControlled: true,
-    backgroundColor: const Color(0xFF1F1F25),
+    backgroundColor: AppStyles.backgroundSecondary,
     shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     builder: (ctx) => kind == 'in_moment' ? _InMomentSheet(id: id, payload: payload) : _PostConflictSheet(id: id, payload: payload),
   );

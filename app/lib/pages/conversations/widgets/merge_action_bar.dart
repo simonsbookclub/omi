@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -102,7 +104,7 @@ class _MergeActionBarState extends State<MergeActionBar> with SingleTickerProvid
                           duration: const Duration(milliseconds: 200),
                           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                           decoration: BoxDecoration(
-                            color: canMerge ? const Color(0xFF7C3AED) : const Color(0xFF2C2C2E),
+                            color: canMerge ? AppStyles.accent : const Color(0xFF2C2C2E),
                             borderRadius: BorderRadius.circular(22),
                           ),
                           child: Row(

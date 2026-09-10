@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
@@ -35,9 +37,9 @@ class DailySummaryCard extends StatelessWidget {
         width: width,
         height: height,
         margin: const EdgeInsets.only(right: 12),
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(20)),
+        decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(AppStyles.radiusLarge)),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppStyles.radiusLarge),
           child: Stack(
             children: [
               if (hasMap)
@@ -74,9 +76,9 @@ class DailySummaryCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: Colors.black.withValues(alpha: 0.55),
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(AppStyles.radiusCircular),
                   ),
-                  child: Text(dateLabel, style: const TextStyle(color: Color(0xFFBBBCC2), fontSize: 11)),
+                  child: Text(dateLabel, style: const TextStyle(color: AppStyles.inkMeta, fontSize: 11)),
                 ),
               ),
             ],
@@ -147,7 +149,7 @@ class _DailySummaryCardMapState extends State<_DailySummaryCardMap> {
             width: 22,
             height: 22,
             child: Container(
-              decoration: const BoxDecoration(color: Colors.deepPurple, shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: AppStyles.accent, shape: BoxShape.circle),
               child: const Icon(Icons.location_on, color: Colors.white, size: 13),
             ),
           ),
@@ -163,7 +165,7 @@ class _DailySummaryCardMapState extends State<_DailySummaryCardMap> {
           initialCameraFit: cameraFit,
           interactionOptions: const InteractionOptions(flags: InteractiveFlag.none),
           keepAlive: true,
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           onMapReady: _loadTilesAfterLayout,
         ),
         children: [

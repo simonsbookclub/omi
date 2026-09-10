@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 import 'package:intl_country_data/intl_country_data.dart';
 import 'package:provider/provider.dart';
@@ -133,7 +135,7 @@ class _PhoneSetupNumberPageState extends State<PhoneSetupNumberPage> {
               ),
               const SizedBox(height: 40),
               Container(
-                decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
+                decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16)),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -196,7 +198,7 @@ class _PhoneSetupNumberPageState extends State<PhoneSetupNumberPage> {
                   width: double.infinity,
                   height: 56,
                   decoration: BoxDecoration(
-                    color: (_isValid && !_isLoading) ? Colors.deepPurple : Colors.grey[800],
+                    color: (_isValid && !_isLoading) ? AppStyles.accent : Colors.grey[800],
                     borderRadius: BorderRadius.circular(28),
                   ),
                   alignment: Alignment.center,
@@ -280,7 +282,7 @@ class _CountryPickerSheetState extends State<_CountryPickerSheet> {
               style: const TextStyle(color: Colors.white, fontSize: 15),
               decoration: InputDecoration(
                 filled: true,
-                fillColor: const Color(0xFF1F1F25),
+                fillColor: AppStyles.backgroundSecondary,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
                 prefixIcon: Icon(Icons.search, color: Colors.grey[600], size: 20),
                 hintText: context.l10n.searchCountries,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -56,7 +58,7 @@ class ExternalTriggerFieldsWidget extends StatelessWidget {
               // Scopes Card
               const SizedBox(height: 18),
               Container(
-                decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18.0)),
+                decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18.0)),
                 padding: const EdgeInsets.all(14.0),
                 child: const Padding(padding: EdgeInsets.only(left: 2.0), child: ActionFieldsWidget()),
               ),
@@ -69,7 +71,7 @@ class ExternalTriggerFieldsWidget extends StatelessWidget {
                   provider.checkValidity();
                 },
                 child: Container(
-                  decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18.0)),
+                  decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18.0)),
                   padding: const EdgeInsets.symmetric(horizontal: 14.0, vertical: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

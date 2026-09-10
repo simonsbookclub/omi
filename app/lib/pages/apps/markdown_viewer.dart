@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -37,7 +39,7 @@ class _MarkdownViewerState extends State<MarkdownViewer> {
                   color: Colors.black,
                 ),
                 blockquoteDecoration: BoxDecoration(
-                  color: const Color(0xFF35343B),
+                  color: AppStyles.backgroundTertiary,
                   borderRadius: BorderRadius.circular(4),
                 ),
                 code: const TextStyle(

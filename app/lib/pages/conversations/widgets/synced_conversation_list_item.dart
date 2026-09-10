@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/http/api/conversations.dart';
@@ -67,7 +69,7 @@ class _SyncedConversationListItemState extends State<SyncedConversationListItem>
         padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
         child: Container(
           width: double.maxFinite,
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24.0)),
+          decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(24.0)),
           child: Padding(
             padding: const EdgeInsetsDirectional.all(16),
             child: Row(
@@ -176,7 +178,7 @@ class _SyncedConversationListItemState extends State<SyncedConversationListItem>
                     padding: const EdgeInsets.only(top: 2.0),
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                      decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(4)),
+                      decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(4)),
                       child: Text(
                         _getConversationDuration(context),
                         style: const TextStyle(color: Colors.white, fontSize: 11),

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/models/local_recording.dart';
@@ -98,7 +100,7 @@ class _RecordingDetailSheetState extends State<_RecordingDetailSheet> {
       child: Container(
         margin: const EdgeInsets.all(8),
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(28)),
+        decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(28)),
         child: SafeArea(
           top: false,
           child: Consumer<LocalRecordingsProvider>(
@@ -181,7 +183,7 @@ class _RecordingDetailSheetState extends State<_RecordingDetailSheet> {
                                 width: 66,
                                 height: 66,
                                 decoration: BoxDecoration(
-                                  color: canPlay ? Colors.white : const Color(0xFF35343B),
+                                  color: canPlay ? Colors.white : AppStyles.backgroundTertiary,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Icon(
@@ -210,7 +212,7 @@ class _RecordingDetailSheetState extends State<_RecordingDetailSheet> {
                           child: ElevatedButton.icon(
                             onPressed: rec.isBusy ? null : () => _handleTranscribe(provider, rec),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF35343B),
+                              backgroundColor: AppStyles.backgroundTertiary,
                               disabledBackgroundColor: const Color(0xFF2A2A2E),
                               foregroundColor: Colors.white,
                               disabledForegroundColor: Colors.grey.shade600,

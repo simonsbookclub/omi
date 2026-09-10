@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 // hide PermissionStatus: flutter_contacts has its own PermissionStatus enum, and this
@@ -228,7 +230,7 @@ class _PhoneCallsPageState extends State<PhoneCallsPage> with SingleTickerProvid
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                  decoration: BoxDecoration(color: Colors.deepPurple, borderRadius: BorderRadius.circular(28)),
+                  decoration: BoxDecoration(color: AppStyles.accent, borderRadius: BorderRadius.circular(28)),
                   child: Text(
                     context.l10n.phoneAllow,
                     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.white),
@@ -258,7 +260,7 @@ class _PhoneCallsPageState extends State<PhoneCallsPage> with SingleTickerProvid
               hintStyle: TextStyle(color: Colors.grey[600]),
               prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
               filled: true,
-              fillColor: const Color(0xFF1F1F25),
+              fillColor: AppStyles.backgroundSecondary,
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
               contentPadding: const EdgeInsets.symmetric(vertical: 12),
             ),
@@ -369,7 +371,7 @@ class _PhoneCallsPageState extends State<PhoneCallsPage> with SingleTickerProvid
             height: 68,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: hasDigits ? Colors.green : const Color(0xFF1F1F25),
+              color: hasDigits ? Colors.green : AppStyles.backgroundSecondary,
             ),
             child: Icon(Icons.phone, color: hasDigits ? Colors.white : Colors.grey[600], size: 32),
           ),
@@ -567,7 +569,7 @@ class _FreeQuotaBanner extends StatelessWidget {
         return Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          color: const Color(0xFF1F1F25),
+          color: AppStyles.backgroundSecondary,
           child: Row(
             children: [
               Icon(Icons.info_outline, size: 16, color: Colors.grey[500]),
@@ -607,7 +609,7 @@ class _DialpadKey extends StatelessWidget {
       child: Container(
         width: 72,
         height: 72,
-        decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF1F1F25)),
+        decoration: const BoxDecoration(shape: BoxShape.circle, color: AppStyles.backgroundSecondary),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

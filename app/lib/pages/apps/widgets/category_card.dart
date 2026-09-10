@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/backend/schema/app.dart';
 import 'package:omi/utils/app_localizations_helper.dart';
 
@@ -86,7 +88,7 @@ class CategoryCard extends StatelessWidget {
       case 'sports':
         return Colors.lime;
       case 'music':
-        return Colors.deepPurple;
+        return AppStyles.accent;
       case 'photo':
         return Colors.brown;
       case 'gaming':
@@ -105,7 +107,7 @@ class CategoryCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF1F1F25).withValues(alpha: 0.3),
+          color: AppStyles.backgroundSecondary.withValues(alpha: 0.3),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(

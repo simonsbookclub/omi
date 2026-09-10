@@ -3,6 +3,8 @@ import 'dart:math'; // Need max and min
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 
@@ -122,7 +124,7 @@ class SectionAppItemCard extends StatelessWidget {
                   errorWidget: (context, url, error) => Container(
                     width: 50,
                     height: 50,
-                    decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(8)),
+                    decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(8)),
                     child: const Icon(Icons.error_outline, color: Colors.white54, size: 24),
                   ),
                 ),
@@ -154,7 +156,7 @@ class SectionAppItemCard extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Icon(Icons.star, color: Colors.deepPurple.shade300, size: 14),
+                              Icon(Icons.star, color: AppStyles.accent, size: 14),
                               const SizedBox(width: 3),
                               Text(app.getRatingAvg()!, style: const TextStyle(fontSize: 12, color: Colors.white70)),
                             ],

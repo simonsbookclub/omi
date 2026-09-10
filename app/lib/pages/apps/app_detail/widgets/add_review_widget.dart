@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -90,7 +92,7 @@ class _AddReviewWidgetState extends State<AddReviewWidget> {
         top: 12,
         bottom: 6,
       ),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16.0)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         children: [
           Row(
@@ -129,7 +131,7 @@ class _AddReviewWidgetState extends State<AddReviewWidget> {
                   return dynamicPadding.clamp(8.0, 24.0); // Clamp between reasonable values
                 }(),
               ),
-              itemBuilder: (context, _) => const Icon(Icons.star, color: Colors.deepPurple),
+              itemBuilder: (context, _) => const Icon(Icons.star, color: AppStyles.accent),
               maxRating: 5.0,
               onRatingUpdate: (rating) {
                 if (isLoading) return;

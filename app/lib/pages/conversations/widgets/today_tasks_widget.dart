@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -41,37 +43,30 @@ class TodayTasksWidget extends StatelessWidget {
         }
 
         return Container(
-          margin: const EdgeInsets.only(left: 24, right: 8),
+          // Was left:24/right:8 with a Transform.translate(-8,0) on the card
+          // to drag it back into line. Plain 16 gutters, like everything else.
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           padding: const EdgeInsets.only(bottom: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Header with "Today" and "Show All" button
               Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 8, right: 8),
+                padding: const EdgeInsets.only(top: 12, bottom: 12),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      context.l10n.today,
-                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-                    ),
+                    Text(context.l10n.today.toUpperCase(), style: AppStyles.sectionLabel),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         HapticFeedback.lightImpact();
                         // Navigate to Tasks tab (index 2). Index 1 is Conversations.
                         context.read<HomeProvider>().setIndex(2);
                       },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(18),
-                        ),
-                        child: Text(
-                          context.l10n.viewAll,
-                          style: TextStyle(color: Colors.grey[400], fontSize: 12, fontWeight: FontWeight.w500),
-                        ),
+                      // A section header is a label, not a control.
+                      child: Text(
+                        context.l10n.viewAll,
+                        style: const TextStyle(color: Color(0x66FFFFFF), fontSize: 12.5, fontWeight: FontWeight.w500),
                       ),
                     ),
                   ],
@@ -87,15 +82,11 @@ class TodayTasksWidget extends StatelessWidget {
                   ),
                 )
               else
-                Transform.translate(
-                  offset: const Offset(-8, 0),
-                  child: Container(
-                    margin: const EdgeInsets.only(top: 12),
-                    decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24)),
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    child: Column(
-                      children: displayTasks.map((task) => _TaskItem(task: task, provider: provider)).toList(),
-                    ),
+                Container(
+                  decoration: AppStyles.cardDecoration,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                  child: Column(
+                    children: displayTasks.map((task) => _TaskItem(task: task, provider: provider)).toList(),
                   ),
                 ),
             ],
@@ -131,8 +122,8 @@ class _TaskItem extends StatelessWidget {
               margin: const EdgeInsets.only(top: 2, right: 12),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: task.completed ? Colors.amber : Colors.grey.shade600, width: 2),
-                color: task.completed ? Colors.amber : Colors.transparent,
+                border: Border.all(color: task.completed ? AppStyles.accent : const Color(0x38FFFFFF), width: 1.5),
+                color: task.completed ? AppStyles.accent : Colors.transparent,
               ),
               child: task.completed ? const Icon(Icons.check, size: 14, color: Colors.black) : null,
             ),
@@ -142,7 +133,7 @@ class _TaskItem extends StatelessWidget {
             child: Text(
               task.description,
               style: TextStyle(
-                color: task.completed ? Colors.grey.shade600 : Colors.white,
+                color: task.completed ? AppStyles.inkFaint : Colors.white,
                 fontSize: 15,
                 decoration: task.completed ? TextDecoration.lineThrough : null,
                 height: 1.4,

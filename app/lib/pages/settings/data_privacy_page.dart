@@ -2,6 +2,8 @@ import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -32,7 +34,7 @@ class _DataPrivacyPageState extends State<DataPrivacyPage> {
       decoration: BoxDecoration(
         color: const Color(0xFF1A1A1A),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFF35343B), width: 1),
+        border: Border.all(color: AppStyles.backgroundTertiary, width: 1),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,10 +43,10 @@ class _DataPrivacyPageState extends State<DataPrivacyPage> {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.deepPurple.withValues(alpha: 0.15),
+              color: AppStyles.accent.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Icon(Icons.lock_outline, color: Colors.deepPurple.shade200, size: 20),
+            child: Icon(Icons.lock_outline, color: AppStyles.accent, size: 20),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -56,9 +58,9 @@ class _DataPrivacyPageState extends State<DataPrivacyPage> {
                   TextSpan(
                     text: context.l10n.learnMore,
                     style: TextStyle(
-                      color: Colors.deepPurple.shade200,
+                      color: AppStyles.accent,
                       decoration: TextDecoration.underline,
-                      decorationColor: Colors.deepPurple.shade200,
+                      decorationColor: AppStyles.accent,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () async {
@@ -179,7 +181,7 @@ class _DataPrivacyPageState extends State<DataPrivacyPage> {
                                   margin: const EdgeInsets.only(bottom: 10),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
-                                    side: const BorderSide(color: Color(0xFF35343B), width: 1),
+                                    side: const BorderSide(color: AppStyles.backgroundTertiary, width: 1),
                                   ),
                                   elevation: 0,
                                   clipBehavior: Clip.antiAlias,

@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/backend/schema/memory.dart';
 import 'package:omi/providers/memories_provider.dart';
 import 'package:omi/utils/l10n_extensions.dart';
@@ -43,7 +45,7 @@ class _MemoryDialogState extends State<MemoryDialog> {
       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Container(
         decoration: const BoxDecoration(
-          color: Color(0xFF1F1F25),
+          color: AppStyles.backgroundSecondary,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
@@ -128,11 +130,11 @@ class _MemoryDialogState extends State<MemoryDialog> {
                 key: const ValueKey('memory_save_button'),
                 onPressed: _isSaving ? null : _handleSave,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: _saveFailed ? Colors.orange : Colors.deepPurpleAccent,
+                  backgroundColor: _saveFailed ? Colors.orange : AppStyles.accent,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 14),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  disabledBackgroundColor: Colors.deepPurpleAccent.withValues(alpha: 0.5),
+                  disabledBackgroundColor: AppStyles.accent.withValues(alpha: 0.5),
                   disabledForegroundColor: Colors.white.withValues(alpha: 0.7),
                 ),
                 child: _isSaving

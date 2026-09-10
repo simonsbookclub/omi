@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
@@ -898,17 +900,17 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
                           color: isSyncing
-                              ? Colors.deepPurple.withValues(alpha: 0.2)
+                              ? AppStyles.accent.withValues(alpha: 0.18)
                               : hasPendingOnDevice
                                   ? Colors.orange.withValues(alpha: 0.15)
-                                  : const Color(0xFF1F1F25),
+                                  : AppStyles.backgroundSecondary,
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
                           Icons.cloud_rounded,
                           size: 18,
                           color: isSyncing
-                              ? Colors.deepPurpleAccent
+                              ? AppStyles.accent
                               : hasPendingOnDevice
                                   ? Colors.orangeAccent
                                   : Colors.white70,
@@ -938,8 +940,8 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                           height: 36,
                           decoration: BoxDecoration(
                             color: homeProvider.showConvoSearchBar
-                                ? Colors.deepPurple.withValues(alpha: 0.5)
-                                : const Color(0xFF1F1F25),
+                                ? AppStyles.accent.withValues(alpha: 0.4)
+                                : AppStyles.backgroundSecondary,
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
@@ -958,7 +960,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: Colors.deepPurple.withValues(alpha: 0.5),
+                            color: AppStyles.accent.withValues(alpha: 0.4),
                             shape: BoxShape.circle,
                           ),
                           child: IconButton(
@@ -989,7 +991,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                       Container(
                         width: 36,
                         height: 36,
-                        decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
+                        decoration: const BoxDecoration(color: AppStyles.backgroundSecondary, shape: BoxShape.circle),
                         child: IconButton(
                           padding: EdgeInsets.zero,
                           icon: const FaIcon(FontAwesomeIcons.arrowUpFromBracket, size: 16, color: Colors.white70),
@@ -1008,7 +1010,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
                         width: 36,
                         height: 36,
                         decoration: BoxDecoration(
-                          color: showCompleted ? Colors.deepPurple.withValues(alpha: 0.5) : const Color(0xFF1F1F25),
+                          color: showCompleted ? AppStyles.accent.withValues(alpha: 0.4) : AppStyles.backgroundSecondary,
                           shape: BoxShape.circle,
                         ),
                         child: IconButton(
@@ -1037,7 +1039,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
               Container(
                 width: 36,
                 height: 36,
-                decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
+                decoration: const BoxDecoration(color: AppStyles.backgroundSecondary, shape: BoxShape.circle),
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   icon: const FaIcon(FontAwesomeIcons.gear, size: 16, color: Colors.white70),
@@ -1118,12 +1120,12 @@ class _TabLoadingSkeleton extends StatelessWidget {
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.only(bottom: 14),
           child: ShimmerWithTimeout(
-            baseColor: const Color(0xFF1F1F25),
+            baseColor: AppStyles.backgroundSecondary,
             highlightColor: const Color(0xFF303038),
             child: Container(
               height: index == 0 ? 34 : 76,
               width: double.infinity,
-              decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(18)),
+              decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(18)),
             ),
           ),
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/utils/l10n_extensions.dart';
 
 class AboutSdCardSync extends StatefulWidget {
@@ -31,7 +33,7 @@ class _AboutSdCardSyncState extends State<AboutSdCardSync> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24)),
+              decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(24)),
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               margin: const EdgeInsets.all(24),
               child: Column(

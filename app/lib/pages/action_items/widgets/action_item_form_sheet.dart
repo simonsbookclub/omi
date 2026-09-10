@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
@@ -291,7 +293,7 @@ class _ActionItemFormSheetState extends State<ActionItemFormSheet> {
                       width: 24,
                       child: Checkbox(
                         value: _isCompleted,
-                        activeColor: Colors.deepPurpleAccent,
+                        activeColor: AppStyles.accent,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         onChanged: (bool? value) async {
                           if (value == null) return;

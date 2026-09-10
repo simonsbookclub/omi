@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 /// Initials avatar rendered entirely locally — no network dependency.
 ///
 /// Review reviewer photos are not stored anywhere, so avatars were previously
@@ -57,7 +59,7 @@ class ReviewAvatar extends StatelessWidget {
   // foreground from the background's luminance when no override is given.
   Color get _foreground {
     if (foregroundColor != null) return foregroundColor!;
-    return _background.computeLuminance() > 0.5 ? const Color(0xFF1F1F25) : Colors.white;
+    return _background.computeLuminance() > 0.5 ? AppStyles.backgroundSecondary : Colors.white;
   }
 
   @override

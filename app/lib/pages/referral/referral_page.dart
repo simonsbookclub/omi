@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'package:omi/utils/l10n_extensions.dart';
@@ -70,7 +72,7 @@ class _ReferralPageState extends State<ReferralPage> {
         children: [
           if (_controller != null) WebViewWidget(controller: _controller!),
           if (_isLoading || _controller == null)
-            const Center(child: CircularProgressIndicator(color: Colors.deepPurple)),
+            const Center(child: CircularProgressIndicator(color: AppStyles.accent)),
         ],
       ),
     );

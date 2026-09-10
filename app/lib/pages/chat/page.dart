@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -497,9 +499,9 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                                         child: Container(
                                           padding: const EdgeInsets.only(left: 14, right: 8, top: 7, bottom: 7),
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFF1F1F25),
+                                            color: AppStyles.backgroundSecondary,
                                             borderRadius: BorderRadius.circular(32),
-                                            border: Border.all(color: const Color(0xFF35343B), width: 1),
+                                            border: Border.all(color: AppStyles.backgroundTertiary, width: 1),
                                             boxShadow: [
                                               BoxShadow(
                                                 color: Colors.black.withValues(alpha: 0.65),
@@ -767,9 +769,9 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                                             height: 48,
                                             width: 48,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xFF1F1F25),
+                                              color: AppStyles.backgroundSecondary,
                                               shape: BoxShape.circle,
-                                              border: Border.all(color: const Color(0xFF35343B), width: 1),
+                                              border: Border.all(color: AppStyles.backgroundTertiary, width: 1),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Colors.black.withValues(alpha: 0.65),
@@ -858,9 +860,9 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                                               height: 48,
                                               width: 48,
                                               decoration: BoxDecoration(
-                                                color: const Color(0xFF1F1F25),
+                                                color: AppStyles.backgroundSecondary,
                                                 shape: BoxShape.circle,
-                                                border: Border.all(color: const Color(0xFF35343B), width: 1),
+                                                border: Border.all(color: AppStyles.backgroundTertiary, width: 1),
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color: Colors.black.withValues(alpha: 0.65),
@@ -1054,7 +1056,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1F1F25).withValues(alpha: 0.95),
+                    color: AppStyles.backgroundSecondary.withValues(alpha: 0.95),
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(color: Colors.white.withValues(alpha: 0.18), width: 1),
                     boxShadow: [
@@ -1360,7 +1362,7 @@ class ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
 
   Widget _buildChatAppsEndDrawer(BuildContext context) {
     return Drawer(
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(20), bottomLeft: Radius.circular(20)),
       ),

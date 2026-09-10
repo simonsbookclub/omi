@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_svg/svg.dart';
 
 import 'package:omi/gen/assets.gen.dart';
@@ -41,7 +43,7 @@ class PaymentMethodConfig {
         width: 80,
         colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
       ),
-      backgroundColor: isActive ? const Color(0xFF635BFF) : const Color(0xFF35343B),
+      backgroundColor: isActive ? const Color(0xFF635BFF) : AppStyles.backgroundTertiary,
       onManageTap: onManageTap,
       onSetActiveTap: onSetActiveTap,
       isActive: isActive,
@@ -61,7 +63,7 @@ class PaymentMethodConfig {
       title: title,
       subtitle: subtitle,
       icon: const Icon(Icons.paypal, size: 32, color: Colors.white),
-      backgroundColor: isActive ? const Color(0xFF003087) : const Color(0xFF35343B),
+      backgroundColor: isActive ? const Color(0xFF003087) : AppStyles.backgroundTertiary,
       onManageTap: onManageTap,
       onSetActiveTap: onSetActiveTap,
       isActive: isActive,

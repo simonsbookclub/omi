@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -82,7 +84,7 @@ class DailyScoreWidgetState extends State<DailyScoreWidget> {
         return Container(
           margin: const EdgeInsets.only(bottom: 20),
           padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24)),
+          decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(24)),
           child: Stack(
             children: [
               Row(

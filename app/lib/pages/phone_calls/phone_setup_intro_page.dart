@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:omi/pages/phone_calls/phone_setup_number_page.dart';
@@ -29,7 +31,7 @@ class PhoneSetupIntroPage extends StatelessWidget {
               Container(
                 width: 80,
                 height: 80,
-                decoration: const BoxDecoration(shape: BoxShape.circle, color: Color(0xFF1F1F25)),
+                decoration: const BoxDecoration(shape: BoxShape.circle, color: AppStyles.backgroundSecondary),
                 child: const Icon(Icons.phone, color: Colors.white, size: 36),
               ),
               const SizedBox(height: 24),
@@ -73,7 +75,7 @@ class PhoneSetupIntroPage extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   height: 56,
-                  decoration: BoxDecoration(color: Colors.deepPurple, borderRadius: BorderRadius.circular(28)),
+                  decoration: BoxDecoration(color: AppStyles.accent, borderRadius: BorderRadius.circular(28)),
                   alignment: Alignment.center,
                   child: Text(
                     context.l10n.phoneGetStarted,
@@ -110,7 +112,7 @@ class _StepRow extends StatelessWidget {
         Container(
           width: 40,
           height: 40,
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
           child: Icon(icon, color: Colors.white, size: 20),
         ),
         const SizedBox(width: 16),

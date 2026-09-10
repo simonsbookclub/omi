@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -63,7 +65,7 @@ class _ConnectDevicePageState extends State<ConnectDevicePage> {
               width: 36,
               height: 36,
               alignment: Alignment.center,
-              decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: AppStyles.backgroundSecondary, shape: BoxShape.circle),
               child: const FaIcon(FontAwesomeIcons.chevronLeft, size: 16, color: Colors.white70),
             ),
           ),
@@ -79,7 +81,7 @@ class _ConnectDevicePageState extends State<ConnectDevicePage> {
             child: Container(
               width: 36,
               height: 36,
-              decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: AppStyles.backgroundSecondary, shape: BoxShape.circle),
               child: IconButton(
                 padding: EdgeInsets.zero,
                 icon: const FaIcon(FontAwesomeIcons.gear, size: 16, color: Colors.white70),

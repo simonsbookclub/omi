@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
@@ -153,7 +155,7 @@ class _PhoneSetupVerifyPageState extends State<PhoneSetupVerifyPage> with Single
                   child: Container(
                     width: double.infinity,
                     height: 56,
-                    decoration: BoxDecoration(color: Colors.deepPurple, borderRadius: BorderRadius.circular(28)),
+                    decoration: BoxDecoration(color: AppStyles.accent, borderRadius: BorderRadius.circular(28)),
                     alignment: Alignment.center,
                     child: Text(
                       context.l10n.phoneTryAgain,
@@ -176,7 +178,7 @@ class _PhoneSetupVerifyPageState extends State<PhoneSetupVerifyPage> with Single
 
     switch (_status) {
       case _VerifyStatus.calling:
-        bgColor = const Color(0xFF1F1F25);
+        bgColor = AppStyles.backgroundSecondary;
         content = Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -196,7 +198,7 @@ class _PhoneSetupVerifyPageState extends State<PhoneSetupVerifyPage> with Single
           ],
         );
       case _VerifyStatus.inProgress:
-        bgColor = const Color(0xFF1F1F25);
+        bgColor = AppStyles.backgroundSecondary;
         content = Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -255,7 +257,7 @@ class _PhoneSetupVerifyPageState extends State<PhoneSetupVerifyPage> with Single
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
           Icon(icon, color: Colors.white, size: 22),
@@ -284,7 +286,7 @@ class _PhoneSetupVerifyPageState extends State<PhoneSetupVerifyPage> with Single
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16)),
       child: Row(
         children: [
           const Icon(Icons.dialpad, color: Colors.white, size: 22),

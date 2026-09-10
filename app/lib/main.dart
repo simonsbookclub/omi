@@ -5,6 +5,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 import 'package:marionette_flutter/marionette_flutter.dart';
 
@@ -404,11 +406,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               useMaterial3: false,
               colorScheme: const ColorScheme.dark(
                 primary: Colors.black,
-                secondary: Color(0xFF35343B),
+                secondary: AppStyles.backgroundTertiary,
                 surface: Colors.black38,
               ),
               snackBarTheme: const SnackBarThemeData(
-                backgroundColor: Color(0xFF1F1F25),
+                backgroundColor: AppStyles.backgroundSecondary,
                 contentTextStyle: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
               ),
               textTheme: TextTheme(

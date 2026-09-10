@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/widgets/extensions/string.dart';
 
 class InfoCardWidget extends StatelessWidget {
@@ -35,7 +37,7 @@ class InfoCardWidget extends StatelessWidget {
           bottom: 6,
         ),
         decoration: BoxDecoration(
-          color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+          color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
           borderRadius: BorderRadius.circular(16.0),
         ),
         child: Column(
@@ -74,7 +76,7 @@ class InfoCardWidget extends StatelessWidget {
                       (chip) => Chip(
                         label: Text(chip, style: const TextStyle(color: Colors.white)),
                         backgroundColor: Colors.transparent,
-                        shape: const StadiumBorder(side: BorderSide(color: Color(0xFF35343B))),
+                        shape: const StadiumBorder(side: BorderSide(color: AppStyles.backgroundTertiary)),
                       ),
                     )
                     .toList(),
@@ -90,7 +92,7 @@ class InfoCardWidget extends StatelessWidget {
                       (chip) => Chip(
                         label: Text(chip, style: const TextStyle(color: Colors.white)),
                         backgroundColor: Colors.transparent,
-                        shape: const StadiumBorder(side: BorderSide(color: Color(0xFF35343B))),
+                        shape: const StadiumBorder(side: BorderSide(color: AppStyles.backgroundTertiary)),
                       ),
                     )
                     .toList(),

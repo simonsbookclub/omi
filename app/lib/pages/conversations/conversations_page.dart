@@ -415,7 +415,7 @@ class _ConversationsPageState extends State<ConversationsPage> with AutomaticKee
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
-                    colors: [Colors.deepPurple.withValues(alpha: 0.35), Colors.deepPurple.withValues(alpha: 0.0)],
+                    colors: [AppStyles.accent.withValues(alpha: 0.35), AppStyles.accent.withValues(alpha: 0.0)],
                     stops: const [0.0, 1.0],
                   ),
                 ),
@@ -428,12 +428,12 @@ class _ConversationsPageState extends State<ConversationsPage> with AutomaticKee
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xFF7B5CFF), Color(0xFF5733E0)],
+                    colors: [AppStyles.accent, Color(0xFF2FA99C)],
                   ),
                   border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.deepPurple.withValues(alpha: 0.45),
+                      color: AppStyles.accent.withValues(alpha: 0.45),
                       blurRadius: 30,
                       spreadRadius: 2,
                       offset: const Offset(0, 12),
@@ -541,7 +541,7 @@ class _ConversationsPageState extends State<ConversationsPage> with AutomaticKee
               Provider.of<LocalRecordingsProvider>(context, listen: false).refresh(),
             ]);
           },
-          color: Colors.deepPurpleAccent,
+          color: AppStyles.accent,
           backgroundColor: Colors.white,
           child: CustomScrollView(
             controller: _scrollController,

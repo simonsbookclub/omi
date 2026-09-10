@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -18,7 +20,7 @@ class AppAnalyticsWidget extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       margin: const EdgeInsets.only(left: 8.0, right: 8.0, top: 12, bottom: 6),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16.0)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16.0)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

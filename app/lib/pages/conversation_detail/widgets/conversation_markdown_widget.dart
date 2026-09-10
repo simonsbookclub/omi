@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:markdown/markdown.dart' as md;
 
@@ -11,7 +13,7 @@ MarkdownStyleSheet _conversationMarkdownStyle(BuildContext context) {
     p: style.copyWith(height: 1.5),
     pPadding: const EdgeInsets.only(bottom: 12),
     blockquote: style.copyWith(backgroundColor: Colors.transparent, color: Colors.white),
-    blockquoteDecoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(4)),
+    blockquoteDecoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(4)),
     code: style.copyWith(
       backgroundColor: Colors.transparent,
       decoration: TextDecoration.none,
@@ -511,7 +513,7 @@ class _SearchHighlightBuilder extends MarkdownElementBuilder {
       text: TextSpan(
         text: element.textContent,
         style: (preferredStyle ?? const TextStyle()).copyWith(
-          backgroundColor: isCurrent ? Colors.orange : Colors.deepPurple,
+          backgroundColor: isCurrent ? Colors.orange : AppStyles.accent,
           color: Colors.white,
         ),
       ),

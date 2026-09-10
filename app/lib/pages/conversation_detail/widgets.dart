@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -63,7 +65,7 @@ List<TextSpan> highlightSearchMatches(String text, String searchQuery, {int curr
         text: text.substring(index, index + searchQuery.length),
         style: TextStyle(
           backgroundColor:
-              isCurrentResult ? Colors.orange.withValues(alpha: 0.9) : Colors.deepPurple.withValues(alpha: 0.6),
+              isCurrentResult ? Colors.orange.withValues(alpha: 0.9) : AppStyles.accent.withValues(alpha: 0.6),
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),

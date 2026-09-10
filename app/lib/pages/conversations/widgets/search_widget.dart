@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,7 +102,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 hintText: context.l10n.searchConversations,
                 hintStyle: const TextStyle(color: Colors.white60, fontSize: 14),
                 filled: true,
-                fillColor: const Color(0xFF1F1F25),
+                fillColor: AppStyles.backgroundSecondary,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
                 focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
@@ -134,7 +136,7 @@ class _SearchWidgetState extends State<SearchWidget> {
                 width: 48,
                 height: 48,
                 decoration: BoxDecoration(
-                  color: isActive ? Colors.deepPurple.withValues(alpha: 0.5) : const Color(0xFF1F1F25),
+                  color: isActive ? AppStyles.accent.withValues(alpha: 0.5) : AppStyles.backgroundSecondary,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: IconButton(
@@ -159,8 +161,8 @@ class _SearchWidgetState extends State<SearchWidget> {
                 height: 48,
                 decoration: BoxDecoration(
                   color: convoProvider.selectedStartDate != null
-                      ? Colors.deepPurple.withValues(alpha: 0.5)
-                      : const Color(0xFF1F1F25),
+                      ? AppStyles.accent.withValues(alpha: 0.5)
+                      : AppStyles.backgroundSecondary,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 child: IconButton(

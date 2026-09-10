@@ -1,6 +1,8 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/pages/settings/usage_page.dart';
@@ -23,7 +25,7 @@ class OutOfCreditsWidget extends StatelessWidget {
         }
 
         return Container(
-          color: const Color(0xFF1F1F25),
+          color: AppStyles.backgroundSecondary,
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:file_picker/file_picker.dart';
@@ -225,7 +227,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(
           context.l10n.deleteAllLimitlessConversations,
@@ -254,7 +256,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           content: Row(
             children: [
               const CircularProgressIndicator(color: Colors.white),
@@ -318,9 +320,9 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFF1F1F25),
+          color: AppStyles.backgroundSecondary,
           borderRadius: BorderRadius.circular(12),
-          border: isAvailable ? Border.all(color: Colors.deepPurple.withValues(alpha: 0.3), width: 1) : null,
+          border: isAvailable ? Border.all(color: AppStyles.accent.withValues(alpha: 0.3), width: 1) : null,
         ),
         child: Row(
           children: [
@@ -387,13 +389,13 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
                   ? const SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.deepPurple),
+                      child: CircularProgressIndicator(strokeWidth: 2, color: AppStyles.accent),
                     )
                   : Container(
                       width: 30,
                       height: 30,
                       decoration: BoxDecoration(
-                        color: Colors.deepPurple.withValues(alpha: 0.8),
+                        color: AppStyles.accent.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const FaIcon(FontAwesomeIcons.plus, color: Colors.white, size: 16),
@@ -421,7 +423,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
           child: Row(
             children: [
               Container(
@@ -478,7 +480,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -606,7 +608,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
         return Container(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
           padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
           child: ShimmerWithTimeout(
             baseColor: Colors.grey[800]!,
             highlightColor: Colors.grey[600]!,
@@ -683,7 +685,7 @@ class _ImportHistoryPageState extends State<ImportHistoryPage> {
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
             padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
             child: Row(
               children: [
                 Icon(Icons.history, color: Colors.grey.shade600, size: 24),

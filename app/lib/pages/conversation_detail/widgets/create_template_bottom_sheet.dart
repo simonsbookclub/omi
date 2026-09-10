@@ -4,6 +4,8 @@ import 'dart:ui' as ui;
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -301,7 +303,7 @@ class _CreateTemplateBottomSheetState extends State<CreateTemplateBottomSheet> {
                           hintText: context.l10n.templateNameHint,
                           hintStyle: TextStyle(color: Colors.grey.shade600),
                           filled: true,
-                          fillColor: const Color(0xFF1F1F25),
+                          fillColor: AppStyles.backgroundSecondary,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
@@ -336,7 +338,7 @@ class _CreateTemplateBottomSheetState extends State<CreateTemplateBottomSheet> {
                           hintText: context.l10n.conversationPromptHint,
                           hintStyle: TextStyle(color: Colors.grey.shade600),
                           filled: true,
-                          fillColor: const Color(0xFF1F1F25),
+                          fillColor: AppStyles.backgroundSecondary,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                             borderSide: BorderSide.none,
@@ -360,7 +362,7 @@ class _CreateTemplateBottomSheetState extends State<CreateTemplateBottomSheet> {
                       Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF1F1F25),
+                          color: AppStyles.backgroundSecondary,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(

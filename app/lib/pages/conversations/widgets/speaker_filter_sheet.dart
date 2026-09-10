@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/schema/person.dart';
@@ -18,7 +20,7 @@ Future<void> showSpeakerFilterSheet(BuildContext context) async {
 
   await showModalBottomSheet<void>(
     context: context,
-    backgroundColor: const Color(0xFF1F1F25),
+    backgroundColor: AppStyles.backgroundSecondary,
     showDragHandle: true,
     builder: (sheetContext) {
       return SpeakerFilterSheet(
@@ -105,7 +107,7 @@ class SpeakerFilterSheet extends StatelessWidget {
       key: key,
       leading: Icon(icon),
       title: Text(name),
-      trailing: selected ? const Icon(Icons.check, color: Colors.deepPurpleAccent) : null,
+      trailing: selected ? const Icon(Icons.check, color: AppStyles.accent) : null,
       onTap: () async {
         await onSelected(speakerId);
       },

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -133,7 +135,7 @@ class _VoiceEnrollPageState extends State<VoiceEnrollPage> {
                 const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(18),
-                  decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
+                  decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(16)),
                   child: const Text(_passage, style: TextStyle(color: Colors.white, fontSize: 19, height: 1.55)),
                 ),
                 if (_message != null) Padding(padding: const EdgeInsets.only(top: 16), child: Text(_message!, style: TextStyle(color: _done ? const Color(0xFF6FC3B8) : const Color(0xFFE5785C), height: 1.4))),

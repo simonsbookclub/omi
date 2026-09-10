@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:omi/utils/l10n_extensions.dart';
 
 class DeleteConfirmation {
@@ -35,7 +37,7 @@ class DeleteConfirmation {
       return await showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
-              backgroundColor: const Color(0xFF1F1F25),
+              backgroundColor: AppStyles.backgroundSecondary,
               surfaceTintColor: Colors.transparent,
               title: Text(title!, style: const TextStyle(color: Colors.white, fontSize: 18)),
               content: Text(content!, style: const TextStyle(color: Colors.white70, fontSize: 14)),

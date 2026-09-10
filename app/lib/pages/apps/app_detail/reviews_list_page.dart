@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -57,7 +59,7 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(
           context.l10n.replyToReview,
@@ -136,7 +138,7 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
                           isSubmitting.value = false;
                         }
                       },
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple, foregroundColor: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: AppStyles.accent, foregroundColor: Colors.white),
                 child: submitting
                     ? const SizedBox(
                         width: 16,
@@ -273,9 +275,9 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: selected ? Colors.deepPurple : Colors.grey.shade800.withValues(alpha: 0.5),
+          color: selected ? AppStyles.accent : Colors.grey.shade800.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: selected ? Colors.deepPurple : Colors.grey.shade700, width: 1),
+          border: Border.all(color: selected ? AppStyles.accent : Colors.grey.shade700, width: 1),
         ),
         child: Text(
           label,
@@ -297,7 +299,7 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+        color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Column(
@@ -336,7 +338,7 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
                           child: FaIcon(
                             FontAwesomeIcons.solidStar,
                             size: 14,
-                            color: index < review.score.round() ? Colors.deepPurple : Colors.grey.shade700,
+                            color: index < review.score.round() ? AppStyles.accent : Colors.grey.shade700,
                           ),
                         );
                       }),
@@ -397,11 +399,11 @@ class _ReviewsListPageState extends State<ReviewsListPage> {
                 icon: FaIcon(
                   review.response.isNotEmpty ? FontAwesomeIcons.pencil : FontAwesomeIcons.reply,
                   size: 12,
-                  color: Colors.deepPurple,
+                  color: AppStyles.accent,
                 ),
                 label: Text(
                   review.response.isNotEmpty ? context.l10n.editReply : context.l10n.reply,
-                  style: const TextStyle(color: Colors.deepPurple, fontSize: 13),
+                  style: const TextStyle(color: AppStyles.accent, fontSize: 13),
                 ),
               ),
             ),

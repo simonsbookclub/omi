@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -1831,7 +1833,7 @@ class _ManualFirmwareFlashPageState extends State<_ManualFirmwareFlashPage> with
               decoration: BoxDecoration(color: const Color(0xFF1C1C1E), borderRadius: BorderRadius.circular(12)),
               child: Row(
                 children: [
-                  const FaIcon(FontAwesomeIcons.file, color: Colors.deepPurple, size: 20),
+                  const FaIcon(FontAwesomeIcons.file, color: AppStyles.accent, size: 20),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -1883,7 +1885,7 @@ class _ManualFirmwareFlashPageState extends State<_ManualFirmwareFlashPage> with
                 child: ElevatedButton(
                   onPressed: _startFlash,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: AppStyles.accent,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   ),
                   child: Text(
@@ -1905,7 +1907,7 @@ class _ManualFirmwareFlashPageState extends State<_ManualFirmwareFlashPage> with
               LinearProgressIndicator(
                 value: installProgress / 100,
                 backgroundColor: const Color(0xFF2A2A2E),
-                valueColor: const AlwaysStoppedAnimation<Color>(Colors.deepPurple),
+                valueColor: const AlwaysStoppedAnimation<Color>(AppStyles.accent),
                 minHeight: 8,
                 borderRadius: BorderRadius.circular(4),
               ),

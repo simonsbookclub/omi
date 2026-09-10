@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/preferences.dart';
@@ -126,15 +128,15 @@ class _LanguageSelectorWidgetState extends State<LanguageSelectorWidget> {
               fillColor: const Color(0xFF2A2A2A),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Color(0xFF35343B)),
+                borderSide: const BorderSide(color: AppStyles.backgroundTertiary),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Color(0xFF35343B)),
+                borderSide: const BorderSide(color: AppStyles.backgroundTertiary),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Colors.deepPurple),
+                borderSide: const BorderSide(color: AppStyles.accent),
               ),
             ),
           ),
@@ -154,9 +156,9 @@ class _LanguageSelectorWidgetState extends State<LanguageSelectorWidget> {
 
                       return ListTile(
                         title: Text(language.key, style: const TextStyle(color: Colors.white)),
-                        trailing: isSelected ? const Icon(Icons.check_circle, color: Colors.deepPurple) : null,
+                        trailing: isSelected ? const Icon(Icons.check_circle, color: AppStyles.accent) : null,
                         selected: isSelected,
-                        selectedTileColor: Colors.deepPurple.withValues(alpha: 0.2),
+                        selectedTileColor: AppStyles.accent.withValues(alpha: 0.2),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                         onTap: () {
                           setState(() {

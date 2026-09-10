@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:provider/provider.dart';
 
 import 'package:omi/models/local_recording.dart';
@@ -53,7 +55,7 @@ class RecordingListItem extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12, left: 16, right: 16),
           child: Container(
             width: double.maxFinite,
-            decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24.0)),
+            decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(24.0)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24.0),
               child: Dismissible(
@@ -77,7 +79,7 @@ class RecordingListItem extends StatelessWidget {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF35343B),
+                            color: AppStyles.backgroundTertiary,
                             borderRadius: BorderRadius.circular(12),
                           ),
                           child: Icon(Icons.graphic_eq, color: Colors.grey.shade400, size: 20),
@@ -109,7 +111,7 @@ class RecordingListItem extends StatelessWidget {
                           child: Container(
                             width: 44,
                             height: 44,
-                            decoration: const BoxDecoration(color: Color(0xFF35343B), shape: BoxShape.circle),
+                            decoration: const BoxDecoration(color: AppStyles.backgroundTertiary, shape: BoxShape.circle),
                             child: Icon(isPlaying ? Icons.pause : Icons.play_arrow, color: Colors.white, size: 24),
                           ),
                         ),

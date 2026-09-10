@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 import 'package:omi/widgets/shimmer_with_timeout.dart';
 
@@ -63,7 +65,7 @@ class _VoiceRecorderWidgetState extends State<VoiceRecorderWidget> with SingleTi
               height: 44,
               child: Center(
                 child: ShimmerWithTimeout(
-                  baseColor: const Color(0xFF35343B),
+                  baseColor: AppStyles.backgroundTertiary,
                   highlightColor: Colors.white,
                   child: Text(
                     context.l10n.transcribing,

@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -285,7 +287,7 @@ class _ActionItemTileWidgetState extends State<ActionItemTileWidget> {
                 decoration: BoxDecoration(
                   color: isExported ? Colors.green : Colors.blue,
                   shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0xFF1F1F25), width: 1.5),
+                  border: Border.all(color: AppStyles.backgroundSecondary, width: 1.5),
                 ),
                 child: Icon(isExported ? Icons.check : Icons.add, color: Colors.white, size: 8),
               ),
@@ -929,10 +931,10 @@ class _ActionItemTileWidgetState extends State<ActionItemTileWidget> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: widget.isSelected ? Colors.deepPurpleAccent : Colors.grey.shade600,
+                            color: widget.isSelected ? AppStyles.accent : Colors.grey.shade600,
                             width: 2,
                           ),
-                          color: widget.isSelected ? Colors.deepPurpleAccent : Colors.transparent,
+                          color: widget.isSelected ? AppStyles.accent : Colors.transparent,
                         ),
                         child: widget.isSelected ? const Icon(Icons.check, color: Colors.white, size: 16) : null,
                       ),
@@ -950,12 +952,12 @@ class _ActionItemTileWidgetState extends State<ActionItemTileWidget> {
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: (widget.actionItem.completed || _isAnimating)
-                                  ? Colors.deepPurpleAccent
+                                  ? AppStyles.accent
                                   : Colors.grey.shade600,
                               width: 2,
                             ),
                             color: (widget.actionItem.completed || _isAnimating)
-                                ? Colors.deepPurpleAccent
+                                ? AppStyles.accent
                                 : Colors.transparent,
                           ),
                           child: (widget.actionItem.completed || _isAnimating)

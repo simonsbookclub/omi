@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -212,7 +214,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
               HapticFeedback.lightImpact();
               _showCreateActionItemSheet(defaultDueDate: _getDefaultDueDateForCategory(TaskCategory.today));
             },
-            backgroundColor: Colors.deepPurple,
+            backgroundColor: AppStyles.accent,
             child: const Icon(Icons.add, color: Colors.white),
           ),
         );
@@ -239,7 +241,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
                 hintText: context.l10n.searchActionItems,
                 hintStyle: const TextStyle(color: Colors.white60, fontSize: 14),
                 filled: true,
-                fillColor: const Color(0xFF1F1F25),
+                fillColor: AppStyles.backgroundSecondary,
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
                 focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
                 enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
@@ -316,7 +318,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
         child: Container(
           width: 48,
           height: 48,
-          decoration: const BoxDecoration(color: Color(0xFF1F1F25), shape: BoxShape.circle),
+          decoration: const BoxDecoration(color: AppStyles.backgroundSecondary, shape: BoxShape.circle),
           child: const Center(child: Icon(Icons.more_horiz_rounded, color: Colors.white70, size: 20)),
         ),
       ),
@@ -527,7 +529,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
                     HapticFeedback.mediumImpact();
                     return provider.forceRefreshActionItems();
                   },
-                  color: Colors.deepPurple,
+                  color: AppStyles.accent,
                   backgroundColor: Colors.white,
                   child: provider.isLoading && provider.actionItems.isEmpty
                       ? _buildLoadingState()
@@ -593,7 +595,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: RadialGradient(
-                    colors: [Colors.deepPurple.withValues(alpha: 0.35), Colors.deepPurple.withValues(alpha: 0.0)],
+                    colors: [AppStyles.accent.withValues(alpha: 0.35), AppStyles.accent.withValues(alpha: 0.0)],
                     stops: const [0.0, 1.0],
                   ),
                 ),
@@ -606,12 +608,12 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
                   gradient: const LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color(0xFF7B5CFF), Color(0xFF5733E0)],
+                    colors: [AppStyles.accent, Color(0xFF2FA99C)],
                   ),
                   border: Border.all(color: Colors.white.withValues(alpha: 0.08), width: 1),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.deepPurple.withValues(alpha: 0.45),
+                      color: AppStyles.accent.withValues(alpha: 0.45),
                       blurRadius: 30,
                       spreadRadius: 2,
                       offset: const Offset(0, 12),
@@ -660,12 +662,12 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.add_rounded, color: Color(0xFF1F1F25), size: 20),
+                  const Icon(Icons.add_rounded, color: AppStyles.backgroundSecondary, size: 20),
                   const SizedBox(width: 8),
                   Text(
                     context.l10n.createActionItem,
                     style: const TextStyle(
-                      color: Color(0xFF1F1F25),
+                      color: AppStyles.backgroundSecondary,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
                       letterSpacing: -0.1,
@@ -1013,7 +1015,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
           height: showIndicator ? 6 : (isDragging ? 20 : 4),
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
-            color: showIndicator ? Colors.deepPurple : Colors.transparent,
+            color: showIndicator ? AppStyles.accent : Colors.transparent,
             borderRadius: BorderRadius.circular(2),
           ),
         );
@@ -1131,7 +1133,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
               Container(
                 height: 2,
                 margin: EdgeInsets.only(left: barLeft, right: 4),
-                decoration: BoxDecoration(color: Colors.deepPurple, borderRadius: BorderRadius.circular(1)),
+                decoration: BoxDecoration(color: AppStyles.accent, borderRadius: BorderRadius.circular(1)),
               ),
             _buildDraggableTaskItem(item, provider, indentLevel, indentWidth, categoryItems),
             // Drop indicator below
@@ -1139,7 +1141,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
               Container(
                 height: 2,
                 margin: EdgeInsets.only(left: barLeft, right: 4),
-                decoration: BoxDecoration(color: Colors.deepPurple, borderRadius: BorderRadius.circular(1)),
+                decoration: BoxDecoration(color: AppStyles.accent, borderRadius: BorderRadius.circular(1)),
               ),
           ],
         );
@@ -1360,7 +1362,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
         duration: const Duration(milliseconds: 150),
         margin: EdgeInsets.zero,
         decoration: BoxDecoration(
-          color: isSelected ? Colors.deepPurple.withValues(alpha: 0.15) : Colors.transparent,
+          color: isSelected ? AppStyles.accent.withValues(alpha: 0.15) : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
@@ -1470,8 +1472,8 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
       height: 22,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: isSelected ? Colors.deepPurple : Colors.grey[600]!, width: 2),
-        color: isSelected ? Colors.deepPurple : Colors.transparent,
+        border: Border.all(color: isSelected ? AppStyles.accent : Colors.grey[600]!, width: 2),
+        color: isSelected ? AppStyles.accent : Colors.transparent,
       ),
       child: isSelected ? const Icon(Icons.check, size: 14, color: Colors.white) : null,
     );
@@ -1573,7 +1575,7 @@ class _ActionItemsPageState extends State<ActionItemsPage> with AutomaticKeepAli
         return await showDialog<bool>(
               context: context,
               builder: (context) => AlertDialog(
-                backgroundColor: const Color(0xFF1F1F25),
+                backgroundColor: AppStyles.backgroundSecondary,
                 title: Text(context.l10n.deleteGoal, style: const TextStyle(color: Colors.white)),
                 content: Text('Delete "${goal.title}"?', style: const TextStyle(color: Colors.white70)),
                 actions: [
@@ -1952,7 +1954,7 @@ class _GoalEditSheetState extends State<_GoalEditSheet> {
                         final confirm = await showDialog<bool>(
                           context: context,
                           builder: (context) => AlertDialog(
-                            backgroundColor: const Color(0xFF1F1F25),
+                            backgroundColor: AppStyles.backgroundSecondary,
                             title: Text(context.l10n.deleteGoal, style: const TextStyle(color: Colors.white)),
                             content: Text(
                               'Delete "${widget.goal.title}"?',

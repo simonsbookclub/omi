@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:provider/provider.dart';
 
 import 'package:omi/backend/preferences.dart';
@@ -55,7 +57,7 @@ class SpeechProfileCardWidget extends StatelessWidget {
                         },
                         child: Container(
                           decoration: const BoxDecoration(
-                            color: Color(0xFF1F1F25),
+                            color: AppStyles.backgroundSecondary,
                             borderRadius: BorderRadius.all(Radius.circular(24)),
                           ),
                           margin: const EdgeInsets.fromLTRB(16, 15, 16, 0),
@@ -125,7 +127,7 @@ class UpdateFirmwareCardWidget extends StatelessWidget {
               },
               child: Container(
                 decoration: const BoxDecoration(
-                  color: Color(0xFF1F1F25),
+                  color: AppStyles.backgroundSecondary,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
                 margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),

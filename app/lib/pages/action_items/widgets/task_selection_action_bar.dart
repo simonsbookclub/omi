@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -107,7 +109,7 @@ class _TaskSelectionActionBarState extends State<TaskSelectionActionBar> with Si
                         icon: Icons.ios_share_rounded,
                         label: canExport ? '${context.l10n.exportButton}  ·  $taskCount' : context.l10n.exportButton,
                         enabled: canExport,
-                        accent: const Color(0xFF7C3AED),
+                        accent: AppStyles.accent,
                         onTap: () => _handleExport(context, provider),
                       ),
                     ],
@@ -155,7 +157,7 @@ class _TaskSelectionActionBarState extends State<TaskSelectionActionBar> with Si
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         title: Text(
           context.l10n.deleteSelectedItemsTitle,

@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -32,7 +34,7 @@ class ActiveCallBanner extends StatelessWidget {
           },
           child: Container(
             margin: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-            decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(24)),
+            decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(24)),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 14, 12, 14),
               child: Column(
@@ -164,7 +166,7 @@ class _CallInfoRow extends StatelessWidget {
         // Duration / status
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-          decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(12)),
           child: Text(
             statusText,
             style: const TextStyle(color: Color(0xFF34C759), fontSize: 13, fontWeight: FontWeight.w500),
@@ -286,7 +288,7 @@ class _CompactControlButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? Colors.white : const Color(0xFF35343B),
+          color: isActive ? Colors.white : AppStyles.backgroundTertiary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: Row(

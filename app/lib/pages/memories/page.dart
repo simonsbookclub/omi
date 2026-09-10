@@ -164,7 +164,7 @@ class MemoriesPageState extends State<MemoriesPage> with AutomaticKeepAliveClien
                     HapticFeedback.mediumImpact();
                     await provider.init();
                   },
-                  color: Colors.deepPurpleAccent,
+                  color: AppStyles.accent,
                   backgroundColor: Colors.white,
                   child: provider.loading && _isInitialLoad
                       ? CustomScrollView(
@@ -391,7 +391,7 @@ class MemoriesPageState extends State<MemoriesPage> with AutomaticKeepAliveClien
                       showMemoryDialog(context, provider);
                       PlatformManager.instance.analytics.memoriesPageCreateMemoryBtn();
                     },
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: AppStyles.accent,
                     tooltip: context.l10n.createMemoryTooltip,
                     child: const Icon(Icons.add, color: Colors.white),
                   ),
@@ -458,7 +458,7 @@ class MemoriesPageState extends State<MemoriesPage> with AutomaticKeepAliveClien
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xFF1F1F25),
+        backgroundColor: AppStyles.backgroundSecondary,
         title: Text(context.l10n.clearMemoryTitle, style: const TextStyle(color: Colors.white)),
         content: Text(context.l10n.clearMemoryMessage, style: TextStyle(color: Colors.grey.shade300)),
         actions: [

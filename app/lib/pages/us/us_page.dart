@@ -2,6 +2,8 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/rendering.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -83,7 +85,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       body: SafeArea(
         child: RefreshIndicator(
           color: Colors.white,
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           onRefresh: () => us.refresh(force: true, card: true),
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
@@ -543,7 +545,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     if (!mounted) return;
     final chosen = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       builder: (ctx) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           const Padding(padding: EdgeInsets.all(16), child: Text('Which voice?', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600))),
@@ -796,7 +798,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final other = us.partnerOnThisPhone && !us.isActingAsPartner ? us.partnerName : null;
     final choice = await showModalBottomSheet<String>(
       context: context,
-      backgroundColor: const Color(0xFF1F1F25),
+      backgroundColor: AppStyles.backgroundSecondary,
       builder: (ctx) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Padding(

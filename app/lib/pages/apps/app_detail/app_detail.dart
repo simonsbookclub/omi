@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -414,7 +416,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
         bottom: 6,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+        color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Column(
@@ -503,7 +505,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
         bottom: 6,
       ),
       decoration: BoxDecoration(
-        color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+        color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(16.0),
       ),
       child: Column(
@@ -794,7 +796,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                                         const FaIcon(
                                           FontAwesomeIcons.solidCircleCheck,
                                           size: 14,
-                                          color: Colors.deepPurpleAccent,
+                                          color: AppStyles.accent,
                                         ),
                                       ],
                                     ],
@@ -840,7 +842,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                                       width: 32,
                                       height: 32,
                                       onPressed: () async {},
-                                      color: const Color(0xFF35343B),
+                                      color: AppStyles.backgroundTertiary,
                                     )
                                   : app.enabled
                                       ? AnimatedLoadingButton(
@@ -1052,7 +1054,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                               bottom: 6,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+                              color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
                               borderRadius: BorderRadius.circular(16.0),
                               border: Border.all(
                                 color: setupCompleted ? Colors.green.withValues(alpha: 0.3) : Colors.transparent,
@@ -1369,7 +1371,7 @@ class _AppDetailPageState extends State<AppDetailPage> {
                                   bottom: 6,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF1F1F25).withValues(alpha: 0.8),
+                                  color: AppStyles.backgroundSecondary.withValues(alpha: 0.8),
                                   borderRadius: BorderRadius.circular(16.0),
                                 ),
                                 child: Column(
@@ -1606,7 +1608,7 @@ class RatingDistributionWidget extends StatelessWidget {
                   child: FaIcon(
                     FontAwesomeIcons.solidStar,
                     size: 14,
-                    color: index < ratingAvg.round() ? Colors.deepPurple : Colors.grey.shade700,
+                    color: index < ratingAvg.round() ? AppStyles.accent : Colors.grey.shade700,
                   ),
                 );
               }),
@@ -1793,9 +1795,9 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.deepPurple.withValues(alpha: 0.1),
+        color: AppStyles.accent.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.deepPurple.withValues(alpha: 0.3)),
+        border: Border.all(color: AppStyles.accent.withValues(alpha: 0.3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1833,7 +1835,7 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
                   child: FaIcon(
                     FontAwesomeIcons.solidStar,
                     size: 24,
-                    color: index < editRating ? Colors.deepPurple : Colors.grey.shade600,
+                    color: index < editRating ? AppStyles.accent : Colors.grey.shade600,
                   ),
                 ),
               );
@@ -1864,7 +1866,7 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
               key: const ValueKey('app_detail_submit_review_button'),
               onPressed: isSubmitting ? null : _submitReview,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.deepPurple,
+                backgroundColor: AppStyles.accent,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -1909,8 +1911,8 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
                 seed: avatarSeed,
                 username: review.username,
                 size: 36,
-                backgroundColor: isUserReview ? Colors.deepPurple.withValues(alpha: 0.2) : null,
-                foregroundColor: isUserReview ? Colors.deepPurple : null,
+                backgroundColor: isUserReview ? AppStyles.accent.withValues(alpha: 0.2) : null,
+                foregroundColor: isUserReview ? AppStyles.accent : null,
               ),
               const SizedBox(width: 12),
               // Name, date, and stars
@@ -1923,7 +1925,7 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
                         Text(
                           displayName,
                           style: TextStyle(
-                            color: isUserReview ? Colors.deepPurple : Colors.grey,
+                            color: isUserReview ? AppStyles.accent : Colors.grey,
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
@@ -1945,7 +1947,7 @@ class _RecentReviewsSectionState extends State<RecentReviewsSection> {
                           child: FaIcon(
                             FontAwesomeIcons.solidStar,
                             size: 14,
-                            color: index < review.score.round() ? Colors.deepPurple : Colors.grey.shade700,
+                            color: index < review.score.round() ? AppStyles.accent : Colors.grey.shade700,
                           ),
                         );
                       }),

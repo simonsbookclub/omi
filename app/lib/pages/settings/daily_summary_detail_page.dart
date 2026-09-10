@@ -2,6 +2,8 @@ import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:flutter_map/flutter_map.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong2/latlong.dart';
@@ -555,7 +557,7 @@ class _DailySummaryDetailPageState extends State<DailySummaryDetailPage> with Si
         point: LatLng(loc.latitude, loc.longitude),
         width: 32,
         height: 32,
-        child: const FaIcon(FontAwesomeIcons.locationDot, color: Colors.deepPurple, size: 28),
+        child: const FaIcon(FontAwesomeIcons.locationDot, color: AppStyles.accent, size: 28),
       );
     }).toList();
 

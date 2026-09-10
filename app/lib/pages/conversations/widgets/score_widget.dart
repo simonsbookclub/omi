@@ -3,6 +3,8 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import 'package:omi/utils/ui_guidelines.dart';
+
 import 'package:intl/intl.dart';
 
 import 'package:omi/backend/http/api/action_items.dart';
@@ -319,13 +321,13 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
           Container(
             width: 48,
             height: 48,
-            decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(12)),
+            decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(12)),
             child: const Center(
               child: SizedBox(
                 width: 20,
@@ -373,7 +375,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
       onTap: _toggleExpanded,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(color: AppStyles.backgroundSecondary, borderRadius: BorderRadius.circular(12)),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -449,7 +451,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
 
             // 7-day graph - ALWAYS visible
             if (_history.isNotEmpty) ...[
-              Container(height: 1, color: const Color(0xFF35343B)),
+              Container(height: 1, color: AppStyles.backgroundTertiary),
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
                 child: Column(
@@ -482,7 +484,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
               child: Column(
                 children: [
                   // Divider
-                  Container(height: 1, color: const Color(0xFF35343B)),
+                  Container(height: 1, color: AppStyles.backgroundTertiary),
 
                   // Score breakdown
                   Padding(
@@ -529,7 +531,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
                     margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF35343B).withValues(alpha: 0.5),
+                      color: AppStyles.backgroundTertiary.withValues(alpha: 0.5),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -707,7 +709,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
         // Progress bar
         Container(
           height: 6,
-          decoration: BoxDecoration(color: const Color(0xFF35343B), borderRadius: BorderRadius.circular(3)),
+          decoration: BoxDecoration(color: AppStyles.backgroundTertiary, borderRadius: BorderRadius.circular(3)),
           child: FractionallySizedBox(
             alignment: Alignment.centerLeft,
             widthFactor: percentage.clamp(0.0, 1.0),
@@ -757,7 +759,7 @@ class _ScoreWidgetState extends State<ScoreWidget> with SingleTickerProviderStat
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: const Color(0xFF1F1F25),
+          backgroundColor: AppStyles.backgroundSecondary,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           title: const Text(
             'How Grade Works',
@@ -893,7 +895,7 @@ class _LineChartPainter extends CustomPainter {
 
         // White border
         final borderPaint = Paint()
-          ..color = const Color(0xFF1F1F25)
+          ..color = AppStyles.backgroundSecondary
           ..strokeWidth = 2
           ..style = PaintingStyle.stroke;
         canvas.drawCircle(Offset(x, y), point.isToday ? 6 : 5, borderPaint);
@@ -915,7 +917,7 @@ class _LineChartPainter extends CustomPainter {
       } else {
         // Draw empty placeholder dot for days without data
         final emptyPaint = Paint()
-          ..color = const Color(0xFF35343B)
+          ..color = AppStyles.backgroundTertiary
           ..style = PaintingStyle.fill;
         canvas.drawCircle(Offset(x, chartHeight / 2), 3, emptyPaint);
       }

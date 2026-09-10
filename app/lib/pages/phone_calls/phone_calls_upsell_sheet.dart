@@ -1,5 +1,7 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+
+import 'package:omi/utils/ui_guidelines.dart';
 import 'package:flutter/services.dart';
 
 import 'package:omi/pages/settings/widgets/plans_sheet.dart';
@@ -55,7 +57,7 @@ class _PhoneCallsUpsellSheet extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: const Color(0xFF7C3AED).withValues(alpha: 0.25),
+                          color: AppStyles.accent.withValues(alpha: 0.25),
                           blurRadius: 48,
                           spreadRadius: 8,
                         ),
@@ -69,7 +71,7 @@ class _PhoneCallsUpsellSheet extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: const Color(0xFF1A1A20),
-                      border: Border.all(color: const Color(0xFF7C3AED).withValues(alpha: 0.4), width: 1.5),
+                      border: Border.all(color: AppStyles.accent.withValues(alpha: 0.4), width: 1.5),
                     ),
                     child: const Icon(Icons.phone_in_talk_rounded, color: Color(0xFFB794F6), size: 30),
                   ),
