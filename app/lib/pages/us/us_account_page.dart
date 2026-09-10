@@ -24,11 +24,66 @@ class UsAccountPage extends StatefulWidget {
 class _UsAccountPageState extends State<UsAccountPage> {
   bool _busy = false;
   String? _message;
+  /// Hevy is a plain API key, not OAuth, so it is not part of the account
+  /// payload — its own small fetch keeps it out of everything else.
+  Map<String, dynamic>? _hevy;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => context.read<UsProvider>().loadAccount());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<UsProvider>().loadAccount();
+      _loadHevy();
+    });
+  }
+
+  Future<void> _loadHevy() async {
+    final r = await UsApi.hevyStatus();
+    if (mounted) setState(() => _hevy = r);
+  }
+
+  /// Hevy hands out a personal API key in its own settings, so linking is a
+  /// paste rather than a sign-in. Kept out of the logs, and never echoed.
+  Future<void> _linkHevy() async {
+    final controller = TextEditingController();
+    final key = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF1F1F25),
+        title: const Text('Link Hevy', style: TextStyle(color: Colors.white, fontSize: 18)),
+        content: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+          const Text('Hevy → Settings → Developer → API key. Paste it here.',
+              style: TextStyle(color: Colors.white54, fontSize: 13, height: 1.4)),
+          const SizedBox(height: 12),
+          TextField(
+            controller: controller,
+            autocorrect: false,
+            enableSuggestions: false,
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
+              hintText: 'API key',
+              hintStyle: TextStyle(color: Colors.white24),
+              filled: true,
+              fillColor: Color(0xFF2A2A30),
+              border: OutlineInputBorder(borderSide: BorderSide.none),
+            ),
+          ),
+        ]),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text('Cancel', style: TextStyle(color: Colors.white54))),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(controller.text.trim()), child: const Text('Link')),
+        ],
+      ),
+    );
+    if (key == null || key.isEmpty) return;
+    await _run(() async {
+      final r = await UsApi.linkHevy(key);
+      if (!mounted) return;
+      setState(() => _message = r?['error'] != null
+          ? r!['error'].toString()
+          : 'Hevy linked — ${r?['workouts'] ?? 0} sessions found.');
+      await _loadHevy();
+    });
   }
 
   Future<void> _run(Future<void> Function() fn) async {
@@ -176,6 +231,25 @@ class _UsAccountPageState extends State<UsAccountPage> {
             const SizedBox(height: 8),
             _ringCard("${partner['name']}'s ring", partnerOura, partner['user_id'].toString(), ouraAvailable, shareName: partner['name'].toString()),
           ],
+          const SizedBox(height: 16),
+          const _Header('Strength'),
+          _card([
+            if (_hevy?['linked'] == true) ...[
+              _row('Hevy', _hevy?['last_sync_at'] != null ? 'synced ${_hevy!['last_sync_at']}' : 'linked'),
+              if (_hevy?['last_error'] != null) _row('Last error', _hevy!['last_error'].toString()),
+              _action(FontAwesomeIcons.rotate, 'Sync now', _busy ? null : () => _run(() async {
+                await UsApi.syncHevy();
+                await _loadHevy();
+              })),
+              _action(FontAwesomeIcons.linkSlash, 'Unlink', _busy ? null : () => _run(() async {
+                await UsApi.unlinkHevy();
+                await _loadHevy();
+              })),
+            ] else ...[
+              _row('Hevy', 'not linked'),
+              _action(FontAwesomeIcons.dumbbell, 'Link Hevy with an API key', _busy ? null : _linkHevy),
+            ],
+          ]),
           const SizedBox(height: 16),
           const _Header('Voice'),
           _card([

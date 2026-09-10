@@ -10,9 +10,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
+import 'package:omi/pages/us/moment_sheet.dart';
 import 'package:omi/pages/us/prompt_sheet.dart';
 import 'package:omi/pages/us/protocol_page.dart';
 import 'package:omi/pages/us/us_account_page.dart';
+import 'package:omi/pages/us/us_theme.dart';
+import 'package:omi/pages/us/us_together_card.dart';
 import 'package:omi/pages/us/voice_enroll_page.dart';
 import 'package:omi/backend/http/api/us.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -85,17 +88,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
           child: ListView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 120),
             children: [
-              Row(
-                children: [
-                  const Text('Us', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600)),
-                  const Spacer(),
-                  if (us.isLive && us.partnerOnThisPhone) _personSwitch(us),
-                  IconButton(
-                    icon: const FaIcon(FontAwesomeIcons.circleUser, color: Colors.white70, size: 22),
-                    onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const UsAccountPage())),
-                  ),
-                ],
-              ),
+              _header(us),
               if (us.isActingAsPartner) _notice('Acting as ${us.ownerName}. Everything below is theirs: period log, sharing, prompts, voice, ring.'),
               if (us.error != null) _errorBox(us.error!),
               if (us.today == null && us.loading) const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator(color: Colors.white54))),
@@ -259,15 +252,19 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       for (final p in us.prompts) _promptRow(us, p),
       if (us.isActingAsPartner) _partnerSetup(us, me),
       _todayCard(us, card, me, partner),
+      // What the two of you did in the same window. Above the separate
+      // bodies on purpose: it is the only thing on this screen about both
+      // of you at once.
+      for (final t in us.together) ...[
+        const SizedBox(height: 12),
+        UsTogetherCard(activity: t),
+      ],
+      const SizedBox(height: 12),
+      _momentsCard(us),
       const SizedBox(height: 12),
       _quickActions(us, me),
       const SizedBox(height: 12),
-      _bodyCard(us),
-      if (us.partnerBody != null) ...[
-        const SizedBox(height: 12),
-        // The partner's day, same shape. The switch is theirs, not yours.
-        _bodyCard(us, body: us.partnerBody, title: "${us.partnerBodyName}'s body today", showTracking: false),
-      ],
+      _bothBodies(us, me),
       const SizedBox(height: 12),
       _weekStrip(us),
       const SizedBox(height: 12),
@@ -282,6 +279,187 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       Center(child: Text('Since ${(couple['since'] ?? '').toString().substring(0, 10)} · ${me['name']} & ${partner['name']}', style: const TextStyle(color: Colors.white24, fontSize: 12))),
     ];
   }
+
+  /// The pair is the subject, so the pair is the mark.
+  Widget _header(UsProvider us) {
+    final since = (us.couple?['since'] ?? '').toString();
+    final days = since.length >= 10 ? DateTime.now().difference(DateTime.parse(since.substring(0, 10))).inDays : null;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 18, top: 2),
+      child: Row(children: [
+        if (us.isLive) ...[
+          UsPairMark(you: us.ownerName, them: us.partnerName),
+          const SizedBox(width: 12),
+        ],
+        Flexible(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+          const Text('Us',
+              style: TextStyle(color: Colors.white, fontSize: 26, fontWeight: FontWeight.w700, letterSpacing: -0.5, height: 1)),
+          if (us.isLive) ...[
+            const SizedBox(height: 3),
+            Text(
+              '${us.ownerName} & ${us.partnerName}${days == null ? '' : ' · day $days'}',
+              style: const TextStyle(color: UsInk.faint, fontSize: 12),
+            ),
+          ],
+        ]),
+        ),
+        const Spacer(),
+        if (us.isLive && us.partnerOnThisPhone) _personSwitch(us),
+        IconButton(
+          icon: const FaIcon(FontAwesomeIcons.circleUser, color: Colors.white70, size: 22),
+          onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => const UsAccountPage())),
+        ),
+      ]),
+    );
+  }
+
+  /// Moments: what a ring cannot know unless one of you says so. Oura tags
+  /// arrive on their own (src/us-oura.ts); this is the same thing in-app,
+  /// and the only way the partner without a ring can mark anything.
+  Widget _momentsCard(UsProvider us) {
+    final moments = us.moments;
+    return UsCard(children: [
+      Row(children: [
+        const UsLabel('Moments'),
+        const Spacer(),
+        InkWell(
+          onTap: () => showMomentSheet(context),
+          borderRadius: BorderRadius.circular(999),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(color: UsInk.raised, borderRadius: BorderRadius.circular(999)),
+            child: const Text('Mark one', style: TextStyle(color: Colors.white, fontSize: 12.5, fontWeight: FontWeight.w600)),
+          ),
+        ),
+      ]),
+      if (moments.isEmpty) ...[
+        const SizedBox(height: 10),
+        const Text('Nothing marked today.', style: TextStyle(color: UsInk.label, fontSize: 13.5)),
+      ],
+      for (final m in moments) _momentRow(us, m),
+    ]);
+  }
+
+  Widget _momentRow(UsProvider us, Map<String, dynamic> m) {
+    final mine = m['mine'] == true;
+    final at = DateTime.tryParse(m['started_at']?.toString() ?? '')?.toLocal();
+    return Padding(
+      padding: const EdgeInsets.only(top: 13),
+      child: Row(children: [
+        UsAvatar(m['name']?.toString() ?? '?', mine: mine, size: 22),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(momentLabel(m['kind']?.toString() ?? ''),
+              style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500)),
+        ),
+        if (at != null)
+          Text('${at.hour.toString().padLeft(2, '0')}:${at.minute.toString().padLeft(2, '0')}',
+              style: const TextStyle(color: UsInk.label, fontSize: 12.5, fontFeatures: [FontFeature.tabularFigures()])),
+        if (m['source'] == 'oura') ...[
+          const SizedBox(width: 8),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+            decoration: BoxDecoration(border: Border.all(color: const Color(0x1FFFFFFF)), borderRadius: BorderRadius.circular(5)),
+            child: const Text('Oura', style: TextStyle(color: Color(0x3DFFFFFF), fontSize: 11)),
+          ),
+        ],
+        if (mine)
+          IconButton(
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+            icon: const FaIcon(FontAwesomeIcons.xmark, size: 13, color: UsInk.faint),
+            onPressed: () => us.removeMoment(m['id'].toString()),
+          ),
+      ]),
+    );
+  }
+
+  /// Both of you in one card, one row per measure. The old screen stacked two
+  /// identical cards, which made comparing — the only thing you actually want
+  /// to do here — the reader's job.
+  Widget _bothBodies(UsProvider us, Map<String, dynamic>? mine) {
+    final theirs = us.partnerFeatures;
+    final myName = us.isActingAsPartner ? us.ownerName : us.ownerName;
+    final theirName = us.partnerBodyName == 'Partner' ? us.partnerName : us.partnerBodyName;
+    if (theirs == null || theirs.isEmpty) {
+      // Nothing shared: fall back to the single-body card rather than an
+      // empty column that looks like missing data.
+      return _bodyCard(us);
+    }
+    String? hours(dynamic v) {
+      if (v == null) return null;
+      var m = ((v as num) * 60).round();
+      // 7.99 h must not print as "7 h 60 m".
+      return '${m ~/ 60} h ${m % 60} m';
+    }
+    String? n(dynamic v, [String unit = '']) => v == null ? null : '${(v as num) % 1 == 0 ? (v).toInt() : v}$unit';
+
+    final rows = <List<String?>>[
+      [hours(mine?['sleep_hours']), 'Sleep', hours(theirs['sleep_hours'])],
+      [n(mine?['readiness']), 'Readiness', n(theirs['readiness'])],
+      [n(mine?['hrv'], ' ms'), 'HRV', n(theirs['hrv'], ' ms')],
+      [n(mine?['rhr'], ' bpm'), 'Resting', n(theirs['rhr'], ' bpm')],
+      [n(mine?['stress_high_minutes'], ' min'), 'Stress', n(theirs['stress_high_minutes'], ' min')],
+      [n(mine?['steps']), 'Steps', n(theirs['steps'])],
+      [n(mine?['workout_minutes'], ' min'), 'Moved', n(theirs['workout_minutes'], ' min')],
+      [mine?['cycle_day'] == null ? null : 'Day ${mine!['cycle_day']}', 'Cycle',
+        theirs['cycle_day'] == null ? null : 'Day ${theirs['cycle_day']}'],
+    ];
+
+    return UsCard(padding: const EdgeInsets.fromLTRB(18, 16, 18, 6), children: [
+      const UsLabel('Both bodies today'),
+      const SizedBox(height: 13),
+      Row(children: [
+        Expanded(child: Row(children: [
+          UsAvatar(myName, mine: true),
+          const SizedBox(width: 8),
+          Flexible(child: Text(myName, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600))),
+        ])),
+        const SizedBox(width: 92),
+        Expanded(child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+          Flexible(child: Text(theirName, textAlign: TextAlign.right, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w600))),
+          const SizedBox(width: 8),
+          UsAvatar(theirName, mine: false),
+        ])),
+      ]),
+      const SizedBox(height: 6),
+      for (final r in rows)
+        if (r[0] != null || r[2] != null) _bothRow(r[0], r[1]!, r[2]),
+      const SizedBox(height: 8),
+    ]);
+  }
+
+  Widget _bothRow(String? left, String label, String? right) => Container(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        decoration: const BoxDecoration(border: Border(top: BorderSide(color: UsInk.hairline))),
+        child: Row(children: [
+          Expanded(
+            child: Text(left ?? '—',
+                style: TextStyle(
+                  color: left == null ? UsInk.faint : Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                )),
+          ),
+          SizedBox(
+            width: 92,
+            child: Text(label, textAlign: TextAlign.center, style: const TextStyle(color: UsInk.label, fontSize: 12.5)),
+          ),
+          Expanded(
+            child: Text(right ?? '—',
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  color: right == null ? UsInk.faint : Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontFeatures: const [FontFeature.tabularFigures()],
+                )),
+          ),
+        ]),
+      );
 
   Widget _personSwitch(UsProvider us) {
     // Names as the owner sees them: me = owner, partner = partner, whatever
@@ -407,27 +585,56 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final likeHard = (base['like_hard'] as num?)?.toInt() ?? 0;
     final baseDays = (base['days'] as num?)?.toInt() ?? 0;
     final rate = (base['rate'] as num?)?.toDouble();
-    final levelColor = level == 'high' ? const Color(0xFFE5785C) : level == 'elevated' ? const Color(0xFFD4A64F) : level == 'calm' ? const Color(0xFF6FC3B8) : Colors.white38;
+    final levelColor = UsInk.forLevel(level);
     final levelText = level == 'high' ? 'High' : level == 'elevated' ? 'Elevated' : level == 'calm' ? 'Calm' : 'Not enough data';
-    return _card(children: [
-      Row(children: [
-        const Text('Today', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
-        const Spacer(),
-        Text(card['day']?.toString() ?? '', style: const TextStyle(color: Colors.white24, fontSize: 12)),
-      ]),
-      const SizedBox(height: 8),
-      Row(children: [
-        Container(width: 10, height: 10, decoration: BoxDecoration(color: levelColor, shape: BoxShape.circle)),
-        const SizedBox(width: 8),
-        Text(levelText, style: TextStyle(color: levelColor, fontSize: 22, fontWeight: FontWeight.w700)),
-      ]),
-      const SizedBox(height: 12),
-      if (active.isEmpty && level != 'unknown') const Text('Nothing pulling on either of you today.', style: TextStyle(color: Colors.white70)),
-      for (final f in active) _factorRow(f, active: true),
-      if (inactive.isNotEmpty) ...[
-        const SizedBox(height: 6),
-        for (final f in inactive) _factorRow(f, active: false),
-      ],
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(color: UsInk.card, borderRadius: BorderRadius.circular(18)),
+      clipBehavior: Clip.antiAlias,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // The level tints its own header rather than sitting in a dot, so the
+      // day's reading is legible before any word is read.
+      Container(
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(18, 16, 18, 14),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [levelColor.withValues(alpha: 0.13), levelColor.withValues(alpha: 0)],
+            stops: const [0, 0.78],
+          ),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+            const UsLabel('Today'),
+            const Spacer(),
+            Text(card['day']?.toString() ?? '', style: const TextStyle(color: UsInk.faint, fontSize: 11.5)),
+          ]),
+          const SizedBox(height: 8),
+          Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Container(width: 3, height: 34, decoration: BoxDecoration(color: levelColor, borderRadius: BorderRadius.circular(2))),
+            const SizedBox(width: 10),
+            Text(levelText,
+                style: TextStyle(color: levelColor, fontSize: 32, fontWeight: FontWeight.w700, letterSpacing: -0.8, height: 1)),
+          ]),
+          if (active.isEmpty && level != 'unknown') ...[
+            const SizedBox(height: 10),
+            const Text('Nothing pulling on either of you today.',
+                style: TextStyle(color: UsInk.body, fontSize: 14, height: 1.45)),
+          ],
+        ]),
+      ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(18, 0, 18, 4),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          for (final f in active) _factorRow(us, f, active: true),
+          for (final f in inactive) _factorRow(us, f, active: false),
+        ]),
+      ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       if (learning > 0 || hidden > 0) ...[
         const SizedBox(height: 8),
         Text(
@@ -435,10 +642,10 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
             if (learning > 0) '$learning factor${learning == 1 ? '' : 's'} still learning (needs eight days each)',
             if (hidden > 0) '$hidden of ${partner['name']}\'s factors kept private',
           ].join(' · '),
-          style: const TextStyle(color: Colors.white38, fontSize: 12),
+          style: const TextStyle(color: UsInk.faint, fontSize: 11.5),
         ),
       ],
-      const Divider(color: Colors.white12, height: 24),
+      const Divider(color: UsInk.hairline, height: 24),
       Text(
         baseDays == 0
             ? 'No history yet. The base rate appears after the first days together.'
@@ -448,20 +655,36 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         style: const TextStyle(color: Colors.white70, fontSize: 13, height: 1.4),
       ),
       if (card['note'] != null) Padding(padding: const EdgeInsets.only(top: 6), child: Text(card['note'].toString(), style: const TextStyle(color: Colors.white38, fontSize: 12))),
-      if (protocol != null) ...[
-        const SizedBox(height: 14),
+      ]),
+      ),
+      if (protocol != null)
         Container(
+          margin: const EdgeInsets.fromLTRB(12, 14, 12, 12),
           padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(color: const Color(0xFF1F3A37), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(
+            // The two colours meeting: the only action on the screen is the
+            // one thing that is about both of you.
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [UsInk.you.withValues(alpha: 0.14), UsInk.them.withValues(alpha: 0.14)],
+            ),
+            borderRadius: BorderRadius.circular(14),
+          ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('TONIGHT\'S PROTOCOL', style: TextStyle(color: Color(0xFF6FC3B8), fontSize: 11, letterSpacing: 1.2)),
+            const UsLabel('Tonight', color: UsInk.you),
             const SizedBox(height: 4),
             Text('${protocol['title']}${protocol['minutes'] != null ? ' · ${protocol['minutes']} min' : ''}${protocol['time'] != null ? ' · ${protocol['time']}' : ''}', style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
             const SizedBox(height: 10),
             Row(children: [
               Expanded(
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF6FC3B8), foregroundColor: Colors.black),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
+                  ),
                   onPressed: () {
                     final full = us.protocols.where((p) => p['id'] == protocol['id']).firstOrNull ?? protocol;
                     Navigator.of(context).push(MaterialPageRoute(builder: (_) => ProtocolPage(protocol: full, trigger: (protocol['trigger'] ?? 'morning').toString())));
@@ -480,17 +703,38 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
             ]),
           ]),
         ),
-      ],
-    ]);
+    ]),
+    );
   }
 
-  Widget _factorRow(Map<String, dynamic> f, {required bool active}) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 3),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(width: 64, child: Text(f['who'].toString(), style: TextStyle(color: active ? Colors.white : Colors.white38, fontWeight: FontWeight.w600))),
-          Expanded(child: Text(f['text'].toString(), style: TextStyle(color: active ? Colors.white : Colors.white38, decoration: active ? null : TextDecoration.lineThrough, decorationColor: Colors.white24))),
-        ]),
-      );
+  /// Whose factor this is, said in colour rather than in a column of names.
+  Widget _factorRow(UsProvider us, Map<String, dynamic> f, {required bool active}) {
+    final who = f['who'].toString();
+    final mine = who.toLowerCase() != us.partnerName.toLowerCase();
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 9),
+      decoration: const BoxDecoration(border: Border(top: BorderSide(color: UsInk.hairline))),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 1),
+          child: UsPersonChip(who, mine: mine, dim: !active),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text(
+            f['text'].toString(),
+            style: TextStyle(
+              color: active ? Colors.white : UsInk.faint,
+              fontSize: 14,
+              height: 1.4,
+              decoration: active ? null : TextDecoration.lineThrough,
+              decorationColor: const Color(0x2EFFFFFF),
+            ),
+          ),
+        ),
+      ]),
+    );
+  }
 
   Widget _promptRow(UsProvider us, Map<String, dynamic> p) {
     final kind = p['kind'].toString();
@@ -645,10 +889,10 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         child: Container(
           margin: const EdgeInsets.only(right: 8),
           padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(color: UsInk.card, borderRadius: BorderRadius.circular(14)),
           child: Column(children: [
-            Text(v, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700)),
-            Text(l, style: const TextStyle(color: Colors.white38, fontSize: 12)),
+            Text(v, style: const TextStyle(color: Colors.white, fontSize: 23, fontWeight: FontWeight.w700, fontFeatures: [FontFeature.tabularFigures()])),
+            Text(l, style: const TextStyle(color: UsInk.label, fontSize: 11.5)),
           ]),
         ),
       );
@@ -660,7 +904,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final last = risk.length > 14 ? risk.sublist(risk.length - 14) : risk;
     if (last.isEmpty) return const SizedBox.shrink();
     return _card(children: [
-      const Text('Last two weeks', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+      const UsLabel('Last two weeks'),
       const SizedBox(height: 10),
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -689,7 +933,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final convs = ((us.history?['conversations'] as List?) ?? const []).cast<Map<String, dynamic>>();
     if (convs.isEmpty) return _card(children: const [Text('No conversations between the two of you yet.', style: TextStyle(color: Colors.white70))]);
     return _card(children: [
-      const Text('The two of you', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+      const UsLabel('The two of you'),
       const SizedBox(height: 8),
       for (final c in convs.take(8)) ...[
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -716,7 +960,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     if (r == null) {
       return _card(children: [
         Row(children: [
-          const Text('This week', style: TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+          const UsLabel('This week'),
           const Spacer(),
           TextButton(onPressed: () => us.loadWeekly(refresh: true), child: const Text('Build report', style: TextStyle(color: Colors.white70))),
         ]),
@@ -812,12 +1056,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
 
   ButtonStyle get _primary => ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.black, padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12));
 
-  Widget _card({required List<Widget> children}) => Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: const Color(0xFF1F1F25), borderRadius: BorderRadius.circular(16)),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: children),
-      );
+  Widget _card({required List<Widget> children}) => UsCard(children: children);
 
   Widget _notice(String text) => Padding(
         padding: const EdgeInsets.only(bottom: 12),

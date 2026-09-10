@@ -61,6 +61,13 @@ class UsProvider extends ChangeNotifier {
   /// The partner's day, served only while the couple is live and they share it.
   Map<String, dynamic>? get partnerBody => today?['partner_body'] as Map<String, dynamic>?;
   String get partnerBodyName => (today?['partner_name'] as String?) ?? 'Partner';
+
+  /// Their day's numbers, each group already redacted server-side by the
+  /// switch that governs it — a partner who shares nothing sends {}.
+  Map<String, dynamic>? get partnerFeatures => today?['partner_features'] as Map<String, dynamic>?;
+
+  /// Your own day's numbers.
+  Map<String, dynamic>? get myFeatures => today?['my_features'] as Map<String, dynamic>?;
   Map<String, dynamic> visitsStatus = const {};
 
   Future<void> refreshVisitsStatus() async {
@@ -76,6 +83,39 @@ class UsProvider extends ChangeNotifier {
   bool get isLive => coupleState == 'live';
   List<Map<String, dynamic>> get prompts =>
       ((today?['prompts'] as List?) ?? const []).cast<Map<String, dynamic>>();
+
+  /// Activities the two of you did in the same window today, found by
+  /// matching when both heart rates rose — src/us-together.ts.
+  List<Map<String, dynamic>> get together =>
+      ((today?['together'] as List?) ?? const []).cast<Map<String, dynamic>>();
+
+  /// Moments either of you marked, yours plus their shared ones.
+  List<Map<String, dynamic>> get moments =>
+      ((today?['moments'] as List?) ?? const []).cast<Map<String, dynamic>>();
+
+  /// The kinds the tag sheet offers as one-tap buttons.
+  List<String> get momentKinds =>
+      ((today?['moment_kinds'] as List?) ?? const ['sex', 'together', 'date', 'argument'])
+          .map((e) => e.toString())
+          .toList();
+
+  /// Marks a moment and reloads, so it appears where it will live.
+  Future<String?> logMoment(String kind, {DateTime? at, String? note, bool shared = true}) async {
+    final r = await UsApi.logMoment(
+      kind,
+      startedAt: at?.toUtc().toIso8601String(),
+      note: note,
+      shared: shared,
+    );
+    if (r == null || r['error'] != null) return r?['error']?.toString() ?? 'Could not save that moment.';
+    await refresh(force: true);
+    return null;
+  }
+
+  Future<void> removeMoment(String id) async {
+    await UsApi.deleteMoment(id);
+    await refresh(force: true);
+  }
 
   Future<void> refresh({bool force = false, bool card = false}) async {
     if (!force && _lastRefresh != null && DateTime.now().difference(_lastRefresh!) < const Duration(seconds: 20)) return;

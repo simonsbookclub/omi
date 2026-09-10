@@ -73,6 +73,28 @@ class UsApi {
 
   static Future<Map<String, dynamic>?> today({bool refresh = false}) => _call('GET', refresh ? 'today?refresh=1' : 'today');
   static Future<Map<String, dynamic>?> history({int days = 28}) => _call('GET', 'history?days=$days');
+
+  // Joint activity and moments — src/us-together.ts on the worker.
+  static Future<Map<String, dynamic>?> together({int days = 7}) => _call('GET', 'together?days=$days');
+  static Future<Map<String, dynamic>?> moments({int days = 14}) => _call('GET', 'moments?days=$days');
+  /// Logs under whoever the person switch says — no explicit headers, so
+  /// _call falls through to actHeaders. Passing an empty map here would
+  /// STRIP the switch (headers ?? actHeaders), which is the opposite.
+  static Future<Map<String, dynamic>?> logMoment(String kind, {String? startedAt, String? note, bool shared = true}) =>
+      _call('POST', 'moments', body: {
+        'kind': kind,
+        if (startedAt != null) 'started_at': startedAt,
+        if (note != null) 'note': note,
+        'shared': shared,
+      });
+  static Future<Map<String, dynamic>?> deleteMoment(String id) => _call('DELETE', 'moments/$id');
+
+  // Hevy: strength sessions with the sets and weights only a lifting app has.
+  static Future<Map<String, dynamic>?> hevyStatus() => _call('GET', 'hevy');
+  static Future<Map<String, dynamic>?> linkHevy(String apiKey) => _call('POST', 'hevy', body: {'api_key': apiKey});
+  static Future<Map<String, dynamic>?> syncHevy({bool backfill = false}) =>
+      _call('POST', 'hevy/sync', body: {'backfill': backfill});
+  static Future<Map<String, dynamic>?> unlinkHevy() => _call('DELETE', 'hevy');
   static Future<Map<String, dynamic>?> weekly({bool refresh = false}) => _call('GET', refresh ? 'weekly?refresh=1' : 'weekly');
 
   static Future<Map<String, dynamic>?> setScope(String conversationId, String? override) =>
