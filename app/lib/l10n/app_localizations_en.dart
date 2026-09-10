@@ -9844,4 +9844,32 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Turn off to prevent raw audio from being sent to Chronicle. Transcripts and data needed by cloud features may still be sent to Chronicle.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

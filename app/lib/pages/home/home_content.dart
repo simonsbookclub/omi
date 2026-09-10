@@ -1,5 +1,6 @@
 import 'package:omi/utils/platform/platform_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
@@ -80,7 +81,7 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
       builder: (context, convoProvider, child) {
         // Sorted once per build and shared by the header and the rail.
         // Calling _rail() at both use sites sorted the list twice a frame.
-        final rail = _rail(convoProvider);
+        final rail = _rail(context, convoProvider);
         return RefreshIndicator(
           onRefresh: () async {
             HapticFeedback.mediumImpact();
@@ -205,19 +206,19 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
   /// What the rail shows, and what to call it. Before the first conversation
   /// of the morning "today" is empty, and an empty rail under a heading is
   /// worse than showing the last day that had anything in it.
-  ({List<ServerConversation> items, String label}) _rail(ConversationProvider provider) {
+  ({List<ServerConversation> items, String label}) _rail(BuildContext context, ConversationProvider provider) {
     final today = _todaysConversations(provider);
-    if (today.isNotEmpty) return (items: today, label: 'The day so far');
+    if (today.isNotEmpty) return (items: today, label: context.l10n.theDaySoFar);
     final kept = provider.conversations.where((c) => !c.discarded).toList()
       ..sort((a, b) => (b.startedAt ?? b.createdAt).compareTo(a.startedAt ?? a.createdAt));
-    if (kept.isEmpty) return (items: const <ServerConversation>[], label: 'The day so far');
+    if (kept.isEmpty) return (items: const <ServerConversation>[], label: context.l10n.theDaySoFar);
     final last = (kept.first.startedAt ?? kept.first.createdAt).toLocal();
     final now = DateTime.now();
     final yesterday = now.subtract(const Duration(days: 1));
     final isYesterday = last.year == yesterday.year && last.month == yesterday.month && last.day == yesterday.day;
     return (
       items: _conversationsOn(provider, last),
-      label: isYesterday ? 'Yesterday' : _longDate(last),
+      label: isYesterday ? context.l10n.yesterday : _longDate(context, last),
     );
   }
 
@@ -232,14 +233,21 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
     if (minutes <= 0) return null;
     final h = minutes ~/ 60;
     final m = minutes % 60;
-    return h == 0 ? '${m}m' : '${h}h ${m}m';
+    if (h == 0) return '${m}m';
+    return m == 0 ? '${h}h' : '${h}h ${m}m';
   }
 
   Widget _buildDayHeader(BuildContext context, ConversationProvider convoProvider) {
     final today = _todaysConversations(convoProvider);
     final span = _capturedSpan(today);
-    final open = context.watch<ActionItemsProvider>().incompleteItems.length;
-    final recording = context.watch<capture.CaptureProvider>().recordingState == RecordingState.record;
+    // select, not watch. CaptureProvider notifies about once a second while
+    // recording — every transcript batch, every photo chunk, a 5 s metrics
+    // timer — and watch() here registered the dependency on the enclosing
+    // Consumer, so the whole page (rail, recaps, mind map) rebuilt at ~1 Hz,
+    // including while the user was on another tab.
+    final open = context.select<ActionItemsProvider, int>((p) => p.incompleteItems.length);
+    final recording =
+        context.select<capture.CaptureProvider, bool>((p) => p.recordingState == RecordingState.record);
     final now = DateTime.now();
 
     return Padding(
@@ -248,9 +256,9 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(_longDate(now).toUpperCase(), style: AppStyles.sectionLabel),
+              Text(_longDate(context, now).toUpperCase(), style: AppStyles.sectionLabel),
               const SizedBox(height: 4),
-              const Text('Today', style: AppStyles.screenTitle),
+              Text(context.l10n.today, style: AppStyles.screenTitle),
             ]),
           ),
           // Only what is happening now is allowed a colour up here.
@@ -274,7 +282,7 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
               ),
               const SizedBox(width: 7),
               Text(
-                recording ? 'Listening' : 'Idle',
+                recording ? context.l10n.listening : context.l10n.dayIdle,
                 style: TextStyle(
                   color: recording ? AppStyles.live : AppStyles.inkLabel,
                   fontSize: 12.5,
@@ -292,9 +300,11 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
               spacing: 6,
               runSpacing: 2,
               children: [
-                if (today.isNotEmpty) ..._stat('${today.length}', today.length == 1 ? 'conversation' : 'conversations'),
-                if (span != null) ...[_dot(), ..._stat(span, 'captured')],
-                if (open > 0) ...[_dot(), ..._stat('$open', 'open')],
+                // A plural message, not a lowercased noun: Russian needs three
+                // forms after a numeral and "9 разговоры" is simply wrong.
+                if (today.isNotEmpty) _statText(context.l10n.conversationCount(today.length)),
+                if (span != null) ...[_dot(), _stat(span, context.l10n.capturedStat)],
+                if (open > 0) ...[_dot(), _stat('$open', context.l10n.openStat)],
               ],
             ),
           )
@@ -304,26 +314,43 @@ class HomeContentPageState extends State<HomeContentPage> with AutomaticKeepAliv
     );
   }
 
-  List<Widget> _stat(String value, String label) => [
-        Text(value,
+  /// One child, not two: as two Wrap children a run could break between the
+  /// number and the word it belongs to, leaving "4" ending a line and "open"
+  /// starting the next.
+  /// A whole phrase the translator produced, with the leading number bold.
+  static final _leadingNumber = RegExp(r'^(\S+)\s+(.*)$');
+
+  Widget _statText(String phrase) {
+    final match = _leadingNumber.firstMatch(phrase);
+    // A locale that puts the number last just renders plainly, rather than
+    // with a stray leading space where the bold half would have been.
+    if (match == null) {
+      return Text(phrase, style: const TextStyle(color: Color(0x73FFFFFF), fontSize: 13));
+    }
+    return _stat(match.group(1)!, match.group(2)!);
+  }
+
+  Widget _stat(String value, String label) => Text.rich(
+        TextSpan(children: [
+          TextSpan(
+            text: value,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 15,
               fontWeight: FontWeight.w700,
               fontFeatures: [FontFeature.tabularFigures()],
-            )),
-        Text(label, style: const TextStyle(color: Color(0x73FFFFFF), fontSize: 13)),
-      ];
+            ),
+          ),
+          TextSpan(text: ' $label', style: const TextStyle(color: Color(0x73FFFFFF), fontSize: 13)),
+        ]),
+      );
 
   Widget _dot() => const Text('·', style: TextStyle(color: Color(0x29FFFFFF), fontSize: 13));
 
-  static String _longDate(DateTime d) {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
-    ];
-    return '${days[d.weekday - 1]} ${d.day} ${months[d.month - 1]}';
+  /// The app ships forty locales; hardcoded English day names on its main
+  /// screen were the one thing every non-English user would see first.
+  static String _longDate(BuildContext context, DateTime d) {
+    return DateFormat.MMMMEEEEd(Localizations.localeOf(context).toLanguageTag()).format(d);
   }
 
   int _nonDiscardedConversationCount(ConversationProvider provider) {

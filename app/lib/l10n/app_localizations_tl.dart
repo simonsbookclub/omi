@@ -9941,4 +9941,32 @@ class AppLocalizationsTl extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'I-off para hindi maipadala ang raw na audio sa Chronicle. Maaari pa ring ipadala sa Chronicle ang mga transcript at data na kailangan ng mga cloud feature.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

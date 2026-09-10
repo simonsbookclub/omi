@@ -9663,4 +9663,32 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sendRawAudioToOmiDescription => '关闭后不会向 Chronicle 发送原始音频；转写文本及云端功能所需数据仍可能发送至 Chronicle。';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

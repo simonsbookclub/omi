@@ -9846,4 +9846,32 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Vypnutím zabránite odosielaniu nespracovaného zvuku do Chronicle. Prepisy a údaje potrebné pre cloudové funkcie sa môžu naďalej odosielať do Chronicle.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

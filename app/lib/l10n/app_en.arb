@@ -11642,5 +11642,42 @@
     "sendRawAudioToOmiDescription": "Turn off to prevent raw audio from being sent to Chronicle. Transcripts and data needed by cloud features may still be sent to Chronicle.",
     "@sendRawAudioToOmiDescription": {
         "description": "Explains that disabling raw audio forwarding preserves transcript-based cloud features"
+    },
+    "theDaySoFar": "The day so far",
+    "@theDaySoFar": {
+        "description": "Heading over the home screen's time rail"
+    },
+    "dayIdle": "Idle",
+    "@dayIdle": {
+        "description": "Home header pill when the pendant is not recording"
+    },
+    "nothingCapturedBetween": "Nothing captured, {from} to {to}",
+    "@nothingCapturedBetween": {
+        "description": "Shown on the time rail for a stretch of the day with no recording",
+        "placeholders": {
+            "from": {
+                "type": "String"
+            },
+            "to": {
+                "type": "String"
+            }
+        }
+    },
+    "capturedStat": "captured",
+    "@capturedStat": {
+        "description": "Home header: how much of the day was recorded, follows a duration"
+    },
+    "openStat": "open",
+    "@openStat": {
+        "description": "Home header: how many tasks are open, follows a number"
+    },
+    "conversationCount": "{count, plural, =1{{count} conversation} other{{count} conversations}}",
+    "@conversationCount": {
+        "description": "Home header: how many conversations today",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
     }
 }

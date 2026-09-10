@@ -9888,4 +9888,34 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Отключите, чтобы необработанный звук не отправлялся в Chronicle. Расшифровки и данные, необходимые облачным функциям, всё ещё могут отправляться в Chronicle.';
+
+  @override
+  String get theDaySoFar => 'День пока что';
+
+  @override
+  String get dayIdle => 'Не пишет';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Ничего не записано, с $from до $to';
+  }
+
+  @override
+  String get capturedStat => 'записано';
+
+  @override
+  String get openStat => 'открыто';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count разговора',
+      many: '$count разговоров',
+      few: '$count разговора',
+      one: '$count разговор',
+    );
+    return '$_temp0';
+  }
 }

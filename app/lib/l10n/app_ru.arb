@@ -3251,5 +3251,11 @@
     "accountCutoverMigrationRollbackMessage": "Ваш аккаунт на обслуживании после отката миграции. Часть более новых данных может быть изолирована.",
     "accountCutoverOpenStore": "Открыть магазин",
     "sendRawAudioToOmi": "Отправлять необработанный звук в Chronicle",
-    "sendRawAudioToOmiDescription": "Отключите, чтобы необработанный звук не отправлялся в Chronicle. Расшифровки и данные, необходимые облачным функциям, всё ещё могут отправляться в Chronicle."
+    "sendRawAudioToOmiDescription": "Отключите, чтобы необработанный звук не отправлялся в Chronicle. Расшифровки и данные, необходимые облачным функциям, всё ещё могут отправляться в Chronicle.",
+    "theDaySoFar": "День пока что",
+    "dayIdle": "Не пишет",
+    "nothingCapturedBetween": "Ничего не записано, с {from} до {to}",
+    "capturedStat": "записано",
+    "openStat": "открыто",
+    "conversationCount": "{count, plural, one{{count} разговор} few{{count} разговора} many{{count} разговоров} other{{count} разговора}}"
 }

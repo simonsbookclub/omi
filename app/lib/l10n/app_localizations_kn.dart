@@ -9882,4 +9882,32 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Chronicle ಗೆ ಕಚ್ಚಾ ಆಡಿಯೊ ಕಳುಹಿಸುವುದನ್ನು ತಡೆಯಲು ಇದನ್ನು ಆಫ್ ಮಾಡಿ. ಪ್ರತಿಲಿಪಿಗಳು ಮತ್ತು ಕ್ಲೌಡ್ ವೈಶಿಷ್ಟ್ಯಗಳಿಗೆ ಅಗತ್ಯವಾದ ಡೇಟಾವನ್ನು ಇನ್ನೂ Chronicle ಗೆ ಕಳುಹಿಸಬಹುದು.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

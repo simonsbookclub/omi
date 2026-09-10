@@ -9685,4 +9685,32 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       '끄면 원본 오디오가 Chronicle로 전송되지 않습니다. 텍스트 변환 결과와 클라우드 기능에 필요한 데이터는 계속 Chronicle로 전송될 수 있습니다.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

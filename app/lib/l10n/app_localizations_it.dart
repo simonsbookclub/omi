@@ -9910,4 +9910,32 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Disattiva per impedire l\'invio dell\'audio grezzo a Chronicle. Le trascrizioni e i dati necessari alle funzioni cloud possono ancora essere inviati a Chronicle.';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }

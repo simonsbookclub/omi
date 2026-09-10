@@ -60,10 +60,15 @@ class AppStyles {
   /// A control sitting on top of a card.
   static const Color backgroundRaised = Color(0xFF26262E);
 
-  /// Was #35343B, a warmer grey that sat a long way off the card colour.
-  /// The scale reads better as one step: #1F1F25 -> #26262E. Kept as a name
-  /// because ~70 places call it tertiary.
-  static const Color backgroundTertiary = backgroundRaised;
+  /// #35343B. Do NOT collapse this into `backgroundRaised` — it was tried on
+  /// 2026-09-10 and reverted the same day. Tertiary is not only a control
+  /// fill: it is the border on the chat input, the hairlines inside the score
+  /// card, the unfilled half of every progress track, the highlight of
+  /// fourteen shimmer skeletons, and `colorScheme.secondary`, which under
+  /// Material 2 is the "on" colour of every Switch without an explicit one.
+  /// Against #1F1F25 it carries 1.33:1; #26262E carries 1.09:1, which erases
+  /// all of them.
+  static const Color backgroundTertiary = Color(0xFF35343B);
 
   /// A sheet, which sits above everything.
   static const Color backgroundSheet = Color(0xFF17171C);

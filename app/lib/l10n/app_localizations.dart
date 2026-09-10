@@ -18344,6 +18344,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Turn off to prevent raw audio from being sent to Chronicle. Transcripts and data needed by cloud features may still be sent to Chronicle.'**
   String get sendRawAudioToOmiDescription;
+
+  /// Heading over the home screen's time rail
+  ///
+  /// In en, this message translates to:
+  /// **'The day so far'**
+  String get theDaySoFar;
+
+  /// Home header pill when the pendant is not recording
+  ///
+  /// In en, this message translates to:
+  /// **'Idle'**
+  String get dayIdle;
+
+  /// Shown on the time rail for a stretch of the day with no recording
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing captured, {from} to {to}'**
+  String nothingCapturedBetween(String from, String to);
+
+  /// Home header: how much of the day was recorded, follows a duration
+  ///
+  /// In en, this message translates to:
+  /// **'captured'**
+  String get capturedStat;
+
+  /// Home header: how many tasks are open, follows a number
+  ///
+  /// In en, this message translates to:
+  /// **'open'**
+  String get openStat;
+
+  /// Home header: how many conversations today
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{{count} conversation} other{{count} conversations}}'**
+  String conversationCount(int count);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -9861,4 +9861,32 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get sendRawAudioToOmiDescription =>
       'Chronicle-তে কাঁচা অডিও পাঠানো বন্ধ করতে এটি বন্ধ করুন। ট্রান্সক্রিপ্ট ও ক্লাউড ফিচারের প্রয়োজনীয় ডেটা এখনও Chronicle-তে পাঠানো হতে পারে।';
+
+  @override
+  String get theDaySoFar => 'The day so far';
+
+  @override
+  String get dayIdle => 'Idle';
+
+  @override
+  String nothingCapturedBetween(String from, String to) {
+    return 'Nothing captured, $from to $to';
+  }
+
+  @override
+  String get capturedStat => 'captured';
+
+  @override
+  String get openStat => 'open';
+
+  @override
+  String conversationCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conversations',
+      one: '$count conversation',
+    );
+    return '$_temp0';
+  }
 }
