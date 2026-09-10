@@ -1,5 +1,6 @@
 import Foundation
 import HealthKit
+import UIKit
 import Flutter
 
 class AppleHealthService {
@@ -46,8 +47,28 @@ class AppleHealthService {
         startBackgroundDelivery()
     }
 
+    /// iOS encrypts HealthKit while the device is locked: a query then returns
+    /// nothing at all, not an error. That is why a wake at 12:26 today asked
+    /// for four hours of samples and got zero while the phone held four hours
+    /// of them. So we also listen for the unlock itself and sync the moment
+    /// the data becomes readable — which, on a phone in a pocket, is the
+    /// earliest anything can move.
+    private func watchForUnlock() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.protectedDataDidBecomeAvailableNotification,
+            object: nil, queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            for (identifier, name, unit, unitLabel) in self.backgroundTypes {
+                guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
+                self.uploadNewSamples(type: type, name: name, unit: unit, unitLabel: unitLabel) {}
+            }
+        }
+    }
+
     func startBackgroundDelivery() {
         guard HKHealthStore.isHealthDataAvailable(), observerQueries.isEmpty else { return }
+        watchForUnlock()
         for (identifier, name, unit, unitLabel) in backgroundTypes {
             guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
             healthStore.enableBackgroundDelivery(for: type, frequency: .immediate) { ok, error in
