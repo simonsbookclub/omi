@@ -381,7 +381,9 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   /// to do here — the reader's job.
   Widget _bothBodies(UsProvider us, Map<String, dynamic>? mine) {
     final theirs = us.partnerFeatures;
-    final myName = us.isActingAsPartner ? us.ownerName : us.ownerName;
+    // `couple.me` is whoever the person switch currently points at, because
+    // the whole payload is fetched under that act-as header.
+    final myName = us.ownerName;
     final theirName = us.partnerBodyName == 'Partner' ? us.partnerName : us.partnerBodyName;
     if (theirs == null || theirs.isEmpty) {
       // Nothing shared: fall back to the single-body card rather than an

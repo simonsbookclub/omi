@@ -55,7 +55,9 @@ class _MomentSheetState extends State<_MomentSheet> {
   Widget build(BuildContext context) {
     final us = context.watch<UsProvider>();
     final kinds = us.momentKinds;
-    final whose = us.isActingAsPartner ? us.ownerName : us.ownerName;
+    // Same rule as the period log: whose moment this is follows the person
+    // switch at the top of the tab, and `ownerName` already reflects it.
+    final whose = us.ownerName;
     return SafeArea(
       top: false,
       child: Container(
