@@ -228,7 +228,26 @@ class RecordingTransferCoordinator {
 
       final mayUpload = trigger == WakeTrigger.userRetry || _autoUploadEnabled();
       if (!mayUpload) {
-        if (reconcileFailed) _scheduleRetry('reconcile pass failed');
+        if (reconcileFailed) {
+          _scheduleRetry('reconcile pass failed');
+        } else {
+          // Come back and look again.
+          //
+          // The gate is right to refuse: a drain puts the pendant into flash
+          // download mode, which stops live streaming for its duration, so it
+          // must wait for a quiet link. But refusing used to END the story —
+          // nothing re-checked until some unrelated event happened to wake
+          // the coordinator, and while the pendant is connected the gate's
+          // own condition (90 seconds since the last live audio packet) is
+          // almost never true at the moment something else wakes it. So the
+          // drain effectively never ran: three recordings in a fortnight
+          // against dozens of capture gaps.
+          //
+          // The backoff settles at sixty seconds, which is the heartbeat this
+          // wants, and _scheduleRetry is already foreground-only, so this
+          // costs nothing in the background where it could not act anyway.
+          _scheduleRetry('live audio still holding the link');
+        }
         return;
       }
 
