@@ -87,9 +87,11 @@ class UsTogetherCard extends StatelessWidget {
         ]),
         const SizedBox(height: 11),
         Text(
-          activity['evidence'] == 'workout'
-              ? 'Matched by both heart rates rising in the same window, confirmed by a tagged workout.'
-              : 'Matched by both heart rates rising in the same window.',
+          switch (activity['evidence']) {
+            'workout' => 'Matched by both heart rates rising in the same window, confirmed by a tagged workout.',
+            'ring' => 'Matched by both heart rates rising in the same window, confirmed by the ring calling it hard.',
+            _ => 'Matched by both heart rates rising in the same window.',
+          },
           style: const TextStyle(color: Color(0x42FFFFFF), fontSize: 11, height: 1.4),
         ),
       ],
