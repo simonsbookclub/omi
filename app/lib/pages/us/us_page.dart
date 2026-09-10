@@ -1030,11 +1030,17 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
           onChanged: (v) => us.setSharing(key, v),
         );
     return _card(children: [
-      Text('What ${couple['partner']?['name'] ?? 'your partner'} can see of yours', style: const TextStyle(color: Colors.white38, fontSize: 12, letterSpacing: 1.2)),
+      UsLabel('What ${couple['partner']?['name'] ?? 'your partner'} can see of yours'),
+      const SizedBox(height: 2),
+      const Text(
+        'Moments start off. A tag you set in the Oura app arrives here on its own, and nothing you did not choose to show should appear on someone else\'s screen.',
+        style: TextStyle(color: UsInk.faint, fontSize: 11.5, height: 1.4),
+      ),
       sw('share_sleep', 'Sleep'),
       sw('share_readiness', 'Readiness, HRV, heart rate'),
       sw('share_cycle', 'Cycle phase'),
-      sw('share_conflict_factors', 'Conflict factors'),
+      sw('share_conflict_factors', 'Conflict factors, workouts, and what you did together'),
+      sw('share_moments', 'Moments you mark, and tags from your Oura app'),
       const Divider(color: Colors.white12),
       Row(children: [
         TextButton(onPressed: () => us.setPaused(true), child: const Text('Pause Us', style: TextStyle(color: Colors.white70))),
