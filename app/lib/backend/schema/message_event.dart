@@ -44,6 +44,8 @@ abstract class MessageEvent {
         return CommandResultEvent.fromJson(json);
       case 'wake_heard':
         return WakeHeardEvent.fromJson(json);
+      case 'live_heart_rate':
+        return LiveHeartRateEvent.fromJson(json);
       case 'us_card':
       case 'us_prompt':
       case 'us_couple':
@@ -54,6 +56,19 @@ abstract class MessageEvent {
         // Return a generic event or throw an error if the type is unknown
         return UnknownEvent(eventType: json['type'] ?? 'unknown');
     }
+  }
+}
+
+/// The server asking the watch to stream heart rate, because the two partners
+/// are talking right now. Nothing on the body streams on its own — the ring
+/// reaches Oura hours later — so the watch runs a sensor session for the
+/// minutes that matter and stops when the conversation ends.
+class LiveHeartRateEvent extends MessageEvent {
+  final bool on;
+  LiveHeartRateEvent({required this.on, required super.eventType});
+
+  factory LiveHeartRateEvent.fromJson(Map<String, dynamic> json) {
+    return LiveHeartRateEvent(on: json['on'] == true, eventType: json['type'] ?? 'live_heart_rate');
   }
 }
 

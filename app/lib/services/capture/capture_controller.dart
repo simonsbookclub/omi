@@ -63,6 +63,7 @@ import 'package:omi/backend/schema/message_event.dart'
         ConversationUpdatedEvent,
         CommandResultEvent,
         WakeHeardEvent,
+        LiveHeartRateEvent,
         UsEvent,
         SpeakerLabelSuggestionEvent,
         TranslationEvent,
@@ -1881,6 +1882,16 @@ class CaptureController extends ChangeNotifier
   DateTime? _pendingCommandWindow;
   static const Duration _commandWindowHold = Duration(seconds: 45);
 
+  static const MethodChannel _watchHeartRateChannel = MethodChannel('com.simonsbookclub.watchhr');
+
+  Future<void> _setWatchLiveHeartRate(bool on) async {
+    try {
+      await _watchHeartRateChannel.invokeMethod('setLiveHeartRate', {'on': on});
+    } catch (e) {
+      Logger.debug('live heart rate toggle failed: $e');
+    }
+  }
+
   void _requestCommandWindow() {
     if (_socket?.state == SocketServiceState.connected) {
       _socket?.send(jsonEncode({'type': 'command_window', 'at': DateTime.now().toUtc().toIso8601String()}));
@@ -2090,6 +2101,14 @@ class CaptureController extends ChangeNotifier
     // conversation is created; refetch so the names show without a restart.
     if (event is ConversationUpdatedEvent) {
       _handleConversationUpdatedEvent(event.memoryId);
+      return;
+    }
+
+    // SIMONSBOOKCLUB: the server says the two partners are talking right now,
+    // so ask the watch to stream heart rate for the length of it. Handed
+    // straight to the native side, which owns the watch link.
+    if (event is LiveHeartRateEvent) {
+      _setWatchLiveHeartRate(event.on);
       return;
     }
 

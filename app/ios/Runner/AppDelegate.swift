@@ -363,6 +363,17 @@ final class QuickActionsIconPatcher: NSObject {
       self?.handleMethodCall(call, result: result)
     }
     
+    // SIMONSBOOKCLUB: the watch's sensor session, switched on for the length
+    // of a conversation the two partners are having.
+    let watchHeartRateChannel = FlutterMethodChannel(
+      name: "com.simonsbookclub.watchhr", binaryMessenger: controller!.binaryMessenger)
+    watchHeartRateChannel.setMethodCallHandler { [weak self] call, result in
+      guard call.method == "setLiveHeartRate" else { result(FlutterMethodNotImplemented); return }
+      let on = ((call.arguments as? [String: Any])?["on"] as? Bool) ?? false
+      self?.setWatchLiveHeartRate(on)
+      result(true)
+    }
+
     // Create Apple Reminders method channel
     appleRemindersChannel = FlutterMethodChannel(name: "com.omi.apple_reminders", binaryMessenger: controller!.binaryMessenger)
     appleRemindersChannel?.setMethodCallHandler { [weak self] (call, result) in
@@ -662,6 +673,20 @@ extension AppDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
 
+
+    /// Ask the watch to start or stop its sensor session. Sent as a message
+    /// when the watch is reachable and queued otherwise, because the request
+    /// matters for the length of a conversation rather than this instant.
+    func setWatchLiveHeartRate(_ on: Bool) {
+        guard WCSession.isSupported() else { return }
+        let payload: [String: Any] = ["type": "set_live_heart_rate", "on": on]
+        let wc = WCSession.default
+        if wc.isReachable {
+            wc.sendMessage(payload, replyHandler: nil, errorHandler: { _ in wc.transferUserInfo(payload) })
+        } else {
+            wc.transferUserInfo(payload)
+        }
+    }
 
     /// Post one live reading straight to the server, using the same credentials
     /// the background Health uploader stores. Done natively because the watch

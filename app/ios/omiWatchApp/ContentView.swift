@@ -163,6 +163,13 @@ final class LiveHeartRate: NSObject, ObservableObject {
 
     func toggle() { isLive ? stop() : start() }
 
+    /// Driven by the phone, which is driven by the server noticing that the
+    /// two partners are talking. The wearer does not have to remember it.
+    func setLive(_ on: Bool) {
+        if on && !isLive { start() }
+        if !on && isLive { stop() }
+    }
+
     func start() {
         guard HKHealthStore.isHealthDataAvailable() else {
             problem = "No HealthKit on this watch"
@@ -271,6 +278,31 @@ extension LiveHeartRate: HKLiveWorkoutBuilderDelegate {
     }
 }
 
+/// Receives the phone's request and drives the session. Registered once, for
+/// the lifetime of the app, so it works whether or not the heart-rate page is
+/// on screen.
+final class WatchHeartRateLink: NSObject, WCSessionDelegate {
+    static let shared = WatchHeartRateLink()
+    weak var live: LiveHeartRate?
+
+    func activate() {
+        guard WCSession.isSupported() else { return }
+        let s = WCSession.default
+        if s.delegate == nil { s.delegate = self }
+        if s.activationState != .activated { s.activate() }
+    }
+
+    private func handle(_ payload: [String: Any]) {
+        guard payload["type"] as? String == "set_live_heart_rate" else { return }
+        let on = payload["on"] as? Bool ?? false
+        Task { @MainActor in self.live?.setLive(on) }
+    }
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {}
+    func session(_ session: WCSession, didReceiveMessage message: [String: Any]) { handle(message) }
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) { handle(userInfo) }
+}
+
 /// The control the wearer actually taps.
 struct LiveHeartRateView: View {
     @StateObject private var live = LiveHeartRate()
@@ -293,5 +325,9 @@ struct LiveHeartRateView: View {
                 .tint(live.isLive ? .red : .green)
         }
         .padding()
+        .onAppear {
+            WatchHeartRateLink.shared.live = live
+            WatchHeartRateLink.shared.activate()
+        }
     }
 }
