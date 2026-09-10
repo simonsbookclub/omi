@@ -103,6 +103,13 @@ class CaptureController extends ChangeNotifier
   // streaming and no audio byte has arrived for _audioStallSeconds, restart
   // the device stream the way a fresh connection would; on the third stall
   // in a row, drop the socket too so the keepalive rebuilds everything.
+  /// Ten minutes of 15-second ticks. Long enough for a pendant to come back
+  /// from a pocket or a walk between rooms; short enough not to spin forever
+  /// once it is genuinely off. DeviceProvider._onDeviceConnected re-arms the
+  /// loop when the link returns after that.
+  static const int _keepAliveMaxTicksWithoutDevice = 40;
+  int _keepAliveTicksWithoutDevice = 0;
+
   static const int _audioStallSeconds = 45;
   Timer? _audioWatchdogTimer;
   int _audioRestarts = 0;
@@ -1815,6 +1822,7 @@ class CaptureController extends ChangeNotifier
   }
 
   void _startKeepAliveServices() {
+    _keepAliveTicksWithoutDevice = 0;
     _keepAliveTimer?.cancel();
     // SIMONSBOOKCLUB: try to reconnect within two seconds of a drop instead
     // of waiting for the first 15 s tick — with the relay now holding
@@ -1838,10 +1846,28 @@ class CaptureController extends ChangeNotifier
       }
 
       _keepAliveLastExecutedAt = DateTime.now();
-      if (!recordingDeviceServiceReady || _socket?.state == SocketServiceState.connected) {
+      if (_socket?.state == SocketServiceState.connected) {
         t.cancel();
         return;
       }
+
+      // A missing device is a reason to WAIT, not to give up.
+      //
+      // recordingDeviceServiceReady does not include RecordingState.deviceRecord,
+      // so when the pendant's BLE link dropped while the socket was also down,
+      // _recordingDevice went null (device_provider.dart onDeviceDisconnected)
+      // while recordingState stayed deviceRecord — and the next tick cancelled
+      // the only reconnect loop in the app, permanently. Nothing re-armed it
+      // except BLE coming back by itself. Now it keeps waiting, bounded, so a
+      // link that returns inside the window is picked up.
+      if (!recordingDeviceServiceReady) {
+        _keepAliveTicksWithoutDevice++;
+        if (_keepAliveTicksWithoutDevice <= _keepAliveMaxTicksWithoutDevice) return;
+        Logger.debug("[Provider] keep alive - no device for ten minutes, standing down");
+        t.cancel();
+        return;
+      }
+      _keepAliveTicksWithoutDevice = 0;
 
       if (!AuthService.instance.isSignedIn()) {
         Logger.debug("[Provider] keep alive - user not signed in, cancelling reconnect");
