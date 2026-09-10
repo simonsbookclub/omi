@@ -266,7 +266,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       const SizedBox(height: 12),
       _quickActions(us, me),
       const SizedBox(height: 12),
-      _bothBodies(us, me),
+      _bothBodies(us),
       const SizedBox(height: 12),
       _weekStrip(us),
       const SizedBox(height: 12),
@@ -381,7 +381,12 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   /// Both of you in one card, one row per measure. The old screen stacked two
   /// identical cards, which made comparing — the only thing you actually want
   /// to do here — the reader's job.
-  Widget _bothBodies(UsProvider us, Map<String, dynamic>? mine) {
+  Widget _bothBodies(UsProvider us) {
+    // Both sides come from the same place on purpose. This used to be handed
+    // `couple['me']` — the user record, {id, name, voice} — so every one of
+    // your rows read null and your whole column rendered as dashes while hers
+    // filled in (2026-09-10).
+    final mine = us.myFeatures;
     final theirs = us.partnerFeatures;
     // `couple.me` is whoever the person switch currently points at, because
     // the whole payload is fetched under that act-as header.
