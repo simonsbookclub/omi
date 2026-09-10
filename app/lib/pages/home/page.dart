@@ -347,6 +347,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver, Ticker
       // sync-plus-status-beacon — the only client-side diagnostics a
       // release build has.
       AppleHealthService().syncGranularSamples(force: true);
+      // Let HealthKit wake the app and upload on its own, so a reading does
+      // not wait for the next time this screen is opened.
+      AppleHealthService().configureBackgroundSync();
     });
 
     // Navigate uri

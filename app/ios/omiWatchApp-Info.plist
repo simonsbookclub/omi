@@ -2,9 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Reads your heart rate on the watch so the desktop panel can show it live rather than an hour behind.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Starts a session on the watch so heart rate is measured continuously while it runs.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>workout-processing</string>
 	</array>
 </dict>
 </plist>

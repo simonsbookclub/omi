@@ -5,6 +5,114 @@ import Flutter
 class AppleHealthService {
     private let healthStore = HKHealthStore()
 
+    // MARK: - Background delivery
+    //
+    // Until 2026-09-10 the only thing that pushed Apple Health to the server
+    // was opening the app: the Dart side called syncGranularSamples on the
+    // home screen. So a heart rate recorded at 06:00 sat on the phone until
+    // the app was next foregrounded, and the desktop panel showed a reading
+    // two hours stale with no way to know why.
+    //
+    // HealthKit can wake the app when new samples land. iOS caps most
+    // quantity types to roughly hourly however often you ask, so this is not
+    // live — but it turns "whenever you open the app" into "on its own,
+    // through the day", which is the difference that matters here.
+    //
+    // The upload happens here in Swift rather than round-tripping to Dart,
+    // because in a background wake the Flutter engine may not be running.
+    // Dart hands over the base URL and token once, on every launch.
+
+    private static let configURLKey = "healthSyncBaseUrl"
+    private static let configTokenKey = "healthSyncToken"
+    private static let anchorKeyPrefix = "healthAnchor:"
+    private var observerQueries: [HKObserverQuery] = []
+
+    /// Types worth waking the app for. Deliberately short: each one costs a
+    /// wake, and these are the figures a glance actually reads.
+    private var backgroundTypes: [(HKQuantityTypeIdentifier, String, HKUnit, String)] {
+        var out: [(HKQuantityTypeIdentifier, String, HKUnit, String)] = []
+        out.append((.heartRate, "heart_rate", HKUnit.count().unitDivided(by: .minute()), "bpm"))
+        out.append((.heartRateVariabilitySDNN, "hrv_sdnn", HKUnit.secondUnit(with: .milli), "ms"))
+        out.append((.restingHeartRate, "resting_heart_rate", HKUnit.count().unitDivided(by: .minute()), "bpm"))
+        return out
+    }
+
+    func configureBackgroundSync(baseUrl: String, token: String) {
+        let defaults = UserDefaults.standard
+        defaults.set(baseUrl, forKey: Self.configURLKey)
+        defaults.set(token, forKey: Self.configTokenKey)
+        startBackgroundDelivery()
+    }
+
+    func startBackgroundDelivery() {
+        guard HKHealthStore.isHealthDataAvailable(), observerQueries.isEmpty else { return }
+        for (identifier, name, unit, unitLabel) in backgroundTypes {
+            guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
+            healthStore.enableBackgroundDelivery(for: type, frequency: .immediate) { ok, error in
+                if !ok { print("[health] background delivery refused for \(name): \(String(describing: error))") }
+            }
+            let observer = HKObserverQuery(sampleType: type, predicate: nil) { [weak self] _, completion, _ in
+                self?.uploadNewSamples(type: type, name: name, unit: unit, unitLabel: unitLabel) {
+                    // Tell HealthKit we are done, or it stops waking us.
+                    completion()
+                }
+            }
+            healthStore.execute(observer)
+            observerQueries.append(observer)
+        }
+    }
+
+    /// Everything since the last anchor for one type, straight to the server.
+    private func uploadNewSamples(
+        type: HKQuantityType, name: String, unit: HKUnit, unitLabel: String,
+        done: @escaping () -> Void
+    ) {
+        let defaults = UserDefaults.standard
+        guard let base = defaults.string(forKey: Self.configURLKey),
+              let token = defaults.string(forKey: Self.configTokenKey),
+              let url = URL(string: base + "v1/integrations/apple-health/samples") else {
+            done()
+            return
+        }
+        let anchorKey = Self.anchorKeyPrefix + name
+        var anchor: HKQueryAnchor?
+        if let data = defaults.data(forKey: anchorKey) {
+            anchor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: HKQueryAnchor.self, from: data)
+        }
+        let query = HKAnchoredObjectQuery(
+            type: type, predicate: nil, anchor: anchor, limit: HKObjectQueryNoLimit
+        ) { _, samples, _, newAnchor, _ in
+            let rows: [[String: Any]] = (samples as? [HKQuantitySample] ?? []).compactMap { s in
+                guard s.quantity.is(compatibleWith: unit) else { return nil }
+                return [
+                    "type": name,
+                    "start_ms": s.startDate.timeIntervalSince1970 * 1000,
+                    "end_ms": s.endDate.timeIntervalSince1970 * 1000,
+                    "value": s.quantity.doubleValue(for: unit),
+                    "unit": unitLabel,
+                ]
+            }
+            guard !rows.isEmpty else { done(); return }
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "PUT"
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try? JSONSerialization.data(withJSONObject: ["samples": rows])
+            URLSession.shared.dataTask(with: request) { _, response, _ in
+                let code = (response as? HTTPURLResponse)?.statusCode ?? 0
+                // The anchor only moves on a confirmed write, so a failed
+                // upload is retried on the next wake instead of being lost.
+                if code == 200, let newAnchor,
+                   let data = try? NSKeyedArchiver.archivedData(withRootObject: newAnchor, requiringSecureCoding: true) {
+                    defaults.set(data, forKey: anchorKey)
+                }
+                done()
+            }.resume()
+        }
+        healthStore.execute(query)
+    }
+
     // Health data types we want to read
     private var readTypes: Set<HKObjectType> {
         var types = Set<HKObjectType>()
@@ -100,6 +208,14 @@ class AppleHealthService {
             hasPermission(result: result)
         case "requestPermission":
             requestPermission(result: result)
+        case "configureBackgroundSync":
+            let args = call.arguments as? [String: Any] ?? [:]
+            let base = args["baseUrl"] as? String ?? ""
+            let token = args["token"] as? String ?? ""
+            if base.isEmpty || token.isEmpty { result(false) } else {
+                configureBackgroundSync(baseUrl: base, token: token)
+                result(true)
+            }
         case "probeAccess":
             probeAccess(result: result)
         case "getHealthSummary":

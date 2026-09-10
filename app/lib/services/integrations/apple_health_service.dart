@@ -1,6 +1,8 @@
 import 'package:flutter/services.dart';
 
 import 'package:omi/backend/http/api/integrations.dart';
+import 'package:omi/backend/http/shared.dart';
+import 'package:omi/env/env.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/utils/logger.dart';
 import 'package:omi/utils/platform/platform_service.dart';
@@ -191,6 +193,25 @@ class AppleHealthService {
   /// days back; after that, since the last successful sync (minus a day of
   /// overlap — HealthKit backfills late, e.g. sleep arrives on morning
   /// unlock, and the server dedupes). Throttled to once per hour.
+  /// Hand the native side the base URL and token so HealthKit can wake the
+  /// app and upload on its own. Without this the only push was opening the
+  /// app, which left the desktop panel hours behind (2026-09-10).
+  Future<bool> configureBackgroundSync() async {
+    if (!isAvailable) return false;
+    try {
+      final ok = await _channel.invokeMethod<bool>('configureBackgroundSync', {
+        'baseUrl': Env.apiBaseUrl ?? '',
+        // getAuthHeader returns the whole header value; the native side adds
+        // its own "Bearer ".
+        'token': (await getAuthHeader()).replaceFirst(RegExp(r'^Bearer\s+'), ''),
+      });
+      return ok ?? false;
+    } catch (e) {
+      Logger.debug('configureBackgroundSync failed: $e');
+      return false;
+    }
+  }
+
   Future<bool> syncGranularSamples({bool force = false}) async {
     if (!isAvailable) return false;
     final prefs = SharedPreferencesUtil();

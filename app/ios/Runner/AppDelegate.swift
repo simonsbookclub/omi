@@ -661,6 +661,31 @@ func registerPlugins(registry: FlutterPluginRegistry) {
 extension AppDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) { }
+
+
+    /// Post one live reading straight to the server, using the same credentials
+    /// the background Health uploader stores. Done natively because the watch
+    /// can send these while the Flutter engine is not running.
+    func forwardLiveHeartRate(_ payload: [String: Any]) {
+        guard let bpm = payload["bpm"] as? Double,
+              let atMs = payload["at_ms"] as? Double,
+              let base = UserDefaults.standard.string(forKey: "healthSyncBaseUrl"),
+              let token = UserDefaults.standard.string(forKey: "healthSyncToken"),
+              let url = URL(string: base + "v1/integrations/apple-health/samples") else { return }
+        let row: [String: Any] = [
+            "type": "heart_rate",
+            "start_ms": atMs,
+            "end_ms": atMs,
+            "value": bpm,
+            "unit": "bpm",
+        ]
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: ["samples": [row]])
+        URLSession.shared.dataTask(with: request).resume()
+    }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
         print("Session Watch Become Inactive")
@@ -672,6 +697,12 @@ extension AppDelegate: WCSessionDelegate {
     
     // Receive a message from watch (foreground/active)
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        // Live heart rate from the watch's sensor session. Not a "method"
+        // message — it carries a reading, so it is handled before the switch.
+        if message["type"] as? String == "live_heart_rate" {
+            forwardLiveHeartRate(message)
+            return
+        }
         Task {
             guard let method = message["method"] as? String else {
                 return
@@ -783,6 +814,12 @@ extension AppDelegate: WCSessionDelegate {
     // Receive user info from watch (background/offline)
     // Used for 1.5 second audio chunks when screen is off or app is backgrounded
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
+        // Queued live heart rate from the watch, delivered after the phone
+        // became reachable again.
+        if userInfo["type"] as? String == "live_heart_rate" {
+            forwardLiveHeartRate(userInfo)
+            return
+        }
         
         Task {
             guard let method = userInfo["method"] as? String else {
