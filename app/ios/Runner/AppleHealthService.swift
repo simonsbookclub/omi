@@ -24,7 +24,9 @@ class AppleHealthService {
 
     private static let configURLKey = "healthSyncBaseUrl"
     private static let configTokenKey = "healthSyncToken"
-    private static let anchorKeyPrefix = "healthAnchor:"
+    /// How far back each background wake re-reads. Wide enough to cover a
+    /// watch that delivers a batch late, small enough to stay a quick upload.
+    private static let lookbackSeconds: TimeInterval = 6 * 3600
     private var observerQueries: [HKObserverQuery] = []
 
     /// Types worth waking the app for. Deliberately short: each one costs a
@@ -74,14 +76,17 @@ class AppleHealthService {
             done()
             return
         }
-        let anchorKey = Self.anchorKeyPrefix + name
-        var anchor: HKQueryAnchor?
-        if let data = defaults.data(forKey: anchorKey) {
-            anchor = try? NSKeyedUnarchiver.unarchivedObject(ofClass: HKQueryAnchor.self, from: data)
-        }
+        // Deliberately NOT an anchored query. Anchors advance past samples the
+        // watch delivers late, and on 2026-09-10 that left a two-hour hole:
+        // background delivery fired and sent a single reading while the phone
+        // held two hours of them, which only surfaced when the app was next
+        // opened. A plain date window cannot skip anything, and the server
+        // stores samples idempotently, so re-sending is free.
+        let since = Date().addingTimeInterval(-Self.lookbackSeconds)
+        let predicate = HKQuery.predicateForSamples(withStart: since, end: nil, options: .strictStartDate)
         let query = HKAnchoredObjectQuery(
-            type: type, predicate: nil, anchor: anchor, limit: HKObjectQueryNoLimit
-        ) { _, samples, _, newAnchor, _ in
+            type: type, predicate: predicate, anchor: nil, limit: HKObjectQueryNoLimit
+        ) { _, samples, _, _, _ in
             let rows: [[String: Any]] = (samples as? [HKQuantitySample] ?? []).compactMap { s in
                 guard s.quantity.is(compatibleWith: unit) else { return nil }
                 return [
@@ -99,16 +104,7 @@ class AppleHealthService {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = try? JSONSerialization.data(withJSONObject: ["samples": rows])
-            URLSession.shared.dataTask(with: request) { _, response, _ in
-                let code = (response as? HTTPURLResponse)?.statusCode ?? 0
-                // The anchor only moves on a confirmed write, so a failed
-                // upload is retried on the next wake instead of being lost.
-                if code == 200, let newAnchor,
-                   let data = try? NSKeyedArchiver.archivedData(withRootObject: newAnchor, requiringSecureCoding: true) {
-                    defaults.set(data, forKey: anchorKey)
-                }
-                done()
-            }.resume()
+            URLSession.shared.dataTask(with: request) { _, _, _ in done() }.resume()
         }
         healthStore.execute(query)
     }
