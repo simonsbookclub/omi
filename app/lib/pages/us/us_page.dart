@@ -413,8 +413,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       [n(mine?['stress_high_minutes'], ' min'), 'Stress', n(theirs['stress_high_minutes'], ' min')],
       [n(mine?['steps']), 'Steps', n(theirs['steps'])],
       [n(mine?['workout_minutes'], ' min'), 'Moved', n(theirs['workout_minutes'], ' min')],
-      [mine?['cycle_day'] == null ? null : 'Day ${mine!['cycle_day']}', 'Cycle',
-        theirs['cycle_day'] == null ? null : 'Day ${theirs['cycle_day']}'],
+      [_cycleText(mine), 'Cycle', _cycleText(theirs)],
     ];
 
     return UsCard(padding: const EdgeInsets.fromLTRB(18, 16, 18, 6), children: [
@@ -438,6 +437,20 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         if (r[0] != null || r[2] != null) _bothRow(r[0], r[1]!, r[2]),
       const SizedBox(height: 8),
     ]);
+  }
+
+  /// A cycle the model has run past without a new start is unknown, not a
+  /// day number. Since the ring became the only source there is no human
+  /// backstop, so a missed tag has to show rather than keep counting.
+  String? _cycleText(Map<String, dynamic>? f) {
+    if (f == null) return null;
+    final day = f['cycle_day'];
+    if (day == null) return null;
+    if (f['cycle_stale'] == true) {
+      final over = f['cycle_overdue_days'];
+      return over == null ? 'unknown' : '$over days overdue';
+    }
+    return 'Day $day';
   }
 
   Widget _bothRow(String? left, String label, String? right) => Container(
