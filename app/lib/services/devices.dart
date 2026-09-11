@@ -129,13 +129,28 @@ class DeviceService {
     }
   }
 
+  /// Run a teardown step, but never let it hold the connection mutex forever.
+  ///
+  /// Neither disconnect() nor dispose() carries a timeout of its own, and the
+  /// case that brings us here is a link that has already stopped answering —
+  /// exactly the one where a native call can sit unanswered. Blocking here
+  /// would hold _mutex and wedge every future connection attempt in the app,
+  /// which is worse than the stall being recovered from.
+  Future<void> _boundedTeardown(Future<void> Function() step, String what) async {
+    try {
+      await step().timeout(const Duration(seconds: 5));
+    } catch (e) {
+      Logger.debug('[DeviceService] $what did not finish in time: $e');
+    }
+  }
+
   Future<void> _connectToDevice(String id) async {
     // Clean up existing connection — disconnect if active, then dispose transport
     if (_connection != null) {
       if (_connection!.status == DeviceConnectionState.connected) {
-        await _connection!.disconnect();
+        await _boundedTeardown(() => _connection!.disconnect(), 'disconnect');
       }
-      await _connection!.transport.dispose();
+      await _boundedTeardown(() => _connection!.transport.dispose(), 'transport dispose');
     }
     _connection = null;
 

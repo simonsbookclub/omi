@@ -1800,18 +1800,43 @@ class CaptureController extends ChangeNotifier
     _lastAudioRestartAtMs = now;
     _audioRestarts++;
     Logger.warning('[AudioWatchdog] no BLE audio for ${sinceAudio ~/ 1000}s; restart #$_audioRestarts');
+    final deviceId = _recordingDevice!.id;
     try {
       if (_audioRestarts >= 3) {
+        // Rebuild the BLE link itself. This is the step that was missing:
+        // the escalation dropped the socket and restarted the stream, but
+        // never the transport, and without `force` ensureConnection returns
+        // null the moment a connection object already exists for this device
+        // (devices.dart: "native handles reconnection"). So every recovery
+        // path re-subscribed to a link that was already dead, and the only
+        // thing that ever fixed it was force-quitting the app by hand —
+        // which is exactly what disposing and recreating the transport does.
+        //
+        // A half-dead link raises no disconnect callback, so connectedDevice
+        // stays non-null and isConnected stays true; initiateConnection, the
+        // one other caller that passes force, returns early on precisely that
+        // state. Nothing else in the app can get out of this.
+        //
+        // 2026-09-11: measured over one such stall — fifteen health uploads
+        // between 09:45 and 12:02 with zero audio frames. The app was awake
+        // and on the network the whole time; only the audio path was gone.
         final stale = _socket;
         _socket = null;
         _transcriptServiceReady = false;
         _socketReconnectPending = true;
         await stale?.stop(reason: 'audio watchdog: no audio after two stream restarts');
         _audioRestarts = 0;
+        Logger.warning('[AudioWatchdog] rebuilding the BLE link for $deviceId');
+        try {
+          await ServiceManager.instance().device.ensureConnection(deviceId, force: true);
+          // A successful connect fires onDeviceConnectionStateChanged, and
+          // DeviceProvider._onDeviceConnected restarts streaming from there.
+        } catch (e) {
+          Logger.error('[AudioWatchdog] forced reconnect failed: $e');
+        }
         _startKeepAliveServices();
         return;
       }
-      final deviceId = _recordingDevice!.id;
       final conn = await ServiceManager.instance().device.ensureConnection(deviceId);
       await conn?.onNetworkSocketReconnected();
       final codec = await _getAudioCodec(deviceId);
