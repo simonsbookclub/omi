@@ -936,7 +936,7 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
                                   ? 'omi'
                                   : (person?.name ??
                                       context.l10n.speakerWithId(
-                                        '${TranscriptSegment.getDisplaySpeakerId(data.speakerId, widget.segments)}',
+                                        '${TranscriptSegment.getDisplaySpeakerId(data.speakerId, widget.segments, stream: data.stream)}',
                                       )),
                               style: TextStyle(
                                 color: data.speakerId == omiSpeakerId || person != null

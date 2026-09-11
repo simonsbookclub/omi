@@ -21,6 +21,16 @@ class TranscriptSegment {
   List<Translation> translations = [];
   bool speechProfileProcessed;
   String? sttProvider;
+
+  /// SIMONSBOOKCLUB: which Deepgram generation produced this segment.
+  ///
+  /// Speaker numbering restarts on every relay reconnect, so SPEAKER_00 in
+  /// one stream and SPEAKER_00 in the next are different people, and the
+  /// same person can be SPEAKER_02 then SPEAKER_04. Without this the display
+  /// numbered raw indices and invented people: on 2026-09-11 a conversation
+  /// between two people showed Speaker 1 and Speaker 4.
+  String? stream;
+
   /// SIMONSBOOKCLUB: audio the phone was playing (a video, a voice note) —
   /// shown folded in the transcript, never counted as a voice.
   bool media;
@@ -58,6 +68,11 @@ class TranscriptSegment {
     final generated = wire.GeneratedTranscriptSegment.fromJson(json);
     final segment = TranscriptSegment.fromGenerated(generated);
     segment.media = json['media'] == true;
+    // Read straight off the map: the generated wire decoder does not carry
+    // it, and regenerating it to add one optional field is not worth the
+    // risk to every other decoder in that file.
+    final stream = json['stream'];
+    if (stream is String && stream.isNotEmpty) segment.stream = stream;
     return segment;
   }
 
@@ -193,7 +208,7 @@ class TranscriptSegment {
         if (segment.personId != null && peopleMap.containsKey(segment.personId)) {
           speakerName = peopleMap[segment.personId]!;
         } else {
-          var displayId = '${getDisplaySpeakerId(segment.speakerId, segments)}';
+          var displayId = '${getDisplaySpeakerId(segment.speakerId, segments, stream: segment.stream)}';
           speakerName = speakerLabelBuilder != null ? speakerLabelBuilder(displayId) : 'Speaker $displayId';
         }
         transcript += '$timestampStr $speakerName: $segmentText ';
@@ -221,24 +236,28 @@ class TranscriptSegment {
   /// - If conversation has speakers [0, 1, 2] -> displays as [1, 2, 3]
   /// - If conversation has speakers [1, 2, 3] -> displays as [1, 2, 3]
   /// - If conversation has speakers [5, 6] -> displays as [1, 2]
-  static int getDisplaySpeakerId(int speakerId, List<TranscriptSegment> segments) {
+  static int getDisplaySpeakerId(int speakerId, List<TranscriptSegment> segments, {String? stream}) {
     if (segments.isEmpty) return speakerId + 1;
 
-    // Find minimum speaker ID among non-user segments
-    int? minSpeakerId;
-    for (var segment in segments) {
-      if (segment.speaker == 'MARKER' || segment.media) continue; // SIMONSBOOKCLUB: a pinned moment or phone audio, not a voice
-      if (!segment.isUser) {
-        if (minSpeakerId == null || segment.speakerId < minSpeakerId) {
-          minSpeakerId = segment.speakerId;
-        }
-      }
+    // Number distinct voice clusters in the order they first speak, where a
+    // cluster is (stream, speakerId) — not the raw diarization index.
+    //
+    // The index restarts at zero on every relay reconnect, so subtracting
+    // the minimum (what this used to do) mixed two independent numbering
+    // spaces: one person became two speakers, and a second stream's index 4
+    // was rendered as a fourth person in a conversation between two.
+    final order = <String>[];
+    for (final segment in segments) {
+      if (segment.speaker == 'MARKER' || segment.media) continue; // a pinned moment or phone audio, not a voice
+      if (segment.isUser) continue;
+      final key = '${segment.stream ?? ''}#${segment.speakerId}';
+      if (!order.contains(key)) order.add(key);
     }
+    final index = order.indexOf('${stream ?? ''}#$speakerId');
+    if (index >= 0) return index + 1;
 
-    // If no non-user segments found, default to simple +1
-    if (minSpeakerId == null) return speakerId + 1;
-
-    // Normalize: subtract minimum and add 1 to make it 1-indexed
-    return speakerId - minSpeakerId + 1;
+    // A segment the list does not contain (a preview, a single-segment
+    // sheet): fall back to the old behaviour rather than claiming 1.
+    return speakerId + 1;
   }
 }
