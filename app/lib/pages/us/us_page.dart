@@ -19,7 +19,11 @@ import 'package:omi/pages/us/us_account_page.dart';
 import 'package:omi/pages/us/us_theme.dart';
 import 'package:omi/pages/us/us_together_card.dart';
 import 'package:omi/pages/us/voice_enroll_page.dart';
+import 'package:omi/backend/http/api/conversations.dart';
+import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/backend/http/api/us.dart';
+import 'package:omi/pages/conversation_detail/page.dart';
+import 'package:omi/utils/other/temp.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:omi/providers/us_provider.dart';
 import 'package:omi/services/us_visits.dart';
@@ -36,6 +40,10 @@ class UsPage extends StatefulWidget {
 }
 
 class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, WidgetsBindingObserver {
+  /// The conversation row currently being fetched, so its own spinner shows
+  /// rather than a modal over the whole tab.
+  String? _openingId;
+
   final _codeController = TextEditingController();
   final _nameController = TextEditingController();
   final GlobalKey _weeklyKey = GlobalKey();
@@ -982,8 +990,8 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     return _card(children: [
       const UsLabel('The two of you'),
       const SizedBox(height: 10),
-      for (final c in talks.take(6)) _talkRow(c),
-      for (final c in notable.take(4)) _shortRow(c),
+      for (final c in talks.take(6)) _openable(c, _talkRow(c)),
+      for (final c in notable.take(4)) _openable(c, _shortRow(c)),
       if (quiet > 0) ...[
         if (talks.isNotEmpty || notable.isNotEmpty) const SizedBox(height: 4),
         Text(
@@ -992,6 +1000,65 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
         ),
       ],
     ]);
+  }
+
+  /// Open a conversation from this list.
+  ///
+  /// The list carries ids, not conversations, so the full record has to be
+  /// fetched before the detail page can show it. Plain push, deliberately:
+  /// wrapping the page in a fresh ConversationDetailProvider shadows the wired
+  /// one from main.dart and black-screens anything not started today — the
+  /// same trap day_rail.dart fell into.
+  Future<void> _openConversation(String id) async {
+    if (_openingId != null) return;
+    setState(() => _openingId = id);
+    ServerConversation? c;
+    try {
+      c = await getConversationById(id);
+    } finally {
+      if (mounted) setState(() => _openingId = null);
+    }
+    if (!mounted) return;
+    if (c == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open that conversation.')),
+      );
+      return;
+    }
+    routeToPage(context, ConversationDetailPage(conversation: c));
+  }
+
+  /// The chevron that says a row opens, replaced by its own spinner while the
+  /// conversation is being fetched.
+  Widget _openAffordance(Map<String, dynamic> c) {
+    final loading = _openingId != null && _openingId == c['id']?.toString();
+    return SizedBox(
+      width: 22,
+      height: 16,
+      child: Center(
+        child: loading
+            ? const SizedBox(
+                width: 12,
+                height: 12,
+                child: CircularProgressIndicator(strokeWidth: 1.6, color: UsInk.label),
+              )
+            : const Icon(Icons.chevron_right_rounded, size: 18, color: UsInk.faint),
+      ),
+    );
+  }
+
+  /// Wraps a row so the whole thing is the tap target.
+  Widget _openable(Map<String, dynamic> c, Widget child) {
+    final id = c['id']?.toString();
+    if (id == null) return child;
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () => _openConversation(id),
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6), child: child),
+      ),
+    );
   }
 
   /// Short, but hard or tense. One line, and the badge that makes it findable.
@@ -1016,6 +1083,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
           Text(c['hard'] == true ? 'hard' : 'hard?', style: const TextStyle(color: UsInk.high, fontSize: 11, fontWeight: FontWeight.w700))
         else if (tension != null)
           Text('${(tension * 100).round()}%', style: const TextStyle(color: UsInk.elevated, fontSize: 11, fontWeight: FontWeight.w700)),
+        _openAffordance(c),
       ]),
     );
   }
@@ -1065,12 +1133,17 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
           ]),
         ],
         const SizedBox(height: 6),
-        Text(
-          '${when.length >= 16 ? when.replaceFirst('T', ' ').substring(0, 16) : when}'
-          '${words > 0 ? ' · $words words' : ''}'
-          '${c['scope'] == 'us_others' ? ' · with others' : ''}',
-          style: const TextStyle(color: Colors.white24, fontSize: 12),
-        ),
+        Row(children: [
+          Expanded(
+            child: Text(
+              '${when.length >= 16 ? when.replaceFirst('T', ' ').substring(0, 16) : when}'
+              '${words > 0 ? ' · $words words' : ''}'
+              '${c['scope'] == 'us_others' ? ' · with others' : ''}',
+              style: const TextStyle(color: Colors.white24, fontSize: 12),
+            ),
+          ),
+          _openAffordance(c),
+        ]),
       ]),
     );
   }
