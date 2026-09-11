@@ -1,0 +1,152 @@
+{
+ "owner_user_id": "simon",
+ "couple_id": "c_VyfXwqGn-J2J",
+ "scope": "us",
+ "override": null,
+ "hard": null,
+ "participation": {
+  "users": {
+   "u_Lk5-nUrJlo07": {
+    "seconds": 1206.4497319999991,
+    "words": 2503,
+    "segments": 141
+   },
+   "simon": {
+    "seconds": 768.1099609999994,
+    "words": 1865,
+    "segments": 88
+   }
+  },
+  "others": {
+   "seconds": 3.839900000000057,
+   "words": 19,
+   "segments": 3,
+   "voices": 2
+  },
+  "total_words": 4387,
+  "total_seconds": 1978.3995929999992
+ },
+ "analysis": {
+  "v": 5,
+  "tension": 0.1,
+  "escalation": 0,
+  "repair": 0.8,
+  "self_blame": 0,
+  "hard": false,
+  "summary": "The partners discussed their daily life and desires in a lighthearted and playful manner",
+  "repair_examples": [
+   "I wanna you and be close to you",
+   "My hot mama love you"
+  ],
+  "windows": [
+   {
+    "start_min": 0,
+    "tension": 0.1
+   },
+   {
+    "start_min": 10,
+    "tension": 0
+   }
+  ],
+  "interruptions": {
+   "u_Lk5-nUrJlo07": 1
+  },
+  "speaking_share": {
+   "u_Lk5-nUrJlo07": 0.61,
+   "simon": 0.39,
+   "other:SPEAKER_02": 0,
+   "other:SPEAKER_03": 0
+  },
+  "loudness": {
+   "u_Lk5-nUrJlo07": 0.0449,
+   "simon": 0.0497
+  },
+  "scored_at": "2026-09-11T08:12:06.920Z",
+  "turn_structure": {
+   "turns": {
+    "u_Lk5-nUrJlo07": 79,
+    "simon": 81,
+    "other:SPEAKER_02": 2,
+    "other:SPEAKER_03": 1
+   },
+   "longest_run_words": {
+    "u_Lk5-nUrJlo07": 191,
+    "simon": 127,
+    "other:SPEAKER_02": 5,
+    "other:SPEAKER_03": 9
+   },
+   "exchange_rate": 7.2
+  },
+  "talk": true,
+  "depth": {
+   "v": 3,
+   "threads": [
+    {
+     "topic": "Masha's dream",
+     "opened_by": "u_Lk5-nUrJlo07",
+     "start_min": 1
+    },
+    {
+     "topic": "Attention from others",
+     "opened_by": "u_Lk5-nUrJlo07",
+     "start_min": 3
+    },
+    {
+     "topic": "Flirting and relationships",
+     "opened_by": "u_Lk5-nUrJlo07",
+     "start_min": 7
+    },
+    {
+     "topic": "Desire for attention",
+     "opened_by": "simon",
+     "start_min": 12
+    },
+    {
+     "topic": "Social interactions",
+     "opened_by": "simon",
+     "start_min": 34
+    },
+    {
+     "topic": "Planning a cafe outing",
+     "opened_by": "simon",
+     "start_min": 38
+    }
+   ],
+   "questions": [
+    {
+     "asked_by": "simon",
+     "text": "What kind of man would you want to flirt with you? Imagine who is your ideal customer profile?",
+     "quote": "What kind of man would you want to flirt with you? Imagine who is your ideal customer profile?",
+     "start_min": 28,
+     "answered": true
+    }
+   ],
+   "disclosures": [
+    {
+     "by": "u_Lk5-nUrJlo07",
+     "text": "she fears strangers",
+     "quote": "I don't feel comfortable to going the car with a person that I don't know."
+    },
+    {
+     "by": "u_Lk5-nUrJlo07",
+     "text": "she wants attention",
+     "quote": "I want be Georgia Masha. I wanna be hot Masha stuff. Hot mama Masha."
+    },
+    {
+     "by": "u_Lk5-nUrJlo07",
+     "text": "she feels neglected",
+     "quote": "I let you work by yourself and then that you telling me all the stories of humming women."
+    },
+    {
+     "by": "simon",
+     "text": "he appreciates her",
+     "quote": "I was inspired by your cleanliness, and I woke up and I saw it in the dryer."
+    }
+   ],
+   "agreements": [],
+   "arc": "The conversation starts with Masha sharing her dream and feeling tired, then moves to discussions about attention from others, flirting, and relationships, with Simon trying to help Masha understand and fulfill her desire for attention, and eventually planning a cafe outing to help her meet new peop",
+   "uptake": 0.3,
+   "scored_at": "2026-09-11T08:22:56.437Z"
+  }
+ }
+}

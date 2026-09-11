@@ -23,6 +23,7 @@ import 'package:omi/backend/schema/structured.dart';
 import 'package:omi/backend/schema/transcript_segment.dart';
 import 'package:omi/pages/capture/widgets/widgets.dart';
 import 'package:omi/pages/conversation_detail/widgets.dart';
+import 'package:omi/pages/conversation_detail/widgets/talk_card.dart';
 import 'package:omi/pages/us/us_conversation_bar.dart';
 import 'package:omi/pages/home/page.dart';
 import 'package:omi/providers/connectivity_provider.dart';
@@ -1400,6 +1401,14 @@ class _SummaryTabState extends State<SummaryTab> with AutomaticKeepAliveClientMi
               CustomScrollView(
                 keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
                 slivers: [
+                  // SIMONSBOOKCLUB ("Us"): the deep read, on the conversations
+                  // that earned one. Renders nothing on the rest.
+                  SliverToBoxAdapter(
+                    child: Selector<ConversationDetailProvider, UsInfo?>(
+                      selector: (context, provider) => provider.conversation.us,
+                      builder: (context, us, _) => us == null ? const SizedBox.shrink() : TalkCard(us: us),
+                    ),
+                  ),
                   const SliverToBoxAdapter(child: GetSummaryWidgets()),
                   data.item1
                       ? const SliverToBoxAdapter(child: ReprocessDiscardedWidget())

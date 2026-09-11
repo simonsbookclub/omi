@@ -954,27 +954,125 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   Widget _conversations(UsProvider us) {
     final convs = ((us.history?['conversations'] as List?) ?? const []).cast<Map<String, dynamic>>();
     if (convs.isEmpty) return _card(children: const [Text('No conversations between the two of you yet.', style: TextStyle(color: Colors.white70))]);
+    // Real talks first. The list used to rank a 99-word "are you coming?"
+    // beside an hour over coffee, because tension was the only thing it sorted
+    // on and a passing phrase has none either way.
+    //
+    // But length is not importance: a 240-word doorway argument one of them
+    // marked hard is short AND the most important row on this screen, so
+    // anything hard or tense keeps its place whatever its length. Only the
+    // genuinely unremarkable get counted rather than shown.
+    final talks = <Map<String, dynamic>>[];
+    final notable = <Map<String, dynamic>>[];
+    var quiet = 0;
+    for (final c in convs) {
+      final tension = (c['tension'] as num?)?.toDouble() ?? 0;
+      final hard = c['hard'] == true || (c['hard'] == null && c['model_hard'] == true);
+      // `talk` is absent on a row the server has not re-scored yet; treat a
+      // long one as a talk rather than filing an hour of it under "shorter".
+      final isTalk = c['talk'] == true || (c['talk'] == null && ((c['words'] as num?)?.toInt() ?? 0) >= 300);
+      if (isTalk) {
+        talks.add(c);
+      } else if (hard || tension >= 0.4) {
+        notable.add(c);
+      } else {
+        quiet++;
+      }
+    }
     return _card(children: [
       const UsLabel('The two of you'),
-      const SizedBox(height: 8),
-      for (final c in convs.take(8)) ...[
-        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(c['title']?.toString() ?? 'Conversation', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600)),
-              if (c['summary'] != null) Text(c['summary'].toString(), style: const TextStyle(color: Colors.white54, fontSize: 13)),
-              Text('${(c['started_at'] ?? '').toString().replaceFirst('T', ' ').substring(0, 16)}${c['scope'] == 'us_others' ? ' · with others' : ''}', style: const TextStyle(color: Colors.white24, fontSize: 12)),
-            ]),
-          ),
-          const SizedBox(width: 8),
-          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            if (c['tension'] != null) Text('${((c['tension'] as num) * 100).round()}%', style: TextStyle(color: (c['tension'] as num) >= 0.55 ? const Color(0xFFE5785C) : Colors.white70, fontWeight: FontWeight.w700)),
-            if (c['hard'] == true || (c['hard'] == null && c['model_hard'] == true)) Text(c['hard'] == true ? 'hard' : 'hard?', style: const TextStyle(color: Color(0xFFE5785C), fontSize: 11)),
-          ]),
-        ]),
-        const Divider(color: Colors.white12, height: 18),
+      const SizedBox(height: 10),
+      for (final c in talks.take(6)) _talkRow(c),
+      for (final c in notable.take(4)) _shortRow(c),
+      if (quiet > 0) ...[
+        if (talks.isNotEmpty || notable.isNotEmpty) const SizedBox(height: 4),
+        Text(
+          '$quiet shorter exchange${quiet == 1 ? '' : 's'}',
+          style: const TextStyle(color: Colors.white24, fontSize: 12),
+        ),
       ],
     ]);
+  }
+
+  /// Short, but hard or tense. One line, and the badge that makes it findable.
+  Widget _shortRow(Map<String, dynamic> c) {
+    final tension = (c['tension'] as num?)?.toDouble();
+    final hard = c['hard'] == true || (c['hard'] == null && c['model_hard'] == true);
+    final when = (c['started_at'] ?? '').toString();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(c['title']?.toString() ?? 'Conversation', style: const TextStyle(color: Colors.white70, fontSize: 14)),
+            Text(
+              when.length >= 16 ? when.replaceFirst('T', ' ').substring(0, 16) : when,
+              style: const TextStyle(color: Colors.white24, fontSize: 12),
+            ),
+          ]),
+        ),
+        const SizedBox(width: 8),
+        if (hard)
+          Text(c['hard'] == true ? 'hard' : 'hard?', style: const TextStyle(color: UsInk.high, fontSize: 11, fontWeight: FontWeight.w700))
+        else if (tension != null)
+          Text('${(tension * 100).round()}%', style: const TextStyle(color: UsInk.elevated, fontSize: 11, fontWeight: FontWeight.w700)),
+      ]),
+    );
+  }
+
+  /// One real talk: what it was about, how it moved, and the conflict read
+  /// only when there was something to read.
+  Widget _talkRow(Map<String, dynamic> c) {
+    final topics = ((c['topics'] as List?) ?? const []).map((t) => t.toString()).toList();
+    final words = (c['words'] as num?)?.toInt() ?? 0;
+    final tension = c['tension'] as num?;
+    final hard = c['hard'] == true || (c['hard'] == null && c['model_hard'] == true);
+    final when = (c['started_at'] ?? '').toString();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(
+            child: Text(
+              c['title']?.toString() ?? 'Conversation',
+              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 15),
+            ),
+          ),
+          if (hard) ...[
+            const SizedBox(width: 8),
+            Text(
+              c['hard'] == true ? 'hard' : 'hard?',
+              style: const TextStyle(color: UsInk.high, fontSize: 11, fontWeight: FontWeight.w700),
+            ),
+          ] else if (tension != null && tension >= 0.4) ...[
+            const SizedBox(width: 8),
+            Text('${(tension * 100).round()}%', style: const TextStyle(color: UsInk.elevated, fontSize: 11, fontWeight: FontWeight.w700)),
+          ],
+        ]),
+        if (c['arc'] != null) ...[
+          const SizedBox(height: 4),
+          Text(c['arc'].toString(), style: const TextStyle(color: UsInk.body, fontSize: 13, height: 1.35)),
+        ],
+        if (topics.isNotEmpty) ...[
+          const SizedBox(height: 8),
+          Wrap(spacing: 6, runSpacing: 6, children: [
+            for (final t in topics)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(color: UsInk.raised, borderRadius: BorderRadius.circular(7)),
+                child: Text(t, style: const TextStyle(color: UsInk.label, fontSize: 11.5)),
+              ),
+          ]),
+        ],
+        const SizedBox(height: 6),
+        Text(
+          '${when.length >= 16 ? when.replaceFirst('T', ' ').substring(0, 16) : when}'
+          '${words > 0 ? ' · $words words' : ''}'
+          '${c['scope'] == 'us_others' ? ' · with others' : ''}',
+          style: const TextStyle(color: Colors.white24, fontSize: 12),
+        ),
+      ]),
+    );
   }
 
   Widget _weeklyReport(UsProvider us) {
