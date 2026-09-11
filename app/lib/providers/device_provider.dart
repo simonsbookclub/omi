@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:omi/backend/http/api/device.dart';
 import 'package:omi/gen/pigeon_communicator.g.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/backend/preferences.dart';
+import 'package:omi/services/auth_service.dart';
+import 'package:omi/services/capture/capture_controller.dart';
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/app_globals.dart';
 import 'package:omi/pages/home/firmware_update.dart';
@@ -88,6 +91,26 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   Map<String, dynamic> get latestOmiGlassFirmwareDetails => _latestOmiGlassFirmwareDetails;
 
   Timer? _discoveryTimer;
+
+  // SIMONSBOOKCLUB: the link watchdog (2026-09-11).
+  //
+  // CaptureController's audio watchdog only runs while recordingState is
+  // deviceRecord AND _recordingDevice is set, so it cannot help the state
+  // Simon hit today: the app alive and uploading health for six hours with no
+  // BLE link at all and nothing streaming. Meanwhile the pendant recorded to
+  // its own flash until it filled and blinked red, and that audio never
+  // reached anywhere.
+  //
+  // This one is independent of capture state and runs for the life of the
+  // provider: if a device is paired and no audio has arrived for a while,
+  // rebuild the transport. Backed off hard, because forcing cancels the
+  // native auto-reconnect that usually does this job — and because a pendant
+  // that is simply off should not be chased every minute.
+  static const Duration _linkCheckEvery = Duration(minutes: 1);
+  static const Duration _deafFor = Duration(minutes: 5);
+  Timer? _linkWatchdogTimer;
+  DateTime? _lastForcedRebuildAt;
+  int _forcedRebuilds = 0;
   final Debouncer _disconnectDebouncer = Debouncer(delay: const Duration(milliseconds: 500));
   final Debouncer _connectDebouncer = Debouncer(delay: const Duration(milliseconds: 100));
 
@@ -98,6 +121,46 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       : _bleDiagnosticsLoader = bleDiagnosticsLoader ?? BleHostApi().getDeviceDiagnostics {
     ServiceManager.instance().device.subscribe(this, this);
     BleBridge.instance.pairingLostCallback = _showPairingLostDialog;
+    _startLinkWatchdog();
+  }
+
+  void _startLinkWatchdog() {
+    _linkWatchdogTimer?.cancel();
+    _linkWatchdogTimer = Timer.periodic(_linkCheckEvery, (_) => _checkLink());
+  }
+
+  /// Rebuild a link that has gone quiet, whatever the app thinks its state is.
+  ///
+  /// Deliberately does NOT consult isConnected or connectedDevice: the whole
+  /// failure is that both stay true through a half-dead link, which is why
+  /// initiateConnection — the only other caller that forces — returns at its
+  /// first line and never gets here. Audio arriving is the only honest
+  /// evidence the link works.
+  Future<void> _checkLink() async {
+    final deviceId = SharedPreferencesUtil().btDevice.id;
+    if (deviceId.isEmpty) return;
+    if (!AuthService.instance.isSignedIn()) return;
+
+    final now = DateTime.now();
+    final lastAudioMs = CaptureController.lastLiveAudioAtMs;
+    if (lastAudioMs > 0 && now.millisecondsSinceEpoch - lastAudioMs < _deafFor.inMilliseconds) {
+      _forcedRebuilds = 0;
+      return;
+    }
+
+    // 2, 4, 8, then 15 minutes apart. A pendant left on the side table should
+    // cost a handful of attempts an hour, not sixty.
+    final backoff = Duration(minutes: min(15, 1 << (min(_forcedRebuilds, 3) + 1)));
+    if (_lastForcedRebuildAt != null && now.difference(_lastForcedRebuildAt!) < backoff) return;
+    _lastForcedRebuildAt = now;
+    _forcedRebuilds++;
+
+    Logger.warning('[LinkWatchdog] no BLE audio; rebuilding the link to $deviceId (attempt $_forcedRebuilds)');
+    try {
+      await ServiceManager.instance().device.ensureConnection(deviceId, force: true);
+    } catch (e) {
+      Logger.debug('[LinkWatchdog] forced rebuild failed: $e');
+    }
   }
 
   void _showPairingLostDialog() {
@@ -495,6 +558,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     _bleBatteryLevelListener?.cancel();
     _bleChargingStatusListener?.cancel();
     _discoveryTimer?.cancel();
+    _linkWatchdogTimer?.cancel();
     _disconnectDebouncer.cancel();
     _connectDebouncer.cancel();
     ServiceManager.instance().device.unsubscribe(this);
