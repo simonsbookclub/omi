@@ -10,6 +10,7 @@ import 'package:omi/gen/pigeon_communicator.g.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/backend/preferences.dart';
 import 'package:omi/services/auth_service.dart';
+import 'package:omi/services/devices/connectors/limitless_connection.dart';
 import 'package:omi/services/capture/capture_controller.dart';
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/app_globals.dart';
@@ -155,6 +156,9 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     _lastForcedRebuildAt = now;
     _forcedRebuilds++;
 
+    // A stalled stream means the pendant is recording to its own flash. Read
+    // how full it is before rebuilding, so the drain is allowed to run.
+    unawaited(refreshLimitlessStoragePressure());
     Logger.warning('[LinkWatchdog] no BLE audio; rebuilding the link to $deviceId (attempt $_forcedRebuilds)');
     try {
       await ServiceManager.instance().device.ensureConnection(deviceId, force: true);
@@ -538,6 +542,43 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     final total = used + free;
     if (total <= 0) return;
     deviceStorageUnderPressure = used / total >= _storagePressureThreshold;
+  }
+
+  /// The same judgement for a Limitless pendant, which reports pages rather
+  /// than a RingStatus.
+  ///
+  /// This flag is the one thing that lets the drain run while live audio is
+  /// arriving (sync_provider.dart's autoUploadEnabled), and it was written
+  /// for "a nearly-full pendant blinks red". But it was only ever set from a
+  /// RingStatus, which LimitlessDeviceConnection never returns — so on the
+  /// pendant that actually blinks red it was permanently false. On
+  /// 2026-09-11 the device filled with six hours on it and the escape hatch
+  /// built for exactly that could not fire.
+  static void _updateStoragePressureFromPages(Map<String, int>? status) {
+    if (status == null) return;
+    final free = status['free_capture_pages'];
+    final total = status['total_capture_pages'];
+    if (free == null || total == null || total <= 0) return;
+    final used = (total - free).clamp(0, total);
+    deviceStorageUnderPressure = used / total >= _storagePressureThreshold;
+  }
+
+  /// Read the pendant's own page counters and update the pressure flag.
+  /// Cheap (one GATT round trip, 3s timeout) and safe to call on connect and
+  /// whenever the audio stream stalls.
+  Future<void> refreshLimitlessStoragePressure() async {
+    final id = connectedDevice?.id ?? SharedPreferencesUtil().btDevice.id;
+    if (id.isEmpty) return;
+    try {
+      final conn = await ServiceManager.instance().device.ensureConnection(id);
+      if (conn is! LimitlessDeviceConnection) return;
+      _updateStoragePressureFromPages(await conn.getStorageStatus());
+      if (deviceStorageUnderPressure) {
+        Logger.warning('[Storage] pendant flash is filling — letting the drain run alongside live audio');
+      }
+    } catch (e) {
+      Logger.debug('refreshLimitlessStoragePressure: $e');
+    }
   }
 
   void setIsConnected(bool value) {

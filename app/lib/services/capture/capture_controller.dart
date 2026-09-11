@@ -114,6 +114,9 @@ class CaptureController extends ChangeNotifier
   Timer? _audioWatchdogTimer;
   int _audioRestarts = 0;
   int _lastAudioRestartAtMs = 0;
+  /// When the watchdog was armed. The grace window for a fresh stream, kept
+  /// out of the shared `lastLiveAudioAtMs` so nothing else is misled by it.
+  int _watchdogArmedAtMs = 0;
   DateTime? _keepAliveLastExecutedAt;
   Timer? _inProgressConversationRefreshTimer;
   int _inProgressConversationRefreshAttempts = 0;
@@ -1776,8 +1779,20 @@ class CaptureController extends ChangeNotifier
   void _startAudioWatchdog() {
     _audioWatchdogTimer?.cancel();
     _audioRestarts = 0;
-    // Grace for a fresh stream: measure from now, not from a stale stamp.
-    lastLiveAudioAtMs = DateTime.now().millisecondsSinceEpoch;
+    // The grace window for a fresh stream is kept HERE, privately, and never
+    // written into lastLiveAudioAtMs.
+    //
+    // Stamping the shared clock was the single most damaging line in the
+    // capture path: this runs on every stream setup, including ones where
+    // streamAudioToWs returned false and not one byte will ever arrive. It
+    // then told the audio watchdog, DeviceProvider's link watchdog, and
+    // SyncProvider's drain gate that audio had just arrived. All three were
+    // measuring this call, not the pendant.
+    //
+    // It is also why the drain never ran on connect: _onDeviceConnected calls
+    // streamDeviceRecording (which lands here) eighteen lines before it wakes
+    // the transfer coordinator, whose gate needs 90s of silence and read ~0.
+    _watchdogArmedAtMs = DateTime.now().millisecondsSinceEpoch;
     _audioWatchdogTimer = Timer.periodic(const Duration(seconds: 15), (_) => _checkAudioLiveness());
   }
 
@@ -1790,16 +1805,25 @@ class CaptureController extends ChangeNotifier
   Future<void> _checkAudioLiveness() async {
     if (recordingState != RecordingState.deviceRecord || _recordingDevice == null || _isPaused) return;
     final now = DateTime.now().millisecondsSinceEpoch;
-    final sinceAudio = now - lastLiveAudioAtMs;
-    if (sinceAudio < _audioStallSeconds * 1000) {
+    final since = now - (lastLiveAudioAtMs > _watchdogArmedAtMs ? lastLiveAudioAtMs : _watchdogArmedAtMs);
+    if (since < _audioStallSeconds * 1000) {
       _audioRestarts = 0;
       return;
     }
+    final sinceAudio = now - lastLiveAudioAtMs;
     // Give the previous restart a full stall window to produce audio.
     if (now - _lastAudioRestartAtMs < _audioStallSeconds * 1000) return;
     _lastAudioRestartAtMs = now;
     _audioRestarts++;
     Logger.warning('[AudioWatchdog] no BLE audio for ${sinceAudio ~/ 1000}s; restart #$_audioRestarts');
+    // The stream being dead is exactly when the pendant is filling its own
+    // flash, and exactly when the backlog needs collecting — but the drain's
+    // own trigger could never fire here, because its gate wants 90s of
+    // silence and the clock above used to be reset by the very code that set
+    // the stream up. Wake it explicitly. On 2026-09-11 the app detected this
+    // stall, rebuilt the link, and never told the drain; the pendant filled
+    // and blinked red with six hours on it.
+    unawaited(RecordingTransferCoordinator.instance.wake(WakeTrigger.cooldownElapsed));
     final deviceId = _recordingDevice!.id;
     try {
       if (_audioRestarts >= 3) {

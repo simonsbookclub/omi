@@ -34,6 +34,22 @@ final class OmiBleManager: NSObject {
     /// RSSI keep-alive timer — periodic reads prevent connection supervision timeout.
     private var rssiTimer: Timer?
 
+    /// Wall-clock of the last GATT notification from each peripheral, and the
+    /// last time we tore a silent link down. The native half of "connected but
+    /// deaf": a pendant can stop delivering notifications while the ACL link
+    /// stays up, so no supervision timeout fires, no didDisconnectPeripheral
+    /// arrives, and nothing in the app ever learns the audio stopped. On
+    /// 2026-09-11 that state held for six hours while the app cheerfully
+    /// uploaded HealthKit data throughout.
+    private var lastNotifyAt: [String: TimeInterval] = [:]
+    private var lastDeafTeardownAt: [String: TimeInterval] = [:]
+    /// Silence that means the link is dead rather than the room being quiet.
+    /// The pendant streams continuously while connected — it does not pause
+    /// for silence — so a minute without a single packet is not a quiet room.
+    private let deafAfterSeconds: TimeInterval = 60
+    /// Never tear the same link down more often than this.
+    private let deafTeardownCooldown: TimeInterval = 120
+
     /// When true, RSSI reads are forwarded to Flutter for the diagnostics graph.
     var isRssiStreamingEnabled = false
 
@@ -127,7 +143,28 @@ final class OmiBleManager: NSObject {
 
         if let peripheral = peripherals[uuid] {
             if peripheral.state == .connected {
-                NSLog("[OmiBle] connectPeripheral: \(uuid) already connected, skipping")
+                // Already connected at the OS level. Returning here was the
+                // latch behind Simon losing six hours of audio on 2026-09-11.
+                //
+                // onDeviceReady is only ever emitted from didConnect and
+                // willRestoreState. Skipping out of here means it is never
+                // emitted, so Dart's NativeBleTransport.connect() waits on
+                // _deviceReadyCompleter until its 60s timeout, gives up, and
+                // never subscribes to the audio characteristic. The peripheral
+                // stays connected and silent, and every retry — including
+                // ensureConnection(force: true) — lands right back here.
+                // Force-quitting the app was the only escape, because that
+                // makes iOS tear the link down so the next launch takes the
+                // didConnect path.
+                //
+                // Rediscovering instead drives the same path a fresh connect
+                // would: didDiscoverServices -> didDiscoverCharacteristicsFor
+                // -> onDeviceReady, and Dart resubscribes.
+                NSLog("[OmiBle] connectPeripheral: \(uuid) already connected, rediscovering services")
+                peripheral.delegate = self
+                everConnected.insert(uuid)
+                discoveredServices[uuid] = nil
+                peripheral.discoverServices(nil)
                 return
             }
             centralManager.connect(peripheral, options: nil)
@@ -262,8 +299,33 @@ final class OmiBleManager: NSObject {
                 self?.stopRssiKeepAlive()
                 return
             }
+            self?.checkForDeafLink(peripheral)
             peripheral.readRSSI()
         }
+    }
+
+    /// Tear down a link that is connected but has stopped delivering audio.
+    ///
+    /// This is the one change that makes the rest self-healing. Every other
+    /// recovery path in the app — Dart's two watchdogs, the foreground hook,
+    /// ensureConnection(force:) — is defeated by a peripheral that iOS still
+    /// reports as connected. cancelPeripheralConnection makes the link really
+    /// go away, which produces a real didDisconnectPeripheral, which tells
+    /// Dart the truth and re-arms the pending connect at didDisconnect.
+    private func checkForDeafLink(_ peripheral: CBPeripheral) {
+        let uuid = peripheralUuidString(peripheral)
+        // Only judge a link we have actually heard from: a peripheral that has
+        // never notified may simply have nothing subscribed yet.
+        guard let last = lastNotifyAt[uuid] else { return }
+        let now = Date().timeIntervalSince1970
+        guard now - last >= deafAfterSeconds else { return }
+        if let teardown = lastDeafTeardownAt[uuid], now - teardown < deafTeardownCooldown { return }
+        lastDeafTeardownAt[uuid] = now
+        NSLog("[OmiBle] deaf link: no notifications from \(uuid) for \(Int(now - last))s while connected — tearing it down to force a real reconnect")
+        persistDisconnectEvent(uuid: uuid, reason: "deaf_link", reasonCode: 0, isManual: false, eventType: "disconnect")
+        // NOT disconnectPeripheral(): that sets manuallyDisconnected, which
+        // suppresses the automatic reconnect this is trying to provoke.
+        centralManager.cancelPeripheralConnection(peripheral)
     }
 
     private func stopRssiKeepAlive() {
@@ -562,6 +624,11 @@ extension OmiBleManager: CBCentralManagerDelegate {
                 peripheral.delegate = self
                 peripherals[uuid] = peripheral
                 uuids.append(uuid)
+                // didConnect never runs for a restored peripheral, and that is
+                // the only other place this is populated — leaving restored
+                // devices skipped by both reconnectStalePeripherals and the
+                // didFailToConnect retry.
+                everConnected.insert(uuid)
 
                 // Re-establish connection if not already connected
                 if peripheral.state != .connected {
@@ -642,6 +709,10 @@ extension OmiBleManager: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         let uuid = peripheralUuidString(peripheral)
+        // A stale timestamp would make checkForDeafLink tear the link down
+        // the moment it comes back.
+        lastNotifyAt[uuid] = nil
+        lastDeafTeardownAt[uuid] = nil
         let isManual = manuallyDisconnected.contains(uuid)
         let pairingLost = (error as? CBError)?.code == .peerRemovedPairingInformation
         NSLog("[OmiBle] didDisconnect: \(peripheral.name ?? "<nil>"), uuid=\(uuid), error=\(error?.localizedDescription ?? "nil")")
@@ -742,6 +813,9 @@ extension OmiBleManager: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let uuid = peripheralUuidString(peripheral)
+        // Stamped before anything can return early: this is the only evidence
+        // anywhere in the stack that the link is genuinely alive.
+        lastNotifyAt[uuid] = Date().timeIntervalSince1970
         guard let service = characteristic.service else { return }
 
         let serviceUuid = fullUuidString(service.uuid)
