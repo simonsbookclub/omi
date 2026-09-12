@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/services.dart';
 
 import 'package:omi/backend/http/api/integrations.dart';
@@ -175,10 +176,13 @@ class AppleHealthService {
   /// SIMONSBOOKCLUB: granular timestamped samples (heart rate, HRV, resting
   /// HR, respiratory rate, SpO2, VO2max, hourly steps/energy, sleep stages,
   /// workouts) since a given time. Feeds the speech×body correlation.
-  Future<List<Map<String, dynamic>>?> getSamples({required int sinceMs}) async {
+  Future<List<Map<String, dynamic>>?> getSamples({required int sinceMs, List<String>? onlyTypes}) async {
     if (!isAvailable) return null;
     try {
-      final result = await _channel.invokeMethod('getSamples', {'sinceMs': sinceMs.toDouble()});
+      final result = await _channel.invokeMethod('getSamples', {
+        'sinceMs': sinceMs.toDouble(),
+        if (onlyTypes != null && onlyTypes.isNotEmpty) 'onlyTypes': onlyTypes,
+      });
       if (result is List) {
         return result.map((e) => Map<String, dynamic>.from(e as Map)).toList();
       }
@@ -212,6 +216,57 @@ class AppleHealthService {
     }
   }
 
+  /// Types worth pulling over YEARS rather than a month.
+  ///
+  /// All sparse: a weigh-in or a run is a handful of rows a week, where heart
+  /// rate is one every thirty seconds. A decade of these is a few thousand
+  /// rows; a decade of heart rate would be millions, which is why the deep
+  /// pull is an allowlist rather than a wider window on everything.
+  static const deepBackfillTypes = <String>[
+    'body_mass',
+    'body_fat',
+    'lean_mass',
+    'vo2_max',
+    'resting_heart_rate',
+    'walking_heart_rate',
+    'workout',
+  ];
+
+  /// Pull the full history of the sparse types, once.
+  ///
+  /// The routine sync has never reached further back than thirty days
+  /// (`now - 30 * 24 * 60 * 60 * 1000` below), so years of weigh-ins and runs
+  /// sitting in Apple Health had never been uploaded — the body-composition
+  /// history in the database came from Hevy instead, and started in 2022.
+  /// Runs older than a month were simply absent.
+  ///
+  /// Idempotent: the server keys on (type, start, end) and ignores duplicates,
+  /// so a repeat costs bandwidth and nothing else.
+  Future<bool> deepBackfill({int years = 12}) async {
+    if (!isAvailable) return false;
+    final prefs = SharedPreferencesUtil();
+    final sinceMs = DateTime.now().subtract(Duration(days: 365 * years)).millisecondsSinceEpoch;
+    Logger.debug('AppleHealth: deep backfill from ${DateTime.fromMillisecondsSinceEpoch(sinceMs)}');
+    final samples = await getSamples(sinceMs: sinceMs, onlyTypes: deepBackfillTypes);
+    if (samples == null || samples.isEmpty) {
+      Logger.debug('AppleHealth: deep backfill returned nothing');
+      return false;
+    }
+    var uploaded = 0;
+    for (var i = 0; i < samples.length; i += 2000) {
+      final chunk = samples.sublist(i, i + 2000 > samples.length ? samples.length : i + 2000);
+      final ok = await syncAppleHealthSamples(chunk);
+      if (!ok) {
+        Logger.debug('AppleHealth: deep backfill chunk failed at $i of ${samples.length}');
+        return false;
+      }
+      uploaded += chunk.length;
+    }
+    Logger.debug('AppleHealth: deep backfill uploaded $uploaded samples');
+    await prefs.saveInt('healthDeepBackfillV1', 1);
+    return true;
+  }
+
   Future<bool> syncGranularSamples({bool force = false}) async {
     if (!isAvailable) return false;
     final prefs = SharedPreferencesUtil();
@@ -232,6 +287,11 @@ class AppleHealthService {
     // heart-rate stats were added — refetch thirty days once so the new
     // types have history (idempotent inserts on the server).
     final needsFullResyncV2 = prefs.getInt('healthFullResyncV3') == 0;
+    // One-time deep pull of the sparse types. Fire-and-forget so it never
+    // delays or fails the routine sync it rides along with.
+    if (prefs.getInt('healthDeepBackfillV1') == 0) {
+      unawaited(deepBackfill());
+    }
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     // The 24-hour overlap catches samples the watch delivers late. At a
     // ten-minute cadence that would re-upload the same day over and over, so

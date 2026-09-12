@@ -906,6 +906,13 @@ class AppleHealthService {
         let args = call.arguments as? [String: Any]
         let sinceMs = args?["sinceMs"] as? Double ?? Date().addingTimeInterval(-30 * 86400).timeIntervalSince1970 * 1000
         let startDate = Date(timeIntervalSince1970: sinceMs / 1000)
+        // Optional allowlist of series names. The routine sync pulls
+        // everything over a short window; the one-time deep backfill pulls
+        // YEARS, and must not drag heart rate (a sample every ~30s) with it —
+        // that is millions of rows where body composition is a few hundred.
+        // Absent or empty means "everything", which is the routine path.
+        let onlyTypes = Set((args?["onlyTypes"] as? [String]) ?? [])
+        func wanted(_ name: String) -> Bool { onlyTypes.isEmpty || onlyTypes.contains(name) }
         let endDate = Date()
         let predicate = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: .strictStartDate)
         // Descending: when a series overflows the cap, keep the NEWEST
@@ -951,6 +958,7 @@ class AppleHealthService {
             quantitySeries.append((.runningStrideLength, "running_stride_length", HKUnit.meter(), "m"))
         }
         for (identifier, name, unit, unitLabel) in quantitySeries {
+            guard wanted(name) else { continue }
             guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
             group.enter()
             let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
@@ -988,6 +996,7 @@ class AppleHealthService {
         var hourly = DateComponents()
         hourly.hour = 1
         for (identifier, name, unit, unitLabel) in hourlySeries {
+            guard wanted(name) else { continue }
             guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { continue }
             group.enter()
             let anchor = Calendar.current.startOfDay(for: startDate)
@@ -1017,7 +1026,7 @@ class AppleHealthService {
         }
 
         // Sleep stages: one row per stage interval, value = minutes.
-        if let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) {
+        if wanted("sleep_stage"), let sleepType = HKCategoryType.categoryType(forIdentifier: .sleepAnalysis) {
             group.enter()
             let query = HKSampleQuery(sampleType: sleepType, predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
                 let rows: [[String: Any]] = (results as? [HKCategorySample] ?? []).compactMap { s in
@@ -1050,6 +1059,7 @@ class AppleHealthService {
         // activity, kcal, km, average pace — and for distance sports, per-km
         // splits computed from the workout's own distance samples (this is
         // the same data the Fitness app shows for a run).
+        if wanted("workout") {
         group.enter()
         let workoutQuery = HKSampleQuery(sampleType: HKWorkoutType.workoutType(), predicate: predicate, limit: perTypeLimit, sortDescriptors: [sortByDate]) { _, results, _ in
             let workouts = results as? [HKWorkout] ?? []
@@ -1148,6 +1158,7 @@ class AppleHealthService {
             }
         }
         healthStore.execute(workoutQuery)
+        }
 
         group.notify(queue: .main) {
             result(samples)
