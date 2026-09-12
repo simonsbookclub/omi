@@ -37,6 +37,8 @@ void main() {
     });
   });
 
+  crossDomain();
+
   group('against Simon\'s real record', () {
     late List<String> days;
     late Map<String, List<double?>> metrics;
@@ -78,5 +80,33 @@ void main() {
       // ignore: avoid_print
       print('run_km vs body_fat, monthly: r=${f!.r} n=${f.n} p=${f.p.toStringAsExponential(2)}');
     });
+  });
+}
+
+/// The cross-domain questions Simon actually wants answered — body against
+/// mind — are not yet answerable: speech series begin 2026-08-18 against body
+/// series reaching 2014. The engine must REFUSE them rather than return a
+/// number, and must keep refusing until the overlap is real.
+void crossDomain() {
+  test('body-vs-mind pairs are refused for want of overlap, not answered', () {
+    final f = File('test/fixtures/series.json');
+    if (!f.existsSync()) return;
+    final j = jsonDecode(f.readAsStringSync()) as Map<String, dynamic>;
+    final days = (j['days'] as List).cast<String>();
+    final metrics = (j['metrics'] as Map<String, dynamic>)
+        .map((k, v) => MapEntry(k, (v as List).map((e) => (e as num?)?.toDouble()).toList()));
+
+    for (final pair in [
+      ['run_pace_s_per_km', 'speech_valence'],
+      ['body_fat', 'hard_conversations'],
+      ['hrv_sdnn', 'tension'],
+    ]) {
+      final a = metrics[pair[0]], b = metrics[pair[1]];
+      if (a == null || b == null) continue;
+      final r = correlate(days, pair[0], a, pair[1], b);
+      expect(r, isNull, reason: '${pair[0]} vs ${pair[1]} should be refused, not answered');
+      // ignore: avoid_print
+      print('  ${pair[0]} vs ${pair[1]}: correctly refused (too little overlap)');
+    }
   });
 }
