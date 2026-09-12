@@ -341,7 +341,14 @@ final class LimitlessFlashDrainEngine {
 
     private func loadConfig() -> Config? {
         let d = UserDefaults.standard
-        guard d.bool(forKey: "flutter.batchModeEnabled") else { return nil }
+        // Two ways in. "Transcribe Later" is the user's deliberate choice to
+        // record to flash. "overnightDrainActive" is Dart noticing the pendant
+        // is on its charger — not being worn, nothing live to lose — and is
+        // the only drain that survives backgrounding, so it is what empties a
+        // pendant that has fallen behind while the phone sits on a nightstand.
+        let batch = d.bool(forKey: "flutter.batchModeEnabled")
+        let overnight = d.bool(forKey: "flutter.overnightDrainActive")
+        guard batch || overnight else { return nil }
         guard let raw = d.string(forKey: "flutter.nativeBleStreamConfig"), !raw.isEmpty,
             let data = raw.data(using: .utf8),
             let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return nil }

@@ -112,6 +112,24 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   Timer? _linkWatchdogTimer;
   DateTime? _lastForcedRebuildAt;
   DateTime? _lastStorageCheckAt;
+
+  // Overnight drain (2026-09-12).
+  //
+  // The pendant records to flash continuously and frees a page only when the
+  // phone acknowledges it, so the drain has to keep pace with real life or the
+  // device fills and stops recording — which is what kept happening. The Dart
+  // drain is foreground-only, so it never runs while the phone is in a pocket
+  // or on a nightstand. The NATIVE engine (LimitlessFlashDrainEngine) does
+  // survive backgrounding, and it was gated behind Transcribe Later.
+  //
+  // The charger is the right moment to let it run: the pendant is not being
+  // worn, so nothing live is lost by putting it in download mode. A Limitless
+  // exposes no charging characteristic — only battery level — so charging is
+  // inferred from the level going UP, which a worn device's never does.
+  final List<({DateTime at, int level})> _batteryTrail = [];
+  bool _overnightDrainOn = false;
+  int _peakWhileCharging = -1;
+  static const Duration _chargingLookback = Duration(minutes: 15);
   static const Duration _storageCheckEvery = Duration(minutes: 10);
   int _forcedRebuilds = 0;
   final Debouncer _disconnectDebouncer = Debouncer(delay: const Duration(milliseconds: 500));
@@ -341,6 +359,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       connectedDevice!.id,
       onBatteryLevelChange: (int value) {
         batteryLevel = value;
+        _noteBattery(value);
         BatteryWidgetService().updateBatteryInfo(
           deviceName: connectedDevice?.name ?? '',
           batteryLevel: value,
@@ -386,6 +405,45 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     );
     notifyListeners();
   }
+
+  /// Track the battery so charging can be inferred, and run the overnight
+  /// drain while it is on the charger.
+  void _noteBattery(int level) {
+    if (level < 0) return;
+    final now = DateTime.now();
+    _batteryTrail.add((at: now, level: level));
+    _batteryTrail.removeWhere((e) => now.difference(e.at) > const Duration(hours: 2));
+
+    final earlier = _batteryTrail.where((e) => now.difference(e.at) >= _chargingLookback).toList();
+    final rising = earlier.isNotEmpty && level > earlier.last.level;
+
+    if (!_overnightDrainOn) {
+      // Start only on evidence it is charging. A worn pendant only ever falls.
+      if (rising) _setOvernightDrain(true, 'battery rising ${earlier.last.level}% -> $level%');
+      return;
+    }
+
+    // Keep going while it holds or climbs; a real discharge means it came off
+    // the charger and is being worn again.
+    if (level > _peakWhileCharging) _peakWhileCharging = level;
+    if (level < _peakWhileCharging - 1) {
+      _setOvernightDrain(false, 'battery fell to $level% from $_peakWhileCharging% — off the charger');
+    }
+  }
+
+  void _setOvernightDrain(bool on, String why) {
+    if (_overnightDrainOn == on) return;
+    _overnightDrainOn = on;
+    _peakWhileCharging = on ? batteryLevel : -1;
+    // The native engine reads this straight out of UserDefaults on its own
+    // 90-second cycle; nothing else has to be running for it to act.
+    SharedPreferencesUtil().saveBool('overnightDrainActive', on);
+    Logger.warning('[OvernightDrain] ${on ? 'starting' : 'stopping'}: $why');
+    notifyListeners();
+  }
+
+  /// Whether the pendant is currently draining itself on the charger.
+  bool get overnightDrainRunning => _overnightDrainOn;
 
   Future<void> initiateChargingStatusListener() async {
     if (connectedDevice == null) return;
@@ -621,6 +679,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   }
 
   void onDeviceDisconnected() async {
+    _setOvernightDrain(false, 'device disconnected');
     Logger.debug('onDisconnected inside: $connectedDevice');
     _havingNewFirmware = false;
     _firmwareUpdatePromptCoordinator.invalidatePresentation();
