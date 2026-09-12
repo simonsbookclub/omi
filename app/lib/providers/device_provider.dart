@@ -111,6 +111,8 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   static const Duration _deafFor = Duration(minutes: 5);
   Timer? _linkWatchdogTimer;
   DateTime? _lastForcedRebuildAt;
+  DateTime? _lastStorageCheckAt;
+  static const Duration _storageCheckEvery = Duration(minutes: 10);
   int _forcedRebuilds = 0;
   final Debouncer _disconnectDebouncer = Debouncer(delay: const Duration(milliseconds: 500));
   final Debouncer _connectDebouncer = Debouncer(delay: const Duration(milliseconds: 100));
@@ -143,6 +145,18 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     if (!AuthService.instance.isSignedIn()) return;
 
     final now = DateTime.now();
+
+    // Read how full the pendant is on a slow cadence, whatever the stream is
+    // doing. Checking this only on a stall was wrong: a pendant worn all day
+    // streams happily until the moment it is full, so the flag that lets the
+    // drain run alongside live audio would never be set until recording had
+    // already stopped. Simon's filled twice on 2026-09-11 with four days of
+    // un-drained backlog on it.
+    if (_lastStorageCheckAt == null || now.difference(_lastStorageCheckAt!) >= _storageCheckEvery) {
+      _lastStorageCheckAt = now;
+      unawaited(refreshLimitlessStoragePressure());
+    }
+
     final lastAudioMs = CaptureController.lastLiveAudioAtMs;
     if (lastAudioMs > 0 && now.millisecondsSinceEpoch - lastAudioMs < _deafFor.inMilliseconds) {
       _forcedRebuilds = 0;
