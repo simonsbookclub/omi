@@ -548,6 +548,18 @@ class SyncProvider extends ChangeNotifier implements IWalServiceListener, IWalSy
     await refreshWals();
   }
 
+  /// Free the pendant's flash up to a moment, without downloading it.
+  ///
+  /// The way out of a pendant that has fallen too far behind to ever catch up:
+  /// it keeps what happened after `cutoff` and lets the device record again
+  /// now, instead of leaving it full and silent while a day and a half of
+  /// mostly-duplicate audio trickles over Bluetooth.
+  Future<int?> freeFlashBefore(DateTime cutoff) async {
+    final freed = await _walService.getSyncs().flashPage.freeFlashBefore(cutoff);
+    await refreshWals();
+    return freed;
+  }
+
   Future<void> deleteAllPendingWals() async {
     await _walService.getSyncs().deleteAllPendingWals();
     await refreshWals();

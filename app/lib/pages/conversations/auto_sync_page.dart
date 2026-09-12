@@ -772,6 +772,54 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
   // Manage storage
   // ─────────────────────────────────────────
 
+  /// Free the pendant's own flash up to a moment the user picks.
+  ///
+  /// A pendant that has fallen behind cannot catch up: it is full, so it stops
+  /// recording, and the only way it frees a page is an acknowledgement sent
+  /// after that page has been transferred. Deleting the pending entry does not
+  /// help — that drops the row from this list and leaves the device just as
+  /// full. This is the only thing that gives it room back, and it keeps
+  /// everything after the chosen moment so the part worth having survives.
+  Future<void> _freeDeviceStorage(BuildContext context, SyncProvider provider) async {
+    final now = DateTime.now();
+    final day = await showDatePicker(
+      context: context,
+      initialDate: now.subtract(const Duration(days: 1)),
+      firstDate: now.subtract(const Duration(days: 14)),
+      lastDate: now,
+      helpText: 'Keep audio recorded after…',
+    );
+    if (day == null || !context.mounted) return;
+    final time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(now),
+      helpText: 'Keep audio recorded after…',
+    );
+    if (time == null || !context.mounted) return;
+    final cutoff = DateTime(day.year, day.month, day.day, time.hour, time.minute);
+
+    final confirmed = await OmiConfirmDialog.show(
+      context,
+      title: 'Free space on the pendant',
+      message: 'Audio recorded before ${cutoff.toString().substring(0, 16)} will be erased from the device '
+          'without being downloaded. Everything after it is kept. This cannot be undone.',
+      confirmLabel: 'Free',
+      confirmColor: Colors.red,
+    );
+    if (confirmed != true || !context.mounted) return;
+
+    final freed = await provider.freeFlashBefore(cutoff);
+    if (!context.mounted) return;
+    final message = freed == null
+        ? 'Could not reach the pendant. Make sure it is connected and try again.'
+        : freed == 0
+            ? 'Nothing on the pendant is older than that.'
+            : 'Freed ${(freed * secondsPerFlashPage / 60).round()} minutes of space on the pendant.';
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: freed == null ? Colors.red : Colors.green),
+    );
+  }
+
   void _showManageStorageSheet(BuildContext context, SyncProvider provider) {
     showModalBottomSheet(
       context: context,
@@ -795,6 +843,10 @@ class _AutoSyncPageState extends State<AutoSyncPage> {
               ).showSnackBar(SnackBar(content: Text(context.l10n.syncedFilesDeleted), backgroundColor: Colors.green));
             }
           }
+        },
+        onFreeDevice: () async {
+          Navigator.of(sheetContext).pop();
+          await _freeDeviceStorage(context, provider);
         },
         onClearPending: () async {
           Navigator.of(sheetContext).pop();
@@ -874,12 +926,14 @@ class _ManageStorageSheet extends StatelessWidget {
   final VoidCallback onClearSynced;
   final VoidCallback onClearPending;
   final VoidCallback onClearAll;
+  final VoidCallback onFreeDevice;
 
   const _ManageStorageSheet({
     required this.provider,
     required this.onClearSynced,
     required this.onClearPending,
     required this.onClearAll,
+    required this.onFreeDevice,
   });
 
   @override
@@ -930,6 +984,16 @@ class _ManageStorageSheet extends StatelessWidget {
                 onClear: pendingCount > 0 ? onClearPending : null,
                 clearLabel: context.l10n.clear,
                 isWarning: true,
+              ),
+              const SizedBox(height: 12),
+              _StorageRow(
+                icon: FontAwesomeIcons.microchip,
+                iconColor: Colors.blue,
+                title: 'On the pendant',
+                subtitle: 'Free older audio so it can record again',
+                count: -1,
+                onClear: onFreeDevice,
+                clearLabel: 'Free',
               ),
               if (totalCount > 0) ...[
                 const SizedBox(height: 20),
@@ -1007,15 +1071,19 @@ class _StorageRow extends StatelessWidget {
                       title,
                       style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500),
                     ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(6),
+                    // A negative count means this row counts nothing — the
+                    // pendant's own storage has no file list to tally.
+                    if (count >= 0) ...[
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.08),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: Text('$count', style: TextStyle(color: Colors.grey.shade400, fontSize: 12)),
                       ),
-                      child: Text('$count', style: TextStyle(color: Colors.grey.shade400, fontSize: 12)),
-                    ),
+                    ],
                   ],
                 ),
                 const SizedBox(height: 3),

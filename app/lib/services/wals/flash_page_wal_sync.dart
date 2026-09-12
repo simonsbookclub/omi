@@ -96,6 +96,62 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
     listener.onWalUpdated();
   }
 
+  /// Free the pendant's flash up to a wall-clock moment, WITHOUT downloading it.
+  ///
+  /// The device frees pages only on an ACK, and the only ACK in the app is
+  /// wired to a completed sync. So a pendant that has fallen behind has no way
+  /// out: it stays full, stops recording, and the backlog it is holding can
+  /// only be cleared by transferring all of it over Bluetooth — which is what
+  /// it does not have time to do. Deleting the pending entry does not help
+  /// either; deleteWal only ACKs a wal already marked synced, so it drops the
+  /// row and leaves the device exactly as full as before.
+  ///
+  /// Pages are chronological and fixed-duration, so the page holding a given
+  /// moment is arithmetic from the oldest page. A safety margin is subtracted
+  /// so a small drift in that estimate can only ever keep MORE audio than
+  /// asked, never silently free something the user wanted.
+  ///
+  /// Returns the number of pages freed, or null if it could not be done.
+  Future<int?> freeFlashBefore(DateTime cutoff, {Duration margin = const Duration(minutes: 30)}) async {
+    final device = _device;
+    if (device == null || device.type != DeviceType.limitless) return null;
+    final connection = await ServiceManager.instance().device.ensureConnection(device.id);
+    if (connection is! LimitlessDeviceConnection) return null;
+
+    final status = await connection.getStorageStatus();
+    if (status == null) return null;
+    final oldest = status['oldest_flash_page'];
+    final newest = status['newest_flash_page'];
+    if (oldest == null || newest == null || newest <= oldest) return null;
+
+    // Where the stored range begins in wall-clock terms, derived exactly the
+    // way _getMissingWals derives the WAL's own start: the newest page is
+    // "now", and every page before it is 1.4s earlier. That figure is what the
+    // Offline Sync screen already shows as the entry's date, so this cannot
+    // disagree with what the user is looking at.
+    final oldestAt = DateTime.now().subtract(
+      Duration(milliseconds: ((newest - oldest) * secondsPerFlashPage * 1000).round()),
+    );
+
+    final target = cutoff.subtract(margin);
+    final secondsIn = target.difference(oldestAt).inSeconds;
+    if (secondsIn <= 0) return 0; // nothing older than the cutoff
+    final pagesIn = (secondsIn / secondsPerFlashPage).floor();
+    final upTo = (oldest + pagesIn).clamp(oldest, newest);
+    if (upTo <= oldest) return 0;
+
+    Logger.debug('FlashPageSync: freeing pages $oldest..$upTo (before ${target.toIso8601String()})');
+    DebugLogManager.logEvent('flash_page_free_before', {
+      'cutoff': cutoff.toIso8601String(),
+      'oldestPage': oldest,
+      'upToPage': upTo,
+      'pagesFreed': upTo - oldest,
+    });
+    await connection.acknowledgeProcessedData(upTo);
+    await refreshWalsFromDevice();
+    return upTo - oldest;
+  }
+
   Future<List<Wal>> _getMissingWals() async {
     // Capture snapshot — setDevice(null) can be called concurrently during awaits
     final device = _device;
