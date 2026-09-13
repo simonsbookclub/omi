@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:omi/backend/http/api/device.dart';
+import 'package:omi/backend/http/api/integrations.dart';
 import 'package:omi/gen/pigeon_communicator.g.dart';
 import 'package:omi/utils/l10n_extensions.dart';
 import 'package:omi/backend/preferences.dart';
@@ -127,6 +128,12 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   // exposes no charging characteristic — only battery level — so charging is
   // inferred from the level going UP, which a worn device's never does.
   final List<({DateTime at, int level})> _batteryTrail = [];
+  /// When this provider came up. A fresh launch has no audio history, and
+  /// "no audio yet" must not read as "idle for half an hour".
+  final DateTime _startedAt = DateTime.now();
+  /// Mirrored into SharedPreferences ('overnightDrainActive') so the capture
+  /// controller and the native layer can read it without importing this.
+  static const Duration _idleForDrain = Duration(minutes: 30);
   bool _overnightDrainOn = false;
   int _peakWhileCharging = -1;
   static const Duration _chargingLookback = Duration(minutes: 15);
@@ -176,6 +183,14 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     }
 
     final lastAudioMs = CaptureController.lastLiveAudioAtMs;
+    _considerOvernightDrain(now, lastAudioMs);
+
+    // A pendant on its charger is silent by design. Rebuilding its link every
+    // few minutes because no audio was arriving tore down the very drain that
+    // silence exists for: 37 relay sessions on the night of 2026-09-12, zero
+    // frames, zero chunks drained.
+    if (_overnightDrainOn) return;
+
     if (lastAudioMs > 0 && now.millisecondsSinceEpoch - lastAudioMs < _deafFor.inMilliseconds) {
       _forcedRebuilds = 0;
       return;
@@ -406,6 +421,33 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     notifyListeners();
   }
 
+  /// The second way in, which does not depend on the battery at all.
+  ///
+  /// "Battery rising" cannot fire on a pendant put on the charger already
+  /// near full — the Limitless only notifies on change, and 100% never rises.
+  /// That is why the first overnight run never armed. Night plus a long
+  /// silence is the honest description of "on the nightstand", and it holds
+  /// whatever the battery is doing.
+  void _considerOvernightDrain(DateTime now, int lastAudioMs) {
+    final sinceStart = now.difference(_startedAt);
+    final quietMs = lastAudioMs > 0 ? now.millisecondsSinceEpoch - lastAudioMs : sinceStart.inMilliseconds;
+    final night = now.hour >= 23 || now.hour < 7;
+    if (!_overnightDrainOn) {
+      if (night &&
+          sinceStart >= _idleForDrain &&
+          quietMs >= _idleForDrain.inMilliseconds &&
+          connectedDevice != null) {
+        _setOvernightDrain(true, 'night, no audio for ${quietMs ~/ 60000} min');
+      }
+      return;
+    }
+    // Live audio coming back means it is on him again. The drain itself
+    // produces no live audio, so this cannot be tripped by the drain.
+    if (lastAudioMs > 0 && quietMs < const Duration(minutes: 2).inMilliseconds) {
+      _setOvernightDrain(false, 'live audio resumed');
+    }
+  }
+
   /// Track the battery so charging can be inferred, and run the overnight
   /// drain while it is on the charger.
   void _noteBattery(int level) {
@@ -439,6 +481,15 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     // 90-second cycle; nothing else has to be running for it to act.
     SharedPreferencesUtil().saveBool('overnightDrainActive', on);
     Logger.warning('[OvernightDrain] ${on ? 'starting' : 'stopping'}: $why');
+    // The phone's debug log never leaves the phone, which is why the first
+    // overnight run could only be diagnosed by inference. Report each change
+    // to the server so the next morning can be read, not guessed.
+    unawaited(reportPendantDrainState({
+      'on': on,
+      'why': why,
+      'battery': batteryLevel,
+      'at': DateTime.now().toUtc().toIso8601String(),
+    }).catchError((_) => false));
     notifyListeners();
   }
 

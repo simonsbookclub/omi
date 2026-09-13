@@ -313,6 +313,11 @@ final class OmiBleManager: NSObject {
     /// go away, which produces a real didDisconnectPeripheral, which tells
     /// Dart the truth and re-arms the pending connect at didDisconnect.
     private func checkForDeafLink(_ peripheral: CBPeripheral) {
+        // A drain keeps the pendant silent between its 90s cycles on purpose,
+        // and download mode sends no audio notifications at all. Tearing the
+        // link down for that silence would kill the drain it exists to serve.
+        let d = UserDefaults.standard
+        if d.bool(forKey: "flutter.overnightDrainActive") || d.bool(forKey: "flutter.batchModeEnabled") { return }
         let uuid = peripheralUuidString(peripheral)
         // Only judge a link we have actually heard from: a peripheral that has
         // never notified may simply have nothing subscribed yet.

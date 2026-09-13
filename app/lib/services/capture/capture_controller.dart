@@ -1804,6 +1804,11 @@ class CaptureController extends ChangeNotifier
 
   Future<void> _checkAudioLiveness() async {
     if (recordingState != RecordingState.deviceRecord || _recordingDevice == null || _isPaused) return;
+    // While the overnight drain has the pendant in download mode, silence is
+    // the intended state. Restarting the stream and forcing a reconnect for
+    // it would kill the drain — read from prefs rather than DeviceProvider so
+    // this file does not import the provider that imports it.
+    if (SharedPreferencesUtil().getBool('overnightDrainActive')) return;
     final now = DateTime.now().millisecondsSinceEpoch;
     final since = now - (lastLiveAudioAtMs > _watchdogArmedAtMs ? lastLiveAudioAtMs : _watchdogArmedAtMs);
     if (since < _audioStallSeconds * 1000) {

@@ -121,6 +121,21 @@ Future<bool> syncAppleHealthSamples(List<Map<String, dynamic>> samples) async {
 
 /// Sync Apple Health data to backend
 /// This sends health data collected from HealthKit to the server
+/// Report an overnight-drain state change to the server.
+///
+/// The phone's debug log never leaves the phone, so the first overnight
+/// drain (2026-09-12) could only be diagnosed by inference. One small PUT per
+/// start/stop makes the next morning readable from the database instead.
+Future<bool> reportPendantDrainState(Map<String, dynamic> state) async {
+  var response = await makeApiCall(
+    url: '${Env.apiBaseUrl}v1/integrations/pendant/drain-state',
+    headers: {},
+    method: 'PUT',
+    body: jsonEncode(state),
+  );
+  return response != null && response.statusCode == 200;
+}
+
 Future<bool> syncAppleHealthData(Map<String, dynamic> healthData) async {
   var response = await makeApiCall(
     url: '${Env.apiBaseUrl}v1/integrations/apple-health/sync',

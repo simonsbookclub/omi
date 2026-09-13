@@ -17,6 +17,20 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
   static const int pagesPerChunk = 25;
   static const Duration _persistBatchDuration = Duration(seconds: 90);
 
+  // A floor on what gets written as its own file (2026-09-13).
+  //
+  // A batch was cut at every 2-minute gap between pages and every 90s of
+  // accumulation, whatever it held. Every forced link rebuild flips the
+  // pendant to record-to-flash for a second or two, and that second became
+  // its own file: Simon's Offline Sync showed dozens of 1–2 second entries at
+  // 12:00, 12:01, 2:00, 2:01 — one per reconnect. Each costs an upload
+  // round-trip and a server row and carries nothing intelligible, which is a
+  // large part of why the drain could not keep pace with real time.
+  //
+  // 50 opus frames a second (see _registerChunkWithLocalSync).
+  static const int _minBatchFrames = 15 * 50;
+  static const int _dropBlipFrames = 3 * 50;
+
   List<Wal> _wals = [];
   BtDevice? _device;
   LocalWalSync? _localSync;
@@ -385,6 +399,7 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
       while (!syncComplete) {
         final pageData = limitlessConnection.extractFramesWithSessionInfo();
         bool shouldSave = false;
+        bool gapTriggered = false;
 
         List<List<int>>? pendingFrames;
         int? pendingTimestamp;
@@ -433,6 +448,7 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
               final gap = (timestampMs - batchMinTimestamp).abs();
               if (gap > sessionGapThresholdMs) {
                 shouldSave = true;
+                gapTriggered = true;
                 pendingFrames = opusFrames;
                 pendingTimestamp = timestampMs;
               }
@@ -465,6 +481,27 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
             } catch (e) {
               Logger.debug("FlashPageSync: Diagnostic ACK failed: $e");
             }
+          }
+        }
+
+        if (shouldSave && accumulatedFrames.isNotEmpty) {
+          if (!gapTriggered && accumulatedFrames.length < _minBatchFrames) {
+            // Timer fired on a batch too small to be worth a file. Keep
+            // accumulating; the timer comes round again in 90s.
+            shouldSave = false;
+            lastSaveTime = DateTime.now();
+          } else if (gapTriggered && accumulatedFrames.length < _dropBlipFrames) {
+            // A session that never got past a blip: the pendant flipped to
+            // flash during a link rebuild and back. Not audio. Drop it and
+            // start the new session in its place.
+            Logger.debug("FlashPageSync: dropping a ${accumulatedFrames.length}-frame blip at ts=$batchMinTimestamp");
+            accumulatedFrames.clear();
+            accumulatedFrames.addAll(pendingFrames ?? const []);
+            batchMinTimestamp = pendingTimestamp;
+            pendingFrames = null;
+            pendingTimestamp = null;
+            lastSaveTime = DateTime.now();
+            shouldSave = false;
           }
         }
 
@@ -569,7 +606,9 @@ class FlashPageWalSyncImpl implements FlashPageWalSync {
         await Future.delayed(const Duration(milliseconds: 500));
       }
 
-      if (accumulatedFrames.isNotEmpty) {
+      // The tail of a drain is worth keeping down to a few seconds; below that
+      // it is the same reconnect blip as above and not worth a file.
+      if (accumulatedFrames.length >= _dropBlipFrames) {
         final filePath = await _saveBatchToFile(
           accumulatedFrames,
           batchMinTimestamp ?? DateTime.now().millisecondsSinceEpoch,
