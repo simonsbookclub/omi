@@ -249,6 +249,22 @@ class NativeBleTransport extends DeviceTransport {
 
   void _handleConnectionState(bool connected, String? error) {
     if (!connected) {
+      // A forced rebuild cancels the old link and at once registers a new
+      // transport under the same peripheral. CoreBluetooth reports that
+      // cancel a moment later — to the new transport, still waiting for its
+      // first ready. Failing it here left every forced rebuild with a
+      // connection that had nothing subscribed and never initialised (37
+      // relay sessions, zero frames, 2026-09-12). Native reconnects on its
+      // own after an error-free disconnect, so wait for ready instead; the
+      // 60s cap in connect() still bounds it, and a refused connect arrives
+      // with an error and fails fast as before.
+      if (error == null &&
+          _state == DeviceTransportState.connecting &&
+          _deviceReadyCompleter != null &&
+          !_deviceReadyCompleter!.isCompleted) {
+        Logger.debug('[NativeBleTransport] disconnect reported while connecting — previous link tearing down, waiting for ready');
+        return;
+      }
       // Guard against double-fire (didDisconnect + didFailToConnect both invoke this).
       // On the 2nd call _streamControllers is already empty; overwriting _activeSubscriptionKeys
       // with {} would prevent re-subscription on the next reconnect.

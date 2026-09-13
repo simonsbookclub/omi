@@ -266,9 +266,14 @@ final class OmiBleManager: NSObject {
         }
     }
 
-    func subscribeCharacteristic(peripheralUuid: String, serviceUuid: String, characteristicUuid: String) {
-        guard let characteristic = findCharacteristic(peripheralUuid: peripheralUuid, serviceUuid: serviceUuid, characteristicUuid: characteristicUuid) else { return }
-        peripherals[peripheralUuid]?.setNotifyValue(true, for: characteristic)
+    /// False when the characteristic is not (yet) discovered — the caller
+    /// should try again rather than believe it is subscribed.
+    @discardableResult
+    func subscribeCharacteristic(peripheralUuid: String, serviceUuid: String, characteristicUuid: String) -> Bool {
+        guard let characteristic = findCharacteristic(peripheralUuid: peripheralUuid, serviceUuid: serviceUuid, characteristicUuid: characteristicUuid) else { return false }
+        guard let peripheral = peripherals[peripheralUuid] else { return false }
+        peripheral.setNotifyValue(true, for: characteristic)
+        return true
     }
 
     func unsubscribeCharacteristic(peripheralUuid: String, serviceUuid: String, characteristicUuid: String) {

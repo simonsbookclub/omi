@@ -958,6 +958,9 @@ class LimitlessDeviceConnection extends DeviceConnection {
 
   /// Completer for waiting on storage state response
   Completer<Map<String, int>?>? _storageStateCompleter;
+  /// When the pendant last answered a status request — fresh evidence the
+  /// link is alive, which the cached return of getStorageStatus is not.
+  DateTime? lastStatusReplyAt;
 
   List<int> _encodeGetDeviceStatus() {
     final cmd = [..._encodeMessage(21, []), ..._encodeRequestData()];
@@ -1066,7 +1069,12 @@ class LimitlessDeviceConnection extends DeviceConnection {
       _completedFlashPages.clear();
       _firstFlashPageTimestampMs = null;
 
-      // Back to real-time — or to record-to-flash ({0,0}) while Transcribe Later is on
+      // Back to real-time — or to record-to-flash ({0,0}) while Transcribe
+      // Later or the overnight drain holds the pendant on flash. Re-read the
+      // policy: the drain can have started since this connection was made,
+      // and a stale {0,1} here hands realtime audio to a native engine that
+      // is only listening for flash pages.
+      _realtimeSuppressed = realtimeSuppressionPolicy?.call() ?? _realtimeSuppressed;
       final cmd = _realtimeSuppressed
           ? _encodeEnableDataStream(enable: false)
           : _encodeDownloadFlashPages(batchMode: false, realTime: true);
@@ -1481,6 +1489,7 @@ class LimitlessDeviceConnection extends DeviceConnection {
               final storageState = _parseStorageStateFromDeviceStatus(data, innerPos, innerPos + statusLength);
               if (storageState != null && storageState.isNotEmpty) {
                 _storageState = storageState;
+                lastStatusReplyAt = DateTime.now();
                 _storageStateCompleter?.complete(storageState);
               }
               return;

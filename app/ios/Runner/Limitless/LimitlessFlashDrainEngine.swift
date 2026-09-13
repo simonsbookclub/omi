@@ -53,6 +53,10 @@ final class LimitlessFlashDrainEngine {
     private var cycleTimer: DispatchSourceTimer?
     private var statusTimeoutTask: DispatchWorkItem?
     private var stallCheckTimer: DispatchSourceTimer?
+    /// Peripheral whose RX characteristic this engine has itself subscribed.
+    /// Dart's subscription is not something to count on: a failed link
+    /// rebuild leaves it off, and a drain that then "runs" reads nothing.
+    private var rxSubscribedFor: String?
 
     private init() {}
 
@@ -60,8 +64,9 @@ final class LimitlessFlashDrainEngine {
     /// configured RX characteristic natively so drain works even when Dart never
     /// subscribed (state restoration without the Flutter engine).
     func onDeviceReady(_ peripheralUuid: String) {
+        var subscribed = false
         if let config = loadConfig(), config.deviceId == peripheralUuid.lowercased() {
-            OmiBleManager.shared.subscribeCharacteristic(
+            subscribed = OmiBleManager.shared.subscribeCharacteristic(
                 peripheralUuid: peripheralUuid,
                 serviceUuid: config.serviceUuid,
                 characteristicUuid: config.characteristicUuid
@@ -70,6 +75,7 @@ final class LimitlessFlashDrainEngine {
         queue.async {
             if let config = self.loadConfig(), config.deviceId != peripheralUuid.lowercased() { return }
             self.deviceUuid = peripheralUuid
+            self.rxSubscribedFor = subscribed ? peripheralUuid : nil
             if self.phase != .draining { self.setBoolPref("pendantDraining", false) }
             self.cycleTimer?.cancel()
             let timer = DispatchSource.makeTimerSource(queue: self.queue)
@@ -90,6 +96,7 @@ final class LimitlessFlashDrainEngine {
             self.cycleTimer = nil
             self.resetDrainState("disconnected")
             self.deviceUuid = nil
+            self.rxSubscribedFor = nil
             self.messageIndex = 0
             self.requestId = 0
             self.writer.stop("ble_disconnected")
@@ -128,6 +135,18 @@ final class LimitlessFlashDrainEngine {
             return
         }
         guard config.deviceId == uuid.lowercased() else { return }
+
+        // The flag can flip on hours after onDeviceReady, and Dart's own RX
+        // subscription may be gone by then. Subscribe here, once per link;
+        // setNotifyValue on an already-notifying characteristic is harmless.
+        if rxSubscribedFor != uuid {
+            let serviceUuid = config.serviceUuid, charUuid = config.characteristicUuid
+            DispatchQueue.main.async { [weak self] in
+                let ok = OmiBleManager.shared.subscribeCharacteristic(
+                    peripheralUuid: uuid, serviceUuid: serviceUuid, characteristicUuid: charUuid)
+                self?.queue.async { if ok { self?.rxSubscribedFor = uuid } }
+            }
+        }
 
         phase = .awaitingStatus
         write(uuid, LimitlessProtocol.encodeSetCurrentTime(
@@ -266,12 +285,16 @@ final class LimitlessFlashDrainEngine {
         stallCheckTimer?.cancel()
         stallCheckTimer = nil
         ackWritten()
-        // Return the pendant to record-to-flash — unless batch mode was turned off
-        // mid-drain, in which case the Dart connector owns the mode ({0,1}) and a
-        // late {0,0} here would silently stop realtime streaming.
-        if let uuid = deviceUuid, loadConfig() != nil {
+        // Always leave the pendant in a mode. Record-to-flash while a drain
+        // flag holds; realtime the moment neither does — which is what the
+        // Dart connector sets in that case, so this only ever agrees with it.
+        // Leaving download mode on instead (the old "let Dart own it") sent
+        // hours-old flash pages to Dart as if they were live, un-ACKed, until
+        // its watchdog got round to {0,1}.
+        if let uuid = deviceUuid {
+            let keepOnFlash = loadConfig() != nil
             write(uuid, LimitlessProtocol.encodeDownloadFlashPages(
-                messageIndex: nextMessageIndex(), requestId: nextRequestId(), batchMode: false, realTime: false))
+                messageIndex: nextMessageIndex(), requestId: nextRequestId(), batchMode: false, realTime: !keepOnFlash))
         }
         phase = .idle
         setBoolPref("pendantDraining", false)

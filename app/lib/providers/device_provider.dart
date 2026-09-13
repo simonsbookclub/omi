@@ -127,7 +127,11 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   // worn, so nothing live is lost by putting it in download mode. A Limitless
   // exposes no charging characteristic — only battery level — so charging is
   // inferred from the level going UP, which a worn device's never does.
-  final List<({DateTime at, int level})> _batteryTrail = [];
+  /// Last moment the pendant answered anything — a battery reading or a
+  /// storage status. The drain must never arm on a link that merely looks
+  /// connected.
+  DateTime? _lastPendantReplyAt;
+  static const Duration _proofOfLifeWithin = Duration(minutes: 15);
   /// When this provider came up. A fresh launch has no audio history, and
   /// "no audio yet" must not read as "idle for half an hour".
   final DateTime _startedAt = DateTime.now();
@@ -135,8 +139,6 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   /// controller and the native layer can read it without importing this.
   static const Duration _idleForDrain = Duration(minutes: 30);
   bool _overnightDrainOn = false;
-  int _peakWhileCharging = -1;
-  static const Duration _chargingLookback = Duration(minutes: 15);
   static const Duration _storageCheckEvery = Duration(minutes: 10);
   int _forcedRebuilds = 0;
   final Debouncer _disconnectDebouncer = Debouncer(delay: const Duration(milliseconds: 500));
@@ -147,6 +149,11 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
 
   DeviceProvider({BleDiagnosticsLoader? bleDiagnosticsLoader})
       : _bleDiagnosticsLoader = bleDiagnosticsLoader ?? BleHostApi().getDeviceDiagnostics {
+    // The drain flag outlives the process in SharedPreferences; the field that
+    // owns it does not. After a relaunch the two disagree — memory says off,
+    // so nothing ever turns the pref off — and the native engine keeps
+    // consuming every packet all day. Every process starts with it off.
+    SharedPreferencesUtil().saveBool('overnightDrainActive', false);
     ServiceManager.instance().device.subscribe(this, this);
     BleBridge.instance.pairingLostCallback = _showPairingLostDialog;
     _startLinkWatchdog();
@@ -423,22 +430,36 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
 
   /// The second way in, which does not depend on the battery at all.
   ///
-  /// "Battery rising" cannot fire on a pendant put on the charger already
-  /// near full — the Limitless only notifies on change, and 100% never rises.
-  /// That is why the first overnight run never armed. Night plus a long
-  /// silence is the honest description of "on the nightstand", and it holds
-  /// whatever the battery is doing.
+  /// Night plus a long silence is the honest description of "on the
+  /// nightstand", and it holds whether or not it is charging — Simon only
+  /// charges when it is nearly dead, so "battery rising" was the wrong tell.
+  ///
+  /// Silence alone is not enough, though. A half-dead link — ACL up, nothing
+  /// answering — looks exactly the same: connected, quiet. Arming on it would
+  /// switch off the three watchdogs that exist to cure it, for the whole
+  /// night and the whole morning. So the pendant must also have answered
+  /// something recently, over a path the drain engine never touches.
   void _considerOvernightDrain(DateTime now, int lastAudioMs) {
     final sinceStart = now.difference(_startedAt);
     final quietMs = lastAudioMs > 0 ? now.millisecondsSinceEpoch - lastAudioMs : sinceStart.inMilliseconds;
     final night = now.hour >= 23 || now.hour < 7;
     if (!_overnightDrainOn) {
+      final heard = _lastPendantReplyAt != null && now.difference(_lastPendantReplyAt!) <= _proofOfLifeWithin;
       if (night &&
           sinceStart >= _idleForDrain &&
           quietMs >= _idleForDrain.inMilliseconds &&
-          connectedDevice != null) {
+          connectedDevice != null &&
+          heard) {
         _setOvernightDrain(true, 'night, no audio for ${quietMs ~/ 60000} min');
       }
+      return;
+    }
+    // Morning ends it whatever else is true. Every other stop waits on a
+    // notification the pendant may not send for hours (the battery moves
+    // about 1%/h worn) or ever (a link gone deaf), and a flag left on into
+    // the day mutes the pendant: the native engine consumes every packet.
+    if (!night) {
+      _setOvernightDrain(false, 'morning');
       return;
     }
     // Live audio coming back means it is on him again. The drain itself
@@ -448,35 +469,21 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     }
   }
 
-  /// Track the battery so charging can be inferred, and run the overnight
-  /// drain while it is on the charger.
+  /// A battery reading is proof the link is alive: it arrives over the
+  /// standard battery service, which the drain engine never consumes.
+  ///
+  /// The battery used to arm and stop the drain too. "Rising" could arm it
+  /// in daytime on a gauge blip and silence every watchdog for hours;
+  /// "fell 2%" tripped on a nightstand's own slow discharge and flapped the
+  /// drain a few times a night, each flap cutting a file. Neither survives.
   void _noteBattery(int level) {
     if (level < 0) return;
-    final now = DateTime.now();
-    _batteryTrail.add((at: now, level: level));
-    _batteryTrail.removeWhere((e) => now.difference(e.at) > const Duration(hours: 2));
-
-    final earlier = _batteryTrail.where((e) => now.difference(e.at) >= _chargingLookback).toList();
-    final rising = earlier.isNotEmpty && level > earlier.last.level;
-
-    if (!_overnightDrainOn) {
-      // Start only on evidence it is charging. A worn pendant only ever falls.
-      if (rising) _setOvernightDrain(true, 'battery rising ${earlier.last.level}% -> $level%');
-      return;
-    }
-
-    // Keep going while it holds or climbs; a real discharge means it came off
-    // the charger and is being worn again.
-    if (level > _peakWhileCharging) _peakWhileCharging = level;
-    if (level < _peakWhileCharging - 1) {
-      _setOvernightDrain(false, 'battery fell to $level% from $_peakWhileCharging% — off the charger');
-    }
+    _lastPendantReplyAt = DateTime.now();
   }
 
   void _setOvernightDrain(bool on, String why) {
     if (_overnightDrainOn == on) return;
     _overnightDrainOn = on;
-    _peakWhileCharging = on ? batteryLevel : -1;
     // The native engine reads this straight out of UserDefaults on its own
     // 90-second cycle; nothing else has to be running for it to act.
     SharedPreferencesUtil().saveBool('overnightDrainActive', on);
@@ -696,6 +703,12 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       final conn = await ServiceManager.instance().device.ensureConnection(id);
       if (conn is! LimitlessDeviceConnection) return;
       _updateStoragePressureFromPages(await conn.getStorageStatus());
+      // getStorageStatus hands back its cached answer on a timeout, so the
+      // return value is not evidence of life; the reply stamp is.
+      final reply = conn.lastStatusReplyAt;
+      if (reply != null && (_lastPendantReplyAt == null || reply.isAfter(_lastPendantReplyAt!))) {
+        _lastPendantReplyAt = reply;
+      }
       if (deviceStorageUnderPressure) {
         Logger.warning('[Storage] pendant flash is filling — letting the drain run alongside live audio');
       }
@@ -731,6 +744,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
 
   void onDeviceDisconnected() async {
     _setOvernightDrain(false, 'device disconnected');
+    _lastPendantReplyAt = null;
     Logger.debug('onDisconnected inside: $connectedDevice');
     _havingNewFirmware = false;
     _firmwareUpdatePromptCoordinator.invalidatePresentation();

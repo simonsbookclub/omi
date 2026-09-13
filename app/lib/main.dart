@@ -140,7 +140,10 @@ Future _init() async {
 
   // Service manager
   await ServiceManager.init();
-  LimitlessDeviceConnection.realtimeSuppressionPolicy = () => SharedPreferencesUtil().batchModeEnabled;
+  // While either flag holds, the pendant records to flash and the native
+  // engine drains it; nothing on the Dart side may switch it back to realtime.
+  LimitlessDeviceConnection.realtimeSuppressionPolicy = () =>
+      SharedPreferencesUtil().batchModeEnabled || SharedPreferencesUtil().getBool('overnightDrainActive');
 
   // Firebase
   if (Firebase.apps.isEmpty) {
