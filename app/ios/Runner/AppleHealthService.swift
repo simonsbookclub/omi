@@ -1,6 +1,71 @@
 import Foundation
 import HealthKit
 import CoreLocation
+
+/// A workout's meta while its queries run: one copy shared by the closures
+/// (a captured `var` dictionary is not safe to mutate from HealthKit's queues).
+private final class MetaBox {
+    var meta: [String: Any]
+    init(_ meta: [String: Any]) { self.meta = meta }
+}
+
+/// Per-km splits and a thinned polyline from a workout route, folded in one
+/// batch at a time so the trace never sits whole in memory. Boundaries are
+/// interpolated between the two points that straddle them; a gap over two
+/// minutes is a paused watch, not a sprint.
+private final class RouteWalk {
+    var splits: [Int] = []
+    var cumulative = 0.0
+    var finished = false
+    private var nextBoundary = 1000.0
+    private var lastBoundaryTime: Date
+    private var previous: CLLocation? = nil
+    private var poly: [[Double]] = []
+    private var sinceLast = 0.0
+    private var lastPoint: [Double]? = nil
+    private let polyStep: Double
+
+    init(start: Date, polyStep: Double) {
+        lastBoundaryTime = start
+        self.polyStep = polyStep
+    }
+
+    func fold(_ batch: [CLLocation]) {
+        for loc in batch {
+            if let prev = previous {
+                let step = loc.distance(from: prev)
+                let gap = loc.timestamp.timeIntervalSince(prev.timestamp)
+                if step > 0, gap > 0, gap < 120 {
+                    let startMeters = cumulative
+                    cumulative += step
+                    sinceLast += step
+                    while cumulative >= nextBoundary {
+                        let fraction = (nextBoundary - startMeters) / step
+                        let crossed = prev.timestamp.addingTimeInterval(gap * min(1, max(0, fraction)))
+                        splits.append(Int(crossed.timeIntervalSince(lastBoundaryTime).rounded()))
+                        lastBoundaryTime = crossed
+                        nextBoundary += 1000
+                    }
+                }
+            }
+            // Five decimals is a metre.
+            let point = [(loc.coordinate.latitude * 1e5).rounded() / 1e5, (loc.coordinate.longitude * 1e5).rounded() / 1e5]
+            if previous == nil || sinceLast >= polyStep {
+                poly.append(point)
+                sinceLast = 0
+            }
+            lastPoint = point
+            previous = loc
+        }
+    }
+
+    /// The thinned trace, always ending on the last point.
+    func polyline() -> [[Double]] {
+        var out = poly
+        if let last = lastPoint, out.last != last { out.append(last) }
+        return out
+    }
+}
 import UIKit
 import Flutter
 
@@ -233,7 +298,12 @@ class AppleHealthService {
             // True while iOS still owes the user a sheet for the workout
             // route type. requestAuthorization's success flag says nothing
             // about whether a sheet was shown; this does.
-            healthStore.getRequestStatusForAuthorization(toShare: [], read: [HKSeriesType.workoutRoute()]) { status, _ in
+            // The whole read set, never the route alone: HealthKit raises an
+            // NSException (uncatchable from Swift) when a series type is asked
+            // about without its parent workout type in the same set — that
+            // was the crash-on-every-launch of 2026-09-13. Every other type in
+            // the set has been asked before, so the answer is the route's.
+            healthStore.getRequestStatusForAuthorization(toShare: [], read: readTypes) { status, _ in
                 DispatchQueue.main.async { result(status == .shouldRequest) }
             }
         case "configureBackgroundSync":
@@ -1093,158 +1163,130 @@ class AppleHealthService {
                 rowsLock.unlock()
             }
 
-            for w in workouts {
-                var metaDict: [String: Any] = ["activity": self.workoutTypeString(w.workoutActivityType)]
-                if let energy = w.totalEnergyBurned?.doubleValue(for: .kilocalorie()) {
-                    metaDict["kcal"] = Int(energy.rounded())
-                }
-                // Indoor/outdoor and the workout's own heart-rate statistics
-                // (exertion is judged against the person's ceiling server-side).
-                if let indoor = w.metadata?[HKMetadataKeyIndoorWorkout] as? Bool {
-                    metaDict["indoor"] = indoor
-                }
-                if #available(iOS 16.0, *), let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) {
-                    let bpm = HKUnit.count().unitDivided(by: .minute())
-                    if let stats = w.statistics(for: hrType) {
-                        if let avg = stats.averageQuantity()?.doubleValue(for: bpm) { metaDict["avg_hr"] = Int(avg.rounded()) }
-                        if let mx = stats.maximumQuantity()?.doubleValue(for: bpm) { metaDict["max_hr"] = Int(mx.rounded()) }
+            // One workout at a time. The first cut fired every run's route
+            // walk at once and held every GPS point of every run in memory;
+            // iOS killed the app on each launch. Points are folded in as each
+            // batch arrives, so a trace never sits whole in memory either.
+            inner.enter()
+            var idx = 0
+            func processNext() {
+                while idx < workouts.count {
+                    let w = workouts[idx]
+                    idx += 1
+                    var metaDict: [String: Any] = ["activity": self.workoutTypeString(w.workoutActivityType)]
+                    if let energy = w.totalEnergyBurned?.doubleValue(for: .kilocalorie()) {
+                        metaDict["kcal"] = Int(energy.rounded())
                     }
-                }
-                let km = w.totalDistance?.doubleValue(for: .meterUnit(with: .kilo))
-                if let km = km, km > 0 {
-                    metaDict["km"] = (km * 100).rounded() / 100
-                    metaDict["avg_pace_s_per_km"] = Int((w.duration / km).rounded())
-                }
-
-                let distanceIdentifier: HKQuantityTypeIdentifier? = {
-                    switch w.workoutActivityType {
-                    case .running, .walking, .hiking: return .distanceWalkingRunning
-                    case .cycling: return .distanceCycling
-                    default: return nil
+                    // Indoor/outdoor and the workout's own heart-rate statistics
+                    // (exertion is judged against the person's ceiling server-side).
+                    if let indoor = w.metadata?[HKMetadataKeyIndoorWorkout] as? Bool {
+                        metaDict["indoor"] = indoor
                     }
-                }()
-
-                guard let identifier = distanceIdentifier, km ?? 0 >= 1,
-                      let distType = HKQuantityType.quantityType(forIdentifier: identifier) else {
-                    finishRow(w, metaDict)
-                    continue
-                }
-
-                // Walk the workout's distance samples, stamping elapsed time
-                // at each cumulative kilometer boundary.
-                // Splits need chronological order — the shared descriptor is
-                // descending (cap policy), which would corrupt the cumulative
-                // distance walk.
-                let splitQuery = HKSampleQuery(
-                    sampleType: distType,
-                    predicate: HKQuery.predicateForObjects(from: w),
-                    limit: HKObjectQueryNoLimit,
-                    sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
-                ) { _, dResults, _ in
-                    // A distance sample can span more than a kilometre (the
-                    // watch writes them coarsely on some runs), and stamping
-                    // every boundary inside it with the sample's END gave one
-                    // real split followed by zeros — 12:21 then 4:06 for the
-                    // same steady run. Treat each sample as constant speed and
-                    // interpolate the moment each boundary was crossed.
-                    var splits: [Int] = []
-                    var cumulativeMeters = 0.0
-                    var nextBoundary = 1000.0
-                    var lastBoundaryTime = w.startDate
-                    for s in (dResults as? [HKQuantitySample] ?? []) {
-                        let meters = s.quantity.doubleValue(for: .meter())
-                        guard meters > 0 else { continue }
-                        let spanSeconds = max(0, s.endDate.timeIntervalSince(s.startDate))
-                        let startMeters = cumulativeMeters
-                        cumulativeMeters += meters
-                        while cumulativeMeters >= nextBoundary {
-                            let fraction = (nextBoundary - startMeters) / meters
-                            let crossed = s.startDate.addingTimeInterval(spanSeconds * min(1, max(0, fraction)))
-                            splits.append(Int(crossed.timeIntervalSince(lastBoundaryTime).rounded()))
-                            lastBoundaryTime = crossed
-                            nextBoundary += 1000
+                    if #available(iOS 16.0, *), let hrType = HKQuantityType.quantityType(forIdentifier: .heartRate) {
+                        let bpm = HKUnit.count().unitDivided(by: .minute())
+                        if let stats = w.statistics(for: hrType) {
+                            if let avg = stats.averageQuantity()?.doubleValue(for: bpm) { metaDict["avg_hr"] = Int(avg.rounded()) }
+                            if let mx = stats.maximumQuantity()?.doubleValue(for: bpm) { metaDict["max_hr"] = Int(mx.rounded()) }
                         }
                     }
-                    if !splits.isEmpty {
-                        metaDict["splits_s_per_km"] = splits
-                        metaDict["splits_source"] = "distance_samples"
+                    let km = w.totalDistance?.doubleValue(for: .meterUnit(with: .kilo))
+                    if let km = km, km > 0 {
+                        metaDict["km"] = (km * 100).rounded() / 100
+                        metaDict["avg_pace_s_per_km"] = Int((w.duration / km).rounded())
                     }
-                    finishRow(w, metaDict)
-                    inner.leave()
-                }
-                inner.enter()
-                // First choice: the workout's route — GPS points every few
-                // seconds, the same source the Fitness app's splits come from.
-                // Distance samples are the fallback; on Simon's runs they land
-                // in twelve-minute lumps, so a kilometre inside one can only
-                // be interpolated.
-                let routeQuery = HKSampleQuery(
-                    sampleType: HKSeriesType.workoutRoute(),
-                    predicate: HKQuery.predicateForObjects(from: w),
-                    limit: 1,
-                    sortDescriptors: nil
-                ) { _, routes, _ in
-                    guard let route = (routes as? [HKWorkoutRoute])?.first else {
-                        self.healthStore.execute(splitQuery)
-                        return
+
+                    let distanceIdentifier: HKQuantityTypeIdentifier? = {
+                        switch w.workoutActivityType {
+                        case .running, .walking, .hiking: return .distanceWalkingRunning
+                        case .cycling: return .distanceCycling
+                        default: return nil
+                        }
+                    }()
+
+                    guard let identifier = distanceIdentifier, km ?? 0 >= 1,
+                          let distType = HKQuantityType.quantityType(forIdentifier: identifier) else {
+                        finishRow(w, metaDict)
+                        continue
                     }
-                    var locations: [CLLocation] = []
-                    let walk = HKWorkoutRouteQuery(route: route) { _, batch, done, error in
-                        if let batch = batch { locations.append(contentsOf: batch) }
-                        guard done || error != nil else { return }
+
+                    let box = MetaBox(metaDict)
+                    // Fallback: the workout's distance samples, each treated as
+                    // constant speed with the moment of every boundary
+                    // interpolated (stamping the sample's end gave zeros). They
+                    // need chronological order — the shared descriptor is
+                    // descending (cap policy).
+                    let splitQuery = HKSampleQuery(
+                        sampleType: distType,
+                        predicate: HKQuery.predicateForObjects(from: w),
+                        limit: HKObjectQueryNoLimit,
+                        sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
+                    ) { _, dResults, _ in
                         var splits: [Int] = []
-                        var cumulative = 0.0
+                        var cumulativeMeters = 0.0
                         var nextBoundary = 1000.0
                         var lastBoundaryTime = w.startDate
-                        var previous: CLLocation? = nil
-                        for loc in locations.sorted(by: { $0.timestamp < $1.timestamp }) {
-                            defer { previous = loc }
-                            guard let prev = previous else { continue }
-                            let step = loc.distance(from: prev)
-                            let gap = loc.timestamp.timeIntervalSince(prev.timestamp)
-                            guard step > 0, gap > 0, gap < 120 else { continue } // a paused watch is a gap, not a sprint
-                            let startMeters = cumulative
-                            cumulative += step
-                            while cumulative >= nextBoundary {
-                                let fraction = (nextBoundary - startMeters) / step
-                                let crossed = prev.timestamp.addingTimeInterval(gap * min(1, max(0, fraction)))
+                        for s in (dResults as? [HKQuantitySample] ?? []) {
+                            let meters = s.quantity.doubleValue(for: .meter())
+                            guard meters > 0 else { continue }
+                            let spanSeconds = max(0, s.endDate.timeIntervalSince(s.startDate))
+                            let startMeters = cumulativeMeters
+                            cumulativeMeters += meters
+                            while cumulativeMeters >= nextBoundary {
+                                let fraction = (nextBoundary - startMeters) / meters
+                                let crossed = s.startDate.addingTimeInterval(spanSeconds * min(1, max(0, fraction)))
                                 splits.append(Int(crossed.timeIntervalSince(lastBoundaryTime).rounded()))
                                 lastBoundaryTime = crossed
                                 nextBoundary += 1000
                             }
                         }
-                        if splits.count >= 1 {
-                            metaDict["splits_s_per_km"] = splits
-                            metaDict["splits_source"] = "route"
-                            metaDict["route_km"] = (cumulative / 10).rounded() / 100
-                            // The trace itself, thinned to about 300 points
-                            // (one every ~50 m on a 15 km run) so the run card
-                            // can draw it; five decimals is a metre.
-                            let step = max(25.0, cumulative / 300.0)
-                            var poly: [[Double]] = []
-                            var sinceLast = step
-                            var prevLoc: CLLocation? = nil
-                            let sorted = locations.sorted(by: { $0.timestamp < $1.timestamp })
-                            for (i, loc) in sorted.enumerated() {
-                                if let p = prevLoc { sinceLast += loc.distance(from: p) }
-                                prevLoc = loc
-                                if sinceLast >= step || i == sorted.count - 1 {
-                                    poly.append([(loc.coordinate.latitude * 1e5).rounded() / 1e5,
-                                                 (loc.coordinate.longitude * 1e5).rounded() / 1e5])
-                                    sinceLast = 0
-                                }
-                            }
-                            if poly.count >= 2 { metaDict["route"] = poly }
-                            finishRow(w, metaDict)
-                            inner.leave()
-                        } else {
-                            self.healthStore.execute(splitQuery)
+                        if !splits.isEmpty {
+                            box.meta["splits_s_per_km"] = splits
+                            box.meta["splits_source"] = "distance_samples"
                         }
+                        finishRow(w, box.meta)
+                        processNext()
                     }
-                    self.healthStore.execute(walk)
+
+                    // First choice: the workout's route — GPS points every few
+                    // seconds, the same source the Fitness app's splits come
+                    // from. On Simon's runs the distance samples land in
+                    // twelve-minute lumps, so a kilometre inside one can only
+                    // be interpolated.
+                    let walk = RouteWalk(start: w.startDate, polyStep: max(25.0, ((km ?? 0) * 1000) / 300))
+                    let routeQuery = HKSampleQuery(
+                        sampleType: HKSeriesType.workoutRoute(),
+                        predicate: HKQuery.predicateForObjects(from: w),
+                        limit: 1,
+                        sortDescriptors: nil
+                    ) { _, routes, _ in
+                        guard let route = (routes as? [HKWorkoutRoute])?.first else {
+                            self.healthStore.execute(splitQuery)
+                            return
+                        }
+                        let q = HKWorkoutRouteQuery(route: route) { _, batch, done, error in
+                            if !walk.finished, let batch = batch { walk.fold(batch) }
+                            guard done || error != nil, !walk.finished else { return }
+                            walk.finished = true
+                            if walk.splits.count >= 1 {
+                                box.meta["splits_s_per_km"] = walk.splits
+                                box.meta["splits_source"] = "route"
+                                box.meta["route_km"] = (walk.cumulative / 10).rounded() / 100
+                                let poly = walk.polyline()
+                                if poly.count >= 2 { box.meta["route"] = poly }
+                                finishRow(w, box.meta)
+                                processNext()
+                            } else {
+                                self.healthStore.execute(splitQuery)
+                            }
+                        }
+                        self.healthStore.execute(q)
+                    }
+                    self.healthStore.execute(routeQuery)
+                    return
                 }
-                self.healthStore.execute(routeQuery)
+                inner.leave()
             }
+            processNext()
 
             inner.notify(queue: .global()) {
                 appendRows(rows)

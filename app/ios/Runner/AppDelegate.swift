@@ -390,6 +390,8 @@ final class QuickActionsIconPatcher: NSObject {
     // show their real contact photo (ContactsService.swift).
     // "Us": time outside — CoreLocation visits (VisitsService above).
     VisitsService.shared.attach(messenger: controller!.binaryMessenger)
+    // The run in progress, from the phone's GPS (RunTracker.swift).
+    RunTracker.shared.attach(messenger: controller!.binaryMessenger)
     MediaPlaybackService.shared.attach(messenger: controller!.binaryMessenger)
 
     let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)

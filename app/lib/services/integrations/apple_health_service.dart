@@ -295,10 +295,22 @@ class AppleHealthService {
       // that type only, and hands back nothing for it until it is allowed.
       // Ask, then check the sheet really was shown; until it has been, this
       // runs again on every foreground and never marks itself done.
+      // Counted before ANY native call, so a crash anywhere in here still
+      // counts: three strikes and this stops running on every launch
+      // (2 = gave up). Waiting on the permission sheet is not a strike.
+      final attempts = prefs.getInt('workoutSplitsV3Attempts');
+      if (attempts >= 3) {
+        await prefs.saveInt('workoutSplitsV3', 2);
+        status['reexport'] = 'gave_up_after_$attempts';
+        return false;
+      }
+      await prefs.saveInt('workoutSplitsV3Attempts', attempts + 1);
+      status['attempt'] = attempts + 1;
       status['permission_prompt_ok'] = await requestPermission();
       final needed = await routeAuthorizationNeeded();
       status['route_auth_needed'] = needed;
       if (needed) {
+        await prefs.saveInt('workoutSplitsV3Attempts', attempts);
         status['reexport'] = 'waiting_for_route_sheet';
         return false;
       }
