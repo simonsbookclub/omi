@@ -1,5 +1,6 @@
 import Foundation
 import HealthKit
+import CoreLocation
 import UIKit
 import Flutter
 
@@ -144,6 +145,9 @@ class AppleHealthService {
         if let distance = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) {
             types.insert(distance)
         }
+        // The GPS trace of a run — what the Fitness app computes its splits
+        // from. The distance samples alone arrive in twelve-minute lumps.
+        types.insert(HKSeriesType.workoutRoute())
 
         // Heart
         if let heartRate = HKQuantityType.quantityType(forIdentifier: .heartRate) {
@@ -1119,9 +1123,61 @@ class AppleHealthService {
                     continue
                 }
 
+                inner.enter()
+                // First choice: the workout's route — GPS points every few
+                // seconds, the same source the Fitness app's splits come from.
+                // Distance samples are the fallback; on Simon's runs they land
+                // in twelve-minute lumps, so a kilometre inside one can only
+                // be interpolated.
+                let routeQuery = HKSampleQuery(
+                    sampleType: HKSeriesType.workoutRoute(),
+                    predicate: HKQuery.predicateForObjects(from: w),
+                    limit: 1,
+                    sortDescriptors: nil
+                ) { _, routes, _ in
+                    guard let route = (routes as? [HKWorkoutRoute])?.first else {
+                        self.healthStore.execute(splitQuery)
+                        return
+                    }
+                    var locations: [CLLocation] = []
+                    let walk = HKWorkoutRouteQuery(route: route) { _, batch, done, error in
+                        if let batch = batch { locations.append(contentsOf: batch) }
+                        guard done || error != nil else { return }
+                        var splits: [Int] = []
+                        var cumulative = 0.0
+                        var nextBoundary = 1000.0
+                        var lastBoundaryTime = w.startDate
+                        var previous: CLLocation? = nil
+                        for loc in locations.sorted(by: { $0.timestamp < $1.timestamp }) {
+                            defer { previous = loc }
+                            guard let prev = previous else { continue }
+                            let step = loc.distance(from: prev)
+                            let gap = loc.timestamp.timeIntervalSince(prev.timestamp)
+                            guard step > 0, gap > 0, gap < 120 else { continue } // a paused watch is a gap, not a sprint
+                            let startMeters = cumulative
+                            cumulative += step
+                            while cumulative >= nextBoundary {
+                                let fraction = (nextBoundary - startMeters) / step
+                                let crossed = prev.timestamp.addingTimeInterval(gap * min(1, max(0, fraction)))
+                                splits.append(Int(crossed.timeIntervalSince(lastBoundaryTime).rounded()))
+                                lastBoundaryTime = crossed
+                                nextBoundary += 1000
+                            }
+                        }
+                        if splits.count >= 1 {
+                            metaDict["splits_s_per_km"] = splits
+                            metaDict["splits_source"] = "route"
+                            metaDict["route_km"] = (cumulative / 10).rounded() / 100
+                            finishRow(w, metaDict)
+                            inner.leave()
+                        } else {
+                            self.healthStore.execute(splitQuery)
+                        }
+                    }
+                    self.healthStore.execute(walk)
+                }
                 // Walk the workout's distance samples, stamping elapsed time
                 // at each cumulative kilometer boundary.
-                inner.enter()
                 // Splits need chronological order — the shared descriptor is
                 // descending (cap policy), which would corrupt the cumulative
                 // distance walk.
@@ -1157,11 +1213,12 @@ class AppleHealthService {
                     }
                     if !splits.isEmpty {
                         metaDict["splits_s_per_km"] = splits
+                        metaDict["splits_source"] = "distance_samples"
                     }
                     finishRow(w, metaDict)
                     inner.leave()
                 }
-                self.healthStore.execute(splitQuery)
+                self.healthStore.execute(routeQuery)
             }
 
             inner.notify(queue: .global()) {

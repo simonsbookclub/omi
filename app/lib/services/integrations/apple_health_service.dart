@@ -275,6 +275,9 @@ class AppleHealthService {
   Future<bool> reexportWorkouts({int years = 2}) async {
     if (!isAvailable) return false;
     final prefs = SharedPreferencesUtil();
+    // The route is a new HealthKit read type: Apple shows its sheet once, for
+    // that type only, and hands back nothing for it until it is allowed.
+    await requestPermission();
     final sinceMs = DateTime.now().subtract(Duration(days: 365 * years)).millisecondsSinceEpoch;
     final samples = await getSamples(sinceMs: sinceMs, onlyTypes: const ['workout']);
     if (samples == null) return false;
