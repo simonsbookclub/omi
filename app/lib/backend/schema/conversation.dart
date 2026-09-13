@@ -369,6 +369,8 @@ class ServerConversation {
 
   /// SIMONSBOOKCLUB ("Us"): null when the server did not say.
   UsInfo? us;
+  /// SIMONSBOOKCLUB: how each person spoke (speech_sentiment.people), for the Who talked card.
+  Map<String, dynamic>? speechSentiment;
 
   // local label
   bool isNew = false;
@@ -424,6 +426,7 @@ class ServerConversation {
       deleted: json['deleted'] ?? false,
     );
     if (json['us'] is Map<String, dynamic>) conversation.us = UsInfo.fromJson(json['us'] as Map<String, dynamic>);
+    if (json['speech_sentiment'] is Map<String, dynamic>) conversation.speechSentiment = json['speech_sentiment'] as Map<String, dynamic>;
     return conversation;
   }
 
@@ -495,6 +498,7 @@ class ServerConversation {
       'starred': starred,
       'folder_id': folderId,
       if (us != null) 'us': us!.toJson(),
+      if (speechSentiment != null) 'speech_sentiment': speechSentiment,
       'visibility': visibility.value,
     };
   }

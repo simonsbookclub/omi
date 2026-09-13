@@ -380,141 +380,39 @@ class _HowItWent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final users = us.participation?['users'];
-    final turns = (analysis['turn_structure'] is Map) ? analysis['turn_structure']['turns'] : null;
-
-    int wordsFor(String? id) =>
-        (id != null && users is Map && users[id] is Map) ? ((users[id]['words'] as num?)?.toInt() ?? 0) : 0;
-    int turnsFor(String? id) => (id != null && turns is Map) ? ((turns[id] as num?)?.toInt() ?? 0) : 0;
-
-    final mineWords = wordsFor(ownerId);
-    final theirWords = wordsFor(partnerId);
-    final total = mineWords + theirWords;
+    // The balance bar and the two shares moved to the Who talked card, which
+    // every conversation gets; the deep read keeps only what it adds.
     final uptake = (depth['uptake'] as num?)?.toDouble();
-
+    if (uptake == null) return const SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const UsLabel('How it went'),
         const SizedBox(height: 12),
-        if (total > 0) ...[
-          Row(
-            children: [
-              Expanded(
-                flex: mineWords == 0 ? 1 : mineWords,
-                child: _Bar(colour: UsInk.you, left: true, right: theirWords == 0),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '${(uptake * 100).round()}%',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                fontFeatures: [FontFeature.tabularFigures()],
               ),
-              const SizedBox(width: 2),
-              Expanded(
-                flex: theirWords == 0 ? 1 : theirWords,
-                child: _Bar(colour: UsInk.them, left: mineWords == 0, right: true),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Text(
+                'of the times one of you took over, you picked up a word the other had just used',
+                style: TextStyle(color: UsInk.body, fontSize: 12.5, height: 1.35),
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          // Two flexible halves rather than a Spacer between four fixed
-          // children: on a 320pt phone the single-row version ran 198pt past
-          // the edge, and two long names would do it on any phone.
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: _Side(
-                  name: ownerName,
-                  mine: true,
-                  percent: (mineWords / total * 100).round(),
-                  turns: turnsFor(ownerId),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _Side(
-                  name: partnerName,
-                  mine: false,
-                  percent: (theirWords / total * 100).round(),
-                  turns: turnsFor(partnerId),
-                  alignEnd: true,
-                ),
-              ),
-            ],
-          ),
-        ],
-        if (uptake != null) ...[
-          const SizedBox(height: 16),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${(uptake * 100).round()}%',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                  fontFeatures: [FontFeature.tabularFigures()],
-                ),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Text(
-                  'of the times one of you took over, you picked up a word the other had just used',
-                  style: TextStyle(color: UsInk.body, fontSize: 12.5, height: 1.35),
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ],
     );
   }
-}
-
-/// One person's share of the talk: their chip, then the numbers under it.
-class _Side extends StatelessWidget {
-  const _Side({
-    required this.name,
-    required this.mine,
-    required this.percent,
-    required this.turns,
-    this.alignEnd = false,
-  });
-  final String name;
-  final bool mine;
-  final int percent;
-  final int turns;
-  final bool alignEnd;
-
-  @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: alignEnd ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-        children: [
-          UsPersonChip(name, mine: mine),
-          const SizedBox(height: 4),
-          Text(
-            '$percent% · $turns turns',
-            textAlign: alignEnd ? TextAlign.right : TextAlign.left,
-            style: const TextStyle(color: UsInk.label, fontSize: 11.5),
-          ),
-        ],
-      );
-}
-
-class _Bar extends StatelessWidget {
-  const _Bar({required this.colour, required this.left, required this.right});
-  final Color colour;
-  final bool left;
-  final bool right;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        height: 6,
-        decoration: BoxDecoration(
-          color: colour,
-          borderRadius: BorderRadius.horizontal(
-            left: Radius.circular(left ? 3 : 0),
-            right: Radius.circular(right ? 3 : 0),
-          ),
-        ),
-      );
 }
 
 String _thousands(int n) {
