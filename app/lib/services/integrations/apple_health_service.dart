@@ -267,6 +267,29 @@ class AppleHealthService {
     return true;
   }
 
+  /// One-off (2026-09-13): re-export two years of workouts so their per-km
+  /// splits are recomputed by the fixed native walk — the old one stamped
+  /// every boundary inside a coarse distance sample with the sample's end,
+  /// which read as a 12:21 first kilometre and 4:06s later on a steady run.
+  /// The server updates a workout's meta on conflict, so this overwrites.
+  Future<bool> reexportWorkouts({int years = 2}) async {
+    if (!isAvailable) return false;
+    final prefs = SharedPreferencesUtil();
+    final sinceMs = DateTime.now().subtract(Duration(days: 365 * years)).millisecondsSinceEpoch;
+    final samples = await getSamples(sinceMs: sinceMs, onlyTypes: const ['workout']);
+    if (samples == null) return false;
+    for (var i = 0; i < samples.length; i += 500) {
+      final chunk = samples.sublist(i, i + 500 > samples.length ? samples.length : i + 500);
+      if (!await syncAppleHealthSamples(chunk)) {
+        Logger.debug('AppleHealth: workout re-export failed at $i of ${samples.length}');
+        return false;
+      }
+    }
+    Logger.debug('AppleHealth: re-exported ${samples.length} workouts with interpolated splits');
+    await prefs.saveInt('workoutSplitsV2', 1);
+    return true;
+  }
+
   Future<bool> syncGranularSamples({bool force = false}) async {
     if (!isAvailable) return false;
     final prefs = SharedPreferencesUtil();
@@ -291,6 +314,8 @@ class AppleHealthService {
     // delays or fails the routine sync it rides along with.
     if (prefs.getInt('healthDeepBackfillV1') == 0) {
       unawaited(deepBackfill());
+    } else if (prefs.getInt('workoutSplitsV2') == 0) {
+      unawaited(reexportWorkouts());
     }
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     // The 24-hour overlap catches samples the watch delivers late. At a

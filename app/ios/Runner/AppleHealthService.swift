@@ -1131,15 +1131,27 @@ class AppleHealthService {
                     limit: HKObjectQueryNoLimit,
                     sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
                 ) { _, dResults, _ in
+                    // A distance sample can span more than a kilometre (the
+                    // watch writes them coarsely on some runs), and stamping
+                    // every boundary inside it with the sample's END gave one
+                    // real split followed by zeros — 12:21 then 4:06 for the
+                    // same steady run. Treat each sample as constant speed and
+                    // interpolate the moment each boundary was crossed.
                     var splits: [Int] = []
                     var cumulativeMeters = 0.0
                     var nextBoundary = 1000.0
                     var lastBoundaryTime = w.startDate
                     for s in (dResults as? [HKQuantitySample] ?? []) {
-                        cumulativeMeters += s.quantity.doubleValue(for: .meter())
+                        let meters = s.quantity.doubleValue(for: .meter())
+                        guard meters > 0 else { continue }
+                        let spanSeconds = max(0, s.endDate.timeIntervalSince(s.startDate))
+                        let startMeters = cumulativeMeters
+                        cumulativeMeters += meters
                         while cumulativeMeters >= nextBoundary {
-                            splits.append(Int(s.endDate.timeIntervalSince(lastBoundaryTime).rounded()))
-                            lastBoundaryTime = s.endDate
+                            let fraction = (nextBoundary - startMeters) / meters
+                            let crossed = s.startDate.addingTimeInterval(spanSeconds * min(1, max(0, fraction)))
+                            splits.append(Int(crossed.timeIntervalSince(lastBoundaryTime).rounded()))
+                            lastBoundaryTime = crossed
                             nextBoundary += 1000
                         }
                     }
