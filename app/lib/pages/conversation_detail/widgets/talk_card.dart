@@ -39,7 +39,6 @@ class TalkCard extends StatelessWidget {
     // The partner comes out of the conversation itself. Reading it off the
     // provider would leave the balance bar at 0% whenever this screen opens
     // before the Us tab has ever been visited.
-    final partnerId = _partnerFor(us, ownerId, provider.partnerId);
     String nameOf(String id) => id == ownerId ? provider.ownerName : provider.partnerName;
     bool isMine(String id) => id == ownerId;
 
@@ -85,16 +84,6 @@ class TalkCard extends StatelessWidget {
             const SizedBox(height: 10),
             for (final a in agreements) _Moment(m: a, nameOf: nameOf, isMine: isMine, tick: true),
           ],
-          const SizedBox(height: 22),
-          _HowItWent(
-            us: us,
-            analysis: analysis,
-            depth: depth,
-            ownerId: ownerId,
-            partnerId: partnerId,
-            ownerName: provider.ownerName,
-            partnerName: provider.partnerName,
-          ),
         ],
       ),
     );
@@ -103,23 +92,6 @@ class TalkCard extends StatelessWidget {
   static List<Map<String, dynamic>> _list(dynamic v) =>
       v is List ? v.whereType<Map<String, dynamic>>().toList() : const [];
 
-  /// The other person in this conversation.
-  ///
-  /// The couple's own partner id wins whenever they actually spoke here. The
-  /// scan is the fallback for a screen opened before the couple has loaded —
-  /// but it can only guess, and every enrolled voice lands in `users`, so on a
-  /// conversation with a guest it would otherwise show the guest's words under
-  /// the partner's name and colour.
-  static String? _partnerFor(UsInfo us, String? ownerId, String? knownPartnerId) {
-    final users = us.participation?['users'];
-    if (users is! Map) return knownPartnerId;
-    if (knownPartnerId != null && users.containsKey(knownPartnerId)) return knownPartnerId;
-    for (final k in users.keys) {
-      final id = k.toString();
-      if (id != ownerId && !id.startsWith('other:')) return id;
-    }
-    return knownPartnerId;
-  }
 }
 
 class _Header extends StatelessWidget {
@@ -360,61 +332,6 @@ class _Moment extends StatelessWidget {
 
 /// The measured half: who held the floor, and how often either of them picked
 /// up what the other had just said.
-class _HowItWent extends StatelessWidget {
-  const _HowItWent({
-    required this.us,
-    required this.analysis,
-    required this.depth,
-    required this.ownerId,
-    required this.partnerId,
-    required this.ownerName,
-    required this.partnerName,
-  });
-  final UsInfo us;
-  final Map<String, dynamic> analysis;
-  final Map<String, dynamic> depth;
-  final String? ownerId;
-  final String? partnerId;
-  final String ownerName;
-  final String partnerName;
-
-  @override
-  Widget build(BuildContext context) {
-    // The balance bar and the two shares moved to the Who talked card, which
-    // every conversation gets; the deep read keeps only what it adds.
-    final uptake = (depth['uptake'] as num?)?.toDouble();
-    if (uptake == null) return const SizedBox.shrink();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const UsLabel('How it went'),
-        const SizedBox(height: 12),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${(uptake * 100).round()}%',
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                fontFeatures: [FontFeature.tabularFigures()],
-              ),
-            ),
-            const SizedBox(width: 12),
-            const Expanded(
-              child: Text(
-                'of the times one of you took over, you picked up a word the other had just used',
-                style: TextStyle(color: UsInk.body, fontSize: 12.5, height: 1.35),
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 String _thousands(int n) {
   final s = n.toString();
   final b = StringBuffer();

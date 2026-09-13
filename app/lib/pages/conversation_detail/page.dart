@@ -1405,9 +1405,8 @@ class _SummaryTabState extends State<SummaryTab> with AutomaticKeepAliveClientMi
                   // SIMONSBOOKCLUB: who talked, and how — every conversation
                   // with more than one voice in it.
                   SliverToBoxAdapter(
-                    child: Selector<ConversationDetailProvider, ServerConversation>(
-                      selector: (context, provider) => provider.conversation,
-                      builder: (context, c, _) => WhoTalkedCard(conversation: c),
+                    child: Consumer<ConversationDetailProvider>(
+                      builder: (context, provider, _) => WhoTalkedCard(conversation: provider.conversation),
                     ),
                   ),
                   // SIMONSBOOKCLUB ("Us"): the deep read, on the conversations
