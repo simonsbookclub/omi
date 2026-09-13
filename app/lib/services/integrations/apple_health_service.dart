@@ -32,6 +32,17 @@ class AppleHealthService {
   }
 
   /// Request permission to access health data
+  /// True while iOS still owes the user its sheet for the workout-route
+  /// type. requestPermission's result says nothing about that.
+  Future<bool> routeAuthorizationNeeded() async {
+    if (!isAvailable) return false;
+    try {
+      return await _channel.invokeMethod('routeAuthorizationNeeded') == true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<bool> requestPermission() async {
     if (!isAvailable) return false;
 
@@ -272,25 +283,57 @@ class AppleHealthService {
   /// every boundary inside a coarse distance sample with the sample's end,
   /// which read as a 12:21 first kilometre and 4:06s later on a steady run.
   /// The server updates a workout's meta on conflict, so this overwrites.
+  static bool _reexportRunning = false;
+
   Future<bool> reexportWorkouts({int years = 2}) async {
-    if (!isAvailable) return false;
+    if (!isAvailable || _reexportRunning) return false;
+    _reexportRunning = true;
     final prefs = SharedPreferencesUtil();
-    // The route is a new HealthKit read type: Apple shows its sheet once, for
-    // that type only, and hands back nothing for it until it is allowed.
-    await requestPermission();
-    final sinceMs = DateTime.now().subtract(Duration(days: 365 * years)).millisecondsSinceEpoch;
-    final samples = await getSamples(sinceMs: sinceMs, onlyTypes: const ['workout']);
-    if (samples == null) return false;
-    for (var i = 0; i < samples.length; i += 500) {
-      final chunk = samples.sublist(i, i + 500 > samples.length ? samples.length : i + 500);
-      if (!await syncAppleHealthSamples(chunk)) {
-        Logger.debug('AppleHealth: workout re-export failed at $i of ${samples.length}');
+    final status = <String, dynamic>{'beacon': 'workout_reexport', 'reexport': 'started'};
+    try {
+      // The route is a new HealthKit read type: iOS shows its sheet once, for
+      // that type only, and hands back nothing for it until it is allowed.
+      // Ask, then check the sheet really was shown; until it has been, this
+      // runs again on every foreground and never marks itself done.
+      status['permission_prompt_ok'] = await requestPermission();
+      final needed = await routeAuthorizationNeeded();
+      status['route_auth_needed'] = needed;
+      if (needed) {
+        status['reexport'] = 'waiting_for_route_sheet';
         return false;
       }
+      final sinceMs = DateTime.now().subtract(Duration(days: 365 * years)).millisecondsSinceEpoch;
+      final samples = await getSamples(sinceMs: sinceMs, onlyTypes: const ['workout']);
+      if (samples == null) {
+        status['reexport'] = 'no_samples';
+        return false;
+      }
+      var withRoute = 0;
+      for (final s in samples) {
+        if ((s['meta'] as String? ?? '').contains('"splits_source":"route"')) withRoute++;
+      }
+      status['workouts'] = samples.length;
+      status['with_route'] = withRoute;
+      for (var i = 0; i < samples.length; i += 500) {
+        final chunk = samples.sublist(i, i + 500 > samples.length ? samples.length : i + 500);
+        if (!await syncAppleHealthSamples(chunk)) {
+          status['reexport'] = 'upload_failed_at_$i';
+          return false;
+        }
+      }
+      await prefs.saveInt('workoutSplitsV3', 1);
+      status['reexport'] = 'ok';
+      return true;
+    } catch (e) {
+      status['reexport'] = 'error';
+      status['error'] = e.toString().substring(0, e.toString().length > 300 ? 300 : e.toString().length);
+      return false;
+    } finally {
+      _reexportRunning = false;
+      try {
+        await syncAppleHealthData(status);
+      } catch (_) {}
     }
-    Logger.debug('AppleHealth: re-exported ${samples.length} workouts with interpolated splits');
-    await prefs.saveInt('workoutSplitsV2', 1);
-    return true;
   }
 
   Future<bool> syncGranularSamples({bool force = false}) async {
@@ -303,6 +346,12 @@ class AppleHealthService {
     // real limit — not the polling. Ten minutes, with a narrower catch-up
     // window below so the upload stays small at that cadence.
     const throttleMs = 10 * 60 * 1000;
+    // One-off (2026-09-13): per-km splits from the workout's GPS route.
+    // Ahead of the throttle so it retries on every foreground until the
+    // route permission sheet has been answered and the export has run.
+    if (prefs.getInt('workoutSplitsV3') == 0) {
+      unawaited(reexportWorkouts());
+    }
     if (!force && now - lastRun < throttleMs) return false;
 
     // One-time full re-sync (v2): the first backfill truncated heart rate
@@ -317,8 +366,6 @@ class AppleHealthService {
     // delays or fails the routine sync it rides along with.
     if (prefs.getInt('healthDeepBackfillV1') == 0) {
       unawaited(deepBackfill());
-    } else if (prefs.getInt('workoutSplitsV2') == 0) {
-      unawaited(reexportWorkouts());
     }
     final lastSynced = prefs.getInt('healthSamplesSyncedToMs');
     // The 24-hour overlap catches samples the watch delivers late. At a
