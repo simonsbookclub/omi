@@ -392,6 +392,7 @@ final class QuickActionsIconPatcher: NSObject {
     VisitsService.shared.attach(messenger: controller!.binaryMessenger)
     // The run in progress, from the phone's GPS (RunTracker.swift).
     RunTracker.shared.attach(messenger: controller!.binaryMessenger)
+    RunTracker.shared.startIfConfigured()
     MediaPlaybackService.shared.attach(messenger: controller!.binaryMessenger)
 
     let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
