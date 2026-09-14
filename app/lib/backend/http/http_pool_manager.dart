@@ -67,8 +67,16 @@ class HttpPoolManager {
       try {
         final request = requestBuilder();
         stampRequestTime(request);
-        final streamed = await _client.send(request).timeout(timeout);
-        lastResponse = await http.Response.fromStream(streamed);
+        // One deadline for the whole exchange, body included. The timeout used
+        // to cover only the headers arriving: a body that stalled mid-stream
+        // (a 365 KB conversation list on a flaky 5G link) never completed,
+        // the stuck future stayed in _pendingGets for its URL, every later
+        // fetch of that URL was handed the same stuck future, and the app
+        // went blind on every screen until it was killed (2026-09-14).
+        lastResponse = await (() async {
+          final streamed = await _client.send(request);
+          return http.Response.fromStream(streamed);
+        })().timeout(timeout);
 
         if (lastResponse.statusCode < 500) {
           return lastResponse;
