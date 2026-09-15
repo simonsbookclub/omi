@@ -13,7 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:omi/backend/http/shared.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/services/wals/wal.dart';
-import 'package:omi/utils/audio/audio_transcoder.dart';
+import 'package:opus_dart/opus_dart.dart';
+import 'package:omi/utils/audio/wav_bytes.dart';
 import 'package:omi/utils/logger.dart';
 
 class ScribeDrainResult {
@@ -40,11 +41,33 @@ class ScribeDrain {
       if (frames.isEmpty) {
         return const ScribeDrainResult(ok: false, error: 'no frames in file');
       }
-      final transcoder = OpusFramesToWavTranscoder(sampleRate: wal.sampleRate, channels: wal.channel);
-      final wavBytes = transcoder.transcodeFrames(frames);
-      if (wavBytes.isEmpty) {
-        return const ScribeDrainResult(ok: false, error: 'could not decode');
+      // Only Opus goes through the Opus decoder. A pcm16 recording fed to it
+      // fails on every frame, produces an empty WAV, and would then be posted
+      // as "silent" and the .bin deleted — the whole backlog of such a device
+      // destroyed in one pass.
+      if (!wal.codec.isOpusSupported()) {
+        return ScribeDrainResult(ok: false, error: 'not opus (${wal.codec})');
       }
+      final decoder = SimpleOpusDecoder(sampleRate: wal.sampleRate, channels: wal.channel);
+      final pcm = <int>[];
+      var decoded = 0;
+      for (final f in frames) {
+        try {
+          pcm.addAll(decoder.decode(input: f));
+          decoded++;
+        } catch (_) {
+          // one bad frame is normal; all of them is not
+        }
+      }
+      // "Nothing decoded" is a broken file, never silence. Reporting it as
+      // silence is how 37 of 39 recordings were written off this morning.
+      if (decoded == 0) {
+        return ScribeDrainResult(ok: false, error: 'no frames decoded of ${frames.length}');
+      }
+      if (decoded < frames.length * 0.5) {
+        Logger.error('[ScribeDrain] ${wal.id}: only $decoded of ${frames.length} frames decoded');
+      }
+      final wavBytes = WavBytesUtil.getUInt8ListBytes(pcm, wal.sampleRate);
       wav = File('${file.path}.wav');
       await wav.writeAsBytes(wavBytes, flush: true);
 
@@ -102,7 +125,8 @@ class ScribeDrain {
       }),
     );
     if (res == null || res.statusCode != 200) {
-      throw Exception('worker rejected the drain: ${res?.statusCode} ${res?.body.substring(0, 120)}');
+      final body = res?.body ?? '';
+      throw Exception('worker rejected the drain: ${res?.statusCode} ${body.substring(0, body.length < 200 ? body.length : 200)}');
     }
     return (jsonDecode(res.body) as Map<String, dynamic>)['conversation_id'] as String?;
   }

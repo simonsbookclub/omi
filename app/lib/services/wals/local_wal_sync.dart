@@ -753,18 +753,37 @@ class LocalWalSyncImpl implements LocalWalSync {
         if (await _scribeHandles()) {
           var done = 0;
           for (var i = 0; i < batchWals.length && i < files.length; i++) {
-            final r = await ScribeDrain.process(batchWals[i], files[i]);
+            final wal = batchWals[i];
+            final r = await ScribeDrain.process(wal, files[i]);
+            wal.isSyncing = false;
+            wal.syncStartedAt = null;
+            wal.syncEtaSeconds = null;
             if (r.ok) {
               done++;
-              batchWals[i].status = WalStatus.synced;
+              wal.status = WalStatus.synced;
+              if (r.conversationId != null) resp.newConversationIds.add(r.conversationId!);
+              filesUploaded++;
             } else {
-              batchWals[i].status = WalStatus.miss;
+              // Count the attempt, or the row says "waiting" for ever and the
+              // phone re-decodes the same broken file on every sync.
+              wal.retryCount = wal.retryCount + 1;
+              wal.status = wal.retryCount >= 3 ? WalStatus.corrupted : WalStatus.miss;
+              if (wal.status == WalStatus.corrupted) {
+                Logger.error('[Scribe] giving up on ${wal.id} after ${wal.retryCount} tries: ${r.error}');
+              }
             }
+            progress?.onWalSyncedProgress(
+              totalFilesToUpload == 0 ? 1.0 : filesUploaded / totalFilesToUpload,
+              currentFile: filesUploaded,
+              totalFiles: totalFilesToUpload,
+            );
           }
           await WalFileManager.saveWals(_wals);
           for (final w in batchWals.where((w) => w.status == WalStatus.synced)) {
             listener.onWalSynced(w);
           }
+          listener.onWalUpdated();
+          batchesCompleted++;
           Logger.log('[Scribe] drained $done of ${batchWals.length} recordings on device');
           continue;
         }
@@ -909,6 +928,34 @@ class LocalWalSyncImpl implements LocalWalSync {
       'seconds': wal.seconds,
       'codec': wal.codec.toString(),
     });
+
+    // SIMONSBOOKCLUB: with Scribe on, one recording is read here exactly like a
+    // batch. Only the batch path had this branch, so tapping Sync on a single
+    // row still uploaded the audio to the worker — the one thing this whole
+    // feature exists to stop.
+    if (await _scribeHandles()) {
+      final fullPath = walToSync.filePath == null ? null : await Wal.getFilePath(walToSync.filePath);
+      final file = fullPath == null ? null : File(fullPath);
+      if (file != null && await file.exists()) {
+        final r = await ScribeDrain.process(walToSync, file);
+        walToSync.isSyncing = false;
+        walToSync.syncStartedAt = null;
+        walToSync.syncEtaSeconds = null;
+        if (r.ok) {
+          walToSync.status = WalStatus.synced;
+          if (r.conversationId != null) resp.newConversationIds.add(r.conversationId!);
+          listener.onWalSynced(walToSync);
+        } else {
+          walToSync.retryCount = walToSync.retryCount + 1;
+          walToSync.status = walToSync.retryCount >= 3 ? WalStatus.corrupted : WalStatus.miss;
+          Logger.error('[Scribe] single drain of ${walToSync.id} failed: ${r.error}');
+        }
+        await WalFileManager.saveWals(_wals);
+        listener.onWalUpdated();
+        progress?.onWalSyncedProgress(1.0);
+        return resp;
+      }
+    }
 
     File? walFile;
     if (wal.filePath == null) {

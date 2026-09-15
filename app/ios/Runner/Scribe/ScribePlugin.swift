@@ -11,7 +11,13 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
     static let shared = ScribePlugin()
     private var engine: ScribeEngine?
     private var sink: FlutterEventSink?
-    private let queue = DispatchQueue(label: "scribe.plugin")
+    /// `sink` and `engine` are written on the platform thread and read from
+    /// background tasks. The lock is what the unused dispatch queue here was
+    /// meant to be.
+    private let lock = NSLock()
+    /// One ordered pipe for audio. A Task per packet raced: PCM reached the
+    /// engine out of order, and hundreds queued behind a busy window.
+    private var audio: AsyncStream<Data>.Continuation?
 
     /// Attached from AppDelegate with the Flutter messenger, the way every other
     /// native service in this app is wired.
@@ -31,9 +37,14 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
         case "start":
             let args = call.arguments as? [String: Any] ?? [:]
             let sessionId = args["sessionId"] as? String ?? UUID().uuidString
+            lock.lock()
             let old = engine
+            let oldPipe = audio
             let e = ScribeEngine(sessionId: sessionId)
             engine = e
+            let stream = AsyncStream<Data>(bufferingPolicy: .unbounded) { self.audio = $0 }
+            lock.unlock()
+            oldPipe?.finish()
             Task {
                 // The previous session's last words, if any, before it goes.
                 if let old { await old.finish() }
@@ -44,24 +55,39 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
                     NSLog("scribe: engine could not prepare: \(error)")
                 }
             }
+            // One consumer, so packets reach the engine in the order they came.
+            Task { for await d in stream { await e.feed(pcm16: d) } }
             result(true)
 
         case "audio":
-            guard let data = (call.arguments as? FlutterStandardTypedData)?.data, let e = engine else {
-                result(false); return
-            }
-            Task { await e.feed(pcm16: data) }
+            guard let data = (call.arguments as? FlutterStandardTypedData)?.data else { result(false); return }
+            lock.lock(); let pipe = audio; lock.unlock()
+            guard let pipe else { result(false); return }
+            pipe.yield(data)
             result(true)
 
         case "media":
             let on = (call.arguments as? [String: Any])?["playing"] as? Bool ?? false
-            if let e = engine { Task { await e.setMedia(playing: on) } }
+            lock.lock(); let e = engine; lock.unlock()
+            if let e { Task { await e.setMedia(playing: on) } }
             result(true)
 
         case "stop":
-            if let e = engine { Task { await e.finish() } }
+            // Answer only once the last window has been read and emitted.
+            // Returning early let Dart cancel the event subscription first, and
+            // every session's closing words went into a nil sink.
+            lock.lock()
+            let e = engine
+            let pipe = audio
             engine = nil
-            result(true)
+            audio = nil
+            lock.unlock()
+            pipe?.finish()
+            guard let e else { result(true); return }
+            Task {
+                await e.finish()
+                DispatchQueue.main.async { result(true) }
+            }
 
         // Phase 2: the worker hands down the enrolled voices so the phone can
         // name people without asking anything.
@@ -122,7 +148,7 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
                 do {
                     let segs = try await ScribeFile.shared.process(wavPath: path, stream: stream)
                     let data = try JSONEncoder().encode(segs)
-                    result(String(data: data, encoding: .utf8) ?? "[]")
+                    DispatchQueue.main.async { result(String(data: data, encoding: .utf8) ?? "[]") }
                 } catch {
                     result(FlutterError(code: "process_failed", message: "\(error)", details: nil))
                 }
@@ -140,15 +166,21 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
     }
 
     private func send(_ segs: [ScribeSegment]) {
-        guard let sink else { return }
+        lock.lock(); let sink = self.sink; lock.unlock()
+        guard let sink else {
+            NSLog("scribe: %d segment(s) had nowhere to go", segs.count)
+            return
+        }
         guard let data = try? JSONEncoder().encode(["segments": segs]),
               let json = String(data: data, encoding: .utf8) else { return }
         DispatchQueue.main.async { sink(json) }
     }
 
     func onListen(withArguments _: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        sink = events; return nil
+        lock.lock(); sink = events; lock.unlock(); return nil
     }
 
-    func onCancel(withArguments _: Any?) -> FlutterError? { sink = nil; return nil }
+    func onCancel(withArguments _: Any?) -> FlutterError? {
+        lock.lock(); sink = nil; lock.unlock(); return nil
+    }
 }

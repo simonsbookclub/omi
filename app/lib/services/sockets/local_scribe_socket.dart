@@ -141,11 +141,16 @@ class LocalScribeSocket implements IPureSocket {
 
   @override
   Future stop() async {
-    await _sub?.cancel();
-    _sub = null;
+    // The native side reads and emits its last window inside `stop`, so the
+    // subscription has to outlive that call. Cancelling first sent every
+    // session's closing words into a sink that was already gone.
     try {
       await _method.invokeMethod('stop');
-    } catch (_) {}
+    } catch (e) {
+      Logger.error('[Scribe] stop failed: $e');
+    }
+    await _sub?.cancel();
+    _sub = null;
     _status = PureSocketStatus.disconnected;
     onClosed();
   }

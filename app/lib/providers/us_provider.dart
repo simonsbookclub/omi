@@ -233,10 +233,18 @@ class UsProvider extends ChangeNotifier {
 
   Future<void> answerPostConflict(int promptId, String conversationId,
       {required bool wasConflict, bool? resolved, bool thenRefresh = true}) async {
+    // null is not success: the call returns null on every transport failure
+    // and on a missing token, which is exactly the offline case that froze the
+    // button in the first place. Answering it away would discard the label and
+    // still mark the prompt answered, so it would never be asked again.
     final labelled = await UsApi.label(conversationId, wasConflict: wasConflict, resolved: resolved);
-    if (labelled != null && labelled['error'] != null) throw Exception(labelled['error']);
+    if (labelled == null || labelled['error'] != null) {
+      throw Exception(labelled?['error'] ?? 'no answer from the server');
+    }
     final answered = await UsApi.answerPrompt(promptId);
-    if (answered != null && answered['error'] != null) throw Exception(answered['error']);
+    if (answered == null || answered['error'] != null) {
+      throw Exception(answered?['error'] ?? 'no answer from the server');
+    }
     if (thenRefresh) await refresh(force: true, card: true);
   }
 

@@ -165,6 +165,13 @@ class CompositeTranscriptionSocket implements IPureSocket {
 
     try {
       dynamic segments = message is String ? jsonDecode(message) : message;
+      // Scribe emits {"segments":[…]} rather than a bare array, and the secret
+      // filter below only runs on a List. Without this unwrap, spoken API keys
+      // and passwords were redacted on every other provider and written down
+      // verbatim on this one.
+      if (segments is Map && segments['segments'] is List) {
+        segments = segments['segments'];
+      }
       if (segments is List) {
         final filterResult = _dropSecretSegments(segments);
         segments = filterResult.segments;
