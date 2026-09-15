@@ -92,13 +92,18 @@ actor ScribeModels {
 
     func transcribe(_ samples: [Float]) async throws -> ASRResult {
         if useApple, #available(iOS 26.0, *) {
-            let text = try await AppleTranscriber.shared.transcribe(samples)
-            if !text.isEmpty {
+            do {
+                // Empty is an answer: Apple heard nothing worth writing down.
+                // Handing that audio to Parakeet instead is precisely how a
+                // stretch of noise becomes "5-5-5-5-5…" — the second engine
+                // is asked to transcribe exactly what the first judged
+                // unintelligible, which is where a decoder loops.
+                let text = try await AppleTranscriber.shared.transcribe(samples)
                 return ASRResult(text: text, confidence: 1, duration: Double(samples.count) / 16_000,
                                  processingTime: 0, tokenTimings: nil)
+            } catch {
+                NSLog("scribe: Apple could not transcribe (%@); using Parakeet", "\(error)")
             }
-            // Empty can mean "nothing said" or "could not load"; let Parakeet
-            // have a go rather than silently drop the utterance.
         }
         guard let asr else { throw ScribeError.notReady }
         var state = try TdtDecoderState()

@@ -227,7 +227,7 @@ actor ScribeEngine {
                 NSLog("scribe: lost %.1fs of speech: %@", run.end - run.start, "\(error)")
                 continue
             }
-            guard !text.isEmpty else { continue }
+            guard !text.isEmpty, !Self.isGibberish(text) else { continue }
 
             // The speaker holding most of this run.
             let turn = turns
@@ -259,6 +259,23 @@ actor ScribeEngine {
                 media: media ? true : nil, language: nil))
         }
         if !out.isEmpty { emit?(out) }
+    }
+
+    /// A transcriber that has lost its footing repeats itself: "5-5-5-5-5…" for
+    /// a whole minute, or a line of bullets. It is never speech, and once it is
+    /// in the record there is no telling it from something that was said.
+    static func isGibberish(_ text: String) -> Bool {
+        let words = text.lowercased().split { !$0.isLetter && !$0.isNumber }.map(String.init)
+        if words.count >= 12 {
+            let unique = Double(Set(words).count) / Double(words.count)
+            if unique < 0.15 { return true }
+            // One token over and over, even spelled differently each time.
+            if let top = Dictionary(grouping: words, by: { $0 }).values.map(\.count).max(),
+               Double(top) / Double(words.count) > 0.5 { return true }
+        }
+        // Long, but almost none of it is a word: a run of punctuation or symbols.
+        if text.count > 40 && words.count * 20 < text.count { return true }
+        return false
     }
 
     /// A speaker turn on the window's clock.
