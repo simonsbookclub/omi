@@ -136,6 +136,7 @@
 		ECE760240CE2C193B3EDCD81 /* ScribePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78FA8A20456FBA37689F732 /* ScribePlugin.swift */; };
 		ED59A28CCFE1EB529D216CBF /* Voiceprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96E1E0DCF5C0D7F70111C5A /* Voiceprints.swift */; };
 		EF12345678901234567890EF /* WifiNetworkPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = FG12345678901234567890FG /* WifiNetworkPlugin.swift */; };
+		F76CC589EB226404A57795F7 /* ScribeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0950AA822C642839F7B589CF /* ScribeModels.swift */; };
 		F8D0037DFD95E0FA0591D087 /* PhoneMicSessionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DFD05 /* PhoneMicSessionConfigurator.swift */; };
 		FAD7504969BE8B6F6D8D0BD1 /* devLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF770A936DE2AA63387FD198 /* devLaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -195,6 +196,7 @@
 /* Begin PBXFileReference section */
 		03BA73541F37D6361DCF18DC /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		08E3947A4217EF205E22BD44 /* prodDebug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = prodDebug.xcconfig; path = Flutter/prodDebug.xcconfig; sourceTree = "<group>"; };
+		0950AA822C642839F7B589CF /* ScribeModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScribeModels.swift; sourceTree = "<group>"; };
 		13B22B6FE8D66350C1840287 /* Pods-Runner.debug-prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug-prod.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug-prod.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
@@ -575,6 +577,7 @@
 				C78FA8A20456FBA37689F732 /* ScribePlugin.swift */,
 				FB0B0CC8C2B152B10822DABF /* ScribeWriter.swift */,
 				DB357170B92CA439194C26FE /* ScribeFile.swift */,
+				0950AA822C642839F7B589CF /* ScribeModels.swift */,
 			);
 			name = Scribe;
 			path = Scribe;
@@ -1008,6 +1011,7 @@
 				22359486173CFB2D4040E06A /* SceneDelegate.swift in Sources */,
 				C14682651EF15040B9F2E9A9 /* ScribeWriter.swift in Sources */,
 				5332ECAE2EF470AB2A6775DE /* ScribeFile.swift in Sources */,
+				F76CC589EB226404A57795F7 /* ScribeModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

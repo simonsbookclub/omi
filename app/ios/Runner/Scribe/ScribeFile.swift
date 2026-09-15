@@ -14,47 +14,21 @@ import FluidAudio
 actor ScribeFile {
     static let shared = ScribeFile()
 
-    private var asr: AsrManager?
-    private var diarizer: OfflineDiarizerManager?
-    private var ready = false
-
-    func prepare() async throws {
-        guard !ready else { return }
-        let a = AsrManager(config: .default)
-        do {
-            let models = try await AsrModels.downloadAndLoad(version: .v3)
-            try await a.loadModels(models)
-        } catch {
-            // Same repair as the live engine: a half-finished download cannot
-            // be retried into working order, only thrown away.
-            ModelHub.clearAllCaches()
-            let models = try await AsrModels.downloadAndLoad(version: .v3)
-            try await a.loadModels(models)
-        }
-        asr = a
-        let d = OfflineDiarizerManager()
-        do { try await d.prepareModels() } catch { try await d.prepareModels(forceRedownload: true) }
-        diarizer = d
-        ready = true
-    }
-
     /// A 16 kHz mono WAV (Dart decodes the pendant's Opus with the decoder it
     /// already ships) becomes named, timed segments.
     func process(wavPath: String, stream: String) async throws -> [ScribeSegment] {
-        try await prepare()
-        guard let asr, let diarizer else { return [] }
+        try await ScribeModels.shared.prepare()
         let url = URL(fileURLWithPath: wavPath)
         let samples = try AudioConverter().resampleAudioFile(url)
         guard samples.count > 16_000 else { return [] }   // under a second: nothing to say
 
-        let turns = (try? await diarizer.process(audio: samples))?.segments ?? []
+        let turns = (try? await ScribeModels.shared.diarize(samples))?.segments ?? []
         var out: [ScribeSegment] = []
 
         // No turns at all means the diarizer heard no speech; fall back to one
         // pass over the file rather than silently dropping a recording.
         if turns.isEmpty {
-            var state = try TdtDecoderState()
-            let r = try await asr.transcribe(samples, decoderState: &state)
+            let r = try await ScribeModels.shared.transcribe(samples)
             let text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
             if !text.isEmpty {
                 out.append(ScribeSegment(text: text, start: 0, end: Double(samples.count) / 16_000,
@@ -69,11 +43,11 @@ actor ScribeFile {
             let b = min(samples.count, Int(t.endTimeSeconds * 16_000))
             guard b - a > 8_000 else { continue }          // half a second
             let slice = Array(samples[a..<b])
-            var state = try TdtDecoderState()
-            guard let r = try? await asr.transcribe(slice, decoderState: &state) else { continue }
+            guard let r = try? await ScribeModels.shared.transcribe(slice) else { continue }
             let text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { continue }
-            let person = await Voiceprints.shared.name(for: t.embedding)
+            let m = await Voiceprints.shared.match(t.embedding)
+            let person = m.name
             let n = Int(t.speakerId.filter(\.isNumber)) ?? 0
             out.append(ScribeSegment(
                 text: text, start: Double(t.startTimeSeconds), end: Double(t.endTimeSeconds),
@@ -82,6 +56,7 @@ actor ScribeFile {
                 person_id: person == Voiceprints.wearerName ? nil : person,
                 stream: stream, media: nil, language: nil))
         }
+        NSLog("scribe: file %@ → %d segments", (wavPath as NSString).lastPathComponent, out.count)
         return out
     }
 }

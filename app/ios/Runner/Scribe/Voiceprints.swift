@@ -64,8 +64,14 @@ actor Voiceprints {
         save()
     }
 
-    func name(for embedding: [Float]) -> String? {
-        guard !prints.isEmpty, !embedding.isEmpty else { return nil }
+    struct Match { var name: String?; var score: Float; var runnerUp: Float }
+
+    func name(for embedding: [Float]) -> String? { match(embedding).name }
+
+    /// The decision and the numbers behind it, so a wrong or missing name in
+    /// the log comes with the score that produced it.
+    func match(_ embedding: [Float]) -> Match {
+        guard !prints.isEmpty, !embedding.isEmpty else { return Match(name: nil, score: 0, runnerUp: 0) }
         var best: (name: String, score: Float)? = nil
         var runnerUp: Float = -1
         for (name, p) in prints {
@@ -75,9 +81,11 @@ actor Voiceprints {
                 best = (name, s)
             } else if s > runnerUp { runnerUp = s }
         }
-        guard let b = best, b.score >= Self.floor else { return nil }
-        if prints.count > 1 && (b.score - runnerUp) < Self.margin { return nil }
-        return b.name
+        guard let b = best else { return Match(name: nil, score: 0, runnerUp: 0) }
+        let r = max(0, runnerUp)
+        if b.score < Self.floor { return Match(name: nil, score: b.score, runnerUp: r) }
+        if prints.count > 1 && (b.score - r) < Self.margin { return Match(name: nil, score: b.score, runnerUp: r) }
+        return Match(name: b.name, score: b.score, runnerUp: r)
     }
 
     static func cosine(_ a: [Float], _ b: [Float]) -> Float {

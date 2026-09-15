@@ -31,17 +31,20 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
         case "start":
             let args = call.arguments as? [String: Any] ?? [:]
             let sessionId = args["sessionId"] as? String ?? UUID().uuidString
+            let old = engine
             let e = ScribeEngine(sessionId: sessionId)
             engine = e
             Task {
+                // The previous session's last words, if any, before it goes.
+                if let old { await old.finish() }
                 await e.onSegments { [weak self] segs in self?.send(segs) }
-                do {
-                    try await e.prepare()
-                    result(true)
-                } catch {
-                    result(FlutterError(code: "prepare_failed", message: "\(error)", details: nil))
+                // Dart does not wait for the models: audio that arrives in the
+                // meantime is kept and read once they are up.
+                do { try await e.prepare() } catch {
+                    NSLog("scribe: engine could not prepare: \(error)")
                 }
             }
+            result(true)
 
         case "audio":
             guard let data = (call.arguments as? FlutterStandardTypedData)?.data, let e = engine else {
@@ -56,6 +59,7 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
             result(true)
 
         case "stop":
+            if let e = engine { Task { await e.finish() } }
             engine = nil
             result(true)
 

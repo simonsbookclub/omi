@@ -8,9 +8,9 @@
 // moment it has been read.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:omi/backend/http/shared.dart';
-import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/services/wals/wal.dart';
 import 'package:omi/utils/audio/audio_transcoder.dart';
@@ -31,13 +31,17 @@ class ScribeDrain {
   static Future<ScribeDrainResult> process(Wal wal, File file) async {
     File? wav;
     try {
-      final transcoder = OpusFramesToWavTranscoder(
-        sampleRate: wal.sampleRate,
-        channels: wal.channel,
-        frameSizeBytes: wal.codec == BleAudioCodec.opusFS320 ? 160 : 80,
-      );
+      // The file is a run of Opus frames, each preceded by its length as
+      // four little-endian bytes — the layout the worker's parseFrames reads.
+      // The first version sliced it into fixed 160-byte pieces instead and
+      // decoded garbage; 37 of 39 recordings came back "silent" (2026-09-15).
       final bytes = await file.readAsBytes();
-      final wavBytes = transcoder.transcode(bytes);
+      final frames = _frames(bytes);
+      if (frames.isEmpty) {
+        return const ScribeDrainResult(ok: false, error: 'no frames in file');
+      }
+      final transcoder = OpusFramesToWavTranscoder(sampleRate: wal.sampleRate, channels: wal.channel);
+      final wavBytes = transcoder.transcodeFrames(frames);
       if (wavBytes.isEmpty) {
         return const ScribeDrainResult(ok: false, error: 'could not decode');
       }
@@ -67,6 +71,20 @@ class ScribeDrain {
         await wav.delete().catchError((_) => wav!);
       }
     }
+  }
+
+  static List<Uint8List> _frames(Uint8List bytes) {
+    final out = <Uint8List>[];
+    final view = ByteData.sublistView(bytes);
+    var offset = 0;
+    while (offset + 4 <= bytes.length) {
+      final len = view.getUint32(offset, Endian.little);
+      offset += 4;
+      if (len <= 0 || offset + len > bytes.length) break; // corrupt or truncated tail
+      out.add(Uint8List.sublistView(bytes, offset, offset + len));
+      offset += len;
+    }
+    return out;
   }
 
   static Future<String?> _post(Wal wal, String stream, List<Map<String, dynamic>> segments) async {

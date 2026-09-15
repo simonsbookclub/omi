@@ -10,6 +10,9 @@
 // Phase 0 measured all three parts on this hardware (2026-09-15): Parakeet at
 // 216x realtime and 545 MB peak on an A19 Pro, and speaker vectors that name
 // Simon or Masha correctly 138 times out of 140.
+//
+// The models themselves live in ScribeModels, loaded once per process. This
+// object is one session's state only, so a pendant reconnect costs nothing.
 import Foundation
 import AVFoundation
 import FluidAudio
@@ -40,14 +43,17 @@ actor ScribeEngine {
     /// Keep a little audio before the gate opened, or the first word is clipped.
     private static let preRollS: Double = 0.25
     private static let sampleRate: Double = 16_000
+    /// Audio kept while the models are still loading: ten minutes. The first
+    /// launch downloads 600 MB and the opening of a conversation should not
+    /// be lost to it (the way an interview was on 2026-09-15).
+    private static let backlogCapBytes = 10 * 60 * 16_000 * 2
 
-    private var asr: AsrManager?
-    private var vad: VadManager?
     /// The gate keeps state between chunks (Silero-style hysteresis), so it has
     /// to be carried forward rather than made fresh each time.
     private var vadState: VadStreamState?
-    private var diarizer: OfflineDiarizerManager?
     private var ready = false
+    private var backlog: [Data] = []
+    private var backlogBytes = 0
 
     /// Audio waiting to be closed into an utterance, and where it sits on the session clock.
     private var pending: [Float] = []
@@ -67,39 +73,26 @@ actor ScribeEngine {
 
     func onSegments(_ cb: @escaping @Sendable ([ScribeSegment]) -> Void) { self.emit = cb }
 
-    /// Models load once and stay loaded; the first call downloads about 600 MB.
-    ///
-    /// A download interrupted mid-flight leaves truncated or empty files that
-    /// no amount of retrying repairs — the library says so itself in the log
-    /// and then keeps trying anyway. So: one clean attempt, and if that fails,
-    /// throw the cache away and start again from nothing.
+    /// Ready as soon as the shared models are; then everything that arrived
+    /// while waiting goes through, in order, before anything new.
     func prepare() async throws {
         guard !ready else { return }
-        let a = AsrManager(config: .default)
-        do {
-            let models = try await AsrModels.downloadAndLoad(version: .v3)
-            try await a.loadModels(models)
-        } catch {
-            NSLog("scribe: model load failed (\(error)); clearing the cache and downloading again")
-            ModelHub.clearAllCaches()
-            let models = try await AsrModels.downloadAndLoad(version: .v3)
-            try await a.loadModels(models)
-        }
-        NSLog("scribe: Parakeet ready")
-        self.asr = a
-        let v = try await VadManager(config: VadConfig(defaultThreshold: 0.75))
-        self.vad = v
-        self.vadState = await v.makeStreamState()
-        let d = OfflineDiarizerManager()
-        do {
-            try await d.prepareModels()
-        } catch {
-            NSLog("scribe: diarizer models failed (\(error)); retrying once")
-            try await d.prepareModels(forceRedownload: true)
-        }
-        self.diarizer = d
+        try await ScribeModels.shared.prepare()
+        vadState = try await ScribeModels.shared.makeVadState()
         ready = true
-        NSLog("scribe: engine ready — transcribing on this phone")
+        while !backlog.isEmpty {
+            let batch = backlog
+            backlog.removeAll(keepingCapacity: true)
+            backlogBytes = 0
+            for d in batch { await ingest(d) }
+        }
+        NSLog("scribe: session %@ live", String(sessionId.prefix(8)))
+    }
+
+    /// The session is over; whatever is still buffered is an utterance too.
+    func finish() async {
+        guard ready, sawSpeech else { return }
+        await close()
     }
 
     func setMedia(playing: Bool) {
@@ -122,10 +115,21 @@ actor ScribeEngine {
         return covered / (to - from)
     }
 
-    /// 16-bit little-endian mono PCM straight off the pendant, exactly what the
-    /// app already decodes for the relay.
+    /// 16-bit little-endian mono PCM, exactly what the app already decodes for the relay.
     func feed(pcm16: Data) async {
-        guard ready else { return }
+        // Not ready, or still working through what arrived while not ready:
+        // queue it, so nothing is dropped and nothing goes out of order.
+        if !ready || !backlog.isEmpty {
+            if backlogBytes < Self.backlogCapBytes {
+                backlog.append(pcm16)
+                backlogBytes += pcm16.count
+            }
+            return
+        }
+        await ingest(pcm16)
+    }
+
+    private func ingest(_ pcm16: Data) async {
         var samples = [Float]()
         samples.reserveCapacity(pcm16.count / 2)
         pcm16.withUnsafeBytes { raw in
@@ -149,11 +153,9 @@ actor ScribeEngine {
         clockS += durS
 
         var voiced = false
-        if let vad, let state = vadState {
-            if let r = try? await vad.processStreamingChunk(chunk, state: state, config: .default, returnSeconds: false) {
-                vadState = r.state
-                voiced = r.probability >= 0.75
-            }
+        if let state = vadState, let r = try? await ScribeModels.shared.vadStep(chunk, state: state) {
+            vadState = r.state
+            voiced = r.probability >= 0.75
         }
 
         if voiced {
@@ -177,43 +179,105 @@ actor ScribeEngine {
         }
     }
 
-    /// Finish the buffered utterance: transcribe it, name the voice, emit it, forget the audio.
+    private struct Piece {
+        var text: String
+        var from: Double
+        var to: Double
+        var speaker: Int
+        var embedding: [Float]?
+    }
+
+    /// Finish the buffered utterance: transcribe it, split it by speaker, name each voice, emit, forget the audio.
     private func close() async {
         let audio = pending
         let startS = pendingStartS
         let endS = clockS
         pending = []; sawSpeech = false
-        guard audio.count >= Int(Self.sampleRate * Self.minSpeechMs / 1000), let asr else { return }
+        guard audio.count >= Int(Self.sampleRate * Self.minSpeechMs / 1000) else { return }
 
         do {
-            var state = try TdtDecoderState()
-            let r = try await asr.transcribe(audio, decoderState: &state)
+            let r = try await ScribeModels.shared.transcribe(audio)
             let text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !text.isEmpty else { return }
 
-            var speakerId = 0
-            var person: String? = nil
-            var embedding: [Float]? = nil
-            if let diarizer, let d = try? await diarizer.process(audio: audio),
-               let best = d.segments.max(by: { $0.durationSeconds < $1.durationSeconds }) {
-                embedding = best.embedding
-                speakerId = Int(best.speakerId.filter(\.isNumber)) ?? 0
-            }
-            if let embedding { person = await Voiceprints.shared.name(for: embedding) }
+            // Who spoke, and where they changed over. One utterance often holds
+            // a question and its answer — the gate only hears the pause between
+            // them if it lasts 1.5 s — so the diarizer's turns split it.
+            let turns = ((try? await ScribeModels.shared.diarize(audio))?.segments ?? [])
+                .filter { $0.durationSeconds >= 0.5 }
+                .sorted { $0.startTimeSeconds < $1.startTimeSeconds }
+            let timings = r.tokenTimings ?? []
 
-            let media = person == nil && mediaShare(startS, endS) >= 0.5
-            let seg = ScribeSegment(
-                text: text, start: startS, end: endS,
-                speaker: "SPEAKER_\(String(format: "%02d", speakerId))",
-                speaker_id: speakerId,
-                is_user: person == Voiceprints.wearerName,
-                person_id: person == Voiceprints.wearerName ? nil : person,
-                stream: "device:\(sessionId)",
-                media: media ? true : nil,
-                language: nil)
-            emit?([seg])
+            var pieces: [Piece] = []
+            if turns.count >= 2, !timings.isEmpty, Set(turns.map(\.speakerId)).count >= 2 {
+                // Each token goes to the turn holding its midpoint, else the nearest.
+                var byTurn = [[TokenTiming]](repeating: [], count: turns.count)
+                for t in timings {
+                    let mid = (t.startTime + t.endTime) / 2
+                    let inside = turns.firstIndex { Double($0.startTimeSeconds) <= mid && mid <= Double($0.endTimeSeconds) }
+                    let idx = inside ?? turns.indices.min { Self.distance(mid, turns[$0]) < Self.distance(mid, turns[$1]) }
+                    if let idx { byTurn[idx].append(t) }
+                }
+                for (i, turn) in turns.enumerated() {
+                    let words = Self.join(byTurn[i])
+                    guard !words.isEmpty else { continue }
+                    let sp = Int(turn.speakerId.filter(\.isNumber)) ?? i
+                    let to = startS + Double(turn.endTimeSeconds)
+                    if let last = pieces.last, last.speaker == sp {
+                        // The same person kept talking; one piece, not two.
+                        pieces[pieces.count - 1].text += " " + words
+                        pieces[pieces.count - 1].to = to
+                    } else {
+                        pieces.append(Piece(text: words, from: startS + Double(turn.startTimeSeconds), to: to,
+                                            speaker: sp, embedding: turn.embedding))
+                    }
+                }
+            }
+            if pieces.isEmpty {
+                let best = turns.max { $0.durationSeconds < $1.durationSeconds }
+                pieces = [Piece(text: text, from: startS, to: endS,
+                                speaker: Int(best?.speakerId.filter(\.isNumber) ?? "") ?? 0,
+                                embedding: best?.embedding)]
+            }
+
+            var out: [ScribeSegment] = []
+            for p in pieces {
+                var person: String? = nil
+                if let e = p.embedding {
+                    let m = await Voiceprints.shared.match(e)
+                    person = m.name
+                    NSLog("scribe: %.1fs \"%@\" → %@ (%.2f, next %.2f)",
+                          p.to - p.from, String(p.text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
+                }
+                let media = person == nil && mediaShare(p.from, p.to) >= 0.5
+                out.append(ScribeSegment(
+                    text: p.text, start: p.from, end: p.to,
+                    speaker: String(format: "SPEAKER_%02d", p.speaker),
+                    speaker_id: p.speaker,
+                    is_user: person == Voiceprints.wearerName,
+                    person_id: person == Voiceprints.wearerName ? nil : person,
+                    stream: "device:\(sessionId)",
+                    media: media ? true : nil,
+                    language: nil))
+            }
+            emit?(out)
         } catch {
             NSLog("scribe: utterance failed: \(error)")
         }
+    }
+
+    private static func distance(_ t: Double, _ turn: TimedSpeakerSegment) -> Double {
+        let a = Double(turn.startTimeSeconds), b = Double(turn.endTimeSeconds)
+        return t < a ? a - t : (t > b ? t - b : 0)
+    }
+
+    /// Parakeet's pieces back into words. Word starts carry "▁" in the
+    /// vocabulary; if the library has already turned those into spaces this is
+    /// a no-op.
+    private static func join(_ tokens: [TokenTiming]) -> String {
+        tokens.map(\.token).joined()
+            .replacingOccurrences(of: "▁", with: " ")
+            .replacingOccurrences(of: "  ", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }
