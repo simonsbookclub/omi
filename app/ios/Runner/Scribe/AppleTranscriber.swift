@@ -21,8 +21,7 @@ actor AppleTranscriber {
     static let shared = AppleTranscriber()
 
     #if canImport(Speech)
-    private var analyzer: SpeechAnalyzer?
-    private var transcriber: SpeechTranscriber?
+    private var locale: Locale?
     private var format: AVAudioFormat?
     #endif
     private var ready = false
@@ -49,7 +48,7 @@ actor AppleTranscriber {
             NSLog("scribe: installing Apple speech assets for %@", locale.identifier(.bcp47))
             try await request.downloadAndInstall()
         }
-        transcriber = t
+        self.locale = locale
         format = await SpeechAnalyzer.bestAvailableAudioFormat(compatibleWith: [t])
         ready = true
         NSLog("scribe: Apple transcriber ready (%@)", locale.identifier(.bcp47))
@@ -64,7 +63,13 @@ actor AppleTranscriber {
     func transcribe(_ samples: [Float]) async throws -> String {
         #if canImport(Speech)
         try await prepare()
-        guard let transcriber, !samples.isEmpty else { return "" }
+        guard let locale, !samples.isEmpty else { return "" }
+        // A transcriber belongs to one analyzer. Handing the same one to a
+        // second analyzer traps inside SpeechAnalyzer.prepareModulesIfNeeded,
+        // which is what crashed the app on launch (2026-09-15). Both are made
+        // fresh for each utterance; the expensive part, the voice model, is an
+        // OS asset that stays loaded between them.
+        let transcriber = SpeechTranscriber(locale: locale, preset: .timeIndexedTranscriptionWithAlternatives)
 
         let source = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: 16_000,
                                    channels: 1, interleaved: false)

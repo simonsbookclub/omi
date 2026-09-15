@@ -11,7 +11,7 @@ import 'package:omi/models/sync_state.dart';
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/services/audio_sources/audio_source.dart';
-import 'package:omi/models/stt_provider.dart';
+import 'package:flutter/services.dart';
 import 'package:omi/services/wals/scribe_drain.dart';
 import 'package:omi/services/wals/wal.dart';
 import 'package:omi/services/wals/wal_interfaces.dart';
@@ -72,14 +72,28 @@ List<Wal> nextSyncUploadBatch(List<Wal> pending, int nowSeconds) {
 }
 
 class LocalWalSyncImpl implements LocalWalSync {
-  /// True when transcription is set to Scribe, so drained files are read here
-  /// rather than uploaded.
+  /// Whether the phone can read a drained recording itself.
+  ///
+  /// Deliberately NOT tied to which transcriber handles the live stream. The
+  /// file path works, costs nothing and names the speakers; the live setting
+  /// is a separate question, and coupling them meant that every time the
+  /// provider flipped back to the relay a whole backlog of audio was uploaded
+  /// (2026-09-15). Whoever transcribes live, drained files stay on the phone.
+  static bool? _scribeAvailable;
   Future<bool> _scribeHandles() async {
+    if (!Platform.isIOS) return false;
+    if (_scribeAvailable != null) return _scribeAvailable!;
     try {
-      return SharedPreferencesUtil().customSttConfig.provider == SttProvider.scribe;
-    } catch (_) {
-      return false;
+      await const MethodChannel('com.simonsbookclub.scribe').invokeMethod('enrolledVoices');
+      _scribeAvailable = true;
+    } catch (e) {
+      // Only a missing handler means Scribe is not there; anything else is a
+      // transient failure and must not condemn the phone to uploading for the
+      // rest of the process.
+      _scribeAvailable = e is! MissingPluginException;
+      if (_scribeAvailable == false) Logger.log('[Scribe] not on this build; drains go to the worker');
     }
+    return _scribeAvailable!;
   }
 
   List<Wal> _wals = [];

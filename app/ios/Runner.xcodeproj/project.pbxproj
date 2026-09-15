@@ -63,6 +63,7 @@
 		6382AF22C65ED5A1AA482ECD /* PhoneMicHostApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DFD09 /* PhoneMicHostApiImpl.swift */; };
 		6436409A27A31CD800820AF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6436409C27A31CD800820AF7 /* InfoPlist.strings */; };
 		648454527D23C31E3AF5A635 /* LimitlessFlashDrainEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DF0D9 /* LimitlessFlashDrainEngine.swift */; };
+		68B72777651E54A4F1AE456E /* AppleTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2499B5669B2690F20A6E83 /* AppleTranscriber.swift */; };
 		6BD6CBAE7D0C1392AC7DDEFE /* OmiProximitySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BABFCA2F2A81B100E78A3C /* OmiProximitySensor.swift */; };
 		6CFA84F577BF1940716EAC98 /* PhoneMicCaptureEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DFD03 /* PhoneMicCaptureEngine.swift */; };
 		715D47AFEB21D49E37F16F3B /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A7BA4B2E788F0100138969 /* WatchConnectivity.framework */; };
@@ -302,6 +303,7 @@
 		EF770A936DE2AA63387FD198 /* devLaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = devLaunchScreen.storyboard; path = Runner/devLaunchScreen.storyboard; sourceTree = "<group>"; };
 		F96E1E0DCF5C0D7F70111C5A /* Voiceprints.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Voiceprints.swift; sourceTree = "<group>"; };
 		FB0B0CC8C2B152B10822DABF /* ScribeWriter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScribeWriter.swift; sourceTree = "<group>"; };
+		FD2499B5669B2690F20A6E83 /* AppleTranscriber.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppleTranscriber.swift; sourceTree = "<group>"; };
 		FG12345678901234567890FG /* WifiNetworkPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WifiNetworkPlugin.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -578,6 +580,7 @@
 				FB0B0CC8C2B152B10822DABF /* ScribeWriter.swift */,
 				DB357170B92CA439194C26FE /* ScribeFile.swift */,
 				0950AA822C642839F7B589CF /* ScribeModels.swift */,
+				FD2499B5669B2690F20A6E83 /* AppleTranscriber.swift */,
 			);
 			name = Scribe;
 			path = Scribe;
@@ -1012,6 +1015,7 @@
 				C14682651EF15040B9F2E9A9 /* ScribeWriter.swift in Sources */,
 				5332ECAE2EF470AB2A6775DE /* ScribeFile.swift in Sources */,
 				F76CC589EB226404A57795F7 /* ScribeModels.swift in Sources */,
+				68B72777651E54A4F1AE456E /* AppleTranscriber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
