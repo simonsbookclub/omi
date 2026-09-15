@@ -54,6 +54,15 @@ actor ScribeEngine {
     private var ready = false
     private var backlog: [Data] = []
     private var backlogBytes = 0
+    /// The last 20 seconds of everything, speech or not.
+    ///
+    /// The diarizer works on ~10-second windows and finds nothing in less, so
+    /// a short utterance handed to it on its own returns no speakers at all —
+    /// which is why every live segment came out SPEAKER_00 and unnamed on the
+    /// first day. A short utterance is diarized inside this window instead.
+    private static let recentCapS: Double = 20
+    private static let diarizeMinS: Double = 10
+    private var recent: [Float] = []
 
     /// Audio waiting to be closed into an utterance, and where it sits on the session clock.
     private var pending: [Float] = []
@@ -166,6 +175,9 @@ actor ScribeEngine {
             lastVoiceAtS = clockS
         }
         pending += chunk
+        recent += chunk
+        let cap = Int(Self.sampleRate * Self.recentCapS)
+        if recent.count > cap { recent.removeFirst(recent.count - cap) }
 
         let quietFor = (clockS - lastVoiceAtS) * 1000
         let longEnough = (clockS - pendingStartS) >= Self.maxUtteranceS
@@ -187,6 +199,17 @@ actor ScribeEngine {
         var embedding: [Float]?
     }
 
+    /// A speaker turn on the utterance's own clock. The library's own type is
+    /// immutable and measured against whatever buffer it was given, which is
+    /// not the utterance when a short one is diarized inside a wider window.
+    private struct Turn {
+        var speakerId: String
+        var embedding: [Float]
+        var start: Double
+        var end: Double
+        var duration: Double { end - start }
+    }
+
     /// Finish the buffered utterance: transcribe it, split it by speaker, name each voice, emit, forget the audio.
     private func close() async {
         let audio = pending
@@ -203,18 +226,51 @@ actor ScribeEngine {
             // Who spoke, and where they changed over. One utterance often holds
             // a question and its answer — the gate only hears the pause between
             // them if it lasts 1.5 s — so the diarizer's turns split it.
-            let turns = ((try? await ScribeModels.shared.diarize(audio))?.segments ?? [])
-                .filter { $0.durationSeconds >= 0.5 }
-                .sorted { $0.startTimeSeconds < $1.startTimeSeconds }
-            let timings = r.tokenTimings ?? []
+            //
+            // A short utterance is diarized inside the surrounding ten seconds
+            // and the turns moved back onto its own clock: the diarizer works
+            // in ~10 s windows and returns nothing at all for less, which is
+            // why every live segment came out SPEAKER_00 and unnamed on the
+            // first day (2026-09-15).
+            let utterS = endS - startS
+            var window = audio
+            var offsetIntoWindow = 0.0
+            if utterS < Self.diarizeMinS {
+                let take = min(Int(Self.sampleRate * Self.diarizeMinS), recent.count)
+                if take > audio.count {
+                    window = Array(recent.suffix(take))
+                    offsetIntoWindow = Double(take - audio.count) / Self.sampleRate
+                }
+            }
+            var turns: [Turn] = []
+            do {
+                turns = try await ScribeModels.shared.diarize(window).segments.map {
+                    Turn(speakerId: $0.speakerId, embedding: $0.embedding,
+                         start: Double($0.startTimeSeconds) - offsetIntoWindow,
+                         end: Double($0.endTimeSeconds) - offsetIntoWindow)
+                }
+            } catch {
+                NSLog("scribe: no speakers in %.1fs (window %.1fs): %@",
+                      utterS, Double(window.count) / Self.sampleRate, "\(error)")
+            }
+            turns = turns
+                .compactMap { t -> Turn? in
+                    // Keep only what overlaps the utterance itself.
+                    guard t.end > 0, t.start < utterS else { return nil }
+                    var c = t
+                    c.start = max(0, t.start); c.end = min(utterS, t.end)
+                    return c.duration >= 0.5 ? c : nil
+                }
+                .sorted { $0.start < $1.start }
 
+            let timings = r.tokenTimings ?? []
             var pieces: [Piece] = []
             if turns.count >= 2, !timings.isEmpty, Set(turns.map(\.speakerId)).count >= 2 {
                 // Each token goes to the turn holding its midpoint, else the nearest.
                 var byTurn = [[TokenTiming]](repeating: [], count: turns.count)
                 for t in timings {
                     let mid = (t.startTime + t.endTime) / 2
-                    let inside = turns.firstIndex { Double($0.startTimeSeconds) <= mid && mid <= Double($0.endTimeSeconds) }
+                    let inside = turns.firstIndex { $0.start <= mid && mid <= $0.end }
                     let idx = inside ?? turns.indices.min { Self.distance(mid, turns[$0]) < Self.distance(mid, turns[$1]) }
                     if let idx { byTurn[idx].append(t) }
                 }
@@ -222,19 +278,19 @@ actor ScribeEngine {
                     let words = Self.join(byTurn[i])
                     guard !words.isEmpty else { continue }
                     let sp = Int(turn.speakerId.filter(\.isNumber)) ?? i
-                    let to = startS + Double(turn.endTimeSeconds)
+                    let to = startS + turn.end
                     if let last = pieces.last, last.speaker == sp {
                         // The same person kept talking; one piece, not two.
                         pieces[pieces.count - 1].text += " " + words
                         pieces[pieces.count - 1].to = to
                     } else {
-                        pieces.append(Piece(text: words, from: startS + Double(turn.startTimeSeconds), to: to,
+                        pieces.append(Piece(text: words, from: startS + turn.start, to: to,
                                             speaker: sp, embedding: turn.embedding))
                     }
                 }
             }
             if pieces.isEmpty {
-                let best = turns.max { $0.durationSeconds < $1.durationSeconds }
+                let best = turns.max { $0.duration < $1.duration }
                 pieces = [Piece(text: text, from: startS, to: endS,
                                 speaker: Int(best?.speakerId.filter(\.isNumber) ?? "") ?? 0,
                                 embedding: best?.embedding)]
@@ -248,6 +304,8 @@ actor ScribeEngine {
                     person = m.name
                     NSLog("scribe: %.1fs \"%@\" → %@ (%.2f, next %.2f)",
                           p.to - p.from, String(p.text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
+                } else {
+                    NSLog("scribe: %.1fs \"%@\" → no voice vector", p.to - p.from, String(p.text.prefix(40)))
                 }
                 let media = person == nil && mediaShare(p.from, p.to) >= 0.5
                 out.append(ScribeSegment(
@@ -266,9 +324,8 @@ actor ScribeEngine {
         }
     }
 
-    private static func distance(_ t: Double, _ turn: TimedSpeakerSegment) -> Double {
-        let a = Double(turn.startTimeSeconds), b = Double(turn.endTimeSeconds)
-        return t < a ? a - t : (t > b ? t - b : 0)
+    private static func distance(_ t: Double, _ turn: Turn) -> Double {
+        t < turn.start ? turn.start - t : (t > turn.end ? t - turn.end : 0)
     }
 
     /// Parakeet's pieces back into words. Word starts carry "▁" in the
