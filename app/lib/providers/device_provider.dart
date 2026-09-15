@@ -23,7 +23,6 @@ import 'package:omi/services/devices.dart';
 import 'package:omi/services/devices/connectors/device_connection.dart';
 import 'package:omi/services/devices/connectors/omi_connection.dart';
 import 'package:omi/services/bridges/ble_bridge.dart';
-import 'package:omi/services/notifications.dart';
 import 'package:omi/services/services.dart';
 import 'package:omi/services/battery_widget_service.dart';
 import 'package:omi/services/wals/wal_syncs.dart';
@@ -64,8 +63,6 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   bool isCharging = false;
   int _lastNotifiedBatteryLevel = -1;
   DateTime? _lastBatteryNotifyTime;
-  bool _hasLowBatteryAlerted = false;
-  bool _hasFullyChargedAlerted = false;
   bool _havingNewFirmware = false;
   bool get havingNewFirmware =>
       _havingNewFirmware && pairedDevice != null && isConnected && _allowsFirmwareUpdateForPairedDevice;
@@ -388,26 +385,14 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
           deviceType: connectedDevice?.type.name ?? 'omi',
           isConnected: true,
         );
-        if (batteryLevel < 20 && !_hasLowBatteryAlerted) {
-          _hasLowBatteryAlerted = true;
-          final ctx = globalNavigatorKey.currentContext;
-          NotificationService.instance.createNotification(
-            title: ctx?.l10n.lowBatteryAlertTitle ?? "Low Battery Alert",
-            body: ctx?.l10n.lowBatteryAlertBody(value) ?? "Your battery is at $value%. Time for a recharge! 🔋",
-          );
-        } else if (batteryLevel > 20) {
-          _hasLowBatteryAlerted = false;
-        }
-        if (isCharging && batteryLevel >= 100 && !_hasFullyChargedAlerted) {
-          _hasFullyChargedAlerted = true;
-          final ctx = globalNavigatorKey.currentContext;
-          NotificationService.instance.createNotification(
-            title: ctx?.l10n.batteryFullyChargedTitle ?? "Chronicle is fully charged",
-            body: ctx?.l10n.batteryFullyChargedBody ?? "Your Chronicle device is fully charged. Feel free to unplug!",
-          );
-        } else if (!isCharging || batteryLevel < 100) {
-          _hasFullyChargedAlerted = false;
-        }
+        // SIMONSBOOKCLUB: no pendant battery notifications, low or full.
+        //
+        // The low one fired far too often. Its guard cleared whenever the
+        // reading rose above 20, and a battery hovering there reads 19, 21, 19
+        // all evening — a fresh notification on every dip. Reconnecting rebuilt
+        // this listener and cleared the guard as well, and the pendant
+        // reconnects constantly. The level is still tracked everywhere it is
+        // shown: the widget, the tile, the telemetry. It just does not interrupt.
         // Throttle notifyListeners to reduce battery drain from excessive UI rebuilds
         // Only notify when: first reading, >=5% change, 15min elapsed, or crosses 20% threshold
         final delta = (_lastNotifiedBatteryLevel - value).abs();
@@ -521,16 +506,6 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       onChargingStatusChange: (bool charging) {
         if (isCharging != charging) {
           isCharging = charging;
-          if (!charging) {
-            _hasFullyChargedAlerted = false;
-          } else if (batteryLevel >= 100 && !_hasFullyChargedAlerted) {
-            _hasFullyChargedAlerted = true;
-            final ctx = globalNavigatorKey.currentContext;
-            NotificationService.instance.createNotification(
-              title: ctx?.l10n.batteryFullyChargedTitle ?? "Chronicle is fully charged",
-              body: ctx?.l10n.batteryFullyChargedBody ?? "Your Chronicle device is fully charged. Feel free to unplug!",
-            );
-          }
           notifyListeners();
         }
       },
@@ -849,7 +824,6 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     await initiateBleBatteryListener();
     await initiateChargingStatusListener();
     if (batteryLevel != -1 && batteryLevel < 20) {
-      _hasLowBatteryAlerted = false;
     }
     updateConnectingStatus(false);
     await captureProvider?.streamDeviceRecording(device: device);
