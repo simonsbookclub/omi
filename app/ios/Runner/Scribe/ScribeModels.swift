@@ -70,6 +70,7 @@ actor ScribeModels {
             try await d.prepareModels(configuration: Self.background, forceRedownload: true)
         }
         asr = a; vad = v; diarizer = d
+        await chooseTranscriber()
         NSLog("scribe: models ready — transcribing on this phone")
     }
 
@@ -77,7 +78,28 @@ actor ScribeModels {
     // file reader take turns rather than driving one CoreML model from two
     // tasks at once.
 
+    /// Which transcriber writes the words down. Apple's is the system's own
+    /// service: nothing to download into this app, nothing to keep working.
+    /// Parakeet stays for anything Apple has no language for.
+    private var useApple = false
+
+    func chooseTranscriber() async {
+        if #available(iOS 26.0, *) {
+            useApple = await AppleTranscriber.isSupported("en-US")
+            NSLog("scribe: transcribing with %@", useApple ? "Apple" : "Parakeet")
+        }
+    }
+
     func transcribe(_ samples: [Float]) async throws -> ASRResult {
+        if useApple, #available(iOS 26.0, *) {
+            let text = try await AppleTranscriber.shared.transcribe(samples)
+            if !text.isEmpty {
+                return ASRResult(text: text, confidence: 1, duration: Double(samples.count) / 16_000,
+                                 processingTime: 0, tokenTimings: nil)
+            }
+            // Empty can mean "nothing said" or "could not load"; let Parakeet
+            // have a go rather than silently drop the utterance.
+        }
         guard let asr else { throw ScribeError.notReady }
         var state = try TdtDecoderState()
         return try await asr.transcribe(samples, decoderState: &state)
