@@ -134,7 +134,16 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   final DateTime _startedAt = DateTime.now();
   /// Mirrored into SharedPreferences ('overnightDrainActive') so the capture
   /// controller and the native layer can read it without importing this.
-  static const Duration _idleForDrain = Duration(minutes: 30);
+  /// Forty-five minutes, and not before midnight.
+  ///
+  /// The drain takes the pendant's link over completely — while it runs, no
+  /// live audio arrives, which also means the "live audio resumed" check below
+  /// can never fire and it stays on until morning. So it must not be running
+  /// while anyone is still talking. Simon and Masha say "What Went Well" as the
+  /// last thing before sleep with the pendant on its charger beside them, and
+  /// an 11pm window could arm on a quiet half-hour of reading and swallow the
+  /// whole ritual. Midnight still leaves seven hours to drain in.
+  static const Duration _idleForDrain = Duration(minutes: 45);
   bool _overnightDrainOn = false;
   static const Duration _storageCheckEvery = Duration(minutes: 10);
   int _forcedRebuilds = 0;
@@ -427,7 +436,7 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
   void _considerOvernightDrain(DateTime now, int lastAudioMs) {
     final sinceStart = now.difference(_startedAt);
     final quietMs = lastAudioMs > 0 ? now.millisecondsSinceEpoch - lastAudioMs : sinceStart.inMilliseconds;
-    final night = now.hour >= 23 || now.hour < 7;
+    final night = now.hour >= 0 && now.hour < 7;
     if (!_overnightDrainOn) {
       final heard = _lastPendantReplyAt != null && now.difference(_lastPendantReplyAt!) <= _proofOfLifeWithin;
       if (night &&

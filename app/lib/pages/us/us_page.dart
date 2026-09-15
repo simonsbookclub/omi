@@ -282,6 +282,10 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       const SizedBox(height: 12),
       _conversations(us),
       const SizedBox(height: 12),
+      // Above the weekly report, because it is a nightly thing and the newest
+      // entry is the one they came to see.
+      _whatWentWell(us),
+      const SizedBox(height: 12),
       _weeklyReport(us),
       const SizedBox(height: 12),
       _sharing(us, couple),
@@ -1064,6 +1068,92 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
 
   /// One real talk: what it was about, how it moved, and the conflict read
   /// only when there was something to read.
+  /// What Went Well — the last thing they say before sleep, every night.
+  ///
+  /// Tonight's entries in full, then what a run of them says together. The
+  /// point of keeping them is never tonight's; it is that after a hundred
+  /// nights the causes of a good day stop being a feeling and become a list.
+  Widget _whatWentWell(UsProvider us) {
+    final r = us.rituals;
+    if (r == null) return const SizedBox.shrink();
+    final recent = (r['recent'] as List?) ?? const [];
+    final patterns = (r['patterns'] as Map?) ?? const {};
+    final learned = r['learned'] as Map?;
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final tonight = recent.where((e) => (e as Map)['day'] == today).toList();
+    final nights = (patterns['nights'] as num?)?.toInt() ?? 0;
+    if (recent.isEmpty && nights == 0) return const SizedBox.shrink();
+    final streak = (patterns['streak'] as num?)?.toInt() ?? 0;
+
+    Widget entry(Map e) => Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('${e['said_by']} · ${e['good']}',
+                style: const TextStyle(color: Colors.white, fontSize: 14.5, height: 1.35)),
+            for (final part in [
+              ['because', e['because']],
+              ['it means', e['means']],
+              ['more of it', e['more']],
+            ])
+              if ((part[1] ?? '').toString().isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 3, left: 2),
+                  child: Text('${part[0]} — ${part[1]}',
+                      style: const TextStyle(color: UsInk.body, fontSize: 13, height: 1.35)),
+                ),
+          ]),
+        );
+
+    List<String> lines(String key) =>
+        ((learned?[key] as List?) ?? const []).map((x) => x.toString()).toList();
+
+    return _card(children: [
+      Row(children: [
+        const UsLabel('What went well'),
+        const Spacer(),
+        Text(
+          streak > 1 ? '$streak nights running' : '$nights night${nights == 1 ? '' : 's'} kept',
+          style: const TextStyle(color: UsInk.faint, fontSize: 11.5),
+        ),
+      ]),
+      if (tonight.isEmpty)
+        const Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Text('Not yet tonight.',
+              style: TextStyle(color: UsInk.faint, fontSize: 13.5)),
+        )
+      else
+        for (final e in tonight) entry(e as Map),
+      if (learned != null) ...[
+        const Divider(color: UsInk.hairline, height: 26),
+        for (final section in [
+          ['WHAT KEEPS COMING BACK', lines('recurring')],
+          ['WHAT MAKES YOUR GOOD DAYS', lines('causes')],
+          ['YOU SAID YOU WANTED MORE, AND GOT IT', lines('acted_on')],
+          ['YOU SAID IT, AND IT NEVER CAME BACK', lines('missed')],
+        ])
+          if ((section[1] as List<String>).isNotEmpty) ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 2),
+              child: Text(section[0] as String,
+                  style: const TextStyle(color: UsInk.faint, fontSize: 11, letterSpacing: 0.6)),
+            ),
+            for (final l in section[1] as List<String>)
+              Padding(
+                padding: const EdgeInsets.only(top: 3),
+                child: Text('· $l',
+                    style: const TextStyle(color: UsInk.body, fontSize: 13.5, height: 1.35)),
+              ),
+          ],
+        if ((learned['note'] ?? '').toString().isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Text(learned['note'].toString(),
+              style: const TextStyle(color: Colors.white, fontSize: 14, height: 1.4)),
+        ],
+      ],
+    ]);
+  }
+
   /// The local time of day, for a row that already knows which day it is.
   String _hhmm(String? iso) {
     if (iso == null || iso.isEmpty) return '';

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 import 'package:omi/backend/http/api/us.dart';
@@ -118,6 +119,18 @@ class UsProvider extends ChangeNotifier {
     await refresh(force: true);
   }
 
+  /// The nightly ritual and the appreciations, kept apart from the day card
+  /// because they are a record that accumulates rather than a reading of today.
+  Map<String, dynamic>? rituals;
+
+  Future<void> loadRituals() async {
+    final r = await UsApi.rituals();
+    if (r != null && r['error'] == null) {
+      rituals = r;
+      notifyListeners();
+    }
+  }
+
   Future<void> refresh({bool force = false, bool card = false}) async {
     if (!force && _lastRefresh != null && DateTime.now().difference(_lastRefresh!) < const Duration(seconds: 20)) return;
     loading = true;
@@ -125,6 +138,7 @@ class UsProvider extends ChangeNotifier {
     notifyListeners();
     try {
       await UsSession.ensureSession();
+      unawaited(loadRituals());
       final t = await UsApi.today(refresh: card);
       if (t != null && t['error'] != null) {
         error = t['error'].toString();

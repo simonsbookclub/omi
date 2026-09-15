@@ -108,6 +108,10 @@ class UsApi {
         if (note != null) 'note': note,
       });
 
+  /// What Went Well and appreciations, with what a run of them says together.
+  static Future<Map<String, dynamic>?> rituals({int days = 120}) =>
+      _call('GET', 'rituals?days=$days');
+
   static Future<Map<String, dynamic>?> dismissPrompt(int id) => _call('POST', 'prompts/$id/dismiss', body: {});
   static Future<Map<String, dynamic>?> answerPrompt(int id) => _call('POST', 'prompts/$id/answer', body: {});
   /// The couple's verdict on a prompt: false_alarm, right, or late. Teaches the live detector.
