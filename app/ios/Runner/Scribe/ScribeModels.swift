@@ -84,6 +84,15 @@ actor ScribeModels {
     private var useApple = false
 
     func chooseTranscriber() async {
+        // A switch that needs no rebuild. Apple's analyzer has already trapped
+        // the app once; if it does so again this can be turned off by writing
+        // the preference and restarting, rather than by another build-sign-
+        // install round trip while Simon has no working app.
+        if UserDefaults.standard.string(forKey: "flutter.scribeEngine") == "parakeet" {
+            useApple = false
+            NSLog("scribe: transcribing with Parakeet (Apple turned off by preference)")
+            return
+        }
         if #available(iOS 26.0, *) {
             useApple = await AppleTranscriber.isSupported("en-US")
             NSLog("scribe: transcribing with %@", useApple ? "Apple" : "Parakeet")
