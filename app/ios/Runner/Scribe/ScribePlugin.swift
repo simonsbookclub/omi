@@ -98,7 +98,8 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
                     case "relationship":
                         let r = try await ScribeWriter.relationship(for: transcript)
                         result(["tension": r.tension, "escalation": r.escalation, "repair": r.repair,
-                                "hard": r.hard, "summary": r.summary])
+                                "self_blame": r.self_blame, "hard": r.hard, "summary": r.summary,
+                                "repair_examples": Array(r.repair_examples.prefix(3))])
                     default:
                         let r = try await ScribeWriter.structured(for: transcript)
                         result(["title": r.title, "overview": r.overview, "emoji": r.emoji, "category": r.category])

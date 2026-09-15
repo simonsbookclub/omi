@@ -40,6 +40,9 @@ enum ScribeWriter {
         var curiosity: Double
     }
 
+    /// The shape the Us panel already stores (us-analysis.ts, version 5). Every
+    /// field it reads is here, so a conversation read on the phone renders the
+    /// same as one the worker paid for.
     @Generable
     struct Relationship {
         @Guide(description: "Tension in the conversation, 0 none to 1 a row.")
@@ -48,63 +51,96 @@ enum ScribeWriter {
         var escalation: Double
         @Guide(description: "Repair: attempts to soften, apologise or reconnect, 0 to 1.")
         var repair: Double
+        @Guide(description: "Taking responsibility rather than assigning it, 0 to 1.")
+        var self_blame: Double
         @Guide(description: "True only if this was a genuinely hard conversation.")
         var hard: Bool
         @Guide(description: "One sentence, plain and specific, on what happened between them.")
         var summary: String
+        @Guide(description: "Up to three short quotes, word for word, where someone softened or reconnected. Empty if there were none.")
+        var repair_examples: [String]
     }
     #endif
 
     static var isAvailable: Bool {
         #if canImport(FoundationModels)
-        if case .available = SystemLanguageModel.default.availability { return true }
+        if case .available = SystemLanguageModel.default.availability {
+            logModelOnce()
+            return true
+        }
         #endif
         return false
     }
 
-    /// The on-device context is small, so a long conversation is summarised in
-    /// pieces and the pieces summarised again, rather than truncated.
-    private static func condense(_ transcript: String, limit: Int = 6000) async throws -> String {
-        guard transcript.count > limit else { return transcript }
+    private static var logged = false
+
+    /// Which model this phone actually runs. iOS 27 ships two on-device
+    /// variants, core3 and coreAdvanced3, and there is no way to ask for one:
+    /// `variant` is read-only and the system decides. So record what we got.
+    private static func logModelOnce() {
+        guard !logged else { return }
+        logged = true
         #if canImport(FoundationModels)
+        #if compiler(>=6.3)
+        if #available(iOS 27.0, *) {
+            NSLog("scribe: on-device model is %@", SystemLanguageModel.default.variant.displayName)
+            return
+        }
+        #endif
+        NSLog("scribe: on-device model available")
+        #endif
+    }
+
+    /// The on-device window is 8,192 tokens, and Cyrillic spends far more of
+    /// them per character than English does, so no character count is right for
+    /// both. Rather than guess low and summarise everything twice, hand over
+    /// the whole transcript and only fall back to pieces when the model refuses
+    /// it — which is the one reliable signal of what actually fits.
+    private static let chunkChars = 6000
+
+    #if canImport(FoundationModels)
+    private static func respond<T: Generable>(_ instructions: String, _ transcript: String, _ type: T.Type) async throws -> T {
+        do {
+            let session = LanguageModelSession(instructions: instructions)
+            return try await session.respond(to: transcript, generating: type).content
+        } catch {
+            let short = try await condense(transcript)
+            NSLog("scribe: transcript of %d chars did not fit; condensed to %d", transcript.count, short.count)
+            let session = LanguageModelSession(instructions: instructions)
+            return try await session.respond(to: short, generating: type).content
+        }
+    }
+
+    /// A long conversation summarised in pieces, and the pieces joined.
+    private static func condense(_ transcript: String) async throws -> String {
+        guard transcript.count > chunkChars else { return transcript }
         var parts: [String] = []
         var i = transcript.startIndex
         while i < transcript.endIndex {
-            let j = transcript.index(i, offsetBy: limit, limitedBy: transcript.endIndex) ?? transcript.endIndex
+            let j = transcript.index(i, offsetBy: chunkChars, limitedBy: transcript.endIndex) ?? transcript.endIndex
             parts.append(String(transcript[i..<j]))
             i = j
         }
         var notes: [String] = []
         for part in parts {
-            let session = LanguageModelSession(instructions: "Summarise this part of a conversation in three sentences. Keep names and specifics.")
+            let session = LanguageModelSession(instructions: "Summarise this part of a conversation in three sentences. Keep names, quotes and specifics.")
             notes.append(try await session.respond(to: part).content)
         }
         return notes.joined(separator: "\n")
-        #else
-        return String(transcript.prefix(limit))
-        #endif
     }
+    #endif
 
     #if canImport(FoundationModels)
     static func structured(for transcript: String) async throws -> Structured {
-        let text = try await condense(transcript)
-        let session = LanguageModelSession(instructions:
-            "You title and summarise a recorded conversation. Answer in the language the conversation is in. Be specific and plain; no preamble.")
-        return try await session.respond(to: text, generating: Structured.self).content
+        try await respond("You title and summarise a recorded conversation. Answer in the language the conversation is in. Be specific and plain; no preamble.", transcript, Structured.self)
     }
 
     static func sentiment(for transcript: String) async throws -> Sentiment {
-        let text = try await condense(transcript, limit: 4000)
-        let session = LanguageModelSession(instructions:
-            "You read how someone sounds in a conversation. Judge only from what is said. Be conservative: most conversations are unremarkable.")
-        return try await session.respond(to: text, generating: Sentiment.self).content
+        try await respond("You read how someone sounds in a conversation. Judge only from what is said. Be conservative: most conversations are unremarkable.", transcript, Sentiment.self)
     }
 
     static func relationship(for transcript: String) async throws -> Relationship {
-        let text = try await condense(transcript, limit: 6000)
-        let session = LanguageModelSession(instructions:
-            "You read what happened between two people in a conversation. Be conservative: score tension near zero unless there is real friction, and never invent events.")
-        return try await session.respond(to: text, generating: Relationship.self).content
+        try await respond("You read what happened between two people in a conversation. Be conservative: score tension near zero unless there is real friction, and never invent events or quotes.", transcript, Relationship.self)
     }
     #endif
 }
