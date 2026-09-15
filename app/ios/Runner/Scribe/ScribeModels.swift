@@ -19,7 +19,10 @@ actor ScribeModels {
     private var diarizer: OfflineDiarizerManager?
     private var loading = false
 
-    var isReady: Bool { asr != nil && vad != nil && diarizer != nil }
+    /// Ready means the speech detector and the speaker separator are up, and a
+    /// transcriber has been chosen. Parakeet's half-gigabyte is not part of
+    /// that unless it is the one doing the writing.
+    var isReady: Bool { vad != nil && diarizer != nil && (useApple || asr != nil) }
 
     /// Loads everything, once. Callers that arrive mid-load wait for that load.
     func prepare() async throws {
@@ -47,7 +50,14 @@ actor ScribeModels {
         return c
     }
 
-    private func loadAll() async throws {
+    /// Parakeet, loaded only if it is going to write something down.
+    ///
+    /// Half a gigabyte of model resident for a fallback that never runs: the
+    /// app sat at 259 MB in the background and was killed under memory
+    /// pressure with nothing captured (2026-09-15). Apple's transcriber is a
+    /// system service and costs this process almost nothing.
+    private func loadParakeet() async throws {
+        if asr != nil { return }
         let a = AsrManager(config: .default)
         do {
             let models = try await AsrModels.downloadAndLoad(configuration: Self.background, version: .v3)
@@ -61,6 +71,12 @@ actor ScribeModels {
             try await a.loadModels(models)
         }
         NSLog("scribe: Parakeet ready")
+        asr = a
+    }
+
+    private func loadAll() async throws {
+        await chooseTranscriber()
+        if !useApple { try await loadParakeet() }
         let v = try await VadManager(config: .default)
         let d = OfflineDiarizerManager()
         do {
@@ -69,8 +85,7 @@ actor ScribeModels {
             NSLog("scribe: diarizer models failed (\(error)); retrying once")
             try await d.prepareModels(configuration: Self.background, forceRedownload: true)
         }
-        asr = a; vad = v; diarizer = d
-        await chooseTranscriber()
+        vad = v; diarizer = d
         NSLog("scribe: models ready — transcribing on this phone")
     }
 
@@ -112,6 +127,7 @@ actor ScribeModels {
                                  processingTime: 0, tokenTimings: nil)
             } catch {
                 NSLog("scribe: Apple could not transcribe (%@); using Parakeet", "\(error)")
+                try? await loadParakeet()
             }
         }
         guard let asr else { throw ScribeError.notReady }
