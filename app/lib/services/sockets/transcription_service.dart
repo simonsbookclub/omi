@@ -386,7 +386,7 @@ class TranscriptSocketServiceFactory {
     // composite above forwards them to the backend exactly as it did the
     // relay's. See lib/services/sockets/local_scribe_socket.dart.
     if (config.provider == SttProvider.scribe) {
-      return LocalScribeSocket(sessionId: const Uuid().v4());
+      return LocalScribeSocket(sessionId: const Uuid().v4(), codec: codec, sampleRate: sampleRate);
     }
 
     // Special case: Gemini Live has unique protocol (setup message, base64 audio)

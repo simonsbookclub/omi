@@ -500,7 +500,13 @@ final class QuickActionsIconPatcher: NSObject {
         nextExpectedChunkIndex = 0
     }
 
+  private var channelsAttached = false
+
   func attachChannels(_ controller: FlutterViewController) {
+    // A scene can connect more than once in a process; doing this twice would
+    // register every channel again and take registrars that are already gone.
+    guard !channelsAttached else { return }
+    channelsAttached = true
 
       // The watch pairing needs the messenger too, so it joins the rest here.
       if WCSession.isSupported(), let session = session {
@@ -665,7 +671,14 @@ final class QuickActionsIconPatcher: NSObject {
     }
 
     // Register Phone Calls plugin
-    OmiPhoneCallsPlugin.register(with: self.registrar(forPlugin: "OmiPhoneCallsPlugin")!)
+    // registrar(forPlugin:) returns nil if that key was already taken, and
+    // under the scene lifecycle this runs later than it used to; force
+    // unwrapping it killed the app on launch (2026-09-15).
+    if let phoneCallsRegistrar = self.registrar(forPlugin: "OmiPhoneCallsPlugin") {
+      OmiPhoneCallsPlugin.register(with: phoneCallsRegistrar)
+    } else {
+      NSLog("[PhoneCalls] registrar unavailable; skipping")
+    }
 
     // here, Without this code the task will not work.
     SwiftFlutterForegroundTaskPlugin.setPluginRegistrantCallback { registry in

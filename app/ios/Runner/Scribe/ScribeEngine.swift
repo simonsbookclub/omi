@@ -67,20 +67,39 @@ actor ScribeEngine {
 
     func onSegments(_ cb: @escaping @Sendable ([ScribeSegment]) -> Void) { self.emit = cb }
 
-    /// Models load once and stay loaded; the first call downloads them.
+    /// Models load once and stay loaded; the first call downloads about 600 MB.
+    ///
+    /// A download interrupted mid-flight leaves truncated or empty files that
+    /// no amount of retrying repairs — the library says so itself in the log
+    /// and then keeps trying anyway. So: one clean attempt, and if that fails,
+    /// throw the cache away and start again from nothing.
     func prepare() async throws {
         guard !ready else { return }
-        let models = try await AsrModels.downloadAndLoad(version: .v3)
         let a = AsrManager(config: .default)
-        try await a.loadModels(models)
+        do {
+            let models = try await AsrModels.downloadAndLoad(version: .v3)
+            try await a.loadModels(models)
+        } catch {
+            NSLog("scribe: model load failed (\(error)); clearing the cache and downloading again")
+            ModelHub.clearAllCaches()
+            let models = try await AsrModels.downloadAndLoad(version: .v3)
+            try await a.loadModels(models)
+        }
+        NSLog("scribe: Parakeet ready")
         self.asr = a
         let v = try await VadManager(config: VadConfig(defaultThreshold: 0.75))
         self.vad = v
         self.vadState = await v.makeStreamState()
         let d = OfflineDiarizerManager()
-        try await d.prepareModels()
+        do {
+            try await d.prepareModels()
+        } catch {
+            NSLog("scribe: diarizer models failed (\(error)); retrying once")
+            try await d.prepareModels(forceRedownload: true)
+        }
         self.diarizer = d
         ready = true
+        NSLog("scribe: engine ready — transcribing on this phone")
     }
 
     func setMedia(playing: Bool) {

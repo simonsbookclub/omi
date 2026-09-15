@@ -20,12 +20,20 @@ actor ScribeFile {
 
     func prepare() async throws {
         guard !ready else { return }
-        let models = try await AsrModels.downloadAndLoad(version: .v3)
         let a = AsrManager(config: .default)
-        try await a.loadModels(models)
+        do {
+            let models = try await AsrModels.downloadAndLoad(version: .v3)
+            try await a.loadModels(models)
+        } catch {
+            // Same repair as the live engine: a half-finished download cannot
+            // be retried into working order, only thrown away.
+            ModelHub.clearAllCaches()
+            let models = try await AsrModels.downloadAndLoad(version: .v3)
+            try await a.loadModels(models)
+        }
         asr = a
         let d = OfflineDiarizerManager()
-        try await d.prepareModels()
+        do { try await d.prepareModels() } catch { try await d.prepareModels(forceRedownload: true) }
         diarizer = d
         ready = true
     }

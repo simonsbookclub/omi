@@ -11,7 +11,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:omi/backend/http/shared.dart';
+import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/env/env.dart';
+import 'package:omi/utils/audio/audio_transcoder.dart';
 import 'package:omi/services/sockets/pure_socket.dart';
 import 'package:omi/utils/logger.dart';
 
@@ -20,11 +22,19 @@ class LocalScribeSocket implements IPureSocket {
   static const EventChannel _segments = EventChannel('com.simonsbookclub.scribe/segments');
 
   final String sessionId;
+  /// The pendant sends Opus; the engine wants 16-bit PCM. The relay socket did
+  /// this conversion inside itself, so it has to happen here too — without it
+  /// Scribe would be handed compressed bytes and read them as samples.
+  final IAudioTranscoder _toPcm;
   IPureSocketListener? _listener;
   StreamSubscription? _sub;
   PureSocketStatus _status = PureSocketStatus.notConnected;
 
-  LocalScribeSocket({required this.sessionId});
+  LocalScribeSocket({
+    required this.sessionId,
+    required BleAudioCodec codec,
+    required int sampleRate,
+  }) : _toPcm = AudioTranscoderFactory.createToRawPcm(sourceCodec: codec, sampleRate: sampleRate);
 
   @override
   PureSocketStatus get status => _status;
@@ -61,8 +71,9 @@ class LocalScribeSocket implements IPureSocket {
   void send(dynamic message) {
     if (_status != PureSocketStatus.connected) return;
     if (message is List<int>) {
-      // Raw PCM16 from the pendant, the same bytes the relay used to get.
-      _method.invokeMethod('audio', Uint8List.fromList(message)).catchError((e) {
+      final pcm = _toPcm.transcode(Uint8List.fromList(message));
+      if (pcm.isEmpty) return;
+      _method.invokeMethod('audio', pcm).catchError((e) {
         Logger.error('[Scribe] audio rejected: $e');
         return null;
       });

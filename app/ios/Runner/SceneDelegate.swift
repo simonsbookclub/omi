@@ -17,24 +17,47 @@ class SceneDelegate: FlutterSceneDelegate {
         attachWhenReady(scene)
     }
 
-    /// The controller is normally there as soon as the scene connects, but the
-    /// engine can take a beat on a cold start; retry briefly rather than lose
-    /// every native channel for the life of the process.
+    /// Flutter's view controller does not exist the instant the scene
+    /// connects — the engine is still starting — and on a cold launch that can
+    /// take seconds. Look everywhere a window might be, and keep looking for a
+    /// good while, because giving up means the app runs with no native
+    /// channels at all: no pendant, no health, no Scribe.
     private func attachWhenReady(_ scene: UIScene, attempt: Int = 0) {
         guard let delegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let controller = (self.window?.rootViewController as? FlutterViewController)
-            ?? ((scene as? UIWindowScene)?.windows.first?.rootViewController as? FlutterViewController)
-        if let controller {
+        if let controller = Self.findFlutterController(scene) {
             delegate.attachChannels(controller)
-            NSLog("[Scene] native channels attached")
+            NSLog("[Scene] native channels attached after \(attempt) tries")
             return
         }
-        guard attempt < 20 else {
+        guard attempt < 300 else {   // 30 seconds
             NSLog("[Scene] ERROR: no FlutterViewController after \(attempt) tries; native channels are not attached")
             return
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.attachWhenReady(scene, attempt: attempt + 1)
         }
+    }
+
+    private static func findFlutterController(_ scene: UIScene?) -> FlutterViewController? {
+        var windows: [UIWindow] = []
+        if let ws = scene as? UIWindowScene { windows += ws.windows }
+        for s in UIApplication.shared.connectedScenes {
+            if let ws = s as? UIWindowScene { windows += ws.windows }
+        }
+        for w in windows {
+            if let c = w.rootViewController as? FlutterViewController { return c }
+            if let c = descend(w.rootViewController) { return c }
+        }
+        return nil
+    }
+
+    /// The Flutter controller is sometimes presented or wrapped rather than the root.
+    private static func descend(_ vc: UIViewController?) -> FlutterViewController? {
+        guard let vc else { return nil }
+        if let c = vc as? FlutterViewController { return c }
+        for child in vc.children {
+            if let c = descend(child) { return c }
+        }
+        return descend(vc.presentedViewController)
     }
 }
