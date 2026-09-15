@@ -61,7 +61,7 @@ actor ScribeModels {
             try await a.loadModels(models)
         }
         NSLog("scribe: Parakeet ready")
-        let v = try await VadManager(config: VadConfig(defaultThreshold: 0.75))
+        let v = try await VadManager(config: .default)
         let d = OfflineDiarizerManager()
         do {
             try await d.prepareModels(configuration: Self.background)
@@ -88,13 +88,16 @@ actor ScribeModels {
         return try await diarizer.process(audio: samples)
     }
 
-    func makeVadState() async throws -> VadStreamState {
+    /// Where the speech is in a buffer, decided by the library's own
+    /// segmentation — hysteresis, padding and a minimum speech duration.
+    ///
+    /// Measured on 79 minutes of real pendant audio (2026-09-15): thresholding
+    /// the raw per-chunk probability at 0.75, which is what Scribe shipped,
+    /// kept 1.3 seconds of a 641-second recording. This keeps 583.
+    func speech(in samples: [Float]) async throws -> [(start: Double, end: Double)] {
         guard let vad else { throw ScribeError.notReady }
-        return await vad.makeStreamState()
-    }
-
-    func vadStep(_ chunk: [Float], state: VadStreamState) async throws -> VadStreamResult {
-        guard let vad else { throw ScribeError.notReady }
-        return try await vad.processStreamingChunk(chunk, state: state, config: .default, returnSeconds: false)
+        return try await vad.segmentSpeech(samples).map {
+            (start: Double($0.startTime), end: Double($0.endTime))
+        }
     }
 }

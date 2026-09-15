@@ -231,10 +231,13 @@ class UsProvider extends ChangeNotifier {
     await refresh(force: true, card: true);
   }
 
-  Future<void> answerPostConflict(int promptId, String conversationId, {required bool wasConflict, bool? resolved}) async {
-    await UsApi.label(conversationId, wasConflict: wasConflict, resolved: resolved);
-    await UsApi.answerPrompt(promptId);
-    await refresh(force: true, card: true);
+  Future<void> answerPostConflict(int promptId, String conversationId,
+      {required bool wasConflict, bool? resolved, bool thenRefresh = true}) async {
+    final labelled = await UsApi.label(conversationId, wasConflict: wasConflict, resolved: resolved);
+    if (labelled != null && labelled['error'] != null) throw Exception(labelled['error']);
+    final answered = await UsApi.answerPrompt(promptId);
+    if (answered != null && answered['error'] != null) throw Exception(answered['error']);
+    if (thenRefresh) await refresh(force: true, card: true);
   }
 
   Future<void> dismissPrompt(int promptId) async {

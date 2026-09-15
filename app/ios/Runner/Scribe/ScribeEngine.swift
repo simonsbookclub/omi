@@ -33,45 +33,33 @@ struct ScribeSegment: Codable {
 
 actor ScribeEngine {
     // MARK: tuning
-    /// Deepgram's endpointing and the relay's whisper gate both settled on 1.5 s;
-    /// a shorter pause splits a sentence and, worse, splits a spoken command.
-    private static let silenceClosesUtteranceMs: Double = 1500
-    /// Below this much speech an "utterance" is a cough or a door.
-    private static let minSpeechMs: Double = 500
-    /// Above this, close it anyway: a monologue should not wait for a pause.
-    private static let maxUtteranceS: Double = 30
-    /// Keep a little audio before the gate opened, or the first word is clipped.
-    private static let preRollS: Double = 0.25
+    /// How much audio to gather before reading it.
+    ///
+    /// The first version gated the stream chunk by chunk with a hand-rolled
+    /// threshold and threw away everything it judged silent. Measured against
+    /// real pendant audio it kept 1.3 seconds of a 641-second recording, so
+    /// almost the whole conversation was destroyed before the transcriber ever
+    /// saw it (2026-09-15). This does what the file reader does instead, which
+    /// works: gather a window, ask the library where the speech is, and read
+    /// those parts. Thirty seconds of delay is nothing for a day's record.
+    private static let windowS: Double = 30
+    /// Speech still running at the edge of a window is held back for the next
+    /// one rather than cut mid-word.
+    private static let edgeGuardS: Double = 0.75
+    private static let minSpeechS: Double = 0.4
     private static let sampleRate: Double = 16_000
-    /// Audio kept while the models are still loading: ten minutes. The first
-    /// launch downloads 600 MB and the opening of a conversation should not
-    /// be lost to it (the way an interview was on 2026-09-15).
+    /// Audio kept while the models are still loading: ten minutes.
     private static let backlogCapBytes = 10 * 60 * 16_000 * 2
 
-    /// The gate keeps state between chunks (Silero-style hysteresis), so it has
-    /// to be carried forward rather than made fresh each time.
-    private var vadState: VadStreamState?
     private var ready = false
     private var backlog: [Data] = []
     private var backlogBytes = 0
-    /// The last 20 seconds of everything, speech or not.
-    ///
-    /// The diarizer works on ~10-second windows and finds nothing in less, so
-    /// a short utterance handed to it on its own returns no speakers at all —
-    /// which is why every live segment came out SPEAKER_00 and unnamed on the
-    /// first day. A short utterance is diarized inside this window instead.
-    private static let recentCapS: Double = 20
-    private static let diarizeMinS: Double = 10
-    private var recent: [Float] = []
 
-    /// Audio waiting to be closed into an utterance, and where it sits on the session clock.
-    private var pending: [Float] = []
-    private var pendingStartS: Double = 0
-    private var lastVoiceAtS: Double = 0
-    private var sawSpeech = false
-    /// Everything received so far, in seconds, so segment times match the session.
+    /// The audio waiting to be read, and where it starts on the session clock.
+    private var window: [Float] = []
+    private var windowStartS: Double = 0
+    /// Everything received so far, in seconds.
     private var clockS: Double = 0
-    private var carry: [Float] = []
 
     private let sessionId: String
     private var emit: (@Sendable ([ScribeSegment]) -> Void)?
@@ -87,7 +75,6 @@ actor ScribeEngine {
     func prepare() async throws {
         guard !ready else { return }
         try await ScribeModels.shared.prepare()
-        vadState = try await ScribeModels.shared.makeVadState()
         ready = true
         while !backlog.isEmpty {
             let batch = backlog
@@ -98,10 +85,10 @@ actor ScribeEngine {
         NSLog("scribe: session %@ live", String(sessionId.prefix(8)))
     }
 
-    /// The session is over; whatever is still buffered is an utterance too.
+    /// The session is over; read whatever is left.
     func finish() async {
-        guard ready, sawSpeech else { return }
-        await close()
+        guard ready, !window.isEmpty else { return }
+        await drain(force: true)
     }
 
     func setMedia(playing: Bool) {
@@ -126,8 +113,6 @@ actor ScribeEngine {
 
     /// 16-bit little-endian mono PCM, exactly what the app already decodes for the relay.
     func feed(pcm16: Data) async {
-        // Not ready, or still working through what arrived while not ready:
-        // queue it, so nothing is dropped and nothing goes out of order.
         if !ready || !backlog.isEmpty {
             if backlogBytes < Self.backlogCapBytes {
                 backlog.append(pcm16)
@@ -146,195 +131,109 @@ actor ScribeEngine {
             let p = raw.bindMemory(to: Int16.self)
             for i in 0..<n { samples.append(Float(Int16(littleEndian: p[i])) / 32768.0) }
         }
-        carry += samples
-        // The gate works on whole chunks; 512 samples is 32 ms at 16 kHz.
-        let chunk = 512
-        while carry.count >= chunk {
-            let slice = Array(carry.prefix(chunk))
-            carry.removeFirst(chunk)
-            await step(slice)
-        }
+        window += samples
+        clockS += Double(samples.count) / Self.sampleRate
+        if Double(window.count) / Self.sampleRate >= Self.windowS { await drain(force: false) }
     }
 
-    private func step(_ chunk: [Float]) async {
-        let durS = Double(chunk.count) / Self.sampleRate
-        let atS = clockS
-        clockS += durS
+    /// Read the window: find the speech, transcribe each run of it, say who spoke.
+    private func drain(force: Bool) async {
+        let buffer = window
+        let bufferStartS = windowStartS
+        let bufferS = Double(buffer.count) / Self.sampleRate
+        guard buffer.count > Int(Self.sampleRate * Self.minSpeechS) else { return }
 
-        var voiced = false
-        if let state = vadState, let r = try? await ScribeModels.shared.vadStep(chunk, state: state) {
-            vadState = r.state
-            voiced = r.probability >= 0.75
+        var runs: [(start: Double, end: Double)] = []
+        do {
+            runs = try await ScribeModels.shared.speech(in: buffer)
+        } catch {
+            NSLog("scribe: could not find the speech in %.0fs: %@", bufferS, "\(error)")
+            // Rather than lose the audio, read the whole window.
+            runs = [(start: 0, end: bufferS)]
+        }
+        runs = runs.filter { $0.end - $0.start >= Self.minSpeechS }
+
+        // Speech still going at the edge waits for the next window.
+        var carryFromS: Double? = nil
+        if !force, let last = runs.last, bufferS - last.end < Self.edgeGuardS {
+            carryFromS = last.start
+            runs.removeLast()
         }
 
-        if voiced {
-            if !sawSpeech {
-                sawSpeech = true
-                pendingStartS = max(0, atS - Self.preRollS)
+        if runs.isEmpty && carryFromS == nil {
+            // Nothing said. Drop the audio, keep the clock.
+            window.removeAll(keepingCapacity: true)
+            windowStartS = bufferStartS + bufferS
+            return
+        }
+
+        // One diarization for the whole window: the speakers are consistent
+        // across it, which a per-utterance pass could never manage.
+        var turns: [Turn] = []
+        if !runs.isEmpty {
+            do {
+                turns = try await ScribeModels.shared.diarize(buffer).segments.map {
+                    Turn(speakerId: $0.speakerId, embedding: $0.embedding,
+                         start: Double($0.startTimeSeconds), end: Double($0.endTimeSeconds))
+                }
+            } catch {
+                NSLog("scribe: no speakers in this %.0fs window: %@", bufferS, "\(error)")
             }
-            lastVoiceAtS = clockS
         }
-        pending += chunk
-        recent += chunk
-        let cap = Int(Self.sampleRate * Self.recentCapS)
-        if recent.count > cap { recent.removeFirst(recent.count - cap) }
 
-        let quietFor = (clockS - lastVoiceAtS) * 1000
-        let longEnough = (clockS - pendingStartS) >= Self.maxUtteranceS
-        if sawSpeech && (quietFor >= Self.silenceClosesUtteranceMs || longEnough) {
-            await close()
-        } else if !sawSpeech && pending.count > Int(Self.sampleRate * 2) {
-            // Nothing but room tone: drop all but the pre-roll.
-            let keep = Int(Self.sampleRate * Self.preRollS)
-            pending = Array(pending.suffix(keep))
-            pendingStartS = clockS - Double(keep) / Self.sampleRate
+        var out: [ScribeSegment] = []
+        for run in runs {
+            let a = max(0, Int(run.start * Self.sampleRate))
+            let b = min(buffer.count, Int(run.end * Self.sampleRate))
+            guard b - a > Int(Self.sampleRate * Self.minSpeechS) else { continue }
+            guard let r = try? await ScribeModels.shared.transcribe(Array(buffer[a..<b])) else { continue }
+            let text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !text.isEmpty else { continue }
+
+            // The speaker who holds most of this run.
+            let overlapping = turns
+                .map { t -> (Turn, Double) in (t, max(0, min(t.end, run.end) - max(t.start, run.start))) }
+                .filter { $0.1 > 0 }
+                .sorted { $0.1 > $1.1 }
+            let turn = overlapping.first?.0
+            var person: String? = nil
+            if let e = turn?.embedding {
+                let m = await Voiceprints.shared.match(e)
+                person = m.name
+                NSLog("scribe: %.1fs \"%@\" → %@ (%.2f, next %.2f)",
+                      run.end - run.start, String(text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
+            } else {
+                NSLog("scribe: %.1fs \"%@\" → no voice vector", run.end - run.start, String(text.prefix(40)))
+            }
+            let from = bufferStartS + run.start
+            let to = bufferStartS + run.end
+            let media = person == nil && mediaShare(from, to) >= 0.5
+            let sp = Int(turn?.speakerId.filter(\.isNumber) ?? "") ?? 0
+            out.append(ScribeSegment(
+                text: text, start: from, end: to,
+                speaker: String(format: "SPEAKER_%02d", sp), speaker_id: sp,
+                is_user: person == Voiceprints.wearerName,
+                person_id: person == Voiceprints.wearerName ? nil : person,
+                stream: "device:\(sessionId)",
+                media: media ? true : nil, language: nil))
+        }
+        if !out.isEmpty { emit?(out) }
+
+        if let carry = carryFromS {
+            let keep = max(0, Int(carry * Self.sampleRate))
+            window = Array(buffer[keep...])
+            windowStartS = bufferStartS + carry
+        } else {
+            window.removeAll(keepingCapacity: true)
+            windowStartS = bufferStartS + bufferS
         }
     }
 
-    private struct Piece {
-        var text: String
-        var from: Double
-        var to: Double
-        var speaker: Int
-        var embedding: [Float]?
-    }
-
-    /// A speaker turn on the utterance's own clock. The library's own type is
-    /// immutable and measured against whatever buffer it was given, which is
-    /// not the utterance when a short one is diarized inside a wider window.
+    /// A speaker turn on the window's clock.
     private struct Turn {
         var speakerId: String
         var embedding: [Float]
         var start: Double
         var end: Double
-        var duration: Double { end - start }
-    }
-
-    /// Finish the buffered utterance: transcribe it, split it by speaker, name each voice, emit, forget the audio.
-    private func close() async {
-        let audio = pending
-        let startS = pendingStartS
-        let endS = clockS
-        pending = []; sawSpeech = false
-        guard audio.count >= Int(Self.sampleRate * Self.minSpeechMs / 1000) else { return }
-
-        do {
-            let r = try await ScribeModels.shared.transcribe(audio)
-            let text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard !text.isEmpty else { return }
-
-            // Who spoke, and where they changed over. One utterance often holds
-            // a question and its answer — the gate only hears the pause between
-            // them if it lasts 1.5 s — so the diarizer's turns split it.
-            //
-            // A short utterance is diarized inside the surrounding ten seconds
-            // and the turns moved back onto its own clock: the diarizer works
-            // in ~10 s windows and returns nothing at all for less, which is
-            // why every live segment came out SPEAKER_00 and unnamed on the
-            // first day (2026-09-15).
-            let utterS = endS - startS
-            var window = audio
-            var offsetIntoWindow = 0.0
-            if utterS < Self.diarizeMinS {
-                let take = min(Int(Self.sampleRate * Self.diarizeMinS), recent.count)
-                if take > audio.count {
-                    window = Array(recent.suffix(take))
-                    offsetIntoWindow = Double(take - audio.count) / Self.sampleRate
-                }
-            }
-            var turns: [Turn] = []
-            do {
-                turns = try await ScribeModels.shared.diarize(window).segments.map {
-                    Turn(speakerId: $0.speakerId, embedding: $0.embedding,
-                         start: Double($0.startTimeSeconds) - offsetIntoWindow,
-                         end: Double($0.endTimeSeconds) - offsetIntoWindow)
-                }
-            } catch {
-                NSLog("scribe: no speakers in %.1fs (window %.1fs): %@",
-                      utterS, Double(window.count) / Self.sampleRate, "\(error)")
-            }
-            turns = turns
-                .compactMap { t -> Turn? in
-                    // Keep only what overlaps the utterance itself.
-                    guard t.end > 0, t.start < utterS else { return nil }
-                    var c = t
-                    c.start = max(0, t.start); c.end = min(utterS, t.end)
-                    return c.duration >= 0.5 ? c : nil
-                }
-                .sorted { $0.start < $1.start }
-
-            let timings = r.tokenTimings ?? []
-            var pieces: [Piece] = []
-            if turns.count >= 2, !timings.isEmpty, Set(turns.map(\.speakerId)).count >= 2 {
-                // Each token goes to the turn holding its midpoint, else the nearest.
-                var byTurn = [[TokenTiming]](repeating: [], count: turns.count)
-                for t in timings {
-                    let mid = (t.startTime + t.endTime) / 2
-                    let inside = turns.firstIndex { $0.start <= mid && mid <= $0.end }
-                    let idx = inside ?? turns.indices.min { Self.distance(mid, turns[$0]) < Self.distance(mid, turns[$1]) }
-                    if let idx { byTurn[idx].append(t) }
-                }
-                for (i, turn) in turns.enumerated() {
-                    let words = Self.join(byTurn[i])
-                    guard !words.isEmpty else { continue }
-                    let sp = Int(turn.speakerId.filter(\.isNumber)) ?? i
-                    let to = startS + turn.end
-                    if let last = pieces.last, last.speaker == sp {
-                        // The same person kept talking; one piece, not two.
-                        pieces[pieces.count - 1].text += " " + words
-                        pieces[pieces.count - 1].to = to
-                    } else {
-                        pieces.append(Piece(text: words, from: startS + turn.start, to: to,
-                                            speaker: sp, embedding: turn.embedding))
-                    }
-                }
-            }
-            if pieces.isEmpty {
-                let best = turns.max { $0.duration < $1.duration }
-                pieces = [Piece(text: text, from: startS, to: endS,
-                                speaker: Int(best?.speakerId.filter(\.isNumber) ?? "") ?? 0,
-                                embedding: best?.embedding)]
-            }
-
-            var out: [ScribeSegment] = []
-            for p in pieces {
-                var person: String? = nil
-                if let e = p.embedding {
-                    let m = await Voiceprints.shared.match(e)
-                    person = m.name
-                    NSLog("scribe: %.1fs \"%@\" → %@ (%.2f, next %.2f)",
-                          p.to - p.from, String(p.text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
-                } else {
-                    NSLog("scribe: %.1fs \"%@\" → no voice vector", p.to - p.from, String(p.text.prefix(40)))
-                }
-                let media = person == nil && mediaShare(p.from, p.to) >= 0.5
-                out.append(ScribeSegment(
-                    text: p.text, start: p.from, end: p.to,
-                    speaker: String(format: "SPEAKER_%02d", p.speaker),
-                    speaker_id: p.speaker,
-                    is_user: person == Voiceprints.wearerName,
-                    person_id: person == Voiceprints.wearerName ? nil : person,
-                    stream: "device:\(sessionId)",
-                    media: media ? true : nil,
-                    language: nil))
-            }
-            emit?(out)
-        } catch {
-            NSLog("scribe: utterance failed: \(error)")
-        }
-    }
-
-    private static func distance(_ t: Double, _ turn: Turn) -> Double {
-        t < turn.start ? turn.start - t : (t > turn.end ? t - turn.end : 0)
-    }
-
-    /// Parakeet's pieces back into words. Word starts carry "▁" in the
-    /// vocabulary; if the library has already turned those into spaces this is
-    /// a no-op.
-    private static func join(_ tokens: [TokenTiming]) -> String {
-        tokens.map(\.token).joined()
-            .replacingOccurrences(of: "▁", with: " ")
-            .replacingOccurrences(of: "  ", with: " ")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

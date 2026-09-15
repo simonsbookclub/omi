@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:omi/utils/logger.dart';
 import 'package:flutter/material.dart';
 
 import 'package:omi/utils/ui_guidelines.dart';
@@ -41,7 +43,23 @@ class _PostConflictSheetState extends State<_PostConflictSheet> {
     setState(() => _saving = true);
     final us = context.read<UsProvider>();
     if (widget.id != null) {
-      await us.answerPostConflict(widget.id!, conv, wasConflict: _conflict!, resolved: _resolved);
+      // The answer is the two writes. Reloading the page afterwards is
+      // cosmetic, so it must not hold the sheet open — and anything that
+      // throws must put the button back, or it says "Saving…" for ever,
+      // which is what it did on 2026-09-15.
+      try {
+        await us.answerPostConflict(widget.id!, conv,
+            wasConflict: _conflict!, resolved: _resolved, thenRefresh: false);
+      } catch (e) {
+        Logger.error('[Us] could not save the answer: $e');
+        if (!mounted) return;
+        setState(() => _saving = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not save that. ${e.toString().split('\n').first}')),
+        );
+        return;
+      }
+      unawaited(us.refresh(force: true, card: true));
     }
     if (!mounted) return;
     Navigator.of(context).pop();
