@@ -658,19 +658,23 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
       Padding(
         padding: const EdgeInsets.fromLTRB(18, 0, 18, 4),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // Only what is pulling on the two of you today. The rest used to be
+          // listed underneath with a line through it — a screenful of struck-out
+          // text that reads as deleted rather than as "measured, not pulling".
+          // It is a count at the bottom now.
           for (final f in active) _factorRow(us, f, active: true),
-          for (final f in inactive) _factorRow(us, f, active: false),
         ]),
       ),
       Padding(
         padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      if (learning > 0 || hidden > 0) ...[
+      if (learning > 0 || hidden > 0 || inactive.isNotEmpty) ...[
         const SizedBox(height: 8),
         Text(
           [
-            if (learning > 0) '$learning factor${learning == 1 ? '' : 's'} still learning (needs eight days each)',
-            if (hidden > 0) '$hidden of ${partner['name']}\'s factors kept private',
+            if (inactive.isNotEmpty) '${inactive.length} measured, not pulling today',
+            if (learning > 0) '$learning still learning (eight days each)',
+            if (hidden > 0) '$hidden of ${partner['name']}\'s kept private',
           ].join(' · '),
           style: const TextStyle(color: UsInk.faint, fontSize: 11.5),
         ),
@@ -796,16 +800,23 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   Widget _quickActions(UsProvider us, Map<String, dynamic> me) {
     final f = us.today?['my_features'] as Map<String, dynamic>?;
     final cycleDay = f?['cycle_day'];
+    // No "Period started" button: Masha's cycle comes from her Oura ring on its
+    // own, so asking her to tell the app a second time is asking for a mistake
+    // rather than for information.
     return Row(children: [
-      Expanded(
-        child: OutlinedButton.icon(
-          style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white24), padding: const EdgeInsets.symmetric(vertical: 12)),
-          onPressed: () => _periodStarted(us),
-          icon: const FaIcon(FontAwesomeIcons.droplet, size: 14, color: Color(0xFFE5785C)),
-          label: Text(cycleDay == null ? 'Period started' : 'Cycle day $cycleDay · log'),
+      if (cycleDay != null) ...[
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white12), borderRadius: BorderRadius.circular(8)),
+            child: Text('Cycle day $cycleDay',
+                style: const TextStyle(color: UsInk.body, fontSize: 14)),
+          ),
         ),
-      ),
-      const SizedBox(width: 10),
+        const SizedBox(width: 10),
+      ],
       Expanded(
         child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(foregroundColor: Colors.white, side: const BorderSide(color: Colors.white24), padding: const EdgeInsets.symmetric(vertical: 12)),
@@ -817,44 +828,6 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     ]);
   }
 
-  Future<void> _periodStarted(UsProvider us) async {
-    // Whose cycle this logs under is the person switch at the top. Say so:
-    // one tap under the wrong profile (2026-09-07) took a server fix.
-    final who = us.ownerName;
-    final other = us.partnerOnThisPhone && !us.isActingAsPartner ? us.partnerName : null;
-    final choice = await showModalBottomSheet<String>(
-      context: context,
-      backgroundColor: AppStyles.backgroundSecondary,
-      builder: (ctx) => SafeArea(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-            child: Text('Period started · $who', style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600)),
-          ),
-          if (other != null)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
-              child: Text('This logs under $who. For $other, switch the person at the top of the Us tab first.', style: const TextStyle(color: Colors.white54, fontSize: 13)),
-            ),
-          ListTile(title: const Text('Today', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('today')),
-          ListTile(title: const Text('Yesterday', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('yesterday')),
-          ListTile(title: const Text('Pick a date', style: TextStyle(color: Colors.white)), onTap: () => Navigator.of(ctx).pop('pick')),
-          const SizedBox(height: 12),
-        ]),
-      ),
-    );
-    if (choice == null || !mounted) return;
-    DateTime day = DateTime.now();
-    if (choice == 'yesterday') day = day.subtract(const Duration(days: 1));
-    if (choice == 'pick') {
-      final picked = await showDatePicker(context: context, firstDate: DateTime.now().subtract(const Duration(days: 400)), lastDate: DateTime.now(), initialDate: day);
-      if (picked == null) return;
-      day = picked;
-    }
-    final s = '${day.year.toString().padLeft(4, '0')}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
-    await us.logPeriodStarted(day: s);
-    if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Logged $s for $who')));
-  }
 
   Widget _bodyCard(UsProvider us, {Map<String, dynamic>? body, String? title, bool showTracking = true}) {
     final b = body ?? us.body;
@@ -990,6 +963,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     return _card(children: [
       const UsLabel('The two of you'),
       const SizedBox(height: 10),
+      for (final c in convs.where((c) => c['date_night'] != null)) _dateNight(c),
       for (final c in talks.take(6)) _openable(c, _talkRow(c)),
       for (final c in notable.take(4)) _openable(c, _shortRow(c)),
       if (quiet > 0) ...[
@@ -1090,6 +1064,86 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
 
   /// One real talk: what it was about, how it moved, and the conflict read
   /// only when there was something to read.
+  /// The local time of day, for a row that already knows which day it is.
+  String _hhmm(String? iso) {
+    if (iso == null || iso.isEmpty) return '';
+    final t = DateTime.tryParse(iso)?.toLocal();
+    if (t == null) return '';
+    return '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
+  }
+
+  /// Date night, given back to them.
+  ///
+  /// What each appreciated, how each feels, what each asked for — each in the
+  /// speaker's own words, because a paraphrase of "I appreciated how you
+  /// handled Tuesday" is worth nothing next to the sentence itself. The asks
+  /// go last and stay last: they are the part that is easy to nod at in the
+  /// moment and forget by Thursday.
+  Widget _dateNight(Map<String, dynamic> c) {
+    final d = c['date_night'] as Map<String, dynamic>?;
+    if (d == null) return const SizedBox.shrink();
+    final appreciations = (d['appreciations'] as List?) ?? const [];
+    final feelings = (d['feelings'] as List?) ?? const [];
+    final asks = (d['asks'] as List?) ?? const [];
+    if (appreciations.isEmpty && feelings.isEmpty && asks.isEmpty) return const SizedBox.shrink();
+
+    Widget block(String label, List items, String key) {
+      if (items.isEmpty) return const SizedBox.shrink();
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const SizedBox(height: 12),
+        Text(label, style: const TextStyle(color: UsInk.faint, fontSize: 11, letterSpacing: 0.6)),
+        for (final raw in items) ...[
+          const SizedBox(height: 6),
+          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              margin: const EdgeInsets.only(top: 5, right: 8), width: 5, height: 5,
+              decoration: const BoxDecoration(color: UsInk.faint, shape: BoxShape.circle)),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('${(raw as Map)['by']} · ${raw[key]}',
+                    style: const TextStyle(color: UsInk.body, fontSize: 13.5, height: 1.35)),
+                if ((raw['quote'] ?? '').toString().isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: Text('“${raw['quote']}”',
+                        style: const TextStyle(
+                            color: UsInk.faint, fontSize: 12.5, height: 1.35, fontStyle: FontStyle.italic)),
+                  ),
+              ]),
+            ),
+          ]),
+        ],
+      ]);
+    }
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
+      decoration: BoxDecoration(
+        color: const Color(0x14FFFFFF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0x33FFFFFF)),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          const Text('Date night',
+              style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
+          const Spacer(),
+          Text(_hhmm(c['started_at']?.toString()),
+              style: const TextStyle(color: UsInk.faint, fontSize: 11.5)),
+        ]),
+        if ((d['summary'] ?? '').toString().isNotEmpty) ...[
+          const SizedBox(height: 6),
+          Text(d['summary'].toString(),
+              style: const TextStyle(color: UsInk.body, fontSize: 14, height: 1.4)),
+        ],
+        block('APPRECIATED', appreciations, 'about'),
+        block('HOW IT FEELS', feelings, 'text'),
+        block('ASKED FOR', asks, 'text'),
+      ]),
+    );
+  }
+
   Widget _talkRow(Map<String, dynamic> c) {
     final topics = ((c['topics'] as List?) ?? const []).map((t) => t.toString()).toList();
     final words = (c['words'] as num?)?.toInt() ?? 0;
