@@ -1,6 +1,15 @@
 {
-  "originHash" : "9dd38f857db7479f1816015771b37a83ed7849590400ca2677a9c5f1b5014407",
+  "originHash" : "b6d8da8469abe6b4d12206da6c7fb94c62e25a4ad3c435545c4f67466380ece2",
   "pins" : [
+    {
+      "identity" : "fluidaudio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/FluidInference/FluidAudio.git",
+      "state" : {
+        "revision" : "41540ea237350afe5117a082b5c28eda642d0612",
+        "version" : "0.15.7"
+      }
+    },
     {
       "identity" : "meta-wearables-dat-ios",
       "kind" : "remoteSourceControl",

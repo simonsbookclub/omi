@@ -310,44 +310,6 @@ final class QuickActionsIconPatcher: NSObject {
           session?.delegate = self
           session?.activate();
 
-          let controller = window?.rootViewController as? FlutterViewController
-            flutterWatchAPI = WatchRecorderFlutterAPI(binaryMessenger: controller!.binaryMessenger)
-            let api: WatchRecorderHostAPI = RecorderHostApiImpl(session: session!, flutterWatchAPI: flutterWatchAPI)
-
-            WatchRecorderHostAPISetup.setUp(binaryMessenger: controller!.binaryMessenger, api: api)
-      }
-
-      // Native BLE module — register Pigeon APIs
-      NSLog("[OmiBle] Registering BLE Pigeon APIs")
-      let bleController = window?.rootViewController as? FlutterViewController
-      if let messenger = bleController?.binaryMessenger {
-          let bleFlutterApi = BleFlutterApi(binaryMessenger: messenger)
-          OmiBleManager.shared.setFlutterApi(bleFlutterApi)
-          let bleHostApi = BleHostApiImpl(bleManager: OmiBleManager.shared)
-          BleHostApiSetup.setUp(binaryMessenger: messenger, api: bleHostApi)
-          NSLog("[OmiBle] BLE Pigeon APIs registered successfully")
-      } else {
-          NSLog("[OmiBle] ERROR: Could not get FlutterBinaryMessenger")
-      }
-
-      // Ray-Ban Meta (Meta Wearables DAT camera + Bluetooth HFP mic) — Pigeon APIs.
-      // Registered unconditionally; the impl reports availability mode based on
-      // whether the DAT SDK is linked into this build.
-      if let messenger = (window?.rootViewController as? FlutterViewController)?.binaryMessenger {
-          let rayBanFlutterApi = RayBanMetaFlutterAPI(binaryMessenger: messenger)
-          let rayBanApi = RayBanMetaHostApiImpl(flutterAPI: rayBanFlutterApi)
-          rayBanMetaHostApi = rayBanApi
-          RayBanMetaHostAPISetup.setUp(binaryMessenger: messenger, api: rayBanApi)
-      }
-
-      // Native phone-mic capture (conversation recording) — Pigeon APIs.
-      // Self-healing AVAudioEngine capture; interruption/route recovery is
-      // handled natively, Dart only mirrors the state.
-      if let messenger = (window?.rootViewController as? FlutterViewController)?.binaryMessenger {
-          let phoneMicFlutterApi = PhoneMicFlutterApi(binaryMessenger: messenger)
-          let controller = PhoneMicController(flutterApi: phoneMicFlutterApi)
-          phoneMicController = controller
-          PhoneMicHostApiSetup.setUp(binaryMessenger: messenger, api: PhoneMicHostApiImpl(controller: controller))
       }
 
       // Retrieve the link from parameters
@@ -357,139 +319,7 @@ final class QuickActionsIconPatcher: NSObject {
       return true // Returning true will stop the propagation to other packages
     }
     //Creates a method channel to handle notifications on kill
-    let controller = window?.rootViewController as? FlutterViewController
-    methodChannel = FlutterMethodChannel(name: "com.friend.ios/notifyOnKill", binaryMessenger: controller!.binaryMessenger)
-    methodChannel?.setMethodCallHandler { [weak self] (call, result) in
-      self?.handleMethodCall(call, result: result)
-    }
-    
-    // SIMONSBOOKCLUB: the watch's sensor session, switched on for the length
-    // of a conversation the two partners are having.
-    let watchHeartRateChannel = FlutterMethodChannel(
-      name: "com.simonsbookclub.watchhr", binaryMessenger: controller!.binaryMessenger)
-    watchHeartRateChannel.setMethodCallHandler { [weak self] call, result in
-      guard call.method == "setLiveHeartRate" else { result(FlutterMethodNotImplemented); return }
-      let on = ((call.arguments as? [String: Any])?["on"] as? Bool) ?? false
-      self?.setWatchLiveHeartRate(on)
-      result(true)
-    }
-
-    // Create Apple Reminders method channel
-    appleRemindersChannel = FlutterMethodChannel(name: "com.omi.apple_reminders", binaryMessenger: controller!.binaryMessenger)
-    appleRemindersChannel?.setMethodCallHandler { [weak self] (call, result) in
-      self?.handleAppleRemindersCall(call, result: result)
-    }
-
-    // Create Apple Health method channel
-    appleHealthChannel = FlutterMethodChannel(name: "com.omi.apple_health", binaryMessenger: controller!.binaryMessenger)
-    appleHealthChannel?.setMethodCallHandler { [weak self] (call, result) in
-      self?.handleAppleHealthCall(call, result: result)
-    }
-
-    // SIMONSBOOKCLUB: read-only Contacts bridge so identified speakers can
-    // show their real contact photo (ContactsService.swift).
-    // "Us": time outside — CoreLocation visits (VisitsService above).
-    VisitsService.shared.attach(messenger: controller!.binaryMessenger)
-    // The run in progress, from the phone's GPS (RunTracker.swift).
-    RunTracker.shared.attach(messenger: controller!.binaryMessenger)
-    RunTracker.shared.startIfConfigured()
-    MediaPlaybackService.shared.attach(messenger: controller!.binaryMessenger)
-    // Scribe: the pendant's audio transcribed and attributed on this phone
-    // instead of streamed to a paid service (Runner/Scribe/*).
-    ScribePlugin.shared.attach(messenger: controller!.binaryMessenger)
-
-    let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
-    let contactsHandler = ContactsService()
-    contactsChannel.setMethodCallHandler { (call, result) in
-      contactsHandler.handleMethodCall(call, result: result)
-    }
-
-    // Create Speech Recognition method channel
-    let speechChannel = FlutterMethodChannel(name: "com.omi.ios/speech", binaryMessenger: controller!.binaryMessenger)
-    let speechHandler = SpeechRecognitionHandler()
-    speechChannel.setMethodCallHandler { (call, result) in
-        speechHandler.handle(call, result: result)
-    }
-
-    // TestFlight environment detection
-    let envChannel = FlutterMethodChannel(name: "com.omi/environment", binaryMessenger: controller!.binaryMessenger)
-    envChannel.setMethodCallHandler { (call, result) in
-        if call.method == "isTestFlight" {
-            let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
-            result(isTestFlight)
-        } else {
-            result(FlutterMethodNotImplemented)
-        }
-    }
-
-    // Audio session configuration for Bluetooth microphone support
-    let audioSessionChannel = FlutterMethodChannel(name: "com.omi.ios/audioSession", binaryMessenger: controller!.binaryMessenger)
-    audioSessionChannel.setMethodCallHandler { (call, result) in
-        if call.method == "configureForBluetooth" {
-            let audioSession = AVAudioSession.sharedInstance()
-            do {
-                try audioSession.setCategory(
-                    .playAndRecord,
-                    mode: .default,
-                    options: [.allowBluetooth, .allowBluetoothA2DP, .defaultToSpeaker]
-                )
-                try audioSession.setActive(true)
-                result(true)
-            } catch {
-                result(FlutterError(code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
-            }
-        } else {
-            result(FlutterMethodNotImplemented)
-        }
-    }
-
-    // Create WiFi Network plugin for device AP connection
-    _ = WifiNetworkPlugin(messenger: controller!.binaryMessenger)
-
-    // Battery widget channel — writes Omi device battery to the shared App Group
-    // so the WidgetKit extension can read it.
-    let batteryWidgetChannel = FlutterMethodChannel(name: "com.omi.battery_widget", binaryMessenger: controller!.binaryMessenger)
-    batteryWidgetChannel.setMethodCallHandler { (call, result) in
-      let defaults = UserDefaults(suiteName: "group.com.simonsbookclub.omi")
-      guard let args = call.arguments as? [String: Any] else {
-        result(FlutterMethodNotImplemented)
-        return
-      }
-      switch call.method {
-      case "updateBatteryInfo":
-        defaults?.set(args["deviceName"] as? String ?? "Omi", forKey: "widget_device_name")
-        defaults?.set(args["batteryLevel"] as? Int ?? -1, forKey: "widget_battery_level")
-        defaults?.set(args["deviceType"] as? String ?? "omi", forKey: "widget_device_type")
-        defaults?.set(args["isConnected"] as? Bool ?? false, forKey: "widget_is_connected")
-        defaults?.set(Date(), forKey: "widget_last_updated")
-        // NOTE: isMuted is intentionally NOT written here — only updateMuteState controls it
-        if #available(iOS 14.0, *) {
-          WidgetCenter.shared.reloadTimelines(ofKind: "OmiBatteryWidget")
-        }
-      case "updateMuteState":
-        let isMuted = (args["isMuted"] as? Bool) ?? (args["isMuted"] as? NSNumber)?.boolValue ?? false
-        defaults?.set(isMuted, forKey: "widget_is_muted")
-        if #available(iOS 14.0, *) {
-          WidgetCenter.shared.reloadAllTimelines()
-        }
-      default:
-        result(FlutterMethodNotImplemented)
-        return
-      }
-      result(nil)
-    }
-
-    // Register Phone Calls plugin
-    OmiPhoneCallsPlugin.register(with: self.registrar(forPlugin: "OmiPhoneCallsPlugin")!)
-
-    // here, Without this code the task will not work.
-    SwiftFlutterForegroundTaskPlugin.setPluginRegistrantCallback { registry in
-      GeneratedPluginRegistrant.register(with: registry)
-    }
-    if #available(iOS 10.0, *) {
-      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
-    }
-
+    // Channels are attached by SceneDelegate once its window exists.
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
@@ -669,6 +499,183 @@ final class QuickActionsIconPatcher: NSObject {
         audioChunks.removeAll()
         nextExpectedChunkIndex = 0
     }
+
+  func attachChannels(_ controller: FlutterViewController) {
+
+      // The watch pairing needs the messenger too, so it joins the rest here.
+      if WCSession.isSupported(), let session = session {
+          flutterWatchAPI = WatchRecorderFlutterAPI(binaryMessenger: controller.binaryMessenger)
+          let api: WatchRecorderHostAPI = RecorderHostApiImpl(session: session, flutterWatchAPI: flutterWatchAPI)
+          WatchRecorderHostAPISetup.setUp(binaryMessenger: controller.binaryMessenger, api: api)
+      }
+      // Native BLE module — register Pigeon APIs
+      NSLog("[OmiBle] Registering BLE Pigeon APIs")
+      if true {
+          let messenger = controller.binaryMessenger
+          let bleFlutterApi = BleFlutterApi(binaryMessenger: messenger)
+          OmiBleManager.shared.setFlutterApi(bleFlutterApi)
+          let bleHostApi = BleHostApiImpl(bleManager: OmiBleManager.shared)
+          BleHostApiSetup.setUp(binaryMessenger: messenger, api: bleHostApi)
+          NSLog("[OmiBle] BLE Pigeon APIs registered successfully")
+      } else {
+          NSLog("[OmiBle] ERROR: Could not get FlutterBinaryMessenger")
+      }
+
+      // Ray-Ban Meta (Meta Wearables DAT camera + Bluetooth HFP mic) — Pigeon APIs.
+      // Registered unconditionally; the impl reports availability mode based on
+      // whether the DAT SDK is linked into this build.
+      if true {
+          let messenger = controller.binaryMessenger
+          let rayBanFlutterApi = RayBanMetaFlutterAPI(binaryMessenger: messenger)
+          let rayBanApi = RayBanMetaHostApiImpl(flutterAPI: rayBanFlutterApi)
+          rayBanMetaHostApi = rayBanApi
+          RayBanMetaHostAPISetup.setUp(binaryMessenger: messenger, api: rayBanApi)
+      }
+
+      // Native phone-mic capture (conversation recording) — Pigeon APIs.
+      // Self-healing AVAudioEngine capture; interruption/route recovery is
+      // handled natively, Dart only mirrors the state.
+      if true {
+          let messenger = controller.binaryMessenger
+          let phoneMicFlutterApi = PhoneMicFlutterApi(binaryMessenger: messenger)
+          let controller = PhoneMicController(flutterApi: phoneMicFlutterApi)
+          phoneMicController = controller
+          PhoneMicHostApiSetup.setUp(binaryMessenger: messenger, api: PhoneMicHostApiImpl(controller: controller))
+      }
+
+    methodChannel = FlutterMethodChannel(name: "com.friend.ios/notifyOnKill", binaryMessenger: controller.binaryMessenger)
+    methodChannel?.setMethodCallHandler { [weak self] (call, result) in
+      self?.handleMethodCall(call, result: result)
+    }
+    
+    // SIMONSBOOKCLUB: the watch's sensor session, switched on for the length
+    // of a conversation the two partners are having.
+    let watchHeartRateChannel = FlutterMethodChannel(
+      name: "com.simonsbookclub.watchhr", binaryMessenger: controller.binaryMessenger)
+    watchHeartRateChannel.setMethodCallHandler { [weak self] call, result in
+      guard call.method == "setLiveHeartRate" else { result(FlutterMethodNotImplemented); return }
+      let on = ((call.arguments as? [String: Any])?["on"] as? Bool) ?? false
+      self?.setWatchLiveHeartRate(on)
+      result(true)
+    }
+
+    // Create Apple Reminders method channel
+    appleRemindersChannel = FlutterMethodChannel(name: "com.omi.apple_reminders", binaryMessenger: controller.binaryMessenger)
+    appleRemindersChannel?.setMethodCallHandler { [weak self] (call, result) in
+      self?.handleAppleRemindersCall(call, result: result)
+    }
+
+    // Create Apple Health method channel
+    appleHealthChannel = FlutterMethodChannel(name: "com.omi.apple_health", binaryMessenger: controller.binaryMessenger)
+    appleHealthChannel?.setMethodCallHandler { [weak self] (call, result) in
+      self?.handleAppleHealthCall(call, result: result)
+    }
+
+    // SIMONSBOOKCLUB: read-only Contacts bridge so identified speakers can
+    // show their real contact photo (ContactsService.swift).
+    // "Us": time outside — CoreLocation visits (VisitsService above).
+    VisitsService.shared.attach(messenger: controller.binaryMessenger)
+    // The run in progress, from the phone's GPS (RunTracker.swift).
+    RunTracker.shared.attach(messenger: controller.binaryMessenger)
+    RunTracker.shared.startIfConfigured()
+    MediaPlaybackService.shared.attach(messenger: controller.binaryMessenger)
+    // Scribe: the pendant's audio transcribed and attributed on this phone
+    // instead of streamed to a paid service (Runner/Scribe/*).
+    ScribePlugin.shared.attach(messenger: controller.binaryMessenger)
+
+    let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller.binaryMessenger)
+    let contactsHandler = ContactsService()
+    contactsChannel.setMethodCallHandler { (call, result) in
+      contactsHandler.handleMethodCall(call, result: result)
+    }
+
+    // Create Speech Recognition method channel
+    let speechChannel = FlutterMethodChannel(name: "com.omi.ios/speech", binaryMessenger: controller.binaryMessenger)
+    let speechHandler = SpeechRecognitionHandler()
+    speechChannel.setMethodCallHandler { (call, result) in
+        speechHandler.handle(call, result: result)
+    }
+
+    // TestFlight environment detection
+    let envChannel = FlutterMethodChannel(name: "com.omi/environment", binaryMessenger: controller.binaryMessenger)
+    envChannel.setMethodCallHandler { (call, result) in
+        if call.method == "isTestFlight" {
+            let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+            result(isTestFlight)
+        } else {
+            result(FlutterMethodNotImplemented)
+        }
+    }
+
+    // Audio session configuration for Bluetooth microphone support
+    let audioSessionChannel = FlutterMethodChannel(name: "com.omi.ios/audioSession", binaryMessenger: controller.binaryMessenger)
+    audioSessionChannel.setMethodCallHandler { (call, result) in
+        if call.method == "configureForBluetooth" {
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(
+                    .playAndRecord,
+                    mode: .default,
+                    options: [.allowBluetooth, .allowBluetoothA2DP, .defaultToSpeaker]
+                )
+                try audioSession.setActive(true)
+                result(true)
+            } catch {
+                result(FlutterError(code: "AUDIO_SESSION_ERROR", message: error.localizedDescription, details: nil))
+            }
+        } else {
+            result(FlutterMethodNotImplemented)
+        }
+    }
+
+    // Create WiFi Network plugin for device AP connection
+    _ = WifiNetworkPlugin(messenger: controller.binaryMessenger)
+
+    // Battery widget channel — writes Omi device battery to the shared App Group
+    // so the WidgetKit extension can read it.
+    let batteryWidgetChannel = FlutterMethodChannel(name: "com.omi.battery_widget", binaryMessenger: controller.binaryMessenger)
+    batteryWidgetChannel.setMethodCallHandler { (call, result) in
+      let defaults = UserDefaults(suiteName: "group.com.simonsbookclub.omi")
+      guard let args = call.arguments as? [String: Any] else {
+        result(FlutterMethodNotImplemented)
+        return
+      }
+      switch call.method {
+      case "updateBatteryInfo":
+        defaults?.set(args["deviceName"] as? String ?? "Omi", forKey: "widget_device_name")
+        defaults?.set(args["batteryLevel"] as? Int ?? -1, forKey: "widget_battery_level")
+        defaults?.set(args["deviceType"] as? String ?? "omi", forKey: "widget_device_type")
+        defaults?.set(args["isConnected"] as? Bool ?? false, forKey: "widget_is_connected")
+        defaults?.set(Date(), forKey: "widget_last_updated")
+        // NOTE: isMuted is intentionally NOT written here — only updateMuteState controls it
+        if #available(iOS 14.0, *) {
+          WidgetCenter.shared.reloadTimelines(ofKind: "OmiBatteryWidget")
+        }
+      case "updateMuteState":
+        let isMuted = (args["isMuted"] as? Bool) ?? (args["isMuted"] as? NSNumber)?.boolValue ?? false
+        defaults?.set(isMuted, forKey: "widget_is_muted")
+        if #available(iOS 14.0, *) {
+          WidgetCenter.shared.reloadAllTimelines()
+        }
+      default:
+        result(FlutterMethodNotImplemented)
+        return
+      }
+      result(nil)
+    }
+
+    // Register Phone Calls plugin
+    OmiPhoneCallsPlugin.register(with: self.registrar(forPlugin: "OmiPhoneCallsPlugin")!)
+
+    // here, Without this code the task will not work.
+    SwiftFlutterForegroundTaskPlugin.setPluginRegistrantCallback { registry in
+      GeneratedPluginRegistrant.register(with: registry)
+    }
+    if #available(iOS 10.0, *) {
+      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+    }
+
+  }
 }
 
 func registerPlugins(registry: FlutterPluginRegistry) {
@@ -979,4 +986,10 @@ class SpeechRecognitionHandler: NSObject {
             }
         }
     }
+
+  /// Everything that needs the Flutter messenger. iOS 26 makes the scene
+  /// lifecycle compulsory, and with a scene the window belongs to it rather
+  /// than to this delegate, so this runs when the scene connects instead of
+  /// at launch. SceneDelegate.swift calls it.
+
 }

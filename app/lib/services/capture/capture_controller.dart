@@ -36,6 +36,7 @@ import 'package:omi/services/capture/freemium_threshold_tracker.dart';
 import 'package:omi/services/connectivity_service.dart';
 import 'package:omi/services/services.dart';
 import 'package:omi/services/voice_playback/omi_voice_playback_service.dart';
+import 'package:omi/services/scribe_writer_service.dart';
 import 'package:omi/services/sockets/transcription_service.dart';
 import 'package:omi/services/audio_sources/audio_source.dart';
 import 'package:omi/services/audio_sources/ble_device_source.dart';
@@ -2163,6 +2164,10 @@ class CaptureController extends ChangeNotifier
       event.memory.isNew = true;
       externalActions.removeProcessingConversation(event.memory.id);
       _processConversationCreated(event.memory, event.messages.cast<ServerMessage>());
+      // SIMONSBOOKCLUB: title and score it on this phone rather than paying a
+      // model in a data centre. Fire and forget; it only ever improves what the
+      // worker already stored.
+      unawaited(ScribeWriterService.describe(event.memory));
       _autoSyncFallbackTimer?.cancel();
       if (_pendingAutoSyncSessionStart > 0) {
         _pendingAutoSyncSessionStart = 0;

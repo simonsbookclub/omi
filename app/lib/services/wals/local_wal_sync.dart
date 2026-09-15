@@ -11,6 +11,8 @@ import 'package:omi/models/sync_state.dart';
 import 'package:omi/backend/schema/bt_device/bt_device.dart';
 import 'package:omi/backend/schema/conversation.dart';
 import 'package:omi/services/audio_sources/audio_source.dart';
+import 'package:omi/models/stt_provider.dart';
+import 'package:omi/services/wals/scribe_drain.dart';
 import 'package:omi/services/wals/wal.dart';
 import 'package:omi/services/wals/wal_interfaces.dart';
 import 'package:omi/services/wals/sync_rate_limiter.dart';
@@ -70,6 +72,16 @@ List<Wal> nextSyncUploadBatch(List<Wal> pending, int nowSeconds) {
 }
 
 class LocalWalSyncImpl implements LocalWalSync {
+  /// True when transcription is set to Scribe, so drained files are read here
+  /// rather than uploaded.
+  Future<bool> _scribeHandles() async {
+    try {
+      return SharedPreferencesUtil().customSttConfig.provider == SttProvider.scribe;
+    } catch (_) {
+      return false;
+    }
+  }
+
   List<Wal> _wals = [];
 
   List<WalFrame> _frames = [];
@@ -735,6 +747,28 @@ class LocalWalSyncImpl implements LocalWalSync {
         // wait for server-side processing here; the reconciler resolves the
         // job_id later. Only WALs that actually became files (batchWals) are
         // mutated — corrupted ones already short-circuited above.
+        // SIMONSBOOKCLUB: with Scribe on, the phone reads these recordings
+        // itself and posts only the text. No audio leaves the device, and the
+        // drained hours get their speakers back, which the cloud path lost.
+        if (await _scribeHandles()) {
+          var done = 0;
+          for (var i = 0; i < batchWals.length && i < files.length; i++) {
+            final r = await ScribeDrain.process(batchWals[i], files[i]);
+            if (r.ok) {
+              done++;
+              batchWals[i].status = WalStatus.synced;
+            } else {
+              batchWals[i].status = WalStatus.miss;
+            }
+          }
+          await WalFileManager.saveWals(_wals);
+          for (final w in batchWals.where((w) => w.status == WalStatus.synced)) {
+            listener.onWalSynced(w);
+          }
+          Logger.log('[Scribe] drained $done of ${batchWals.length} recordings on device');
+          continue;
+        }
+
         final result = await _uploadGate.upload(
           files,
           conversationId: batchWals.first.conversationId,

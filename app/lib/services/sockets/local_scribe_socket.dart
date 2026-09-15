@@ -8,7 +8,10 @@
 // and the same JSON comes back. Nothing above this file knows the difference,
 // and no audio leaves the device.
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:omi/backend/http/shared.dart';
+import 'package:omi/env/env.dart';
 import 'package:omi/services/sockets/pure_socket.dart';
 import 'package:omi/utils/logger.dart';
 
@@ -35,6 +38,9 @@ class LocalScribeSocket implements IPureSocket {
       _status = PureSocketStatus.connecting;
       // The first call downloads the models; afterwards it is a few hundred ms.
       await _method.invokeMethod('start', {'sessionId': sessionId});
+      // Give the phone the enrolled voices before any audio arrives, so the
+      // first utterance can already carry a name.
+      unawaited(_loadVoiceprints());
       _sub = _segments.receiveBroadcastStream().listen(
         (event) => onMessage(event),
         onError: (e, t) => onError(e, t is StackTrace ? t : StackTrace.current),
@@ -68,6 +74,36 @@ class LocalScribeSocket implements IPureSocket {
     if (text.contains('"type":"media"')) {
       final playing = text.contains('"playing":true');
       _method.invokeMethod('media', {'playing': playing}).catchError((_) => null);
+    }
+  }
+
+  /// Fetch the enrolled voices from our own worker and hand them to the engine.
+  /// These are WeSpeaker vectors, the space the phone's diarizer works in.
+  static Future<void> _loadVoiceprints() async {
+    try {
+      final res = await makeApiCall(
+        url: '${Env.apiBaseUrl}v1/voices/prints',
+        headers: {},
+        body: '',
+        method: 'GET',
+      );
+      if (res == null || res.statusCode != 200) {
+        Logger.log('[Scribe] no voiceprints (${res?.statusCode}); voices stay unnamed');
+        return;
+      }
+      final body = jsonDecode(res.body) as Map<String, dynamic>;
+      final prints = (body['prints'] as List? ?? [])
+          .map((p) => {
+                'name': p['name'],
+                'centroid': (p['centroid'] as List).map((v) => (v as num).toDouble()).toList(),
+                'count': p['count'] ?? 1,
+              })
+          .toList();
+      if (prints.isEmpty) return;
+      await setVoiceprints(prints.cast<Map<String, dynamic>>());
+      Logger.log('[Scribe] ${prints.length} voiceprint(s) loaded: ${prints.map((p) => p['name']).join(', ')}');
+    } catch (e) {
+      Logger.error('[Scribe] voiceprint fetch failed: $e');
     }
   }
 

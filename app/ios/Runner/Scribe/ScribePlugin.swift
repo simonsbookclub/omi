@@ -74,6 +74,58 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
                 result(true)
             }
 
+        // Phase 4: titles, overviews and the read on a conversation, written by
+        // the phone's own model rather than bought from Cloudflare.
+        case "summarise":
+            let args = call.arguments as? [String: Any] ?? [:]
+            let transcript = args["transcript"] as? String ?? ""
+            let want = args["want"] as? String ?? "structured"
+            guard #available(iOS 26.0, *), ScribeWriter.isAvailable, !transcript.isEmpty else {
+                result(FlutterError(code: "unavailable", message: "no on-device model", details: nil)); return
+            }
+            #if canImport(FoundationModels)
+            Task {
+                do {
+                    switch want {
+                    case "sentiment":
+                        let r = try await ScribeWriter.sentiment(for: transcript)
+                        result(["valence": r.valence, "arousal": r.arousal, "emotion": r.emotion,
+                                "quality": r.quality, "curiosity": r.curiosity])
+                    case "relationship":
+                        let r = try await ScribeWriter.relationship(for: transcript)
+                        result(["tension": r.tension, "escalation": r.escalation, "repair": r.repair,
+                                "hard": r.hard, "summary": r.summary])
+                    default:
+                        let r = try await ScribeWriter.structured(for: transcript)
+                        result(["title": r.title, "overview": r.overview, "emoji": r.emoji, "category": r.category])
+                    }
+                } catch {
+                    result(FlutterError(code: "generate_failed", message: "\(error)", details: nil))
+                }
+            }
+            #else
+            result(FlutterError(code: "unavailable", message: "FoundationModels not in this build", details: nil))
+            #endif
+
+        // Phase 3: a drained flash recording, read here instead of uploaded.
+        case "processFile":
+            let args = call.arguments as? [String: Any] ?? [:]
+            guard let path = args["wavPath"] as? String else { result(FlutterError(code: "bad_args", message: "wavPath required", details: nil)); return }
+            let stream = args["stream"] as? String ?? "device:file"
+            guard #available(iOS 17.0, *) else { result(FlutterError(code: "unavailable", message: "iOS 17+", details: nil)); return }
+            Task {
+                do {
+                    let segs = try await ScribeFile.shared.process(wavPath: path, stream: stream)
+                    let data = try JSONEncoder().encode(segs)
+                    result(String(data: data, encoding: .utf8) ?? "[]")
+                } catch {
+                    result(FlutterError(code: "process_failed", message: "\(error)", details: nil))
+                }
+            }
+
+        case "writerAvailable":
+            if #available(iOS 26.0, *) { result(ScribeWriter.isAvailable) } else { result(false) }
+
         case "enrolledVoices":
             Task { result(await Voiceprints.shared.enrolled) }
 

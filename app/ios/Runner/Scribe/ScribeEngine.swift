@@ -43,6 +43,9 @@ actor ScribeEngine {
 
     private var asr: AsrManager?
     private var vad: VadManager?
+    /// The gate keeps state between chunks (Silero-style hysteresis), so it has
+    /// to be carried forward rather than made fresh each time.
+    private var vadState: VadStreamState?
     private var diarizer: OfflineDiarizerManager?
     private var ready = false
 
@@ -71,7 +74,9 @@ actor ScribeEngine {
         let a = AsrManager(config: .default)
         try await a.loadModels(models)
         self.asr = a
-        self.vad = try await VadManager(config: VadConfig(defaultThreshold: 0.75))
+        let v = try await VadManager(config: VadConfig(defaultThreshold: 0.75))
+        self.vad = v
+        self.vadState = await v.makeStreamState()
         let d = OfflineDiarizerManager()
         try await d.prepareModels()
         self.diarizer = d
@@ -125,8 +130,9 @@ actor ScribeEngine {
         clockS += durS
 
         var voiced = false
-        if let vad {
-            if let r = try? await vad.processStreamingChunk(chunk, state: VadState(), config: .default, returnSeconds: false) {
+        if let vad, let state = vadState {
+            if let r = try? await vad.processStreamingChunk(chunk, state: state, config: .default, returnSeconds: false) {
+                vadState = r.state
                 voiced = r.probability >= 0.75
             }
         }
