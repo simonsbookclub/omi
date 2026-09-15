@@ -15,7 +15,12 @@ enum SttProvider {
   localWhisper,
   custom,
   customLive,
-  onDeviceWhisper;
+  onDeviceWhisper,
+
+  /// SIMONSBOOKCLUB: Scribe — the pendant's audio transcribed and attributed on
+  /// this phone (Parakeet + diarizer + voiceprints, ios/Runner/Scribe). No
+  /// socket, no key, no per-minute bill, and the audio never leaves the device.
+  scribe;
 
   static SttProvider fromString(String value) {
     return SttProvider.values.firstWhere((e) => e.name == value, orElse: () => SttProvider.omi);
@@ -353,6 +358,20 @@ class SttProviderConfig {
       supportedLanguages: SttLanguages.whisperSupported,
       defaultLanguage: 'en',
       responseSchema: SttResponseSchema.openAI,
+    ),
+    // SIMONSBOOKCLUB: Scribe. Streaming, because frames go in continuously and
+    // utterances come back as they close; no key and no URL, because the model
+    // lives on the phone.
+    SttProvider.scribe: const SttProviderConfig(
+      provider: SttProvider.scribe,
+      displayName: 'Scribe (on this phone)',
+      description: 'Transcribes and names voices on the iPhone. No cloud, no cost.',
+      icon: FontAwesomeIcons.microchip,
+      requestType: SttRequestType.streaming,
+      supportedLanguages: SttLanguages.whisperSupported,
+      defaultLanguage: 'multi',
+      responseSchema: SttResponseSchema.openAI,
+      requiresApiKey: false,
     ),
     SttProvider.onDeviceWhisper: const SttProviderConfig(
       provider: SttProvider.onDeviceWhisper,

@@ -9,6 +9,8 @@ import 'package:omi/backend/schema/transcript_segment.dart';
 import 'package:omi/env/env.dart';
 import 'package:omi/models/custom_stt_config.dart';
 import 'package:omi/models/stt_provider.dart';
+import 'package:omi/services/sockets/local_scribe_socket.dart';
+import 'package:uuid/uuid.dart';
 import 'package:omi/services/sockets/on_device_apple_provider.dart';
 import 'package:omi/services/sockets/on_device_whisper_provider.dart';
 import 'package:omi/services/sockets/pure_socket.dart';
@@ -378,6 +380,14 @@ class TranscriptSocketServiceFactory {
   /// Create streaming WebSocket for live STT
   static IPureSocket _createStreamingSocket(int sampleRate, BleAudioCodec codec, CustomSttConfig config) {
     final transcoder = AudioTranscoderFactory.createToRawPcm(sourceCodec: codec, sampleRate: sampleRate);
+
+    // SIMONSBOOKCLUB: Scribe isn't a socket at all — it hands the frames to
+    // this phone's own engine and gets the same {"segments":[…]} back, so the
+    // composite above forwards them to the backend exactly as it did the
+    // relay's. See lib/services/sockets/local_scribe_socket.dart.
+    if (config.provider == SttProvider.scribe) {
+      return LocalScribeSocket(sessionId: const Uuid().v4());
+    }
 
     // Special case: Gemini Live has unique protocol (setup message, base64 audio)
     if (config.provider == SttProvider.geminiLive) {

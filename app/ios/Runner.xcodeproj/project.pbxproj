@@ -18,10 +18,9 @@
 		15BE32846414AB444D807D9B /* PigeonCommunicator.g.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B17C7B2F69BC6600BFDA9D /* PigeonCommunicator.g.swift */; };
 		16935068EFFE77C62C493C3C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7A9F5F37DDF9FA87AC8A5CD /* GoogleService-Info.plist */; };
 		18B5E977FCEDF03D5DDE4A21 /* AppleHealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12345678901234567890CE /* AppleHealthService.swift */; };
-		AB1234567890ABCDEF0000C2 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000C1 /* ContactsService.swift */; };
-		AB1234567890ABCDEF0000D2 /* RunTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000D1 /* RunTracker.swift */; };
 		19570D5AA4C5B2E3154671BE /* RayBanMetaHostApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DFC02 /* RayBanMetaHostApiImpl.swift */; };
 		1D93FD645488AAB7DBE4EF49 /* LimitlessProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAADF00DF00DF00DF00DF0D7 /* LimitlessProtocol.swift */; };
+		2000CEB3899CE49C3FE3CF99 /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = B89DA5197A1E1E7BB038EB3C /* FluidAudio */; };
 		2233D9F0F73BEE78D735B79C /* devRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 79B00761CB247C7EC7C8983B /* devRelease.xcconfig */; };
 		2424617E08011B02F15737C3 /* SharedDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0B70AE9FE08165F2A53E0B /* SharedDefaults.swift */; };
 		29B635C199B3BDE0F2BE8EC5 /* devRelease.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 79B00761CB247C7EC7C8983B /* devRelease.xcconfig */; };
@@ -86,7 +85,9 @@
 		A99145F1E008BFA300A30BA0 /* BleHostApiImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B17C632F69B9E100BFDA9D /* BleHostApiImpl.swift */; };
 		AB12345678901234567890AB /* AppleRemindersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12345678901234567890CD /* AppleRemindersService.swift */; };
 		AB12345678901234567890AC /* AppleHealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD12345678901234567890CE /* AppleHealthService.swift */; };
+		AB1234567890ABCDEF0000C2 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000C1 /* ContactsService.swift */; };
 		AB1234567890ABCDEF0000C3 /* ContactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000C1 /* ContactsService.swift */; };
+		AB1234567890ABCDEF0000D2 /* RunTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000D1 /* RunTracker.swift */; };
 		AB1234567890ABCDEF0000D3 /* RunTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1234567890ABCDEF0000D1 /* RunTracker.swift */; };
 		AFF50718E1B191240567E4A7 /* OmiRegionCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BABFCE2F2A81B100E78A3C /* OmiRegionCheck.swift */; };
 		B017E73914CFF7C22190E0C3 /* prodProfile.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B52E83A1CC630E163A04DC50 /* prodProfile.xcconfig */; };
@@ -322,6 +323,7 @@
 			files = (
 				42A7BA4C2E788F0100138969 /* WatchConnectivity.framework in Frameworks */,
 				9A25BD940EC94B21766CB950 /* Pods_Runner.framework in Frameworks */,
+				2000CEB3899CE49C3FE3CF99 /* FluidAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,6 +641,9 @@
 				42A7BA3D2E788BD400138969 /* PBXTargetDependency */,
 			);
 			name = Runner;
+			packageProductDependencies = (
+				B89DA5197A1E1E7BB038EB3C /* FluidAudio */,
+			);
 			productName = Runner;
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
@@ -673,6 +678,7 @@
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
 				8728540C6BEE8F267DB063FD /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */,
+				D7DFC46E6BA0B7D8A57CC035 /* XCRemoteSwiftPackageReference "FluidAudio" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
@@ -1083,7 +1089,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerDebug-prod.entitlements";
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1102,7 +1108,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1120,7 +1126,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerRelease-prod.entitlements";
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1137,7 +1143,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerDebug-dev.entitlements";
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1154,7 +1160,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerProfile-dev.entitlements";
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1173,7 +1179,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1194,7 +1200,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1245,7 +1251,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -1276,7 +1282,7 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1368,7 +1374,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -1446,7 +1452,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2027,7 +2033,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -2122,7 +2128,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2230,7 +2236,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -2291,7 +2297,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2361,7 +2367,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2413,7 +2419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
@@ -2444,7 +2450,7 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2491,7 +2497,7 @@
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2528,7 +2534,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2586,7 +2592,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2686,7 +2692,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2718,7 +2724,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2738,7 +2744,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2758,7 +2764,7 @@
 				DEVELOPMENT_TEAM = 37LD3KSWXW;
 				INFOPLIST_KEY_CFBundleDisplayName = Omi;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.simonsbookclub.omi.development";
+				PRODUCT_BUNDLE_IDENTIFIER = com.simonsbookclub.omi.development;
 				PRODUCT_NAME = Runner;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -2845,7 +2851,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2978,7 +2984,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Runner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3092,9 +3098,22 @@
 				version = 0.8.0;
 			};
 		};
+		D7DFC46E6BA0B7D8A57CC035 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.15.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B89DA5197A1E1E7BB038EB3C /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7DFC46E6BA0B7D8A57CC035 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
 		E640392A2909606360520801 /* MWDATCamera */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8728540C6BEE8F267DB063FD /* XCRemoteSwiftPackageReference "meta-wearables-dat-ios" */;

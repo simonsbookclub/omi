@@ -394,6 +394,9 @@ final class QuickActionsIconPatcher: NSObject {
     RunTracker.shared.attach(messenger: controller!.binaryMessenger)
     RunTracker.shared.startIfConfigured()
     MediaPlaybackService.shared.attach(messenger: controller!.binaryMessenger)
+    // Scribe: the pendant's audio transcribed and attributed on this phone
+    // instead of streamed to a paid service (Runner/Scribe/*).
+    ScribePlugin.shared.attach(messenger: controller!.binaryMessenger)
 
     let contactsChannel = FlutterMethodChannel(name: "com.simonsbookclub.contacts", binaryMessenger: controller!.binaryMessenger)
     let contactsHandler = ContactsService()
