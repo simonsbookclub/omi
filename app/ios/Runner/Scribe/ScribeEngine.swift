@@ -200,6 +200,7 @@ actor ScribeEngine {
             windowStartS += consumedS
         }
 
+        NSLog("scribe: window of %.0fs → %d run(s) of speech", bufferS, runs.count)
         guard !runs.isEmpty else { return }
 
         // One diarization for the whole window: speakers stay consistent

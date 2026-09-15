@@ -18,6 +18,8 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
     /// One ordered pipe for audio. A Task per packet raced: PCM reached the
     /// engine out of order, and hundreds queued behind a busy window.
     private var audio: AsyncStream<Data>.Continuation?
+    private var audioBytes = 0
+    private var lastAudioLog = Date()
 
     /// Attached from AppDelegate with the Flutter messenger, the way every other
     /// native service in this app is wired.
@@ -61,7 +63,24 @@ final class ScribePlugin: NSObject, FlutterStreamHandler {
 
         case "audio":
             guard let data = (call.arguments as? FlutterStandardTypedData)?.data else { result(false); return }
-            lock.lock(); let pipe = audio; lock.unlock()
+            lock.lock()
+            let pipe = audio
+            // Whether audio is arriving at all was invisible, and that is the
+            // one question worth being able to answer: on 2026-09-15 a whole
+            // dinner produced no transcript and it took an hour to establish
+            // that almost no audio had reached the engine.
+            audioBytes += data.count
+            let now = Date()
+            let due = now.timeIntervalSince(lastAudioLog) >= 30
+            if due {
+                let seconds = Double(audioBytes) / 32_000
+                lastAudioLog = now
+                audioBytes = 0
+                lock.unlock()
+                NSLog("scribe: %.1fs of audio in the last 30s", seconds)
+            } else {
+                lock.unlock()
+            }
             guard let pipe else { result(false); return }
             pipe.yield(data)
             result(true)
