@@ -16,6 +16,13 @@ import AVFoundation
 import Speech
 #endif
 
+/// A run of words with the time it was said, relative to the audio handed in.
+struct TimedPiece {
+    var text: String
+    var start: Double
+    var end: Double
+}
+
 @available(iOS 26.0, *)
 actor AppleTranscriber {
     static let shared = AppleTranscriber()
@@ -60,10 +67,10 @@ actor AppleTranscriber {
     /// A fresh analyzer per call: these are already whole utterances cut by the
     /// speech detector, and a per-call analyzer cannot carry state from one
     /// person's turn into the next.
-    func transcribe(_ samples: [Float]) async throws -> String {
+    func transcribe(_ samples: [Float]) async throws -> [TimedPiece] {
         #if canImport(Speech)
         try await prepare()
-        guard let locale, !samples.isEmpty else { return "" }
+        guard let locale, !samples.isEmpty else { return [] }
         // A transcriber belongs to one analyzer. Handing the same one to a
         // second analyzer traps inside SpeechAnalyzer.prepareModulesIfNeeded,
         // which is what crashed the app on launch (2026-09-15). Both are made
@@ -75,7 +82,7 @@ actor AppleTranscriber {
                                    channels: 1, interleaved: false)
         guard let source,
               let buffer = AVAudioPCMBuffer(pcmFormat: source, frameCapacity: AVAudioFrameCount(samples.count))
-        else { return "" }
+        else { return [] }
         buffer.frameLength = AVAudioFrameCount(samples.count)
         samples.withUnsafeBufferPointer { src in
             buffer.floatChannelData![0].update(from: src.baseAddress!, count: samples.count)
@@ -84,10 +91,10 @@ actor AppleTranscriber {
         // Convert only when the analyzer wants something other than what we have.
         var input = buffer
         if let want = format, want.sampleRate != source.sampleRate || want.commonFormat != source.commonFormat {
-            guard let converter = AVAudioConverter(from: source, to: want) else { return "" }
+            guard let converter = AVAudioConverter(from: source, to: want) else { return [] }
             let ratio = want.sampleRate / source.sampleRate
             let capacity = AVAudioFrameCount(Double(samples.count) * ratio) + 1024
-            guard let out = AVAudioPCMBuffer(pcmFormat: want, frameCapacity: capacity) else { return "" }
+            guard let out = AVAudioPCMBuffer(pcmFormat: want, frameCapacity: capacity) else { return [] }
             var done = false
             var err: NSError?
             converter.convert(to: out, error: &err) { _, status in
@@ -96,28 +103,34 @@ actor AppleTranscriber {
                 status.pointee = .haveData
                 return buffer
             }
-            if err != nil { return "" }
+            if err != nil { return [] }
             input = out
         }
 
         let analyzer = SpeechAnalyzer(modules: [transcriber])
-        let collector = Task { () -> String in
-            var parts: [String] = []
+        // Timed pieces, not one string. Without word times there is no way to
+        // tell which half of a run of speech belonged to whom, and a quarter of
+        // all segments came out holding both people's words under one name.
+        let collector = Task { () -> [TimedPiece] in
+            var parts: [TimedPiece] = []
             for try await r in transcriber.results where r.isFinal {
-                parts.append(String(r.text.characters))
+                let text = String(r.text.characters).trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !text.isEmpty else { continue }
+                let a = r.range.start.seconds, b = r.range.end.seconds
+                parts.append(TimedPiece(text: text,
+                                        start: a.isFinite ? a : 0,
+                                        end: b.isFinite ? b : (a.isFinite ? a : 0)))
             }
-            return parts.joined(separator: " ")
+            return parts
         }
         let (stream, continuation) = AsyncStream<AnalyzerInput>.makeStream()
         continuation.yield(AnalyzerInput(buffer: input))
         continuation.finish()
         try await analyzer.start(inputSequence: stream)
         try await analyzer.finalizeAndFinishThroughEndOfInput()
-        let text = try await collector.value
-        return text.replacingOccurrences(of: "  ", with: " ")
-            .trimmingCharacters(in: .whitespacesAndNewlines)
+        return try await collector.value
         #else
-        return ""
+        return []
         #endif
     }
 }

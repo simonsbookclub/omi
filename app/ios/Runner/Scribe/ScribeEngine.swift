@@ -221,43 +221,50 @@ actor ScribeEngine {
             let b = min(buffer.count, Int(run.end * Self.sampleRate))
             guard b - a > Int(Self.sampleRate * Self.minSpeechS) else { continue }
             var text = ""
+            var pieces: [TimedPiece] = []
             do {
-                text = try await ScribeModels.shared.transcribe(Array(buffer[a..<b]))
-                    .text.trimmingCharacters(in: .whitespacesAndNewlines)
+                let r = try await ScribeModels.shared.transcribe(Array(buffer[a..<b]))
+                text = r.text.trimmingCharacters(in: .whitespacesAndNewlines)
+                pieces = r.pieces
             } catch {
                 NSLog("scribe: lost %.1fs of speech: %@", run.end - run.start, "\(error)")
                 continue
             }
             guard !text.isEmpty, !Self.isGibberish(text) else { continue }
 
-            // The speaker holding most of this run.
-            let turn = turns
-                .map { t -> (Turn, Double) in (t, max(0, min(t.end, run.end) - max(t.start, run.start))) }
-                .filter { $0.1 > 0 }
-                .max { $0.1 < $1.1 }?.0
+            // A run of speech is not a turn. People answer inside the same
+            // second and a run only ends on a pause, so a quarter of all
+            // segments came out holding both their words under one name, which
+            // makes a conversation unreadable as a conversation. Split the run
+            // where the speaker actually changed, using the word times.
+            let split = Self.splitByTurn(pieces: pieces, run: run, turns: turns)
+            for part in split.isEmpty
+                ? [(text: text, from: run.start, to: run.end, turn: Self.dominant(turns, run))]
+                : split {
             var person: String? = nil
-            if let e = turn?.embedding {
+            if let e = part.turn?.embedding {
                 let m = await Voiceprints.shared.match(e)
                 person = m.name
                 NSLog("scribe: %.1fs \"%@\" → %@ (%.2f, next %.2f)",
-                      run.end - run.start, String(text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
+                      part.to - part.from, String(part.text.prefix(40)), m.name ?? "unknown", m.score, m.runnerUp)
             } else {
-                NSLog("scribe: %.1fs \"%@\" → no voice vector", run.end - run.start, String(text.prefix(40)))
+                NSLog("scribe: %.1fs \"%@\" → no voice vector", part.to - part.from, String(part.text.prefix(40)))
             }
             // Times are relative to THIS window, which the backend anchors when
             // it arrives. One session-long clock counted audio rather than time,
             // so a dropped link shifted everything after it.
-            let from = windowStartS + run.start
-            let to = windowStartS + run.end
+            let from = windowStartS + part.from
+            let to = windowStartS + part.to
             let media = person == nil && mediaShare(from, to) >= 0.5
-            let sp = Int(turn?.speakerId.filter(\.isNumber) ?? "") ?? 0
+            let sp = Int(part.turn?.speakerId.filter(\.isNumber) ?? "") ?? 0
             out.append(ScribeSegment(
-                text: text, start: run.start, end: run.end,
+                text: part.text, start: part.from, end: part.to,
                 speaker: String(format: "SPEAKER_%02d", sp), speaker_id: sp,
                 is_user: person == Voiceprints.wearerName,
                 person_id: person == Voiceprints.wearerName ? nil : person,
                 stream: "device:\(sessionId):\(index)",
                 media: media ? true : nil, language: nil))
+            }
         }
         if !out.isEmpty { emit?(out) }
     }
@@ -277,6 +284,56 @@ actor ScribeEngine {
         // Long, but almost none of it is a word: a run of punctuation or symbols.
         if text.count > 40 && words.count * 20 < text.count { return true }
         return false
+    }
+
+    /// How far a moment sits outside a turn.
+    private static func distance(_ t: Double, _ turn: Turn) -> Double {
+        t < turn.start ? turn.start - t : (t > turn.end ? t - turn.end : 0)
+    }
+
+    /// Whoever held most of a run, when it cannot be split.
+    private static func dominant(_ turns: [Turn], _ run: (start: Double, end: Double)) -> Turn? {
+        turns.map { t -> (Turn, Double) in (t, max(0, min(t.end, run.end) - max(t.start, run.start))) }
+            .filter { $0.1 > 0 }
+            .max { $0.1 < $1.1 }?.0
+    }
+
+    /// Cut a run of speech where the speaker changed.
+    ///
+    /// A run only ends on a pause, and people answer inside the same second, so
+    /// a quarter of all segments came out holding both their words under one
+    /// name — which makes a conversation unreadable as a conversation. Word
+    /// times are shifted onto the window's clock and matched against the
+    /// diarizer's turns; consecutive words from one speaker are gathered back
+    /// together, so a turn is one segment rather than one per word. Returns
+    /// nothing when only one person spoke, and the caller keeps the run whole.
+    private static func splitByTurn(pieces: [TimedPiece], run: (start: Double, end: Double),
+                                    turns: [Turn]) -> [(text: String, from: Double, to: Double, turn: Turn?)] {
+        guard !pieces.isEmpty, turns.count >= 2 else { return [] }
+        let overlapping = turns.filter { $0.end > run.start && $0.start < run.end }
+        guard Set(overlapping.map { $0.speakerId }).count >= 2 else { return [] }
+
+        var out: [(text: String, from: Double, to: Double, turn: Turn?)] = []
+        for p in pieces {
+            let at = run.start + (p.start + p.end) / 2
+            let turn = overlapping.first { $0.start <= at && at <= $0.end }
+                ?? overlapping.min { distance(at, $0) < distance(at, $1) }
+            let from = run.start + p.start, to = run.start + p.end
+            if var last = out.last, last.turn?.speakerId == turn?.speakerId {
+                last.text += " " + p.text
+                last.to = max(last.to, to)
+                out[out.count - 1] = last
+            } else {
+                out.append((text: p.text, from: from, to: to, turn: turn))
+            }
+        }
+        // A one-word interjection inside someone else's sentence is far more
+        // often the diarizer wobbling than a real turn; fold it back.
+        return out
+            .filter { $0.text.split(separator: " ").count >= 2 || out.count <= 2 }
+            .map { (text: $0.text.trimmingCharacters(in: .whitespacesAndNewlines),
+                    from: $0.from, to: max($0.to, $0.from + 0.2), turn: $0.turn) }
+            .filter { !$0.text.isEmpty }
     }
 
     /// A speaker turn on the window's clock.

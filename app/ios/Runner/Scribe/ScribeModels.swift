@@ -114,7 +114,8 @@ actor ScribeModels {
         }
     }
 
-    func transcribe(_ samples: [Float]) async throws -> ASRResult {
+    /// The words, and where in this audio each run of them was said.
+    func transcribe(_ samples: [Float]) async throws -> (text: String, pieces: [TimedPiece]) {
         if useApple, #available(iOS 26.0, *) {
             do {
                 // Empty is an answer: Apple heard nothing worth writing down.
@@ -122,9 +123,11 @@ actor ScribeModels {
                 // stretch of noise becomes "5-5-5-5-5…" — the second engine
                 // is asked to transcribe exactly what the first judged
                 // unintelligible, which is where a decoder loops.
-                let text = try await AppleTranscriber.shared.transcribe(samples)
-                return ASRResult(text: text, confidence: 1, duration: Double(samples.count) / 16_000,
-                                 processingTime: 0, tokenTimings: nil)
+                let pieces = try await AppleTranscriber.shared.transcribe(samples)
+                let text = pieces.map(\.text).joined(separator: " ")
+                    .replacingOccurrences(of: "  ", with: " ")
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                return (text: text, pieces: pieces)
             } catch {
                 NSLog("scribe: Apple could not transcribe (%@); using Parakeet", "\(error)")
                 try? await loadParakeet()
@@ -132,7 +135,13 @@ actor ScribeModels {
         }
         guard let asr else { throw ScribeError.notReady }
         var state = try TdtDecoderState()
-        return try await asr.transcribe(samples, decoderState: &state)
+        let r = try await asr.transcribe(samples, decoderState: &state)
+        // Parakeet's own token timings, in the same shape.
+        let pieces = (r.tokenTimings ?? []).map {
+            TimedPiece(text: $0.token.replacingOccurrences(of: "\u{2581}", with: " "),
+                       start: $0.startTime, end: $0.endTime)
+        }
+        return (text: r.text, pieces: pieces)
     }
 
     func diarize(_ samples: [Float]) async throws -> DiarizationResult {
