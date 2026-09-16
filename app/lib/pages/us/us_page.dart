@@ -967,7 +967,7 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     return _card(children: [
       const UsLabel('The two of you'),
       const SizedBox(height: 10),
-      for (final c in convs.where((c) => c['date_night'] != null)) _dateNight(c),
+      for (final c in convs.where((c) => c['date_night'] != null)) _dateNight(c, us.ownerName),
       for (final c in talks.take(6)) _openable(c, _talkRow(c)),
       for (final c in notable.take(4)) _openable(c, _shortRow(c)),
       if (quiet > 0) ...[
@@ -1169,7 +1169,16 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
   /// handled Tuesday" is worth nothing next to the sentence itself. The asks
   /// go last and stay last: they are the part that is easy to nod at in the
   /// moment and forget by Thursday.
-  Widget _dateNight(Map<String, dynamic> c) {
+  /// The date night recap, drawn as the ceremony's own order.
+  ///
+  /// A rail down the left with a station for each of the three parts, both
+  /// voices at each one. It replaced a flat list of grey bullets: the two
+  /// people in it were indistinguishable, and their actual words — the only
+  /// part worth keeping — were the faintest ink on the card.
+  ///
+  /// "Asked for" is marked in amber because it is the part that gets nodded
+  /// at and forgotten, and the one worth carrying into next week.
+  Widget _dateNight(Map<String, dynamic> c, String ownerName) {
     final d = c['date_night'] as Map<String, dynamic>?;
     if (d == null) return const SizedBox.shrink();
     final appreciations = (d['appreciations'] as List?) ?? const [];
@@ -1177,63 +1186,136 @@ class _UsPageState extends State<UsPage> with AutomaticKeepAliveClientMixin, Wid
     final asks = (d['asks'] as List?) ?? const [];
     if (appreciations.isEmpty && feelings.isEmpty && asks.isEmpty) return const SizedBox.shrink();
 
-    Widget block(String label, List items, String key) {
-      if (items.isEmpty) return const SizedBox.shrink();
-      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SizedBox(height: 12),
-        Text(label, style: const TextStyle(color: UsInk.faint, fontSize: 11, letterSpacing: 0.6)),
-        for (final raw in items) ...[
-          const SizedBox(height: 6),
-          Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    final owner = ownerName.trim().toLowerCase();
+
+    // One person's contribution: their name in their own colour, then what
+    // they said. The quote is the line, not a footnote under a paraphrase.
+    Widget entry(Map raw, String key) {
+      final by = (raw['by'] ?? '').toString();
+      final mine = by.trim().toLowerCase() == owner;
+      final said = (raw['quote'] ?? '').toString().trim();
+      final gloss = (raw[key] ?? '').toString().trim();
+      final line = said.isNotEmpty ? said : gloss;
+      if (line.isEmpty) return const SizedBox.shrink();
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
             Container(
-              margin: const EdgeInsets.only(top: 5, right: 8), width: 5, height: 5,
-              decoration: const BoxDecoration(color: UsInk.faint, shape: BoxShape.circle)),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('${(raw as Map)['by']} · ${raw[key]}',
-                    style: const TextStyle(color: UsInk.body, fontSize: 13.5, height: 1.35)),
-                if ((raw['quote'] ?? '').toString().isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Text('“${raw['quote']}”',
-                        style: const TextStyle(
-                            color: UsInk.faint, fontSize: 12.5, height: 1.35, fontStyle: FontStyle.italic)),
-                  ),
-              ]),
-            ),
+              width: 6, height: 6,
+              decoration: BoxDecoration(color: UsInk.person(mine), shape: BoxShape.circle)),
+            const SizedBox(width: 6),
+            Text(by, style: TextStyle(color: UsInk.person(mine), fontSize: 11.5)),
           ]),
-        ],
-      ]);
+          const SizedBox(height: 3),
+          Text(line,
+              style: const TextStyle(color: UsInk.strong, fontSize: 14.5, height: 1.42)),
+        ]),
+      );
+    }
+
+    // A station on the rail: the dot, the line down to the next one, and
+    // everything said at this part of the evening.
+    Widget station(String label, List items, String key,
+        {required bool last, Color? accent, String? aside}) {
+      final rows = items.map((raw) => entry(raw as Map, key)).toList();
+      return IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          SizedBox(
+            width: 22,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                width: 11, height: 11,
+                decoration: BoxDecoration(
+                  color: UsInk.card,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: accent ?? UsInk.faint, width: 1.5),
+                )),
+              if (!last)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5, top: 3),
+                    child: Container(width: 1, color: UsInk.hairline),
+                  ),
+                ),
+            ]),
+          ),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(crossAxisAlignment: CrossAxisAlignment.baseline,
+                  textBaseline: TextBaseline.alphabetic, children: [
+                Text(label,
+                    style: TextStyle(
+                        color: accent ?? UsInk.label,
+                        fontSize: 10.5, fontWeight: FontWeight.w700, letterSpacing: 1.4)),
+                if (aside != null) ...[
+                  const SizedBox(width: 8),
+                  Text(aside, style: const TextStyle(color: UsInk.faint, fontSize: 11)),
+                ],
+              ]),
+              const SizedBox(height: 10),
+              ...rows,
+              SizedBox(height: last ? 4 : 10),
+            ]),
+          ),
+        ]),
+      );
+    }
+
+    // Only the parts that actually happened. A night that never reached
+    // "here is what I need" should show two stations, not an empty third.
+    final present = <Widget Function(bool)>[];
+    if (appreciations.isNotEmpty) {
+      present.add((last) => station('APPRECIATED', appreciations, 'about', last: last));
+    }
+    if (feelings.isNotEmpty) {
+      present.add((last) => station('HOW IT FEELS', feelings, 'text', last: last));
+    }
+    if (asks.isNotEmpty) {
+      present.add((last) => station('ASKED FOR', asks, 'text',
+          last: last, accent: UsInk.elevated, aside: 'still open'));
     }
 
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.fromLTRB(14, 12, 14, 14),
       decoration: BoxDecoration(
-        color: const Color(0x14FFFFFF),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0x33FFFFFF)),
+        color: UsInk.card,
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          const Text('Date night',
-              style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
-          const Spacer(),
-          Text(_hhmm(c['started_at']?.toString()),
-              style: const TextStyle(color: UsInk.faint, fontSize: 11.5)),
-        ]),
-        if ((d['summary'] ?? '').toString().isNotEmpty) ...[
-          const SizedBox(height: 6),
-          Text(d['summary'].toString(),
-              style: const TextStyle(color: UsInk.body, fontSize: 14, height: 1.4)),
-        ],
-        block('APPRECIATED', appreciations, 'about'),
-        block('HOW IT FEELS', feelings, 'text'),
-        block('ASKED FOR', asks, 'text'),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 0),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic, children: [
+              const Text('Date night',
+                  style: TextStyle(
+                      color: UsInk.strong, fontSize: 19,
+                      fontWeight: FontWeight.w600, letterSpacing: -0.3)),
+              const Spacer(),
+              Text(_hhmm(c['started_at']?.toString()),
+                  style: const TextStyle(
+                      color: UsInk.faint, fontSize: 11.5,
+                      fontFeatures: [FontFeature.tabularFigures()])),
+            ]),
+            if ((d['summary'] ?? '').toString().isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Text(d['summary'].toString(),
+                  style: const TextStyle(color: UsInk.body, fontSize: 14.5, height: 1.45)),
+            ],
+          ]),
+        ),
+        const SizedBox(height: 18),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(18, 0, 18, 0),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            for (var i = 0; i < present.length; i++) present[i](i == present.length - 1),
+          ]),
+        ),
+        const SizedBox(height: 14),
       ]),
     );
   }
-
   Widget _talkRow(Map<String, dynamic> c) {
     final topics = ((c['topics'] as List?) ?? const []).map((t) => t.toString()).toList();
     final words = (c['words'] as num?)?.toInt() ?? 0;
