@@ -379,6 +379,17 @@ class _TranscriptWidgetState extends State<TranscriptWidget> {
     }
 
     var anchorIndex = widget.segments.indexWhere((segment) => segment.id == scrollState.anchorSegmentId);
+    if (anchorIndex < 0 && scrollState.anchorSegmentId != null) {
+      // The line we were holding on to is gone from the list — the backend
+      // renumbers segment ids as a live transcript is rebuilt. Guessing a
+      // position by index then throws the reader somewhere they did not ask
+      // to be, which on a growing transcript reads as "it will not let me
+      // scroll up". Leaving the offset alone is right: new lines arrive at
+      // the bottom and move nothing above them.
+      _pendingAnchorRestore = false;
+      _captureCurrentPosition();
+      return;
+    }
     if (anchorIndex < 0) {
       anchorIndex = scrollState.anchorSegmentIndex.clamp(0, widget.segments.length - 1).toInt();
     }
