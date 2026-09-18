@@ -29,6 +29,16 @@ struct ScribeSegment: Codable {
     var stream: String
     var media: Bool?
     var language: String?
+    /// How loud this stretch was, as RMS over the raw samples, 0...1.
+    ///
+    /// Not an emotion. A microphone level moves with how close the pendant is
+    /// and which way it faces, so on its own this says nothing — it is only
+    /// meaningful against another level measured through the same microphone
+    /// at the same moment, which is what the Worker compares it to.
+    ///
+    /// The old relay measured this and the on-device path never did, so every
+    /// conversation since 2026-09-15 has been stored with no level at all.
+    var level: Double?
 }
 
 actor ScribeEngine {
@@ -263,7 +273,8 @@ actor ScribeEngine {
                 is_user: person == Voiceprints.wearerName,
                 person_id: person == Voiceprints.wearerName ? nil : person,
                 stream: "device:\(sessionId):\(index)",
-                media: media ? true : nil, language: nil))
+                media: media ? true : nil, language: nil,
+                level: Self.rms(in: buffer, from: part.from, to: part.to)))
             }
         }
         if !out.isEmpty { emit?(out) }
@@ -307,6 +318,21 @@ actor ScribeEngine {
     /// diarizer's turns; consecutive words from one speaker are gathered back
     /// together, so a turn is one segment rather than one per word. Returns
     /// nothing when only one person spoke, and the caller keeps the run whole.
+    /// Root mean square over one stretch of the window, 0...1.
+    ///
+    /// Costs one pass over samples already in memory — about 16,000 multiplies
+    /// for a second of speech, next to nothing beside the VAD, the transcriber
+    /// and the diarizer that already read the same buffer.
+    private static func rms(in samples: [Float], from: Double, to: Double) -> Double? {
+        let a = max(0, Int(from * sampleRate))
+        let b = min(samples.count, Int(to * sampleRate))
+        guard b - a >= Int(sampleRate / 20) else { return nil }   // under 50ms says nothing
+        var sum = 0.0
+        for i in a..<b { sum += Double(samples[i]) * Double(samples[i]) }
+        let v = (sum / Double(b - a)).squareRoot()
+        return v.isFinite ? (v * 10000).rounded() / 10000 : nil
+    }
+
     private static func splitByTurn(pieces: [TimedPiece], run: (start: Double, end: Double),
                                     turns: [Turn]) -> [(text: String, from: Double, to: Double, turn: Turn?)] {
         guard !pieces.isEmpty, turns.count >= 2 else { return [] }
