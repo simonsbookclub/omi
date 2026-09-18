@@ -198,6 +198,30 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
     final lastAudioMs = CaptureController.lastLiveAudioAtMs;
     _considerOvernightDrain(now, lastAudioMs);
 
+    // Say out loud, once a minute, whether audio is arriving.
+    //
+    // 2026-09-18: the pendant recorded nothing for twenty-four hours and no
+    // one could say why. The app was up the whole time — posting Apple Health,
+    // holding an open socket — and its battery barely moved, so it was
+    // connected and idle rather than capturing. Every clue lived in NSLog
+    // lines that never leave the phone, so the evening was spent inferring
+    // what one number would have said outright. This is that number. It rides
+    // the link watchdog because that runs whatever the app believes it is
+    // doing; the audio watchdog is gated on already thinking it is recording,
+    // which is exactly the assumption that was false.
+    //
+    // Numbers only — never audio, never text.
+    unawaited(reportCaptureHeartbeat({
+      'at': now.toUtc().toIso8601String(),
+      'seconds_since_audio': lastAudioMs > 0 ? (now.millisecondsSinceEpoch - lastAudioMs) ~/ 1000 : null,
+      'connected': isConnected,
+      'device_id': connectedDevice?.id,
+      'battery': batteryLevel,
+      'drain_on': _overnightDrainOn,
+      'forced_rebuilds': _forcedRebuilds,
+      'uptime_s': now.difference(_startedAt).inSeconds,
+    }).catchError((_) => false));
+
     // A pendant on its charger is silent by design. Rebuilding its link every
     // few minutes because no audio was arriving tore down the very drain that
     // silence exists for: 37 relay sessions on the night of 2026-09-12, zero

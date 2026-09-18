@@ -155,3 +155,23 @@ Future<bool> syncAppleHealthData(Map<String, dynamic> healthData) async {
     return false;
   }
 }
+
+/// SIMONSBOOKCLUB: what the capture path is doing, once a minute.
+///
+/// Added 2026-09-18, after a day in which the pendant recorded nothing and
+/// nobody could tell why. The app was running the whole time, posting Apple
+/// Health over this very client and holding an open socket to the worker;
+/// every failure inside the capture engine is an NSLog and carry on, and that
+/// log never leaves the phone. So the one question that mattered — is audio
+/// reaching this device — had no answer anywhere but on the device itself.
+///
+/// Numbers only. No audio, no text, nothing about what was said.
+Future<bool> reportCaptureHeartbeat(Map<String, dynamic> state) async {
+  var response = await makeApiCall(
+    url: '${Env.apiBaseUrl}v1/integrations/pendant/capture-heartbeat',
+    headers: {},
+    method: 'PUT',
+    body: jsonEncode(state),
+  );
+  return response != null && response.statusCode == 200;
+}
