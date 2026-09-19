@@ -204,6 +204,15 @@ class DeviceProvider extends ChangeNotifier implements IDeviceServiceSubsciption
       'paired_device_in_prefs': deviceId.isNotEmpty,
       'signed_in': AuthService.instance.isSignedIn(),
       'watchdog_runs': deviceId.isNotEmpty && AuthService.instance.isSignedIn(),
+      // The last unknown, 2026-09-19. The link is up, the pendant answers a
+      // battery read, the watchdog rebuilds the transport — and not one audio
+      // frame has ever arrived. Rebuilding the transport is not the same as
+      // subscribing to the audio, and only `deviceRecord` means the app ever
+      // asked for any. If this says anything else while the pendant is
+      // connected, the app is sitting next to an open link having never
+      // opened its mouth, which no amount of re-pairing would fix.
+      'recording_state': captureProvider?.recordingState.name,
+      'has_recording_device': captureProvider?.hasRecordingDevice,
       'battery': batteryLevel,
       'drain_on': _overnightDrainOn,
       'forced_rebuilds': _forcedRebuilds,

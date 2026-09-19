@@ -310,6 +310,11 @@ class CaptureController extends ChangeNotifier
 
   BtDevice? _recordingDevice;
 
+  /// Whether a device has been handed to capture at all. Read by the
+  /// capture heartbeat: a link can be up and rebuilt repeatedly while
+  /// this stays null, and then nothing ever subscribes to the audio.
+  bool get hasRecordingDevice => _recordingDevice != null;
+
   String? _getConversationSourceFromDevice() {
     return conversationSourceForDeviceType(_recordingDevice?.type);
   }
