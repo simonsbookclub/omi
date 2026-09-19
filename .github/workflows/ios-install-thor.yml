@@ -1,0 +1,97 @@
+# Build the recording app signed for Thor, on the Mac Mini, and install it.
+#
+# Why a workflow and not ssh: code signing needs the login keychain, and that
+# keychain is locked inside an ssh session — codesign fails with
+# errSecInternalComponent, or here, a bare "Command CodeSign failed with a
+# nonzero exit code". The GitHub runner on the Mini is a LaunchAgent in the
+# desktop session (SessionCreate=false in its plist, which is load-bearing),
+# where the keychain is open. So signing works here and nowhere else a machine
+# can reach on its own.
+#
+# Why the Mini and not the laptop: the laptop's xcodebuild wedges resolving
+# this project's Swift packages — FluidAudio and meta-wearables — sitting at
+# 0% CPU with no child process and no open socket, for hours. Cleared caches,
+# disabled package updates and running outside the sandbox all changed
+# nothing. The Mini resolves the same graph in seconds. It also runs Xcode 27
+# against the iOS 27 SDK, which the Intel laptop cannot.
+#
+# Installs are expensive, unlike server deploys: every install kills the app
+# mid-session, the pendant falls back to flash, and a silent backlog follows.
+# Install when something actually needs installing.
+name: Install the app on Thor
+
+on:
+  workflow_dispatch:
+    inputs:
+      install:
+        description: Install on Thor after building
+        type: boolean
+        default: true
+
+concurrency:
+  group: omi-ios-install-thor
+  cancel-in-progress: false
+
+env:
+  THOR_UDID: 00008150-0009398A1A38401C
+  BUNDLE_ID: com.simonsbookclub.omi
+  APP: build/ios/iphoneos/Runner.app
+
+jobs:
+  install:
+    runs-on: [self-hosted, macOS]
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain, device, and whether this runner can sign at all
+        run: |
+          xcodebuild -version
+          echo "iOS SDK: $(xcrun --sdk iphoneos --show-sdk-version)"
+          xcrun devicectl list devices | grep -i "$THOR_UDID" \
+            || { echo "Thor is not paired with the Mini or not reachable right now"; exit 1; }
+          echo "login keychain:"
+          security show-keychain-info ~/Library/Keychains/login.keychain-db 2>&1 | sed 's/^/  /'
+          echo "signing identities:"
+          security find-identity -v -p codesigning 2>&1 | head -3 | sed 's/^/  /'
+
+      - name: Build
+        env:
+          # CocoaPods here runs on the system Ruby 2.6, where activesupport
+          # 6.1 blows up on a missing Logger constant unless one is required
+          # first. Pinning concurrent-ruby did not help; this does.
+          RUBYOPT: "-rlogger"
+        run: |
+          export PATH="$HOME/.gem/ruby/2.6.0/bin:$HOME/flutter/bin:$PATH"
+          pod --version
+          flutter build ios --release --flavor prod \
+            --dart-define=OMI_API_BASE_URL=https://pendant.output.social/omi/ \
+            --dart-define=OMI_NATIVE_TOKEN="$(cat "$HOME/.omi-native-token")"
+          ls -l "$APP/Runner"
+
+      - name: Install on Thor
+        if: ${{ inputs.install }}
+        run: |
+          xcrun devicectl device install app --device "$THOR_UDID" "$APP" 2>&1 | tee /tmp/install.log
+          # The version string does not change between builds, so the bundle
+          # UUID the install prints is the only proof the new binary is the
+          # one that ends up running.
+          grep -i installationURL /tmp/install.log || true
+
+      - name: Launch it, whenever Thor is next unlocked
+        if: ${{ inputs.install }}
+        run: |
+          # install works on a locked phone; launch is refused with
+          # "Locked". An install without a launch leaves Apple Health
+          # background delivery dead until the app is next opened, so arm the
+          # launch rather than asking Simon to tap it.
+          for i in $(seq 1 40); do
+            if xcrun devicectl device process launch --device "$THOR_UDID" "$BUNDLE_ID" >/dev/null 2>&1; then
+              echo "launched on attempt $i"; exit 0
+            fi
+            sleep 15
+          done
+          echo "still locked after 10 minutes — it will start when opened"
