@@ -43,9 +43,21 @@ jobs:
     timeout-minutes: 60
     defaults:
       run:
-        working-directory: app
+        working-directory: /Users/simonstawski/omi/app
     steps:
-      - uses: actions/checkout@v4
+      # Deliberately NOT actions/checkout. A fresh clone is missing every
+      # local-only prerequisite this app needs to build — .prod.env,
+      # firebase_options_prod.dart, lib/env/*.g.dart, the GoogleService
+      # plists — all gitignored and none of them reconstructable in CI. The
+      # first run failed in 26 seconds for exactly that. The Mini's own
+      # working copy has them, and its Pods are already installed, so build
+      # there and just move it to the requested commit.
+      - name: Move the Mini's working copy to this ref
+        run: |
+          git -C /Users/simonstawski/omi fetch --quiet origin "${GITHUB_REF_NAME}"
+          git -C /Users/simonstawski/omi checkout --quiet "${GITHUB_REF_NAME}"
+          git -C /Users/simonstawski/omi reset --hard --quiet "origin/${GITHUB_REF_NAME}"
+          git -C /Users/simonstawski/omi log --oneline -1
 
       - name: Toolchain, device, and whether this runner can sign at all
         run: |
